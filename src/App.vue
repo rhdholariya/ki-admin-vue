@@ -28,6 +28,7 @@ const closeSemiNav = () => {
       <slot>
 
       </slot>
+
       <RouterView />
 
       <FooterSection />

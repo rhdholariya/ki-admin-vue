@@ -32,9 +32,6 @@ defineEmits(['toggle-nav']);
 
         <div class="col-6 col-sm-8 d-flex align-items-center justify-content-end header-right p-0">
           <ul class="d-flex align-items-center">
-            <li class="header-cloud">
-
-            </li>
             <li class="header-language">
               <HeaderLanguage />
             </li>
