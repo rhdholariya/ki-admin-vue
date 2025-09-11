@@ -6,7 +6,7 @@ import FlagIcon from 'vue-flag-icon'
 import Breadcrumbs from "@/components/breadcrumb/Breadcrumb.vue";
 import Prism from "prismjs";
 console.log(Prism);
-
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 // Import Bootstrap CSS and JS
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js'

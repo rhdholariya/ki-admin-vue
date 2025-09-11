@@ -4,6 +4,7 @@ import { PhBriefcase, PhCode } from "@phosphor-icons/vue";
 import CodeHighlight from "@components/prism/CodeHighlight.vue";
 import { ref, nextTick } from "vue";
 import { html as beautifyHtml } from "js-beautify";
+import {BAlert, BBadge, BAvatar, BCard, BCardText} from "bootstrap-vue-3";
 
 //  Basic alerts data
 const alerts = [
@@ -103,6 +104,24 @@ const captureOutlineHtml = async () => {
               >
                 {{ alert.text }}
               </div>
+              <b-alert variant="success">Success Alert dsf</b-alert>
+              <b-badge>New</b-badge>
+              <b-avatar variant="primary" text="BV"></b-avatar>
+              <b-card
+                  title="Card Title"
+                  img-src="https://picsum.photos/600/300/?image=25"
+                  img-alt="Image"
+                  img-top
+                  tag="article"
+                  style="max-width: 20rem;"
+                  class="mb-2"
+              >
+                <b-card-text>
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </b-card-text>
+
+                <b-button href="#" variant="primary">Go somewhere</b-button>
+              </b-card>
             </div>
 
 
