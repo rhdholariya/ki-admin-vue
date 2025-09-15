@@ -2,7 +2,8 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicButtons from "@/components/Button/BasicButtons.vue";
+import BasicButtons from "@/components/ui-kits/Button/BasicButtons.vue";
+import SmartButton from "@/components/ui-kits/Button/SmartButton.vue";
 
 
 
@@ -23,7 +24,7 @@ const breadcrumbItems = {
         <b-container fluid>
             <b-row>
                 <BasicButtons/>
-
+                <SmartButton />
             </b-row>
         </b-container>
     </main>

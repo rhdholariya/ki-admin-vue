@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import AlertPage from "@/views/AlertPage.vue";
-import BadgesPage from "@/views/BadgesPage.vue";
-import ButtonPage from "@/views/ButtonPage.vue";
+import AlertPage from "@/views/ui-kits/AlertPage.vue";
+import BadgesPage from "@/views/ui-kits/BadgesPage.vue";
+import ButtonPage from "@/views/ui-kits/ButtonPage.vue";
 
 
 

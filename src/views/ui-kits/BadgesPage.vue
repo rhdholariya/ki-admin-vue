@@ -2,9 +2,9 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicBadge from "@/components/Badge/BasicBadge.vue";
-import IconBadge from "@/components/Badge/IconBadge.vue";
-import RadiusBadge from "@/components/Badge/RadiusBadge.vue";
+import BasicBadge from "@/components/ui-kits/Badge/BasicBadge.vue";
+import IconBadge from "@/components/ui-kits/Badge/IconBadge.vue";
+import RadiusBadge from "@/components/ui-kits/Badge/RadiusBadge.vue";
 
 // Breadcrumb data
 const breadcrumbItems = {
