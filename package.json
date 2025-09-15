@@ -15,7 +15,7 @@
     "@phosphor-icons/vue": "^2.2.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.8",
-    "bootstrap-vue-3": "^0.5.1",
+    "bootstrap-vue-next": "^0.40.3",
     "js-beautify": "^1.15.4",
     "prismjs": "^1.30.0",
     "vue": "^3.5.21",
