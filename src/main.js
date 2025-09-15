@@ -1,12 +1,13 @@
 import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/router.js'
 import FlagIcon from 'vue-flag-icon'
 import Breadcrumbs from "@/components/breadcrumb/Breadcrumb.vue";
 import Prism from "prismjs";
 console.log(Prism);
 import "prismjs/themes/prism.css";
+import 'animate.css';
 
 // Bootstrap Vue Next
 import { createBootstrap } from 'bootstrap-vue-next'
