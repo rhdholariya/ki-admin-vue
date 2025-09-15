@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref } from "vue";
+import { BButton, BOffcanvas, BCard } from "bootstrap-vue-next";
+
 import {
-  PhBoundingBox,
   PhShoppingBagOpen,
   PhEnvelope,
   PhChatCircleText,
@@ -12,175 +14,67 @@ import {
   PhGooglePhotosLogo,
   PhUsersThree,
   PhSelectionForeground,
-  PhPlus
-} from "@phosphor-icons/vue"
+  PhPlus,
+  PhBoundingBox
+} from '@phosphor-icons/vue'
+
+const apps = [
+  { name: "E-shop", href: "product.html", icon: PhShoppingBagOpen, color: "text-light-primary" },
+  { name: "Email", href: "email.html", icon: PhEnvelope, color: "text-light-danger" },
+  { name: "Chat", href: "chat.html", icon: PhChatCircleText, color: "text-light-success" },
+  { name: "Project", href: "project_app.html", icon: PhProjectorScreenChart, color: "text-light-warning" },
+  { name: "Invoice", href: "invoice.html", icon: PhScroll, color: "text-light-info" },
+  { name: "Blog", href: "blog.html", icon: PhNotebook, color: "text-light-dark" },
+  { name: "Calendar", href: "calendar.html", icon: PhCalendar, color: "text-light-danger" },
+  { name: "File Manager", href: "file_manager.html", icon: PhFolderOpen, color: "text-light-warning" },
+  { name: "Gallery", href: "gallery.html", icon: PhGooglePhotosLogo, color: "text-light-primary" },
+  { name: "Profile", href: "profile.html", icon: PhUsersThree, color: "text-light-success" },
+  { name: "Task Board", href: "kanban_board.html", icon: PhSelectionForeground, color: "text-light-secondary" }
+]
+
+const showOffcanvas = ref(false);
+
+function toggleOffcanvas() {
+  showOffcanvas.value = !showOffcanvas.value;
+}
 </script>
 
 <template>
-  <!-- Toggle Button -->
-  <a
-      href="#"
-      role="button"
-      class="d-block head-icon bg-light-dark rounded-circle f-s-22 p-2"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#appscanvasRights"
-      aria-controls="appscanvasRights"
-  >
-    <PhBoundingBox size="22" weight="regular" />
-  </a>
+  <div>
+    <!-- Toggle Button -->
+    <b-button variant="light-secondary" class="rounded-circle p-2" @click="toggleOffcanvas">
+      <PhBoundingBox :size="22" />
+    </b-button>
 
-
-  <div
-      class="apps-offcanvas offcanvas offcanvas-end"
-      tabindex="-1"
-      id="appscanvasRights"
-      aria-labelledby="appscanvasRightsLabel"
-  >
-
-    <div class="offcanvas-header">
-      <div class="offcanvas-title h5">Apps</div>
-      <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-      ></button>
-    </div>
-
-    <!-- Body with Shortcuts -->
-    <div class="offcanvas-body">
-      <div class="row row-cols-3 g-2">
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-primary w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhShoppingBagOpen size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">E-shop</p>
-          </a>
+    <!-- Offcanvas -->
+    <b-offcanvas v-model="showOffcanvas" placement="end">
+      <template #header>
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="offcanvas-title">Shortcut</h5>
+          <b-button variant="close" @click="showOffcanvas = false"></b-button>
         </div>
+      </template>
 
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-danger w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhEnvelope size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Email</p>
-          </a>
+      <template #default>
+        <div class="row row-cols-3 g-2">
+          <div v-for="(app, index) in apps" :key="index" class="d-flex-center text-center">
+            <a :class="app.color + ' w-100 rounded-3 py-3 px-2'" :href="app.href" target="_blank">
+            <span>
+              <component :is="app.icon" size="30" weight="light" />
+            </span>
+              <p class="mb-0 f-w-500 text-dark">{{ app.name }}</p>
+            </a>
+          </div>
+          <div class="d-flex-center text-center">
+            <a class="d-flex-center text-light-secondary w-100 h-100 rounded-3 p-2 dashed-1-secondary"
+               href="kanban_board.html" target="_blank">
+            <span>
+              <PhPlus size="30" weight="light" />
+            </span>
+            </a>
+          </div>
         </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-success w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhChatCircleText size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Chat</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-warning w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhProjectorScreenChart size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Project</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-info w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhScroll size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Invoice</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-dark w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhNotebook size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Blog</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-danger w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhCalendar size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Calender</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-warning w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhFolderOpen size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark txt-ellipsis-1">File Manager</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-primary w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhGooglePhotosLogo size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Gallery</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-success w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhUsersThree size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Profile</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="text-light-secondary w-100 rounded-3 py-3 px-2"
-          >
-            <span><PhSelectionForeground size="30" weight="light" /></span>
-            <p class="mb-0 f-w-500 text-dark">Task Board</p>
-          </a>
-        </div>
-
-        <div class="d-flex-center text-center">
-          <a
-              href=""
-              target="_blank"
-              class="d-flex-center text-light-secondary w-100 h-100 rounded-3 p-2 dashed-1-secondary"
-          >
-            <span><PhPlus size="30" weight="light" /></span>
-          </a>
-        </div>
-      </div>
-    </div>
+      </template>
+    </b-offcanvas>
   </div>
 </template>
