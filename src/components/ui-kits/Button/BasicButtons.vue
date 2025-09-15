@@ -11,8 +11,7 @@ import {
     PhLinkedinLogo,
     PhRedditLogo
 } from '@phosphor-icons/vue';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism.css';
+
 
 // Collapse states
 const openBasic = ref(false);
