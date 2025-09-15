@@ -1,0 +1,20 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import TestView from '@/views/TestView.vue'
+import AlertPage from "@/views/AlertPage.vue";
+import BadgesPage from "@/views/BadgesPage.vue";
+import ButtonPage from "@/views/ButtonPage.vue";
+
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
+        {path: '/', name: 'home', component: HomeView,},
+        {path: '/test', name: 'test', component: TestView,},
+        {path: '/alert', name: 'alert', component: AlertPage,},
+        {path: '/badges', name: 'badges', component: BadgesPage,},
+        {path: '/button', name: 'button', component: ButtonPage,},
+    ],
+})
+
+export default router
