@@ -137,6 +137,7 @@ header {
 
         .header-apps {
           .card-body {
+
             a {
               &:hover {
                 i {
@@ -151,20 +152,6 @@ header {
           }
 
 
-          .app-dropdown {
-            .dropdown-menu {
-              width: 200px;
-              border-radius: var(--app-border-radius);
-
-              .dropdown-item {
-                border-radius: var(--app-border-radius);
-              }
-
-              &.sub-menu {
-                transform: translate(-205px, 96px) !important;
-              }
-            }
-          }
         }
 
         .header-cart {
@@ -226,6 +213,8 @@ header {
             display: block;
           }
         }
+
+
       }
     }
 
@@ -240,15 +229,35 @@ header {
     }
   }
 
-  .offcanvas {
-    .offcanvas-title {
-      color: rgb(var(--dark), 0.75);
-      font-weight: 600;
-    }
+
+}
+.offcanvas {
+  .offcanvas-title {
+    color: rgb(var(--dark), 0.75);
+    font-weight: 600;
+  }
+
+  .offcanvas-header{
+    justify-content: space-between;
   }
 }
 
+
 .offcanvas {
+  .app-dropdown {
+    .dropdown-menu {
+      width: 200px;
+      border-radius: var(--app-border-radius);
+
+      .dropdown-item {
+        border-radius: var(--app-border-radius);
+      }
+
+      &.sub-menu {
+        transform: translate(-205px, 96px) !important;
+      }
+    }
+  }
   &.header-notification-canvas {
     border-radius: var(--app-border-radius);
     top: 64px;
@@ -267,9 +276,11 @@ header {
     border: 0;
     border-radius: var(--app-border-radius);
     height: 450px;
+
+
   }
 
-  &.apps-offcanvas {
+  &.header-apps-canvas {
     width: 350px;
     height: 360px;
     top: 65px;

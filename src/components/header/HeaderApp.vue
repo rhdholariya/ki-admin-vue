@@ -1,6 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
 import { BButton, BOffcanvas, BCard } from "bootstrap-vue-next";
+import { BDropdown, BDropdownItem, BDropdownDivider } from 'bootstrap-vue-next'
 
 import {
   PhShoppingBagOpen,
@@ -15,7 +16,8 @@ import {
   PhUsersThree,
   PhSelectionForeground,
   PhPlus,
-  PhBoundingBox
+  PhBoundingBox,
+  PhSlidersHorizontal
 } from '@phosphor-icons/vue'
 
 const apps = [
@@ -31,7 +33,7 @@ const apps = [
   { name: "Profile", href: "profile.html", icon: PhUsersThree, color: "text-light-success" },
   { name: "Task Board", href: "kanban_board.html", icon: PhSelectionForeground, color: "text-light-secondary" }
 ]
-
+const notificationsEnabled = ref(false)
 const showOffcanvas = ref(false);
 
 function toggleOffcanvas() {
@@ -47,12 +49,57 @@ function toggleOffcanvas() {
     </b-button>
 
     <!-- Offcanvas -->
-    <b-offcanvas v-model="showOffcanvas" placement="end">
+    <b-offcanvas v-model="showOffcanvas" placement="end" class="header-apps-canvas">
       <template #header>
-        <div class="d-flex justify-content-between align-items-center">
           <h5 class="offcanvas-title">Shortcut</h5>
-          <b-button variant="close" @click="showOffcanvas = false"></b-button>
-        </div>
+        <b-dropdown variant="link" class="app-dropdown flex-shrink-0" no-caret>
+          <template #button-content>
+            <PhSlidersHorizontal :size="20" />
+          </template>
+
+          <b-dropdown-item href="setting.html" target="_blank">
+            Privacy Settings
+          </b-dropdown-item>
+          <b-dropdown-item href="setting.html" target="_blank">
+            Account Settings
+          </b-dropdown-item>
+          <b-dropdown-item href="setting.html" target="_blank">
+            Accessibility
+          </b-dropdown-item>
+
+          <b-dropdown-divider />
+
+          <!-- More Settings as a toggle -->
+          <b-dropdown-item @click="toggleMoreSettings" class="d-flex justify-content-between align-items-center">
+            More Settings
+            <span v-if="showMoreSettings">▲</span>
+            <span v-else>▼</span>
+          </b-dropdown-item>
+
+          <!-- Submenu shown conditionally -->
+          <div v-if="showMoreSettings" class="submenu p-2 border-top bg-light">
+            <b-dropdown-item href="setting.html" target="_blank">
+              Backup and Restore
+            </b-dropdown-item>
+            <b-dropdown-item href="setting.html" target="_blank">
+              Data Usage
+            </b-dropdown-item>
+            <b-dropdown-item href="setting.html" target="_blank">
+              Theme
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <div class="d-flex align-items-center justify-content-between">
+                <p class="mb-0">Notification</p>
+                <input
+                    class="form-check-input form-check-primary"
+                    id="notificationSwitch"
+                    type="checkbox"
+                    v-model="notificationsEnabled"
+                />
+              </div>
+            </b-dropdown-item>
+          </div>
+        </b-dropdown>
       </template>
 
       <template #default>
