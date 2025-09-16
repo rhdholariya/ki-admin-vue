@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import AlertPage from "@/views/ui-kits/AlertPage.vue";
 import BadgesPage from "@/views/ui-kits/BadgesPage.vue";
 import ButtonPage from "@/views/ui-kits/ButtonPage.vue";
+import CardPage from "@/views/ui-kits/CardPage.vue";
 
 
 
@@ -13,6 +14,7 @@ const router = createRouter({
         {path: '/alert', name: 'alert', component: AlertPage,},
         {path: '/badges', name: 'badges', component: BadgesPage,},
         {path: '/button', name: 'button', component: ButtonPage,},
+        {path: '/card', name: 'card', component: CardPage,},
     ],
 })
 
