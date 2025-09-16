@@ -10,6 +10,9 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  optimizeDeps: {
+    include: ['simplebar', 'simplebar-vue']
+  },
   css: {
     preprocessorOptions: {
       scss: {

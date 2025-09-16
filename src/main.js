@@ -12,6 +12,7 @@ import 'animate.css';
 // Bootstrap Vue Next
 import { createBootstrap } from 'bootstrap-vue-next'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import 'simplebar/dist/simplebar.min.css';
 
 const app = createApp(App)
 import '@/assets/scss/style.scss';
