@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import BasicBadge from "@/components/ui-kits/Badge/BasicBadge.vue";
 import IconBadge from "@/components/ui-kits/Badge/IconBadge.vue";
 import RadiusBadge from "@/components/ui-kits/Badge/RadiusBadge.vue";
+import AppLayout from "@/views/AppLayout.vue";
 
 // Breadcrumb data
 const breadcrumbItems = {
@@ -17,6 +18,7 @@ const breadcrumbItems = {
 </script>
 
 <template>
+    <AppLayout>
     <main>
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
@@ -28,4 +30,5 @@ const breadcrumbItems = {
             </b-row>
         </b-container>
     </main>
+    </AppLayout>
 </template>

@@ -4,6 +4,7 @@ import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import BasicButtons from "@/components/ui-kits/Button/BasicButtons.vue";
 import SmartButton from "@/components/ui-kits/Button/SmartButton.vue";
+import BlockSizeRadiousButton from "@/components/ui-kits/Button/BlockSizeRadiousButton.vue";
 
 
 
@@ -25,6 +26,7 @@ const breadcrumbItems = {
             <b-row>
                 <BasicButtons/>
                 <SmartButton />
+                <BlockSizeRadiousButton/>
             </b-row>
         </b-container>
     </main>

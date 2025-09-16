@@ -11,45 +11,47 @@ defineEmits(['toggle-nav']);
 </script>
 
 <template>
-  <header class="header-main">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-6 col-sm-4 d-flex align-items-center header-left p-0">
+  <div>
+      <header class="header-main">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-6 col-sm-4 d-flex align-items-center header-left p-0">
           <span class="header-toggle" @click="$emit('toggle-nav')">
           <PhSquaresFour :size="24" />
           </span>
 
-          <div class="header-searchbar w-100">
-            <form action="#" class="mx-sm-3 app-form app-icon-form ">
-              <div class="position-relative">
-                <input aria-label="Search" class="form-control" placeholder="Search..."
-                       type="search">
-                <PhMagnifyingGlass :size="19" />
-              </div>
-            </form>
-          </div>
-        </div>
+                      <div class="header-searchbar w-100">
+                          <form action="#" class="mx-sm-3 app-form app-icon-form ">
+                              <div class="position-relative">
+                                  <input aria-label="Search" class="form-control" placeholder="Search..."
+                                         type="search">
+                                  <PhMagnifyingGlass :size="19" />
+                              </div>
+                          </form>
+                      </div>
+                  </div>
 
-        <div class="col-6 col-sm-8 d-flex align-items-center justify-content-end header-right p-0">
-          <ul class="d-flex align-items-center">
-            <li class="header-language">
-              <HeaderLanguage />
-            </li>
-            <li class="header-apps">
-              <HeaderApp />
-            </li>
-            <li class="header-cart">
-              <HeaderCart />
-            </li>
-            <li class="header-dark" >
-              <DarkMode />
-            </li>
-            <li class="header-notification">
-              <HeaderNotification />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
+                  <div class="col-6 col-sm-8 d-flex align-items-center justify-content-end header-right p-0">
+                      <ul class="d-flex align-items-center">
+                          <li class="header-language">
+                              <HeaderLanguage />
+                          </li>
+                          <li class="header-apps">
+                              <HeaderApp />
+                          </li>
+                          <li class="header-cart">
+                              <HeaderCart />
+                          </li>
+                          <li class="header-dark" >
+                              <DarkMode />
+                          </li>
+                          <li class="header-notification">
+                              <HeaderNotification />
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </header>
+  </div>
 </template>

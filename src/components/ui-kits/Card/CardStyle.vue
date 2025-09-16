@@ -1,6 +1,6 @@
 <script setup>
+import { BCard, BRow, BCol } from "bootstrap-vue-next";
 import { PhHeart } from "@phosphor-icons/vue";
-import {BCard} from "bootstrap-vue-next";
 
 const avatarImages = [
     "/images/avatar/4.png",
@@ -14,40 +14,37 @@ const avatarBgClasses = [
     "text-bg-warning",
     "text-bg-info",
 ];
-
 const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
 </script>
 
 <template>
-    <div class="row">
+    <b-row>
         <!-- Top Image Card -->
-        <div class="col-md-6 col-xxl-4">
-            <b-card img-src="/images/blog-app/06.jpg" img-top class="hover-effect">
-
-
-                    <h5 class="mb-2">Card Title</h5>
-                    <p>This is a wider card with supporting text below as a natural lead-in to.</p>
-                    <small class="text-body-secondary">Last updated 3 min's ago</small>
-
-            </b-card>
-        </div>
+        <b-col md="6" xxl="4">
+            <BCard img-src="/images/blog-app/06.jpg" img-top class="hover-effect">
+                <h5 class="mb-2">Card Title</h5>
+                <p>This is a wider card with supporting text below as a natural lead-in to.</p>
+                <small class="text-body-secondary">Last updated 3 min's ago</small>
+            </BCard>
+        </b-col>
 
         <!-- Bottom Image Card -->
-        <div class="col-md-6 col-xxl-4">
-            <b-card img-src="/images/blog-app/02.jpg" img-bottom class="hover-effect">
+        <b-col md="6" xxl="4">
+            <BCard img-src="/images/blog-app/02.jpg" img-bottom class="hover-effect">
                 <h5 class="mb-2">Card Title</h5>
-                <p>This is a wider card with supporting text below as a natural lead-in to additional This content.</p>
+                <p>This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                 <small class="text-body-secondary">Last updated 3 min's ago</small>
-            </b-card>
-        </div>
+            </BCard>
+        </b-col>
 
-        <!-- Profile Card -->
-        <div class="col-xxl-4">
-            <div class="row">
-                <div class="col-md-6 col-xxl-12">
-                    <b-card class="card hover-effect">
+        <!-- Profile + Featured Cards -->
+        <b-col xxl="4">
+            <b-row>
+                <!-- Profile Card -->
+                <b-col md="6" xxl="12">
+                    <div class="card hover-effect">
                         <div class="card-header">
-                            <h6 class="mb-0 mt-2 f-w-600">My Profile</h6>
+                        <h6 class="mb-0 mt-2 f-w-600">My Profile</h6>
                         </div>
                         <div class="p-3">
                             <p>
@@ -56,12 +53,12 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                             </p>
                         </div>
                         <div class="card-footer">
-                            <div class="row">
-                                <div class="col-6">
+                            <b-row>
+                                <b-col class="d-flex align-items-center">
                                     <PhHeart size="16" weight="fill" class="text-danger f-s-16 me-2" />
                                     <span>60 likes</span>
-                                </div>
-                                <div class="col-6">
+                                </b-col>
+                                <b-col cols="6">
                                     <ul class="avatar-group float-end">
                                         <li
                                             v-for="(src, i) in avatarImages"
@@ -81,47 +78,24 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                                             5+
                                         </li>
                                     </ul>
-                                </div>
-                            </div>
+                                </b-col>
+                            </b-row>
                         </div>
-                    </b-card>
-                </div>
+                    </div>
+                </b-col>
 
                 <!-- Featured List Card -->
-                <div class="col-md-6 col-xxl-12 mt-3 mt-md-0">
+                <b-col md="6" xxl="12" >
                     <div class="card hover-effect">
                         <div class="card-header">Featured</div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ listItems[0] }}</li>
-                            <li class="list-group-item">{{ listItems[1] }}</li>
-                            <li class="list-group-item">{{ listItems[2] }}</li>
-                            <li class="list-group-item">{{ listItems[3] }}</li>
+                            <li class="list-group-item" v-for="(item, index) in listItems" :key="index">
+                                {{ item }}
+                            </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Image Left / Content Right Card -->
-        <div class="col-xl-6">
-            <div class="card hover-effect mb-3">
-                <div class="row g-0">
-                    <div class="col-md-6 col-xl-4">
-                        <img src="/images/blog-app/08.jpg" class="img-fluid" alt="..." />
-                    </div>
-                    <div class="col-md-6 col-xl-8">
-                        <div class="p-3">
-                            <h5>Card Title</h5>
-                            <p>
-                                This is a wider card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit
-                                longer.
-                            </p>
-                            <small class="text-body-secondary">Last updated 3 min's ago</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </b-col>
+            </b-row>
+        </b-col>
+    </b-row>
 </template>
