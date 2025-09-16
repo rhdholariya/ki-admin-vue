@@ -1,10 +1,10 @@
 <script setup>
-import { BCard, BCol } from "bootstrap-vue-next";
+import {BCard, BCol, BRow} from "bootstrap-vue-next";
 import {
     PhAlarm,
     PhBug,
     PhBriefcase,
-    PhMedal // Vue me prefix ke saath hi hoga
+    PhMedal
 } from "@phosphor-icons/vue";
 
 const cardData = [
@@ -75,6 +75,7 @@ const cardData = [
 </script>
 
 <template>
+
     <b-col
         v-for="({ id, className, icon: Icon, heading, content, headingAfterText }) in cardData"
         :key="id"

@@ -27,7 +27,7 @@ const cardsData = ref([
         id: "cardheader2",
         title: "",
         headerText: "Card Body",
-        body: " text below as a natural lead-in to  content.",
+        body: " With supporting text below as a natural lead-in to additional content below as a natural.",
         footer: "Card Footer",
         className: "border-0",
     },

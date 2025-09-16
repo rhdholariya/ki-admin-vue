@@ -61,7 +61,7 @@
   }
   .card-body,
   .card-header {
-    &.code-header {
+    .code-header {
       .source {
         font-size: 20px;
         color: rgba(var(--dark), 1);

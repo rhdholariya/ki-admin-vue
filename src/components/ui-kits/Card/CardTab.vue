@@ -2,13 +2,12 @@
 import { ref } from "vue";
 import {
     BCard,
-    BCol,
-    BNav,
-    BNavItem,
-    BRow,
     BCardTitle,
     BCardText,
-    BCardImg,
+    BTab,
+    BTabs,
+    BCol,
+    BRow,
 } from "bootstrap-vue-next";
 
 import {
@@ -16,137 +15,107 @@ import {
     PhDisc,
     PhKeyboard,
     PhStar,
-    PhUserCircle,
+    PhLifebuoy,
+    PhFileX,
 } from "@phosphor-icons/vue";
 
-const firstTabData = [
-    {
-        id: "description",
-        label: "Description",
-        icon: PhUserCircle,
-        content: `
-      <p>
-        The idea is to use <code>:target</code> pseudo class to show tabs, use anchors with fragment identifiers to switch between them.
-      </p>
-    `,
-    },
-    {
-        id: "howitworks",
-        label: "How It Works",
-        icon: PhKeyboard,
-        content: `
-      <ol>
-        <li>Show only the last tab.</li>
-        <li>If <code>:target</code> matches a tab, show it and hide all following siblings.</li>
-        <li>Matches a tab, show it and hide all following siblings.</li>
-      </ol>
-    `,
-    },
-    {
-        id: "drawbacks",
-        label: "Drawbacks",
-        icon: PhDisc,
-        content: `
-      <p>
-        The idea is to use <code>:target</code> pseudo class to show tabs, use anchors with fragment identifiers to switch between them.
-      </p>
-    `,
-    },
-];
-
-const secondTabData = [
-    {
-        id: "features",
-        label: "Features",
-        icon: PhDisc,
-        content: `
-      <p>
-        The idea is to use <code>:target</code> pseudo class to show tabs, use anchors with fragment identifiers to switch between them.
-      </p>
-    `,
-    },
-    {
-        id: "history",
-        label: "History",
-        icon: PhClockCounterClockwise,
-        content: `
-      <ol>
-        <li>Show only the last tab.</li>
-        <li>If <code>:target</code> matches a tab, show it and hide all following siblings.</li>
-        <li>Matches a tab, show it and hide all following siblings.</li>
-      </ol>
-    `,
-    },
-    {
-        id: "reviews",
-        label: "Reviews",
-        icon: PhStar,
-        content: `
-      <p>
-        The idea is to use <code>:target</code> pseudo class to show tabs, use anchors with fragment identifiers to switch between them.
-      </p>
-    `,
-    },
-];
-
-// Reactive active tab states
-const activeFirst = ref(firstTabData[0].id);
-const activeSecond = ref(secondTabData[0].id);
+const activeTab1 = ref("description");
+const activeTab2 = ref("features");
 </script>
 
 <template>
     <b-row>
-        <!-- First Tab Card -->
+        <!-- First Card (Image Left) -->
         <b-col xl="6">
-            <b-card class="hover-effect equal-card tab-card">
-                <!-- Tab Header -->
-                <template #header>
-                    <b-nav tabs class="tab-light-primary">
-                        <b-nav-item
-                            v-for="{ id, label, icon: Icon } in firstTabData"
-                            :key="id"
-                            :active="activeFirst === id"
-                            @click="activeFirst = id"
-                        >
-                            <component :is="Icon" size="16" class="me-1" />
-                            {{ label }}
-                        </b-nav-item>
-                    </b-nav>
-                </template>
-
-                <!-- Tab Content -->
-                <div class="pt-3">
-                    <div
-                        v-for="{ id, content } in firstTabData"
-                        :key="id"
-                        v-show="activeFirst === id"
-                    >
-                        <div v-html="content" />
-                    </div>
-                </div>
+            <b-card no-body class="hover-effect mb-3">
+                <b-row no-gutters>
+                    <b-col md="6" xl="4">
+                        <img src="/images/blog-app/08.jpg" class="img-fluid" alt="..." />
+                    </b-col>
+                    <b-col md="6" xl="8">
+                        <div class="p-3">
+                            <h5>Card Title</h5>
+                            <p>
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                            <small class="text-body-secondary">Last updated 3 min's ago</small>
+                        </div>
+                    </b-col>
+                </b-row>
             </b-card>
         </b-col>
 
-        <!-- Middle Card -->
+        <!-- First Tab Card -->
         <b-col xl="6">
-            <b-card class="mb-3 hover-effect">
-                <b-row>
+            <b-card class="hover-effect equal-card tab-card">
+                <b-tabs
+                    v-model="activeTab1"
+                    content-class="mt-3"
+                    nav-class="tab-light-primary"
+                    active-nav-item-class="active"
+                    fill
+                >
+                    <!-- Description -->
+                    <b-tab key="description" active title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhLifebuoy size="18" weight="duotone" class="me-1" /> Description
+                        </template>
+                        <p>
+                            The idea is to use <code>:target</code> pseudoclass to show tabs,
+                            use anchors with fragment identifiers to switch between them.
+                        </p>
+                    </b-tab>
+
+                    <!-- How it Works -->
+                    <b-tab key="howworks" title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhKeyboard size="18" weight="duotone" class="me-1" /> How It Works
+                        </template>
+                        <ol>
+                            <li>Show only the last tab.</li>
+                            <li>
+                                If <code>:target</code> matches a tab, show it and hide all
+                                following siblings.
+                            </li>
+                            <li>Matches a tab, show it and hide all following siblings.</li>
+                        </ol>
+                    </b-tab>
+
+                    <!-- Drawbacks -->
+                    <b-tab key="drawbacks" title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhFileX size="18" weight="duotone" class="me-1" /> Drawbacks
+                        </template>
+                        <p>
+                            The idea is to use <code>:target</code> pseudoclass to show tabs,
+                            use anchors with fragment identifiers to switch between them.
+                        </p>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+        </b-col>
+
+        <!-- Middle Card (Image Right) -->
+        <b-col xl="6">
+            <b-card no-body class="hover-effect mb-3">
+                <b-row no-gutters>
                     <b-col md="6" xl="8">
-                        <b-card-title tag="h5">Card Title</b-card-title>
-                        <b-card-text>
-                            This is a wider card with supporting text with supporting little bit longer below
-                            as a natural lead-in to additional content. This content is a little bit longer.
-                        </b-card-text>
-                        <b-card-text>
-                            <small class="text-body-secondary">Last updated 3 min&#39;s ago</small>
-                        </b-card-text>
+                        <div class="p-3">
+                            <b-card-title tag="h5">Card Title</b-card-title>
+                            <b-card-text class="p-1">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </b-card-text>
+                            <b-card-text>
+                                <small class="text-body-secondary">Last updated 3 min's ago</small>
+                            </b-card-text>
+                        </div>
                     </b-col>
                     <b-col md="6" xl="4">
-                        <b-card-img
-                            src="/images/blog-app/09.jpg"
-                            class="img-fluid object-cover"
-                            alt="..."
-                        />
+                        <img src="/images/blog-app/09.jpg" class="img-fluid" alt="..." />
                     </b-col>
                 </b-row>
             </b-card>
@@ -155,31 +124,51 @@ const activeSecond = ref(secondTabData[0].id);
         <!-- Second Tab Card -->
         <b-col xl="6">
             <b-card class="hover-effect equal-card tab-card">
-                <!-- Tab Header -->
-                <template #header>
-                    <b-nav tabs class="tab-primary bg-primary p-1">
-                        <b-nav-item
-                            v-for="{ id, label, icon: Icon } in secondTabData"
-                            :key="id"
-                            :active="activeSecond === id"
-                            @click="activeSecond = id"
-                        >
-                            <component :is="Icon" size="16" class="me-1" />
-                            {{ label }}
-                        </b-nav-item>
-                    </b-nav>
-                </template>
+                <b-tabs
+                    v-model="activeTab2"
+                    content-class="mt-3"
+                    nav-class="tab-primary bg-primary p-1"
+                    active-nav-item-class="active"
+                    fill
+                >
+                    <!-- Features -->
+                    <b-tab key="features" active title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhDisc size="18" weight="duotone" class="me-1" /> Features
+                        </template>
+                        <p>
+                            The idea is to use <code>:target</code> pseudoclass to show tabs,
+                            use anchors with fragment identifiers to switch between them.
+                        </p>
+                    </b-tab>
 
-                <!-- Tab Content -->
-                <div class="pt-3">
-                    <div
-                        v-for="{ id, content } in secondTabData"
-                        :key="id"
-                        v-show="activeSecond === id"
-                    >
-                        <div v-html="content" />
-                    </div>
-                </div>
+                    <!-- History -->
+                    <b-tab key="history" title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhClockCounterClockwise size="18" weight="duotone" class="me-1" />
+                            History
+                        </template>
+                        <ol>
+                            <li>Show only the last tab.</li>
+                            <li>
+                                If <code>:target</code> matches a tab, show it and hide all
+                                following siblings.
+                            </li>
+                            <li>Matches a tab, show it and hide all following siblings.</li>
+                        </ol>
+                    </b-tab>
+
+                    <!-- Reviews -->
+                    <b-tab key="reviews" title-link-class="d-flex align-items-center">
+                        <template #title>
+                            <PhStar size="18" weight="duotone" class="me-1" /> Reviews
+                        </template>
+                        <p>
+                            The idea is to use <code>:target</code> pseudoclass to show tabs,
+                            use anchors with fragment identifiers to switch between them.
+                        </p>
+                    </b-tab>
+                </b-tabs>
             </b-card>
         </b-col>
     </b-row>
