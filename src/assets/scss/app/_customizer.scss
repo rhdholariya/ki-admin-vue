@@ -31,7 +31,10 @@
     position: absolute;
     right: 15px;
   }
-
+.offcanvas-header{
+  background-color: rgba(var(--primary), 1);
+  flex-wrap: wrap;
+}
   .offcanvas-body {
     > ul {
       li {

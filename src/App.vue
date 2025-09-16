@@ -4,6 +4,7 @@ import { RouterView } from 'vue-router';
 import HeaderMain from '@/components/layouts/header/index.vue';
 import Sidebar from '@/components/layouts/sidebar/index.vue';
 import FooterSection from '@/components/layouts/footer/index.vue';
+import Customizer from '@/components/Customizer/index.vue';
 import {ref} from "vue";
 
 const isSemiNav = ref(false);
@@ -46,6 +47,7 @@ onMounted(() => {
       <RouterView />
 
       <FooterSection />
+      <Customizer />
     </div>
   </div>
 </template>
