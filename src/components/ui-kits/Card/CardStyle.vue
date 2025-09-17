@@ -1,5 +1,5 @@
 <script setup>
-import { BCard, BRow, BCol } from "bootstrap-vue-next";
+import {BCard, BRow, BCol, BCardBody} from "bootstrap-vue-next";
 import { PhHeart } from "@phosphor-icons/vue";
 
 const avatarImages = [
@@ -21,20 +21,25 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
     <b-row>
         <!-- Top Image Card -->
         <b-col md="6" xxl="4">
-            <BCard img-src="/images/blog-app/06.jpg" img-top class="hover-effect">
+            <b-Card img-src="/images/blog-app/06.jpg" img-top class="hover-effect" no-body>
+                <b-card-body>
                 <h5 class="mb-2">Card Title</h5>
                 <p>This is a wider card with supporting text below as a natural lead-in to.</p>
                 <small class="text-body-secondary">Last updated 3 min's ago</small>
-            </BCard>
+                </b-card-body>
+            </b-Card>
         </b-col>
 
-        <!-- Bottom Image Card -->
+        <!-- bottom Image Card -->
         <b-col md="6" xxl="4">
-            <BCard img-src="/images/blog-app/02.jpg" img-bottom class="hover-effect">
+            <b-card no-body class="hover-effect">
+               <b-card-body>
                 <h5 class="mb-2">Card Title</h5>
                 <p>This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                 <small class="text-body-secondary">Last updated 3 min's ago</small>
-            </BCard>
+                </b-card-body>
+             <img src="/images/blog-app/02.jpg" >
+            </b-card>
         </b-col>
 
         <!-- Profile + Featured Cards -->
@@ -42,7 +47,7 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
             <b-row>
                 <!-- Profile Card -->
                 <b-col md="6" xxl="12">
-                    <div class="card hover-effect">
+                     <b-card no-body class="hover-effect">
                         <div class="card-header">
                         <h6 class="mb-0 mt-2 f-w-600">My Profile</h6>
                         </div>
@@ -64,7 +69,6 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                                             v-for="(src, i) in avatarImages"
                                             :key="i"
                                             class="h-25 w-25 d-flex-center b-r-50 b-2-light position-relative"
-                                            :class="avatarBgClasses[i]"
                                             data-bs-toggle="tooltip"
                                             data-bs-title="Sabrina Torres"
                                         >
@@ -81,19 +85,19 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                                 </b-col>
                             </b-row>
                         </div>
-                    </div>
+                    </b-card>
                 </b-col>
 
                 <!-- Featured List Card -->
                 <b-col md="6" xxl="12" >
-                    <div class="card hover-effect">
+                    <b-card no-body class=" hover-effect">
                         <div class="card-header">Featured</div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item" v-for="(item, index) in listItems" :key="index">
                                 {{ item }}
                             </li>
                         </ul>
-                    </div>
+                    </b-card>
                 </b-col>
             </b-row>
         </b-col>

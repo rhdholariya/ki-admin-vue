@@ -82,7 +82,7 @@ const cardData = [
         md="6"
         xl="3"
     >
-        <b-card :class="className">
+        <b-card :class="className" >
             <component
                 v-if="Icon"
                 :is="Icon"

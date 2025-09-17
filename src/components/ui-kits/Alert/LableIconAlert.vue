@@ -43,7 +43,7 @@ const alerts = [
 
 <template>
     <b-col lg="6">
-        <b-card>
+        <b-card no-body>
             <template #header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Alerts With Label Icons</h5>

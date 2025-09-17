@@ -1,6 +1,6 @@
 <script setup>
 import { ref, nextTick, watch } from 'vue';
-import { BButton, BCollapse, BRow, BCol, BCard } from 'bootstrap-vue-next';
+import {BButton, BCollapse, BRow, BCol, BCard, BCardBody} from 'bootstrap-vue-next';
 import { PhCamera, PhBellRinging, PhCode ,  PhDownload, PhWarning,  PhFacebookLogo,
     PhTwitterLogo,
     PhPinterestLogo,
@@ -133,7 +133,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
 <template>
     <b-row class="g-3">
         <b-col xl="4">
-            <b-card>
+            <b-card no-body>
                 <!-- Header -->
                 <template #header>
                     <div class="d-flex justify-content-between align-items-center">
@@ -143,7 +143,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                         </a>
                     </div>
                 </template>
-
+                  <b-card-body>
                 <!-- Buttons rendered with loop -->
                 <div class="app-btn-list d-flex flex-wrap gap-2 mt-2">
                     <b-button
@@ -159,10 +159,11 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <!-- Collapsible code preview dynamically generated -->
                 <b-collapse v-model="openIconButton" class="mt-3">
           <pre class="language-html"><code>
-              &lt;b-card&gt;
+              &lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Icon Buttons&lt;/h5&gt;
   &lt;/template&gt;
+              &lt;b-card-body&gt;
 &lt;div class="app-btn-list"&gt;
 <span v-for="btn in iconButtons" :key="btn.variant">
   &lt;b-button variant="{{ btn.variant }}" class="icon-btn b-r-4"&gt;
@@ -170,13 +171,15 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
   &lt;/b-button&gt;
 </span>
   &lt;/div&gt;
+              &lt;/b-card-body&gt;
 &lt;/b-card&gt;
           </code></pre>
                 </b-collapse>
+                  </b-card-body>
             </b-card>
         </b-col>
         <b-col xl="8">
-            <b-card>
+            <b-card no-body>
                 <!-- Header -->
                 <template #header>
                     <div class="d-flex justify-content-between align-items-center">
@@ -186,7 +189,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                         </a>
                     </div>
                 </template>
-
+                 <b-card-body>
                 <!-- Buttons rendered dynamically -->
                 <div class="app-btn-list d-flex flex-wrap gap-2 mt-2">
                     <b-button
@@ -206,6 +209,11 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <!-- Collapsible code preview dynamically -->
                 <b-collapse v-model="openSocialButtons" class="mt-3">
           <pre class="language-html"><code>
+               &lt;b-card no-body&gt;
+  &lt;template #header&gt;
+    &lt;h5&gt;Social Buttons&lt;/h5&gt;
+  &lt;/template&gt;
+              &lt;b-card-body&gt;
 &lt;div class="app-btn-list"&gt;
 <span v-for="btn in socialButtons" :key="btn.variant">
   &lt;b-button class="btn-{{ btn.variant }} icon-btn b-r-22"&gt;
@@ -213,12 +221,15 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
   &lt;/b-button&gt;
 </span>
 &lt;/div&gt;
+              &lt;/b-card&gt;
+              &lt;/b-card&gt;
           </code></pre>
                 </b-collapse>
+                 </b-card-body>
             </b-card>
         </b-col>
         <b-col xl="12">
-            <b-card>
+            <b-card no-body>
                 <!-- Card Header -->
                 <template #header>
                     <div class="d-flex justify-content-between align-items-center">
@@ -228,7 +239,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                         </a>
                     </div>
                 </template>
-
+                 <b-card-body>
                 <!-- Disabled Buttons -->
                 <div class="row">
                     <div
@@ -256,10 +267,11 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <!-- Prism Preview -->
                 <b-collapse v-model="openDisabledButtons" class="mt-3">
       <pre class="language-html"><code>
-&lt;b-card&gt;
+&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Disabled Buttons&lt;/h5&gt;
   &lt;/template&gt;
+          &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 <span v-for="group in disabledButtonGroups" :key="group.variantGroup">
   &lt;div class="col-md-6 col-lg-4 col-12 app-btn-list mb-2"&gt;
@@ -271,16 +283,18 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
   &lt;/div&gt;
 </span>
 &lt;/div&gt;
-          &lt;/div&gt;
+          &lt;/
+          &lt;/b-card-body&gt;div&gt;
 &lt;/b-card&gt;
       </code></pre>
                 </b-collapse>
+                 </b-card-body>
             </b-card>
 
 
         </b-col>
         <b-col xl="12">
-                <b-card>
+                <b-card no-body>
                     <!-- Card Header -->
                     <template #header>
                         <div class="d-flex justify-content-between align-items-center">
@@ -290,7 +304,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                             </a>
                         </div>
                     </template>
-
+                    <b-card-body>
                     <!-- Buttons -->
                     <div class="row">
                         <div
@@ -322,6 +336,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
   &lt;template #header&gt;
     &lt;h5&gt;Active Buttons&lt;/h5&gt;
   &lt;/template&gt;
+              &lt;b-card-body&gt;
 <span v-for="group in activeButtonGroups" :key="group.variantGroup">
   &lt;div class="col-md-6 col-lg-4 col-12 app-btn-list mb-2"&gt;
     <span v-for="btn in group.buttons" :key="btn.text">
@@ -332,13 +347,15 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
   &lt;/div&gt;
 </span>
   &lt;/div&gt;
+              &lt;/b-card-body&gt;
 &lt;/b-card&gt;
           </code></pre>
                     </b-collapse>
+                    </b-card-body>
                 </b-card>
             </b-col>
         <b-col xl="12">
-            <b-card>
+            <b-card no-body>
                 <!-- Card Header -->
                 <template #header>
                     <div class="d-flex justify-content-between align-items-center">
@@ -348,7 +365,7 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                         </a>
                     </div>
                 </template>
-
+                <b-card-body>
                 <!-- Buttons -->
                 <div class="row">
                     <div
@@ -394,6 +411,11 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <!-- Prism Preview -->
                 <b-collapse v-model="openLoadingButtons" class="mt-3">
           <pre class="language-html"><code>
+              &lt;b-card no-body&gt;
+  &lt;template #header&gt;
+    &lt;h5&gt;Loading Buttons&lt;/h5&gt;
+  &lt;/template&gt;
+          &lt;b-card-body&gt;
 &lt;div class="row"&gt;
 
 <span v-for="group in loadingButtonGroups" :key="group.col">
@@ -420,8 +442,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
 </span>
 
 &lt;/div&gt;
+              &lt;/b-card&gt;
           </code></pre>
                 </b-collapse>
+                </b-card-body>
             </b-card>
 
 

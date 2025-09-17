@@ -1,5 +1,5 @@
 <script setup>
-import { BAlert, BCard, BCol, BCollapse } from "bootstrap-vue-next";
+import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 import { nextTick, ref, watch } from "vue";
 
@@ -33,7 +33,7 @@ const alerts = [
 
 <template>
     <b-col lg="6">
-        <b-card>
+        <b-card no-body>
             <template #header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Basic Alerts</h5>
@@ -42,7 +42,7 @@ const alerts = [
                     </a>
                 </div>
             </template>
-
+            <b-card-body>
             <!-- Alerts -->
             <b-alert
                 v-for="(alert, index) in alerts"
@@ -56,14 +56,17 @@ const alerts = [
             <!-- Prism Preview -->
             <b-collapse v-model="openBasic" class="mt-3">
         <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card&gt;
+<code v-text="`&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Basic Alerts&lt;/h5&gt;
   &lt;/template&gt;
+  &lt;b-card-body&gt;
 ${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.type}&quot; show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
+&lt;/b-card-body&gt;
 &lt;/b-card&gt;`"></code>
         </pre>
             </b-collapse>
+            </b-card-body>
         </b-card>
     </b-col>
 </template>

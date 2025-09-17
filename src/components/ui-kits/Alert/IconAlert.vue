@@ -1,5 +1,5 @@
-<script setup >
-import {BAlert, BCard, BCol, BCollapse} from "bootstrap-vue-next";
+<script setup>
+import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import {nextTick, ref, watch} from "vue";
 import {
     PhCode, PhDownload, PhWheelchair, PhCheckCircle, PhPower, PhWarning, PhInfo, PhAlignBottom,
@@ -75,7 +75,7 @@ const alerts = [
 
 <template>
     <b-col lg="6">
-        <b-card>
+        <b-card no-body>
             <template #header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Alerts With Icons</h5>
@@ -84,21 +84,26 @@ const alerts = [
                     </a>
                 </div>
             </template>
-            <b-alert v-for="(alert, index) in alerts" :key="index" :variant="alert.color" show dismissible
-                     class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 ">
-                    <component :is="alert.icon" size="16" class="me-2"/>
-                    {{ alert.message }}
-                </p>
-            </b-alert>
-            <b-collapse v-model="open" class="mt-3">
+            <b-card-body>
+                <b-alert v-for="(alert, index) in alerts" :key="index" :variant="alert.color" show dismissible
+                         class="d-flex justify-content-between align-items-center">
+                    <p class="mb-0 ">
+                        <component :is="alert.icon" size="16" class="me-2"/>
+                        {{ alert.message }}
+                    </p>
+                </b-alert>
+                <b-collapse v-model="open" class="mt-3">
               <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card&gt;
+<code v-text="`&lt;b-card no-body&gt;
   &lt;template #header&gt;&lt;h5&gt;Alerts With Icons&lt;/h5&gt;&lt;/template&gt;
-${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.color}&quot; show dismissible class=&quot;d-flex justify-content-between align-items-center&quot;&gt;  &lt;p class=&quot;mb-0 d-flex align-items-center&quot;&gt;${alert.type} ${alert.message}&lt;/p&gt;&lt;/b-alert&gt;`).join('\n')}
+  &lt;b-card-body&gt;
+${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.color}&quot; show dismissible class=&quot;d-flex justify-content-between align-items-center&quot;&gt;
+  &lt;p class=&quot;mb-0 d-flex align-items-center&quot;&gt;${alert.type} ${alert.message}&lt;/p&gt;&lt;/b-alert&gt;`).join('\n')}
+&lt;/b-card-body&gt;
 &lt;/b-card&gt;`"></code>
               </pre>
-            </b-collapse>
+                </b-collapse>
+            </b-card-body>
         </b-card>
     </b-col>
 </template>

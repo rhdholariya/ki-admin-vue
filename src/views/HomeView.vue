@@ -1,7 +1,6 @@
 <script setup>
 import { ref, nextTick } from "vue";
 import Breadcrumb from "@components/breadcrumb/Breadcrumb.vue";
-import CodeHighlight from "@components/prism/CodeHighlight.vue";
 import { html as beautifyHtml } from "js-beautify";
 import { PhBriefcase, PhCode } from "@phosphor-icons/vue";
 import {
@@ -104,6 +103,7 @@ function toggleItem(id) {
 }
 
 import {  BProgress } from "bootstrap-vue-next";
+import AppLayout from "@/views/AppLayout.vue";
 
 const animatedValue = ref(20);
 
@@ -134,6 +134,7 @@ const triggerNotification = () => {
 </script>
 
 <template>
+    <AppLayout>
   <main>
     <div class="container-fluid">
       <!-- Breadcrumb -->
@@ -319,5 +320,13 @@ const triggerNotification = () => {
         </div>
       </div>
     </div>
+
+      <div>
+          <b-button
+              size="sm" variant="primary">Disabled</b-button>
+          <b-button disabled size="lg">Also Disabled</b-button>
+      </div>
+
   </main>
+    </AppLayout>
 </template>

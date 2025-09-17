@@ -5,6 +5,8 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import BasicButtons from "@/components/ui-kits/Button/BasicButtons.vue";
 import SmartButton from "@/components/ui-kits/Button/SmartButton.vue";
 import BlockSizeRadiousButton from "@/components/ui-kits/Button/BlockSizeRadiousButton.vue";
+import AppLayout from "@/views/AppLayout.vue";
+import ButtonGroup from "@/components/ui-kits/Button/ButtonGroup.vue";
 
 
 
@@ -19,6 +21,7 @@ const breadcrumbItems = {
 </script>
 
 <template>
+    <AppLayout>
     <main>
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
@@ -27,7 +30,9 @@ const breadcrumbItems = {
                 <BasicButtons/>
                 <SmartButton />
                 <BlockSizeRadiousButton/>
+                <ButtonGroup />
             </b-row>
         </b-container>
     </main>
+    </AppLayout>
 </template>
