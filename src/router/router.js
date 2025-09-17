@@ -5,6 +5,11 @@ import BadgesPage from "@/views/ui-kits/BadgesPage.vue";
 import ButtonPage from "@/views/ui-kits/ButtonPage.vue";
 import CardPage from "@/views/ui-kits/CardPage.vue";
 import Error from "@/views/DefaultPages/Error.vue";
+import ModalPage from "@/views/AdvanceUi/Modal/index.vue";
+import OffcanvasPage from "@/views/AdvanceUi/OffcanvasToggle/index.vue";
+import SweatAlertPage from "@/views/AdvanceUi/SweatAlert/index.vue";
+import ScrollbarPage from "@/views/AdvanceUi/Scrollbar/index.vue";
+
 
 
 const router = createRouter({
@@ -16,6 +21,15 @@ const router = createRouter({
         {path: '/ui-kits/buttons', name: 'button', component: ButtonPage,},
         {path: '/ui-kits/cards', name: 'card', component: CardPage,},
         {path: '/errors', name: 'error', component: Error},
+
+        // advanceui routes
+        {path: '/advance-ui/modals', name: 'modal', component: ModalPage},
+        {path: '/advance-ui/offcanvas-toggle', name: 'offcanvas', component: OffcanvasPage},
+        {path: '/advance-ui/sweat-alert', name: 'sweatalert', component: SweatAlertPage},
+        {path: '/advance-ui/scrollbar', name: 'sweatalert', component: ScrollbarPage},
+
+
+
     ],
 })
 

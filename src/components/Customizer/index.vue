@@ -1,13 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import {
-  BButton,
-  BOffcanvas,
-  BCloseButton,
-  BBadge,
-} from 'bootstrap-vue-next';
+import { BButton, BOffcanvas, BCloseButton, BBadge } from 'bootstrap-vue-next';
 import { PhGear } from '@phosphor-icons/vue';
-import { useRouter } from 'vue-router';
 
 const themeName = 'Ki-Admin-React-Theme';
 
@@ -38,7 +32,7 @@ function rgbToHex(r, g, b) {
 const sidebarOption = ref('vertical-sidebar');
 const layoutOption = ref('ltr');
 const colorOption = ref('default');
-const textOption = ref('medium-text');
+const textOption = ref('medium-text'); // Default text size
 const show = ref(false);
 
 // DOM refs
@@ -49,20 +43,8 @@ const appWrapperRef = ref(null);
 const handleShow = () => (show.value = true);
 const handleClose = () => (show.value = false);
 
-// On mounted: initialize DOM refs and localStorage
-onMounted(() => {
-  mainNavRef.value = document.querySelector('.main-nav');
-  appWrapperRef.value = document.querySelector('.app-wrapper');
-  navRefs.value = Array.from(document.querySelectorAll('nav'));
-
-  sidebarOption.value = getLocalStorageItem('sidebar-option', 'vertical-sidebar');
-  layoutOption.value = getLocalStorageItem('layout-option', 'ltr');
-  colorOption.value = getLocalStorageItem('color-option', 'default');
-  textOption.value = getLocalStorageItem('text-option', 'medium-text');
-});
-
-// Watchers to apply changes
-watch([sidebarOption, layoutOption, colorOption, textOption], () => {
+// Apply current options to DOM
+const applyCustomizerOptions = () => {
   navRefs.value.forEach((nav) => {
     nav.classList.remove('dark-sidebar', 'horizontal-sidebar', 'vertical-sidebar');
     nav.classList.add(sidebarOption.value);
@@ -86,6 +68,27 @@ watch([sidebarOption, layoutOption, colorOption, textOption], () => {
     });
     appWrapperRef.value.classList.add(colorOption.value);
   }
+};
+
+// On mounted: initialize DOM refs and localStorage
+onMounted(() => {
+  mainNavRef.value = document.querySelector('.main-nav');
+  appWrapperRef.value = document.querySelector('.app-wrapper');
+  navRefs.value = Array.from(document.querySelectorAll('nav'));
+
+  // Load saved options or use defaults
+  sidebarOption.value = getLocalStorageItem('sidebar-option', 'vertical-sidebar');
+  layoutOption.value = getLocalStorageItem('layout-option', 'ltr');
+  colorOption.value = getLocalStorageItem('color-option', 'default');
+  textOption.value = getLocalStorageItem('text-option', 'medium-text');
+
+  // Apply immediately
+  applyCustomizerOptions();
+});
+
+// Watchers to apply changes dynamically
+watch([sidebarOption, layoutOption, colorOption, textOption], () => {
+  applyCustomizerOptions();
 });
 
 // Handlers
