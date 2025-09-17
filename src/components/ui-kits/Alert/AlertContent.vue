@@ -1,7 +1,7 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
-import { BAlert, BCard, BCol, BCollapse } from "bootstrap-vue-next";
-import { PhCode, PhX } from "@phosphor-icons/vue";
+import {ref, watch, nextTick} from "vue";
+import {BAlert, BCard, BCol, BCardBody, BCollapse} from "bootstrap-vue-next";
+import {PhCode, PhX} from "@phosphor-icons/vue";
 
 
 const open = ref(false);
@@ -45,43 +45,43 @@ watch(open, (val) => {
 
 <template>
     <b-col lg="6">
-    <b-card>
-        <template #header>
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Alert Additional Content</h5>
-                <a href="javascript:void(0)" @click="open = !open">
-                    <PhCode size="30" weight="bold" class="source" />
-                </a>
-            </div>
-        </template>
+        <b-card no-body>
+            <template #header>
+                <div class="code-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Alert Additional Content</h5>
+                    <a href="javascript:void(0)" @click="open = !open">
+                        <PhCode size="30" weight="bold" class="source"/>
+                    </a>
+                </div>
+            </template>
 
-        <div>
-            <b-alert
-                v-for="(alert, index) in alertsContent"
-                :key="index"
-                :variant="alert.color"
-                show
-            >
-                <h3 class="alert-heading d-flex justify-content-between align-items-center">
-                    {{ alert.heading }}
-                    <PhX size="21" weight="bold" class="cursor-pointer" />
-                </h3>
-                <p>{{ alert.message }}</p>
-                <hr />
-                <p class="mb-0">{{ alert.footer }}</p>
-            </b-alert>
-        </div>
+            <b-card-body>
+                <b-alert
+                    v-for="(alert, index) in alertsContent"
+                    :key="index"
+                    :variant="alert.color"
+                    show
+                >
+                    <h3 class="alert-heading d-flex justify-content-between align-items-center">
+                        {{ alert.heading }}
+                        <PhX size="21" weight="bold" class="cursor-pointer"/>
+                    </h3>
+                    <p>{{ alert.message }}</p>
+                    <hr/>
+                    <p class="mb-0">{{ alert.footer }}</p>
+                </b-alert>
 
-        <b-collapse v-model="open" class="mt-3">
+
+                <b-collapse v-model="open" class="mt-3">
       <pre class="language-html" tabindex="0">
-<code v-text="`<b-card>
+<code v-text="`<b-card no-body>
   <template #header>
     <h5>Alert With Icon</h5>
   </template>
   <div>
 ${alertsContent
   .map(
-    (alert) => `  <b-alert variant='${alert.color}' show>
+    (alert) => `<b-card-body>  <b-alert variant='${alert.color}' show>
     <h3 class='alert-heading d-flex justify-content-between align-items-center'>
       ${alert.heading}
       <PhX size='21' weight='bold' class='cursor-pointer'/>
@@ -89,13 +89,16 @@ ${alertsContent
     <p>${alert.message}</p>
     <hr/>
     <p class='mb-0'>${alert.footer}</p>
-  </b-alert>`
+
+ </b-alert> </b-card-body>`
   )
   .join('\n\n')}
   </div>
 </b-card>`"></code>
       </pre>
-        </b-collapse>
-    </b-card>
-        </b-col>
+                </b-collapse>
+            </b-card-body>
+        </b-card>
+
+    </b-col>
 </template>

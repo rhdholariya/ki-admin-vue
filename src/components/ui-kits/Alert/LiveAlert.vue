@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import {BButton, BCard, BCol, BCollapse} from "bootstrap-vue-next";
+import {BButton, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
 // reactive states
@@ -20,15 +20,16 @@ const removeAlert = (index) => {
 
 <template>
     <b-col lg="12">
-    <b-card>
+    <b-card no-body>
         <template #header>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="code-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Live Alert</h5>
                 <a href="javascript:void(0)" @click="open = !open">
                     <PhCode size="30" weight="bold" class="source" />
                 </a>
             </div>
         </template>
+        <b-card-body>
             <div id="liveAlert">
                 <div
                     v-for="(alert, index) in alerts"
@@ -58,16 +59,20 @@ const removeAlert = (index) => {
         <b-collapse v-model="open">
       <pre class="language-html mt-3">
         <code class="language-html">
-&lt;b-card&gt;
+&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Live Alert&lt;/h5&gt;
   &lt;/template&gt;
+            &lt;b-card-body&gt;
     &lt;div id="liveAlert"&gt;&lt;/div&gt;
     &lt;b-button variant="primary"&gt;Show live alert&lt;/b-button&gt;
+            &lt;/b-card-body&gt;
 &lt;/b-card&gt;
         </code>
       </pre>
         </b-collapse>
+        </b-card-body>
     </b-card>
+
     </b-col>
 </template>

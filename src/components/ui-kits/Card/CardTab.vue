@@ -7,7 +7,7 @@ import {
     BTab,
     BTabs,
     BCol,
-    BRow,
+    BRow, BCardBody,
 } from "bootstrap-vue-next";
 
 import {
@@ -33,7 +33,7 @@ const activeTab2 = ref("features");
                         <img src="/images/blog-app/08.jpg" class="img-fluid" alt="..." />
                     </b-col>
                     <b-col md="6" xl="8">
-                        <div class="p-3">
+                        <b-card-body>
                             <h5>Card Title</h5>
                             <p>
                                 This is a wider card with supporting text below as a natural
@@ -41,7 +41,7 @@ const activeTab2 = ref("features");
                                 longer.
                             </p>
                             <small class="text-body-secondary">Last updated 3 min's ago</small>
-                        </div>
+                        </b-card-body>
                     </b-col>
                 </b-row>
             </b-card>
@@ -102,17 +102,15 @@ const activeTab2 = ref("features");
             <b-card no-body class="hover-effect mb-3">
                 <b-row no-gutters>
                     <b-col md="6" xl="8">
-                        <div class="p-3">
-                            <b-card-title tag="h5">Card Title</b-card-title>
-                            <b-card-text class="p-1">
+                        <b-card-body>
+                            <h5>Card Title</h5>
+                            <p>
                                 This is a wider card with supporting text below as a natural
                                 lead-in to additional content. This content is a little bit
                                 longer.
-                            </b-card-text>
-                            <b-card-text>
-                                <small class="text-body-secondary">Last updated 3 min's ago</small>
-                            </b-card-text>
-                        </div>
+                            </p>
+                            <small class="text-body-secondary">Last updated 3 min's ago</small>
+                        </b-card-body>
                     </b-col>
                     <b-col md="6" xl="4">
                         <img src="/images/blog-app/09.jpg" class="img-fluid" alt="..." />

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import { BCard, BCol, BRow, BCollapse, BButton } from "bootstrap-vue-next";
+import {BCard, BCol, BRow, BCollapse, BButton, BCardBody} from "bootstrap-vue-next";
 import {
     PhCode,
     PhShoppingCart,
@@ -48,7 +48,7 @@ const openIcon = ref(false);
     <b-row>
         <!-- Badge Position -->
         <b-col sm="12" xl="6">
-            <b-card>
+            <b-card no-body>
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Badges Position</h5>
@@ -57,7 +57,7 @@ const openIcon = ref(false);
                         </a>
                     </div>
                 </template>
-
+                 <b-card-body>
                 <div class="d-flex flex-wrap gap-3">
                     <b-button
                         v-for="{ label, bgColor, positionClass } in badgePositionData"
@@ -80,6 +80,7 @@ const openIcon = ref(false);
   &lt;template #header&gt;
     &lt;h5&gt;Badges Position&lt;/h5&gt;
   &lt;/template&gt;
+    &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{ badgePositionData
     .map(
@@ -93,15 +94,17 @@ const openIcon = ref(false);
     )
     .join("\n") }}
   &lt;/div&gt;
+    &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code></pre>
                 </b-collapse>
+                 </b-card-body>
             </b-card>
         </b-col>
 
         <!-- Icon Badges -->
         <b-col sm="12" xl="6">
-            <b-card>
+            <b-card no-body>
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Icon's Badges</h5>
@@ -110,7 +113,7 @@ const openIcon = ref(false);
                         </a>
                     </div>
                 </template>
-
+                   <b-card-body>
                 <div class="d-flex flex-wrap gap-3">
                     <a
                         v-for="{ icon, color } in badgeIconData"
@@ -131,6 +134,7 @@ const openIcon = ref(false);
   &lt;template #header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
   &lt;/template&gt;
+    &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{ badgeIconData
     .map(
@@ -142,9 +146,11 @@ const openIcon = ref(false);
     )
     .join("\n") }}
   &lt;/div&gt;
+    &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code></pre>
                 </b-collapse>
+                   </b-card-body>
             </b-card>
         </b-col>
     </b-row>

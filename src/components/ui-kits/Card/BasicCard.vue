@@ -1,6 +1,6 @@
 <script setup>
 import { PhCode } from "@phosphor-icons/vue";
-import { BCard, BCollapse, BCol } from "bootstrap-vue-next";
+import {BCard, BCollapse, BCol, BCardBody} from "bootstrap-vue-next";
 import { ref, watch, nextTick } from "vue";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
@@ -113,7 +113,7 @@ const cardsData = ref([
       xl="3"
     >
       <!-- Card -->
-      <b-Card :class="card.className || 'card'">
+      <b-Card :class="card.className || 'card'" no-body>
         <!-- Header slot -->
         <template #header>
           <div
@@ -125,11 +125,11 @@ const cardsData = ref([
             </a>
           </div>
         </template>
-
+         <b-card-body>
         <!-- Card content (no b-card-body) -->
         <h6 v-if="card.headerText">{{ card.headerText }}</h6>
         <p>{{ card.body }}</p>
-
+         </b-card-body>
         <!-- Footer -->
         <template v-if="card.footer" #footer>
           <h5>{{ card.footer }}</h5>
@@ -140,12 +140,14 @@ const cardsData = ref([
         <!-- Prism code block INSIDE card -->
         <b-Collapse v-model="openCard" :model-value="openCard === card.id" class="mt-3">
           <pre>
-<code class="language-html" v-text="`<b-card${card.className ? ` class='${card.className}'` : ''}>
+<code class="language-html" v-text="`<b-card${card.className ? ` class='${card.className}'` : ''} no-body>
   <template #header>
     <h5>${card.title}</h5>
   </template>
+  <b-card-body>
   ${card.headerText ? `<h6>${card.headerText}</h6>` : ''}
   <p>${card.body}</p>
+  </b-card-body>
   ${
     card.footer
       ? `<template #footer>
@@ -158,5 +160,6 @@ const cardsData = ref([
         </b-Collapse>
 
     </b-Col>
+
   </div>
 </template>

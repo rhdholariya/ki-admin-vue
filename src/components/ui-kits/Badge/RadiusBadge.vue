@@ -1,16 +1,10 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
-import { BCard, BCol, BRow, BCollapse, BButton, BBadge } from "bootstrap-vue-next";
-import { PhCode, PhBellRinging } from "@phosphor-icons/vue";
-
-
-// Collapse states
-const openButton = ref(false);
-const openHead = ref(false);
-
+import {ref, watch, nextTick} from "vue";
+import {BCard, BCol, BRow, BCollapse, BButton, BBadge, BCardBody} from "bootstrap-vue-next";
+import {PhCode, PhBellRinging} from "@phosphor-icons/vue";
 // Badge + Button data
 const badgeWithButtonData = [
-    { label: "Notifications", color: "light-primary", badge: "4", badgeColor: "primary" },
+    {label: "Notifications", color: "light-primary", badge: "4", badgeColor: "primary"},
     {
         label: "Disable",
         color: "light-secondary",
@@ -18,9 +12,9 @@ const badgeWithButtonData = [
   <span class="visually-hidden">Disable</span>
 </span>`,
     },
-    { label: "Unread", color: "light-danger", icon: "bell-ringing", badgeColor: "danger" , extraClass: "f-s-16 pe-3" },
-    { label: "Inbox", color: "outline-warning", badge: "99+", badgeColor: "warning" },
-    { label: "50% Off", color: "light-info", badge: "New", badgeColor: "info", extraClass: "f-s-14 pe-3" },
+    {label: "Unread", color: "light-danger", icon: "bell-ringing", badgeColor: "danger", extraClass: "f-s-16 pe-3"},
+    {label: "Inbox", color: "outline-warning", badge: "99+", badgeColor: "warning"},
+    {label: "50% Off", color: "light-info", badge: "New", badgeColor: "info", extraClass: "f-s-14 pe-3"},
     {
         label: "1 missed call",
         color: "light-dark",
@@ -32,16 +26,20 @@ const badgeWithButtonData = [
 
 // Heading badges
 const headingData = [
-    { level: "h1", label: "Heading", badge: "New" },
-    { level: "h2", label: "Heading", badge: "New" },
-    { level: "h3", label: "Heading", badge: "New" },
-    { level: "h4", label: "Heading", badge: "New" },
-    { level: "h5", label: "Heading", badge: "New" },
-    { level: "h6", label: "Heading", badge: "New" },
+    {level: "h1", label: "Heading", badge: "New"},
+    {level: "h2", label: "Heading", badge: "New"},
+    {level: "h3", label: "Heading", badge: "New"},
+    {level: "h4", label: "Heading", badge: "New"},
+    {level: "h5", label: "Heading", badge: "New"},
+    {level: "h6", label: "Heading", badge: "New"},
 ];
 
 // Icon map
-const iconMap = { "bell-ringing": PhBellRinging };
+const iconMap = {"bell-ringing": PhBellRinging};
+
+// Collapse states
+const openButton = ref(false);
+const openHead = ref(false);
 
 // Prism highlight on collapse
 [openButton, openHead].forEach((state) =>
@@ -58,109 +56,119 @@ const iconMap = { "bell-ringing": PhBellRinging };
     <b-row>
         <!-- -------- Badge with Button -------- -->
         <b-col xl="12">
-            <b-card>
+            <b-card no-body>
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Badges with Button</h5>
                         <a href="javascript:void(0)" @click="openButton = !openButton">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
-
-                <div class="d-flex flex-wrap gap-3">
-                    <b-button
-                        v-for="(item, idx) in badgeWithButtonData"
-                        :key="idx"
-                        :variant="item.color"
-                        class="position-relative"
-                        :class="item.extraClass || ''"
-                    >
-                        {{ item.label }}
-                        <span v-if="item.badgeHtml" v-html="item.badgeHtml"></span>
-                        <b-badge
-                            v-else
-                            :class="[
+                <b-card-body>
+                    <div class="d-flex flex-wrap gap-3">
+                        <b-button
+                            v-for="(item, idx) in badgeWithButtonData"
+                            :key="idx"
+                            :variant="item.color"
+                            class="position-relative"
+                            :class="item.extraClass || ''"
+                        >
+                            {{ item.label }}
+                            <span v-if="item.badgeHtml" v-html="item.badgeHtml"></span>
+                            <b-badge
+                                v-else
+                                :class="[
                 'position-absolute top-0 start-100 translate-middle',
                 item.icon
                   ? `w-25 h-25 bg-${item.badgeColor} border border-light rounded-circle`
                   : 'rounded-pill'
               ]" :variant="item.icon ? undefined : item.badgeColor"
-                        >
-                            <component v-if="item.icon" :is="iconMap[item.icon]" />
-                            <template v-else>{{ item.badge }}</template>
-                        </b-badge>
-                    </b-button>
-                </div>
+                            >
+                                <component v-if="item.icon" :is="iconMap[item.icon]"/>
+                                <template v-else>{{ item.badge }}</template>
+                            </b-badge>
+                        </b-button>
+                    </div>
 
-                <!-- Prism preview using v-for in template -->
-                <b-collapse v-model="openButton" class="mt-3">
+                    <!-- Prism preview using v-for in template -->
+                    <b-collapse v-model="openButton" class="mt-3">
 <pre class="language-html"><code>
-    &lt;b-card&gt;
+    &lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
   &lt;/template&gt;
+    &lt;b-card-body&gt;
 &lt;div class="d-flex flex-wrap gap-3"&gt;
-{{ badgeWithButtonData
-    .map(
-        ({ label, color, badge, badgeColor, badgeHtml, icon, extraClass }) =>
-            `  &lt;b-button variant="${color}" class="position-relative${extraClass ? ` ${extraClass}` : ''}"&gt;
+{{
+        badgeWithButtonData
+            .map(
+                ({label, color, badge, badgeColor, badgeHtml, icon, extraClass}) =>
+                    `  &lt;b-button variant="${color}" class="position-relative${extraClass ? ` ${extraClass}` : ''}"&gt;
     ${label}
     ${icon ? `&ltb-badge class="position-absolute top-0 start-100 translate-middle w-25 h-25 bg-${badgeColor} border border-light rounded-circle">&lt;PhBellRinging /&gt;&lt;/b-badge&gt;`
-      : badge ? `&ltb-badge class="position-absolute top-0 start-100 translate-middle rounded-pill bg-${badgeColor}">${badge}&lt;/b-badge&gt;`
-      : badgeHtml?.trim() || ''}
+                        : badge ? `&ltb-badge class="position-absolute top-0 start-100 translate-middle rounded-pill bg-${badgeColor}">${badge}&lt;/b-badge&gt;`
+                            : badgeHtml?.trim() || ''}
   &lt;/b-button&gt;`
-  )
-  .join("\n") }}
+            )
+            .join("\n")
+    }}
   &lt;/div&gt;
+    &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code></pre>
-                </b-collapse>
+                    </b-collapse>
+                </b-card-body>
             </b-card>
         </b-col>
 
         <!-- -------- Heading Badges -------- -->
         <b-col xl="12">
-            <b-card>
+            <b-card no-body>
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Heading Badges</h5>
                         <a href="javascript:void(0)" @click="openHead = !openHead">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
+                <b-card-body>
+                    <div class="d-flex flex-column gap-2">
+                        <component
+                            v-for="(item, idx) in headingData"
+                            :key="idx"
+                            :is="item.level"
+                            class="mb-3"
+                        >
+                            {{ item.label }}
+                            <b-badge variant="secondary">{{ item.badge }}</b-badge>
+                        </component>
+                    </div>
 
-                <div class="d-flex flex-column gap-2">
-                    <component
-                        v-for="(item, idx) in headingData"
-                        :key="idx"
-                        :is="item.level"
-                        class="mb-3"
-                    >
-                        {{ item.label }}
-                        <b-badge variant="secondary">{{ item.badge }}</b-badge>
-                    </component>
-                </div>
-
-                <!-- Prism preview using v-for in template -->
-                <b-collapse v-model="openHead" class="mt-3">
+                    <!-- Prism preview using v-for in template -->
+                    <b-collapse v-model="openHead" class="mt-3">
 <pre class="language-html"><code>
-    &lt;b-card&gt;
+    &lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
   &lt;/template&gt;
+    &lt;b-card-body&gt;
 &lt;div class="d-flex flex-column gap-2"&gt;
-{{ headingData
-    .map(
-        ({ level, label, badge }) =>
-            `  &lt;${level}&gt;${label} &lt;b-badge variant="secondary"&gt;${badge}&lt;/b-badge&gt;&lt;/${level}&gt;`
-    )
-    .join("\n") }}
+{{
+        headingData
+            .map(
+                ({level, label, badge}) =>
+                    `  &lt;${level}&gt;${label} &lt;b-badge variant="secondary"&gt;${badge}&lt;/b-badge&gt;&lt;/${level}&gt;`
+            )
+            .join("\n")
+    }}
   &lt;/div&gt;
+    &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code></pre>
-                </b-collapse>
+                    </b-collapse>
+                </b-card-body>
             </b-card>
         </b-col>
     </b-row>

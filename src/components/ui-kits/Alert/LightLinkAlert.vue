@@ -1,5 +1,5 @@
-<script setup >
-import {BAlert, BCard, BCol, BCollapse} from "bootstrap-vue-next";
+<script setup>
+import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
 import {nextTick, ref, watch} from "vue";
 
@@ -31,7 +31,7 @@ const alerts = [
 </script>
 <template>
     <b-col lg="6">
-        <b-card>
+        <b-card no-body>
             <template #header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Light Alerts With Link</h5>
@@ -40,21 +40,25 @@ const alerts = [
                     </a>
                 </div>
             </template>
-            <b-alert v-for="(alert, index) in alerts" :key="index" :variant="`light-${alert.type}`" show
-                     role="alert">
-                {{ alert.text }}
-                <a :href="alert.linkHref" class="alert-link">{{ alert.linkText }}</a> - Check it!
-            </b-alert>
-            <b-collapse v-model="open" class="mt-3">
+            <b-card-body>
+                <b-alert v-for="(alert, index) in alerts" :key="index" :variant="`light-${alert.type}`" show
+                         role="alert">
+                    {{ alert.text }}
+                    <a :href="alert.linkHref" class="alert-link">{{ alert.linkText }}</a> - Check it!
+                </b-alert>
+                <b-collapse v-model="open" class="mt-3">
               <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card&gt;
+<code v-text="`&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Light Alerts With Link&lt;/h5&gt;
   &lt;/template&gt;
+  &lt;b-card-body&gt;
 ${alerts.map(alert => `  &lt;b-alert variant=&quot;light-${alert.type}&quot; show role=&quot;alert&quot;&gt;${alert.text} &lt;a href=&quot;${alert.linkHref}&quot; class=&quot;alert-link&quot;&gt;${alert.linkText}&lt;/a&gt; - Check it!&lt;/b-alert&gt;`).join('\n')}
+&lt;/b-card-body&gt;
 &lt;/b-card&gt;`"></code>
               </pre>
-            </b-collapse>
+                </b-collapse>
+            </b-card-body>
         </b-card>
     </b-col>
 </template>

@@ -6,6 +6,7 @@ import BasicCard from "@/components/ui-kits/Card/BasicCard.vue";
 import CardVariant from "@/components/ui-kits/Card/CardVariant.vue";
 import CardStyle from "@/components/ui-kits/Card/CardStyle.vue";
  import CardTab from "@/components/ui-kits/Card/CardTab.vue";
+import AppLayout from "@/views/AppLayout.vue";
 
 // Breadcrumb data
 const breadcrumbItems = {
@@ -18,6 +19,7 @@ const breadcrumbItems = {
 </script>
 
 <template>
+    <AppLayout>
     <main>
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
@@ -30,4 +32,5 @@ const breadcrumbItems = {
             </b-row>
         </b-container>
     </main>
+    </AppLayout>
 </template>
