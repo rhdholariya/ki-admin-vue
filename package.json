@@ -17,14 +17,17 @@
     "bootstrap": "^5.3.8",
     "bootstrap-vue-next": "^0.40.3",
     "js-beautify": "^1.15.4",
+    "masonry-layout": "^4.2.2",
     "prismjs": "^1.30.0",
     "simplebar": "^6.3.2",
     "simplebar-vue": "^2.4.2",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.23.0",
     "vue": "^3.5.21",
     "vue-flag-icon": "^2.1.0",
     "vue-router": "^4.5.1",
-    "vue-sweetalert2": "^5.0.11"
+    "vue-sweetalert2": "^5.0.11",
+    "vue3-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",

@@ -1,11 +1,5 @@
-<!-- MainPage.vue -->
 <script setup>
-import Swal from 'sweetalert2'
-import 'sweetalert2/dist/sweetalert2.min.css'
 import {BRow, BCol, BContainer} from 'bootstrap-vue-next'
-
-// Import data and component
-
 import SweetAlertCard from "@/components/AdvanceUi/SweatAlert/SweetAlertCard.vue";
 import {sweetAlertData} from "@/data/advanceui/sweat-alert/SweatAlert.js";
 import AppLayout from "@/views/AppLayout.vue";
@@ -208,7 +202,6 @@ const breadcrumbItems = {
   ],
 };
 </script>
-
 <template>
   <AppLayout>
     <main>
@@ -230,7 +223,7 @@ const breadcrumbItems = {
             />
           </b-col>
         </b-row>
-      </b-container>
+        </b-container>
     </main>
   </AppLayout>
 </template>

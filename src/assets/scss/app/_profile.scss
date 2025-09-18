@@ -1,19 +1,20 @@
 // >>-- 75 Profile css start --<<
 .profile-app-tabs {
   .nav-item {
+    border-radius: 5px;
+    padding: 0.8rem 0.75rem;
     .nav-link {
-      padding: 1rem 0.75rem !important;
-      border-radius: var(--app-border-radius) !important;
       color: rgb(var(--dark), 0.75);
-      font-weight: 500;
-      cursor: pointer;
-      &.active {
-        background-color: rgba(var(--primary), 1) !important;
+      padding: 0;
+    }
+    &:hover {
+      color: rgb(var(--dark), 0.75);
+    }
+    &.active {
+      background-color: rgba(var(--primary), 1) !important;
+      color: rgba(var(--white), 1) !important;
+      a {
         color: rgba(var(--white), 1) !important;
-      }
-
-      &:hover {
-        color: rgb(var(--dark), 0.75);
       }
     }
   }
@@ -21,6 +22,7 @@
 
 .about-list {
   padding-top: 10px;
+
   div {
     & + div {
       margin-top: 10px;
@@ -33,6 +35,7 @@
     width: 100%;
     // height: 350px;
     position: relative;
+
     .profile-image {
       width: 100%;
       height: 200px;
@@ -41,22 +44,27 @@
       background-size: cover;
       border-radius: var(--bs-border-radius);
     }
+
     .profile-pic {
       position: absolute;
       bottom: -35px;
       left: 50%;
       transform: translate(-50%);
+
       .avatar-upload {
         position: relative;
         max-width: 200px;
+
         .avatar-edit {
           position: absolute;
           right: 0;
           z-index: 1;
           top: 10px;
+
           input {
             display: none;
           }
+
           input + label {
             display: inline-block;
             width: 34px;
@@ -72,6 +80,7 @@
             transition: all 0.2s ease-in-out;
           }
         }
+
         .avatar-preview {
           width: 120px;
           height: 120px;
@@ -94,9 +103,11 @@
       }
     }
   }
+
   .person-details {
     margin-top: 40px;
     text-align: center;
+
     .details {
       margin-top: 25px;
       display: flex;
@@ -106,17 +117,20 @@
     }
   }
 }
+
 .profile-content {
   .story-box {
     .story {
       position: relative;
       margin: 5px;
       display: inline-block;
+
       &.my-story {
         outline: 2px solid rgb(var(--primary), 0.8);
         outline-offset: 5px;
         border-radius: 10px;
       }
+
       .story-icon {
         position: absolute;
         top: 0;
@@ -134,9 +148,11 @@
     background-color: rgba(var(--white), 1);
     box-shadow: var(--box-shadow);
     border-radius: var(--bs-border-radius);
+
     &.chat-tabs {
       box-shadow: none;
     }
+
     .tab-link {
       font-size: 15px;
       list-style: none;
@@ -147,12 +163,15 @@
       border-bottom: solid 2px transparent;
       letter-spacing: 1px;
       transition: border 0.3s ease-in-out;
+
       i {
         vertical-align: text-bottom;
       }
+
       &:hover {
         color: rgba(var(--primary), 1);
       }
+
       &.active {
         color: rgba(var(--primary), 1);
         border-color: rgba(var(--primary), 1);
@@ -164,6 +183,7 @@
 .content-wrapper {
   .tabs-content {
     display: none;
+
     &.active {
       display: block;
     }
@@ -178,6 +198,7 @@
     }
   }
 }
+
 .post-container {
   .post-upload {
     &.filepond--root {
@@ -186,6 +207,7 @@
       border-radius: 18px;
       overflow: hidden;
       margin-bottom: 0;
+
       .filepond--drop-label {
         background-color: rgba(var(--white), 1) !important;
         height: 150px;
@@ -205,9 +227,11 @@
     border-radius: 10px;
     margin: 1rem 0;
   }
+
   .post-icon {
     font-size: 25px;
   }
+
   .post-video {
     video {
       width: 100%;
@@ -217,6 +241,7 @@
     }
   }
 }
+
 .Comment-box {
   border: 1px solid var(--border_color);
   border-radius: 10px;
@@ -232,8 +257,10 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
+
   li {
     padding: 0.8rem 0.75rem;
+
     .position-absolute {
       left: 0;
       top: 6px;
@@ -252,6 +279,7 @@
     }
   }
 }
+
 .profile-friends {
   .fw-medium {
     overflow: hidden;
@@ -261,6 +289,7 @@
     -webkit-box-orient: vertical;
   }
 }
+
 // post gallery css
 
 %transparentbox {
@@ -273,30 +302,36 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
+
 .photos-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 0;
   align-items: start;
+
   .img-box {
     border: 1px solid rgba(var(--white), 1);
     position: relative;
+
     &:hover {
       .transparent-box2 {
         opacity: 1;
       }
     }
   }
+
   img {
     max-width: 100%;
     display: block;
     height: auto;
   }
+
   .caption {
     color: rgba(var(--white), 1);
     font-size: 1.5rem;
   }
+
   .transparent-box {
     height: 100%;
     width: 100%;
@@ -309,8 +344,10 @@
     justify-content: center;
     align-items: center;
   }
+
   .transparent-box2 {
     @extend %transparentbox;
+
     .captions {
       color: rgba(var(--white), 1);
       text-align: center;
@@ -322,10 +359,12 @@
     grid-row: 1;
     grid-column: 1;
   }
+
   .right-main-img {
     grid-row: 1;
     grid-column: 2;
   }
+
   .sub {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -333,6 +372,7 @@
     grid-gap: 0;
   }
 }
+
 .hide-element {
   border: 0;
   clip: rect(1px 1px 1px 1px);
@@ -343,11 +383,13 @@
   padding: 0;
   position: absolute;
 }
+
 .gallery-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 0;
+
   .boxs {
     grid-row: 1 2;
     grid-column: 1 1;
@@ -356,17 +398,21 @@
     justify-content: center;
     align-items: start;
     position: relative;
+
     &:hover {
       .transparent-box3 {
         opacity: 1;
       }
     }
   }
+
   img {
     width: 100%;
   }
+
   .transparent-box3 {
     @extend %transparentbox;
+
     .description-caption {
       color: rgba(var(--white), 1);
       text-align: center;
@@ -393,6 +439,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+
 .file-box {
   width: 100%;
   max-width: 240px;
@@ -404,6 +451,7 @@
   border: 1px solid rgba(var(--dark), 0.2);
   background-color: rgb(var(--light), 0.1);
   border-radius: 10px;
+
   p {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -411,12 +459,15 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
+
   .position-absolute {
     top: 10px;
+
     img {
       border-radius: 5px;
       padding: 0.4rem;
     }
+
     & + {
       div {
         margin-left: 50px;
@@ -424,12 +475,14 @@
     }
   }
 }
+
 .story-container {
   .story {
     position: relative;
     margin: 5px;
     display: inline-block;
     transition: var(--app-transition);
+
     &::after {
       content: "";
       width: 100%;
@@ -442,12 +495,14 @@
       -webkit-backdrop-filter: blur(2px);
       backdrop-filter: blur(2px);
     }
+
     &:hover {
       &::after {
         backdrop-filter: blur(1px);
         background-color: rgb(var(--dark), 0.1);
       }
     }
+
     .story-icon {
       position: absolute;
       top: 0;
@@ -458,4 +513,5 @@
     }
   }
 }
+
 // >>-- 75 Profile css end --<<

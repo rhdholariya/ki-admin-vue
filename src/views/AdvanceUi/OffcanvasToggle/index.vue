@@ -35,7 +35,7 @@ const breadcrumbItems = {
             <b-card no-body>
               <template #header>
                 <h5>Live Demo</h5>
-                        <p>
+                <p>
                   Use the buttons below to show and hide an offcanvas element via JavaScript that
                   toggles the <span class="text-danger">.offcanvas</span> class.
                 </p>

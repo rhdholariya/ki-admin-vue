@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import SvgIcon from "@/components/layouts/sidebar/SvgIcon.vue";
 
@@ -41,6 +41,43 @@ const badgeClasses = computed(() => {
   if (props.badgeCount === "new") return "bg-danger";
   return "text-primary-dark bg-primary";
 });
+
+// ✅ expand parent menu if current route matches
+const expandIfActive = () => {
+  if (props.links && props.links.length) {
+    props.links.forEach((link, index) => {
+      if (link.path && route.path === link.path) {
+        isOpen.value = true;
+      }
+      if (link.children) {
+        link.children.forEach((child) => {
+          if (route.path === child.path) {
+            isOpen.value = true;
+            subOpen.value[index] = true;
+          }
+        });
+      }
+    });
+  }
+
+  // also check if it's a direct no-sub link
+  if (props.path && route.path === props.path) {
+    isOpen.value = true;
+  }
+};
+
+// run once when mounted
+onMounted(() => {
+  expandIfActive();
+});
+
+// also run whenever route changes
+watch(
+    () => route.path,
+    () => {
+      expandIfActive();
+    }
+);
 </script>
 
 
