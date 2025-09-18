@@ -8,7 +8,9 @@ import ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import OffcanvasPage from "@/views/AdvanceUi/OffcanvasToggle/index.vue";
 import SweatAlertPage from "@/views/AdvanceUi/SweatAlert/index.vue";
 import ScrollbarPage from "@/views/AdvanceUi/Scrollbar/index.vue";
+ import Dropdown from "@/views/ui-kits/Dropdown/index.vue";
 import AlertPage from '@/views/ui-kits/Alert/Index.vue';
+
 
 
 const router = createRouter({
@@ -18,6 +20,7 @@ const router = createRouter({
         {path: '/ui-kits/badges', name: 'badges', component: Badges},
         {path: '/ui-kits/buttons', name: 'button', component:Button},
         {path: '/ui-kits/cards', name: 'card', component:Card},
+        {path: '/ui-kits/dropdown', name: 'dropdown', component:Dropdown},
         {path: '/errors', name: 'error', component: Error},
 
         // advanceui routes
