@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import {ref, onMounted} from "vue";
 import {
     BCard,
     BCol,
@@ -8,9 +8,14 @@ import {
     BButtonGroup,
     BCollapse,
     BDropdown,
-    BDropdownItem, BCardBody,
+    BDropdownItem,
+    BCardBody,
+    BFormCheckboxGroup,
+    BFormCheckbox,
+    BFormRadio,
+    BFormRadioGroup
 } from "bootstrap-vue-next";
-import { PhCode } from "@phosphor-icons/vue";
+import {PhCode} from "@phosphor-icons/vue";
 
 
 // Data for groups
@@ -50,47 +55,71 @@ const sizes = [
     },
 ];
 
-
-
-// Variants list (aap apne design ke hisaab se customize kar sakte ho)
+// Variants list
 const nestedVariants = [
-    { label: "secondary", variant: "secondary" },
-    { label: "secondary", variant: "outline-secondary" },
-    { label: "secondary", variant: "light-secondary" },
+    {label: "secondary", variant: "secondary"},
+    {label: "secondary", variant: "outline-secondary"},
+    {label: "secondary", variant: "light-secondary"},
 ];
+//
 
-const checkboxItems = [
-    { id: "btncheck1", label: "Checkbox 1" },
-    { id: "btncheck2", label: "Checkbox 2" },
-    { id: "btncheck3", label: "Checkbox 3" },
-];
-
+// checkbox options
 const radioItems = [
-    { id: "btnradio1", label: "Radio 1" },
-    { id: "btnradio2", label: "Radio 2" },
-    { id: "btnradio3", label: "Radio 3" },
+    {value: "radio1", text: "Radio 1"},
+    {value: "radio2", text: "Radio 2"},
+    {value: "radio3", text: "Radio 3"},
 ];
 
-const verticalGroups = [
-    {
-        className: "secondary",
-        buttons: ["Button", "Button", "Button"],
-    },
-    {
-        className: "outline-secondary",
-        buttons: ["Button", "Button", "Button"],
-    },
-    {
-        className: "light-secondary",
-        buttons: ["Button", "Button", "Button"],
-    },
+
+// checkbox options
+const checkboxItems = [
+    {value: "check1", text: "Checkbox 1"},
+    {value: "check2", text: "Checkbox 2"},
+    {value: "check3", text: "Checkbox 3"},
 ];
 
-const radioVerticals = [
-    { id: "vbtn-radio1", label: "Radio 1" },
-    { id: "vbtn-radio2", label: "Radio 2" },
-    { id: "vbtn-radio3", label: "Radio 3" },
-];
+const verticalButtonGroups = ref([
+    {
+        type: "radio",
+        name: "vbtn-radio",
+        ariaLabel: "Vertical radio toggle button group",
+        buttons: [
+            { id: "vbtn-radio1", label: "Radio 1", checked: true },
+            { id: "vbtn-radio2", label: "Radio 2" },
+            { id: "vbtn-radio3", label: "Radio 3" },
+        ],
+    },
+    {
+        type: "buttons",
+        ariaLabel: "Vertical button group",
+        buttons: [
+            { label: "Button", class: "btn btn-secondary" },
+            { label: "Button", class: "btn btn-secondary" },
+            { label: "Dropdown", class: "btn btn-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+        ],
+    },
+    {
+        type: "buttons",
+        ariaLabel: "Vertical button group",
+        buttons: [
+            { label: "Button", class: "btn btn-outline-secondary" },
+            { label: "Button", class: "btn btn-outline-secondary" },
+            { label: "Dropdown", class: "btn btn-outline-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+        ],
+    },
+    {
+        type: "buttons",
+        ariaLabel: "Vertical button group",
+        buttons: [
+            { label: "Button", class: "btn btn-light-secondary" },
+            { label: "Button", class: "btn btn-light-secondary" },
+            { label: "Dropdown", class: "btn btn-light-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+        ],
+    },
+]);
+
+
+
 
 // collapse toggles
 const openGroup = ref(false);
@@ -98,6 +127,9 @@ const openGroup2 = ref(false);
 const openNesting = ref(false);
 const openToggle = ref(false);
 const openVertical = ref(false);
+
+// radio selection state
+const selectedRadio = ref("radio1");
 
 onMounted(() => {
     Prism.highlightAll();
@@ -113,56 +145,50 @@ onMounted(() => {
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Button Group</h5>
                         <a href="javascript:void(0)" @click="openGroup = !openGroup">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
-                    <b-card-body>
-                <b-row>
-                    <b-col
-                        v-for="(group, idx) in buttonGroupData"
-                        :key="idx"
-                        cols="12"
-                        class="mb-3"
-                    >
-                        <b-button-group>
-                            <b-button
-                                v-for="(link, linkIdx) in group.links"
-                                :key="linkIdx"
-                                :variant="group.className"
-                                :active="group.active && linkIdx === 0"
-                            >
-                                {{ link }}
-                            </b-button>
-                        </b-button-group>
-                    </b-col>
-                </b-row>
+                <b-card-body>
+                    <b-row>
+                        <b-col
+                            v-for="(group, idx) in buttonGroupData"
+                            :key="idx"
+                            cols="12"
+                            class="mb-3"
+                        >
+                            <b-button-group>
+                                <b-button
+                                    v-for="(link, linkIdx) in group.links"
+                                    :key="linkIdx"
+                                    :variant="group.className"
+                                    :active="group.active && linkIdx === 0"
+                                >
+                                    {{ link }}
+                                </b-button>
+                            </b-button-group>
+                        </b-col>
+                    </b-row>
 
-                <b-collapse v-model="openGroup" class="mt-3">
-          <pre class="language-html"><code>
-              &lt;b-card no-body&gt;
-  &lt;template #header&gt;
-    &lt;h5&gt;Button Group&lt;/h5&gt;
-  &lt;/template&gt;
-              &lt;b-card no-body&gt;
-{{ `&lt;b-row&gt;
+                    <b-collapse v-model="openGroup" class="mt-3">
+            <pre class="language-html"><code>
+{{
+                    `&lt;b-row&gt;
 ${buttonGroupData.map(group =>
-  `  &lt;b-col cols="12" class="mb-3"&gt;
-    &ltb-button-group&gt
+                        `  &lt;b-col cols="12" class="mb-3"&gt;
+    &lt;b-button-group&gt;
 ${group.links.map((link, idx) =>
-  `       &lt;b-button variant="${group.className}"${group.active && idx===0 ? " active" : ""}>${link}&lt;/b-button&gt;`
-).join("\n")}
+                            `      &lt;b-button variant="${group.className}"${group.active && idx === 0 ? " active" : ""}&gt;${link}&lt;/b-button&gt;`
+                        ).join("\n")}
     &lt;/b-button-group&gt;
-   &lt;/b-col&gt;`
-).join("\n")}
-&lt;/
-&lt;/b-card-body&gt;b-row&gt;` }}
-  &lt;/b-card&gt;
+  &lt;/b-col&gt;`
+                    ).join("\n")}
+&lt;/b-row&gt;`
+                }}
 </code></pre>
-                </b-collapse>
-                        </b-card-body>
+                    </b-collapse>
+                </b-card-body>
             </b-card>
-
         </b-col>
 
         <!-- Sizes -->
@@ -172,54 +198,48 @@ ${group.links.map((link, idx) =>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Sizes</h5>
                         <a href="javascript:void(0)" @click="openGroup2 = !openGroup2">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
-                  <b-card-body>
-                <b-row>
-                    <b-col v-for="(size, idx) in sizes" :key="idx" cols="12" class="mb-3">
-                        <div
-                            :class="['btn-group', size.sizeClass]"
-                            role="group"
-                            :aria-label="size.ariaLabel"
-                        >
-                            <b-button
-                                v-for="(label, i) in ['Left','Middle','Right']"
-                                :key="i"
-                                :variant="size.btnClass"
+                <b-card-body>
+                    <b-row>
+                        <b-col v-for="(size, idx) in sizes" :key="idx" cols="12" class="mb-3">
+                            <div
+                                :class="['btn-group', size.sizeClass]"
+                                role="group"
+                                :aria-label="size.ariaLabel"
                             >
-                                {{ label }}
-                            </b-button>
-                        </div>
-                    </b-col>
-                </b-row>
+                                <b-button
+                                    v-for="(label, i) in ['Left','Middle','Right']"
+                                    :key="i"
+                                    :variant="size.btnClass"
+                                >
+                                    {{ label }}
+                                </b-button>
+                            </div>
+                        </b-col>
+                    </b-row>
 
-                <b-collapse v-model="openGroup2" class="mt-3">
-          <pre class="language-html"><code>
-               &lt;b-card no-body&gt;
-  &lt;template #header&gt;
-    &lt;h5&gt;Sizes&lt;/h5&gt;
-  &lt;/template&gt;
-              &lt;b-card no-body&gt;
-{{ `&lt;b-row>
+                    <b-collapse v-model="openGroup2" class="mt-3">
+            <pre class="language-html"><code>
+{{
+                    `&lt;b-row&gt;
 ${sizes.map(size =>
-  `  &lt;b-col cols="12" class="mb-3"&gt;
+                        `  &lt;b-col cols="12" class="mb-3"&gt;
     &lt;div class="btn-group ${size.sizeClass}" role="group" aria-label="${size.ariaLabel}"&gt;
-      &lt;b-button variant="${size.btnClass}">Left&lt;/b-button&gt;
-      &lt;b-button variant="${size.btnClass}">Middle&lt;/b-button&gt;
-      &lt;b-button variant="${size.btnClass}">Right&lt;/b-button&gt;
+      &lt;b-button variant="${size.btnClass}"&gt;Left&lt;/b-button&gt;
+      &lt;b-button variant="${size.btnClass}"&gt;Middle&lt;/b-button&gt;
+      &lt;b-button variant="${size.btnClass}"&gt;Right&lt;/b-button&gt;
     &lt;/div&gt;
   &lt;/b-col&gt;`
-).join("\n")}
-&lt;/b-row&gt;` }}
-              &lt;/b-card-body&gt;
-               &lt;/b-card&gt;
+                    ).join("\n")}
+&lt;/b-row&gt;`
+                }}
 </code></pre>
-                </b-collapse>
+                    </b-collapse>
                 </b-card-body>
             </b-card>
-
         </b-col>
 
         <!-- Nesting -->
@@ -229,37 +249,38 @@ ${sizes.map(size =>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Nesting</h5>
                         <a href="javascript:void(0)" @click="openNesting = !openNesting">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
-                  <b-card-body>
-                <!-- UI with loop -->
-                <b-row>
-                    <b-col
-                        v-for="(item, idx) in nestedVariants"
-                        :key="idx"
-                        cols="12"
-                        class="mb-3"
-                    >
-                        <b-button-group>
-                            <b-button :variant="item.variant">1</b-button>
-                            <b-button :variant="item.variant">2</b-button>
-                            <b-dropdown right text="Dropdown" :variant="item.variant">
-                                <b-dropdown-item href="#">Dropdown link</b-dropdown-item>
-                                <b-dropdown-item href="#">Dropdown link</b-dropdown-item>
-                            </b-dropdown>
-                        </b-button-group>
-                    </b-col>
-                </b-row>
+                <b-card-body>
+                    <!-- UI with loop -->
+                    <b-row>
+                        <b-col
+                            v-for="(item, idx) in nestedVariants"
+                            :key="idx"
+                            cols="12"
+                            class="mb-3"
+                        >
+                            <b-button-group>
+                                <b-button :variant="item.variant">1</b-button>
+                                <b-button :variant="item.variant">2</b-button>
+                                <b-dropdown right text="Dropdown" :variant="item.variant">
+                                    <b-dropdown-item href="#">Dropdown link</b-dropdown-item>
+                                    <b-dropdown-item href="#">Dropdown link</b-dropdown-item>
+                                </b-dropdown>
+                            </b-button-group>
+                        </b-col>
+                    </b-row>
 
-                <!-- Prism block with loop -->
-                <b-collapse v-model="openNesting" class="mt-3">
-        <pre class="language-html"><code>
-{{ `&lt;b-row&gt;
+                    <!-- Prism block with loop -->
+                    <b-collapse v-model="openNesting" class="mt-3">
+            <pre class="language-html"><code>
+{{
+                    `&lt;b-row&gt;
 ${nestedVariants
-            .map(
-                (item) => `  &lt;b-col cols="12" class="mb-3"&gt;
+                        .map(
+                            (item) => `  &lt;b-col cols="12" class="mb-3"&gt;
     &lt;b-button-group&gt;
       &lt;b-button variant="${item.variant}"&gt;1&lt;/b-button&gt;
       &lt;b-button variant="${item.variant}"&gt;2&lt;/b-button&gt;
@@ -269,11 +290,12 @@ ${nestedVariants
       &lt;/b-dropdown&gt;
     &lt;/b-button-group&gt;
   &lt;/b-col&gt;`
-            )
-            .join("\n")}
-&lt;/b-row&gt;` }}
+                        )
+                        .join("\n")}
+&lt;/b-row&gt;`
+                }}
 </code></pre>
-                </b-collapse>
+                    </b-collapse>
                 </b-card-body>
             </b-card>
         </b-col>
@@ -281,139 +303,134 @@ ${nestedVariants
         <!-- Checkbox and Radio -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
+                <!-- header -->
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Checkbox & Radio</h5>
+                        <h5 class="mb-0">Checkbox Radio</h5>
                         <a role="button" @click="openToggle = !openToggle">
-                            <PhCode size="30" weight="bold" class="source" />
+                            <PhCode size="30" weight="bold" class="source"/>
                         </a>
                     </div>
                 </template>
-                  <b-card-body>
+
                 <b-card-body>
-                    <!-- Checkbox Group -->
-                    <div class="mb-3">
-                        <b-form-checkbox-group
-                            class="mb-2 d-flex gap-2"
-                            :options="checkboxItems.map(item => ({
-              value: item.id,
-              text: item.label
-            }))"
-                            buttons
-                            button-variant="outline-secondary"
-                        />
-                    </div>
+                    <b-row class="btn-responsive">
+                        <!-- Checkbox Toggle Buttons -->
+                        <b-col cols="12" class="mb-3">
+                            <b-form-checkbox-group
+                                v-model="selectedChecks"
+                                :options="checkboxItems"
+                                buttons
+                                button-variant="outline-secondary"
+                                class="d-flex"
+                            />
+                        </b-col>
 
-                    <!-- Radio Group -->
-                    <div class="mb-3">
-                        <b-form-radio-group
-                            v-model="selectedRadio"
-                            class="d-flex gap-2"
-                            :options="radioItems.map(item => ({
-              value: item.id,
-              text: item.label
-            }))"
-                            buttons
-                            :button-variant="val => (selectedRadio === val ? 'secondary' : 'outline-secondary')"
-                        />
-                    </div>
+                        <!-- Radio Toggle Buttons -->
+                        <b-col cols="12" class="mb-3">
+                            <b-form-radio-group
+                                v-model="selectedRadio"
+                                :options="radioItems"
+                                buttons
+                                button-variant="outline-secondary"
+                                class="d-flex"
+                            />
+                        </b-col>
 
-                    <!-- Button Toolbar -->
-                    <div class="btn-toolbar">
-                        <b-button-group class="me-2">
-                            <b-button v-for="num in [1,2,3,4]" :key="num" variant="secondary">{{ num }}</b-button>
-                        </b-button-group>
-                        <b-button-group>
-                            <b-button variant="secondary">8</b-button>
-                        </b-button-group>
-                    </div>
+                        <!-- Toolbar with Button Groups -->
+                        <b-col cols="12" class="mb-3">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <b-button-group class="me-2" aria-label="First group">
+                                    <b-button variant="secondary">1</b-button>
+                                    <b-button variant="secondary">2</b-button>
+                                    <b-button variant="secondary">3</b-button>
+                                    <b-button variant="secondary">4</b-button>
+                                </b-button-group>
+                                <b-button-group aria-label="Third group">
+                                    <b-button variant="secondary">8</b-button>
+                                </b-button-group>
+                            </div>
+                        </b-col>
+                    </b-row>
 
-                    <!-- Prism Preview -->
+                    <!--  Prism Preview -->
                     <b-collapse v-model="openToggle" class="mt-3">
-          <pre class="language-html">
-<code>
-{`<b-form-checkbox-group buttons button-variant="outline-secondary">
-  <b-form-checkbox value="check1">Checkbox 1</b-form-checkbox>
-  <b-form-checkbox value="check2">Checkbox 2</b-form-checkbox>
-  <b-form-checkbox value="check3">Checkbox 3</b-form-checkbox>
-</b-form-checkbox-group>
+          <pre class="language-html"><code>
+&lt;b-form-checkbox-group buttons button-variant="outline-secondary"&gt;
+  &lt;b-form-checkbox value="check1"&gt;Checkbox 1&lt;/b-form-checkbox&gt;
+  &lt;b-form-checkbox value="check2"&gt;Checkbox 2&lt;/b-form-checkbox&gt;
+  &lt;b-form-checkbox value="check3"&gt;Checkbox 3&lt;/b-form-checkbox&gt;
+&lt;/b-form-checkbox-group&gt;
 
-<b-form-radio-group v-model="selectedRadio" buttons>
-  <b-form-radio value="radio1" button-variant="secondary">Radio 1</b-form-radio>
-  <b-form-radio value="radio2" button-variant="outline-secondary">Radio 2</b-form-radio>
-  <b-form-radio value="radio3" button-variant="outline-secondary">Radio 3</b-form-radio>
-</b-form-radio-group>`}
-</code>
-          </pre>
+&lt;b-form-radio-group v-model="selectedRadio" buttons button-variant="outline-secondary"&gt;
+  &lt;b-form-radio value="radio1"&gt;Radio 1&lt;/b-form-radio&gt;
+  &lt;b-form-radio value="radio2"&gt;Radio 2&lt;/b-form-radio&gt;
+  &lt;b-form-radio value="radio3"&gt;Radio 3&lt;/b-form-radio&gt;
+&lt;/b-form-radio-group&gt;
+
+              &lt;b-button-group class="me-2" aria-label="First group"&gt;
+              &lt;b-button variant="secondary"&gt;1&lt;/b-button&gt;
+              &lt;b-button variant="secondary"&gt;2&lt;/b-button&gt;
+              &lt;b-button variant="secondary"&gt;3&lt;/b-button&gt;
+              &lt;b-button variant="secondary"&gt;4&lt;/b-button&gt;
+              &lt;/b-button-group&gt;
+              &lt;b-button-group aria-label="Third group"&gt;
+              &lt;b-button variant="secondary"&gt;8&lt;/b-button&gt;
+              &lt;/b-button-group&gt;
+</code></pre>
                     </b-collapse>
-                    </b-card-body>
                 </b-card-body>
             </b-card>
         </b-col>
 
         <!-- Vertical -->
-        <b-col lg="6" class="mb-4">
-            <b-card no-body>
-                <template #header>
-                    <div class="code-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Vertical Groups</h5>
-                        <a href="javascript:void(0)" @click="openVertical = !openVertical">
-                            <PhCode size="30" weight="bold" class="source" />
-                        </a>
-                    </div>
-                </template>
-                  <b-card-body>
-                <b-row>
-                    <b-col
-                        v-for="(group, idx) in verticalGroups"
-                        :key="idx"
-                        cols="12"
-                        class="mb-3"
-                    >
-                        <b-button-group vertical>
-                            <b-button
-                                v-for="(btn, i) in group.buttons"
-                                :key="i"
-                                :variant="group.className"
-                            >
-                                {{ btn }}
-                            </b-button>
-                        </b-button-group>
-                    </b-col>
-                </b-row>
+        <b-row>
+            <b-col cols="12">
+                <b-card no-body>
+                    <template #header>
+                        <div class="code-header d-flex justify-content-between align-items-center">
+                            <h5>Button Vertical</h5>
+                            <a href="javascript:void(0)" @click="openVertical = !openVertical">
+                                <PhCode size="30" weight="bold" class="source"/>
+                            </a>
+                        </div>
+                    </template>
+                    <b-card-body>
+                        <b-row class="btn-responsive">
+                            <b-col auto class="m-2" v-for="(group, gIndex) in verticalButtonGroups" :key="gIndex">
+                                <div class="btn-group-vertical" role="group" :aria-label="group.ariaLabel">
+                                    <!-- Radio Buttons -->
+                                    <template v-if="group.type === 'radio'">
+                                        <div v-for="(btn, index) in group.buttons" :key="index">
+                                            <input type="radio" class="btn-check" :id="btn.id" :name="group.name" :checked="btn.checked" />
+                                            <label class="btn btn-outline-secondary" :for="btn.id">{{ btn.label }}</label>
+                                        </div>
+                                    </template>
 
-                <div class="mt-3">
-                    <b-button-group vertical>
-                        <input
-                            v-for="item in radioVerticals"
-                            :key="item.id"
-                            type="radio"
-                            class="btn-check"
-                            name="vbtn-radio"
-                            :id="item.id"
-                            autocomplete="off"
-                        />
-                        <label
-                            v-for="item in radioVerticals"
-                            :key="item.id + '-lbl'"
-                            class="btn btn-outline-danger"
-                            :for="item.id"
-                        >
-                            {{ item.label }}
-                        </label>
-                    </b-button-group>
-                </div>
+                                    <!-- Normal Buttons & Dropdown -->
+                                    <template v-else>
+                                        <div v-for="(btn, index) in group.buttons" :key="index">
 
-                <b-collapse v-model="openVertical" class="mt-3">
-          <pre class="language-html"><code>
-{{ `<b-button-group vertical>
-  <b-button variant="secondary">Button</b-button>
-  <b-button variant="secondary">Button</b-button>
-</b-button-group>` }}
-</code></pre>
-                </b-collapse>
-                </b-card-body>
-            </b-card>
-        </b-col>
+                                            <button v-if="!btn.dropdown" type="button" :class="btn.class">{{ btn.label }}</button>
+                                            <b-dropdown v-else :variant="btn.class"  :text="btn.label" :split="false" class="btn-group">
+                                                <b-dropdown-item v-for="(item, i) in btn.dropdownItems" :key="i">{{ item }}</b-dropdown-item>
+                                            </b-dropdown>
+
+                                        </div>
+                                    </template>
+                                </div>
+                            </b-col>
+                        </b-row>
+                    </b-card-body>
+
+                    <!-- PrismJS Code Preview -->
+                    <b-collapse v-model="openVertical" class="mt-3">
+          <pre class="language-html">
+<code>{{ prismCode }}</code>
+          </pre>
+                    </b-collapse>
+                </b-card>
+            </b-col>
+        </b-row>
     </b-row>
 </template>

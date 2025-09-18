@@ -136,10 +136,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
             <b-card no-body>
                 <!-- Header -->
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Icon Buttons</h5>
                         <a href="javascript:void(0)" @click="openIconButton = !openIconButton">
-                            <PhCode size="24" weight="bold" />
+                            <PhCode size="30" weight="bold" class="source" />
                         </a>
                     </div>
                 </template>
@@ -182,10 +182,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
             <b-card no-body>
                 <!-- Header -->
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Social Buttons</h5>
                         <a href="javascript:void(0)" @click="openSocialButtons = !openSocialButtons">
-                            <PhCode size="24" weight="bold" />
+                            <PhCode size="30" weight="bold" class="source" />
                         </a>
                     </div>
                 </template>
@@ -232,10 +232,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
             <b-card no-body>
                 <!-- Card Header -->
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Disabled Buttons</h5>
                         <a href="javascript:void(0)" @click="openDisabledButtons = !openDisabledButtons">
-                            <PhCode size="24" weight="bold" />
+                            <PhCode size="30" weight="bold" class="source" />
                         </a>
                     </div>
                 </template>
@@ -297,10 +297,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <b-card no-body>
                     <!-- Card Header -->
                     <template #header>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="code-header d-flex justify-content-between align-items-center">
                             <h5>Active Buttons</h5>
                             <a href="javascript:void(0)" @click="openActiveButtons = !openActiveButtons">
-                                <PhCode size="24" weight="bold" />
+                                <PhCode size="30" weight="bold" class="source" />
                             </a>
                         </div>
                     </template>
@@ -358,10 +358,10 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
             <b-card no-body>
                 <!-- Card Header -->
                 <template #header>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Loading Buttons</h5>
                         <a href="javascript:void(0)" @click="openLoadingButtons = !openLoadingButtons">
-                            <PhCode size="24" weight="bold" />
+                            <PhCode size="30" weight="bold" class="source" />
                         </a>
                     </div>
                 </template>

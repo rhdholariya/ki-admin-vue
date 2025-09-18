@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import AlertPage from '@/views/ui-kits/Alert/index.vue';
 import Badges from "@/views/ui-kits/Badges/index.vue";
 import Button from "@/views/ui-kits/Button/index.vue";
 import Card from "@/views/ui-kits/Card/index.vue";
@@ -13,6 +12,7 @@ import  ScrollbarPage from "@/views/AdvanceUi/Scrollbar/index.vue";
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import  VideoEmbedPage from "@/views/AdvanceUi/VideoEmbed/index.vue";
 import  TourPage from "@/views/AdvanceUi/Tour/index.vue";
+import Dropdown from "@/views/ui-kits/Dropdown/index.vue";
 
 
 
@@ -25,6 +25,7 @@ const router = createRouter({
         {path: '/ui-kits/buttons', name: 'button', component:Button},
         {path: '/ui-kits/cards', name: 'card', component:Card},
         {path: '/errors', name: 'error', component: Error},
+        {path: '/ui-kits/dropdown', name: 'dropdown', component:Dropdown},
 
         // advanceui routes
         {path: '/advance-ui/offcanvas-toggle', name: 'modal', component: OffcanvasPage},

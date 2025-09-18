@@ -76,7 +76,7 @@ const openIcon = ref(false);
 
                 <b-collapse v-model="openPosition" class="mt-3">
 <pre class="language-html"><code>
-&lt;b-card&gt;
+&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Badges Position&lt;/h5&gt;
   &lt;/template&gt;
@@ -130,7 +130,7 @@ const openIcon = ref(false);
 
                 <b-collapse v-model="openIcon" class="mt-3">
 <pre class="language-html"><code>
-&lt;b-card&gt;
+&lt;b-card no-body&gt;
   &lt;template #header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
   &lt;/template&gt;
