@@ -13,6 +13,8 @@ import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import  VideoEmbedPage from "@/views/AdvanceUi/VideoEmbed/index.vue";
 import  TourPage from "@/views/AdvanceUi/Tour/index.vue";
 import Dropdown from "@/views/ui-kits/Dropdown/index.vue";
+import AlertPage from "@/views/ui-kits/Alert/index.vue";
+
 
 
 
