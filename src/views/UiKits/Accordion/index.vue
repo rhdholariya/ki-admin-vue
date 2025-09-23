@@ -2,20 +2,19 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicButtons from "@/components/ui-kits/Button/BasicButtons.vue";
-import SmartButton from "@/components/ui-kits/Button/SmartButton.vue";
-import BlockSizeRadiousButton from "@/components/ui-kits/Button/BlockSizeRadiousButton.vue";
+import SimpleAccordion from "@/components/UiKits/Accordion/SimpleAccordion.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import ButtonGroup from "@/components/ui-kits/Button/ButtonGroup.vue";
-
+import OutlineAccordion from "@/components/UiKits/Accordion/OutlineAccordion.vue";
+import IconAccordion from "@/components/UiKits/Accordion/IconAccordion.vue";
+import NestedAccordion from "@/components/UiKits/Accordion/NestedAccordion.vue";
 
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "Button",
+    title: "Accordion",
     items: [
         {label: "Ui-kits", icon: PhBriefcase},
-        {label: "Button", active: true},
+        {label: "Accordion", active: true},
     ],
 };
 </script>
@@ -27,12 +26,12 @@ const breadcrumbItems = {
 
         <b-container fluid>
             <b-row>
-                <BasicButtons/>
-                <SmartButton />
-                <BlockSizeRadiousButton/>
-                <ButtonGroup />
+                <SimpleAccordion />
+                <OutlineAccordion />
+                <IconAccordion />
+                <NestedAccordion />
             </b-row>
         </b-container>
     </main>
-    </AppLayout>
+        </AppLayout>
 </template>

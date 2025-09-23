@@ -1,18 +1,17 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import {ref, onMounted, watch, nextTick} from "vue";
 import {
-    BButtonGroup,
     BCard,
     BCardBody,
     BCollapse,
     BDropdown,
     BDropdownItem,
-    BDropdownDivider,
+    BDropdownDivider, BCol,
 } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
 
-const open = ref(false);
+
 
 const variants = [
     "primary",
@@ -33,13 +32,19 @@ const dropdownOptions = [
     { label: "Separated link", value: "separated-link" },
 ];
 
-onMounted(() => {
-    Prism.highlightAll();
+const open = ref(false);
+[open, open].forEach((state) => {
+    watch(state, async (val) => {
+        if (val) {
+            await nextTick();
+            Prism.highlightAll();
+        }
+    });
 });
 </script>
 
 <template>
-    <div class="col-12">
+    <b-col lg="12">
         <b-card no-body>
             <template #header>
                 <div class="code-header d-flex justify-content-between">
@@ -94,5 +99,5 @@ ${variants
     </pre>
             </b-collapse>
         </b-card>
-    </div>
+    </b-col>
 </template>

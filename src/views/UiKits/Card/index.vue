@@ -2,10 +2,10 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicCard from "@/components/ui-kits/Card/BasicCard.vue";
-import CardVariant from "@/components/ui-kits/Card/CardVariant.vue";
-import CardStyle from "@/components/ui-kits/Card/CardStyle.vue";
- import CardTab from "@/components/ui-kits/Card/CardTab.vue";
+import BasicCard from "@/components/UiKits/Card/BasicCard.vue";
+import CardVariant from "@/components/UiKits/Card/CardVariant.vue";
+import CardStyle from "@/components/UiKits/Card/CardStyle.vue";
+ import CardTab from "@/components/UiKits/Card/CardTab.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 // Breadcrumb data

@@ -2,17 +2,20 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicBadge from "@/components/ui-kits/Badge/BasicBadge.vue";
-import IconBadge from "@/components/ui-kits/Badge/IconBadge.vue";
-import RadiusBadge from "@/components/ui-kits/Badge/RadiusBadge.vue";
+import BasicButtons from "@/components/UiKits/Button/BasicButtons.vue";
+import SmartButton from "@/components/UiKits/Button/SmartButton.vue";
+import BlockSizeRadiousButton from "@/components/UiKits/Button/BlockSizeRadiousButton.vue";
 import AppLayout from "@/views/AppLayout.vue";
+import ButtonGroup from "@/components/UiKits/Button/ButtonGroup.vue";
+
+
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "Badges",
+    title: "Button",
     items: [
         {label: "Ui-kits", icon: PhBriefcase},
-        {label: "Badges", active: true},
+        {label: "Button", active: true},
     ],
 };
 </script>
@@ -24,9 +27,10 @@ const breadcrumbItems = {
 
         <b-container fluid>
             <b-row>
-                <BasicBadge/>
-                <IconBadge />
-                <RadiusBadge />
+                <BasicButtons/>
+                <SmartButton />
+                <BlockSizeRadiousButton/>
+                <ButtonGroup />
             </b-row>
         </b-container>
     </main>

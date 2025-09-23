@@ -2,15 +2,15 @@
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import BasicAlert from "@/components/ui-kits/Alert/BasicAlert.vue";
-import OutlineAlert from "@/components/ui-kits/Alert/OutlineAlert.vue";
-import LightLinkAlert from "@/components/ui-kits/Alert/LightLinkAlert.vue";
-import IconAlert from "@/components/ui-kits/Alert/IconAlert.vue";
-import LeftBorderAlert from "@/components/ui-kits/Alert/LeftBorderAlert.vue";
-import LableIconAlert from "@/components/ui-kits/Alert/LableIconAlert.vue";
-import CustomIconAlert from "@/components/ui-kits/Alert/CustomIconAlert.vue";
-import AlertContent from "@/components/ui-kits/Alert/AlertContent.vue";
-import LiveAlert from "@/components/ui-kits/Alert/LiveAlert.vue";
+import BasicAlert from "@/components/UiKits/Alert/BasicAlert.vue";
+import OutlineAlert from "@/components/UiKits/Alert/OutlineAlert.vue";
+import LightLinkAlert from "@/components/UiKits/Alert/LightLinkAlert.vue";
+import IconAlert from "@/components/UiKits/Alert/IconAlert.vue";
+import LeftBorderAlert from "@/components/UiKits/Alert/LeftBorderAlert.vue";
+import LableIconAlert from "@/components/UiKits/Alert/LableIconAlert.vue";
+import CustomIconAlert from "@/components/UiKits/Alert/CustomIconAlert.vue";
+import AlertContent from "@/components/UiKits/Alert/AlertContent.vue";
+import LiveAlert from "@/components/UiKits/Alert/LiveAlert.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 // Breadcrumb data

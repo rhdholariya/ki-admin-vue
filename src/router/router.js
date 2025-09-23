@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import Badges from "@/views/ui-kits/Badges/index.vue";
-import Button from "@/views/ui-kits/Button/index.vue";
-import Card from "@/views/ui-kits/Card/index.vue";
+import BadgesPage from "@/views/UiKits/Badges/index.vue";
+import ButtonPage from "@/views/UiKits/Button/index.vue";
+import CardPage from "@/views/UiKits/Card/index.vue";
+import GridPage from "@/views/UiKits/grid/index.vue";
+import DropdownPage from "@/views/UiKits/Dropdown/index.vue";
 import Error from "@/views/DefaultPages/Error.vue";
 import SweatAlertPage from "@/views/AdvanceUi/SweatAlert/index.vue";
 import SpinnerPage from "@/views/AdvanceUi/Spinner/index.vue";
@@ -12,8 +14,16 @@ import  ScrollbarPage from "@/views/AdvanceUi/Scrollbar/index.vue";
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import  VideoEmbedPage from "@/views/AdvanceUi/VideoEmbed/index.vue";
 import  TourPage from "@/views/AdvanceUi/Tour/index.vue";
-import Dropdown from "@/views/ui-kits/Dropdown/index.vue";
-import AlertPage from "@/views/ui-kits/Alert/index.vue";
+import AlertPage from "@/views/UiKits/Alert/index.vue";
+import AvatarPage from "@/views/UiKits/Avatar/index.vue";
+// import tabPage from "@/views/UiKits/Tab/index.vue";
+import AccordionPage from "@/views/UiKits/Accordion/index.vue";
+import ProgressPage from "@/views/UiKits/Progress/index.vue";
+import NotificationPage from "@/views/UiKits/Notification/index.vue";
+
+
+
+
 
 
 
@@ -23,11 +33,24 @@ const router = createRouter({
     routes: [
         {path: '/', name: 'home', component: HomeView,},
         {path: '/ui-kits/alert', name: 'alerts', component: AlertPage},
-        {path: '/ui-kits/badges', name: 'badges', component: Badges},
-        {path: '/ui-kits/buttons', name: 'button', component:Button},
-        {path: '/ui-kits/cards', name: 'card', component:Card},
+        {path: '/ui-kits/badges', name: 'badges', component: BadgesPage},
+        {path: '/ui-kits/buttons', name: 'button', component:ButtonPage},
+        {path: '/ui-kits/cards', name: 'card', component:CardPage},
+        {path: '/ui-kits/dropdown', name: 'dropdown', component:DropdownPage},
+        {path: '/ui-kits/grid', name: 'grid', component:GridPage},
         {path: '/errors', name: 'error', component: Error},
-        {path: '/ui-kits/dropdown', name: 'dropdown', component:Dropdown},
+        {path: '/ui-kits/avatar', name: 'Avatar', component:AvatarPage},
+        // {path: '/ui-kits/tabs', name: 'Tab', component:tabPage},
+        {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
+        {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
+        {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
+
+
+
+
+
+
+
 
         // advanceui routes
         {path: '/advance-ui/offcanvas-toggle', name: 'modal', component: OffcanvasPage},
