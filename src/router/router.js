@@ -13,13 +13,16 @@ import  OffcanvasPage from "@/views/AdvanceUi/OffcanvasToggle/index.vue";
 import  ScrollbarPage from "@/views/AdvanceUi/Scrollbar/index.vue";
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import  VideoEmbedPage from "@/views/AdvanceUi/VideoEmbed/index.vue";
-import  TourPage from "@/views/AdvanceUi/Tour/index.vue";
 import AlertPage from "@/views/UiKits/Alert/index.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
 // import tabPage from "@/views/UiKits/Tab/index.vue";
 import AccordionPage from "@/views/UiKits/Accordion/index.vue";
 import ProgressPage from "@/views/UiKits/Progress/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
+import SliderPage from "@/views/AdvanceUi/Slider/index.vue";
+import TourPage from "@/views/AdvanceUi/Tour/index.vue";
+
+
 
 
 
@@ -49,9 +52,6 @@ const router = createRouter({
 
 
 
-
-
-
         // advanceui routes
         {path: '/advance-ui/offcanvas-toggle', name: 'modal', component: OffcanvasPage},
         {path: '/advance-ui/sweat-alert', name: 'offcanvas', component: SweatAlertPage},
@@ -61,6 +61,7 @@ const router = createRouter({
         {path: '/advance-ui/modals', name: 'modals', component: ModalPage},
         {path: '/advance-ui/video-embed', name: 'videoembed', component: VideoEmbedPage},
         {path: '/advance-ui/tour', name: 'tour', component: TourPage},
+        {path: '/advance-ui/slider', name: 'slider', component: SliderPage},
 
     ],
 

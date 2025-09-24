@@ -1,3 +1,66 @@
+<script setup>
+import {
+  BCard,
+  BCardBody,
+  BCardHeader,
+  BCol,
+  BRow,
+  BButton,
+  BNav,
+  BNavItem,
+  BBadge,
+  BImg,
+} from "bootstrap-vue-next"
+
+import {
+  PhChats,
+  PhClipboardText,
+  PhDotsThreeVertical,
+  PhHeart,
+  PhImageSquare,
+  PhPaperPlaneRight,
+  PhGraph,
+  PhUser,
+  PhUserCheck,
+  PhUsers,
+} from "@phosphor-icons/vue"
+
+import { ref } from "vue"
+
+const activeTab = ref("1")
+
+const tabs = [
+  { id: "1", title: "Profile", icon: PhUser },
+  { id: "2", title: "Activities", icon: PhGraph, badge: "10+" },
+  { id: "3", title: "Projects", icon: PhClipboardText },
+  { id: "4", title: "Post", icon: PhImageSquare },
+  { id: "5", title: "Friends", icon: PhUsers },
+]
+
+const friends = [
+  { id: 1, name: "Bette Hagenes", title: "Wed Developer", avatar: "/images/avatar/2.png", bgClass: "bg-dark" },
+  { id: 2, name: "Fleta Walsh", title: "Wed Designer", avatar: "/images/avatar/10.png", bgClass: "bg-primary" },
+  { id: 3, name: "Lenora", title: "UI/UX designer", avatar: "/images/avatar/14.png", bgClass: "bg-success" },
+  { id: 4, name: "Fleta Walsh", title: "React Developer", avatar: "/images/avatar/16.png", bgClass: "bg-warning" },
+  { id: 5, name: "Emery McKenzie", title: "Wed Developer", avatar: "/images/avatar/13.png", bgClass: "bg-danger" },
+  { id: 6, name: "Bette Hagenes", title: "Wed Designer", avatar: "/images/avatar/1.png", bgClass: "bg-info" },
+]
+
+const galleryImages = [
+  "/images/profile-app/19.jpg",
+  "/images/profile-app/27.jpg",
+  "/images/profile-app/28.jpg",
+  "/images/profile-app/29.jpg",
+  "/images/profile-app/30.jpg",
+]
+
+const postActions = [
+  { icon: PhHeart, label: "Like" },
+  { icon: PhChats, label: "Comment" },
+  { icon: PhPaperPlaneRight, label: "Share" },
+]
+</script>
+
 <template>
   <b-col lg="3">
     <!-- Tabs -->
@@ -99,65 +162,4 @@
   </b-col>
 </template>
 
-<script setup>
-import {
-  BCard,
-  BCardBody,
-  BCardHeader,
-  BCol,
-  BRow,
-  BButton,
-  BNav,
-  BNavItem,
-  BBadge,
-  BImg,
-} from "bootstrap-vue-next"
 
-import {
-  PhChats,
-  PhClipboardText,
-  PhDotsThreeVertical,
-  PhHeart,
-  PhImageSquare,
-  PhPaperPlaneRight,
-  PhGraph,
-  PhUser,
-  PhUserCheck,
-  PhUsers,
-} from "@phosphor-icons/vue"
-
-import { ref } from "vue"
-
-const activeTab = ref("1")
-
-const tabs = [
-  { id: "1", title: "Profile", icon: PhUser },
-  { id: "2", title: "Activities", icon: PhGraph, badge: "10+" },
-  { id: "3", title: "Projects", icon: PhClipboardText },
-  { id: "4", title: "Post", icon: PhImageSquare },
-  { id: "5", title: "Friends", icon: PhUsers },
-]
-
-const friends = [
-  { id: 1, name: "Bette Hagenes", title: "Wed Developer", avatar: "/images/avatar/2.png", bgClass: "bg-dark" },
-  { id: 2, name: "Fleta Walsh", title: "Wed Designer", avatar: "/images/avatar/10.png", bgClass: "bg-primary" },
-  { id: 3, name: "Lenora", title: "UI/UX designer", avatar: "/images/avatar/14.png", bgClass: "bg-success" },
-  { id: 4, name: "Fleta Walsh", title: "React Developer", avatar: "/images/avatar/16.png", bgClass: "bg-warning" },
-  { id: 5, name: "Emery McKenzie", title: "Wed Developer", avatar: "/images/avatar/13.png", bgClass: "bg-danger" },
-  { id: 6, name: "Bette Hagenes", title: "Wed Designer", avatar: "/images/avatar/1.png", bgClass: "bg-info" },
-]
-
-const galleryImages = [
-  "/images/profile-app/19.jpg",
-  "/images/profile-app/27.jpg",
-  "/images/profile-app/28.jpg",
-  "/images/profile-app/29.jpg",
-  "/images/profile-app/30.jpg",
-]
-
-const postActions = [
-  { icon: PhHeart, label: "Like" },
-  { icon: PhChats, label: "Comment" },
-  { icon: PhPaperPlaneRight, label: "Share" },
-]
-</script>
