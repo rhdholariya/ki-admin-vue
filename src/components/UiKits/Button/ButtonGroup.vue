@@ -11,9 +11,7 @@ import {
     BDropdownItem,
     BCardBody,
     BFormCheckboxGroup,
-    BFormCheckbox,
-    BFormRadio,
-    BFormRadioGroup
+    BFormRadioGroup, BCardHeader
 } from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
 
@@ -131,9 +129,7 @@ const openVertical = ref(false);
 // radio selection state
 const selectedRadio = ref("radio1");
 
-onMounted(() => {
-    Prism.highlightAll();
-});
+
 </script>
 
 <template>
@@ -141,14 +137,14 @@ onMounted(() => {
         <!-- Button Group Variants -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Button Group</h5>
-                        <a href="javascript:void(0)" @click="openGroup = !openGroup">
+                        <b-button @click="openGroup = !openGroup" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <b-row>
                         <b-col
@@ -194,14 +190,14 @@ ${group.links.map((link, idx) =>
         <!-- Sizes -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Sizes</h5>
-                        <a href="javascript:void(0)" @click="openGroup2 = !openGroup2">
+                        <b-button @click="openGroup2 = !openGroup2" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <b-row>
                         <b-col v-for="(size, idx) in sizes" :key="idx" cols="12" class="mb-3">
@@ -245,14 +241,14 @@ ${sizes.map(size =>
         <!-- Nesting -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Nesting</h5>
-                        <a href="javascript:void(0)" @click="openNesting = !openNesting">
+                        <b-button @click="openNesting = !openNesting" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <!-- UI with loop -->
                     <b-row>
@@ -304,14 +300,14 @@ ${nestedVariants
         <b-col lg="6" class="mb-4">
             <b-card no-body>
                 <!-- header -->
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Checkbox Radio</h5>
-                        <a role="button" @click="openToggle = !openToggle">
+                        <b-button @click="openToggle = !openToggle" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
 
                 <b-card-body>
                     <b-row class="btn-responsive">
@@ -390,9 +386,9 @@ ${nestedVariants
                     <template #header>
                         <div class="code-header d-flex justify-content-between align-items-center">
                             <h5>Button Vertical</h5>
-                            <a href="javascript:void(0)" @click="openVertical = !openVertical">
+                            <b-button @click="openVertical = !openVertical" class="p-0 border-0">
                                 <PhCode size="30" weight="bold" class="source"/>
-                            </a>
+                            </b-button>
                         </div>
                     </template>
                     <b-card-body>

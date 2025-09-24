@@ -1,7 +1,7 @@
 <script setup>
-import { ref, watch, nextTick, onMounted } from "vue";
+import { ref} from "vue";
 import { PhCode, PhUser, PhEnvelope } from "@phosphor-icons/vue";
-import { BCard, BCardHeader, BCardBody, BCollapse, BCol } from "bootstrap-vue-next";
+import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 
 // Data arrays
 const avatarImages = [
@@ -73,14 +73,7 @@ const openAvtar5 = ref(false);
 const openAvtar6 = ref(false);
 const openAvtar7 = ref(false);
 
-[openAvtar5, openAvtar6, openAvtar7].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
+
 
 </script>
 
@@ -91,9 +84,9 @@ const openAvtar7 = ref(false);
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                 <h5>Images</h5>
-                <a @click="openAvtar5 = !openAvtar5" >
+                    <b-button @click="openAvtar5 = !openAvtar5" class="p-0 border-0">
                     <ph-code size="30" weight="bold" class="source" />
-                </a>
+                    </b-button>
                 </div>
             </b-card-header>
             <b-card-body>
@@ -136,9 +129,9 @@ const openAvtar7 = ref(false);
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Size</h5>
-                <a @click="openAvtar6 = !openAvtar6" >
+                    <b-button @click="openAvtar6 = !openAvtar6" class="p-0 border-0">
                     <ph-code size="30" weight="bold" class="source" />
-                </a>
+                    </b-button>
                 </div>
             </b-card-header>
             <b-card-body>
@@ -181,9 +174,9 @@ const openAvtar7 = ref(false);
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Indicator Position And Icon</h5>
-                <a @click="openAvtar7 = !openAvtar7" >
+                    <b-button @click="openAvtar7 = !openAvtar7" class="p-0 border-0">
                     <ph-code size="30" weight="bold" class="source" />
-                </a>
+                    </b-button>
                 </div>
                 <p class="text-muted">Radious avatar text in soft color example</p>
             </b-card-header>

@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, nextTick} from "vue";
+import {ref} from "vue";
 import {
     BCol,
     BCard,
@@ -7,7 +7,7 @@ import {
     BCollapse,
     BDropdown,
     BDropdownItem,
-    BDropdownDivider,
+    BDropdownDivider, BButton, BCardHeader,
 } from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
 const variants = [
@@ -30,28 +30,21 @@ const dropdownOptions = [
 ];
 const open = ref(false);
 const openLight = ref(false);
-[open, openLight].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
+
 </script>
 
 <template>
     <b-col lg="12">
         <b-card no-body>
             <!-- Header -->
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between">
                     <h5 class="txt-ellipsis">Dropdown Outline Variants</h5>
-                    <a role="button" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
 
             <!-- UI Example -->
             <b-card-body class="d-flex flex-wrap">
@@ -76,12 +69,12 @@ const openLight = ref(false);
             <!-- PrismJS Code Example -->
             <b-collapse v-model="open">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code >
 
 {{`&lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Dropdown Outline Variants&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
         ${variants
     .map(
@@ -91,11 +84,11 @@ const openLight = ref(false);
     split-variant="outline-${v}"
     text="${v.charAt(0).toUpperCase() + v.slice(1)}"
     class="m-2"&gt;
-  &lt;b-dropdown-item href="#"&gt;Action&lt;/b-dropdown-item&gt;
-  &lt;b-dropdown-item href="#"&gt;Another action&lt;/b-dropdown-item&gt;
-  &lt;b-dropdown-item href="#"&gt;Something else here&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Action&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Another action&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Something else here&lt;/b-dropdown-item&gt;
   &lt;b-dropdown-divider /&gt;
-  &lt;b-dropdown-item href="#"&gt;Separated link&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Separated link&lt;/b-dropdown-item&gt;
 &lt;/b-dropdown&gt;`
     )
     .join('\n')}
@@ -110,14 +103,14 @@ const openLight = ref(false);
     <b-col lg="12">
         <b-card no-body>
             <!-- Header -->
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between">
                     <h5 class="txt-ellipsis">Dropdown Light Variants</h5>
-                    <a role="button" @click="openLight = !openLight">
+                    <b-button @click="openLight = !openLight" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
 
             <!-- UI Example -->
             <b-card-body class="d-flex flex-wrap">
@@ -145,9 +138,9 @@ const openLight = ref(false);
 <code class="language-html">
 
 {{`&lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Dropdown Light Variants&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
         ${variants
     .map(
@@ -157,11 +150,11 @@ const openLight = ref(false);
     split-variant="outline-${v}"
     text="${v.charAt(0).toUpperCase() + v.slice(1)}"
     class="m-2"&gt;
-  &lt;b-dropdown-item href="#"&gt;Action&lt;/b-dropdown-item&gt;
-  &lt;b-dropdown-item href="#"&gt;Another action&lt;/b-dropdown-item&gt;
-  &lt;b-dropdown-item href="#"&gt;Something else here&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Action&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Another action&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Something else here&lt;/b-dropdown-item&gt;
   &lt;b-dropdown-divider /&gt;
-  &lt;b-dropdown-item href="#"&gt;Separated link&lt;/b-dropdown-item&gt;
+  &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Separated link&lt;/b-dropdown-item&gt;
 &lt;/b-dropdown&gt;`
     )
     .join('\n')}

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import {
+    BButton,
     BCard,
     BCardBody,
     BCardHeader,
@@ -34,9 +35,9 @@ watch(openAvtar3, async (val) => {
             <b-card-header>
                 <div class="code-header d-flex align-items-center justify-content-between">
                     <h5>Outline</h5>
-                    <a @click="openAvtar3 = !openAvtar3">
+                    <b-button @click="openAvtar3 = !openAvtar3" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source" />
-                    </a>
+                    </b-button>
                 </div>
                 <p class="text-muted">
                     For outline style use <code>text-outline-*</code> class.

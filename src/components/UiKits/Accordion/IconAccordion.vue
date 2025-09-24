@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import {ref, watch, nextTick} from "vue";
+<script setup>
+import { ref, watch, nextTick } from "vue";
 import {
     BRow,
     BCol,
@@ -53,7 +53,7 @@ const openOutline = ref(false);
 const openLeftIcon = ref(false);
 
 // Prism watcher setup
-const setupPrism = (openRef: any) => {
+const setupPrism = (openRef) => {
     watch(openRef, async (val) => {
         if (val) {
             await nextTick();
@@ -61,6 +61,7 @@ const setupPrism = (openRef: any) => {
         }
     });
 };
+
 [openOutline, openLeftIcon].forEach(setupPrism);
 </script>
 
@@ -77,13 +78,13 @@ const setupPrism = (openRef: any) => {
                         </a>
                     </div>
                 </b-card-header>
+
                 <b-card-body>
                     <b-accordion v-model="activeOutline" class="app-accordion accordion-outline-secondary">
                         <b-accordion-item
                             v-for="{ id, icon, question, answer } in faqData"
                             :key="id"
                             :id="id"
-                            :title="question"
                         >
                             <template #title>
                                 <component :is="icon" size="18" class="me-2"/>
@@ -101,7 +102,7 @@ const setupPrism = (openRef: any) => {
   &lt;b-card-header&gt;
     &lt;h5&gt;Frequently Asked Questions (Real Example) &lt;/h5&gt;
   &lt;/b-card-header&gt;
-    &lt;b-card-body&gt;
+  &lt;b-card-body&gt;
 &lt;b-accordion v-model=&quot;activeOutline&quot; class=&quot;app-accordion accordion-outline-secondary&quot;&gt;
 ${faqData
   .map(
@@ -127,12 +128,13 @@ ${faqData
             <b-card no-body>
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Left Side Plus Minus Icon</h5>
-                    <a href="javascript:void(0)" @click="openLeftIcon = !openLeftIcon">
-                        <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                        <h5 class="mb-0">Left Side Plus Minus Icon</h5>
+                        <a href="javascript:void(0)" @click="openLeftIcon = !openLeftIcon">
+                            <PhCode size="30" weight="bold" class="source"/>
+                        </a>
                     </div>
                 </b-card-header>
+
                 <b-card-body>
                     <b-accordion v-model="activeLeftIcon" class="app-accordion accordion-light-primary">
                         <b-accordion-item
@@ -159,8 +161,8 @@ ${faqData
   &lt;b-card-header&gt;
     &lt;h5&gt;Left Side Plus Minus Icon &lt;/h5&gt;
   &lt;/b-card-header&gt;
-    &lt;b-card-body&gt;
-    &lt;b-accordion v-model=&quot;activeLeftIcon&quot; class=&quot;app-accordion accordion-light-primary&quot;&gt;
+  &lt;b-card-body&gt;
+&lt;b-accordion v-model=&quot;activeLeftIcon&quot; class=&quot;app-accordion accordion-light-primary&quot;&gt;
 ${faqData
   .map(
     (item) => `  &lt;b-accordion-item id=&quot;${item.id}&quot;&gt;

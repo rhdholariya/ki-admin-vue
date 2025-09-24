@@ -1,7 +1,7 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
+import { ref } from "vue";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
-import { BCard, BCardHeader, BCardBody, BCollapse, BCol } from "bootstrap-vue-next";
+import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 
 // Avatar data
 const avatars = [
@@ -16,15 +16,6 @@ const avatars = [
 // Collapse toggle state
 const open = ref(false);
 
-// Prism re-highlight when collapse opens
-[open].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
 </script>
 
 <template>
@@ -33,9 +24,9 @@ const open = ref(false);
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Colors</h5>
-                    <a href="javascript:void(0)" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source" />
-                    </a>
+                    </b-button>
                 </div>
                 <p class="text-muted">
                     Use color <code>bg-*</code> to change the background theme color of avatar.
@@ -49,7 +40,7 @@ const open = ref(false);
               :key="index"
               class="d-flex align-items-center justify-content-center rounded-circle w-45 h-45"
               :class="'bg-' + avatar.colorClass + ' text-white'"
-              style="width: 45px; height: 45px;"
+
           >
             <component
                 v-if="avatar.component"
@@ -89,6 +80,7 @@ const open = ref(false);
         </pre>
             </b-collapse>
         </b-card>
+
 
     </b-col>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, nextTick, computed} from "vue";
+import {ref, computed} from "vue";
 import {BCard, BCardHeader, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import {PhCode, PhUser} from "@phosphor-icons/vue";
 
@@ -33,13 +33,6 @@ const avatarGroups = [
     }
 ];
 
-// Prism highlight
-watch(openAvtar, async (val) => {
-    if (val) {
-        await nextTick();
-        Prism.highlightAll();
-    }
-});
 
 // Generate Prism HTML code
 const prismCode = computed(() => ""); // placeholder to remove syntax error
@@ -52,9 +45,9 @@ const prismCode = computed(() => ""); // placeholder to remove syntax error
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-1">Group with Tooltip</h5>
-                    <a @click="openAvtar = !openAvtar">
+                    <b-button @click="openAvtar = !openAvtar" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
                 <p class="text-muted mb-0">User group with tooltip</p>
             </b-card-header>

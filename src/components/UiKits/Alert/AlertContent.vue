@@ -1,6 +1,6 @@
 <script setup>
-import {ref, watch, nextTick} from "vue";
-import {BAlert, BCard, BCol, BCardBody, BCollapse} from "bootstrap-vue-next";
+import {ref,} from "vue";
+import {BAlert, BCard, BCol, BCardBody, BCollapse, BCardHeader, BButton} from "bootstrap-vue-next";
 import {PhCode, PhX} from "@phosphor-icons/vue";
 
 
@@ -33,27 +33,20 @@ const alertsContent = [
     },
 ];
 
-// re-highlight prism when collapse opens
-watch(open, (val) => {
-    if (val) {
-        nextTick(() => {
-            Prism.highlightAll();
-        });
-    }
-});
+
 </script>
 
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Alert Additional Content</h5>
-                    <a href="javascript:void(0)" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
 
             <b-card-body>
                 <b-alert
@@ -73,30 +66,21 @@ watch(open, (val) => {
 
 
                 <b-collapse v-model="open" class="mt-3">
-      <pre class="language-html" tabindex="0">
-<code v-text="`<b-card no-body>
-  <template #header>
-    <h5>Alert With Icon</h5>
-  </template>
-  <div>
-${alertsContent
-  .map(
-    (alert) => `<b-card-body>  <b-alert variant='${alert.color}' show>
-    <h3 class='alert-heading d-flex justify-content-between align-items-center'>
-      ${alert.heading}
-      <PhX size='21' weight='bold' class='cursor-pointer'/>
-    </h3>
-    <p>${alert.message}</p>
-    <hr/>
-    <p class='mb-0'>${alert.footer}</p>
-
- </b-alert> </b-card-body>`
-  )
-  .join('\n\n')}
-  </div>
-</b-card>`"></code>
-      </pre>
+  <pre class="language-html" tabindex="0">
+    <code>{{ `
+&lt;b-card no-body&gt;
+${alertsContent.map(alert => `    &lt;b-card-body&gt;
+      &lt;b-alert variant="${alert.color}" show&gt;
+        &lt;h3 class="alert-heading"&gt;${alert.heading}&lt;/h3&gt;
+        &lt;p&gt;${alert.message}&lt;/p&gt;
+        &lt;hr/&gt;
+        &lt;p class="mb-0"&gt;${alert.footer}&lt;/p&gt;
+      &lt;/b-alert&gt;
+    &lt;/b-card-body&gt;`).join('\n')}
+&lt;/b-card&gt;` }}</code>
+  </pre>
                 </b-collapse>
+
             </b-card-body>
         </b-card>
 

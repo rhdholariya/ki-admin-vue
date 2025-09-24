@@ -1,6 +1,6 @@
 <script setup>
-import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
-import {nextTick, ref, watch, h} from "vue";
+import {BAlert, BButton, BCard, BCardBody, BCardHeader, BCol, BCollapse} from "bootstrap-vue-next";
+import { ref, h} from "vue";
 import {
     PhCode,
     PhInfo,
@@ -9,14 +9,7 @@ import {
 } from "@phosphor-icons/vue";
 
 const open = ref(false);
-const setupPrism = (openRef) => {
-    watch(openRef, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-};
+
 // Alerts data
 const alerts = ref([
     {
@@ -60,23 +53,20 @@ const alerts = ref([
         show: true,
     },
 ]);
-const dismissAlert = (index) => {
-    alerts.value[index].show = false;
-};
-[open].forEach(setupPrism);
+
 </script>
 <template>
     <b-col lg="6">
         <b-card no-body>
             <!-- Card Header -->
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Custom Alerts With Dismissing</h5>
-                    <a href="javascript:void(0)" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
             <b-card-body>
                 <!-- Render Alerts -->
                 <div v-for="(alert, index) in alerts" :key="index">
@@ -164,9 +154,9 @@ const dismissAlert = (index) => {
         <pre class="language-html" tabindex="0">
 <code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Custom Alerts With Dismissing&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
   &lt;!-- Basic Alert Example --&gt;
   &lt;b-alert variant="primary" show dismissible&gt;

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import {
+    BButton,
     BCard,
     BCardBody,
     BCardHeader,
@@ -22,14 +23,6 @@ const radiusAvatarColors = [
     { radius: 30, colorClass: "light-danger" },
 ];
 
-
-// Watch collapse open → Prism highlight
-watch(openAvtar2, async (val) => {
-    if (val) {
-        await nextTick();
-        Prism.highlightAll();
-    }
-});
 </script>
 
 <template>
@@ -38,9 +31,9 @@ watch(openAvtar2, async (val) => {
             <b-card-header>
                 <div class="code-header d-flex align-items-center justify-content-between">
                     <h5>Radius</h5>
-                    <a @click="openAvtar2 = !openAvtar2">
+                    <b-button @click="openAvtar2 = !openAvtar2" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source" />
-                    </a>
+                    </b-button>
                 </div>
                 <p class="text-muted">Radius avatar text in soft color example</p>
             </b-card-header>

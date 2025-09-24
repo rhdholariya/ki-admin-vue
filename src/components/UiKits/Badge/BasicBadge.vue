@@ -1,6 +1,6 @@
 <script setup>
-import {ref, watch, nextTick} from "vue";
-import {BCard, BRow, BCol, BCollapse, BBadge, BCardBody} from "bootstrap-vue-next";
+import {ref} from "vue";
+import {BCard, BRow, BCol, BCollapse, BBadge, BCardBody, BButton , BCardHeader} from "bootstrap-vue-next";
 import {PhCode, PhDownloadSimple} from "@phosphor-icons/vue";
 // Badge colors
 const badgeColors = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
@@ -26,15 +26,7 @@ const openOutline = ref(false);
 const openLight = ref(false);
 const openRadius = ref(false);
 
-// Prism highlight on collapse open
-[open, openOutline, openLight, openRadius].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
+
 </script>
 
 <template>
@@ -42,15 +34,15 @@ const openRadius = ref(false);
         <!-- Basic Badges -->
         <b-col sm="12" xl="6">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
 
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Basic Badges</h5>
-                        <a href="javascript:void(0)" @click="open = !open">
+                        <b-button @click="open = !open" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-badge v-for="color in badgeColors" :key="color" :variant="color">
@@ -59,28 +51,25 @@ const openRadius = ref(false);
                     </div>
 
                     <b-collapse v-model="open" class="mt-3">
-          <pre class="language-html">
-<code>
+  <pre class="language-html" tabindex="0">
+    <code>{{ `
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Basic Badges&lt;/h5&gt;
-  &lt;/template&gt;
-    &lt;b-card-body&gt;
-  &lt;div class="d-flex flex-wrap gap-2"&gt;
-{{
-        badgeColors
-            .map(
-                (c) =>
-                    `    &lt;b-badge variant="${c}"&gt;${c.charAt(0).toUpperCase() + c.slice(1)}&lt;/b-badge&gt;`
-            )
-            .join("\n")
-    }}
-  &lt;/div&gt;
-    &lt;/b-card-body&gt;
-&lt;/b-card&gt;
-</code>
-          </pre>
+  &lt;/b-card-header&gt;
+  &lt;b-card-body&gt;
+    &lt;div class="d-flex flex-wrap gap-2"&gt;
+${badgeColors
+        .map(
+            (c) => `      &lt;b-badge variant="${c}"&gt;${c.charAt(0).toUpperCase() + c.slice(1)}&lt;/b-badge&gt;`
+        )
+        .join('\n')}
+    &lt;/div&gt;
+  &lt;/b-card-body&gt;
+&lt;/b-card&gt;` }}</code>
+  </pre>
                     </b-collapse>
+
                 </b-card-body>
             </b-card>
         </b-col>
@@ -88,15 +77,15 @@ const openRadius = ref(false);
         <!-- Outline Badges -->
         <b-col sm="12" xl="6">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
 
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Outline Badges</h5>
-                        <a href="javascript:void(0)" @click="openOutline = !openOutline">
+                        <b-button @click="openOutline = !openOutline" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-badge
@@ -112,9 +101,9 @@ const openRadius = ref(false);
           <pre class="language-html">
 <code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Outline Badges&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-2"&gt;
 {{
@@ -138,14 +127,14 @@ const openRadius = ref(false);
         <!-- Light Badges -->
         <b-col sm="12" xl="6">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Light Badges</h5>
-                        <a href="javascript:void(0)" @click="openLight = !openLight">
+                        <b-button @click="openLight = !openLight" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-badge
@@ -162,9 +151,9 @@ const openRadius = ref(false);
           <pre class="language-html">
 <code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Light Badges&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-2"&gt;
 {{
@@ -189,15 +178,15 @@ const openRadius = ref(false);
         <!-- Radius Badges -->
         <b-col sm="12" xl="6">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
 
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Radius option on Badges</h5>
-                        <a href="javascript:void(0)" @click="openRadius = !openRadius">
+                        <b-button @click="openRadius = !openRadius" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-badge
@@ -214,9 +203,9 @@ const openRadius = ref(false);
           <pre class="language-html">
 <code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Radius option on Badges&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-2"&gt;
 {{

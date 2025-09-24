@@ -1,5 +1,5 @@
 <script setup>
-import {nextTick, ref, watch ,} from "vue";
+import { ref } from "vue";
 import {
     BCard,
     BCardBody,
@@ -13,44 +13,43 @@ import {
     BFormInput,
     BFormCheckbox,
     BButton,
+    BCardHeader,
 } from "bootstrap-vue-next";
-import {PhCode} from "@phosphor-icons/vue";
+import { PhCode } from "@phosphor-icons/vue";
 
 // Collapse controls
 const openBasic = ref(false);
 const openPreview = ref(false);
-// Prism setup function for multiple collapses
-const setupPrism = (openRef) => {
-    watch(openRef, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-};
-// Initialize Prism for both collapses
-setupPrism(openBasic);
-setupPrism(openPreview);
+
 // Dropdown state
 const dropdownOpen1 = ref(false);
 const dropdownOpen2 = ref(false);
+
 // Dropdown options
 const dropdownOptions = [
-    {label: "Action", value: "action"},
-    {label: "Another action", value: "another-action"},
-    {label: "Something else here", value: "something-else"},
+    { label: "Action", value: "action" },
+    { label: "Another action", value: "another-action" },
+    { label: "Something else here", value: "something-else" },
 ];
-// Map-based dropdowns
+
+// Handle dropdown item clicks
+const handleAction = (optionValue) => {
+    console.log('Dropdown action:', optionValue);
+    // Add your action logic here
+    alert(`Action: ${optionValue}`);
+};
+
+// Map-based dropdowns - FIXED: No more HTML strings
 const dropdowns = [
     {
         type: "success",
         title: "Header",
         header: "Welcome Jessie!",
         items: [
-            {label: "Action"},
-            {label: "Another action"},
-            {label: "Something else here"},
-            {label: "Separated link", isDivider: true},
+            { label: "Action" },
+            { label: "Another action" },
+            { label: "Something else here" },
+            { label: "Separated link", isDivider: true },
         ],
         customContent: null,
     },
@@ -59,50 +58,54 @@ const dropdowns = [
         title: "Text",
         header: null,
         items: [],
-        customContent: `
-      <div class="p-3">
-        <p>Some example text that's free-flowing within the dropdown menu.</p>
-        <p class="mb-0">And this is more example text.</p>
-      </div>
-    `,
+        customContent: {
+            type: "text",
+            paragraphs: [
+                "Some example text that's free-flowing within the dropdown menu.",
+                "And this is more example text."
+            ]
+        },
     },
     {
         type: "warning",
         title: "Forms",
         header: null,
         items: [],
-        customContent: "form", // special flag to use Vue 3 form
+        customContent: { type: "form" }, // Use object instead of string
     },
 ];
+
 // Form data
 const formData = ref({
     email: "",
     password: "",
     remember: false,
 });
+
 // Form submit handler
 const handleSubmit = () => {
     alert(`Email: ${formData.value.email}\nPassword: ${formData.value.password}\nRemember: ${formData.value.remember}`);
 };
 </script>
+
 <template>
     <b-col lg="12">
         <!-- Single Button & Link Dropdown Card -->
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Single Button and Link Dropdown</h5>
-                    <a href="javascript:void(0)" @click="openBasic = !openBasic">
+                    <b-button @click="openBasic = !openBasic" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
             <b-card-body class="d-flex flex-wrap gap-2">
                 <b-dropdown v-model="dropdownOpen1" variant="primary" text="Dropdown button">
                     <b-dropdown-item
                         v-for="(option, index) in dropdownOptions"
                         :key="index"
-                        href="#"
+                        @click="handleAction(option.value)"
                     >
                         {{ option.label }}
                     </b-dropdown-item>
@@ -111,45 +114,47 @@ const handleSubmit = () => {
                     <b-dropdown-item
                         v-for="(option, index) in dropdownOptions"
                         :key="index"
-                        href="#"
+                        @click="handleAction(option.value)"
                     >
                         {{ option.label }}
                     </b-dropdown-item>
                 </b-dropdown>
             </b-card-body>
         </b-card>
+
         <!-- Collapse for code preview -->
         <b-collapse v-model="openBasic" class="mt-3">
-      <pre>
+            <pre>
 <code class="language-html">
 &lt;b-card&gt;
   &lt;b-card-body class="d-flex flex-wrap gap-2"&gt;
     &lt;b-dropdown variant="primary" text="Dropdown button"&gt;
-      &lt;b-dropdown-item href="#"&gt;Action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item href="#"&gt;Another action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item href="#"&gt;Something else here&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('action')"&gt;Action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('another-action')"&gt;Another action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('something-else')"&gt;Something else here&lt;/b-dropdown-item&gt;
     &lt;/b-dropdown&gt;
     &lt;b-dropdown variant="secondary" text="Dropdown link"&gt;
-      &lt;b-dropdown-item href="#"&gt;Action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item href="#"&gt;Another action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item href="#"&gt;Something else here&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('action')"&gt;Action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('another-action')"&gt;Another action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('something-else')"&gt;Something else here&lt;/b-dropdown-item&gt;
     &lt;/b-dropdown&gt;
   &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code>
-      </pre>
+            </pre>
         </b-collapse>
+
         <!-- Dropdown Map Card -->
         <b-col cols="12" class="mt-4">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Dropdown Variations</h5>
-                        <a href="javascript:void(0)" @click="openPreview = !openPreview">
+                        <b-button @click="openPreview = !openPreview" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body class="d-flex flex-wrap gap-2">
                     <b-dropdown
                         v-for="(dropdown, idx) in dropdowns"
@@ -166,23 +171,41 @@ const handleSubmit = () => {
                                 <h5 class="text-muted text-truncate mn-0">{{ dropdown.header }}</h5>
                             </div>
                         </template>
+
                         <!-- Items -->
                         <template v-for="(item, i) in dropdown.items" :key="i">
                             <BDropdownDivider v-if="item.isDivider"/>
-                            <BDropdownItem v-else>{{ item.label }}</BDropdownItem>
+                            <BDropdownItem v-else @click="handleAction(item.label.toLowerCase())">
+                                {{ item.label }}
+                            </BDropdownItem>
                         </template>
-                        <!-- Custom text -->
-                        <div v-if="dropdown.customContent && dropdown.customContent !== 'form'"
-                             v-html="dropdown.customContent"></div>
+
+                        <!-- Custom text content - FIXED: No v-html -->
+                        <template v-if="dropdown.customContent?.type === 'text'">
+                            <div class="p-3">
+                                <p v-for="(paragraph, pIdx) in dropdown.customContent.paragraphs" :key="pIdx">
+                                    {{ paragraph }}
+                                </p>
+                            </div>
+                        </template>
+
                         <!-- Vue 3 Form -->
-                        <b-form v-if="dropdown.customContent === 'form'" class="p-3" @submit.prevent="handleSubmit">
+                        <b-form v-if="dropdown.customContent?.type === 'form'" class="p-3" @submit.prevent="handleSubmit">
                             <b-form-group label="Email address" label-for="exampleDropdownFormEmail" class="mb-2">
-                                <b-form-input id="exampleDropdownFormEmail" v-model="formData.email" type="email"
-                                              placeholder="email@example.com"/>
+                                <b-form-input
+                                    id="exampleDropdownFormEmail"
+                                    v-model="formData.email"
+                                    type="email"
+                                    placeholder="email@example.com"
+                                />
                             </b-form-group>
                             <b-form-group label="Password" label-for="exampleDropdownFormPassword" class="mb-2">
-                                <b-form-input id="exampleDropdownFormPassword" v-model="formData.password"
-                                              type="password" placeholder="Password"/>
+                                <b-form-input
+                                    id="exampleDropdownFormPassword"
+                                    v-model="formData.password"
+                                    type="password"
+                                    placeholder="Password"
+                                />
                             </b-form-group>
                             <b-form-checkbox id="rememberdropdownCheck" v-model="formData.remember" class="mb-2">
                                 Remember me
@@ -191,9 +214,10 @@ const handleSubmit = () => {
                         </b-form>
                     </b-dropdown>
                 </b-card-body>
+
                 <!-- Prism preview -->
                 <b-collapse v-model="openPreview" class="mt-3">
-          <pre class="language-html">
+                    <pre class="language-html">
 <code>
 &lt;b-card no-body&gt;
   &lt;b-card-body class="d-flex flex-wrap gap-2"&gt;
@@ -201,9 +225,9 @@ const handleSubmit = () => {
       &lt;div class="dropdown-header noti-title"&gt;
         &lt;h5 class="text-muted text-truncate mn-0"&gt;Welcome Jessie!&lt;/h5&gt;
       &lt;/div&gt;
-      &lt;b-dropdown-item&gt;Action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item&gt;Another action&lt;/b-dropdown-item&gt;
-      &lt;b-dropdown-item&gt;Something else here&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('action')"&gt;Action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('another action')"&gt;Another action&lt;/b-dropdown-item&gt;
+      &lt;b-dropdown-item @click="handleAction('something else here')"&gt;Something else here&lt;/b-dropdown-item&gt;
       &lt;b-dropdown-divider /&gt;
     &lt;/b-dropdown&gt;
     &lt;b-dropdown variant="danger" text="Text"&gt;
@@ -213,7 +237,7 @@ const handleSubmit = () => {
       &lt;/div&gt;
     &lt;/b-dropdown&gt;
     &lt;b-dropdown variant="warning" text="Forms"&gt;
-      &lt;b-form class="p-3"&gt;
+      &lt;b-form class="p-3" @submit.prevent="handleSubmit"&gt;
         &lt;b-form-group label="Email address"&gt;
           &lt;b-form-input type="email" placeholder="email@example.com" /&gt;
         &lt;/b-form-group&gt;
@@ -227,7 +251,7 @@ const handleSubmit = () => {
   &lt;/b-card-body&gt;
 &lt;/b-card&gt;
 </code>
-          </pre>
+                    </pre>
                 </b-collapse>
             </b-card>
         </b-col>

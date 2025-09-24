@@ -1,6 +1,6 @@
 <script setup>
-import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
-import {nextTick, ref, watch} from "vue";
+import {BAlert, BButton, BCard, BCardBody, BCardHeader, BCol, BCollapse} from "bootstrap-vue-next";
+import { ref} from "vue";
 import {
     PhCode, PhDownload, PhWheelchair, PhCheckCircle, PhPower, PhWarning, PhInfo, PhAlignBottom,
     PhGlobe
@@ -8,14 +8,7 @@ import {
 
 const open = ref(false);
 
-const setupPrism = (openRef) => {
-    watch(openRef, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-};
+
 
 // Outline Alerts
 const alerts = [
@@ -69,21 +62,21 @@ const alerts = [
     }
 ];
 
-[open].forEach(setupPrism);
+
 
 </script>
 
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Alerts With Icons</h5>
-                    <a href="javascript:void(0)" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
             <b-card-body>
                 <b-alert v-for="(alert, index) in alerts" :key="index" :variant="alert.color" show dismissible
                          class="d-flex justify-content-between align-items-center">
@@ -93,15 +86,19 @@ const alerts = [
                     </p>
                 </b-alert>
                 <b-collapse v-model="open" class="mt-3">
-              <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card no-body&gt;
-  &lt;template #header&gt;&lt;h5&gt;Alerts With Icons&lt;/h5&gt;&lt;/template&gt;
+  <pre class="language-html" tabindex="0">
+    <code>{{ `
+&lt;b-card no-body&gt;
+  &lt;b-card-header&gt;
+    &lt;h5&gt;Alerts With Icons&lt;/h5&gt;
+  &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.color}&quot; show dismissible class=&quot;d-flex justify-content-between align-items-center&quot;&gt;
-  &lt;p class=&quot;mb-0 d-flex align-items-center&quot;&gt;${alert.type} ${alert.message}&lt;/p&gt;&lt;/b-alert&gt;`).join('\n')}
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"></code>
-              </pre>
+${alerts.map(alert => `    &lt;b-alert variant="${alert.color}" show dismissible class="d-flex justify-content-between align-items-center"&gt;
+      &lt;p class="mb-0 d-flex align-items-center"&gt;${alert.type} ${alert.message}&lt;/p&gt;
+    &lt;/b-alert&gt;`).join('\n')}
+  &lt;/b-card-body&gt;
+&lt;/b-card&gt;` }}</code>
+  </pre>
                 </b-collapse>
             </b-card-body>
         </b-card>

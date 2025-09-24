@@ -1,22 +1,15 @@
 <script setup>
-import {BAlert, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
+import {BAlert, BButton, BCard, BCardBody, BCardHeader, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
-import { nextTick, ref, watch } from "vue";
+import { ref} from "vue";
 
 
-const openBasic = ref(false);
+const open = ref(false);
 
 // Prism setup
-const setupPrism = (openRef) => {
-    watch(openRef, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-};
 
-setupPrism(openBasic);
+
+
 
 // Alerts data
 const alerts = [
@@ -34,14 +27,14 @@ const alerts = [
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Basic Alerts</h5>
-                    <a href="javascript:void(0)" @click="openBasic = !openBasic">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source" />
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
             <b-card-body>
             <!-- Alerts -->
             <b-alert
@@ -54,18 +47,19 @@ const alerts = [
             </b-alert>
 
             <!-- Prism Preview -->
-            <b-collapse v-model="openBasic" class="mt-3">
-        <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card no-body&gt;
-  &lt;template #header&gt;
+                <b-collapse v-model="open" class="mt-3">
+  <pre class="language-html" tabindex="0">
+    <code>{{ `
+&lt;b-card no-body&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Basic Alerts&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.type}&quot; show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"></code>
-        </pre>
-            </b-collapse>
+${alerts.map(alert => `    &lt;b-alert variant="${alert.type}" show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
+  &lt;/b-card-body&gt;
+&lt;/b-card&gt;` }}</code>
+  </pre>
+                </b-collapse>
             </b-card-body>
         </b-card>
     </b-col>

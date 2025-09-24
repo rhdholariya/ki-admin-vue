@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 import { PhUserPlus, PhCirclesThree, PhChatCircle, PhGear, PhDotsThree } from "@phosphor-icons/vue";
-import {BCard, BCardBody, BCol, BRow , BButton} from "bootstrap-vue-next";
+import {BCard, BCardBody, BCol, BRow, BButton, BCardHeader} from "bootstrap-vue-next";
 
 // Dropdown menu configurations
 const dropdowns = [
@@ -36,9 +36,9 @@ const toggleDropdown = (index) => {
 <template>
     <b-col lg="12">
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <h5>Color Dropdown Menu</h5>
-            </template>
+            </b-card-header>
             <b-card-body>
                 <b-row>
                     <b-col md="6" xl="4"

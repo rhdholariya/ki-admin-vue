@@ -2,8 +2,6 @@
 import { ref } from "vue";
 import {
     BCard,
-    BCardTitle,
-    BCardText,
     BTab,
     BTabs,
     BCol,
