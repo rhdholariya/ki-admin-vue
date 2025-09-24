@@ -16,7 +16,7 @@ import  VideoEmbedPage from "@/views/AdvanceUi/VideoEmbed/index.vue";
 import  TourPage from "@/views/AdvanceUi/Tour/index.vue";
 import AlertPage from "@/views/UiKits/Alert/index.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
-// import tabPage from "@/views/UiKits/Tab/index.vue";
+ import TabPage from "@/views/UiKits/Tab/index.vue";
 import AccordionPage from "@/views/UiKits/Accordion/index.vue";
 import ProgressPage from "@/views/UiKits/Progress/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
@@ -40,7 +40,7 @@ const router = createRouter({
         {path: '/ui-kits/grid', name: 'grid', component:GridPage},
         {path: '/errors', name: 'error', component: Error},
         {path: '/ui-kits/avatar', name: 'Avatar', component:AvatarPage},
-        // {path: '/ui-kits/tabs', name: 'Tab', component:tabPage},
+         {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
         {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
         {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
         {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
