@@ -31,8 +31,11 @@ import RatingPage from "@/views/AdvanceUi/rating/index.vue";
 import PrismPage from "@/views/AdvanceUi/Prism/index.vue";
 import CountDownPage from "@/views/AdvanceUi/CountDown/index.vue";
 import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
+import DraggablePage from "@/views/AdvanceUi/Draggable/index.vue";
 
+// Icon pages Routes //
 
+import FontAwesomePage from "@/views/IconsPages/FontAwesom/index.vue";
 
 
 
@@ -77,8 +80,10 @@ const router = createRouter({
         {path: '/advance-ui/prismjs', name: 'prism', component: PrismPage},
         {path: '/advance-ui/count-down', name: 'countdown', component: CountDownPage},
         {path: '/advance-ui/count-up', name: 'countup', component: CountUpPage},
+        {path: '/advance-ui/draggable', name: 'draggable', component: DraggablePage},
 
-
+        // icon pages routes //
+        {path: '/icons/font-awesome', name: 'fontawesome', component: FontAwesomePage},
     ],
 
 })

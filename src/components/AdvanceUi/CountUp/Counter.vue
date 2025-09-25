@@ -1,46 +1,28 @@
-<script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+<script setup>
+import { ref, watch, onMounted } from "vue";
 import { CountUp } from "countup.js";
 
-interface Props {
-  value: number;
-  tag?: string;
-  class?: string;
-  startVal?: number;
-  duration?: number;
-}
-
-const props = defineProps<Props>();
-const counterEl = ref<HTMLElement | null>(null);
-
-onMounted(() => {
-  if (counterEl.value) {
-    const countUp = new CountUp(counterEl.value, props.value, {
-      startVal: props.startVal ?? 0,
-      duration: props.duration ?? 2,
-    });
-    if (!countUp.error) countUp.start();
-    else console.error(countUp.error);
-  }
+const props = defineProps({
+  value: { type: Number, required: true },
+  tag: { type: String, default: "span" },
 });
 
-watch(
-    () => props.value,
-    (newVal) => {
-      if (counterEl.value) {
-        const countUp = new CountUp(counterEl.value, newVal, {
-          startVal: 0,
-          duration: 2,
-        });
-        if (!countUp.error) countUp.start();
-        else console.error(countUp.error);
-      }
-    }
-);
+const el = ref(null);
+let countUp;
+
+onMounted(() => {
+  countUp = new CountUp(el.value, props.value);
+  countUp.start();
+});
+
+// 👇 Watch value changes and animate again
+watch(() => props.value, (newVal) => {
+  if (countUp) {
+    countUp.update(newVal);
+  }
+});
 </script>
 
 <template>
-  <component :is="props.tag || 'span'" ref="counterEl" :class="props.class">
-    0
-  </component>
+  <component :is="props.tag" ref="el"></component>
 </template>

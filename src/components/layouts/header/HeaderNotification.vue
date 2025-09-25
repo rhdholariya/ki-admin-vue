@@ -79,8 +79,8 @@ function removeNotification(id) {
           <b-button aria-label="Close" class="btn-close" type="button" @click="toggleNotification"></b-button>
       </template>
 
-      <template #default>
-        <div class="offcanvas-body app-scroll p-0">
+
+        <div class=" app-scroll p-0">
           <div v-if="notifications.length">
             <div v-for="notification in notifications" :key="notification.id" class="notification-message head-box p-3 border-bottom d-flex align-items-start">
               <div class="message-content-box flex-grow-1 pe-2">
@@ -115,7 +115,7 @@ function removeNotification(id) {
             <p class="text-dark">When you have any notifications added here, they will appear here.</p>
           </div>
         </div>
-      </template>
+
     </b-offcanvas>
   </div>
 </template>
