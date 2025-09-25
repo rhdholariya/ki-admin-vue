@@ -1,25 +1,19 @@
 <script setup>
 import { ref } from "vue";
-import {
-    BCard,
-    BCardHeader,
-    BCardBody,
-    BCol,
-    BRow,
-    BButton,
-    BToast,
-} from "bootstrap-vue-next";
+import { BCard, BCardHeader, BCardBody, BCol, BRow, BButton } from "bootstrap-vue-next";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
-// Toast positions
+// --- Position Notification Data ---
 const NotificationPositions = [
-    { label: "Top", value: "top", variant: "light-primary" },
-    { label: "Left", value: "left", variant: "light-success" },
-    { label: "Right", value: "right", variant: "light-info" },
-    { label: "Bottom", value: "bottom", variant: "light-warning" },
-    { label: "Center", value: "center", variant: "light-secondary" },
+    { label: "Top", value: "top", variant: "light-primary", bgColor: "rgba(var(--primary),1)" },
+    { label: "Left", value: "left", variant: "light-success", bgColor: "rgba(var(--success),1)" },
+    { label: "Right", value: "right", variant: "light-info", bgColor: "rgba(var(--info),1)" },
+    { label: "Bottom", value: "bottom", variant: "light-warning", bgColor: "rgba(var(--warning),1)" },
+    { label: "Center", value: "center", variant: "light-secondary", bgColor: "rgba(var(--secondary),1)" },
 ];
 
-// Toast variants
+// --- Color Notification Data ---
 const notificationsVariantsData = [
     { id: 1, type: "primary", message: "This is a Primary toast message.", ButtonColor: "light-primary" },
     { id: 2, type: "secondary", message: "This is a Secondary toast message.", ButtonColor: "light-secondary" },
@@ -31,31 +25,26 @@ const notificationsVariantsData = [
     { id: 8, type: "dark", message: "This is a Dark toast message.", ButtonColor: "light-dark" },
 ];
 
-// State: array of visible toast IDs/keys
-const visibleToasts = ref([]);
-
-// Show toast
-const handleShowToast = (key) => {
-    if (!visibleToasts.value.includes(key)) {
-        visibleToasts.value.push(key);
-        setTimeout(() => handleCloseToast(key), 3000);
-    }
-};
-
-// Close toast
-const handleCloseToast = (key) => {
-    visibleToasts.value = visibleToasts.value.filter((toastId) => toastId !== key);
+// --- Show Toastify Toast ---
+const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") => {
+    Toastify({
+        text: message,
+        duration: 3000,
+        gravity: position === "top" || position === "bottom" ? position : "top",
+        position: position === "left" || position === "right" ? position : "center",
+        style: { background },
+    }).showToast();
 };
 </script>
 
 <template>
     <b-row>
-        <!-- Position Notification Card -->
-        <b-col xs="12">
-            <b-card>
+        <!-- Position Notifications -->
+        <b-col cols="12" class="mb-3">
+            <b-card no-body>
                 <b-card-header class="code-header">
                     <h5>Position Notification</h5>
-                    <p>It is Very Easy to Customize, and it is used in website applications.</p>
+                    <p>It is very easy to customize and used in website applications.</p>
                 </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
@@ -63,46 +52,21 @@ const handleCloseToast = (key) => {
                             v-for="pos in NotificationPositions"
                             :key="pos.value"
                             :variant="pos.variant"
-                            @click="handleShowToast(pos.value)"
+                            @click="showToast('Welcome Back! This is a Toast Notification', pos.bgColor, pos.value)"
                         >
                             {{ pos.label }}
                         </b-button>
-                    </div>
-
-                    <!-- Toasts for position -->
-                    <div class="toast-container position-fixed top-0 end-0 p-3">
-                        <template v-for="pos in NotificationPositions" :key="pos.value">
-                            <b-toast
-                                v-if="visibleToasts.includes(pos.value)"
-                                static
-                                no-auto-hide
-                                solid
-                            >
-                                <template #header>
-                                    {{ pos.label }}
-                                    <button
-                                        type="button"
-                                        class="btn-close ms-auto"
-                                        @click="handleCloseToast(pos.value)"
-                                        aria-label="Close"
-                                    ></button>
-                                </template>
-                                <div class="toast-body">
-                                    Welcome Back! This is a Toast Notification
-                                </div>
-                            </b-toast>
-                        </template>
                     </div>
                 </b-card-body>
             </b-card>
         </b-col>
 
-        <!-- Color Notification Card -->
-        <b-col xs="12" class="mt-3">
-            <b-card>
+        <!-- Color Notifications -->
+        <b-col cols="12">
+            <b-card no-body>
                 <b-card-header class="code-header">
                     <h5>Color Notification</h5>
-                    <p>It is Very Easy to Customize, and it uses in website application.</p>
+                    <p>It is very easy to customize and used in website applications.</p>
                 </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
@@ -110,36 +74,10 @@ const handleCloseToast = (key) => {
                             v-for="toast in notificationsVariantsData"
                             :key="toast.id"
                             :variant="toast.ButtonColor"
-                            @click="handleShowToast(toast.id)"
+                            @click="showToast(toast.message, `rgba(var(--${toast.type}),1)`, 'top')"
                         >
                             {{ toast.type.charAt(0).toUpperCase() + toast.type.slice(1) }}
                         </b-button>
-                    </div>
-
-                    <!-- Toasts for colors -->
-                    <div class="toast-container position-fixed top-0 end-0 p-3">
-                        <template v-for="toast in notificationsVariantsData" :key="toast.id">
-                            <b-toast
-                                v-if="visibleToasts.includes(toast.id)"
-                                :variant="toast.type"
-                                static
-                                no-auto-hide
-                                solid
-                            >
-                                <template #header>
-                                    {{ toast.type.charAt(0).toUpperCase() + toast.type.slice(1) }}
-                                    <button
-                                        type="button"
-                                        class="btn-close ms-auto"
-                                        @click="handleCloseToast(toast.id)"
-                                        aria-label="Close"
-                                    ></button>
-                                </template>
-                                <div class="toast-body">
-                                    {{ toast.message }}
-                                </div>
-                            </b-toast>
-                        </template>
                     </div>
                 </b-card-body>
             </b-card>

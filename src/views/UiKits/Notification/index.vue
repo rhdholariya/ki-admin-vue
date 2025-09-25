@@ -6,7 +6,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import DefaultTost from "@/components/UiKits/Notification/DefaultTost.vue";
 import NotificationVariants from "@/components/UiKits/Notification/NotificationVariants.vue";
 import "toastify-js/src/toastify.css";
-
 // Breadcrumb data
 const breadcrumbItems = {
     title: "Notification",
@@ -24,18 +23,13 @@ const breadcrumbItems = {
             <Breadcrumb :breadcrumb="breadcrumbItems" />
 
             <!-- Notifications -->
-            <b-container fluid>
-                <b-row>
-                    <!-- Default Toasts -->
-                    <b-col xs="12" class="mb-3">
-                        <DefaultTost />
-                    </b-col>
-
-                    <!-- Notification Variants -->
-                    <b-col xs="12" class="mb-3">
-                        <NotificationVariants />
-                    </b-col>
-                </b-row>
+             <b-container fluid>
+                 <b-row>
+                <!-- Default Toasts -->
+                <DefaultTost />
+                <!-- Notification Variants -->
+                <NotificationVariants />
+                 </b-row>
             </b-container>
         </main>
     </AppLayout>
