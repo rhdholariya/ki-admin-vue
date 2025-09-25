@@ -1,6 +1,6 @@
 <script setup>
-import { ref, nextTick, watch } from 'vue';
-import {BButton, BCollapse, BRow, BCol, BCard, BCardBody} from 'bootstrap-vue-next';
+import { ref} from 'vue';
+import {BButton, BCollapse, BRow, BCol, BCard, BCardBody, BCardHeader} from 'bootstrap-vue-next';
 import { PhCamera, PhBellRinging, PhCode ,  PhDownload, PhWarning,  PhFacebookLogo,
     PhTwitterLogo,
     PhPinterestLogo,
@@ -123,11 +123,8 @@ const openSocialButtons = ref(false);
 const openDisabledButtons = ref(false);
 const openActiveButtons = ref(false);
 const openLoadingButtons = ref(false);
-// Prism highlight
-watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons , openLoadingButtons], async () => {
-    await nextTick();
-    Prism.highlightAll();
-});
+
+
 </script>
 
 <template>
@@ -135,14 +132,14 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
         <b-col xl="4">
             <b-card no-body>
                 <!-- Header -->
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Icon Buttons</h5>
-                        <a href="javascript:void(0)" @click="openIconButton = !openIconButton">
+                        <b-button @click="openIconButton = !openIconButton" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                   <b-card-body>
                 <!-- Buttons rendered with loop -->
                 <div class="app-btn-list d-flex flex-wrap gap-2 mt-2">
@@ -160,9 +157,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <b-collapse v-model="openIconButton" class="mt-3">
           <pre class="language-html"><code>
               &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Icon Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
 &lt;div class="app-btn-list"&gt;
 <span v-for="btn in iconButtons" :key="btn.variant">
@@ -184,9 +181,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Social Buttons</h5>
-                        <a href="javascript:void(0)" @click="openSocialButtons = !openSocialButtons">
+                        <b-button @click="openSocialButtons = !openSocialButtons" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
                 </template>
                  <b-card-body>
@@ -210,9 +207,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <b-collapse v-model="openSocialButtons" class="mt-3">
           <pre class="language-html"><code>
                &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Social Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
 &lt;div class="app-btn-list"&gt;
 <span v-for="btn in socialButtons" :key="btn.variant">
@@ -231,14 +228,14 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
         <b-col xl="12">
             <b-card no-body>
                 <!-- Card Header -->
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Disabled Buttons</h5>
-                        <a href="javascript:void(0)" @click="openDisabledButtons = !openDisabledButtons">
+                        <b-button @click="openDisabledButtons = !openDisabledButtons" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                  <b-card-body>
                 <!-- Disabled Buttons -->
                 <div class="row">
@@ -268,9 +265,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <b-collapse v-model="openDisabledButtons" class="mt-3">
       <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Disabled Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
           &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 <span v-for="group in disabledButtonGroups" :key="group.variantGroup">
@@ -296,14 +293,14 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
         <b-col xl="12">
                 <b-card no-body>
                     <!-- Card Header -->
-                    <template #header>
+                    <b-card-header>
                         <div class="code-header d-flex justify-content-between align-items-center">
                             <h5>Active Buttons</h5>
-                            <a href="javascript:void(0)" @click="openActiveButtons = !openActiveButtons">
+                            <b-button @click="openActiveButtons = !openActiveButtons" class="p-0 border-0">
                                 <PhCode size="30" weight="bold" class="source" />
-                            </a>
+                            </b-button>
                         </div>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                     <!-- Buttons -->
                     <div class="row">
@@ -333,9 +330,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                     <b-collapse v-model="openActiveButtons" class="mt-3">
           <pre class="language-html"><code>
 &lt;b-card&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Active Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
 <span v-for="group in activeButtonGroups" :key="group.variantGroup">
   &lt;div class="col-md-6 col-lg-4 col-12 app-btn-list mb-2"&gt;
@@ -357,14 +354,14 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
         <b-col xl="12">
             <b-card no-body>
                 <!-- Card Header -->
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Loading Buttons</h5>
-                        <a href="javascript:void(0)" @click="openLoadingButtons = !openLoadingButtons">
+                        <b-button @click="openLoadingButtons = !openLoadingButtons" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                 <!-- Buttons -->
                 <div class="row">
@@ -412,9 +409,9 @@ watch([openIconButton ,socialButtons , openDisabledButtons , openActiveButtons ,
                 <b-collapse v-model="openLoadingButtons" class="mt-3">
           <pre class="language-html"><code>
               &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Loading Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
           &lt;b-card-body&gt;
 &lt;div class="row"&gt;
 

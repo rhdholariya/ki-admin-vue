@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCard, BCardBody, BCol, BRow } from "bootstrap-vue-next";
+import {BCard, BCardBody, BCardHeader, BCol, BRow} from "bootstrap-vue-next";
 
 const sections = ref([
     {
@@ -75,9 +75,9 @@ const sections = ref([
         <b-col xs="12" v-for="(section, sIdx) in sections" :key="sIdx" class="">
             <b-card no-body>
                 <!-- Card Header using template slot -->
-                <template #header>
+                <b-card-header>
                     <h5 class="card-title">{{ section.title }}</h5>
-                </template>
+                </b-card-header>
 
                 <b-card-body>
                     <!-- Normal rows -->

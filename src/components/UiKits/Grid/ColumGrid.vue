@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import {BCard, BCardBody, BCol, BRow} from "bootstrap-vue-next";
+import {BCard, BCardBody, BCardHeader, BCol, BRow} from "bootstrap-vue-next";
 
 const gridSections = ref([
     {
@@ -83,9 +83,9 @@ const getRowClass = (title, rowIndex) => {
                 xs="12"
             >
                 <b-card no-body>
-                    <template #header>
+                    <b-card-header>
                         <h5 class="card-title m-1">{{ section.title }}</h5>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                         <b-row
                             v-for="(row, rowIndex) in section.rows"
@@ -111,9 +111,9 @@ const getRowClass = (title, rowIndex) => {
                 lg="6"
             >
                 <b-card no-body>
-                    <template #header>
+                    <b-card-header>
                         <h5 class="card-title m-1">{{ section.title }}</h5>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                         <b-row
                             v-for="(row, rowIndex) in section.rows"
@@ -139,9 +139,9 @@ const getRowClass = (title, rowIndex) => {
                 lg="6"
             >
                 <b-card no-body>
-                    <template #header>
+                    <b-card-header>
                         <h5 class="card-title m-1">{{ section.title }}</h5>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                         <b-row
                             v-for="(row, rowIndex) in section.rows"

@@ -1,9 +1,8 @@
 <script setup>
 import {
     BCard,
-    BCardBody,
+    BCardBody, BCardHeader,
     BCol,
-    BRow,
 } from "bootstrap-vue-next";
 const breakpoints = [
     {name: "Extra small", icon: "<", value: "576px"},
@@ -39,12 +38,12 @@ const rows = [
     <!-- First Card: Grid Options Table -->
     <b-col lg="12">
         <b-card no-body>
-            <template #header>
+            <b-card-header>
                 <h5>Grid Options</h5>
                 <p class="mt-1 f-m-light">
                     Bootstrap grid system allow all six breakpoints, and any breakpoints you can customize.
                 </p>
-            </template>
+            </b-card-header>
 
             <b-card-body>
                 <div class="table-responsive">

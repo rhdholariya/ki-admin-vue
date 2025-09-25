@@ -1,18 +1,11 @@
 <script setup >
-import {BAlert, BCard, BCol, BCollapse} from "bootstrap-vue-next";
+import {BAlert, BButton, BCard, BCol, BCollapse , BCardHeader} from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
-import {nextTick, ref, watch} from "vue";
+import { ref} from "vue";
 
 const open = ref(false);
 
-const setupPrism = (openRef) => {
-    watch(openRef, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-};
+
 
 // Outline Alerts
 const alerts = [
@@ -26,29 +19,27 @@ const alerts = [
     {type: "outline-dark", message: "Outline-alert dark - check it out!"}
 ];
 
-[open].forEach(setupPrism);
-
 </script>
 <template>
     <b-col lg="6">
         <b-card>
-            <template #header>
+            <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Outline Alerts</h5>
-                    <a href="javascript:void(0)" @click="open = !open">
+                    <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
-            </template>
+            </b-card-header>
             <b-alert v-for="(alert, index) in alerts" :key="index" :variant="alert.type" show>
                 {{ alert.message }}
             </b-alert>
             <b-collapse v-model="open" class="mt-3">
 <pre class="language-html" tabindex="0">
 <code v-text="`&lt;b-card&gt;
-  &lt;template #header&gt;
+  &lt;b-cardheader&gt;
     &lt;h5&gt;Outline Alerts&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
 ${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.type}&quot; show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
 &lt;/b-card&gt;`"></code>
 </pre>

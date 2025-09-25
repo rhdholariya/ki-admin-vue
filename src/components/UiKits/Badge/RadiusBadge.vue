@@ -1,6 +1,6 @@
 <script setup>
 import {ref, watch, nextTick} from "vue";
-import {BCard, BCol, BRow, BCollapse, BButton, BBadge, BCardBody} from "bootstrap-vue-next";
+import {BCard, BCol, BRow, BCollapse, BButton, BBadge, BCardBody, BCardHeader} from "bootstrap-vue-next";
 import {PhCode, PhBellRinging} from "@phosphor-icons/vue";
 // Badge + Button data
 const badgeWithButtonData = [
@@ -41,15 +41,7 @@ const iconMap = {"bell-ringing": PhBellRinging};
 const openButton = ref(false);
 const openHead = ref(false);
 
-// Prism highlight on collapse
-[openButton, openHead].forEach((state) =>
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    })
-);
+;
 </script>
 
 <template>
@@ -57,14 +49,14 @@ const openHead = ref(false);
         <!-- -------- Badge with Button -------- -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Badges with Button</h5>
-                        <a href="javascript:void(0)" @click="openButton = !openButton">
+                        <b-button @click="openButton = !openButton" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-3">
                         <b-button
@@ -95,9 +87,9 @@ const openHead = ref(false);
                     <b-collapse v-model="openButton" class="mt-3">
 <pre class="language-html"><code>
     &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
 &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{
@@ -125,14 +117,14 @@ const openHead = ref(false);
         <!-- -------- Heading Badges -------- -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Heading Badges</h5>
-                        <a href="javascript:void(0)" @click="openHead = !openHead">
+                        <b-button @click="openHead = !openHead" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-column gap-2">
                         <component
@@ -150,9 +142,9 @@ const openHead = ref(false);
                     <b-collapse v-model="openHead" class="mt-3">
 <pre class="language-html"><code>
     &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
     &lt;b-card-body&gt;
 &lt;div class="d-flex flex-column gap-2"&gt;
 {{

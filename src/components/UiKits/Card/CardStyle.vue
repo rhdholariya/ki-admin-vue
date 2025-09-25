@@ -1,6 +1,7 @@
 <script setup>
-import {BCard, BRow, BCol, BCardBody} from "bootstrap-vue-next";
+import { BCard, BRow, BCol, BCardBody, BTooltip } from "bootstrap-vue-next";
 import { PhHeart } from "@phosphor-icons/vue";
+import { ref } from "vue";
 
 const avatarImages = [
     "/images/avatar/4.png",
@@ -8,37 +9,48 @@ const avatarImages = [
     "/images/avatar/2.png",
     "/images/avatar/3.png",
 ];
+
 const avatarBgClasses = [
     "text-bg-danger",
     "text-bg-success",
     "text-bg-warning",
     "text-bg-info",
 ];
+
 const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
+
+// Tooltip data for Vue-compatible tooltips
+const tooltipData = ref([
+    { name: "Sabrina Torres" },
+    { name: "John Doe" },
+    { name: "Jane Smith" },
+    { name: "Mike Johnson" },
+    { name: "5 More" }
+]);
 </script>
 
 <template>
     <b-row>
         <!-- Top Image Card -->
         <b-col md="6" xxl="4">
-            <b-Card img-src="/images/blog-app/06.jpg" img-top class="hover-effect" no-body>
+            <b-card img-src="/images/blog-app/06.jpg" img-top class="hover-effect" no-body>
                 <b-card-body>
-                <h5 class="mb-2">Card Title</h5>
-                <p>This is a wider card with supporting text below as a natural lead-in to.</p>
-                <small class="text-body-secondary">Last updated 3 min's ago</small>
+                    <h5 class="mb-2">Card Title</h5>
+                    <p>This is a wider card with supporting text below as a natural lead-in to.</p>
+                    <small class="text-body-secondary">Last updated 3 min's ago</small>
                 </b-card-body>
-            </b-Card>
+            </b-card>
         </b-col>
 
-        <!-- bottom Image Card -->
+        <!-- Bottom Image Card -->
         <b-col md="6" xxl="4">
             <b-card no-body class="hover-effect">
-               <b-card-body>
-                <h5 class="mb-2">Card Title</h5>
-                <p>This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <small class="text-body-secondary">Last updated 3 min's ago</small>
+                <b-card-body>
+                    <h5 class="mb-2">Card Title</h5>
+                    <p>This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <small class="text-body-secondary">Last updated 3 min's ago</small>
                 </b-card-body>
-             <img src="/images/blog-app/02.jpg" >
+                <img src="/images/blog-app/02.jpg" alt="Card image">
             </b-card>
         </b-col>
 
@@ -47,9 +59,9 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
             <b-row>
                 <!-- Profile Card -->
                 <b-col md="6" xxl="12">
-                     <b-card no-body class="hover-effect">
+                    <b-card no-body class="hover-effect">
                         <div class="card-header">
-                        <h6 class="mb-0 mt-2 f-w-600">My Profile</h6>
+                            <h6 class="mb-0 mt-2 f-w-600">My Profile</h6>
                         </div>
                         <div class="p-3">
                             <p>
@@ -69,17 +81,26 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                                             v-for="(src, i) in avatarImages"
                                             :key="i"
                                             class="h-25 w-25 d-flex-center b-r-50 b-2-light position-relative"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-title="Sabrina Torres"
                                         >
-                                            <img :src="src" class="img-fluid b-r-50 overflow-hidden" />
+                                            <!-- Vue Bootstrap Tooltip -->
+                                            <b-tooltip :target="`avatar-tooltip-${i}`" placement="top">
+                                                {{ tooltipData[i]?.name || 'User' }}
+                                            </b-tooltip>
+                                            <img
+                                                :id="`avatar-tooltip-${i}`"
+                                                :src="src"
+                                                class="img-fluid b-r-50 overflow-hidden"
+                                                :alt="`Avatar ${i + 1}`"
+                                            />
                                         </li>
                                         <li
                                             class="text-bg-primary h-25 w-25 d-flex-center b-r-50"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-title="5 More"
                                         >
-                                            5+
+                                            <!-- Vue Bootstrap Tooltip for counter -->
+                                            <b-tooltip target="more-tooltip" placement="top">
+                                                {{ tooltipData[4]?.name }}
+                                            </b-tooltip>
+                                            <span id="more-tooltip">5+</span>
                                         </li>
                                     </ul>
                                 </b-col>
@@ -89,11 +110,15 @@ const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
                 </b-col>
 
                 <!-- Featured List Card -->
-                <b-col md="6" xxl="12" >
-                    <b-card no-body class=" hover-effect">
+                <b-col md="6" xxl="12">
+                    <b-card no-body class="hover-effect">
                         <div class="card-header">Featured</div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item" v-for="(item, index) in listItems" :key="index">
+                            <li
+                                class="list-group-item"
+                                v-for="(item, index) in listItems"
+                                :key="index"
+                            >
                                 {{ item }}
                             </li>
                         </ul>

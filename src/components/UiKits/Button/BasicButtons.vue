@@ -1,6 +1,6 @@
 <script setup>
-import {ref, nextTick, watch} from 'vue';
-import {BButton, BCollapse, BRow, BCol, BCard, BCardBody} from 'bootstrap-vue-next';
+import {ref} from 'vue';
+import {BButton, BCollapse, BRow, BCol, BCard, BCardBody, BCardHeader} from 'bootstrap-vue-next';
 import {
     PhCode,
     PhDownload,
@@ -18,7 +18,6 @@ const openBasic = ref(false);
 const openOutline = ref(false);
 const openLight = ref(false);
 const openIconButton = ref(false);
-const openIconButtonRadius = ref(false);
 const openIconSocial = ref(false);
 
 // Data
@@ -84,11 +83,6 @@ const iconSocialButtons = [
     },
 ];
 
-// Prism highlight on collapse open
-watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, openIconSocial], async () => {
-    await nextTick();
-    Prism.highlightAll();
-});
 </script>
 
 <template>
@@ -96,14 +90,14 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
         <!-- Basic Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Basic Buttons</h5>
-                        <a href="javascript:void(0)" @click="openBasic = !openBasic">
+                        <b-button @click="openBasic = !openBasic" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-button v-for="v in buttonVariants" :key="v" :variant="v">
@@ -114,9 +108,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                     <b-collapse v-model="openBasic" class="mt-3">
           <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Basic Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{
@@ -124,7 +118,7 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
               }}
   &lt;/div&gt;
 
-              &lt;/b-card-body&gt;lt;/b-card-body&gt;
+              &lt;/b-card-body&gt;
 &lt;/b-card&gt;
           </code></pre>
                     </b-collapse>
@@ -135,14 +129,14 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
         <!-- Outline Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Outline Buttons</h5>
-                        <a href="javascript:void(0)" @click="openOutline = !openOutline">
+                        <b-button @click="openOutline = !openOutline" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-button v-for="v in outlineVariants" :key="v" :variant="`outline-${v}`">
@@ -153,9 +147,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                     <b-collapse v-model="openOutline" class="mt-3">
           <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Outline Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{
@@ -173,14 +167,14 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
         <!-- Light Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Light Buttons</h5>
-                        <a href="javascript:void(0)" @click="openLight = !openLight">
+                        <b-button @click="openLight = !openLight" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <b-button
@@ -195,9 +189,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                     <b-collapse v-model="openLight" class="mt-3">
           <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Light Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{
@@ -218,9 +212,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Icon Buttons</h5>
-                        <a href="javascript:void(0)" @click="openIconButton = !openIconButton">
+                        <b-button @click="openIconButton = !openIconButton" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
                 </template>
                 <b-card-body>
@@ -242,9 +236,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                     <b-collapse v-model="openIconButton" class="mt-3">
   <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Icon Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
       &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{
@@ -268,14 +262,14 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
         <!-- Social Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Social Buttons</h5>
-                        <a href="javascript:void(0)" @click="openIconSocial = !openIconSocial">
+                        <b-button @click="openIconSocial = !openIconSocial" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source"/>
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
                         <div v-for="(group, idx) in iconSocialButtons" :key="idx" class="d-flex gap-2">
@@ -294,9 +288,9 @@ watch([openBasic, openOutline, openLight, openIconButton, openIconButtonRadius, 
                     <b-collapse v-model="openIconSocial" class="mt-3">
   <pre class="language-html"><code>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Social Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
       &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-2"&gt;
 {{

@@ -1,8 +1,8 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
-import { BCard, BCardHeader, BCardBody, BCollapse, BCol } from "bootstrap-vue-next";
+import { ref } from "vue";
+import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
-import Prism from "prismjs";
+
 // Light avatar colors
 const lightAvatarColors = [
     { colorClass: "light-primary" },
@@ -16,15 +16,6 @@ const lightAvatarColors = [
 // Collapse toggle
 const openAvtar4 = ref(false);
 
-// Prism when collapse opens
-[openAvtar4].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
 </script>
 
 <template>
@@ -33,9 +24,9 @@ const openAvtar4 = ref(false);
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Light Background</h5>
-                    <a href="javascript:void(0)" @click="openAvtar4 = !openAvtar4">
+                    <b-button @click="openAvtar4 = !openAvtar4" class="p-0 border-0">
                         <ph-code size="30" weight="bold" class="source" />
-                    </a>
+                    </b-button>
                 </div>
                 <p class="text-muted mb-0">
                     For light style use <code>text-light-*</code> class.

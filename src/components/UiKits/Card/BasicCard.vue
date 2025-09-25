@@ -1,19 +1,12 @@
 <script setup>
 import { PhCode } from "@phosphor-icons/vue";
-import {BCard, BCollapse, BCol, BCardBody} from "bootstrap-vue-next";
-import { ref, watch, nextTick } from "vue";
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
+import {BCard, BCollapse, BCol, BCardBody, BCardHeader, BButton} from "bootstrap-vue-next";
+import { ref } from "vue";
+
 
 const openCard = ref(null);
 
-watch(openCard, (val) => {
-  if (val) {
-    nextTick(() => {
-      Prism.highlightAll();
-    });
-  }
-});
+
 
 // Cards data
 const cardsData = ref([
@@ -115,16 +108,16 @@ const cardsData = ref([
       <!-- Card -->
       <b-Card :class="card.className || 'card'" no-body>
         <!-- Header slot -->
-        <template #header>
+        <b-card-header>
           <div
             class="code-header d-flex justify-content-between align-items-center"
           >
             <h5 class="mb-0">{{ card.title }}</h5>
-            <a href="javascript:void(0)" @click="openCard = openCard === card.id ? null : card.id">
+            <b-button class="p-0 border-0" @click="openCard = openCard === card.id ? null : card.id">
               <PhCode size="30" weight="bold" class="source" />
-            </a>
+            </b-button>
           </div>
-        </template>
+        </b-card-header>
          <b-card-body>
         <!-- Card content (no b-card-body) -->
         <h6 v-if="card.headerText">{{ card.headerText }}</h6>
@@ -138,12 +131,12 @@ const cardsData = ref([
       </b-Card>
 
         <!-- Prism code block INSIDE card -->
-        <b-Collapse v-model="openCard" :model-value="openCard === card.id" class="mt-3">
+        <b-collapse :model-value="openCard === card.id" class="mt-3">
           <pre>
 <code class="language-html" v-text="`<b-card${card.className ? ` class='${card.className}'` : ''} no-body>
-  <template #header>
+  <b-card-header>
     <h5>${card.title}</h5>
-  </template>
+  </b-card-header>
   <b-card-body>
   ${card.headerText ? `<h6>${card.headerText}</h6>` : ''}
   <p>${card.body}</p>

@@ -24,9 +24,9 @@ const removeAlert = (index) => {
         <template #header>
             <div class="code-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Live Alert</h5>
-                <a href="javascript:void(0)" @click="open = !open">
+                <b-button @click="open = !open" class="p-0 border-0">
                     <PhCode size="30" weight="bold" class="source" />
-                </a>
+                </b-button>
             </div>
         </template>
         <b-card-body>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, nextTick, watch } from "vue";
-import {BCard, BButton, BRow, BCol, BCollapse, BCardBody} from "bootstrap-vue-next";
+import {BCard, BButton, BRow, BCol, BCollapse, BCardBody, BCardHeader} from "bootstrap-vue-next";
 
 
 import {
@@ -52,14 +52,14 @@ watch([openBlock, openSize, openRadius], async () => {
         <!-- Block Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Block Buttons</h5>
-                        <a href="javascript:void(0)" @click="openBlock = !openBlock">
+                        <b-button @click="openBlock = !openBlock" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
                     <b-row class="mb-2">
                     <b-col
@@ -79,9 +79,9 @@ watch([openBlock, openSize, openRadius], async () => {
                 <b-collapse v-model="openBlock" class="mt-3">
           <pre class="language-html"><code>
                  &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Block Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{ `&lt;b-row>
@@ -100,7 +100,7 @@ ${blockButtonGroups
 
   &lt;/div&gt;
               &lt;/b-card-body&gt;
-&lt;/b-card&gt;
+/b-card&lt;&gt;
           </code></pre>
                 </b-collapse>
                 </b-card-body>
@@ -113,9 +113,9 @@ ${blockButtonGroups
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Size Buttons</h5>
-                        <a href="javascript:void(0)" @click="openSize = !openSize">
+                        <b-button @click="openSize = !openSize" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
                 </template>
                 <b-card-body>
@@ -137,9 +137,9 @@ ${blockButtonGroups
                 <b-collapse v-model="openSize" class="mt-3">
           <pre class="language-html"><code>
                &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Size Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{ `${sizedButtons
@@ -163,14 +163,14 @@ ${blockButtonGroups
         <!-- Radius Buttons -->
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Radius Buttons</h5>
-                        <a href="javascript:void(0)" @click="openRadius = !openRadius">
+                        <b-button @click="openRadius = !openRadius" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                        </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
 
                 <div class="app-btn-list d-flex gap-2 flex-wrap">
@@ -187,9 +187,9 @@ ${blockButtonGroups
                 <b-collapse v-model="openRadius" class="mt-3">
           <pre class="language-html"><code>
                &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Radius Buttons&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
               &lt;b-card-body&gt;
   &lt;div class="d-flex flex-wrap gap-3"&gt;
 {{ `${borderButtons
