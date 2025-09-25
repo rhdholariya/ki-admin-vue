@@ -13,6 +13,15 @@ import AccordionPage from "@/views/UiKits/Accordion/index.vue";
 import AlertPage from "@/views/UiKits/Alert/index.vue";
 import TabPage from "@/views/UiKits/Tab/index.vue";
 import ProgressPage from "@/views/UiKits/Progress/index.vue";
+import ListPage from "@/views/UiKits/Lists/index.vue";
+import HelperClassesPage from "@/views/UiKits/HelperClasses/index.vue";
+import BackgroundPage from "@/views/UiKits/Background/index.vue";
+import DividerPage from "@/views/UiKits/Divider/index.vue";
+// import RibbonsPage from "@/views/UiKits/Ribbons/index.vue";
+
+
+
+
 
 // advanceuikit routes
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
@@ -41,6 +50,7 @@ import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
 
 
 
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -57,6 +67,16 @@ const router = createRouter({
         {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
         {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
         {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
+        {path: '/ui-kits/lists', name: 'Lists', component:ListPage},
+        {path: '/ui-kits/helper-classes', name: 'Helper-Classes', component:HelperClassesPage},
+        {path: '/ui-kits/background', name: 'Background', component:BackgroundPage},
+        {path: '/ui-kits/divider', name: 'Divider', component:DividerPage},
+        // {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
+
+
+
+
+
 
 
 

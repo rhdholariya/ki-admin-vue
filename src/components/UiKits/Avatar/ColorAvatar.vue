@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
 import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 
+
 // Avatar data
 const avatars = [
     { colorClass: "primary", component: PhUser, text: null, raw: "<PhUser />" },

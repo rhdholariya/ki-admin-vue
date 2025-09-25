@@ -9,8 +9,7 @@ import {
     BCollapse,
 } from "bootstrap-vue-next";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
+
 
 const openAvtar2 = ref(false);
 
