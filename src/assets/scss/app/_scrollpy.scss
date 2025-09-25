@@ -4,11 +4,11 @@
 // >>-- 68 Scrollpy css start --<<
 
 @mixin btn_pill($name, $color) {
-  .nav-link,
+  .nav-item,
   .dropdown-item {
     &.nav-pill-#{$name} {
       &.active {
-        background-color: rgba(#{$color}, 1);
+        background-color: rgba(#{$color}, 1) !important;
         color: rgba(var(--white), 1);
       }
     }
@@ -39,18 +39,34 @@
   .navbar-collapse {
     padding: 0.5rem !important;
   }
-  .nav-link {
+  .nav-item {
     color: rgba(var(--primary), 1);
     font-weight: 500;
+    border-radius: 10px;
+  }
+}
+
+.nav-pills{
+  .nav-item{
+    border-radius: 10px;
+   .nav-link{
+     color: rgba(var(--primary), 1) !important;
+   }
+
+    &.active{
+      .nav-link{
+        color: rgba(var(--white), 1) !important;
+      }
+    }
   }
 }
 .nested-nav,
 .scrollpy-nested-nav {
-  .nav-link {
+  .nav-item {
     color: rgba(var(--primary));
   }
 }
-.nav-link.nav-pill-primary.active {
+.nav-item.nav-pill-primary.active {
   color: white !important;
 }
 

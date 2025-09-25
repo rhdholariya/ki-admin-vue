@@ -103,21 +103,22 @@ const responsiveImages = [
 ]
 
 // CSS classes for variable width slides
-const variableWidthClasses = [
-  'slider_width_1',
-  'slider_width_2',
-  'slider_width_3',
-  'slider_width_4',
-  'slider_width_5',
-  'slider_width_6'
+const variableWidthImages = [
+  { src: "/images/slick/32.jpg", width: 175 },
+  { src: "/images/slick/29.jpg", width: 250 },
+  { src: "/images/slick/30.jpg", width: 225 },
+  { src: "/images/slick/31.jpg", width: 200 },
+  { src: "/images/slick/11.jpg", width: 350 },
+  { src: "/images/slick/33.jpg", width: 275 },
 ]
+
 
 // Breadcrumb data
 const breadcrumbItems = {
-  title: "Tour",
+  title: "slider",
   items: [
     {label: "Advance UI", icon: PhBriefcase},
-    {label: "Tour", active: true},
+    {label: "slider", active: true},
   ],
 };
 
@@ -181,10 +182,17 @@ const breadcrumbItems = {
               <b-card-header><h5>Variable Width</h5></b-card-header>
               <b-card-body>
                 <Swiper v-bind="variableItems" class="app-arrow variable-width">
-                  <SwiperSlide v-for="(cls, i) in variableWidthClasses" :key="i" :class="cls">
-                    <div class="variable-slide-content">
-                      Slide {{ i + 1 }}
-                    </div>
+                  <SwiperSlide
+                      v-for="(img, i) in variableWidthImages"
+                      :key="i"
+                      :style="{ width: img.width + 'px' }"
+                  >
+                    <img
+                        :src="img.src"
+                        class="img-fluid rounded"
+                        :alt="`Slide ${i + 1}`"
+                        style="height: 220px; object-fit: cover;"
+                    />
                   </SwiperSlide>
                 </Swiper>
               </b-card-body>

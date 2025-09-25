@@ -158,7 +158,7 @@ export const MenuList = [
             { name: "Video Embed", path: "/advance-ui/video-embed" },
             { name: "Tour", path: "/advance-ui/tour" },
             { name: "Slider", path: "/advance-ui/slider" },
-            { name: "Bootstrap Slider", path: "/advance-ui/bootstrap-slider" },
+            { name: "Bootstrap vue Slider", path: "/advance-ui/bootstrap-slider" },
             { name: "Scrollpy", path: "/advance-ui/scrollpy" },
             { name: "Tooltip & Popovers", path: "/advance-ui/tooltip-popovers" },
             { name: "Rating", path: "/advance-ui/rating" },

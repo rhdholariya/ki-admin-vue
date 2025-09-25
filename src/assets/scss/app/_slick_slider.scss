@@ -39,68 +39,68 @@
   }
 }
 
-.variable-width {
-  .slider_width_1 {
-    width: 175px !important;
-    height: 220px;
-    background-image: url("../images/slick/32.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
+  .variable-width {
+    .slider_width_1 {
+      width: 175px !important;
+      height: 220px;
+      background-image: url("../images/slick/32.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .slider_width_2 {
+      width: 250px !important;
+      height: 220px;
+      background-image: url("../images/slick/29.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .slider_width_3 {
+      width: 225px !important;
+      height: 220px;
+      background-image: url("../images/slick/30.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .slider_width_4 {
+      height: 220px !important;
+      width: 200px;
+      background-image: url("../images/slick/31.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .slider_width_5 {
+      width: 350px !important;
+      height: 220px;
+      background-image: url("../images/slick/11.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    .slider_width_6 {
+      width: 275px !important;
+      height: 220px;
+      background-image: url("../images/slick/33.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+    }
   }
-  .slider_width_2 {
-    width: 250px !important;
-    height: 220px;
-    background-image: url("../images/slick/29.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .slider_width_3 {
-    width: 225px !important;
-    height: 220px;
-    background-image: url("../images/slick/30.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .slider_width_4 {
-    height: 220px !important;
-    width: 200px;
-    background-image: url("../images/slick/31.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .slider_width_5 {
-    width: 350px !important;
-    height: 220px;
-    background-image: url("../images/slick/11.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .slider_width_6 {
-    width: 275px !important;
-    height: 220px;
-    background-image: url("../images/slick/33.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
-    margin: 10px;
-    border-radius: 10px;
-  }
-}
 .autoplay-item {
   transition: all 0.4s ease-in-out;
   padding: 10px;
@@ -114,24 +114,24 @@
   }
 }
 .app-arrow {
-  .slick-prev {
+  .swiper-button-prev {
     left: 15px;
     top: 56%;
   }
-  .slick-next {
+  .swiper-button-next {
     right: 30px;
     top: 56%;
   }
   &:hover {
-    .slick-prev,
-    .slick-next {
+    .swiper-button-prev,
+    .swiper-button-next {
       &:before {
         opacity: 1;
       }
     }
   }
-  .slick-prev,
-  .slick-next {
+  .swiper-button-prev,
+  .swiper-button-next {
     font-size: 0;
     line-height: 0;
     position: absolute;
@@ -146,8 +146,8 @@
     z-index: 1;
   }
 
-  .slick-prev:before,
-  .slick-next:before {
+  .swiper-button-prev:before,
+  .swiper-button-next:before {
     font-family: "tabler-icons" !important;
     font-size: 28px;
     background-color: rgb(var(--primary), 0.9) !important;
@@ -159,10 +159,10 @@
     opacity: 0;
     transition: all 0.6s ease-in-out;
   }
-  .slick-prev:before {
+  .swiper-button-prev:before {
     content: "\ea60";
   }
-  .slick-next:before {
+  .swiper-button-next:before {
     content: "\ea61";
   }
 
