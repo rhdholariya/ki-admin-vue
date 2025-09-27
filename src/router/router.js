@@ -45,6 +45,9 @@ import DraggablePage from "@/views/AdvanceUi/Draggable/index.vue";
 // Icon pages Routes //
 
 import FontAwesomePage from "@/views/IconsPages/FontAwesom/index.vue";
+import FlagIconPage from "@/views/IconsPages/Flag/index.vue";
+import TablerIconPage from "@/views/IconsPages/TablerIcon/index.vue";
+import WeatherIconPage from "@/views/IconsPages/Wheather/index.vue";
 
 
 
@@ -104,6 +107,9 @@ const router = createRouter({
 
         // icon pages routes //
         {path: '/icons/font-awesome', name: 'fontawesome', component: FontAwesomePage},
+        {path: '/icons/flag', name: 'flag', component: FlagIconPage},
+        {path: '/icons/tabler', name: 'tabler', component: TablerIconPage},
+        {path: '/icons/weather', name: 'weather', component: WeatherIconPage},
     ],
 
 })

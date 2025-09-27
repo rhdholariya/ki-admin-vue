@@ -30,10 +30,10 @@ const handleUpdateCounters = () => {
 
 // Breadcrumb data
 const breadcrumbItems = {
-  title: "count-down",
+  title: "count-up",
   items: [
     { label: "Advance UI", icon: PhBriefcase },
-    { label: "count-down", active: true },
+    { label: "count-up", active: true },
   ],
 };
 </script>

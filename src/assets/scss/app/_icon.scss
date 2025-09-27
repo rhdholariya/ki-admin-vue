@@ -9,14 +9,14 @@
   flex-wrap: wrap;
   width: 100%;
   &.space-top-icon {
-    i {
+    svg {
       margin-top: 1rem !important;
     }
   }
 
   &.icons-iconoir {
     .icon-box {
-      i {
+      svg {
         display: inline-block;
       }
     }
