@@ -17,7 +17,14 @@ import ListPage from "@/views/UiKits/Lists/index.vue";
 import HelperClassesPage from "@/views/UiKits/HelperClasses/index.vue";
 import BackgroundPage from "@/views/UiKits/Background/index.vue";
 import DividerPage from "@/views/UiKits/Divider/index.vue";
-// import RibbonsPage from "@/views/UiKits/Ribbons/index.vue";
+import RibbonsPage from "@/views/UiKits/Ribbons/index.vue";
+import EditorPage from "@/views/UiKits/Editor/index.vue";
+import CollapsePage from "@/views/UiKits/Collapse/index.vue";
+import ShadowPage from "@/views/UiKits/Shadow/index.vue";
+import WrapperPage from "@/views/UiKits/Wrapper/index.vue";
+import BulletPage from "@/views/UiKits/Bullet/index.vue";
+import PlaceholderPage from "@/views/UiKits/Placeholder/index.vue";
+import AlignmentPage from "@/views/UiKits/Alignment/index.vue";
 
 
 
@@ -74,7 +81,20 @@ const router = createRouter({
         {path: '/ui-kits/helper-classes', name: 'Helper-Classes', component:HelperClassesPage},
         {path: '/ui-kits/background', name: 'Background', component:BackgroundPage},
         {path: '/ui-kits/divider', name: 'Divider', component:DividerPage},
-        // {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
+         {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
+        {path: '/ui-kits/editor', name: 'Editor', component:EditorPage},
+        {path: '/ui-kits/collapse', name: 'Collapse', component:CollapsePage},
+        {path: '/ui-kits/shadow', name: 'Shadow', component:ShadowPage},
+        {path: '/ui-kits/wrapper', name: 'Wrapper', component:WrapperPage},
+        {path: '/ui-kits/bullet', name: 'Bullet', component:BulletPage},
+        {path: '/ui-kits/placeholder', name: 'Placeholder', component:PlaceholderPage},
+        {path: '/ui-kits/alignment-thing', name: 'Alignment', component:AlignmentPage},
+
+
+
+
+
+
 
 
 
