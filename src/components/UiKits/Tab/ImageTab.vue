@@ -168,6 +168,7 @@ const activeFlagTab = ref(flagTabItems[0].id);
                                 </ol>
                             </div>
                         </b-tab>
+                        <flag :iso="'us'" class="flag-icon" />
                     </b-tabs>
                 </b-card-body>
             </b-card>
