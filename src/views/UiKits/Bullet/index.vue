@@ -15,7 +15,7 @@ import {
     PhArrowFatLineRight,
     PhArrowBendDownRight,
     PhPlus,
-    PhCode, PhDiamond, PhCircle, PhTriangle, PhSquare,
+    PhCode, PhDiamond, PhCircle, PhTriangle, PhSquare, PhHeart, PhSparkle,
 } from '@phosphor-icons/vue'
 import {PhBriefcase} from "@phosphor-icons/vue"
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue"
@@ -47,6 +47,7 @@ watch(
     },
     {deep: true}
 )
+
 
 // === Breadcrumb data
 const breadcrumbItems = {

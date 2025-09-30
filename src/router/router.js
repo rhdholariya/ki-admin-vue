@@ -6,7 +6,6 @@ import ButtonPage from "@/views/UiKits/Button/index.vue";
 import CardPage from "@/views/UiKits/Card/index.vue";
 import GridPage from "@/views/UiKits/grid/index.vue";
 import DropdownPage from "@/views/UiKits/Dropdown/index.vue";
-import Error from "@/views/DefaultPages/Error.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
 import AccordionPage from "@/views/UiKits/Accordion/index.vue";
@@ -25,10 +24,6 @@ import WrapperPage from "@/views/UiKits/Wrapper/index.vue";
 import BulletPage from "@/views/UiKits/Bullet/index.vue";
 import PlaceholderPage from "@/views/UiKits/Placeholder/index.vue";
 import AlignmentPage from "@/views/UiKits/Alignment/index.vue";
-
-
-
-
 
 // advanceuikit routes
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
@@ -56,12 +51,20 @@ import FlagIconPage from "@/views/IconsPages/Flag/index.vue";
 import TablerIconPage from "@/views/IconsPages/TablerIcon/index.vue";
 import WeatherIconPage from "@/views/IconsPages/Wheather/index.vue";
 
+// Other Pages Routes //
+import TermsConditionPage from "@/views/OtherPages/TermsCondition/index.vue";
+import PrivacyPolicyPage from "@/views/OtherPages/PrivacyPolicy/index.vue";
+import SitemapPage from "@/views/OtherPages/Sitemap/index.vue";
+import CommingSoonPage from "@/views/OtherPages/ComingSoon/index.vue";
+import MaintenancePage from "@/views/OtherPages/Maintenance/index.vue";
+import BlankPage from "@/views/OtherPages/Blank/index.vue";
 
-
-
-
-
-
+// error pages routes //
+import ServiceUnavailablePage from '@/views/ErrorPage/ServiceUnavailable/index.vue'
+import InternalServerPage from '@/views/ErrorPage/InternalServer/index.vue'
+import NotFoundPage from '@/views/ErrorPage/NotFound/index.vue'
+import ForbiddenPage from '@/views/ErrorPage/Forbidden/index.vue'
+import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
 
 
 const router = createRouter({
@@ -95,17 +98,6 @@ const router = createRouter({
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         // advanceui routes
         {path: '/advance-ui/offcanvas-toggle', name: 'modal', component: OffcanvasPage},
         {path: '/advance-ui/sweat-alert', name: 'offcanvas', component: SweatAlertPage},
@@ -130,6 +122,23 @@ const router = createRouter({
         {path: '/icons/flag', name: 'flag', component: FlagIconPage},
         {path: '/icons/tabler', name: 'tabler', component: TablerIconPage},
         {path: '/icons/weather', name: 'weather', component: WeatherIconPage},
+
+
+        //Other Pages Routes //
+        {path: '/other-pages/terms-condition', name: 'termscondtion', component: TermsConditionPage},
+        {path: '/other-pages/privacy-policy', name: 'privacypolicy', component: PrivacyPolicyPage},
+        {path: '/other-pages/sitemap', name: 'Sitemap', component: SitemapPage},
+        {path: '/other-pages/coming-soon', name: 'ComingSoon', component: CommingSoonPage},
+        {path: '/other-pages/maintenance', name: 'Maintenance', component: MaintenancePage},
+        {path: '/other-pages/blank', name: 'Blank', component: BlankPage},
+
+        // Error Page Routes //
+        {path: '/error-pages/service-unavailable', name: 'ServiceUnavailable', component:ServiceUnavailablePage},
+        {path: '/error-pages/internal-server', name: 'InternalServer', component:InternalServerPage},
+        {path: '/error-pages/not-found', name: 'NotFound', component:NotFoundPage},
+        {path: '/error-pages/forbidden', name: 'Forbidden', component:ForbiddenPage},
+        {path: '/error-pages/bad-request', name: 'BadRequest', component:BadRequestPage},
+
     ],
 
 })

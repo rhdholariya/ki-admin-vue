@@ -9,8 +9,6 @@ const open = ref(false);
 // Prism setup
 
 
-
-
 // Alerts data
 const alerts = [
     { type: "primary", message: "Simple primary alert - check it out!" },
