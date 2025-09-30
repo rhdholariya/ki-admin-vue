@@ -1,5 +1,5 @@
 import './assets/main.css'
-import { createApp } from 'vue'
+import { createApp, nextTick  } from 'vue'
 import App from './App.vue'
 import router from './router/router.js'
 import Breadcrumbs from "@/components/breadcrumb/Breadcrumb.vue";
@@ -17,5 +17,10 @@ import '@/assets/scss/style.scss';
 app.component("Breadcrumbs", Breadcrumbs);
 app.use(router)
 app.use(FlagIcon)
+router.afterEach(() => {
+    nextTick(() => {
+        Prism.highlightAll();
+    });
+});
 app.use(createBootstrap())
 app.mount('#app')

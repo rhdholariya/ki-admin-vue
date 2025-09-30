@@ -59,10 +59,30 @@ import AnimatedIconPage from "@/views/IconsPages/Animated/index.vue";
 import IconoirIconPage from "@/views/IconsPages/Iconoir/index.vue";
 import PhosphorIconPage from "@/views/IconsPages/Phosphor/index.vue";
 
-
 // misc routes
 
 import MiscPage from "@/views/Misc/index.vue";
+
+
+// Other Pages Routes //
+import TermsConditionPage from "@/views/OtherPages/TermsCondition/index.vue";
+import PrivacyPolicyPage from "@/views/OtherPages/PrivacyPolicy/index.vue";
+import SitemapPage from "@/views/OtherPages/Sitemap/index.vue";
+import CommingSoonPage from "@/views/OtherPages/ComingSoon/index.vue";
+import MaintenancePage from "@/views/OtherPages/Maintenance/index.vue";
+import BlankPage from "@/views/OtherPages/Blank/index.vue";
+
+// error pages routes //
+import ServiceUnavailablePage from '@/views/ErrorPage/ServiceUnavailable/index.vue'
+import InternalServerPage from '@/views/ErrorPage/InternalServer/index.vue'
+import NotFoundPage from '@/views/ErrorPage/NotFound/index.vue'
+import ForbiddenPage from '@/views/ErrorPage/Forbidden/index.vue'
+import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
+
+
+
+
+
 
 
 
@@ -140,8 +160,20 @@ const router = createRouter({
         // misc route
         {path: '/misc', name: 'miscpage', component: MiscPage},
 
-        // apps routes
+        //Other Pages Routes //
+        {path: '/other-pages/terms-condition', name: 'termscondtion', component: TermsConditionPage},
+        {path: '/other-pages/privacy-policy', name: 'privacypolicy', component: PrivacyPolicyPage},
+        {path: '/other-pages/sitemap', name: 'Sitemap', component: SitemapPage},
+        {path: '/other-pages/coming-soon', name: 'ComingSoon', component: CommingSoonPage},
+        {path: '/other-pages/maintenance', name: 'Maintenance', component: MaintenancePage},
+        {path: '/other-pages/blank', name: 'Blank', component: BlankPage},
 
+        // Error Page Routes //
+        {path: '/error-pages/service-unavailable', name: 'ServiceUnavailable', component:ServiceUnavailablePage},
+        {path: '/error-pages/internal-server', name: 'InternalServer', component:InternalServerPage},
+        {path: '/error-pages/not-found', name: 'NotFound', component:NotFoundPage},
+        {path: '/error-pages/forbidden', name: 'Forbidden', component:ForbiddenPage},
+        {path: '/error-pages/bad-request', name: 'BadRequest', component:BadRequestPage},
     ],
 
 })

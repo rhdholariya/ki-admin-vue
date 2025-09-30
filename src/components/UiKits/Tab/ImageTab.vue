@@ -13,7 +13,7 @@ const avatarTabItems = [
             {
                 type: "text",
                 value:
-                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them. The idea is to use pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
+                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
             }
         ]
     },
@@ -48,24 +48,24 @@ const avatarTabItems = [
     }
 ];
 
-// ---- Flag Tabs Data (using flag-icons CSS classes) ----
+// ---- Flag Tabs Data (using vue-flag-icon) ----
 const flagTabItems = [
     {
         id: "home",
         label: "USA",
-        flagClass: "fi fi-us",
+        iso: "us",
         content: [
             {
                 type: "text",
                 value:
-                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them. The idea is to use pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
+                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
             }
         ]
     },
     {
         id: "profile",
         label: "GBR",
-        flagClass: "fi fi-gb",
+        iso: "gb",
         content: [
             {
                 type: "list",
@@ -79,19 +79,19 @@ const flagTabItems = [
     {
         id: "contact",
         label: "DEU",
-        flagClass: "fi fi-de",
+        iso: "de",
         content: [
             {
                 type: "text",
                 value:
-                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them. The idea is to use pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
+                    "The idea is to use :target pseudoclass to show tabs, use anchors with fragment identifiers to switch between them."
             }
         ]
     },
     {
         id: "about",
         label: "LBR",
-        flagClass: "fi fi-lr",
+        iso: "lr",
         content: [
             {
                 type: "list",
@@ -117,25 +117,42 @@ const activeFlagTab = ref(flagTabItems[0].id);
                     <h5>Avatar-based Tabs</h5>
                 </b-card-header>
                 <b-card-body>
-                    <b-tabs v-model="activeAvatarTab" nav-class="nav nav-tabs tab-light-secondary gap-2">
-                        <b-tab v-for="tab in avatarTabItems" :key="tab.id" :active="tab.id === activeAvatarTab">
+                    <b-tabs
+                        v-model="activeAvatarTab"
+                        nav-class="nav nav-tabs tab-light-secondary gap-2"
+                    >
+                        <b-tab
+                            v-for="tab in avatarTabItems"
+                            :key="tab.id"
+                            :active="tab.id === activeAvatarTab"
+                        >
                             <template #title>
                                 <div class="d-flex align-items-center gap-2">
-                  <span class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-primary">
+                  <span
+                      class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-primary"
+                  >
                     <img :src="tab.avatarSrc" class="img-fluid" />
                   </span>
                                     <div>
-                                        <div class="text-body f-s-16 f-w-600 text-dark">{{ tab.label }}</div>
+                                        <div class="text-body f-s-16 f-w-600 text-dark">
+                                            {{ tab.label }}
+                                        </div>
                                         <div class="f-s-14">{{ tab.position }}</div>
                                     </div>
                                 </div>
                             </template>
 
-                            <!-- Render content without v-html -->
-                            <div v-for="(item, i) in tab.content" :key="i" class="mt-2">
+                            <!-- Render content -->
+                            <div
+                                v-for="(item, i) in tab.content"
+                                :key="i"
+                                class="mt-2"
+                            >
                                 <p v-if="item.type === 'text'" class="mb-0">{{ item.value }}</p>
                                 <ol v-else-if="item.type === 'list'">
-                                    <li v-for="(li, index) in item.items" :key="index">{{ li }}</li>
+                                    <li v-for="(li, index) in item.items" :key="index">
+                                        {{ li }}
+                                    </li>
                                 </ol>
                             </div>
                         </b-tab>
@@ -151,24 +168,36 @@ const activeFlagTab = ref(flagTabItems[0].id);
                     <h5>Flag-based Tabs</h5>
                 </b-card-header>
                 <b-card-body>
-                    <b-tabs v-model="activeFlagTab" nav-class="nav nav-tabs tab-light-secondary gap-2">
-                        <b-tab v-for="tab in flagTabItems" :key="tab.id" :active="tab.id === activeFlagTab">
+                    <b-tabs
+                        v-model="activeFlagTab"
+                        nav-class="nav nav-tabs tab-light-secondary gap-2"
+                    >
+                        <b-tab
+                            v-for="tab in flagTabItems"
+                            :key="tab.id"
+                            :active="tab.id === activeFlagTab"
+                        >
                             <template #title>
                                 <div class="d-flex align-items-center gap-2">
-                                    <i :class="tab.flagClass" style="font-size: 20px"></i>
+                                    <flag :iso="tab.iso" class="f-s-20" />
                                     <span>{{ tab.label }}</span>
                                 </div>
                             </template>
 
-                            <!-- Render content without v-html -->
-                            <div v-for="(item, i) in tab.content" :key="i" class="mt-2">
+                            <!-- Render content -->
+                            <div
+                                v-for="(item, i) in tab.content"
+                                :key="i"
+                                class="mt-2"
+                            >
                                 <p v-if="item.type === 'text'" class="mb-0">{{ item.value }}</p>
                                 <ol v-else-if="item.type === 'list'">
-                                    <li v-for="(li, index) in item.items" :key="index">{{ li }}</li>
+                                    <li v-for="(li, index) in item.items" :key="index">
+                                        {{ li }}
+                                    </li>
                                 </ol>
                             </div>
                         </b-tab>
-                        <flag :iso="'us'" class="flag-icon" />
                     </b-tabs>
                 </b-card-body>
             </b-card>
