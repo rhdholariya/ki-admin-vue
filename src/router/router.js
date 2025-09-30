@@ -55,11 +55,14 @@ import FontAwesomePage from "@/views/IconsPages/FontAwesom/index.vue";
 import FlagIconPage from "@/views/IconsPages/Flag/index.vue";
 import TablerIconPage from "@/views/IconsPages/TablerIcon/index.vue";
 import WeatherIconPage from "@/views/IconsPages/Wheather/index.vue";
+import AnimatedIconPage from "@/views/IconsPages/Animated/index.vue";
+import IconoirIconPage from "@/views/IconsPages/Iconoir/index.vue";
+import PhosphorIconPage from "@/views/IconsPages/Phosphor/index.vue";
 
 
+// misc routes
 
-
-
+import MiscPage from "@/views/Misc/index.vue";
 
 
 
@@ -130,6 +133,15 @@ const router = createRouter({
         {path: '/icons/flag', name: 'flag', component: FlagIconPage},
         {path: '/icons/tabler', name: 'tabler', component: TablerIconPage},
         {path: '/icons/weather', name: 'weather', component: WeatherIconPage},
+        {path: '/icons/animated', name: 'animated', component: AnimatedIconPage},
+        {path: '/icons/iconoir', name: 'iconoir', component: IconoirIconPage},
+        {path: '/icons/phosphor', name: 'phosphor', component: PhosphorIconPage},
+
+        // misc route
+        {path: '/misc', name: 'miscpage', component: MiscPage},
+
+        // apps routes
+
     ],
 
 })

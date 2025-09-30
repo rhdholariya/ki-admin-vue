@@ -16,6 +16,7 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import { PhShapes } from "@phosphor-icons/vue";
 import {countryData} from "@/data/icons/Flag/FlagData.js"
 import AppLayout from "@/views/AppLayout.vue";
+import {IconSearch} from "@tabler/icons-vue";
 
 // Country data structure for better Vue reactivity
 
@@ -82,6 +83,7 @@ const breadcrumbItems = {
                       placeholder="Type country code (e.g., us, gb)"
                       v-model="searchValue"
                   />
+                  <IconSearch size="18" class="" />
                 </div>
               </b-col>
             </b-row>

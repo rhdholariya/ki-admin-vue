@@ -19,6 +19,7 @@ import "toastify-js/src/toastify.css";
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import { PhShapes } from "@phosphor-icons/vue";
+import {IconSearch} from "@tabler/icons-vue";
 
 // Add all icon packs to library
 library.add(fas, far, fab);
@@ -145,6 +146,7 @@ const breadcrumbItems = computed(() => ({
                           placeholder="Type to search"
                           v-model="searchValue"
                       />
+                      <IconSearch size="18" class="" />
                     </div>
                   </b-col>
                   <div class="col-md-8 text-end pt-2" />

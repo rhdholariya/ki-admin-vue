@@ -17,6 +17,7 @@ import "toastify-js/src/toastify.css";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import { PhShapes } from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
+import {IconSearch} from "@tabler/icons-vue";
 
 const size = 50;
 const color = "#000";
@@ -61,16 +62,16 @@ const breadcrumbItems = computed(() => ({
 <template>
   <AppLayout>
     <main>
-      <BContainer fluid>
+      <b-container fluid>
         <!-- Breadcrumb -->
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
-        <BRow>
-          <BCol cols="12">
-            <BCard>
-              <BCardHeader>
-                <BRow>
-                  <BCol md="4">
+        <b-row>
+          <b-col cols="12">
+            <b-card>
+              <b-card-header>
+                <b-row>
+                  <b-col md="4">
                     <div class="search-bar app-form app-icon-form position-relative">
                       <input
                           type="search"
@@ -79,13 +80,14 @@ const breadcrumbItems = computed(() => ({
                           placeholder="Type to search"
                           v-model="searchValue"
                       />
+                      <IconSearch size="18" class="" />
                     </div>
-                  </BCol>
+                  </b-col>
                   <div class="col-md-8 text-end pt-2"/>
-                </BRow>
-              </BCardHeader>
+                </b-row>
+              </b-card-header>
 
-              <BCardBody>
+              <b-card-body>
                 <ul class="icon-list space-top-icon">
                   <li
                       v-for="[iconName, IconComponent] in iconList"
@@ -100,11 +102,11 @@ const breadcrumbItems = computed(() => ({
                     </div>
                   </li>
                 </ul>
-              </BCardBody>
-            </BCard>
-          </BCol>
-        </BRow>
-      </BContainer>
+              </b-card-body>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
     </main>
   </AppLayout>
 </template>
