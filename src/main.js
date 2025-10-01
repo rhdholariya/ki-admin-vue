@@ -11,7 +11,8 @@ import FlagIcon from "vue-flag-icon";
 import { createBootstrap } from 'bootstrap-vue-next'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'simplebar/dist/simplebar.min.css';
-
+// Vue ApexCharts
+import VueApexCharts from "vue3-apexcharts";
 const app = createApp(App)
 import '@/assets/scss/style.scss';
 app.component("Breadcrumbs", Breadcrumbs);
@@ -23,4 +24,5 @@ router.afterEach(() => {
     });
 });
 app.use(createBootstrap())
+app.component("apexchart", VueApexCharts);
 app.mount('#app')

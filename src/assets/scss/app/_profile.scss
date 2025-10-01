@@ -158,7 +158,6 @@
       list-style: none;
       padding: 16px 18px;
       font-weight: 500;
-      color: rgba(var(--dark), 0.75);
       cursor: pointer;
       border-bottom: solid 2px transparent;
       letter-spacing: 1px;
@@ -175,6 +174,9 @@
       &.active {
         color: rgba(var(--primary), 1);
         border-color: rgba(var(--primary), 1);
+      }
+      .nav-link{
+        color: rgba(var(--dark), 0.75);
       }
     }
   }

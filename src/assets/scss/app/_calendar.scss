@@ -194,11 +194,12 @@
   overflow: hidden;
 
   .event-box {
-    border: 1px solid rgba(var(--dark), 0.2);
+    height: 120px !important;
+    border: 1px dashed rgba(var(--dark), 0.2);
     padding: 0.8rem 0.75rem;
     //margin: 0.5rem 1rem;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
     border-left: 4px solid rgba(var(--primary), 1);
     background-color: rgba(var(--white), 0.3);
 

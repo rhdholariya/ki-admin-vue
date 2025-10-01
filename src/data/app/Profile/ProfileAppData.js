@@ -1,10 +1,7 @@
-<!-- profileAppData.js -->
-// Import only for type awareness (you’ll use BButton in components, not here)
-// import { BButton } from 'bootstrap-vue-next'
 
 export const timelineData = [
     {
-        icon: "W",
+        icon: "W", // will render inside a span, not as <component>
         iconBg: "text-light-primary",
         name: "Wilson",
         description: "added reaction in",
@@ -30,12 +27,18 @@ export const timelineData = [
         description: "added reaction in",
         tag: { text: "#product website", color: "success" },
         suffix: "post",
-        content: {
-            title: "Need a feature",
-            text: "Hello everyone, question on email marketing. What are some tips/ tricks to avoid going to promotion spam/junk for automated marketing emails?",
-            reactions: "🙂❤ 10 Reactions",
-            replies: "✨ 12 Replies",
-        },
+        // convert object -> html string
+        content: `
+      <h6 class="mb-1">Need a feature</h6>
+      <p class="mb-2">
+        Hello everyone, question on email marketing. What are some tips/ tricks
+        to avoid going to promotion spam/junk for automated marketing emails?
+      </p>
+      <div class="d-flex justify-content-between">
+        <span class="text-muted">🙂❤ 10 Reactions</span>
+        <span class="text-muted">✨ 12 Replies</span>
+      </div>
+    `,
         time: "09.00AM",
     },
     {
@@ -45,10 +48,11 @@ export const timelineData = [
         description: "Request joined",
         tag: { text: "#reaserchteam", color: "danger" },
         suffix: "groups",
-        actions: [
-            { label: "Accept", variant: "danger" },
-            { label: "Reject", variant: "outline-danger" },
-        ],
+        // convert array -> html string
+        actions: `
+      <button class="btn btn-sm btn-danger me-2">Accept</button>
+      <button class="btn btn-sm btn-outline-danger">Reject</button>
+    `,
         time: "4 days ago",
     },
     {
@@ -57,13 +61,14 @@ export const timelineData = [
         name: "Pinkie",
         description: "uploaded 2 attachments",
         tag: { text: "#reaserchteam", color: "primary" },
-        actions: [
-            { label: "Accept", variant: "primary" },
-            { label: "Reject", variant: "outline-primary" },
-        ],
+        actions: `
+      <button class="btn btn-sm btn-primary me-2">Accept</button>
+      <button class="btn btn-sm btn-outline-primary">Reject</button>
+    `,
         time: "4 days ago",
     },
-]
+];
+
 
 export const profileProjects = [
     {

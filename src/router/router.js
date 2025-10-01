@@ -6,7 +6,6 @@ import ButtonPage from "@/views/UiKits/Button/index.vue";
 import CardPage from "@/views/UiKits/Card/index.vue";
 import GridPage from "@/views/UiKits/grid/index.vue";
 import DropdownPage from "@/views/UiKits/Dropdown/index.vue";
-import Error from "@/views/DefaultPages/Error.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
 import AccordionPage from "@/views/UiKits/Accordion/index.vue";
@@ -25,9 +24,6 @@ import WrapperPage from "@/views/UiKits/Wrapper/index.vue";
 import BulletPage from "@/views/UiKits/Bullet/index.vue";
 import PlaceholderPage from "@/views/UiKits/Placeholder/index.vue";
 import AlignmentPage from "@/views/UiKits/Alignment/index.vue";
-
-
-
 
 
 // advanceuikit routes
@@ -50,7 +46,6 @@ import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
 import DraggablePage from "@/views/AdvanceUi/Draggable/index.vue";
 
 // Icon pages Routes //
-
 import FontAwesomePage from "@/views/IconsPages/FontAwesom/index.vue";
 import FlagIconPage from "@/views/IconsPages/Flag/index.vue";
 import TablerIconPage from "@/views/IconsPages/TablerIcon/index.vue";
@@ -60,9 +55,7 @@ import IconoirIconPage from "@/views/IconsPages/Iconoir/index.vue";
 import PhosphorIconPage from "@/views/IconsPages/Phosphor/index.vue";
 
 // misc routes
-
 import MiscPage from "@/views/Misc/index.vue";
-
 
 // Other Pages Routes //
 import TermsConditionPage from "@/views/OtherPages/TermsCondition/index.vue";
@@ -79,12 +72,13 @@ import NotFoundPage from '@/views/ErrorPage/NotFound/index.vue'
 import ForbiddenPage from '@/views/ErrorPage/Forbidden/index.vue'
 import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
 
-
-
-
-
-
-
+// app routes
+import CalendarPage from '@/views/Apps/Calendar/index.vue'
+import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
+import SettingPage from '@/views/Apps/ProfilePage/Setting/index.vue'
+import ProjectPage from '@/views/Apps/ProjectPage/Projects/index.vue'
+import ProjectDetailsPage from '@/views/Apps/ProjectPage/ProjectDetails/index.vue'
+import ToDoPage from '@/views/Apps/Todo/index.vue'
 
 
 const router = createRouter({
@@ -99,7 +93,7 @@ const router = createRouter({
         {path: '/ui-kits/grid', name: 'grid', component:GridPage},
         {path: '/errors', name: 'error', component: Error},
         {path: '/ui-kits/avatar', name: 'Avatar', component:AvatarPage},
-         {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
+        {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
         {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
         {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
         {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
@@ -107,7 +101,7 @@ const router = createRouter({
         {path: '/ui-kits/helper-classes', name: 'Helper-Classes', component:HelperClassesPage},
         {path: '/ui-kits/background', name: 'Background', component:BackgroundPage},
         {path: '/ui-kits/divider', name: 'Divider', component:DividerPage},
-         {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
+        {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
         {path: '/ui-kits/editor', name: 'Editor', component:EditorPage},
         {path: '/ui-kits/collapse', name: 'Collapse', component:CollapsePage},
         {path: '/ui-kits/shadow', name: 'Shadow', component:ShadowPage},
@@ -115,18 +109,6 @@ const router = createRouter({
         {path: '/ui-kits/bullet', name: 'Bullet', component:BulletPage},
         {path: '/ui-kits/placeholder', name: 'Placeholder', component:PlaceholderPage},
         {path: '/ui-kits/alignment-thing', name: 'Alignment', component:AlignmentPage},
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         // advanceui routes
@@ -174,6 +156,15 @@ const router = createRouter({
         {path: '/error-pages/not-found', name: 'NotFound', component:NotFoundPage},
         {path: '/error-pages/forbidden', name: 'Forbidden', component:ForbiddenPage},
         {path: '/error-pages/bad-request', name: 'BadRequest', component:BadRequestPage},
+
+        // apps routes
+        {path: '/apps/calendar', name: 'calendar', component:CalendarPage},
+        {path: '/apps/profile-page/profile', name: 'profile', component:ProfilePage},
+        {path: '/apps/profile-page/setting', name: 'setting', component:SettingPage},
+        {path: '/apps/projects-page/projects', name: 'project', component:ProjectPage},
+        {path: '/apps/projects-page/projects-details', name: 'projectdetails', component:ProjectDetailsPage},
+        {path: '/apps/todo', name: 'todo', component:ToDoPage},
+
     ],
 
 })
