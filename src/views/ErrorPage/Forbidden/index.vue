@@ -1,6 +1,7 @@
 <script setup>
-import { BContainer, BRow, BCol, BCardBody, BLink } from 'bootstrap-vue-next';
+import { BContainer, BRow, BCol, BCardBody} from 'bootstrap-vue-next';
 import { PhHouse } from "@phosphor-icons/vue";
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -22,13 +23,13 @@ import { PhHouse } from "@phosphor-icons/vue";
                         </p>
 
                         <!-- Back Button styled link -->
-                        <b-link
+                        <RouterLink
                             to="/dashboard/ecommerce"
                             class="btn btn-primary btn-lg d-inline-flex align-items-center gap-2"
                         >
                             <PhHouse :size="20" weight="bold" />
                             Back To Home
-                        </b-link>
+                        </RouterLink>
                     </b-card-body>
                 </b-col>
             </b-row>

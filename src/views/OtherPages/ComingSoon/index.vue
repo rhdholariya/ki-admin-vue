@@ -4,7 +4,7 @@ import {
     BContainer,
     BRow,
     BCol,
-    BFormInput, BLink
+    BFormInput,
 } from 'bootstrap-vue-next'
 import { useRouter } from 'vue-router'
 
@@ -89,12 +89,12 @@ onBeforeUnmount(() => {
                             </div>
 
                             <!-- Subscribe Button -->
-                            <b-link
+                            <RouterLink
                                 to="/dashboard/ecommerce"
                                 class="btn btn-lg btn-primary mt-3 d-inline-flex align-items-center justify-content-center gap-1"
                             >
                                 Subscribe Now
-                            </b-link>
+                            </RouterLink>
                         </div>
                     </div>
                 </b-col>

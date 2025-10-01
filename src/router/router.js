@@ -25,7 +25,6 @@ import BulletPage from "@/views/UiKits/Bullet/index.vue";
 import PlaceholderPage from "@/views/UiKits/Placeholder/index.vue";
 import AlignmentPage from "@/views/UiKits/Alignment/index.vue";
 
-
 // advanceuikit routes
 import  ModalPage from "@/views/AdvanceUi/Modal/index.vue";
 import  OffcanvasPage from "@/views/AdvanceUi/OffcanvasToggle/index.vue";
@@ -46,6 +45,7 @@ import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
 import DraggablePage from "@/views/AdvanceUi/Draggable/index.vue";
 
 // Icon pages Routes //
+
 import FontAwesomePage from "@/views/IconsPages/FontAwesom/index.vue";
 import FlagIconPage from "@/views/IconsPages/Flag/index.vue";
 import TablerIconPage from "@/views/IconsPages/TablerIcon/index.vue";
@@ -72,6 +72,10 @@ import NotFoundPage from '@/views/ErrorPage/NotFound/index.vue'
 import ForbiddenPage from '@/views/ErrorPage/Forbidden/index.vue'
 import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
 
+// Auth Page routes //
+import TwoStepVerificationImgPage from '@/views/AuthPage/TwoStepVerificationImg/index.vue'
+import TwoStepVerificationPage from '@/views/AuthPage/TwoStepVerification/index.vue'
+import LockScreenImgPage from '@/views/AuthPage/LockScreenImg/index.vue'
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -79,7 +83,6 @@ import SettingPage from '@/views/Apps/ProfilePage/Setting/index.vue'
 import ProjectPage from '@/views/Apps/ProjectPage/Projects/index.vue'
 import ProjectDetailsPage from '@/views/Apps/ProjectPage/ProjectDetails/index.vue'
 import ToDoPage from '@/views/Apps/Todo/index.vue'
-
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,7 +96,7 @@ const router = createRouter({
         {path: '/ui-kits/grid', name: 'grid', component:GridPage},
         {path: '/errors', name: 'error', component: Error},
         {path: '/ui-kits/avatar', name: 'Avatar', component:AvatarPage},
-        {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
+         {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
         {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
         {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
         {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
@@ -101,7 +104,7 @@ const router = createRouter({
         {path: '/ui-kits/helper-classes', name: 'Helper-Classes', component:HelperClassesPage},
         {path: '/ui-kits/background', name: 'Background', component:BackgroundPage},
         {path: '/ui-kits/divider', name: 'Divider', component:DividerPage},
-        {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
+         {path: '/ui-kits/ribbons', name: 'Ribbons', component:RibbonsPage},
         {path: '/ui-kits/editor', name: 'Editor', component:EditorPage},
         {path: '/ui-kits/collapse', name: 'Collapse', component:CollapsePage},
         {path: '/ui-kits/shadow', name: 'Shadow', component:ShadowPage},
@@ -109,6 +112,7 @@ const router = createRouter({
         {path: '/ui-kits/bullet', name: 'Bullet', component:BulletPage},
         {path: '/ui-kits/placeholder', name: 'Placeholder', component:PlaceholderPage},
         {path: '/ui-kits/alignment-thing', name: 'Alignment', component:AlignmentPage},
+
 
 
         // advanceui routes
@@ -142,6 +146,7 @@ const router = createRouter({
         // misc route
         {path: '/misc', name: 'miscpage', component: MiscPage},
 
+
         //Other Pages Routes //
         {path: '/other-pages/terms-condition', name: 'termscondtion', component: TermsConditionPage},
         {path: '/other-pages/privacy-policy', name: 'privacypolicy', component: PrivacyPolicyPage},
@@ -157,6 +162,12 @@ const router = createRouter({
         {path: '/error-pages/forbidden', name: 'Forbidden', component:ForbiddenPage},
         {path: '/error-pages/bad-request', name: 'BadRequest', component:BadRequestPage},
 
+        // Auth Page Routes //
+        {path: '/auth-pages/two-step-verification-img', name: 'TwoStepVerificationImg', component:TwoStepVerificationImgPage},
+        {path: '/auth-pages/two-step-verification', name: 'TwoStepVerification', component:TwoStepVerificationPage},
+        {path: '/auth-pages/lock-screen-img', name: 'LockScreenImg', component:LockScreenImgPage},
+
+
         // apps routes
         {path: '/apps/calendar', name: 'calendar', component:CalendarPage},
         {path: '/apps/profile-page/profile', name: 'profile', component:ProfilePage},
@@ -164,7 +175,6 @@ const router = createRouter({
         {path: '/apps/projects-page/projects', name: 'project', component:ProjectPage},
         {path: '/apps/projects-page/projects-details', name: 'projectdetails', component:ProjectDetailsPage},
         {path: '/apps/todo', name: 'todo', component:ToDoPage},
-
     ],
 
 })

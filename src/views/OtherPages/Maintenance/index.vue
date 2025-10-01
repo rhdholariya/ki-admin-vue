@@ -1,7 +1,7 @@
 <script setup>
-import {BContainer, BLink} from "bootstrap-vue-next";
+import {BContainer} from "bootstrap-vue-next";
 import {PhHouse} from "@phosphor-icons/vue";
-
+import {RouterLink} from 'vue-router';
 </script>
 <template>
     <div class="bg-light-primary maintenance py-5">
@@ -21,13 +21,13 @@ import {PhHouse} from "@phosphor-icons/vue";
                     24/7 hours
                 </p>
 
-                <b-link
+                <RouterLink
                     to="/dashboard/ecommerce"
                     class="btn btn-lg btn-danger mt-3 rounded-pill d-inline-flex align-items-center justify-content-center gap-1"
                 >
                     <PhHouse size="18"/>
                     Back To Home
-                </b-link>
+                </RouterLink>
             </div>
         </b-container>
     </div>
