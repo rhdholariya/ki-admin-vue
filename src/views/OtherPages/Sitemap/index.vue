@@ -6,7 +6,6 @@ import {
     BCard,
     BCardHeader,
     BCardBody,
-    BLink
 } from 'bootstrap-vue-next'
 
 import {
@@ -485,20 +484,20 @@ const breadcrumbItems = {
                                     <div class="vertical-sitemap">
                                         <ul class="list-unstyled mb-0">
                                             <li class="p-0 parent-title">
-                                                <b-link to="/" class="fw-medium fs-14">ki-admin-vue</b-link>
+                                                <RouterLink to="/" class="fw-medium fs-14">ki-admin-vue</RouterLink>
                                             </li>
                                             <li>
                                                 <div class="first-part">
                                                     <div class="list-wrap">
-                                                        <b-link to="/sitemap" class="fw-medium text-primary">
+                                                        <RouterLink to="/sitemap" class="fw-medium text-primary">
                                                             Sitemap Navigation
-                                                        </b-link>
+                                                        </RouterLink>
                                                     </div>
 
                                                     <!-- Recursive Sitemap Component -->
                                                     <ul class="second-part list-unstyled">
                                                         <li v-for="(item, index) in sitemapData" :key="index">
-                                                            <b-link :to="item.to || '#'" class="d-flex align-items-center">
+                                                            <RouterLink :to="item.to || '#'" class="d-flex align-items-center">
                                                                 <component
                                                                     :is="item.icon"
                                                                     v-if="item.icon"
@@ -506,11 +505,11 @@ const breadcrumbItems = {
                                                                     class="me-1"
                                                                 />
                                                                 {{ item.title }}
-                                                            </b-link>
+                                                            </RouterLink>
 
                                                             <ul v-if="item.children" class="list-unstyled ms-3">
                                                                 <li v-for="(child, childIndex) in item.children" :key="childIndex">
-                                                                    <b-link :to="child.to || '#'" class="d-flex align-items-center">
+                                                                    <RouterLink :to="child.to || '#'" class="d-flex align-items-center">
                                                                         <component
                                                                             :is="child.icon"
                                                                             v-if="child.icon"
@@ -518,13 +517,13 @@ const breadcrumbItems = {
                                                                             class="me-1"
                                                                         />
                                                                         {{ child.title }}
-                                                                    </b-link>
+                                                                    </RouterLink>
 
                                                                     <ul v-if="child.children" class="list-unstyled ms-3">
                                                                         <li v-for="(grandChild, grandIndex) in child.children" :key="grandIndex">
-                                                                            <b-link :to="grandChild.to || '#'">
+                                                                            <RouterLink :to="grandChild.to || '#'">
                                                                                 {{ grandChild.title }}
-                                                                            </b-link>
+                                                                            </RouterLink>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
@@ -551,7 +550,7 @@ const breadcrumbItems = {
                                     <div class="vertical-sitemap">
                                         <ul class=" list-unstyled">
                                             <li class="p-0 parent-title">
-                                                <b-link to="/" class="fw-medium fs-14">ki-admin-vue</b-link>
+                                                <RouterLink to="/" class="fw-medium fs-14">ki-admin-vue</RouterLink>
                                             </li>
                                             <li>
                                                 <div
@@ -560,7 +559,7 @@ const breadcrumbItems = {
                                                     class="first-part"
                                                 >
                                                     <div class="list-wrap">
-                                                        <b-link
+                                                        <RouterLink
                                                             :to="section.to || '#'"
                                                             class="fw-medium text-primary d-flex align-items-center"
                                                         >
@@ -571,12 +570,12 @@ const breadcrumbItems = {
                                                                 class="me-2"
                                                             />
                                                             {{ section.title }}
-                                                        </b-link>
+                                                        </RouterLink>
                                                     </div>
 
                                                     <ul class="second-part list-unstyled">
                                                         <li v-for="(child, childIndex) in section.children" :key="childIndex">
-                                                            <b-link :to="child.to || '#'">{{ child.title }}</b-link>
+                                                            <RouterLink :to="child.to || '#'">{{ child.title }}</RouterLink>
 
                                                             <div v-if="child.description" class="content-box ms-4">
                                                                 <p class="text-muted mb-2">{{ child.description }}</p>
@@ -584,7 +583,7 @@ const breadcrumbItems = {
 
                                                             <ul v-if="child.children" class="list-unstyled ms-4">
                                                                 <li v-for="(grandChild, grandIndex) in child.children" :key="grandIndex">
-                                                                    <b-link :to="grandChild.to || '#'">{{ grandChild.title }}</b-link>
+                                                                    <RouterLink :to="grandChild.to || '#'">{{ grandChild.title }}</RouterLink>
 
                                                                     <div v-if="grandChild.description" class="content-box ms-4">
                                                                         <p class="text-muted mb-2">{{ grandChild.description }}</p>

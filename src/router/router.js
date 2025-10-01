@@ -66,6 +66,12 @@ import NotFoundPage from '@/views/ErrorPage/NotFound/index.vue'
 import ForbiddenPage from '@/views/ErrorPage/Forbidden/index.vue'
 import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
 
+// Auth Page routes //
+import TwoStepVerificationImgPage from '@/views/AuthPage/TwoStepVerificationImg/index.vue'
+import TwoStepVerificationPage from '@/views/AuthPage/TwoStepVerification/index.vue'
+import LockScreenImgPage from '@/views/AuthPage/LockScreenImg/index.vue'
+
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -138,6 +144,12 @@ const router = createRouter({
         {path: '/error-pages/not-found', name: 'NotFound', component:NotFoundPage},
         {path: '/error-pages/forbidden', name: 'Forbidden', component:ForbiddenPage},
         {path: '/error-pages/bad-request', name: 'BadRequest', component:BadRequestPage},
+
+        // Auth Page Routes //
+        {path: '/auth-pages/two-step-verification-img', name: 'TwoStepVerificationImg', component:TwoStepVerificationImgPage},
+        {path: '/auth-pages/two-step-verification', name: 'TwoStepVerification', component:TwoStepVerificationPage},
+        {path: '/auth-pages/lock-screen-img', name: 'LockScreenImg', component:LockScreenImgPage},
+
 
     ],
 

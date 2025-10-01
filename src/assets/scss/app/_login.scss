@@ -1,7 +1,7 @@
 // >>-- 50 Login css start --<<
 .sign-in-bg {
   //background-color: rgba(var(--primary), 0.3);
-  background-image: url("../images/background/sign-in-bg.jpg");
+  background-image: url("/public/images/background/sign-in-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,7 +15,7 @@
     overflow: hidden;
 
     .main-content-box {
-      background-image: url("../images/background/login-bg.png");
+      background-image: url("/public/images/background/login-bg.png");
       background-position: center;
       background-color: rgba(var(--white), 1);
       background-size: cover;
@@ -89,7 +89,7 @@
 //
 
 .login-form-container {
-  background-image: url("../images/background/06.jpg");
+  background-image: url("/public/images/background/06.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   // background-position: center;
