@@ -1996,14 +1996,10 @@
     }
   }
 
-  .form_container,
-  .form-container {
-    width: 100%;
-  }
 
   .login-form-container {
     .form_container {
-      width: 100%;
+      width: 100% !important;
     }
   }
 
@@ -3127,4 +3123,5 @@
       text-overflow: ellipsis;
     }
   }
+
 }

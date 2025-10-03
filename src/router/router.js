@@ -76,6 +76,16 @@ import BadRequestPage from '@/views/ErrorPage/BadRequest/index.vue'
 import TwoStepVerificationImgPage from '@/views/AuthPage/TwoStepVerificationImg/index.vue'
 import TwoStepVerificationPage from '@/views/AuthPage/TwoStepVerification/index.vue'
 import LockScreenImgPage from '@/views/AuthPage/LockScreenImg/index.vue'
+import LockScreenPage from '@/views/AuthPage/LockScreen/index.vue'
+import PasswordCreateImgPage from '@/views/AuthPage/PasswordCreateImg/index.vue'
+import PasswordCreatePage from '@/views/AuthPage/PasswordCreate/index.vue'
+import PasswordResetImgPage from '@/views/AuthPage/PasswordResetImg/index.vue'
+import PasswordResetPage from '@/views/AuthPage/PasswordReset/index.vue'
+import SignUpWithBgImagePage from '@/views/AuthPage/SignUpWithBgImage/index.vue'
+import SignUpPage from '@/views/AuthPage/SignUp/index.vue'
+import SignInWithBgImagePage from '@/views/AuthPage/SignInWithBgImage/index.vue'
+import SignInPage from '@/views/AuthPage/SignIn/index.vue'
+
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -166,6 +176,21 @@ const router = createRouter({
         {path: '/auth-pages/two-step-verification-img', name: 'TwoStepVerificationImg', component:TwoStepVerificationImgPage},
         {path: '/auth-pages/two-step-verification', name: 'TwoStepVerification', component:TwoStepVerificationPage},
         {path: '/auth-pages/lock-screen-img', name: 'LockScreenImg', component:LockScreenImgPage},
+        {path: '/auth-pages/lock-screen', name: 'LockScreen', component:LockScreenPage},
+        {path: '/auth-pages/password-create-img', name: 'PasswordCreateImg', component:PasswordCreateImgPage},
+        {path: '/auth-pages/password-create', name: 'PasswordCreate', component:PasswordCreatePage},
+        {path: '/auth-pages/password-reset-img', name: 'PasswordResetImg', component:PasswordResetImgPage},
+        {path: '/auth-pages/password-reset', name: 'PasswordReset', component:PasswordResetPage},
+        {path: '/auth-pages/sign-up-with-bg-image', name: 'SignUpWithBgImage', component:SignUpWithBgImagePage},
+        {path: '/auth-pages/sign-up', name: 'SignUp', component:SignUpPage},
+        {path: '/auth-pages/sign-in-with-bg-image', name: 'SignInWithBgImage', component:SignInWithBgImagePage},
+        {path: '/auth-pages/sign-in', name: 'SignIn', component:SignInPage},
+
+
+
+
+
+
 
 
         // apps routes
