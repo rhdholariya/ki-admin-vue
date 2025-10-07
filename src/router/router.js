@@ -93,6 +93,12 @@ import SettingPage from '@/views/Apps/ProfilePage/Setting/index.vue'
 import ProjectPage from '@/views/Apps/ProjectPage/Projects/index.vue'
 import ProjectDetailsPage from '@/views/Apps/ProjectPage/ProjectDetails/index.vue'
 import ToDoPage from '@/views/Apps/Todo/index.vue'
+import TeamPage from '@/views/Apps/Team/index.vue'
+import ApiPage from '@/views/Apps/Api/index.vue'
+import InvoicePage from '@/views/Apps/invoice/index.vue'
+import ChatPage from '@/views/Apps/Chat/index.vue'
+import FileManagerPage from '@/views/Apps/FileManager/index.vue'
+import BookmarkPage from '@/views/Apps/Bookmark/index.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -200,6 +206,12 @@ const router = createRouter({
         {path: '/apps/projects-page/projects', name: 'project', component:ProjectPage},
         {path: '/apps/projects-page/projects-details', name: 'projectdetails', component:ProjectDetailsPage},
         {path: '/apps/todo', name: 'todo', component:ToDoPage},
+        {path: '/apps/team', name: 'team', component:TeamPage},
+        {path: '/apps/api', name: 'api', component:ApiPage},
+        {path: '/apps/invoice', name: 'invoice', component:InvoicePage},
+        {path: '/apps/chat', name: 'chat', component:ChatPage},
+        {path: '/apps/file-manager', name: 'filemanager', component:FileManagerPage},
+        {path: '/apps/bookmark', name: 'bookmark', component:BookmarkPage},
     ],
 
 })

@@ -253,13 +253,13 @@ onUnmounted(() => {
                 <div class="d-flex justify-content-between">
                   <div>
                     <h6 class="text-dark f-s-14">
-                      Start: 
+                      Start:
                       <span class="text-success">
                         {{ project.startDate }}
                       </span>
                     </h6>
                     <h6 class="text-dark f-s-14">
-                      End: 
+                      End:
                       <span class="text-danger">{{ project.endDate }}</span>
                     </h6>
                   </div>

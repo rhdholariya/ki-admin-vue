@@ -1,27 +1,27 @@
 <template>
   <b-col xl="9">
-    <b-card>
+    <b-card no-body>
       <b-card-body class="p-0">
         <!-- Search and Add Button -->
         <div class="d-flex justify-content-between p-3 border-bottom">
           <b-form class="me-3 app-form app-icon-form search-lg h-100 w-100">
             <div class="position-relative h-100">
               <b-form-input
-                v-model="searchTerm"
-                type="search"
-                placeholder="Search..."
-                class="search h-100 pe-4"
-                @input="handleSearchChange"
+                  v-model="searchTerm"
+                  type="search"
+                  placeholder="Search..."
+                  class="search h-100 pe-4"
+                  @input="handleSearchChange"
               />
               <IconSearch
-                class="position-absolute end-0 top-50 translate-middle-y me-2"
-                :size="16"
+                  class="position-absolute end-0 top-50 translate-middle-y me-2"
+                  :size="16"
               />
             </div>
           </b-form>
           <b-button
-            variant="primary"
-            @click="openAddModal"
+              variant="primary"
+              @click="openAddModal"
           >
             Add
           </b-button>
@@ -29,74 +29,81 @@
 
         <!-- Todo Table -->
         <b-table
-          hover
-          responsive
-          class="table-bottom-border todo-table mb-0"
-          :items="paginatedTodos"
-          :fields="tableFields"
+            hover
+            responsive
+            class=" table-bottom-border table-lg align-middle todo-table"
+            :items="paginatedTodos"
+            :fields="tableFields"
         >
+          <!-- Checkbox -->
           <template #cell(checkbox)="row">
             <b-form-checkbox
-              :id="`todo-${row.item.id}`"
-              v-model="row.item.completed"
-              @change="toggleTodo(row.item.id)"
+                :id="`todo-${row.item.id}`"
+                v-model="row.item.completed"
             />
           </template>
-          
+
+          <!-- Task -->
           <template #cell(task)="row">
             <span :class="{ 'text-d-line-through': row.item.completed }" class="fw-semibold">
               {{ row.item.task }}
             </span>
           </template>
-          
+
+          <!-- Priority -->
           <template #cell(priority)="row">
             <b-badge
-              :variant="getPriorityVariant(row.item.priority)"
-              :class="{ 'opacity-50': row.item.completed }"
+                :variant="getPriorityVariant(row.item.priority)"
+                :class="{ 'opacity-50': row.item.completed }"
             >
               {{ row.item.priority }}
             </b-badge>
           </template>
-          
+
+          <!-- Assign -->
           <template #cell(assign)="row">
             <p class="txt-ellipsis-1 mb-0 fw-medium text-dark">
               {{ row.item.assign }}
             </p>
           </template>
-          
+
+          <!-- Date -->
           <template #cell(date)="row">
             <span class="text-success fw-semibold">{{ row.item.date }}</span>
           </template>
-          
+
+          <!-- Notes -->
           <template #cell(notes)="row">
             {{ row.item.notes }}
           </template>
-          
+
+          <!-- Edit Button -->
           <template #cell(edit)="row">
             <b-button
-              variant="outline-success"
-              size="sm"
-              :class="[
+                variant="outline-success"
+                size="sm"
+                :class="[
                 'edit-item-btn icon-btn',
                 { 'bg-success text-white opacity-50': row.item.completed }
               ]"
-              :disabled="row.item.completed"
-              @click="openEditModal(row.item)"
+                :disabled="row.item.completed"
+                @click="openEditModal(row.item)"
             >
               <IconEdit :size="14" />
             </b-button>
           </template>
-          
+
+          <!-- Delete Button -->
           <template #cell(delete)="row">
             <b-button
-              variant="outline-danger"
-              size="sm"
-              :class="[
+                variant="outline-danger"
+                size="sm"
+                :class="[
                 'remove-item-btn icon-btn',
                 { 'bg-danger text-white opacity-50': row.item.completed }
               ]"
-              :disabled="row.item.completed"
-              @click="handleDelete(row.item.id)"
+                :disabled="row.item.completed"
+                @click="handleDelete(row.item.id)"
             >
               <IconTrash :size="14" />
             </b-button>
@@ -111,57 +118,57 @@
             </p>
           </div>
           <b-pagination
-            v-model="currentPage"
-            :total-rows="filteredTodos.length"
-            :per-page="itemsPerPage"
-            class="app-pagination"
-            @page-click="handlePageChange"
+              v-model="currentPage"
+              :total-rows="filteredTodos.length"
+              :per-page="itemsPerPage"
+              class="app-pagination"
+              @page-click="handlePageChange"
           />
         </div>
 
         <!-- Add/Edit Modal -->
         <b-modal
-          v-model="showModal"
-          :title="isEditing ? 'Edit Task' : 'Add Task'"
-          @hidden="resetForm"
+            v-model="showModal"
+            :title="isEditing ? 'Edit Task' : 'Add Task'"
+            @hidden="resetForm"
         >
           <b-form class="app-form">
             <b-form-group label="Task" class="mb-3">
               <b-form-input
-                id="task"
-                v-model="formData.task"
-                required
+                  id="task"
+                  v-model="formData.task"
+                  required
               />
             </b-form-group>
-            
+
             <b-form-group label="Assign" class="mb-3">
               <b-form-input
-                id="assign"
-                v-model="formData.assign"
-                required
+                  id="assign"
+                  v-model="formData.assign"
+                  required
               />
             </b-form-group>
-            
+
             <b-form-group label="Date" class="mb-3">
               <b-form-input
-                id="date"
-                v-model="formData.date"
-                type="date"
-                required
+                  id="date"
+                  v-model="formData.date"
+                  type="date"
+                  required
               />
             </b-form-group>
-            
+
             <b-form-group label="Notes" class="mb-3">
               <b-form-textarea
-                id="notes"
-                v-model="formData.notes"
+                  id="notes"
+                  v-model="formData.notes"
               />
             </b-form-group>
-            
+
             <b-form-group label="Priority" class="mb-3">
               <b-form-select
-                id="priority"
-                v-model="formData.priority"
+                  id="priority"
+                  v-model="formData.priority"
               >
                 <option value="">Select Priority</option>
                 <option value="High">High</option>
@@ -171,13 +178,14 @@
             </b-form-group>
           </b-form>
 
+          <!-- Modal Footer -->
           <template #modal-footer>
             <b-button variant="secondary" @click="toggleModal">
               Cancel
             </b-button>
             <b-button
-              :variant="isEditing ? 'success' : 'primary'"
-              @click="isEditing ? handleEdit : handleAdd"
+                :variant="isEditing ? 'success' : 'primary'"
+                @click="isEditing ? handleEdit() : handleAdd()"
             >
               {{ isEditing ? 'Update' : 'Add' }}
             </b-button>
@@ -231,33 +239,35 @@ const formData = ref({
   completed: false,
 });
 
-// Table fields configuration
+// Table fields
 const tableFields = [
-  { key: 'checkbox', label: '' },
-  { key: 'task', label: 'Task' },
-  { key: 'priority', label: 'Priority' },
-  { key: 'assign', label: 'Assign' },
-  { key: 'date', label: 'Date' },
-  { key: 'notes', label: 'Notes' },
-  { key: 'edit', label: 'Edit' },
-  { key: 'delete', label: 'Delete' },
+  { key: "checkbox", label: "" },
+  { key: "task", label: "Task" },
+  { key: "priority", label: "Priority" },
+  { key: "assign", label: "Assign" },
+  { key: "date", label: "Date" },
+  { key: "notes", label: "Notes" },
+  { key: "edit", label: "Edit" },
+  { key: "delete", label: "Delete" },
 ];
 
-// Computed properties
+// Computed
 const filteredTodos = computed(() => {
   if (!searchTerm.value) return todos.value;
-
-  const lowerSearchTerm = searchTerm.value.toLowerCase();
-  return todos.value.filter(todo =>
-    todo.task.toLowerCase().includes(lowerSearchTerm) ||
-    todo.assign.toLowerCase().includes(lowerSearchTerm) ||
-    (todo.notes && todo.notes.toLowerCase().includes(lowerSearchTerm)) ||
-    todo.priority.toLowerCase().includes(lowerSearchTerm) ||
-    todo.date.toLowerCase().includes(lowerSearchTerm)
+  const lower = searchTerm.value.toLowerCase();
+  return todos.value.filter(
+      (t) =>
+          t.task.toLowerCase().includes(lower) ||
+          t.assign.toLowerCase().includes(lower) ||
+          (t.notes && t.notes.toLowerCase().includes(lower)) ||
+          t.priority.toLowerCase().includes(lower) ||
+          t.date.toLowerCase().includes(lower)
   );
 });
 
-const totalPages = computed(() => Math.ceil(filteredTodos.value.length / itemsPerPage));
+const totalPages = computed(() =>
+    Math.ceil(filteredTodos.value.length / itemsPerPage)
+);
 
 const paginatedTodos = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
@@ -308,14 +318,13 @@ const handleAdd = () => {
     todos.value.push(newTodo);
     toggleModal();
     resetForm();
-    // Go to last page
     currentPage.value = Math.ceil(todos.value.length / itemsPerPage);
   }
 };
 
 const handleEdit = () => {
   if (formData.value.id && formData.value.task && formData.value.assign && formData.value.date) {
-    const index = todos.value.findIndex(todo => todo.id === formData.value.id);
+    const index = todos.value.findIndex((t) => t.id === formData.value.id);
     if (index !== -1) {
       todos.value[index] = { ...formData.value };
     }
@@ -325,19 +334,14 @@ const handleEdit = () => {
 };
 
 const handleDelete = (id) => {
-  const index = todos.value.findIndex(todo => todo.id === id);
+  const index = todos.value.findIndex((t) => t.id === id);
   if (index !== -1) {
     todos.value.splice(index, 1);
-    // Adjust current page if needed
-    const newPage = Math.min(currentPage.value, Math.ceil(todos.value.length / itemsPerPage));
+    const newPage = Math.min(
+        currentPage.value,
+        Math.ceil(todos.value.length / itemsPerPage)
+    );
     currentPage.value = newPage || 1;
-  }
-};
-
-const toggleTodo = (id) => {
-  const todo = todos.value.find(t => t.id === id);
-  if (todo) {
-    todo.completed = !todo.completed;
   }
 };
 
@@ -346,22 +350,19 @@ const handlePageChange = (page) => {
 };
 
 const handleSearchChange = () => {
-  currentPage.value = 1; // Reset to first page when searching
+  currentPage.value = 1;
 };
 
 const getPriorityVariant = (priority) => {
-  const variantMap = {
-    High: "success",
-    Medium: "warning",
-    Low: "danger",
-  };
-  return variantMap[priority] || "secondary";
+  const map = { High: "success", Medium: "warning", Low: "danger" };
+  return map[priority] || "secondary";
 };
 
-// Watch for changes in filtered todos to adjust current page
-watch(filteredTodos, (newFilteredTodos) => {
-  if (currentPage.value > Math.ceil(newFilteredTodos.length / itemsPerPage)) {
-    currentPage.value = Math.ceil(newFilteredTodos.length / itemsPerPage) || 1;
+// Keep pagination in sync
+watch(filteredTodos, (newList) => {
+  if (currentPage.value > Math.ceil(newList.length / itemsPerPage)) {
+    currentPage.value =
+        Math.ceil(newList.length / itemsPerPage) || 1;
   }
 });
 </script>
