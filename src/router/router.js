@@ -86,6 +86,12 @@ import SignUpPage from '@/views/AuthPage/SignUp/index.vue'
 import SignInWithBgImagePage from '@/views/AuthPage/SignInWithBgImage/index.vue'
 import SignInPage from '@/views/AuthPage/SignIn/index.vue'
 
+// ready to use pages routes
+import FormWizardsPage from '@/views/ReadyToUse/FormWizards/index.vue'
+import FormWizards1Page from '@/views/ReadyToUse/FormWizard1/index.vue'
+import ReadyToUseTablesPage from '@/views/ReadyToUse/ReadyToUseTables/index.vue'
+
+
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -192,6 +198,11 @@ const router = createRouter({
         {path: '/auth-pages/sign-in-with-bg-image', name: 'SignInWithBgImage', component:SignInWithBgImagePage},
         {path: '/auth-pages/sign-in', name: 'SignIn', component:SignInPage},
 
+        //ready to use pages routes
+
+        {path: '/ready-to-use/form-wizards', name: 'FormWizards', component:FormWizardsPage},
+        {path: '/ready-to-use/form-wizard-1', name: 'FormWizard1', component:FormWizards1Page},
+        {path: '/ready-to-use/ready-to-use-tables', name: 'ReadyToUseTables', component:ReadyToUseTablesPage},
 
 
 
