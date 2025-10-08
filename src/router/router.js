@@ -105,6 +105,14 @@ import InvoicePage from '@/views/Apps/invoice/index.vue'
 import ChatPage from '@/views/Apps/Chat/index.vue'
 import FileManagerPage from '@/views/Apps/FileManager/index.vue'
 import BookmarkPage from '@/views/Apps/Bookmark/index.vue'
+import KanbanPage from '@/views/Apps/KanbanBoard/index.vue'
+import TimelinePage from '@/views/Apps/Timeline/index.vue'
+import FaqPage from '@/views/Apps/Faq/index.vue'
+import PricingPage from '@/views/Apps/Pricing/index.vue'
+import GalleryPage from '@/views/Apps/Gallery/index.vue'
+import BlogPage from '@/views/Apps/BlogPages/Blog/index.vue'
+import BlogDetailsPage from '@/views/Apps/BlogPages/BlogDetails/index.vue'
+import AddBlogPage from '@/views/Apps/BlogPages/AddBlog/index.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -206,10 +214,6 @@ const router = createRouter({
 
 
 
-
-
-
-
         // apps routes
         {path: '/apps/calendar', name: 'calendar', component:CalendarPage},
         {path: '/apps/profile-page/profile', name: 'profile', component:ProfilePage},
@@ -223,6 +227,14 @@ const router = createRouter({
         {path: '/apps/chat', name: 'chat', component:ChatPage},
         {path: '/apps/file-manager', name: 'filemanager', component:FileManagerPage},
         {path: '/apps/bookmark', name: 'bookmark', component:BookmarkPage},
+        {path: '/apps/kanban-board', name: 'kanban', component:KanbanPage},
+        {path: '/apps/timeline', name: 'timeline', component:TimelinePage},
+        {path: '/apps/faq', name: 'faq', component:FaqPage},
+        {path: '/apps/pricing', name: 'pricing', component:PricingPage},
+        {path: '/apps/gallery', name: 'gallery', component:GalleryPage},
+        {path: '/apps/blog-page/blog', name: 'blogpage', component:BlogPage},
+        {path: '/apps/blog-page/blog-details', name: 'blogdetails', component:BlogDetailsPage},
+        {path: '/apps/blog-page/add-blog', name: 'addblog', component:AddBlogPage},
     ],
 
 })
