@@ -67,5 +67,6 @@ const footerColumns = [
         :show-actions="false"
         :showFooter=true
         :footerColumns="footerColumns"
+
     />
 </template>

@@ -82,6 +82,7 @@
   .check-box {
     margin-bottom: 0;
   }
+
   span {
     line-break: anywhere;
   }
@@ -100,7 +101,8 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 18px;
-    svg{
+
+    svg {
       font-size: 24px;
     }
 
@@ -123,14 +125,38 @@
     &.active {
       background-color: rgba(var(--primary));
       color: rgba(var(--white), 1);
+
       span {
         color: rgba(var(--white), 1);
       }
+
       &:before {
         border-top: 15px solid rgba(var(--primary));
       }
     }
   }
 }
+
+.navstpes {
+  .tab-light-primary {
+    li {
+      &:not(:last-child) {
+        margin-bottom: 20px;
+
+      }
+    }
+  }
+}
+.custom-navstpes {
+  .tab-light-primary , .business-nav {
+    li {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+
 
 // >>-- 73 Form_wizard_1 css end --<<

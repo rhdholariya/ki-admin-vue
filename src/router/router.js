@@ -90,7 +90,8 @@ import SignInPage from '@/views/AuthPage/SignIn/index.vue'
 import FormWizardsPage from '@/views/ReadyToUse/FormWizards/index.vue'
 import FormWizards1Page from '@/views/ReadyToUse/FormWizard1/index.vue'
 import ReadyToUseTablesPage from '@/views/ReadyToUse/ReadyToUseTables/index.vue'
-
+import FormWizards2Page from '@/views/ReadyToUse/FormWizard2/index.vue'
+import ReadyToUseFormPage from '@/views/ReadyToUse/ReadyToUseForm/index.vue'
 
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
@@ -203,6 +204,8 @@ const router = createRouter({
         {path: '/ready-to-use/form-wizards', name: 'FormWizards', component:FormWizardsPage},
         {path: '/ready-to-use/form-wizard-1', name: 'FormWizard1', component:FormWizards1Page},
         {path: '/ready-to-use/ready-to-use-tables', name: 'ReadyToUseTables', component:ReadyToUseTablesPage},
+        {path: '/ready-to-use/form-wizard-2', name: 'FormWizard2', component:FormWizards2Page},
+        {path: '/ready-to-use/ready-to-use-form', name: 'ReadyToUseForm', component:ReadyToUseFormPage},
 
 
 

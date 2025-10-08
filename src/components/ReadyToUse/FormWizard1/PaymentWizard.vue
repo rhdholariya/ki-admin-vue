@@ -12,7 +12,7 @@ import {
     BFormSelect,
     BButton,
     BTabs,
-    BTab, BFormFloatingLabel, BFormCheckbox,
+    BTab, BFormCheckbox,
 } from "bootstrap-vue-next";
 import {
     PhUserCircle,
@@ -26,7 +26,7 @@ const paymentType = ref("card");
 </script>
 
 <template>
-    <b-card>
+    <b-card no-body>
         <b-card-header>
             <h5>Payment Method Wizards</h5>
         </b-card-header>
@@ -35,7 +35,7 @@ const paymentType = ref("card");
             <div class="form-wizard">
                 <b-row>
                     <!-- Left Sidebar Tabs -->
-                    <b-col xl="3" class="mb-3">
+                    <b-col xl="3">
                         <b-tabs
                             v-model="activeTab"
                             class="flex-column navstpes"
@@ -90,9 +90,9 @@ const paymentType = ref("card");
                                 <b-row>
                                     <b-col cols="12" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Username
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input placeholder="James"/>
                                         </b-form-group>
@@ -100,9 +100,9 @@ const paymentType = ref("card");
 
                                     <b-col cols="12" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Email Address
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input type="email" placeholder="@gmail.com"/>
                                         </b-form-group>
@@ -110,9 +110,9 @@ const paymentType = ref("card");
 
                                     <b-col md="6" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Password
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input type="password" placeholder="******"/>
                                         </b-form-group>
@@ -120,9 +120,9 @@ const paymentType = ref("card");
 
                                     <b-col md="6" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Confirm Password
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input type="password" placeholder="******"/>
                                         </b-form-group>
@@ -137,9 +137,9 @@ const paymentType = ref("card");
                                 <b-row>
                                     <b-col cols="12" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Contact Number
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input placeholder="+91"/>
                                         </b-form-group>
@@ -147,9 +147,9 @@ const paymentType = ref("card");
 
                                     <b-col cols="12" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Address
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input placeholder="156/A ..."/>
                                         </b-form-group>
@@ -157,9 +157,9 @@ const paymentType = ref("card");
 
                                     <b-col cols="12" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >Address 2
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input placeholder="Apartment, studio, or floor"/>
                                         </b-form-group>
@@ -167,9 +167,9 @@ const paymentType = ref("card");
 
                                     <b-col md="6" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >City
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-input placeholder="UK"/>
                                         </b-form-group>
@@ -177,9 +177,9 @@ const paymentType = ref("card");
 
                                     <b-col md="4" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500"
+                                            <label class="form-label f-w-500"
                                             >State
-                                            </b-form-floating-label
+                                            </label
                                             >
                                             <b-form-select>
                                                 <option>Choose...</option>
@@ -191,8 +191,8 @@ const paymentType = ref("card");
 
                                     <b-col md="2" class="mb-3">
                                         <b-form-group>
-                                            <b-form-floating-label class="form-label f-w-500">Zip
-                                            </b-form-floating-label>
+                                            <label class="form-label f-w-500">Zip
+                                            </label>
                                             <b-form-input maxlength="5" placeholder="xxxxx"/>
                                         </b-form-group>
                                     </b-col>
@@ -222,9 +222,9 @@ const paymentType = ref("card");
                                                 <b-row>
                                                     <b-col cols="12" class="mb-3">
                                                         <b-form-group>
-                                                            <b-form-floating-label class="form-label f-w-500"
+                                                            <label class="form-label f-w-500"
                                                             >Cardholder Name
-                                                            </b-form-floating-label
+                                                            </label
                                                             >
                                                             <b-form-input placeholder="Olaf"/>
                                                         </b-form-group>
@@ -232,9 +232,9 @@ const paymentType = ref("card");
 
                                                     <b-col md="6" class="mb-3">
                                                         <b-form-group>
-                                                            <b-form-floating-label class="form-label f-w-500"
+                                                            <label class="form-label f-w-500"
                                                             >Card Number
-                                                            </b-form-floating-label
+                                                            </label
                                                             >
                                                             <b-form-input
                                                                 placeholder="xxxx-xxxx-xxxx-xxx"
@@ -244,9 +244,9 @@ const paymentType = ref("card");
 
                                                     <b-col md="3" class="mb-3">
                                                         <b-form-group>
-                                                            <b-form-floating-label class="form-label f-w-500"
+                                                            <label class="form-label f-w-500"
                                                             >Expiration Date
-                                                            </b-form-floating-label
+                                                            </label
                                                             >
                                                             <b-form-input placeholder="MM/YY"/>
                                                         </b-form-group>
@@ -254,9 +254,9 @@ const paymentType = ref("card");
 
                                                     <b-col md="3" class="mb-3">
                                                         <b-form-group>
-                                                            <b-form-floating-label class="form-label f-w-500"
+                                                            <label class="form-label f-w-500"
                                                             >CVC Code
-                                                            </b-form-floating-label
+                                                            </label
                                                             >
                                                             <b-form-input placeholder="xxx"/>
                                                         </b-form-group>
