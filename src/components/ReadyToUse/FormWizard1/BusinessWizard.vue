@@ -29,19 +29,22 @@ const activeTab = ref('details')
         </b-card-header>
 
         <b-card-body>
+            <div class="form-wizard">
             <b-tabs
                 v-model="activeTab"
                 pills
                 fill
                 content-class="mt-3"
                 active-nav-item-class="active"
-                class="business-nav mb-3"
+                class="custom-navstpes mb-3"
+                nav-class="tab-light-primary"
+
             >
                 <!-- Tab 1: Create Account -->
                 <b-tab key="details" active>
                     <template #title>
                         <div class="d-flex align-items-center justify-content-center">
-                            <PhUserCirclePlus size="25" class="me-2" />
+                            <PhUserCirclePlus size="40" class="me-2" />
                             <span class="f-s-18 f-w-500">Create account</span>
                         </div>
                     </template>
@@ -79,7 +82,7 @@ const activeTab = ref('details')
                 <b-tab key="personal">
                     <template #title>
                         <div class="d-flex align-items-center justify-content-center">
-                            <PhUserSwitch size="25" class="me-2" weight="duotone" />
+                            <PhUserSwitch size="40" class="me-2" weight="duotone" />
                             <span class="f-s-18 f-w-500">Personal account</span>
                         </div>
                     </template>
@@ -136,7 +139,7 @@ const activeTab = ref('details')
                 <b-tab key="payment">
                     <template #title>
                         <div class="d-flex align-items-center justify-content-center">
-                            <PhCreditCard size="25" class="me-2" weight="duotone" />
+                            <PhCreditCard size="40" class="me-2" weight="duotone" />
                             <span class="f-s-18 f-w-500">Payment method</span>
                         </div>
                     </template>
@@ -169,6 +172,7 @@ const activeTab = ref('details')
                     </b-form>
                 </b-tab>
             </b-tabs>
+            </div>
         </b-card-body>
     </b-card>
 </template>

@@ -30,6 +30,7 @@ const activeTab = ref('step1')
         </b-card-header>
 
         <b-card-body>
+            <div class="form-wizard">
             <!-- Horizontal Tabs -->
             <b-tabs
                 v-model="activeTab"
@@ -38,6 +39,7 @@ const activeTab = ref('step1')
                 content-class="mt-3"
                 active-nav-item-class="active"
                 class="custom-navstpes mb-3"
+                nav-class="tab-light-primary"
             >
                 <!-- Step 1 -->
                 <b-tab key="step1" active>
@@ -231,6 +233,7 @@ const activeTab = ref('step1')
                     </div>
                 </b-tab>
             </b-tabs>
+            </div>
         </b-card-body>
     </b-card>
 </template>
