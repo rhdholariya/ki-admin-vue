@@ -93,6 +93,9 @@ import ReadyToUseTablesPage from '@/views/ReadyToUse/ReadyToUseTables/index.vue'
 import FormWizards2Page from '@/views/ReadyToUse/FormWizard2/index.vue'
 import ReadyToUseFormPage from '@/views/ReadyToUse/ReadyToUseForm/index.vue'
 
+// Form validation routes
+import FormValidationPage from '@/views/ FormsElements/FormValidation/index.vue'
+
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -222,6 +225,8 @@ const router = createRouter({
         {path: '/ready-to-use/form-wizard-2', name: 'FormWizard2', component:FormWizards2Page},
         {path: '/ready-to-use/ready-to-use-form', name: 'ReadyToUseForm', component:ReadyToUseFormPage},
 
+        //Form validation routes
+        {path: '/forms-elements/form-validation', name: 'FormValidation', component:FormValidationPage},
 
 
         // apps routes
