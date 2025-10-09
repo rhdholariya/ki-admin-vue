@@ -24,26 +24,28 @@ const FilePond = vueFilePond(
 
 const files = ref([]);
 
-const handleUpdateFiles = (fileItems) => {
-  files.value = fileItems.map(fileItem => fileItem.file);
+
+const handleFileUpdate = (fileItems) => {
+  files.value = fileItems.map(item => item.file);
 };
+
 </script>
 
 
 
 <template>
   <div>
-    <FilePond
+    <file-pond
+        className="filepond-1"
         ref="pond"
+        name="files"
+        label-idle='<PhAddressBook :size="32" />
+                 <div class="filepond--label-action text-decoration-none">
+                    Upload Your Department Images</div>'
         :files="files"
-        @updatefiles="handleUpdateFiles"
         allow-multiple
         :max-files="5"
-        name="files"
-        class="filelight file-light-secondary post-upload"
-        label-idle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-        accepted-file-types='["image/*", "application/pdf"]'
-        max-file-size="5MB"
+        @updatefiles="handleFileUpdate"
     />
   </div>
 </template>

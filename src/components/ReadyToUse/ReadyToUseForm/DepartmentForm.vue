@@ -3,13 +3,8 @@ import { ref } from "vue";
 import { BCard, BCardHeader, BCardBody, BRow, BCol, BForm,
     BFormGroup, BFormInput, BFormSelect, BFormTextarea, BButton } from "bootstrap-vue-next";
 
-import vueFilePond from "vue-filepond";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import "filepond/dist/filepond.min.css";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import FileUploader from "@/components/Apps/Profile/FileUploader.vue";
 
-const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType);
 
 // Form data
 const form = ref({
@@ -21,10 +16,6 @@ const form = ref({
 });
 
 const files = ref([]);
-
-const handleFileUpdate = (fileItems) => {
-    files.value = fileItems.map(item => item.file);
-};
 
 const handleSubmit = () => {
     console.log("Form submitted:", form.value, files.value);
@@ -88,18 +79,7 @@ const handleReset = () => {
                     <!-- Upload Files -->
                     <b-col cols="12" class="mb-3">
                         <b-form-group label="Upload Files">
-                            <file-pond
-                                className="filepond-1"
-                                ref="pond"
-                                name="files"
-                                label-idle='<PhAddressBook :size="32" />
-                 <div class="filepond--label-action text-decoration-none">
-                    Upload Your Department Images</div>'
-                                :files="files"
-                                allow-multiple
-                                :max-files="5"
-                                @updatefiles="handleFileUpdate"
-                            />
+                          <FileUploader />
                         </b-form-group>
                     </b-col>
 

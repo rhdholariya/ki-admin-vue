@@ -114,6 +114,13 @@ import GalleryPage from '@/views/Apps/Gallery/index.vue'
 import BlogPage from '@/views/Apps/BlogPages/Blog/index.vue'
 import BlogDetailsPage from '@/views/Apps/BlogPages/BlogDetails/index.vue'
 import AddBlogPage from '@/views/Apps/BlogPages/AddBlog/index.vue'
+import CartPage from '@/views/Apps/EshopPage/Cart/index.vue'
+import ProductPage from '@/views/Apps/EshopPage/Product/index.vue'
+import AddProductPage from '@/views/Apps/EshopPage/AddProduct/index.vue'
+import AddProductDetailsPage from '@/views/Apps/EshopPage/ProductDetails/index.vue'
+import ProductListPage from '@/views/Apps/EshopPage/ProductList/index.vue'
+
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -238,6 +245,11 @@ const router = createRouter({
         {path: '/apps/blog-page/blog', name: 'blogpage', component:BlogPage},
         {path: '/apps/blog-page/blog-details', name: 'blogdetails', component:BlogDetailsPage},
         {path: '/apps/blog-page/add-blog', name: 'addblog', component:AddBlogPage},
+        {path: '/apps/e-shop/cart', name: 'cart', component:CartPage},
+        {path: '/apps/e-shop/product', name: 'product', component:ProductPage},
+        {path: '/apps/e-shop/add-product', name: 'addproduct', component:AddProductPage},
+        {path: '/apps/e-shop/product-details', name: 'product-details', component:AddProductDetailsPage},
+        {path: '/apps/e-shop/product-list', name: 'product-list', component:ProductListPage},
     ],
 
 })
