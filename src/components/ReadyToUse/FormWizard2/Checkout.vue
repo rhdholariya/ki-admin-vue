@@ -238,7 +238,7 @@ const handlePaymentSelect = (method) => {
                             </b-col>
 
                             <!-- Add Address Modal -->
-                            <b-modal v-model="modalOpen" title="Add New Address" hide-footer>
+                            <b-modal v-model="modalOpen" title="Add New Address">
                                 <b-form class="app-form">
                                     <b-row form>
                                         <b-col md="12">
@@ -288,12 +288,12 @@ const handlePaymentSelect = (method) => {
                                         </b-col>
                                     </b-row>
                                 </b-form>
-                                <div class="mt-3 text-end">
+                                <template #footer>
                                     <b-button variant="secondary" @click="toggleModal" class="me-2">
                                         Close
                                     </b-button>
                                     <b-button variant="primary">Add</b-button>
-                                </div>
+                                </template>
                             </b-modal>
 
                             <!-- Delivery Method -->

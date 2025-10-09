@@ -12,10 +12,10 @@ import Booking from "@/components/ReadyToUse/FormWizard2/Booking.vue";
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "form wizards 1",
+    title: "form wizards 2",
     items: [
         {label: "Ready To Use", icon: PhHandHeart},
-        {label: "form wizards 1", active: true},
+        {label: "form wizards 2", active: true},
     ],
 };
 </script>
