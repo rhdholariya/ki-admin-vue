@@ -38,10 +38,6 @@ const errors = ref({
     zipCode: ''
 })
 
-const handleChange = (field, value) => {
-    formData.value[field] = value
-    if (submitted.value) validateField(field)
-}
 
 const validateField = (field) => {
     switch (field) {
@@ -83,7 +79,6 @@ const handleSubmit = (e) => {
         loading.value = true
         setTimeout(() => {
             loading.value = false
-            // Reset form
             Object.keys(formData.value).forEach(key => formData.value[key] = '')
             submitted.value = false
         }, 1500)
@@ -214,7 +209,6 @@ const handleSubmit = (e) => {
                             <span v-else>Submit</span>
                         </b-button>
                     </b-col>
-
                 </b-form>
             </b-card-body>
         </b-card>

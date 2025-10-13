@@ -5,8 +5,8 @@ import AppLayout from "@/views/AppLayout.vue";
 import {PhCardholder} from "@phosphor-icons/vue";
 import TooltipsValidation from "@/components/FormsElements/FormValidation/TooltipsValidation.vue";
 import CustomValidation from "@/components/FormsElements/FormValidation/CustomValidation.vue";
-import DepartmentForm from "@/components/ReadyToUse/ReadyToUseForm/DepartmentForm.vue";
-
+import DefaultsValidation from "@/components/FormsElements/FormValidation/DefaultsValidation.vue";
+import SupportedValidation from "@/components/FormsElements/FormValidation/SupportedValidation.vue";
 
 
 // Breadcrumb data
@@ -27,9 +27,10 @@ const breadcrumbItems = {
             <b-container fluid>
                 <b-row>
                     <b-col cols="12">
-                        <TooltipsValidation />
-                        <CustomValidation />
-                        <DepartmentForm />
+                        <TooltipsValidation/>
+                        <CustomValidation/>
+                        <DefaultsValidation/>
+                        <SupportedValidation/>
                     </b-col>
 
                 </b-row>

@@ -38,7 +38,6 @@ const errors = ref({
     termsAgreed: ''
 })
 
-// Track if user has interacted with field
 const touched = ref({
     firstName: false,
     lastName: false,
@@ -56,80 +55,113 @@ const handleChange = (field, value) => {
 }
 
 const validateField = (field) => {
+    const value = formData.value[field]
+
     switch (field) {
         case 'firstName':
-            errors.value.firstName = formData.value.firstName ? '' : 'Please provide first name.'
+            errors.value.firstName = value ? '' : 'Please provide first name.'
             break
         case 'lastName':
-            errors.value.lastName = formData.value.lastName ? '' : 'Please provide last name.'
+            errors.value.lastName = value ? '' : 'Please provide last name.'
             break
         case 'username':
-            errors.value.username = formData.value.username ? '' : 'Please choose a username.'
+            errors.value.username = value ? '' : 'Please choose a username.'
             break
         case 'city':
-            errors.value.city = formData.value.city ? '' : 'Please provide a valid city.'
+            errors.value.city = value ? '' : 'Please provide a valid city.'
             break
         case 'state':
-            errors.value.state = formData.value.state ? '' : 'Please select a state.'
+            errors.value.state = value ? '' : 'Please select a state.'
             break
         case 'zip':
-            errors.value.zip = formData.value.zip ? '' : 'Please provide a valid zip.'
+            errors.value.zip = value ? '' : 'Please provide a valid zip.'
             break
         case 'termsAgreed':
-            errors.value.termsAgreed = formData.value.termsAgreed ? '' : 'You must agree before submitting.'
+            errors.value.termsAgreed = value ? '' : 'You must agree before submitting.'
+            break
+        default:
             break
     }
 }
 
-const validate = () => {
+const validateForm = () => {
     Object.keys(formData.value).forEach((key) => {
         touched.value[key] = true
         validateField(key)
     })
-    return Object.values(errors.value).every(err => err === '')
+    return Object.values(errors.value).every(error => error === '')
 }
 
-const handleSubmit = (e) => {
-    e.preventDefault()
-    if (validate()) {
+const handleSubmit = (event) => {
+    event.preventDefault()
+
+    if (validateForm()) {
         loading.value = true
+
+        // Simulate API call
         setTimeout(() => {
             loading.value = false
-            Object.keys(formData.value).forEach(key => {
-                formData.value[key] = typeof formData.value[key] === 'boolean' ? false : ''
+
+            // Reset form
+            formData.value = {
+                firstName: '',
+                lastName: '',
+                username: '',
+                city: '',
+                state: '',
+                zip: '',
+                termsAgreed: false
+            }
+
+            // Reset validation states
+            Object.keys(touched.value).forEach(key => {
                 touched.value[key] = false
             })
+
+            Object.keys(errors.value).forEach(key => {
+                errors.value[key] = ''
+            })
+
+            alert('Form submitted successfully!')
         }, 1500)
     }
+}
+
+const getFieldState = (field) => {
+    if (!touched.value[field]) return null
+    return errors.value[field] ? false : true
+}
+
+const showFieldFeedback = (field) => {
+    return touched.value[field] && (errors.value[field] || !errors.value[field])
 }
 </script>
 
 <template>
-    <b-col xs="12">
+    <b-col cols="12">
         <b-card no-body>
             <b-card-header>
-                <h5>Custom Styles</h5>
-                <p class="text-secondary">
+                <h5 class="mb-2">Custom Styles</h5>
+                <p class="text-secondary mb-0">
                     Validation messages now take space and show green "Looks good!" for valid fields and red messages for invalid fields.
                 </p>
             </b-card-header>
 
             <b-card-body>
-                <b-form @submit="handleSubmit" novalidate class="row g-3 app-form">
-
+                <b-form @submit="handleSubmit" novalidate class="row g-3">
                     <!-- First Name -->
                     <b-col md="4">
                         <b-form-group label="First Name">
                             <b-form-input
                                 type="text"
                                 v-model="formData.firstName"
-                                :state="touched.firstName ? (errors.firstName ? false : true) : null"
-
+                                :state="getFieldState('firstName')"
+                                @blur="handleChange('firstName', formData.firstName)"
                             />
                             <b-form-invalid-feedback v-if="touched.firstName && errors.firstName">
                                 {{ errors.firstName }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.firstName && !errors.firstName">
+                            <b-form-valid-feedback v-if="touched.firstName && !errors.firstName">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
@@ -141,13 +173,13 @@ const handleSubmit = (e) => {
                             <b-form-input
                                 type="text"
                                 v-model="formData.lastName"
-                                :state="touched.lastName ? (errors.lastName ? false : true) : null"
-
+                                :state="getFieldState('lastName')"
+                                @blur="handleChange('lastName', formData.lastName)"
                             />
                             <b-form-invalid-feedback v-if="touched.lastName && errors.lastName">
                                 {{ errors.lastName }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.lastName && !errors.lastName">
+                            <b-form-valid-feedback v-if="touched.lastName && !errors.lastName">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
@@ -159,13 +191,13 @@ const handleSubmit = (e) => {
                             <b-form-input
                                 type="text"
                                 v-model="formData.username"
-                                :state="touched.username ? (errors.username ? false : true) : null"
-
+                                :state="getFieldState('username')"
+                                @blur="handleChange('username', formData.username)"
                             />
                             <b-form-invalid-feedback v-if="touched.username && errors.username">
                                 {{ errors.username }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.username && !errors.username">
+                            <b-form-valid-feedback v-if="touched.username && !errors.username">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
@@ -177,13 +209,13 @@ const handleSubmit = (e) => {
                             <b-form-input
                                 type="text"
                                 v-model="formData.city"
-                                :state="touched.city ? (errors.city ? false : true) : null"
-
+                                :state="getFieldState('city')"
+                                @blur="handleChange('city', formData.city)"
                             />
                             <b-form-invalid-feedback v-if="touched.city && errors.city">
                                 {{ errors.city }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.city && !errors.city">
+                            <b-form-valid-feedback v-if="touched.city && !errors.city">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
@@ -194,18 +226,20 @@ const handleSubmit = (e) => {
                         <b-form-group label="State">
                             <b-form-select
                                 v-model="formData.state"
-                                :state="touched.state ? (errors.state ? false : true) : null"
-                                @change="handleChange('state', $event)"
+                                :state="getFieldState('state')"
+                                @change="handleChange('state', formData.state)"
                             >
                                 <option value="">Choose...</option>
                                 <option value="NY">New York</option>
                                 <option value="CA">California</option>
                                 <option value="TX">Texas</option>
+                                <option value="FL">Florida</option>
+                                <option value="IL">Illinois</option>
                             </b-form-select>
                             <b-form-invalid-feedback v-if="touched.state && errors.state">
                                 {{ errors.state }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.state && !errors.state">
+                            <b-form-valid-feedback v-if="touched.state && !errors.state">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
@@ -217,43 +251,50 @@ const handleSubmit = (e) => {
                             <b-form-input
                                 type="text"
                                 v-model="formData.zip"
-                                :state="touched.zip ? (errors.zip ? false : true) : null"
-
+                                :state="getFieldState('zip')"
+                                @blur="handleChange('zip', formData.zip)"
+                                maxlength="5"
                             />
                             <b-form-invalid-feedback v-if="touched.zip && errors.zip">
                                 {{ errors.zip }}
                             </b-form-invalid-feedback>
-                            <b-form-valid-feedback v-else-if="touched.zip && !errors.zip">
+                            <b-form-valid-feedback v-if="touched.zip && !errors.zip">
                                 Looks good!
                             </b-form-valid-feedback>
                         </b-form-group>
                     </b-col>
 
-                    <!-- Terms -->
-                    <b-col md="12" class="mt-3">
-                        <b-form-checkbox
-                            v-model="formData.termsAgreed"
-                            :state="touched.termsAgreed ? (errors.termsAgreed ? false : true) : null"
-
-                        >
-                            Agree to terms and conditions
-                        </b-form-checkbox>
-                        <b-form-invalid-feedback v-if="touched.termsAgreed && errors.termsAgreed">
-                            {{ errors.termsAgreed }}
-                        </b-form-invalid-feedback>
-                        <b-form-valid-feedback v-else-if="touched.termsAgreed && !errors.termsAgreed">
-                            Looks good!
-                        </b-form-valid-feedback>
+                    <!-- Terms Agreement -->
+                    <b-col cols="12" class="mt-2">
+                        <b-form-group>
+                            <b-form-checkbox
+                                v-model="formData.termsAgreed"
+                                :state="getFieldState('termsAgreed')"
+                                @change="handleChange('termsAgreed', formData.termsAgreed)"
+                            >
+                                Agree to terms and conditions
+                            </b-form-checkbox>
+                            <b-form-invalid-feedback v-if="touched.termsAgreed && errors.termsAgreed">
+                                {{ errors.termsAgreed }}
+                            </b-form-invalid-feedback>
+                            <b-form-valid-feedback v-if="touched.termsAgreed && !errors.termsAgreed">
+                                Looks good!
+                            </b-form-valid-feedback>
+                        </b-form-group>
                     </b-col>
 
-                    <!-- Submit -->
-                    <b-col md="12">
-                        <b-button type="submit" variant="primary">
-                            <b-spinner v-if="loading" small></b-spinner>
-                            <span v-else>Submit form</span>
+                    <!-- Submit Button -->
+                    <b-col cols="12">
+                        <b-button
+                            type="submit"
+                            variant="primary"
+                            :disabled="loading"
+                            class="px-4"
+                        >
+                            <BSpinner v-if="loading" small class="me-2" />
+                            <span>{{ loading ? 'Submitting...' : 'Submit Form' }}</span>
                         </b-button>
                     </b-col>
-
                 </b-form>
             </b-card-body>
         </b-card>
