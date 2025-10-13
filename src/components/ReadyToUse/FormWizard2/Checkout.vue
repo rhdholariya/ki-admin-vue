@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import {
-    BCard, BCardHeader, BCardBody, BRow, BTable, BBadge, BButton,
-    BFormInput, BModal, BForm, BFormCheckbox, BFormGroup,
+    BCard, BCardHeader, BCardBody, BRow, BBadge, BButton,
+    BFormInput, BModal, BForm, BFormGroup,
     BFormRadio, BFormSelect, BAlert, BAccordion, BAccordionItem, BCol, BTableSimple
 } from 'bootstrap-vue-next';
 import {
@@ -21,12 +21,12 @@ const showAlert = ref(true);
 const giftWrapVisible = ref(true);
 
 const tabs = ref([
-    { id: 'tabs1', label: 'Cart', icon: PhShoppingCart, step: 'Step 1' },
-    { id: 'tabs2', label: 'Address', icon: PhBook, step: 'Step 2' },
-    { id: 'tabs3', label: 'Payment', icon: PhCurrencyDollar, step: 'Step 3' },
-    { id: 'tabs4', label: 'Offers', icon: PhCheckSquare, step: 'Step 4' },
-    { id: 'tabs5', label: 'Review', icon: PhListChecks, step: 'Step 5' },
-    { id: 'tabs6', label: 'Completed', icon: PhListChecks, step: 'Step 6' }
+    {id: 'tabs1', label: 'Cart', icon: PhShoppingCart, step: 'Step 1'},
+    {id: 'tabs2', label: 'Address', icon: PhBook, step: 'Step 2'},
+    {id: 'tabs3', label: 'Payment', icon: PhCurrencyDollar, step: 'Step 3'},
+    {id: 'tabs4', label: 'Offers', icon: PhCheckSquare, step: 'Step 4'},
+    {id: 'tabs5', label: 'Review', icon: PhListChecks, step: 'Step 5'},
+    {id: 'tabs6', label: 'Completed', icon: PhListChecks, step: 'Step 6'}
 ]);
 
 const cartItems = ref([
@@ -126,7 +126,7 @@ const handlePaymentSelect = (method) => {
                         >
                             <div class="d-flex align-items-center">
                                 <div class="steps ms-2">
-                                    <component :is="tab.icon" />
+                                    <component :is="tab.icon"/>
                                 </div>
                                 <div class="ps-3">
                                     <h5>{{ tab.label }}</h5>
@@ -145,7 +145,7 @@ const handlePaymentSelect = (method) => {
                                 <div v-for="item in cartItems" :key="item.id" class="cart-box">
                                     <div class="bg-light-secondary rounded overflow-hidden">
                                         <a href="#">
-                                            <img :src="item.image" alt="" class="w-80" />
+                                            <img :src="item.image" alt="" class="w-80"/>
                                         </a>
                                     </div>
                                     <div class="flex-grow-1 px-3">
@@ -197,7 +197,7 @@ const handlePaymentSelect = (method) => {
                                             <span class="fs-6 tab-heading ms-2">Home Address</span>
                                         </b-form-group>
                                         <p class="text-muted">
-                                            260 Zulma Stravenue, Wisozkton, KY 44193-0738<br />
+                                            260 Zulma Stravenue, Wisozkton, KY 44193-0738<br/>
                                             collins@stroman.net
                                         </p>
                                         <p>+1 828-726-3669</p>
@@ -218,7 +218,7 @@ const handlePaymentSelect = (method) => {
                                             <span class="fs-6 tab-heading ms-2">Office Address</span>
                                         </b-form-group>
                                         <p class="text-muted">
-                                            90897 Franecki Haven, West Maximo, KY 40770-5993<br />
+                                            90897 Franecki Haven, West Maximo, KY 40770-5993<br/>
                                             bjast@hotmail.com
                                         </p>
                                         <p>+1 863-422-2979</p>
@@ -226,18 +226,17 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Add New Address -->
                             <b-col md="6">
                                 <b-card class="shadow-none">
                                     <b-card-body class="added-content">
                                         <a role="button" class="link-primary" @click="toggleModal">
-                                            <PhPlus size="16" /> Add A New Address
+                                            <PhPlus size="16"/>
+                                            Add A New Address
                                         </a>
                                     </b-card-body>
                                 </b-card>
                             </b-col>
 
-                            <!-- Add Address Modal -->
                             <b-modal v-model="modalOpen" title="Add New Address">
                                 <b-form class="app-form">
                                     <b-row form>
@@ -296,7 +295,6 @@ const handlePaymentSelect = (method) => {
                                 </template>
                             </b-modal>
 
-                            <!-- Delivery Method -->
                             <b-col md="12">
                                 <h5 class="fs-6 tab-heading mb-3">Delivery Method</h5>
                             </b-col>
@@ -330,7 +328,8 @@ const handlePaymentSelect = (method) => {
                                             />
                                             <span class="ms-2">
                                                 <span class="fs-6 tab-heading">Priority overnight -$18.50</span>
-                                                <span class="d-block text-secondary">Based on chosen delivery date</span>
+                                                <span
+                                                    class="d-block text-secondary">Based on chosen delivery date</span>
                                             </span>
                                         </b-form-group>
                                     </b-card-body>
@@ -341,21 +340,21 @@ const handlePaymentSelect = (method) => {
                             <b-col md="12" v-if="showAlert">
                                 <div class="alert alert-border-info">
                                     <p>
-                                        <PhInfo size="16" class="me-1 text-info" />
+                                        <PhInfo size="16" class="me-1 text-info"/>
                                         Expected delivery data is not guaranteed, if you are
                                         ordering for an event we suggest allowing 1 extra days.
                                     </p>
                                     <div class="text-end">
-                                        <a href="#" class="link-primary text-d-underline">Don't allow</a>
-                                        <a href="#" class="link-primary text-d-underline ms-2">Allow</a>
+                                        <RouterLink class="link-primary text-d-underline" to="#">Don't allow
+                                        </RouterLink>
+                                        <RouterLink to="#" class="link-primary text-d-underline ms-2">Allow</RouterLink>
                                     </div>
                                 </div>
                             </b-col>
                         </b-row>
 
-                        <!-- Payment Tab -->
+
                         <b-row v-if="currentTab === 'tabs3'">
-                            <!-- Credit/Debit Card -->
                             <b-col md="12">
                                 <b-card class="shadow-none">
                                     <b-card-body class="select-content">
@@ -419,7 +418,6 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Visa Card -->
                             <b-col md="6">
                                 <b-card class="shadow-none" no-body>
                                     <b-card-body class="select-content">
@@ -445,7 +443,6 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- PayPal -->
                             <b-col md="6">
                                 <b-card class="shadow-none" no-body>
                                     <b-card-body class="select-content">
@@ -471,7 +468,6 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- UPI Apps -->
                             <b-col md="12">
                                 <b-card class="shadow-none" no-body>
                                     <b-card-body class="select-content">
@@ -504,8 +500,10 @@ const handlePaymentSelect = (method) => {
                                             />
                                             <span class="d-flex align-items-center">
                                                 <span class="ms-2">
-                                                    <span class="fs-6 tab-heading">Cash on Delivery/Pay on Delivery</span>
-                                                    <span class="d-block text-secondary">Cash,UPI and Cards accepted.</span>
+                                                    <span
+                                                        class="fs-6 tab-heading">Cash on Delivery/Pay on Delivery</span>
+                                                    <span
+                                                        class="d-block text-secondary">Cash,UPI and Cards accepted.</span>
                                                 </span>
                                             </span>
                                         </b-form-group>
@@ -514,7 +512,7 @@ const handlePaymentSelect = (method) => {
                             </b-col>
                         </b-row>
 
-                        <!-- Offers Tab -->
+
                         <b-row v-if="currentTab === 'tabs4'" class="offer-content-box">
                             <!-- Bank Offers -->
                             <b-col md="6" xxl="4">
@@ -567,7 +565,7 @@ const handlePaymentSelect = (method) => {
                                 <ul class="list-group b-r-0 list-contact-box offer-list-group mb-3">
                                     <li v-for="(offer, index) in offers" :key="index" class="list-group-item">
                                         <div class="d-flex align-items-center">
-                                            <b-form-radio :id="`offerCheck${index}`" />
+                                            <b-form-radio :id="`offerCheck${index}`"/>
                                             <div class="text-truncate ms-2">
                                                 <h6 class="mb-0">{{ offer.title }}</h6>
                                                 <p class="text-secondary mb-0">
@@ -582,7 +580,8 @@ const handlePaymentSelect = (method) => {
 
                             <!-- Gift Wrap Alert -->
                             <b-col md="12" v-if="giftWrapVisible">
-                                <b-alert variant="success" show class="alert-light-border-success d-flex align-items-center justify-content-between">
+                                <b-alert variant="success" show
+                                         class="alert-light-border-success d-flex align-items-center justify-content-between">
                                     <p class="mb-0">
                                         <i class="ti ti-gift f-s-18 me-2"></i>Gift wrap
                                         and personalized message on card, Only for $10.50 USD
@@ -592,7 +591,7 @@ const handlePaymentSelect = (method) => {
                             </b-col>
                         </b-row>
 
-                        <!-- Review Tab -->
+
                         <b-row v-if="currentTab === 'tabs5'">
                             <b-col cols="6" sm="2" class="mb-3">
                                 <b-card class="bg-light-dark b-r-10">
@@ -632,7 +631,8 @@ const handlePaymentSelect = (method) => {
                             <b-col cols="12">
                                 <div>
                                     <h6 class="tab-heading">Product details</h6>
-                                    <b-accordion flush id="nestingExample" class="app-accordion accordion-secondary app-accordion-plus">
+                                    <b-accordion flush id="nestingExample"
+                                                 class="app-accordion accordion-secondary app-accordion-plus">
                                         <b-accordion-item title="Tom & Jerry Printed T-Shirt" visible>
                                             <p><span class="text-secondary f-w-500">size</span> : medium</p>
                                             <p><span class="text-secondary f-w-500">color</span> : Green</p>
@@ -657,12 +657,12 @@ const handlePaymentSelect = (method) => {
                             </b-col>
                         </b-row>
 
-                        <!-- Completed Tab -->
+
                         <b-row v-if="currentTab === 'tabs6'">
                             <b-col cols="12">
                                 <div class="text-center">
                                     <div class="mb-3">
-                                        <img src="/images/form/done.gif" alt="" />
+                                        <img src="/images/form/done.gif" alt=""/>
                                     </div>
                                     <h5 class="text-success"> Your Order #7AD6728 Placed, Thank you!</h5>
                                     <p>Confirmation will be sent to Your Email</p>
@@ -679,11 +679,13 @@ const handlePaymentSelect = (method) => {
                                     </b-col>
 
                                     <!-- Preference Options -->
-                                    <b-col v-for="option in preferenceOptions" :key="option.id" md="6" xl="4" class="mt-4">
+                                    <b-col v-for="option in preferenceOptions" :key="option.id" md="6" xl="4"
+                                           class="mt-4">
                                         <b-card class="shadow-none" no-body>
                                             <b-card-body class="address-content">
                                                 <b-form-group class="d-flex">
-                                                    <b-form-radio :value="option.id" v-model="selectedPreference" name="preference" />
+                                                    <b-form-radio :value="option.id" v-model="selectedPreference"
+                                                                  name="preference"/>
                                                     <span class="fs-6 tab-heading ms-2">{{ option.title }}</span>
                                                 </b-form-group>
                                                 <p class="mb-0">{{ option.description }}</p>
@@ -696,7 +698,7 @@ const handlePaymentSelect = (method) => {
                     </div>
                 </b-col>
 
-                <!-- Order Summary -->
+
                 <b-col lg="4" xl="3">
                     <b-card no-body>
                         <b-card-header>

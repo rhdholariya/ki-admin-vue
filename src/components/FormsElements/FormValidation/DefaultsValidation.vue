@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import {
+    BButton,
     BCard,
     BCardHeader,
     BCardBody,
@@ -10,22 +11,30 @@ import {
     BFormInput,
     BFormSelect,
     BFormCheckbox,
-    BButton,
-    BSpinner,
     BInputGroup,
-    BInputGroupText
+    BInputGroupText,
+    BSpinner
 } from 'bootstrap-vue-next'
 
+// reactive state
 const loading = ref(false)
 const isChecked = ref(false)
 
-const handleCheckboxChange = (val) => {
-    isChecked.value = val
-}
+// form data model
+const formData = ref({
+    firstName: '',
+    lastName: '',
+    username: '',
+    city: '',
+    state: '',
+    zip: ''
+})
 
+// submit handler
 const handleSubmit = (e) => {
     e.preventDefault()
     loading.value = true
+
     setTimeout(() => {
         loading.value = false
     }, 1500)
@@ -33,8 +42,8 @@ const handleSubmit = (e) => {
 </script>
 
 <template>
-    <b-col xs="12">
-        <b-card>
+    <b-col cols="12">
+        <b-card no-body>
             <b-card-header>
                 <h5>Browser Defaults</h5>
                 <p class="text-secondary">
@@ -47,14 +56,14 @@ const handleSubmit = (e) => {
             </b-card-header>
 
             <b-card-body>
-                <b-form class="row g-3 app-form" @submit="handleSubmit" novalidate>
-
+                <b-form class="row g-3 app-form" @submit="handleSubmit">
                     <!-- First Name -->
                     <b-col md="4">
-                        <b-form-group label="First name">
+                        <b-form-group label="First name" label-for="firstName">
                             <b-form-input
+                                id="firstName"
+                                v-model="formData.firstName"
                                 type="text"
-                                name="firstName"
                                 required
                             />
                         </b-form-group>
@@ -62,10 +71,11 @@ const handleSubmit = (e) => {
 
                     <!-- Last Name -->
                     <b-col md="4">
-                        <b-form-group label="Last name">
+                        <b-form-group label="Last name" label-for="lastName">
                             <b-form-input
+                                id="lastName"
+                                v-model="formData.lastName"
                                 type="text"
-                                name="lastName"
                                 required
                             />
                         </b-form-group>
@@ -73,12 +83,13 @@ const handleSubmit = (e) => {
 
                     <!-- Username -->
                     <b-col md="4">
-                        <b-form-group label="Username">
+                        <b-form-group label="Username" label-for="username">
                             <b-input-group>
                                 <b-input-group-text>@</b-input-group-text>
                                 <b-form-input
+                                    id="username"
+                                    v-model="formData.username"
                                     type="text"
-                                    name="username"
                                     required
                                 />
                             </b-input-group>
@@ -87,10 +98,11 @@ const handleSubmit = (e) => {
 
                     <!-- City -->
                     <b-col md="6">
-                        <b-form-group label="City">
+                        <b-form-group label="City" label-for="city">
                             <b-form-input
+                                id="city"
+                                v-model="formData.city"
                                 type="text"
-                                name="city"
                                 required
                             />
                         </b-form-group>
@@ -98,49 +110,56 @@ const handleSubmit = (e) => {
 
                     <!-- State -->
                     <b-col md="3">
-                        <b-form-group label="State">
+                        <b-form-group label="State" label-for="state">
                             <b-form-select
-                                name="state"
+                                id="state"
+                                v-model="formData.state"
                                 required
-                                :options="[
-                  { value: '', text: 'Choose...', disabled: true },
-                  { value: 'NY', text: 'New York' },
-                  { value: 'CA', text: 'California' },
-                  { value: 'TX', text: 'Texas' }
-                ]"
-                            ></b-form-select>
+                            >
+                                <option disabled value="">Choose...</option>
+                                <option>New York</option>
+                                <option>California</option>
+                                <option>Texas</option>
+                            </b-form-select>
                         </b-form-group>
                     </b-col>
 
                     <!-- Zip -->
                     <b-col md="3">
-                        <b-form-group label="Zip">
+                        <b-form-group label="Zip" label-for="zip">
                             <b-form-input
+                                id="zip"
+                                v-model="formData.zip"
                                 type="text"
-                                name="zip"
                                 required
                             />
                         </b-form-group>
                     </b-col>
 
-                    <!-- Terms Checkbox -->
-                    <b-col cols="12">
-                        <b-form-checkbox
-                            v-model="isChecked"
-                            required
-                        >
-                            Agree to terms and conditions
-                        </b-form-checkbox>
+                    <!-- Checkbox -->
+                    <b-col md="12">
+                        <b-form-group>
+                            <b-form-checkbox
+                                v-model="isChecked"
+                                name="termsAgreed"
+                                required
+                            >
+                                Agree to terms and conditions
+                            </b-form-checkbox>
+                        </b-form-group>
                     </b-col>
 
-                    <!-- Submit -->
-                    <b-col cols="12" class="text-end">
+                    <!-- Submit Button -->
+                    <b-col md="12" class="text-end">
                         <b-button type="submit" variant="primary">
-                            <b-spinner v-if="loading" small></b-spinner>
-                            <span v-else>Submit form</span>
+                            <template v-if="loading">
+                                <b-spinner small />
+                            </template>
+                            <template v-else>
+                                Submit form
+                            </template>
                         </b-button>
                     </b-col>
-
                 </b-form>
             </b-card-body>
         </b-card>

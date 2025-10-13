@@ -34,7 +34,7 @@ const paymentType = ref("card");
         <b-card-body>
             <div class="form-wizard">
                 <b-row>
-                    <!-- Left Sidebar Tabs -->
+
                     <b-col xl="3">
                         <b-tabs
                             v-model="activeTab"
@@ -82,9 +82,8 @@ const paymentType = ref("card");
                         </b-tabs>
                     </b-col>
 
-                    <!-- Right Content -->
+
                     <b-col xl="9">
-                        <!-- Create Account -->
                         <div v-if="activeTab === 'account'">
                             <b-form class="app-form">
                                 <b-row>
@@ -131,7 +130,7 @@ const paymentType = ref("card");
                             </b-form>
                         </div>
 
-                        <!-- Personal Info -->
+
                         <div v-if="activeTab === 'info'">
                             <b-form class="app-form">
                                 <b-row>
@@ -204,7 +203,6 @@ const paymentType = ref("card");
                             </b-form>
                         </div>
 
-                        <!-- Payment Method -->
                         <div v-if="activeTab === 'payment'">
                             <b-row>
                                 <b-col cols="12">
@@ -334,7 +332,7 @@ const paymentType = ref("card");
                             </b-row>
                         </div>
 
-                        <!-- Confirm -->
+
                         <div v-if="activeTab === 'confirm'">
                             <div class="completed-contents">
                                 <div class="completbox text-center">

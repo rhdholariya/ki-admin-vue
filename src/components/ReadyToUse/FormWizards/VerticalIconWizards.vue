@@ -28,17 +28,16 @@ const formData = ref({
 
 const errors = ref({});
 
-// Update field and remove error for this field immediately
 const handleChange = (field, value) => {
     formData.value[field] = value;
 
-    // Remove error for this specific field when user starts typing
+
     if (errors.value[field]) {
         delete errors.value[field];
     }
 };
 
-// Validate current step
+
 const validateStep = () => {
     const currentErrors = {};
 

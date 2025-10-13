@@ -40,7 +40,7 @@ const handleChange = (field, value) => {
     }
 };
 
-// Validate current step
+
 const validateStep = () => {
     const currentErrors = {};
 
@@ -105,10 +105,10 @@ const handleSubmit = () => {
             </ul>
         </div>
 
-        <!-- Form -->
+
         <b-form class="app-form" @submit.prevent="handleSubmit">
             <b-row>
-                <!-- Step 1 -->
+
                 <template v-if="step === 1">
                     <b-col md="6">
                         <b-form-group label="First Name*" label-for="fname" class="mb-3">
@@ -156,7 +156,7 @@ const handleSubmit = () => {
                     </b-col>
                 </template>
 
-                <!-- Step 2 -->
+
                 <template v-else-if="step === 2">
                     <b-col md="12">
                         <b-form-group label="Address" label-for="address" class="mb-3">
@@ -262,7 +262,6 @@ const handleSubmit = () => {
                 </template>
             </b-row>
 
-            <!-- Buttons -->
             <div class="d-flex justify-content-end gap-2">
                 <b-button v-if="step > 1" variant="secondary" @click="handlePrev">Previous</b-button>
                 <b-button v-if="step < 3" variant="primary" @click="handleNext">Next</b-button>

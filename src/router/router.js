@@ -95,7 +95,20 @@ import ReadyToUseFormPage from '@/views/ReadyToUse/ReadyToUseForm/index.vue'
 
 // Form validation routes
 import FormValidationPage from '@/views/ FormsElements/FormValidation/index.vue'
-
+import BaseInputPage from '@/views/ FormsElements/BaseInput/index.vue'
+import CheckboxRadioPage from '@/views/ FormsElements/CheckboxRadio/index.vue'
+import InputGroupsPage from '@/views/ FormsElements/InputGroups/index.vue'
+import InputMasksPage from '@/views/ FormsElements/InputMasks/index.vue'
+import FloatingLabelsPage from '@/views/ FormsElements/FloatingLabels/index.vue'
+import DatetimepickerPage from '@/views/ FormsElements/Datetimepicker/index.vue'
+import TouchspinPage from '@/views/ FormsElements/Touchspin/index.vue'
+import Select2Page from '@/views/ FormsElements/Select2/index.vue'
+import SwitchPage from '@/views/ FormsElements/Switch/index.vue'
+import RangeSliderPage from '@/views/ FormsElements/RangeSlider/index.vue'
+import TextareaPage from '@/views/ FormsElements/Textarea/index.vue'
+import ClipboardPage from '@/views/ FormsElements/Clipboard/index.vue'
+import DualListBoxesPage from '@/views/ FormsElements/DualListBoxes/index.vue'
+import DefaultFormsPage from '@/views/ FormsElements/DefaultForms/index.vue'
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -236,6 +249,20 @@ const router = createRouter({
 
         //Form validation routes
         {path: '/forms-elements/form-validation', name: 'FormValidation', component:FormValidationPage},
+        {path: '/forms-elements/base-input', name: 'BaseInput', component:BaseInputPage},
+        {path: '/forms-elements/checkbox-radio', name: 'CheckboxRadio', component:CheckboxRadioPage},
+        {path: '/forms-elements/input-groups', name: 'InputGroups', component:InputGroupsPage},
+        {path: '/forms-elements/input-masks', name: 'InputMasks', component:InputMasksPage},
+        {path: '/forms-elements/floating-labels', name: 'FloatingLabels', component:FloatingLabelsPage},
+        {path: '/forms-elements/datetimepicker', name: 'DatetimePicker', component:DatetimepickerPage},
+        {path: '/forms-elements/touch-spin', name: 'TouchSpin', component:TouchspinPage},
+        {path: '/forms-elements/select2', name: 'Select2', component:Select2Page},
+        {path: '/forms-elements/switch', name: 'Switch', component:SwitchPage},
+        {path: '/forms-elements/range-slider', name: 'RangeSlider', component:RangeSliderPage},
+        {path: '/forms-elements/textarea', name: 'Textarea', component:TextareaPage},
+        {path: '/forms-elements/clipboard', name: 'Clipboard', component:ClipboardPage},
+        {path: '/forms-elements/dual-list-boxes', name: 'DualListBoxes', component:DualListBoxesPage},
+        {path: '/forms-elements/default-forms', name: 'DefaultForms', component:DefaultFormsPage},
 
 
         // apps routes

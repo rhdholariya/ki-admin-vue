@@ -24,10 +24,13 @@
 }
 
 .app-form{
-  .custom-select__control {
-    .custom-select__value-container {
-      .custom-select__multi-value {
-        border: 1px dashed rgb(var(--secondary), 1);
+  .v-select {
+    .vs__dropdown-toggle {
+      .vs__selected-options {
+        margin: 3px 0;
+        .vs__selected {
+        border: 1px dashed rgb(var(--secondary), 1) !important;
+        }
       }
 
       custom-select__meny{

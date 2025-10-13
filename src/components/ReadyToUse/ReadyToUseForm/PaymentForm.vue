@@ -84,9 +84,9 @@ function handleTabChange(tab) {
                     </b-tabs>
                 </b-col>
 
-                <!-- Form Section -->
+
                 <b-col xl="9" lg="8">
-                    <!-- Send refreshTrigger as key -->
+
                     <PaymentDataForm :key="refreshTrigger" />
                 </b-col>
             </b-row>
