@@ -20,11 +20,6 @@ import {
   PhWhatsappLogo,
 } from "@phosphor-icons/vue";
 
-const handleShareClick = (event) => {
-  event.stopPropagation();
-  event.preventDefault();
-  if (props.onShareToggle) props.onShareToggle(props.bookmark.id);
-};
 const props = defineProps({
   bookmark: {
     type: Object,
@@ -44,11 +39,17 @@ const props = defineProps({
 });
 
 const showTooltip = ref(false);
+
+const handleShareClick = (event) => {
+  event.stopPropagation();
+  event.preventDefault();
+  if (props.onShareToggle) props.onShareToggle(props.bookmark.id);
+};
 </script>
 
 <template>
-  <BCard class="book-mark-card" no-body>
-    <BCardBody>
+  <b-card class="book-mark-card" no-body>
+    <b-card-body>
       <div class="draggable-card-img position-relative">
         <img
             :src="bookmark.image"
@@ -61,15 +62,14 @@ const showTooltip = ref(false);
           <!-- Heart -->
           <div
               class="bg-white h-35 w-35 d-flex-center b-r-50 me-3 heartBtn mb-2"
-              @click="onFavouriteToggle(bookmark.id)"
+              @click="props.onFavouriteToggle(bookmark.id)"
           >
-            <PhHeart
+            <ph-heart
                 :size="18"
                 :weight="bookmark.isFavourite ? 'fill' : 'bold'"
                 class="text-danger f-s-18"
             />
           </div>
-
 
           <!-- Share -->
           <div
@@ -78,7 +78,7 @@ const showTooltip = ref(false);
               @mouseenter.stop="showTooltip = true"
               @mouseleave.stop="showTooltip = false"
           >
-            <PhShareNetwork
+            <ph-share-network
                 :size="18"
                 :weight="bookmark.isShared ? 'fill' : 'bold'"
                 :class="['f-s-18', bookmark.isShared ? 'text-primary' : 'text-secondary']"
@@ -89,10 +89,10 @@ const showTooltip = ref(false);
                   class="custom-share-tooltip bg-white shadow-sm p-2 b-r-6 position-absolute end-100 me-2 top-50 translate-middle-y"
                   @click.stop
               >
-                <PhWhatsappLogo size="18" class="text-success ms-2" />
-                <PhInstagramLogo size="18" class="text-danger ms-2" />
-                <PhFacebookLogo size="18" class="text-primary ms-2" />
-                <PhMessengerLogo size="18" class="text-info ms-2" />
+                <ph-whatsapp-logo size="18" class="text-success ms-2"/>
+                <ph-instagram-logo size="18" class="text-danger ms-2"/>
+                <ph-facebook-logo size="18" class="text-primary ms-2"/>
+                <ph-messenger-logo size="18" class="text-info ms-2"/>
               </div>
             </transition>
           </div>
@@ -100,9 +100,9 @@ const showTooltip = ref(false);
           <!-- Star -->
           <div
               class="bg-white h-35 w-35 d-flex-center b-r-50 me-3 starBtn mb-2"
-              @click="onStarToggle && onStarToggle(bookmark.id)"
+              @click="props.onStarToggle && props.onStarToggle(bookmark.id)"
           >
-            <PhStar
+            <ph-star
                 :size="18"
                 :weight="bookmark.isStarred ? 'fill' : 'bold'"
                 class="text-warning f-s-18"
@@ -111,42 +111,40 @@ const showTooltip = ref(false);
         </div>
 
         <!-- Dropdown -->
-        <BDropdown
+        <b-dropdown
             class="dropdown-icon-none action-icon position-absolute top-0 end-0 m-2"
             variant="link"
-            toggle-class=" btn-icon b-r-4"
+            toggle-class="btn-icon b-r-4"
             no-caret
         >
           <template #button-content>
-            <PhDotsThreeVertical size="20" weight="bold" class="text-white" />
+            <ph-dots-three-vertical size="20" weight="bold" class="text-white"/>
           </template>
 
-          <BDropdownItem
+          <b-dropdown-item
               button
               class="text-success"
-              @click="onEdit && onEdit(bookmark)"
+              @click="props.onEdit && props.onEdit(bookmark)"
           >
-            <PhPenNib class="f-s-18 text-success me-2" />
+            <ph-pen-nib class="f-s-18 text-success me-2"/>
             Edit
-          </BDropdownItem>
+          </b-dropdown-item>
 
-          <BDropdownItem
+          <b-dropdown-item
               button
               class="text-danger deletbtn"
-              @click="onDelete(bookmark.id)"
+              @click="props.onDelete(bookmark.id)"
           >
-            <PhTrash class="f-s-18 text-danger me-2" />
+            <ph-trash class="f-s-18 text-danger me-2"/>
             Delete
-          </BDropdownItem>
-        </BDropdown>
+          </b-dropdown-item>
+        </b-dropdown>
       </div>
 
       <div class="draggable-card-content pt-4">
         <h5 class="mb-2">{{ bookmark.title }}</h5>
         <p>{{ bookmark.url }}</p>
       </div>
-    </BCardBody>
-  </BCard>
+    </b-card-body>
+  </b-card>
 </template>
-
-

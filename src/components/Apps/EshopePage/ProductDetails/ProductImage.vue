@@ -1,9 +1,9 @@
 <template>
-  <BCol md="6" xxl="3" class="order-md-2 order-xxl-1">
-    <BCard no-body>
-      <BCardBody>
-        <BRow class="g-2 my-2">
-          <BCol cols="12">
+  <b-col md="6" xxl="3" class="order-md-2 order-xxl-1">
+    <b-card no-body>
+      <b-card-body>
+        <b-row class="g-2 my-2">
+          <b-col cols="12">
             <div class="product-image-box">
               <img
                   src="/images/ecommerce/25.jpg"
@@ -11,18 +11,14 @@
                   alt="image"
               />
             </div>
-          </BCol>
+          </b-col>
 
-          <BCol cols="3" v-for="(img, index) in thumbnails" :key="index">
+          <b-col cols="3" v-for="(img, index) in thumbnails" :key="index">
             <div class="product-image-box">
-              <img
-                  :src="img"
-                  class="img-fluid rounded"
-                  alt="image"
-              />
+              <img :src="img" class="img-fluid rounded" alt="image" />
             </div>
-          </BCol>
-        </BRow>
+          </b-col>
+        </b-row>
 
         <div class="mt-4">
           <h6 class="text-danger f-s-18">
@@ -44,15 +40,15 @@
 
           <ul class="offer-details-list">
             <li class="f-w-500" v-for="(offer, idx) in offers" :key="idx">
-              <IconTag size="18" class="text-primary me-1" />
+              <icon-tag size="18" class="text-primary me-1" />
               <b class="text-dark">{{ offer.title }}</b>
               {{ offer.details }}
             </li>
           </ul>
         </div>
-      </BCardBody>
-    </BCard>
-  </BCol>
+      </b-card-body>
+    </b-card>
+  </b-col>
 </template>
 
 <script setup>

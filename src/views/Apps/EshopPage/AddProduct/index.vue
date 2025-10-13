@@ -15,6 +15,7 @@ import {
   BButton,
   BModal,
 
+
 } from 'bootstrap-vue-next'
 
 import { IconPlus } from '@tabler/icons-vue'
@@ -30,18 +31,10 @@ import {PhStack} from "@phosphor-icons/vue";
 
 const options = ['Option 1', 'Option 2', 'Option 3']
 const selectedOption = ref(null)
-/* Modal state */
+
 const showModal = ref(false)
 
-/* Select options */
-const categoryOptions = [
-  { value: '', label: 'Select a category' },
-  { value: 'IN', label: 'Industry' },
-  { value: 'FN', label: 'Functionality' },
-  { value: 'CN', label: 'Customer Needs' },
-  { value: 'CP', label: 'Customer Preferences' },
-  { value: 'DE', label: 'Demographics' }
-]
+
 
 const tagOptions = [
   { value: 'Cl', label: 'Clothing' },
@@ -52,8 +45,6 @@ const tagOptions = [
   { value: 'AS', label: 'Art Supplies' }
 ]
 
-/* Form refs */
-const productCategory = ref(null)
 const productTags = ref(null)
 const breadcrumbItems = computed(() => ({
   title: "Add Product",

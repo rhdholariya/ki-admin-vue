@@ -19,7 +19,7 @@ import {
   developerTeamData,
   marketingTeamData,
   teamMembers,
-} from "@/data/app/team/Teamdata.js";
+} from "@/data/app/Team/Teamdata.js";
 
 // Icons
 import { PhMegaphone, PhPenNib, PhStack, PhGear } from "@phosphor-icons/vue";
@@ -34,12 +34,13 @@ const breadcrumbItems = computed(() => ({
     { label: "Team", active: true }
   ],
 }));
+
 </script>
 
 <template>
   <AppLayout>
     <main>
-  <BContainer fluid>
+    <BContainer fluid>
 
     <Breadcrumb :breadcrumb="breadcrumbItems" />
     <b-tabs v-model="activeTab" content-class="content-wrapper mt-3" nav-class="pb-0 tab-wrapper tabs" no-body>

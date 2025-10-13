@@ -1,3 +1,57 @@
+<script setup>
+import { h } from "vue";
+import {
+  BCard,
+  BCardBody,
+  BCardTitle,
+  BCardSubtitle,
+  BCardText,
+  BBadge,
+} from "bootstrap-vue-next";
+import { IconCircleFilled } from "@tabler/icons-vue";
+
+const timelineData = [
+  {
+    title: "Task Finished",
+    time: "10 min ago",
+    description:
+        "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog.",
+    moreInfoLink: "#",
+    color: "primary",
+    icon: h(IconCircleFilled),
+  },
+  {
+    title: "Task Overdue",
+    time: "50 min ago",
+    description:
+        "Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!",
+    moreInfoLink: "#",
+    color: "secondary",
+    tags: ["Design", "HTML"],
+    icon: h(IconCircleFilled),
+  },
+  {
+    title: "New Task",
+    time: "10 hours ago",
+    description:
+        "Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack.",
+    moreInfoLink: "#",
+    color: "success",
+    icon: h(IconCircleFilled),
+  },
+  {
+    title: "New Task",
+    time: "10 hours ago",
+    description:
+        "Quick wafting zephyrs vex bold Jim. Sex-charged fop blew my junk TV quiz.",
+    moreInfoLink: "#",
+    color: "info",
+    icon: h(IconCircleFilled),
+  },
+];
+</script>
+
+
 <template>
   <b-card class="h-100" no-body>
     <b-card-body>
@@ -54,57 +108,6 @@
   </b-card>
 </template>
 
-<script setup>
-import { h } from "vue";
-import {
-  BCard,
-  BCardBody,
-  BCardTitle,
-  BCardSubtitle,
-  BCardText,
-  BBadge,
-} from "bootstrap-vue-next";
-import { IconCircleFilled } from "@tabler/icons-vue";
 
-const timelineData = [
-  {
-    title: "Task Finished",
-    time: "10 min ago",
-    description:
-        "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog.",
-    moreInfoLink: "#",
-    color: "primary",
-    icon: h(IconCircleFilled),
-  },
-  {
-    title: "Task Overdue",
-    time: "50 min ago",
-    description:
-        "Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!",
-    moreInfoLink: "#",
-    color: "secondary",
-    tags: ["Design", "HTML"],
-    icon: h(IconCircleFilled),
-  },
-  {
-    title: "New Task",
-    time: "10 hours ago",
-    description:
-        "Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack.",
-    moreInfoLink: "#",
-    color: "success",
-    icon: h(IconCircleFilled),
-  },
-  {
-    title: "New Task",
-    time: "10 hours ago",
-    description:
-        "Quick wafting zephyrs vex bold Jim. Sex-charged fop blew my junk TV quiz.",
-    moreInfoLink: "#",
-    color: "info",
-    icon: h(IconCircleFilled),
-  },
-];
-</script>
 
 

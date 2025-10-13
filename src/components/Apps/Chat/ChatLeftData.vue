@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { PhChatCircleText, PhWhatsappLogo, PhPhoneCall } from "@phosphor-icons/vue";
+import { BButton } from "bootstrap-vue-next";
 
 import ChatContent from "./ChatContent.vue";
 import UpdatesContent from "./UpdatesContent.vue";
@@ -15,37 +16,40 @@ const activeTabOuter = ref("chat");
   <div class="chat-tab-wrapper mb-3">
     <div class="tabs chat-tabs mb-0 pb-0 d-flex">
       <!-- Chat Tab -->
-      <button
+      <b-button
           type="button"
+          variant="link"
           class="nav-link flex-fill"
           :class="{ active: activeTabOuter === 'chat' }"
           @click="activeTabOuter = 'chat'"
       >
         <PhChatCircleText size="18" weight="duotone" class="me-2" />
         Chat
-      </button>
+      </b-button>
 
       <!-- Updates Tab -->
-      <button
+      <b-button
           type="button"
+          variant="link"
           class="nav-link flex-fill"
           :class="{ active: activeTabOuter === 'updates' }"
           @click="activeTabOuter = 'updates'"
       >
         <PhWhatsappLogo size="18" weight="duotone" class="me-2" />
         Updates
-      </button>
+      </b-button>
 
       <!-- Contact Tab -->
-      <button
+      <b-button
           type="button"
+          variant="link"
           class="nav-link flex-fill"
           :class="{ active: activeTabOuter === 'contact' }"
           @click="activeTabOuter = 'contact'"
       >
         <PhPhoneCall size="18" weight="duotone" class="me-2" />
         Contact
-      </button>
+      </b-button>
     </div>
   </div>
 

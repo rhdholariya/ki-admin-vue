@@ -1,83 +1,6 @@
-<template>
-  <AppLayout>
-    <main>
-  <div class="file-manager">
-    <div class="row">
-      <!-- Sidebar -->
-      <Sidebar @tab-change="handleTabChange" />
-
-      <!-- Main Content -->
-      <div class="col-lg-8 col-xxl-9">
-        <div class="content-wrapper">
-          <!-- Tab 1: My Cloud -->
-          <div v-if="activeTab === 1" class="tabs-content active">
-            <QuickAccess
-                @edit-item="handleEditItem"
-                @delete-item="handleDeleteItem"
-                @toggle-favorite="handleToggleFavorite"
-                @move-to-recycle="handleMoveToRecycle"
-            />
-
-            <Folders
-                @edit-folder="handleEditFolder"
-                @delete-folder="handleDeleteFolder"
-                @toggle-favorite="handleToggleFavorite"
-                @move-to-recycle="handleMoveToRecycle"
-            />
-
-            <RecentFiles
-                @edit-file="handleEditFile"
-                @delete-file="handleDeleteFile"
-                @toggle-favorite="handleToggleFavorite"
-                @move-to-recycle="handleMoveToRecycle"
-            />
-          </div>
-
-          <!-- Tab 2: Starred -->
-          <div v-if="activeTab === 2" class="tabs-content">
-            <StarredContent
-                :starred-items="starredItems"
-                @edit-item="handleEditItem"
-                @delete-item="handleDeleteItem"
-                @toggle-favorite="handleToggleFavorite"
-                @move-to-recycle="handleMoveToRecycle"
-            />
-          </div>
-
-          <!-- Tab 3: Recycle Bin -->
-          <div v-if="activeTab === 3" class="tabs-content">
-            <RecycleBinContent
-                :recycled-items="recycledItems"
-                @restore-item="handleRestoreItem"
-                @permanently-delete="handlePermanentlyDelete"
-            />
-          </div>
-
-          <!-- Tab 4: Recent -->
-          <div v-if="activeTab === 4" class="tabs-content">
-            <RecentContent
-                @edit-file="handleEditFile"
-                @delete-file="handleDeleteFile"
-                @toggle-favorite="handleToggleFavorite"
-                @move-to-recycle="handleMoveToRecycle"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modals -->
-    <Modals
-        ref="modalsRef"
-        @rename-confirmed="handleRenameConfirmed"
-    />
-  </div>
-    </main>
-  </AppLayout>
-</template>
-
 <script setup>
 import { ref } from 'vue'
+import { BRow } from 'bootstrap-vue-next'
 import Sidebar from '@/components/Apps/FileManager/FileSidebar.vue'
 import QuickAccess from '@/components/Apps/FileManager/QuickAccess.vue'
 import Folders from '@/components/Apps/FileManager/Folders.vue'
@@ -166,3 +89,83 @@ const handleRenameConfirmed = (item, newName) => {
   item.name = newName
 }
 </script>
+
+
+<template>
+  <AppLayout>
+    <main>
+  <div class="file-manager">
+    <b-row>
+      <!-- Sidebar -->
+      <Sidebar @tab-change="handleTabChange" />
+
+      <!-- Main Content -->
+      <div class="col-lg-8 col-xxl-9">
+        <div class="content-wrapper">
+          <!-- Tab 1: My Cloud -->
+          <div v-if="activeTab === 1" class="tabs-content active">
+            <QuickAccess
+                @edit-item="handleEditItem"
+                @delete-item="handleDeleteItem"
+                @toggle-favorite="handleToggleFavorite"
+                @move-to-recycle="handleMoveToRecycle"
+            />
+
+            <Folders
+                @edit-folder="handleEditFolder"
+                @delete-folder="handleDeleteFolder"
+                @toggle-favorite="handleToggleFavorite"
+                @move-to-recycle="handleMoveToRecycle"
+            />
+
+            <RecentFiles
+                @edit-file="handleEditFile"
+                @delete-file="handleDeleteFile"
+                @toggle-favorite="handleToggleFavorite"
+                @move-to-recycle="handleMoveToRecycle"
+            />
+          </div>
+
+          <!-- Tab 2: Starred -->
+          <div v-if="activeTab === 2" class="tabs-content">
+            <StarredContent
+                :starred-items="starredItems"
+                @edit-item="handleEditItem"
+                @delete-item="handleDeleteItem"
+                @toggle-favorite="handleToggleFavorite"
+                @move-to-recycle="handleMoveToRecycle"
+            />
+          </div>
+
+          <!-- Tab 3: Recycle Bin -->
+          <div v-if="activeTab === 3" class="tabs-content">
+            <RecycleBinContent
+                :recycled-items="recycledItems"
+                @restore-item="handleRestoreItem"
+                @permanently-delete="handlePermanentlyDelete"
+            />
+          </div>
+
+          <!-- Tab 4: Recent -->
+          <div v-if="activeTab === 4" class="tabs-content">
+            <RecentContent
+                @edit-file="handleEditFile"
+                @delete-file="handleDeleteFile"
+                @toggle-favorite="handleToggleFavorite"
+                @move-to-recycle="handleMoveToRecycle"
+            />
+          </div>
+        </div>
+      </div>
+    </b-row>
+
+    <!-- Modals -->
+    <Modals
+        ref="modalsRef"
+        @rename-confirmed="handleRenameConfirmed"
+    />
+  </div>
+    </main>
+  </AppLayout>
+</template>
+

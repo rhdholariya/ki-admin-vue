@@ -1,6 +1,7 @@
 <script setup>
 import {
   BCol,
+    BButton
 } from "bootstrap-vue-next";
 
 const props = defineProps({
@@ -41,7 +42,7 @@ const props = defineProps({
             <ul class="pricing-list">
               <li v-for="(feature, index) in features" :key="index">{{ feature }}</li>
             </ul>
-            <button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</button>
+            <b-button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
           </div>
         </div>
 
@@ -63,7 +64,7 @@ const props = defineProps({
             <ul class="pricing-list">
               <li v-for="(feature, index) in features" :key="index">{{ feature }}</li>
             </ul>
-            <button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</button>
+            <b-button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
           </div>
         </div>
       </div>

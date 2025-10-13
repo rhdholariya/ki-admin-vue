@@ -43,20 +43,20 @@ import { BButton } from "bootstrap-vue-next";
 
       <!-- Call & Video Buttons -->
       <div>
-        <BButton
+        <b-button
             variant="success"
             class="h-35 w-35 icon-btn d-flex-center b-r-50"
         >
           <IconPhoneCall size="15" />
-        </BButton>
+        </b-button>
       </div>
       <div>
-        <BButton
+        <b-button
             variant="primary"
             class="h-35 w-35 icon-btn d-flex-center b-r-50 ms-1"
         >
           <IconVideo size="15" />
-        </BButton>
+        </b-button>
       </div>
     </div>
   </div>

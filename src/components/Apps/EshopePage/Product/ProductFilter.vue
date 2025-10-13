@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import {
   BAccordion,
@@ -16,11 +16,12 @@ import {
   PhShoppingCart
 } from '@phosphor-icons/vue'
 
-const active = ref("1");
+const active = ref("1")
 
 const selectedColor = ref('primary')
-const checkedGenders = ref([])
+const checkedGenders = ref<string[]>([])
 const selectedSort = ref('Featured')
+const selectedCategories = ref<string[]>([])
 const rating = ref(3)
 
 const colorOptions = [
@@ -45,63 +46,65 @@ const categoryOptions = [
   { icon: PhCirclesThreePlus, label: 'See all' }
 ]
 
-const setSelectedColor = color => (selectedColor.value = color)
-const setSelectedSort = option => (selectedSort.value = option)
+const clearAll = () => {
+  selectedColor.value = 'primary'
+  selectedSort.value = 'Featured'
+  checkedGenders.value = []
+  selectedCategories.value = []
+}
 </script>
 
 <template>
   <div class="p-0">
-    <BAccordion v-model="active" class=" app-accordion accordion-light-primary">
+    <b-accordion v-model="active" class="app-accordion accordion-light-primary">
       <!-- Sort By -->
-      <BAccordionItem value="0" >
+      <b-accordion-item value="0">
         <template #title>Sort By</template>
         <div>
-          <BFormCheckbox
+          <b-form-checkbox
               v-for="option in sortOptions"
               :key="option"
+              v-model="selectedSort"
+              :value="option"
               type="radio"
               name="sortGroup"
-              :id="`sort-${option}`"
-              :checked="selectedSort === option"
-              @change="setSelectedSort(option)"
               class="d-block"
           >
             {{ option }}
-          </BFormCheckbox>
+          </b-form-checkbox>
         </div>
-      </BAccordionItem>
+      </b-accordion-item>
 
       <!-- Categories -->
-      <BAccordionItem value="1">
+      <b-accordion-item value="1">
         <template #title>Categories</template>
         <div>
-          <BFormCheckbox
+          <b-form-checkbox
               v-for="(item, i) in categoryOptions"
               :key="i"
               v-model="selectedCategories"
               :value="item.label"
               class="d-block"
           >
-      <span class="d-flex align-items-center gap-2">
-        <component :is="item.icon" :size="18" />
-        {{ item.label }}
-      </span>
-          </BFormCheckbox>
+            <span class="d-flex align-items-center gap-2">
+              <component :is="item.icon" :size="18" />
+              {{ item.label }}
+            </span>
+          </b-form-checkbox>
         </div>
-      </BAccordionItem>
+      </b-accordion-item>
 
       <!-- Color -->
-      <BAccordionItem value="2">
+      <b-accordion-item value="2">
         <template #title>Color</template>
         <div class="d-flex flex-wrap gap-2">
-          <BFormCheckbox
+          <b-form-checkbox
               v-for="color in colorOptions"
               :key="color.value"
+              v-model="selectedColor"
+              :value="color.value"
               type="radio"
               name="colorSelect"
-              :id="`color-${color.value}`"
-              :checked="selectedColor === color.value"
-              @change="setSelectedColor(color.value)"
               class="position-relative"
           >
             <template #label>
@@ -110,29 +113,28 @@ const setSelectedSort = option => (selectedSort.value = option)
                   :style="{ width: '20px', height: '20px', marginLeft: '8px' }"
               />
             </template>
-          </BFormCheckbox>
+          </b-form-checkbox>
         </div>
-      </BAccordionItem>
+      </b-accordion-item>
 
       <!-- Gender -->
-      <BAccordionItem value="3">
+      <b-accordion-item value="3">
         <template #title>Gender</template>
         <div>
-          <BFormCheckbox
+          <b-form-checkbox
               v-for="opt in genderOptions"
               :key="opt"
               v-model="checkedGenders"
               :value="opt"
-              :id="`gender-${opt}`"
               class="d-block"
           >
             {{ opt }}
-          </BFormCheckbox>
+          </b-form-checkbox>
         </div>
-      </BAccordionItem>
+      </b-accordion-item>
 
       <!-- Customer Ratings -->
-      <BAccordionItem value="4">
+      <b-accordion-item value="4">
         <template #title>Customer Ratings</template>
         <div class="d-flex gap-1 justify-content-start">
           <IconStarFilled
@@ -146,27 +148,27 @@ const setSelectedSort = option => (selectedSort.value = option)
               class="text-muted"
           />
         </div>
-      </BAccordionItem>
+      </b-accordion-item>
 
       <!-- Price Range -->
-      <BAccordionItem value="5">
+      <b-accordion-item value="5">
         <template #title>Price Range</template>
-        <BFormRange class="mb-2" />
+        <b-form-range class="mb-2" />
         <div class="d-flex gap-2">
-          <BFormInput type="number" placeholder="Min" />
-          <BFormInput type="number" placeholder="Max" />
+          <b-form-input type="number" placeholder="Min" />
+          <b-form-input type="number" placeholder="Max" />
         </div>
-      </BAccordionItem>
-    </BAccordion>
+      </b-accordion-item>
+    </b-accordion>
 
     <!-- Buttons -->
     <div class="text-end m-3">
-      <BButton variant="outline-primary" size="sm" class="me-2">
+      <b-button variant="outline-primary" size="sm" class="me-2" @click="clearAll">
         Clear All
-      </BButton>
-      <BButton variant="secondary" size="sm">
+      </b-button>
+      <b-button variant="secondary" size="sm">
         Apply
-      </BButton>
+      </b-button>
     </div>
   </div>
 </template>

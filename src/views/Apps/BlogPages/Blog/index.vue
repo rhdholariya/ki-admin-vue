@@ -22,10 +22,9 @@ import {
   IconArchive,
   IconCalendarDue,
   IconDotsVertical,
-  IconTrash,
+  IconTrash
 } from "@tabler/icons-vue";
 
-// Import FsLightbox the same way as in your gallery page
 import FsLightbox from "fslightbox-vue";
 import { initialBlogData } from "@/data/app/Blog/BlogData.js";
 import AppLayout from "@/views/AppLayout.vue";
@@ -57,14 +56,12 @@ const initializeLightboxSources = () => {
 };
 
 const handleImageClick = (slideNumber) => {
-  console.log('Opening lightbox at slide:', slideNumber);
   currentSlideIndex.value = slideNumber;
   lightboxToggler.value = !lightboxToggler.value;
 };
 
 const openBlogLightbox = (blogImage, blogIndex) => {
   const slideIndex = lightboxSources.value.findIndex(src => src === blogImage);
-
   if (slideIndex >= 0) {
     handleImageClick(slideIndex + 1);
   } else {
@@ -77,11 +74,10 @@ const formatDisplayDate = (dateString) => {
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
-    day: "numeric",
+    day: "numeric"
   });
 };
 
-// Format date for input type="date"
 const formatInputDate = (dateString) => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "";
@@ -97,23 +93,14 @@ onMounted(() => {
   initializeLightboxSources();
 });
 
-// Modal control
-const toggleModal = () => {
-  modalOpen.value = !modalOpen.value;
-};
+const toggleModal = () => modalOpen.value = !modalOpen.value;
+const closeModal = () => modalOpen.value = false;
 
-// Close modal
-const closeModal = () => {
-  modalOpen.value = false;
-};
-
-// Edit click
 const handleEditClick = (blog) => {
   selectedBlog.value = { ...blog };
   selectedImage.value = blog.image;
   imageFile.value = null;
 
-  // Populate form data with selected blog data
   formData.value = {
     file: null,
     blogTitle: blog.title,
@@ -125,29 +112,23 @@ const handleEditClick = (blog) => {
   toggleModal();
 };
 
-// Delete click
 const handleDeleteClick = (id) => {
-  blogs.value = blogs.value.filter((b) => b.id !== id);
-  // Reinitialize sources after deletion
+  blogs.value = blogs.value.filter(b => b.id !== id);
   initializeLightboxSources();
 };
 
-// Image upload
 const handleImageChange = (event) => {
   const file = event.target.files?.[0];
-  if (file) {
-    imageFile.value = file;
-    formData.value.file = file;
+  if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      selectedImage.value = event.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+  imageFile.value = file;
+  formData.value.file = file;
+
+  const reader = new FileReader();
+  reader.onload = (e) => selectedImage.value = e.target.result;
+  reader.readAsDataURL(file);
 };
 
-// Save changes
 const handleSaveChanges = () => {
   if (!selectedBlog.value) return;
 
@@ -157,16 +138,10 @@ const handleSaveChanges = () => {
     description: formData.value.blogDescription,
     date: formData.value.blogDate,
     tag: formData.value.blogTag,
-    image: imageFile.value
-        ? URL.createObjectURL(imageFile.value)
-        : selectedBlog.value.image,
+    image: imageFile.value ? URL.createObjectURL(imageFile.value) : selectedBlog.value.image
   };
 
-  blogs.value = blogs.value.map((b) =>
-      b.id === updatedBlog.id ? updatedBlog : b
-  );
-
-  // Reinitialize sources after update
+  blogs.value = blogs.value.map(b => b.id === updatedBlog.id ? updatedBlog : b);
   initializeLightboxSources();
   toggleModal();
 };
@@ -176,20 +151,20 @@ const breadcrumbItems = computed(() => ({
   items: [
     { label: "Apps", icon: PhStack },
     { label: "Blog Page", active: true }
-  ],
+  ]
 }));
 </script>
 
 <template>
-  <AppLayout>
+  <app-layout>
     <main>
-      <BContainer fluid>
-        <Breadcrumb :breadcrumb="breadcrumbItems"/>
-        <BRow>
-          <BCol v-for="(blog, index) in blogs" :key="blog.id" :class="blog.colclass">
-            <BCard class="overflow-hidden blog-card position-relative" no-body>
+      <b-container fluid>
+        <breadcrumb :breadcrumb="breadcrumbItems"/>
+        <b-row>
+          <b-col v-for="(blog, index) in blogs" :key="blog.id" :class="blog.colclass">
+            <b-card class="overflow-hidden blog-card position-relative" no-body>
               <a @click.prevent="openBlogLightbox(blog.image, index)" class="img-hover-zoom cursor-pointer">
-                <BImg
+                <b-img
                     :src="blog.image"
                     :alt="blog.title"
                     class="card-img-top"
@@ -201,18 +176,18 @@ const breadcrumbItems = computed(() => ({
                 <span class="badge bg-secondary">{{ blog.tag }}</span>
               </div>
 
-              <BCardBody>
+              <b-card-body>
                 <div class="d-flex align-items-center mb-2 text-muted">
-                  <IconCalendarDue size="18" class="me-2"/>
+                  <icon-calendar-due size="18" class="me-2"/>
                   {{ formatDisplayDate(blog.date) }}
                 </div>
 
-                <RouterLink
+                <router-link
                     to="/apps/blog-page/blog-details"
                     class="fs-5 title-text text-decoration-none"
                 >
                   {{ blog.title }}
-                </RouterLink>
+                </router-link>
 
                 <p class="text-secondary txt-ellipsis-2 mt-2">
                   {{ blog.description }}
@@ -222,7 +197,7 @@ const breadcrumbItems = computed(() => ({
 
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="rounded-circle overflow-hidden me-3 w-45 h-45 bg-primary">
-                    <BImg
+                    <b-img
                         :src="blog.author.avatar"
                         alt="avatar"
                         class="img-fluid w-100 h-100"
@@ -234,49 +209,44 @@ const breadcrumbItems = computed(() => ({
                     <small class="text-muted">{{ blog.author.time }}</small>
                   </div>
 
-                  <!-- Fixed Dropdown using BootstrapVueNext -->
-                  <BDropdown variant="white" class="icon-btn border-0" no-caret right>
+                  <b-dropdown variant="white" class="icon-btn border-0" no-caret right>
                     <template #button-content>
-                      <IconDotsVertical size="18"/>
+                      <icon-dots-vertical size="18"/>
                     </template>
-                    <BDropdownItem class="text-success" @click="handleEditClick(blog)">
-                      <IconArchive size="16" class="me-2"/>
-                      Edit
-                    </BDropdownItem>
-                    <BDropdownItem class="text-danger" @click="handleDeleteClick(blog.id)">
-                      <IconTrash size="16" class="me-2"/>
-                      Delete
-                    </BDropdownItem>
-                  </BDropdown>
+                    <b-dropdown-item class="text-success" @click="handleEditClick(blog)">
+                      <icon-archive size="16" class="me-2"/> Edit
+                    </b-dropdown-item>
+                    <b-dropdown-item class="text-danger" @click="handleDeleteClick(blog.id)">
+                      <icon-trash size="16" class="me-2"/> Delete
+                    </b-dropdown-item>
+                  </b-dropdown>
                 </div>
-              </BCardBody>
-            </BCard>
-          </BCol>
-        </BRow>
+              </b-card-body>
+            </b-card>
+          </b-col>
+        </b-row>
 
         <!-- FsLightbox -->
-        <FsLightbox
-            v-if="lightboxSources.length > 0"
+        <fs-lightbox
+            v-if="lightboxSources.length"
             :toggler="lightboxToggler"
             :sources="lightboxSources"
             :slide="currentSlideIndex"
         />
 
         <!-- Edit Modal -->
-        <BModal
+        <b-modal
             v-model="modalOpen"
             title="Edit Blog"
             hide-footer
             centered
             size="lg"
         >
-
-          <BForm class="app-form">
-            <!-- Blog Image Upload -->
-            <BFormGroup class="mb-4">
+          <b-form class="app-form">
+            <b-form-group class="mb-4">
               <label class="form-label fw-semibold">Blog Image</label>
               <div class="d-flex flex-column">
-                <BFormFile
+                <b-form-file
                     @change="handleImageChange"
                     accept="image/*"
                     class="mb-2"
@@ -285,7 +255,7 @@ const breadcrumbItems = computed(() => ({
                   Upload a new image or keep the current one
                 </small>
                 <div class="mt-3 text-center">
-                  <BImg
+                  <b-img
                       v-if="selectedImage"
                       :src="selectedImage"
                       alt="Preview"
@@ -295,63 +265,54 @@ const breadcrumbItems = computed(() => ({
                   />
                 </div>
               </div>
-            </BFormGroup>
+            </b-form-group>
 
-            <!-- Blog Title with Floating Label -->
-            <BFormGroup class="form-floating mb-3">
-              <BFormInput
+            <b-form-group class="form-floating mb-3">
+              <b-form-input
                   id="blogTitle"
                   type="text"
                   placeholder="Blog Title"
                   v-model="formData.blogTitle"
               />
               <label for="blogTitle">Blog Title</label>
-            </BFormGroup>
+            </b-form-group>
 
-            <!-- Blog Description with Floating Label -->
-            <BFormGroup class="form-floating mb-3">
-              <BFormTextarea
+            <b-form-group class="form-floating mb-3">
+              <b-form-textarea
                   id="blogDescription"
                   placeholder="Type description"
                   style="height: 100px"
                   v-model="formData.blogDescription"
               />
               <label for="blogDescription">Blog Description</label>
-            </BFormGroup>
+            </b-form-group>
 
-            <!-- Blog Date with Floating Label -->
-            <BFormGroup class="form-floating mb-3">
-              <BFormInput
+            <b-form-group class="form-floating mb-3">
+              <b-form-input
                   id="blogDate"
                   type="date"
                   v-model="formData.blogDate"
               />
               <label for="blogDate">Blog Date</label>
-            </BFormGroup>
+            </b-form-group>
 
-            <!-- Blog Tag with Floating Label -->
-            <BFormGroup class="form-floating mb-3">
-              <BFormInput
+            <b-form-group class="form-floating mb-3">
+              <b-form-input
                   id="blogTag"
                   type="text"
                   placeholder="Blog Tag"
                   v-model="formData.blogTag"
               />
               <label for="blogTag">Blog Tag</label>
-            </BFormGroup>
-          </BForm>
+            </b-form-group>
+          </b-form>
 
           <template #footer>
-            <BButton variant="secondary" @click="closeModal">
-              Cancel
-            </BButton>
-            <BButton variant="primary" @click="handleSaveChanges">
-              Save Changes
-            </BButton>
+            <b-button variant="secondary" @click="closeModal">Cancel</b-button>
+            <b-button variant="primary" @click="handleSaveChanges">Save Changes</b-button>
           </template>
-        </BModal>
-      </BContainer>
+        </b-modal>
+      </b-container>
     </main>
-  </AppLayout>
+  </app-layout>
 </template>
-

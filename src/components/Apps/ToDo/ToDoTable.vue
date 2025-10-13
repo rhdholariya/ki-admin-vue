@@ -31,7 +31,7 @@
         <b-table
             hover
             responsive
-            class=" table-bottom-border table-lg align-middle todo-table"
+            class="table-bottom-border table-lg align-middle todo-table"
             :items="paginatedTodos"
             :fields="tableFields"
         >

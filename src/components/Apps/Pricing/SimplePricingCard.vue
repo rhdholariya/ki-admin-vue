@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCard, BCardBody, BCol } from "bootstrap-vue-next";
+import { BCard, BCardBody, BCol, BButton } from "bootstrap-vue-next";
 import { PhCheck } from '@phosphor-icons/vue'
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
@@ -62,9 +62,9 @@ const swiperOptions = {
   <div class="simple-pricing-container">
     <Swiper v-bind="swiperOptions">
       <SwiperSlide v-for="(plan, index) in pricingPlans" :key="index">
-        <BCol class="p-3">
-          <BCard class="simple-pricing-card" no-body>
-            <BCardBody>
+        <b-col class="p-3">
+          <b-card class="simple-pricing-card" no-body>
+            <b-card-body>
               <div class="simple-price-header text-center mb-3">
                 <h4 class="mb-0">{{ plan.title }}</h4>
               </div>
@@ -88,14 +88,14 @@ const swiperOptions = {
                     <div class="app-divider-v px-2" />
                   </div>
 
-                  <button :class="`${plan.buttonClass} rounded w-100 p-2 mt-3`">
+                  <b-button :class="`${plan.buttonClass} rounded w-100 p-2 mt-3`">
                     Get Started
-                  </button>
+                  </b-button>
                 </div>
               </div>
-            </BCardBody>
-          </BCard>
-        </BCol>
+            </b-card-body>
+          </b-card>
+        </b-col>
       </SwiperSlide>
     </Swiper>
   </div>

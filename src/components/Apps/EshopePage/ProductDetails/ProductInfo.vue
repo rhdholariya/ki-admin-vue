@@ -1,7 +1,7 @@
 <template>
-  <BCol xxl="6" class="order-xxl-2">
-    <BCard no-body>
-      <BCardBody>
+  <b-col xxl="6" class="order-xxl-2">
+    <b-card no-body>
+      <b-card-body>
         <div class="product-details-contentbox">
           <!-- Product title -->
           <h4>Trendy & Stylish Loafers For Men</h4>
@@ -10,13 +10,13 @@
           <div class="mt-2 d-flex align-items-center gap-1">
             <IconStarFilled
                 v-for="n in 3"
-                :key="'star-filled-' + n"
+                :key="'filled-' + n"
                 size="20"
                 class="text-warning"
             />
             <IconStarFilled
                 v-for="n in 2"
-                :key="'star-muted-' + n"
+                :key="'muted-' + n"
                 size="20"
                 class="text-muted"
             />
@@ -36,6 +36,7 @@
 
           <!-- Sizes & Colors -->
           <div class="product-detailbox">
+            <!-- Sizes -->
             <div class="mb-4">
               <h5>Size:</h5>
               <div class="form-selectgroup d-flex flex-wrap gap-2">
@@ -57,6 +58,7 @@
               </div>
             </div>
 
+            <!-- Colors -->
             <div>
               <h5>Color:</h5>
               <div class="d-flex flex-wrap">
@@ -68,8 +70,8 @@
                   <input
                       type="radio"
                       name="color-radio"
-                      :checked="selectedColor === color"
-                      @change="selectedColor = color"
+                      :value="color"
+                      v-model="selectedColor"
                   />
                   <span :class="`radiomark check-${color} ms-2`"></span>
                 </label>
@@ -111,33 +113,35 @@
               >
                 <span class="fw-bold">{{ rating.star }}</span>
                 <IconStarFilled size="12" class="text-warning" />
-                <BProgress
+                <b-progress
                     :value="rating.percent"
                     :variant="rating.color"
                     class="flex-grow-1"
                     height="8px"
                 />
-                <span class="text-muted">({{ rating.count.toLocaleString() }})</span>
+                <span class="text-muted">
+                  ({{ rating.count.toLocaleString() }})
+                </span>
               </div>
             </div>
           </div>
 
           <!-- Action Buttons -->
           <div class="product-details-btn text-end mt-4">
-            <RouterLink to="/apps/e-shop/cart" class="btn btn-primary me-2">
+            <router-link to="/apps/e-shop/cart" class="btn btn-primary me-2">
               Add To Cart
-            </RouterLink>
-            <RouterLink to="/apps/e-shop/checkout" class="btn btn-success me-2">
+            </router-link>
+            <router-link to="/apps/e-shop/checkout" class="btn btn-success me-2">
               Buy Now
-            </RouterLink>
-            <RouterLink to="/apps/e-shop/wishlist" class="btn btn-danger">
+            </router-link>
+            <router-link to="/apps/e-shop/wishlist" class="btn btn-danger">
               Add to Wishlist
-            </RouterLink>
+            </router-link>
           </div>
         </div>
-      </BCardBody>
-    </BCard>
-  </BCol>
+      </b-card-body>
+    </b-card>
+  </b-col>
 </template>
 
 <script setup>
@@ -155,7 +159,16 @@ const ratingData = [
 ];
 
 const sizes = [6, 7, 25, 30, 40];
-const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
+const colors = [
+  "primary",
+  "secondary",
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "light",
+  "dark",
+];
 
 const selectedSizes = ref([6]);
 const selectedColor = ref("primary");
@@ -168,5 +181,3 @@ function toggleSize(size) {
   }
 }
 </script>
-
-

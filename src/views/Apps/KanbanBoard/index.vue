@@ -1,70 +1,3 @@
-<template>
-  <AppLayout>
-    <main>
-  <b-container fluid>
-    <Breadcrumb :breadcrumb="breadcrumbItems" />
-    <b-row>
-      <b-col sm="12">
-        <div class="kanban-board-container app-scroll" ref="boardRef">
-          <div class="board">
-            <div
-                v-for="column in columns"
-                :key="column.id"
-                class="board-column app-scroll"
-            >
-              <div class="board-column-header">
-                <component :is="column.icon" class="me-2" />
-                {{ column.title }}
-              </div>
-              <div class="board-column-content-wrapper">
-                <div class="board-column-content">
-                  <div
-                      v-for="task in column.items"
-                      :key="task.id"
-                      class="board-item"
-                  >
-                    <div
-                        :class="['board-item-content', task.image ? 'p-0' : '']"
-                    >
-                      <div v-if="task.image" class="board-images">
-                        <img :src="task.image" class="img-fluid" alt="img" />
-                      </div>
-                      <div :class="task.image ? 'p-3' : ''">
-                        <h6 class="mb-0">{{ task.title }}</h6>
-                        <div class="board-footer d-flex align-items-center gap-2">
-                          <span class="badge bg-light-danger f-s-14">
-                            <i class="ph-bold ph-clock-afternoon"></i>
-                            {{ task.dueDate }}
-                          </span>
-                          <PhList
-                              size="16"
-                              weight="bold"
-                              class="me-2 text-muted"
-                          />
-                          <span class="f-s-14 me-2 d-flex align-items-center">
-                            <PhChatText size="16" weight="bold" class="me-1" />
-                            {{ task.comments }}
-                          </span>
-                          <span class="badge bg-light-primary f-s-14">
-                            <i class="ph-bold ph-check-square-offset"></i>
-                            {{ task.progress }}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </b-col>
-    </b-row>
-  </b-container>
-    </main>
-  </AppLayout>
-</template>
-
 <script setup>
 import {ref, onMounted, onBeforeUnmount, h, computed} from "vue";
 import MuuriModule from "muuri";
@@ -216,4 +149,72 @@ onMounted(() => {
   });
 });
 </script>
+<template>
+  <AppLayout>
+    <main>
+  <b-container fluid>
+    <Breadcrumb :breadcrumb="breadcrumbItems" />
+    <b-row>
+      <b-col sm="12">
+        <div class="kanban-board-container app-scroll" ref="boardRef">
+          <div class="board">
+            <div
+                v-for="column in columns"
+                :key="column.id"
+                class="board-column app-scroll"
+            >
+              <div class="board-column-header">
+                <component :is="column.icon" class="me-2" />
+                {{ column.title }}
+              </div>
+              <div class="board-column-content-wrapper">
+                <div class="board-column-content">
+                  <div
+                      v-for="task in column.items"
+                      :key="task.id"
+                      class="board-item"
+                  >
+                    <div
+                        :class="['board-item-content', task.image ? 'p-0' : '']"
+                    >
+                      <div v-if="task.image" class="board-images">
+                        <img :src="task.image" class="img-fluid" alt="img" />
+                      </div>
+                      <div :class="task.image ? 'p-3' : ''">
+                        <h6 class="mb-0">{{ task.title }}</h6>
+                        <div class="board-footer d-flex align-items-center gap-2">
+                          <span class="badge bg-light-danger f-s-14">
+                            <i class="ph-bold ph-clock-afternoon"></i>
+                            {{ task.dueDate }}
+                          </span>
+                          <PhList
+                              size="16"
+                              weight="bold"
+                              class="me-2 text-muted"
+                          />
+                          <span class="f-s-14 me-2 d-flex align-items-center">
+                            <PhChatText size="16" weight="bold" class="me-1" />
+                            {{ task.comments }}
+                          </span>
+                          <span class="badge bg-light-primary f-s-14">
+                            <i class="ph-bold ph-check-square-offset"></i>
+                            {{ task.progress }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
+  </b-container>
+    </main>
+  </AppLayout>
+</template>
+
+
 

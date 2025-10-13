@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Account Security -->
-    <b-card class="security-card-content mb-4">
+    <b-card class="security-card-content mb-4" no-body>
       <b-card-body>
         <b-row class="align-items-center">
           <b-col sm="8">
@@ -27,6 +27,7 @@
       v-for="(item, idx) in securityItems"
       :key="idx"
       class="mb-4"
+      no-body
     >
       <b-card-body>
         <b-row class="security-box-card align-items-center">
@@ -61,7 +62,7 @@
     </b-card>
 
     <!-- Devices and Sessions -->
-    <b-card class="security-card-content mb-4">
+    <b-card class="security-card-content mb-4" no-body>
       <b-card-body>
         <b-row class="align-items-center">
           <b-col sm="9">
@@ -89,7 +90,7 @@
       <b-col lg="12" xxl="6">
         <ul class="active-device-session active-device-list">
           <li v-for="(item, idx) in leftSessionList" :key="idx">
-            <b-card :class="{ 'share-menu-active': idx === 0 }">
+            <b-card :class="{ 'share-menu-active': idx === 0 }" no-body>
               <b-card-body>
                 <div class="device-menu-item" draggable="false">
                   <span class="device-menu-img">
@@ -127,7 +128,7 @@
       <b-col lg="12" xxl="6">
         <ul class="active-device-session active-device-list">
           <li v-for="(item, idx) in rightSessionList" :key="idx">
-            <b-card>
+            <b-card no-body>
               <b-card-body>
                 <div class="device-menu-item" draggable="false">
                   <span class="device-menu-img">
@@ -165,7 +166,7 @@
     </b-row>
 
     <!-- Change Password -->
-    <b-card class="security-card-content">
+    <b-card class="security-card-content" no-body>
       <b-card-body>
         <div class="account-security mb-2">
           <b-row class="align-items-center">

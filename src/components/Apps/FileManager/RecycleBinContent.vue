@@ -1,3 +1,73 @@
+<script setup>
+import { ref } from 'vue'
+import { BCard, BDropdown, BDropdownItem } from "bootstrap-vue-next";
+const deletedFolders = ref([
+  {
+    id: 1,
+    name: 'My Work',
+    icon: '../assets/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: false,
+    type: 'folder'
+  },
+  {
+    id: 4,
+    name: 'Photoes',
+    icon: '../assets/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: false,
+    type: 'folder'
+  }
+])
+
+const deletedFiles = ref([
+  {
+    id: 3,
+    name: 'Product.docx',
+    icon: '../assets/images/icons/file-manager-icon/file.png',
+    isFavorite: false,
+    type: 'file'
+  }
+])
+
+const toggleFavorite = (id) => {
+  const folder = deletedFolders.value.find(folder => folder.id === id)
+  if (folder) {
+    folder.isFavorite = !folder.isFavorite
+  }
+}
+
+const toggleFileFavorite = (id) => {
+  const file = deletedFiles.value.find(file => file.id === id)
+  if (file) {
+    file.isFavorite = !file.isFavorite
+  }
+}
+
+const restoreItem = (item) => {
+  if (item.type === 'folder') {
+    deletedFolders.value = deletedFolders.value.filter(folder => folder.id !== item.id)
+  } else {
+    deletedFiles.value = deletedFiles.value.filter(file => file.id !== item.id)
+  }
+  emit('restore-item', item)
+}
+
+const permanentlyDelete = (item) => {
+  if (item.type === 'folder') {
+    deletedFolders.value = deletedFolders.value.filter(folder => folder.id !== item.id)
+  } else {
+    deletedFiles.value = deletedFiles.value.filter(file => file.id !== item.id)
+  }
+  emit('permanently-delete', item)
+}
+
+const emit = defineEmits(['restore-item', 'permanently-delete'])
+</script>
+
+
 <template>
   <b-card class="documents-sections">
     <template #header>
@@ -75,71 +145,3 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const deletedFolders = ref([
-  {
-    id: 1,
-    name: 'My Work',
-    icon: '../assets/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: false,
-    type: 'folder'
-  },
-  {
-    id: 4,
-    name: 'Photoes',
-    icon: '../assets/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: false,
-    type: 'folder'
-  }
-])
-
-const deletedFiles = ref([
-  {
-    id: 3,
-    name: 'Product.docx',
-    icon: '../assets/images/icons/file-manager-icon/file.png',
-    isFavorite: false,
-    type: 'file'
-  }
-])
-
-const toggleFavorite = (id) => {
-  const folder = deletedFolders.value.find(folder => folder.id === id)
-  if (folder) {
-    folder.isFavorite = !folder.isFavorite
-  }
-}
-
-const toggleFileFavorite = (id) => {
-  const file = deletedFiles.value.find(file => file.id === id)
-  if (file) {
-    file.isFavorite = !file.isFavorite
-  }
-}
-
-const restoreItem = (item) => {
-  if (item.type === 'folder') {
-    deletedFolders.value = deletedFolders.value.filter(folder => folder.id !== item.id)
-  } else {
-    deletedFiles.value = deletedFiles.value.filter(file => file.id !== item.id)
-  }
-  emit('restore-item', item)
-}
-
-const permanentlyDelete = (item) => {
-  if (item.type === 'folder') {
-    deletedFolders.value = deletedFolders.value.filter(folder => folder.id !== item.id)
-  } else {
-    deletedFiles.value = deletedFiles.value.filter(file => file.id !== item.id)
-  }
-  emit('permanently-delete', item)
-}
-
-const emit = defineEmits(['restore-item', 'permanently-delete'])
-</script>

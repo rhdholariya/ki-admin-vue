@@ -1,3 +1,107 @@
+<script setup>
+import {ref} from 'vue'
+import {
+  BButton,
+  BCard,
+  BForm,
+  BModal,
+  BFormInput,
+  BFormGroup,
+  BDropdown,
+  BDropdownItem,
+  BCardHeader,
+  BCardBody,
+  BRow
+} from "bootstrap-vue-next";
+
+const showCreateFolderModal = ref(false)
+const newFolderName = ref('')
+
+import {
+  PhStar,
+  PhDotsThreeVertical,
+  PhEye,
+  PhPencil,
+  PhTrash
+} from '@phosphor-icons/vue'
+
+const folders = ref([
+  {
+    id: 1,
+    name: 'My Work',
+    icon: '/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: true
+  },
+  {
+    id: 2,
+    name: 'Graduation',
+    icon: '/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: false
+  },
+  {
+    id: 3,
+    name: 'Company',
+    icon: '/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: true
+  },
+  {
+    id: 4,
+    name: 'Photoes',
+    icon: '/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    isFavorite: false
+  }
+])
+
+const toggleFolderFavorite = (id) => {
+  const folder = folders.value.find(folder => folder.id === id)
+  if (folder) {
+    folder.isFavorite = !folder.isFavorite
+  }
+}
+
+const createFolder = () => {
+  if (newFolderName.value.trim()) {
+    const newFolder = {
+      id: Date.now(),
+      name: newFolderName.value,
+      icon: '/images/icons/file-manager-icon/folder.png',
+      used: '0GB',
+      total: '50GB',
+      isFavorite: false
+    }
+    folders.value.unshift(newFolder)
+    newFolderName.value = ''
+    showCreateFolderModal.value = false
+  }
+}
+
+const resetForm = () => {
+  newFolderName.value = ''
+}
+
+const viewFolder = (folder) => {
+  console.log('View folder:', folder)
+}
+
+const editFolder = (folder) => {
+  emit('edit-folder', folder)
+}
+
+const deleteFolder = (folder) => {
+  emit('delete-folder', folder)
+}
+
+const emit = defineEmits(['edit-folder', 'delete-folder'])
+</script>
+
 <template>
   <b-card no-body>
     <b-card-header>
@@ -112,106 +216,3 @@
   </b-modal>
 </template>
 
-<script setup>
-import {ref} from 'vue'
-import {
-  BButton,
-  BCard,
-  BForm,
-  BModal,
-  BFormInput,
-  BFormGroup,
-  BDropdown,
-  BDropdownItem,
-  BCardHeader,
-  BCardBody,
-  BRow
-} from "bootstrap-vue-next";
-
-const showCreateFolderModal = ref(false)
-const newFolderName = ref('')
-
-import {
-  PhStar,
-  PhDotsThreeVertical,
-  PhEye,
-  PhPencil,
-  PhTrash
-} from '@phosphor-icons/vue'
-
-const folders = ref([
-  {
-    id: 1,
-    name: 'My Work',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: true
-  },
-  {
-    id: 2,
-    name: 'Graduation',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: false
-  },
-  {
-    id: 3,
-    name: 'Company',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: true
-  },
-  {
-    id: 4,
-    name: 'Photoes',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    isFavorite: false
-  }
-])
-
-const toggleFolderFavorite = (id) => {
-  const folder = folders.value.find(folder => folder.id === id)
-  if (folder) {
-    folder.isFavorite = !folder.isFavorite
-  }
-}
-
-const createFolder = () => {
-  if (newFolderName.value.trim()) {
-    const newFolder = {
-      id: Date.now(),
-      name: newFolderName.value,
-      icon: '/images/icons/file-manager-icon/folder.png',
-      used: '0GB',
-      total: '50GB',
-      isFavorite: false
-    }
-    folders.value.unshift(newFolder)
-    newFolderName.value = ''
-    showCreateFolderModal.value = false
-  }
-}
-
-const resetForm = () => {
-  newFolderName.value = ''
-}
-
-const viewFolder = (folder) => {
-  console.log('View folder:', folder)
-}
-
-const editFolder = (folder) => {
-  emit('edit-folder', folder)
-}
-
-const deleteFolder = (folder) => {
-  emit('delete-folder', folder)
-}
-
-const emit = defineEmits(['edit-folder', 'delete-folder'])
-</script>

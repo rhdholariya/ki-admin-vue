@@ -6,7 +6,7 @@ import { BDropdown, BDropdownItem } from "bootstrap-vue-next";
 <template>
   <div class="float-end">
     <div class="btn-group dropdown-icon-none">
-      <BDropdown
+      <b-dropdown
           variant="primary"
           class="icon-btn b-r-22"
           toggle-class="active"
@@ -17,16 +17,16 @@ import { BDropdown, BDropdownItem } from "bootstrap-vue-next";
           <IconPlus size="18" />
         </template>
 
-        <BDropdownItem href="#">
+        <b-dropdown-item href="#">
           <IconBrandHipchat size="18" class="me-2" />
           <span class="f-s-13">New Chat</span>
-        </BDropdownItem>
+        </b-dropdown-item>
 
-        <BDropdownItem href="#">
+        <b-dropdown-item href="#">
           <IconPhoneCall size="18" class="me-2" />
           <span class="f-s-13">New Contact</span>
-        </BDropdownItem>
-      </BDropdown>
+        </b-dropdown-item>
+      </b-dropdown>
     </div>
   </div>
 </template>

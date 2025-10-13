@@ -1,12 +1,12 @@
 <script setup>
 import { BContainer, BRow, BCol } from "bootstrap-vue-next";
 
-// Define emits only
+
 const emit = defineEmits(['image-click']);
 
 const img = (src) => `/images/gallary/${src}`;
 
-// Gallery items structure
+
 const galleryItems = [
   {
     cols: { sm: 6, lg: 4 },
@@ -43,24 +43,22 @@ const galleryItems = [
   { cols: { sm: 6, lg: 4 }, src: "09.jpg", caption: "Image With Right Description" },
 ];
 
-// Pre-calculate all global indices
+
 const calculateGlobalIndices = () => {
   const indices = [];
   let globalIndex = 0;
 
   galleryItems.forEach((section) => {
     if (section.nested && section.items) {
-      // For nested sections, each item gets its own index
       section.items.forEach(() => {
         indices.push(globalIndex++);
       });
     } else if (section.items) {
-      // For multiple items sections
+
       section.items.forEach(() => {
         indices.push(globalIndex++);
       });
     } else {
-      // For single items
       indices.push(globalIndex++);
     }
   });
@@ -70,11 +68,11 @@ const calculateGlobalIndices = () => {
 
 const globalIndices = calculateGlobalIndices();
 
-// Function to get global index for any item
+
 const getGlobalIndex = (sectionIndex, itemIndex = null) => {
   let count = 0;
 
-  // Count all items before current section
+
   for (let i = 0; i < sectionIndex; i++) {
     const section = galleryItems[i];
     if (section.items) {
@@ -84,35 +82,32 @@ const getGlobalIndex = (sectionIndex, itemIndex = null) => {
     }
   }
 
-  // Add current item index
   if (itemIndex !== null) {
     count += itemIndex;
   } else {
-    // If no itemIndex provided, it's a single item section
-    // count is already correct
   }
 
   return count;
 };
 
-// Handle image click
+
 const handleImageClick = (globalIndex) => {
-  console.log('Clicked image index:', globalIndex); // For debugging
-  emit('image-click', globalIndex + 1); // +1 because FsLightbox uses 1-based indexing
+  console.log('Clicked image index:', globalIndex);
+  emit('image-click', globalIndex + 1);
 };
 </script>
 
 <template>
-  <BContainer fluid>
-    <BRow>
-      <BCol xs="12" class="gallery-grid-container">
-        <BRow class="gallery-img">
+  <b-container fluid>
+    <b-row>
+      <b-col xs="12" class="gallery-grid-container">
+        <b-row class="gallery-img">
           <template v-for="(section, sectionIndex) in galleryItems" :key="sectionIndex">
 
             <!-- Nested Section -->
-            <BCol v-if="section.nested" v-bind="section.cols">
-              <BRow>
-                <BCol
+            <b-col v-if="section.nested" v-bind="section.cols">
+              <b-row>
+                <b-col
                     v-for="(item, itemIndex) in section.items"
                     :key="itemIndex"
                     v-bind="item.cols"
@@ -126,13 +121,13 @@ const handleImageClick = (globalIndex) => {
                       <p>{{ item.caption }}</p>
                     </div>
                   </div>
-                </BCol>
-              </BRow>
-            </BCol>
+                </b-col>
+              </b-row>
+            </b-col>
 
             <!-- Multiple Items Section (non-nested) -->
             <template v-else-if="section.items">
-              <BCol
+              <b-col
                   v-for="(item, itemIndex) in section.items"
                   :key="itemIndex"
                   v-bind="section.cols"
@@ -146,11 +141,11 @@ const handleImageClick = (globalIndex) => {
                     <p>{{ item.caption }}</p>
                   </div>
                 </div>
-              </BCol>
+              </b-col>
             </template>
 
             <!-- Single Item Section -->
-            <BCol v-else v-bind="section.cols">
+            <b-col v-else v-bind="section.cols">
               <div
                   class="imagebox"
                   @click="handleImageClick(getGlobalIndex(sectionIndex))"
@@ -160,11 +155,11 @@ const handleImageClick = (globalIndex) => {
                   <p>{{ section.caption }}</p>
                 </div>
               </div>
-            </BCol>
+            </b-col>
 
           </template>
-        </BRow>
-      </BCol>
-    </BRow>
-  </BContainer>
+        </b-row>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>

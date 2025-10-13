@@ -10,13 +10,13 @@ const activeTabInner = ref(0);
 
 <template>
   <div class="tab-wrapper mt-3">
-    <BTabs
+    <b-tabs
         v-model="activeTabInner"
         card
         nav-class="app-tabs-primary chat-status-tab border-0 justify-content-between mb-0 pb-0 px-3"
     >
       <!-- Private Tab -->
-      <BTab>
+      <b-tab>
         <template #title>
           <PhLockKeyOpen size="18" weight="duotone" class="me-2" />
           Private
@@ -62,10 +62,10 @@ const activeTabInner = ref(0);
             </div>
           </div>
         </div>
-      </BTab>
+      </b-tab>
 
       <!-- Group Tab -->
-      <BTab>
+      <b-tab>
         <template #title>
           <PhUsersThree size="18" weight="duotone" class="me-2" />
           Group
@@ -101,7 +101,7 @@ const activeTabInner = ref(0);
             </div>
           </div>
         </div>
-      </BTab>
-    </BTabs>
+      </b-tab>
+    </b-tabs>
   </div>
 </template>

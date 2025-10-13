@@ -26,19 +26,18 @@ import {
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 
-// Import icons
-import { PhStack } from "@phosphor-icons/vue";
-import { IconBrandWechat, IconPlus, IconTrash } from "@tabler/icons-vue";
+import {PhStack} from "@phosphor-icons/vue";
+import {IconBrandWechat, IconPlus, IconTrash} from "@tabler/icons-vue";
 
-// Import project data
-import { projectsAppData } from "@/data/app/projectapp/ProjectAppData.js";
+import {projectsAppData} from "@/data/app/projectapp/ProjectAppData.js";
 
-// Reactive state
 const projects = ref([...projectsAppData]);
 const activeTab = ref("1");
 const modalOpen = ref(false);
 
-// Form reactive state
+// File input reactive key
+const fileInputKey = ref(0);
+
 const formData = ref({
   projectName: "",
   image: null,
@@ -49,18 +48,14 @@ const formData = ref({
   category: "",
 });
 
-// File handling with Vue reactivity
 const imagePreview = ref(null);
-const fileInputRef = ref(null);
 
-// Tab configuration
 const tabs = ref([
-  { k: "1", label: "All Project" },
-  { k: "2", label: "Designing Project" },
-  { k: "3", label: "Development Project" },
+  {k: "1", label: "All Project"},
+  {k: "2", label: "Designing Project"},
+  {k: "3", label: "Development Project"},
 ]);
 
-// Computed properties
 const filteredProjects = computed(() => {
   const filterMap = {
     "1": () => projects.value,
@@ -70,17 +65,15 @@ const filteredProjects = computed(() => {
   return filterMap[activeTab.value]?.() || projects.value;
 });
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Projects",
   items: [
-    { label: "Apps", icon: PhStack },
-    { label: "Project Page"},
-    { label: "Projects" , active: true }
+    {label: "Apps", icon: PhStack},
+    {label: "Project Page"},
+    {label: "Projects", active: true}
   ],
 }));
 
-// Vue-friendly methods
 const toggleTab = (tab) => {
   activeTab.value = tab;
 };
@@ -93,7 +86,6 @@ const toggleModal = () => {
 };
 
 const resetForm = () => {
-  // Reset form data
   Object.assign(formData.value, {
     projectName: "",
     image: null,
@@ -104,16 +96,13 @@ const resetForm = () => {
     category: "",
   });
 
-  // Clear image preview
   if (imagePreview.value) {
     URL.revokeObjectURL(imagePreview.value);
     imagePreview.value = null;
   }
 
-  // Reset file input
-  if (fileInputRef.value) {
-    fileInputRef.value.value = "";
-  }
+  // Reset file input reactively
+  fileInputKey.value += 1;
 };
 
 const handleFileChange = (event) => {
@@ -124,12 +113,10 @@ const handleFileChange = (event) => {
     return;
   }
 
-  // Clean up previous preview
   if (imagePreview.value) {
     URL.revokeObjectURL(imagePreview.value);
   }
 
-  // Create new preview
   const url = URL.createObjectURL(file);
   imagePreview.value = url;
   formData.value.image = file;
@@ -140,9 +127,7 @@ const handleDelete = (id) => {
 };
 
 const handleSubmit = () => {
-  if (!formData.value.category) {
-    return;
-  }
+  if (!formData.value.category) return;
 
   const newProject = {
     id: Date.now(),
@@ -172,37 +157,33 @@ onUnmounted(() => {
     URL.revokeObjectURL(imagePreview.value);
   }
 });
-
-
 </script>
-
-
 
 <template>
   <AppLayout>
     <main>
       <b-container fluid>
-        <Breadcrumb :breadcrumb="breadcrumbItems" />
+        <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
-        <!-- Tab Navigation -->
+        <!-- Tabs -->
         <div class="tab-wrapper mb-3">
           <b-nav as="ul" class="tabs align-items-center">
             <b-nav-item
-              v-for="tab in tabs"
-              :key="tab.k"
-              :class="['tab-link', { active: activeTab === tab.k }]"
-              @click="toggleTab(tab.k)"
+                v-for="tab in tabs"
+                :key="tab.k"
+                :class="['tab-link', { active: activeTab === tab.k }]"
+                @click="toggleTab(tab.k)"
             >
               {{ tab.label }}
             </b-nav-item>
 
             <div class="ms-auto text-end">
               <b-button
-                variant="primary"
-                class="w-45 h-45 icon-btn b-r-10 m-2"
-                @click="toggleModal"
+                  variant="primary"
+                  class="w-45 h-45 icon-btn b-r-10 m-2"
+                  @click="toggleModal"
               >
-                <IconPlus :size="18" />
+                <IconPlus :size="18"/>
               </b-button>
             </div>
           </b-nav>
@@ -210,41 +191,19 @@ onUnmounted(() => {
 
         <!-- Project Cards -->
         <b-row>
-          <b-col
-            v-for="project in filteredProjects"
-            :key="project.id"
-            md="6"
-            xl="4"
-          >
+          <b-col v-for="project in filteredProjects" :key="project.id" md="6" xl="4">
             <b-card class="hover-effect equal-card" no-body>
               <b-card-header>
                 <div class="d-flex align-items-center">
                   <div class="h-40 w-40 d-flex-center b-r-50 overflow-hidden">
-                    <b-img
-                      :src="project.logo"
-                      :alt="project.title"
-                      :width="40"
-                      :height="40"
-                      class="img-fluid"
-                    />
+                    <b-img :src="project.logo" :alt="project.title" :width="40" :height="40"/>
                   </div>
-                  <RouterLink
-                    to="/project_details"
-                    class="flex-grow-1 ps-2 text-decoration-none"
-                  >
-                    <h6 class="m-0 text-dark f-w-600">
-                      {{ project.title }}
-                    </h6>
-                    <div class="text-muted f-s-14 f-w-500">
-                      {{ project.subtitle }}
-                    </div>
+                  <RouterLink to="/project_details" class="flex-grow-1 ps-2 text-decoration-none">
+                    <h6 class="m-0 text-dark f-w-600">{{ project.title }}</h6>
+                    <div class="text-muted f-s-14 f-w-500">{{ project.subtitle }}</div>
                   </RouterLink>
-                  <b-button
-                    class="icon-btn delete-button"
-                    variant="light-danger"
-                    @click="handleDelete(project.id)"
-                  >
-                    <IconTrash :size="16" class="text-danger" />
+                  <b-button class="icon-btn delete-button" variant="light-danger" @click="handleDelete(project.id)">
+                    <IconTrash :size="16" class="text-danger"/>
                   </b-button>
                 </div>
               </b-card-header>
@@ -253,14 +212,10 @@ onUnmounted(() => {
                 <div class="d-flex justify-content-between">
                   <div>
                     <h6 class="text-dark f-s-14">
-                      Start:
-                      <span class="text-success">
-                        {{ project.startDate }}
-                      </span>
+                      Start: <span class="text-success">{{ project.startDate }}</span>
                     </h6>
                     <h6 class="text-dark f-s-14">
-                      End:
-                      <span class="text-danger">{{ project.endDate }}</span>
+                      End: <span class="text-danger">{{ project.endDate }}</span>
                     </h6>
                   </div>
                   <div class="text-end">
@@ -268,22 +223,13 @@ onUnmounted(() => {
                     <h6>{{ project.price }}</h6>
                   </div>
                 </div>
-
-                <p class="text-muted txt-ellipsis-2">
-                  {{ project.description }}
-                </p>
-
+                <p class="text-muted txt-ellipsis-2">{{ project.description }}</p>
                 <div class="text-end mb-2">
-                  <b-badge :variant="`light-${project.progressColor}`">
-                    {{ project.status }}
-                  </b-badge>
+                  <b-badge :variant="`light-${project.progressColor}`">{{ project.status }}</b-badge>
                 </div>
-
-                <b-progress
-                  :value="project.progress"
-                  :variant="project.progressColor"
-                >
-                  {{ project.progress }}%
+                <b-progress :value="project.progress" :variant="project.progressColor">{{
+                    project.progress
+                  }}%
                 </b-progress>
               </b-card-body>
 
@@ -291,35 +237,22 @@ onUnmounted(() => {
                 <b-row class="align-items-center">
                   <b-col cols="6">
                     <span class="text-dark f-w-600">
-                      <IconBrandWechat class="me-1" />
-                      {{ project.members }} Members
+                      <IconBrandWechat class="me-1"/> {{ project.members }} Members
                     </span>
                   </b-col>
                   <b-col cols="6">
                     <ul class="avatar-group float-end mb-0">
                       <li
-                        v-for="(avatar, i) in project.avatars"
-                        :key="i"
-                        :class="[
-                          'h-30 w-30 d-flex-center b-r-50',
-                          i === 0 ? 'text-bg-danger' : 'text-bg-success',
-                          'b-2-light'
-                        ]"
-                        :title="`Member ${i + 1}`"
+                          v-for="(avatar, i) in project.avatars"
+                          :key="i"
+                          :class="['h-30 w-30 d-flex-center b-r-50', i === 0 ? 'text-bg-danger' : 'text-bg-success', 'b-2-light']"
+                          :title="`Member ${i + 1}`"
                       >
-                        <b-img
-                          :src="avatar"
-                          :alt="`Member ${i + 1}`"
-                          :width="30"
-                          :height="30"
-                          class="img-fluid b-r-50"
-                        />
+                        <b-img :src="avatar" :alt="`Member ${i + 1}`" :width="30" :height="30"
+                               class="img-fluid b-r-50"/>
                       </li>
-                      <li
-                        v-if="project.moreMembers > 0"
-                        class="text-bg-primary h-25 w-25 d-flex-center b-r-50"
-                        :title="`${project.moreMembers} More`"
-                      >
+                      <li v-if="project.moreMembers > 0" class="text-bg-primary h-25 w-25 d-flex-center b-r-50"
+                          :title="`${project.moreMembers} More`">
                         {{ project.moreMembers }}+
                       </li>
                     </ul>
@@ -331,85 +264,55 @@ onUnmounted(() => {
         </b-row>
 
         <!-- Add Project Modal -->
-        <b-modal
-          v-model="modalOpen"
-          title="Add Project"
-          @hidden="resetForm"
-        >
+        <b-modal v-model="modalOpen" title="Add Project" @hidden="resetForm">
           <b-form @submit.prevent="handleSubmit" class="app-form">
             <b-row class="g-3">
               <b-col cols="12">
                 <b-form-group label="Project Name">
-                  <b-form-input
-                    v-model="formData.projectName"
-                    type="text"
-                    placeholder="Designing"
-                  />
+                  <b-form-input v-model="formData.projectName" type="text" placeholder="Designing"/>
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
                 <b-form-group label="Image">
                   <b-form-input
-                    ref="fileInputRef"
-                    type="file"
-                    class="file_upload"
-                    accept="image/*"
-                    @change="handleFileChange"
+                      :key="fileInputKey"
+                      type="file"
+                      class="file_upload"
+                      accept="image/*"
+                      @change="handleFileChange"
                   />
-                  <b-img
-                    v-if="imagePreview"
-                    :src="imagePreview"
-                    alt="Preview"
-                    class="mt-2 rounded"
-                    height="60"
-                  />
+                  <b-img v-if="imagePreview" :src="imagePreview" alt="Preview" class="mt-2 rounded" height="60"/>
                 </b-form-group>
               </b-col>
 
               <b-col lg="6">
                 <b-form-group label="Start Date">
-                  <b-form-input
-                    v-model="formData.startDate"
-                    type="date"
-                  />
+                  <b-form-input v-model="formData.startDate" type="date"/>
                 </b-form-group>
               </b-col>
 
               <b-col lg="6">
                 <b-form-group label="End Date">
-                  <b-form-input
-                    v-model="formData.endDate"
-                    type="date"
-                  />
+                  <b-form-input v-model="formData.endDate" type="date"/>
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
                 <b-form-group label="Pricing">
-                  <b-form-input
-                    v-model="formData.pricing"
-                    type="text"
-                    placeholder="$10k"
-                  />
+                  <b-form-input v-model="formData.pricing" type="text" placeholder="$10k"/>
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
                 <b-form-group label="Description">
-                  <b-form-textarea
-                    v-model="formData.description"
-                    rows="3"
-                  />
+                  <b-form-textarea v-model="formData.description" rows="3"/>
                 </b-form-group>
               </b-col>
 
               <b-col cols="12">
                 <b-form-group label="Category">
-                  <b-form-select
-                    v-model="formData.category"
-                    required
-                  >
+                  <b-form-select v-model="formData.category" required>
                     <option value="">Select Category</option>
                     <option value="designing">Designing</option>
                     <option value="development">Development</option>
@@ -420,16 +323,11 @@ onUnmounted(() => {
           </b-form>
 
           <template #modal-footer>
-            <b-button variant="secondary" @click="toggleModal">
-              Cancel
-            </b-button>
-            <b-button variant="primary" @click="handleSubmit">
-              Save Project
-            </b-button>
+            <b-button variant="secondary" @click="toggleModal">Cancel</b-button>
+            <b-button variant="primary" @click="handleSubmit">Save Project</b-button>
           </template>
         </b-modal>
       </b-container>
     </main>
   </AppLayout>
 </template>
-

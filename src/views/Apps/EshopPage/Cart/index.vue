@@ -3,12 +3,12 @@
     <main>
         <BContainer fluid>
           <Breadcrumb :breadcrumb="breadcrumbItems"/>
-          <BRow>
-            <BCol lg="8">
-              <BCard no-body>
-                <BCardBody class="p-0">
+          <b-row>
+            <b-col lg="8">
+              <b-card no-body>
+                <b-card-body class="p-0">
                   <div class="orders-details-datatable app-scroll table-responsive">
-                    <BTable
+                    <b-table
                         class="table-bottom-border table-striped text-center align-middle mb-0"
                         :items="products"
                         :fields="tableFields"
@@ -42,27 +42,27 @@
 
                       <template #cell(quantity)="data">
                         <div class="d-flex align-items-center justify-content-center">
-                          <BButton
+                          <b-button
                               variant="danger"
                               class="h-35 w-35 d-flex-center b-r-6 p-0"
                               @click="updateQuantity(data.item.id, -1)"
                           >
                             -
-                          </BButton>
-                          <BFormInput
-                              type="text"
+                          </b-button>
+                          <b-form-input
+                              v-model.number="data.item.quantity"
+                              type="number"
                               class="h-35 w-55 ms-1 me-1 border b-r-6 text-center"
                               style="width: 100px;"
-                              :value="data.item.quantity"
-                              @input="handleChange(data.item.id, $event)"
+                              min="0"
                           />
-                          <BButton
+                          <b-button
                               variant="primary"
                               class="h-35 w-35 d-flex-center b-r-6 p-0"
                               @click="updateQuantity(data.item.id, 1)"
                           >
                             +
-                          </BButton>
+                          </b-button>
                         </div>
                       </template>
 
@@ -71,36 +71,36 @@
                       </template>
 
                       <template #cell(action)="data">
-                        <BButton
+                        <b-button
                             variant="outline-primary"
                             class="icon-btn b-r-4"
                         >
                           <IconHeart :size="18"/>
-                        </BButton>
-                        <BButton
+                        </b-button>
+                        <b-button
                             variant="outline-danger"
                             class="icon-btn b-r-4 delete-btn"
                             @click="handleDelete(data.item.id)"
                         >
                           <PhTrash :size="18"/>
-                        </BButton>
+                        </b-button>
                       </template>
-                    </BTable>
+                    </b-table>
                   </div>
-                </BCardBody>
-              </BCard>
-            </BCol>
+                </b-card-body>
+              </b-card>
+            </b-col>
 
-            <BCol lg="4">
-              <BRow>
-                <BCol cols="12">
-                  <BCard no-body>
-                    <BCardHeader>
+            <b-col lg="4">
+              <b-row>
+                <b-col cols="12">
+                  <b-card no-body>
+                    <b-card-header>
                       <h5>Price Details</h5>
-                    </BCardHeader>
-                    <BCardBody>
+                    </b-card-header>
+                    <b-card-body>
                       <div class="cart-datatable table-responsive">
-                        <BTable
+                        <b-table
                             class="table-bottom-border table-striped text-center align-middle mb-0 table"
                             :items="priceDetails"
                             :fields="priceFields"
@@ -122,15 +122,15 @@
                           ${{ data.item.value.toFixed(2) }}
                         </span>
                           </template>
-                        </BTable>
+                        </b-table>
                       </div>
-                    </BCardBody>
-                  </BCard>
-                </BCol>
+                    </b-card-body>
+                  </b-card>
+                </b-col>
 
-                <BCol md="6" xl="12">
-                  <BCard class="scratch-card position-relative" no-body>
-                    <BCardBody>
+                <b-col md="6" xl="12">
+                  <b-card class="scratch-card position-relative" no-body>
+                    <b-card-body>
                   <span>
                     <i class="ph-duotone ph-gift f-s-35"></i>
                   </span>
@@ -138,14 +138,7 @@
                       <div class="scratch-code-box d-flex align-items-center justify-content-between">
                         <h6 class="mb-0">WIN190EGHY018</h6>
                         <div class="flex-shrink-0">
-                          <BButton
-                              color="primary"
-                              size="sm"
-                              class="b-r-24"
-                              id="copyBtn"
-                          >
-                            copy
-                          </BButton>
+                          <b-button @click="copyCode" id="copyBtn">Copy</b-button>
                         </div>
                       </div>
                       <div class="mt-3">
@@ -154,13 +147,13 @@
                         </p>
                       </div>
                       <div class="scratch-overlay"></div>
-                    </BCardBody>
-                  </BCard>
-                </BCol>
+                    </b-card-body>
+                  </b-card>
+                </b-col>
 
-                <BCol md="6" xl="12">
-                  <BCard class="gift-card">
-                    <BCardBody>
+                <b-col md="6" xl="12">
+                  <b-card class="gift-card">
+                    <b-card-body>
                       <div class="d-flex align-items-center gap-2">
                         <img
                             src="/images/ecommerce/01.gif"
@@ -179,15 +172,15 @@
                       </span>
                         </p>
                         <div class="cart-gift text-end mt-4">
-                          <BButton color="primary">Add Gift</BButton>
+                          <b-button color="primary">Add Gift</b-button>
                         </div>
                       </div>
-                    </BCardBody>
-                  </BCard>
-                </BCol>
-              </BRow>
-            </BCol>
-          </BRow>
+                    </b-card-body>
+                  </b-card>
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
         </BContainer>
     </main>
   </AppLayout>
@@ -213,7 +206,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import {PhStack, PhTrash} from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 
-// Product data
 const products = ref([
   {
     id: 1,
@@ -271,7 +263,6 @@ const products = ref([
   },
 ])
 
-// Table fields configuration
 const tableFields = [
   {key: 'product', label: 'Product Name'},
   {key: 'price', label: 'Price'},
@@ -280,7 +271,7 @@ const tableFields = [
   {key: 'action', label: 'Action'}
 ]
 
-// Price calculation
+
 const subTotal = computed(() =>
     products.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
 )
@@ -290,7 +281,7 @@ const shipping = 65
 const tax = computed(() => subTotal.value * 0.125)
 const total = computed(() => subTotal.value - discount + shipping + tax.value)
 
-// Price details for the summary table
+
 const priceDetails = computed(() => [
   {id: 'subTotal', label: 'Sub Total :', value: subTotal.value, isTotal: true},
   {id: 'discount', label: 'Discount:', value: discount, isTotal: false},

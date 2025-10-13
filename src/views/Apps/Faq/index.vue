@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import {
   BAccordion,
   BAccordionItem,
@@ -14,7 +14,6 @@ import { PhStack } from "@phosphor-icons/vue";
 
 import { faqSections } from "@/data/app/Faq/FaqData.js";
 
-// ✅ Breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Faq",
   items: [
@@ -23,17 +22,12 @@ const breadcrumbItems = computed(() => ({
   ],
 }));
 
-// ✅ Return first item eventKey for each section (open by default)
 const getDefaultActiveKey = (section) => {
-  // if any item has defaultActive flag, open that
   const activeItem = section.items.find((item) => item.defaultActive);
   if (activeItem) return activeItem.eventKey;
-
-  // otherwise, open the first accordion item by default
   return section.items.length > 0 ? section.items[0].eventKey : null;
 };
 
-// ✅ Render content (HTML or string)
 const renderContent = (content) => {
   if (typeof content === "string") return content;
   return content;
@@ -41,11 +35,11 @@ const renderContent = (content) => {
 </script>
 
 <template>
-  <AppLayout>
+  <app-layout>
     <main>
-      <BContainer fluid>
+      <b-container fluid>
         <!-- Breadcrumb -->
-        <Breadcrumb :breadcrumb="breadcrumbItems" />
+        <breadcrumb :breadcrumb="breadcrumbItems" />
 
         <!-- Header -->
         <div class="faq-header text-center my-4">
@@ -54,7 +48,7 @@ const renderContent = (content) => {
           <form class="app-form search-div mt-3">
             <div class="input-group b-r-search">
               <span class="input-group-text bg-primary text-white border-0">
-                <IconSearch :size="18" />
+                <icon-search :size="18" />
               </span>
               <input
                   type="text"
@@ -70,24 +64,24 @@ const renderContent = (content) => {
           <div v-for="section in faqSections" :key="section.id">
             <div class="faq-heading mb-3">
               <h3>
-                <IconHelpCircle :size="25" class="pe-2" />
+                <icon-help-circle :size="25" class="pe-2" />
                 {{ section.title }}
               </h3>
             </div>
 
             <div class="col-lg-8 offset-lg-2 mb-3">
-              <BAccordion
+              <b-accordion
                   class="app-accordion accordion-primary"
                   :model-value="getDefaultActiveKey(section)"
               >
-                <BAccordionItem
+                <b-accordion-item
                     v-for="item in section.items"
                     :key="item.eventKey"
                     :value="item.eventKey"
                 >
                   <template #title>
                     <span>
-                      <IconHelpCircle :size="25" class="pe-2" />
+                      <icon-help-circle :size="25" class="pe-2" />
                       {{ item.title }}
                     </span>
                   </template>
@@ -96,12 +90,12 @@ const renderContent = (content) => {
                     {{ item.content }}
                   </div>
                   <div v-else v-html="renderContent(item.content)"></div>
-                </BAccordionItem>
-              </BAccordion>
+                </b-accordion-item>
+              </b-accordion>
             </div>
           </div>
         </div>
-      </BContainer>
+      </b-container>
     </main>
-  </AppLayout>
+  </app-layout>
 </template>

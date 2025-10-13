@@ -51,13 +51,13 @@
           
           <!-- View More Button -->
           <div>
-            <RouterLink
+            <router-link
               to="/apps/file-manager"
               role="button"
               class="btn btn-primary w-100 rounded"
             >
               View More
-            </RouterLink>
+            </router-link>
           </div>
         </div>
       </b-card-body>

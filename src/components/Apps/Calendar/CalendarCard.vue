@@ -88,7 +88,7 @@ const handleCustomEventAdd = () => {
 // Initialize draggable functionality
 const initializeDraggable = () => {
   const externalElement = props.externalEventsRef;
-  
+
   if (externalElement && !draggableRef) {
     draggableRef = new Draggable(externalElement, {
       itemSelector: ".fc-event",

@@ -1,20 +1,20 @@
 <script setup>
-import { onMounted, onBeforeUnmount, ref } from "vue";
+import { onMounted, onBeforeUnmount, ref, nextTick, watch } from "vue";
 import { BCard, BCardBody, BRow, BCol } from "bootstrap-vue-next";
 import "glightbox/dist/css/glightbox.min.css";
 import { IconBrandHipchat, IconDotsVertical, IconHeart, IconSend } from "@tabler/icons-vue";
 
-const imageUrls = [
+const imageUrls = ref([
   "/images/profile-app/19.jpg",
   "/images/profile-app/27.jpg",
   "/images/profile-app/28.jpg",
   "/images/profile-app/29.jpg",
   "/images/profile-app/30.jpg",
-];
+]);
 
 let lightbox = null;
 
-onMounted(async () => {
+async function initLightbox() {
   const GLightbox = (await import("glightbox")).default;
   lightbox = GLightbox({
     selector: ".glightbox",
@@ -23,6 +23,18 @@ onMounted(async () => {
     width: "90vw",
     height: "90vh",
   });
+}
+
+onMounted(async () => {
+  await nextTick(); // wait for DOM to render
+  initLightbox();
+});
+
+// Re-initialize if imageUrls change dynamically
+watch(imageUrls, async () => {
+  await nextTick();
+  if (lightbox) lightbox.destroy();
+  initLightbox();
 });
 
 onBeforeUnmount(() => {

@@ -21,17 +21,17 @@ const breadcrumbItems = computed(() => ({
 <template>
   <AppLayout>
     <main>
-      <BContainer fluid>
+      <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
-        <BRow>
-          <BCol lg="8" xxl="9">
+        <b-row>
+          <b-col lg="8" xxl="9">
             <BlogDetailLeft />
-          </BCol>
-          <BCol lg="4" xxl="3">
+          </b-col>
+          <b-col lg="4" xxl="3">
             <BlogDetailRight />
-          </BCol>
-        </BRow>
-      </BContainer>
+          </b-col>
+        </b-row>
+      </b-container>
     </main>
   </AppLayout>
 </template>

@@ -1,8 +1,9 @@
 <template>
-  <BCol md="6" xxl="3" class="order-md-1 order-xxl-3">
-    <BCard no-body>
-      <BCardBody>
+  <b-col md="6" xxl="3" class="order-md-1 order-xxl-3">
+    <b-card no-body>
+      <b-card-body>
         <div class="product-details-contentbox">
+
           <!-- Returns Section -->
           <div>
             <h5>Returns:</h5>
@@ -20,8 +21,11 @@
                 <div
                     class="d-flex align-items-center justify-content-between position-relative"
                 >
-                  <div v-if="review.avatar" class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-secondary position-absolute">
-                    <BImg :src="review.avatar" alt="avatar" fluid />
+                  <div
+                      v-if="review.avatar"
+                      class="h-35 w-35 d-flex-center b-r-50 overflow-hidden text-bg-secondary position-absolute"
+                  >
+                    <b-img :src="review.avatar" alt="avatar" fluid />
                   </div>
                   <span
                       v-else
@@ -30,7 +34,9 @@
                     {{ review.initials }}
                   </span>
 
-                  <span class="fs-6 fw-medium text-secondary ms-5">{{ review.name }}</span>
+                  <span class="fs-6 fw-medium text-secondary ms-5">
+                    {{ review.name }}
+                  </span>
                   <div><i class="ti ti-star fs-5"></i></div>
                 </div>
 
@@ -38,15 +44,15 @@
                   <p class="text-muted mb-0">{{ review.review }}</p>
 
                   <div v-if="review.images" class="me-2 mt-3 text-end">
-                    <RouterLink
+                    <router-link
                         v-for="(img, i) in review.images"
                         :key="i"
                         to="/apps/e-shop/product"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                      <BImg :src="img" alt="" class="w-40 b-r-5 me-1" />
-                    </RouterLink>
+                      <b-img :src="img" alt="" class="w-40 b-r-5 me-1" />
+                    </router-link>
                   </div>
                 </div>
 
@@ -62,7 +68,7 @@
           <div class="mt-4">
             <h5>Products:</h5>
             <div class="product-details-table mt-3">
-              <BTable
+              <b-table
                   responsive
                   class="table-bottom-border align-middle products-data-table"
               >
@@ -70,13 +76,13 @@
                 <tr v-for="(product, idx) in productList" :key="idx">
                   <td>
                     <div class="position-relative">
-                      <BImg
+                      <b-img
                           :src="product.image"
                           :alt="product.title"
                           class="w-45 h-45 position-absolute rounded"
                       />
                       <div class="mg-s-40">
-                        <h6 class="text-dark f-w-600 txt-ellipsis-1">
+                        <h6 class="text-dark fw-semibold text-truncate">
                           {{ product.title }}
                         </h6>
                         <p class="text-secondary mb-0">{{ product.sku }}</p>
@@ -88,22 +94,23 @@
                   </td>
                 </tr>
                 </tbody>
-              </BTable>
+              </b-table>
 
-              <BButton
+              <b-button
                   variant="primary"
                   class="w-100"
                   href="/apps/e-shop/product"
                   target="_blank"
               >
                 View All Products
-              </BButton>
+              </b-button>
             </div>
           </div>
+
         </div>
-      </BCardBody>
-    </BCard>
-  </BCol>
+      </b-card-body>
+    </b-card>
+  </b-col>
 </template>
 
 <script setup>
@@ -153,4 +160,5 @@ const productList = [
   },
 ];
 </script>
+
 

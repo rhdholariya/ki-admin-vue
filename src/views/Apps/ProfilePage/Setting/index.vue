@@ -7,7 +7,6 @@
         <b-row class="row m-1">
           <!-- Left Sidebar -->
           <b-col lg="4" xxl="3">
-            <!-- Settings Navigation Card -->
             <b-card no-body>
               <b-card-header>
                 <h5>Settings</h5>
@@ -143,7 +142,6 @@ import {
   BRow,
 } from "bootstrap-vue-next";
 
-// Import layout and components
 import AppLayout from "@/views/AppLayout.vue";
 import ActivityTimeline from "@/components/Apps/Setting/ActivityTimeline.vue";
 import Connection from "@/components/Apps/Setting/Connection.vue";
@@ -166,10 +164,10 @@ import {
 } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 
-// Reactive state
+
 const activeTab = ref("1");
 
-// Settings tabs configuration
+
 const settingsTabs = ref([
   {
     eventKey: "1",
@@ -208,7 +206,7 @@ const settingsTabs = ref([
   },
 ]);
 
-// Handle delete click with SweetAlert2
+
 const handleDeleteClick = async () => {
   console.log("Delete tab clicked");
 
@@ -234,7 +232,7 @@ const handleDeleteClick = async () => {
   }
 };
 
-// Computed breadcrumb data
+
 const breadcrumbItems = computed(() => ({
   title: "Setting",
   items: [

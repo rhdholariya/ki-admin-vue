@@ -44,7 +44,7 @@ const editor = useEditor({
         Image,
         Link.configure({
             openOnClick: false,
-            types: ['textStyle', 'image'], // Allow links on text and images
+            types: ['textStyle', 'image'],
         }),
         TextAlign.configure({types: ['heading', 'paragraph']}),
     ],

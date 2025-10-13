@@ -1,17 +1,14 @@
 <script setup>
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody } from "bootstrap-vue-next";
-import Breadcrumbs from "@/components/breadcrumb/Breadcrumb.vue";
 import { PhStack } from "@phosphor-icons/vue";
 
-// Import your Vue versions of these components
 import PricingCard from "@/components/Apps/Pricing/PricingCard.vue";
 import SimplePricingCard from "@/components/Apps/Pricing/SimplePricingCard.vue";
 import ComparePricing from "@/components/Apps/Pricing/ComparePricing.vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Plans data
 const plans = ref([
   {
     plan: "Basic Plans",
@@ -53,7 +50,6 @@ const plans = ref([
   },
 ]);
 
-// ✅ Breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Pricing",
   items: [
@@ -61,56 +57,59 @@ const breadcrumbItems = computed(() => ({
     { label: "Pricing", active: true },
   ],
 }));
-
 </script>
 
 <template>
-  <AppLayout>
+  <app-layout>
     <main>
-  <BContainer fluid>
-    <!-- Breadcrumb -->
-    <Breadcrumb :breadcrumb="breadcrumbItems" />
+      <b-container fluid>
+        <!-- Breadcrumb -->
+        <breadcrumb :breadcrumb="breadcrumbItems" />
 
-    <BRow>
-      <!-- Flip Pricing Plans -->
-      <BCol xs="12" class="mb-3" >
-        <BCard no-body>
-          <BCardHeader>
-            <h5>Pricing Plans</h5>
-          </BCardHeader>
-          <BCardBody>
-            <BRow class="flip-pricing-container app-arrow">
-              <PricingCard v-for="(plan, index) in plans" :key="index" v-bind="plan" />
-            </BRow>
-          </BCardBody>
-        </BCard>
-      </BCol>
+        <b-row>
+          <!-- Flip Pricing Plans -->
+          <b-col xs="12" class="mb-3">
+            <b-card no-body>
+              <b-card-header>
+                <h5>Pricing Plans</h5>
+              </b-card-header>
+              <b-card-body>
+                <b-row class="flip-pricing-container app-arrow">
+                  <pricing-card
+                      v-for="(plan, index) in plans"
+                      :key="index"
+                      v-bind="plan"
+                  />
+                </b-row>
+              </b-card-body>
+            </b-card>
+          </b-col>
 
-      <!-- Simple Pricing Plans -->
-      <BCol xs="12" class="mb-3" >
-        <BCard no-body>
-          <BCardHeader>
-            <h5>Simple Pricing Plans</h5>
-          </BCardHeader>
-          <BCardBody>
-            <SimplePricingCard />
-          </BCardBody>
-        </BCard>
-      </BCol>
+          <!-- Simple Pricing Plans -->
+          <b-col xs="12" class="mb-3">
+            <b-card no-body>
+              <b-card-header>
+                <h5>Simple Pricing Plans</h5>
+              </b-card-header>
+              <b-card-body>
+                <simple-pricing-card />
+              </b-card-body>
+            </b-card>
+          </b-col>
 
-      <!-- Compare Pricing -->
-      <BCol xs="12" class="mb-3" >
-        <BCard no-body>
-          <BCardHeader>
-            <h5>Compare Plans</h5>
-          </BCardHeader>
-          <BCardBody>
-            <ComparePricing />
-          </BCardBody>
-        </BCard>
-      </BCol>
-    </BRow>
-  </BContainer>
+          <!-- Compare Pricing -->
+          <b-col xs="12" class="mb-3">
+            <b-card no-body>
+              <b-card-header>
+                <h5>Compare Plans</h5>
+              </b-card-header>
+              <b-card-body>
+                <compare-pricing />
+              </b-card-body>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
     </main>
-  </AppLayout>
+  </app-layout>
 </template>

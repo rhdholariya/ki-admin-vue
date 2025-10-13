@@ -1,3 +1,76 @@
+<script setup>
+import { ref } from 'vue'
+import {  BCard,BDropdown , BDropdownItem } from "bootstrap-vue-next";
+import {
+  PhStar,
+  PhDotsThreeVertical,
+  PhExport,
+  PhPencil,
+  PhTrash,
+} from '@phosphor-icons/vue'
+const starredItems = ref([
+  {
+    id: 1,
+    name: '3d illustration pack',
+    icon: '/images/icons/file-manager-icon/zip.png',
+    type: 'file'
+  }
+])
+
+const starredFolders = ref([
+  {
+    id: 2,
+    name: 'Graduation',
+    icon: '/images/icons/file-manager-icon/folder.png',
+    used: '25.67GB',
+    total: '50GB',
+    type: 'folder'
+  }
+])
+
+const toggleStarred = (id) => {
+  const item = starredItems.value.find(item => item.id === id)
+  if (item) {
+    // Remove from starred
+    starredItems.value = starredItems.value.filter(item => item.id !== id)
+  }
+}
+
+const toggleStarredFolder = (id) => {
+  const folder = starredFolders.value.find(folder => folder.id === id)
+  if (folder) {
+    // Remove from starred
+    starredFolders.value = starredFolders.value.filter(folder => folder.id !== id)
+  }
+}
+
+const viewItem = (item) => {
+  console.log('View starred item:', item)
+}
+
+const editItem = (item) => {
+  emit('edit-item', item)
+}
+
+const deleteItem = (item) => {
+  emit('delete-item', item)
+}
+
+const viewFolder = (folder) => {
+  console.log('View starred folder:', folder)
+}
+
+const editFolder = (folder) => {
+  emit('edit-folder', folder)
+}
+
+const deleteFolder = (folder) => {
+  emit('delete-folder', folder)
+}
+
+const emit = defineEmits(['edit-item', 'delete-item', 'edit-folder', 'delete-folder'])
+</script>
+
 <template>
   <b-card class="documents-section">
     <template #header>
@@ -81,75 +154,3 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import {  BCard,BDropdown , BDropdownItem } from "bootstrap-vue-next";
-import {
-  PhStar,
-  PhDotsThreeVertical,
-  PhExport,
-  PhPencil,
-  PhTrash,
-} from '@phosphor-icons/vue'
-const starredItems = ref([
-  {
-    id: 1,
-    name: '3d illustration pack',
-    icon: '/images/icons/file-manager-icon/zip.png',
-    type: 'file'
-  }
-])
-
-const starredFolders = ref([
-  {
-    id: 2,
-    name: 'Graduation',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    used: '25.67GB',
-    total: '50GB',
-    type: 'folder'
-  }
-])
-
-const toggleStarred = (id) => {
-  const item = starredItems.value.find(item => item.id === id)
-  if (item) {
-    // Remove from starred
-    starredItems.value = starredItems.value.filter(item => item.id !== id)
-  }
-}
-
-const toggleStarredFolder = (id) => {
-  const folder = starredFolders.value.find(folder => folder.id === id)
-  if (folder) {
-    // Remove from starred
-    starredFolders.value = starredFolders.value.filter(folder => folder.id !== id)
-  }
-}
-
-const viewItem = (item) => {
-  console.log('View starred item:', item)
-}
-
-const editItem = (item) => {
-  emit('edit-item', item)
-}
-
-const deleteItem = (item) => {
-  emit('delete-item', item)
-}
-
-const viewFolder = (folder) => {
-  console.log('View starred folder:', folder)
-}
-
-const editFolder = (folder) => {
-  emit('edit-folder', folder)
-}
-
-const deleteFolder = (folder) => {
-  emit('delete-folder', folder)
-}
-
-const emit = defineEmits(['edit-item', 'delete-item', 'edit-folder', 'delete-folder'])
-</script>

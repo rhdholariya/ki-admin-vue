@@ -20,7 +20,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// data imports (mock same as React version)
 import {
   friends,
   posts,
@@ -29,7 +28,7 @@ import {
   timelineData
 } from "@/data/app/Profile/ProfileAppData.js";
 
-// icon imports
+
 import {
   IconBrandHipchat,
   IconMoodSmileBeam,
@@ -38,17 +37,15 @@ import {
   IconSend
 } from "@tabler/icons-vue";
 
-// components
+
 import FileUploader from "@/components/Apps/Profile/FileUploader.vue";
 
-// props
+
 const props = defineProps({
   data: String
 });
 
 
-
-// stories data
 const stories = [
   { imgSrc: "/images/profile-app/11.jpg", avatar: "/images/avatar/1.png", bgColor: "bg-primary" },
   { imgSrc: "/images/profile-app/12.jpg", avatar: "/images/avatar/08.png", bgColor: "bg-danger" },

@@ -122,6 +122,15 @@ import ProductPage from '@/views/Apps/EshopPage/Product/index.vue'
 import AddProductPage from '@/views/Apps/EshopPage/AddProduct/index.vue'
 import AddProductDetailsPage from '@/views/Apps/EshopPage/ProductDetails/index.vue'
 import ProductListPage from '@/views/Apps/EshopPage/ProductList/index.vue'
+import OrderPage from '@/views/Apps/EshopPage/Order/index.vue'
+import OrderDetailsPage from '@/views/Apps/EshopPage/OrderDetails/index.vue'
+import OrderListPage from '@/views/Apps/EshopPage/OrderList/index.vue'
+import CheckoutPage from '@/views/Apps/EshopPage/Checkout/index.vue'
+import WishlistPage from '@/views/Apps/EshopPage/Wishlist/index.vue'
+import EmailPage from '@/views/Apps/EmailPage/Email/index.vue'
+import ReadEmailPage from '@/views/Apps/EmailPage/ReadEmail/index.vue'
+import TicketPage from '@/views/Apps/TicketPage/Ticket/index.vue'
+import TicketDetailsPage from '@/views/Apps/TicketPage/TicketDetails/index.vue'
 
 
 
@@ -255,6 +264,15 @@ const router = createRouter({
         {path: '/apps/e-shop/add-product', name: 'addproduct', component:AddProductPage},
         {path: '/apps/e-shop/product-details', name: 'product-details', component:AddProductDetailsPage},
         {path: '/apps/e-shop/product-list', name: 'product-list', component:ProductListPage},
+        {path: '/apps/e-shop/orders', name: 'orders', component:OrderPage},
+        {path: '/apps/e-shop/orders-details', name: 'orders-details', component:OrderDetailsPage},
+        {path: '/apps/e-shop/orders-list', name: 'orders-list', component:OrderListPage},
+        {path: '/apps/e-shop/checkout', name: 'checkout', component:CheckoutPage},
+        {path: '/apps/e-shop/wishlist', name: 'wishlist', component:WishlistPage},
+        {path: '/apps/email-page/email', name: 'email', component:EmailPage},
+        {path: '/apps/email-page/read-email', name: 'reademail', component:ReadEmailPage},
+        {path: '/apps/ticket-page/ticket', name: 'ticket', component:TicketPage},
+        {path: '/apps/ticket-page/ticket-details', name: 'ticket-details', component:TicketDetailsPage},
     ],
 
 })

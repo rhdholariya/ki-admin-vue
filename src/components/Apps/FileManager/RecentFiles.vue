@@ -1,113 +1,3 @@
-<template>
-  <b-card class="h-100">
-    <template #header>
-      <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
-        <h5 class="mb-0">Recent Added</h5>
-        <b-button variant="primary" @click="showCreateFileModal = true">
-          Create File
-        </b-button>
-      </div>
-    </template>
-
-    <b-table
-        :items="recentFiles"
-        :fields="fields"
-        class="recent-table"
-        responsive
-        show-empty
-    >
-      <template #cell(name)="data">
-        <div class="d-flex align-items-center">
-          <img :src="data.item.icon" alt="" class="w-20 h-20">
-          <span class="ms-2 table-text">{{ data.item.name }}</span>
-        </div>
-      </template>
-
-      <template #cell(actions)="data">
-        <div class="d-flex">
-          <b-dropdown variant="link" no-caret>
-            <template #button-content>
-              <PhDotsThreeVertical :size="16" />
-            </template>
-            <b-dropdown-item @click="viewFile(data.item)">
-              <PhExport :size="16" class="text-primary me-2" />View
-            </b-dropdown-item>
-            <b-dropdown-item @click="editFile(data.item)">
-              <PhPencil :size="16" class="text-success me-2" />Rename
-            </b-dropdown-item>
-            <b-dropdown-item @click="deleteFile(data.item)" variant="danger">
-              <PhTrash :size="16" class="text-danger me-2" />Delete
-            </b-dropdown-item>
-          </b-dropdown>
-          <div class="starreddiv ms-3" @click="toggleFileFavorite(data.item.id)">
-            <PhStar
-                :weight="data.item.isFavorite ? 'fill' : 'regular'"
-                :size="18"
-                class="text-warning star-icon"
-            />
-          </div>
-        </div>
-      </template>
-    </b-table>
-
-    <template #footer>
-      <div class="seller-table-footer d-flex gap-2 justify-content-between align-items-center">
-        <p class="text-secondary text-truncate">Showing 1 to {{ recentFiles.length }} of {{ recentFiles.length }} entries</p>
-        <b-pagination
-            v-model="currentPage"
-            :total-rows="recentFiles.length"
-            :per-page="perPage"
-            size="sm"
-        ></b-pagination>
-      </div>
-    </template>
-  </b-card>
-
-  <!-- Create File Modal -->
-  <b-modal
-      v-model="showCreateFileModal"
-      title="New File"
-      centered
-      class="file-modal"
-      @hidden="resetForm"
-  >
-    <template #default>
-      <b-form @submit.prevent="createFile">
-        <b-form-group label="File Name" class="mb-0">
-          <b-form-input
-              v-model="newFileName"
-              placeholder="Enter file name"
-              required
-              size="lg"
-              class="file-input"
-              autofocus
-          ></b-form-input>
-        </b-form-group>
-      </b-form>
-    </template>
-
-    <template #footer>
-      <div class="w-100 d-flex justify-content-end gap-3">
-        <b-button
-            variant="outline-secondary"
-            @click="showCreateFileModal = false"
-            class="px-4"
-        >
-          Cancel
-        </b-button>
-        <b-button
-            variant="primary"
-            @click="createFile"
-            class="px-4"
-            :disabled="!newFileName.trim()"
-        >
-          OK
-        </b-button>
-      </div>
-    </template>
-  </b-modal>
-</template>
-
 <script setup>
 import { ref, computed } from 'vue'
 import { BButton , BCard,BForm, BModal , BFormInput , BFormGroup , BDropdown , BDropdownItem, BTable , BPagination } from "bootstrap-vue-next";
@@ -228,3 +118,113 @@ const deleteFile = (file) => {
 
 const emit = defineEmits(['edit-file'])
 </script>
+<template>
+  <b-card class="h-100">
+    <template #header>
+      <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
+        <h5 class="mb-0">Recent Added</h5>
+        <b-button variant="primary" @click="showCreateFileModal = true">
+          Create File
+        </b-button>
+      </div>
+    </template>
+
+    <b-table
+        :items="recentFiles"
+        :fields="fields"
+        class="recent-table"
+        responsive
+        show-empty
+    >
+      <template #cell(name)="data">
+        <div class="d-flex align-items-center">
+          <img :src="data.item.icon" alt="" class="w-20 h-20">
+          <span class="ms-2 table-text">{{ data.item.name }}</span>
+        </div>
+      </template>
+
+      <template #cell(actions)="data">
+        <div class="d-flex">
+          <b-dropdown variant="link" no-caret>
+            <template #button-content>
+              <PhDotsThreeVertical :size="16" />
+            </template>
+            <b-dropdown-item @click="viewFile(data.item)">
+              <PhExport :size="16" class="text-primary me-2" />View
+            </b-dropdown-item>
+            <b-dropdown-item @click="editFile(data.item)">
+              <PhPencil :size="16" class="text-success me-2" />Rename
+            </b-dropdown-item>
+            <b-dropdown-item @click="deleteFile(data.item)" variant="danger">
+              <PhTrash :size="16" class="text-danger me-2" />Delete
+            </b-dropdown-item>
+          </b-dropdown>
+          <div class="starreddiv ms-3" @click="toggleFileFavorite(data.item.id)">
+            <PhStar
+                :weight="data.item.isFavorite ? 'fill' : 'regular'"
+                :size="18"
+                class="text-warning star-icon"
+            />
+          </div>
+        </div>
+      </template>
+    </b-table>
+
+    <template #footer>
+      <div class="seller-table-footer d-flex gap-2 justify-content-between align-items-center">
+        <p class="text-secondary text-truncate">Showing 1 to {{ recentFiles.length }} of {{ recentFiles.length }} entries</p>
+        <b-pagination
+            v-model="currentPage"
+            :total-rows="recentFiles.length"
+            :per-page="perPage"
+            size="sm"
+        ></b-pagination>
+      </div>
+    </template>
+  </b-card>
+
+  <!-- Create File Modal -->
+  <b-modal
+      v-model="showCreateFileModal"
+      title="New File"
+      centered
+      class="file-modal"
+      @hidden="resetForm"
+  >
+    <template #default>
+      <b-form @submit.prevent="createFile">
+        <b-form-group label="File Name" class="mb-0">
+          <b-form-input
+              v-model="newFileName"
+              placeholder="Enter file name"
+              required
+              size="lg"
+              class="file-input"
+              autofocus
+          ></b-form-input>
+        </b-form-group>
+      </b-form>
+    </template>
+
+    <template #footer>
+      <div class="w-100 d-flex justify-content-end gap-3">
+        <b-button
+            variant="outline-secondary"
+            @click="showCreateFileModal = false"
+            class="px-4"
+        >
+          Cancel
+        </b-button>
+        <b-button
+            variant="primary"
+            @click="createFile"
+            class="px-4"
+            :disabled="!newFileName.trim()"
+        >
+          OK
+        </b-button>
+      </div>
+    </template>
+  </b-modal>
+</template>
+
