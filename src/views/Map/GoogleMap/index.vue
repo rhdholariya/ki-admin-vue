@@ -1,71 +1,3 @@
-<template>
-<AppLayout>
-  <main>
-    <Breadcrumb :breadcrumb="breadcrumbItems"/>
-    <b-container fluid>
-      <b-row>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Terrain Type Map</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="mapRef"></div>
-          </b-card>
-        </b-col>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Satellite Type Map</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="satelliteMapRef"></div>
-          </b-card>
-        </b-col>
-      </b-row>
-
-      <!-- Second Row -->
-      <b-row>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Polygons</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="polygonMapRef"></div>
-          </b-card>
-        </b-col>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Fusion Table Layers</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="fusionTableMapRef"></div>
-          </b-card>
-        </b-col>
-      </b-row>
-
-      <!-- Third Row -->
-      <b-row>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Markers Map</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="markerMapRef"></div>
-          </b-card>
-        </b-col>
-        <b-col lg="6">
-          <b-card>
-            <template #header>
-              <h5>Overlay Map</h5>
-            </template>
-            <div class="w-100 h-400 rounded" ref="overlayMapRef"></div>
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
-  </main>
-</AppLayout>
-</template>
-
 <script setup>
 
 
@@ -213,3 +145,75 @@ const breadcrumbItems = {
   ],
 };
 </script>
+
+
+
+
+<template>
+<AppLayout>
+  <main>
+    <Breadcrumb :breadcrumb="breadcrumbItems"/>
+    <b-container fluid>
+      <b-row>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Terrain Type Map</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="mapRef"></div>
+          </b-card>
+        </b-col>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Satellite Type Map</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="satelliteMapRef"></div>
+          </b-card>
+        </b-col>
+      </b-row>
+
+      <!-- Second Row -->
+      <b-row>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Polygons</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="polygonMapRef"></div>
+          </b-card>
+        </b-col>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Fusion Table Layers</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="fusionTableMapRef"></div>
+          </b-card>
+        </b-col>
+      </b-row>
+
+      <!-- Third Row -->
+      <b-row>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Markers Map</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="markerMapRef"></div>
+          </b-card>
+        </b-col>
+        <b-col lg="6">
+          <b-card>
+            <template #header>
+              <h5>Overlay Map</h5>
+            </template>
+            <div class="w-100 h-400 rounded" ref="overlayMapRef"></div>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
+  </main>
+</AppLayout>
+</template>
+

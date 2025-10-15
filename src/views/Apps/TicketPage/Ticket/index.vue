@@ -505,7 +505,7 @@ const breadcrumbItems = computed(() => ({
             @ok="saveEditTicket"
             @hidden="resetEditForm"
         >
-          <b-form>
+          <b-form class="app-form">
             <b-row>
               <b-col cols="12">
                 <b-form-group label="Title">

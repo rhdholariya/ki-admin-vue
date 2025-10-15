@@ -1,6 +1,6 @@
 <script setup>
 import {ref, computed} from 'vue';
-
+import VueApexCharts from 'vue3-apexcharts'
 import {
   BCard,
   BCardHeader,
@@ -14,20 +14,42 @@ import {
   BLink,
   BContainer,
   BRow,
-  BCol
+  BCol,
+  BFormCheckbox
 } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import CustomDataTable from "@/components/DataTable/CustomDataTable.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
+// Import data from separate file
+import {
+  apiAvatars,
+  apiKeysData as initialApiKeysData,
+  apiKeysColumns,
+  chartData,
+  chartOptions as initialChartOptions
+} from '@/data/app/Api/ApiData.js';
 
-const chartData = [19.0, 20, 19.8, 19, 19.67, 19.45, 20.99, 30.45, 19.45, 19.09, 19.8, 19.6, 20, 20.89, 21.4, 19.09, 20.8, 23.78, 25.0, 20, 19.65, 25, 24.89, 23, 19.0, 19.56, 20.36, 22.90, 24.90, 19.78];
-
+// Reactive data
 const showSuccess = ref(true);
 const showError = ref(true);
 const showTotal = ref(true);
 
+const apiKeysData = ref([...initialApiKeysData]);
+const selectedItems = ref(new Set()); // For checkbox selection
+
+// Modal states
+const showApiModal = ref(false);
+const showApiKeyContent = ref(false);
+const apiKeyName = ref('');
+const generatedApiKey = ref('');
+
+// Delete modal state
+const showDeleteModal = ref(false);
+const itemToDelete = ref(null);
+
+// Chart computed properties
 const filteredSeries = computed(() => {
   const series = [];
 
@@ -58,116 +80,19 @@ const filteredSeries = computed(() => {
   return series;
 });
 
+const chartOptions = ref({ ...initialChartOptions });
 
-const chartOptions = ref({
-  chart: {
-    type: 'area',
-    height: 350,
-    offsetY: 0,
-    offsetX: 0,
-    toolbar: {
-      show: false,
-    },
-    animations: {
-      enabled: true,
-      easing: 'easeinout',
-      speed: 800
-    }
-  },
-  stroke: {
-    width: 2,
-    curve: 'smooth'
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 1,
-      colorStops: [
-        {
-          offset: 0,
-          color: 'rgba(13, 202, 240, 0.4)',
-          opacity: 1,
-        },
-        {
-          offset: 50,
-          color: 'rgba(13, 202, 240, 0.4)',
-          opacity: 1,
-        },
-        {
-          offset: 100,
-          color: 'rgba(13, 202, 240, 0.1)',
-          opacity: 1,
-        },
-      ]
-    }
-  },
-  legend: {
-    show: false,
-  },
-  colors: ['rgba(var(--info))'],
-  xaxis: {
-    tooltip: {
-      enabled: false,
-    },
-    labels: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    categories: Array.from({length: 30}, (_, i) => `Day ${i + 1}`)
-  },
-  yaxis: {
-    labels: {
-      formatter: function (val) {
-        return val.toFixed(1);
-      }
-    }
-  },
-  tooltip: {
-    x: {
-      show: false,
-    },
-    style: {
-      fontSize: '16px',
-      fontFamily: '"Outfit", sans-serif',
-    },
-  },
-  responsive: [{
-    breakpoint: 1660,
-    options: {
-      chart: {
-        height: 365
-      }
-    }
-  }]
-});
+// Handle checkbox changes from CustomDataTable
+const handleCheckboxChange = ({ checked, item }) => {
+  if (checked) {
+    selectedItems.value.add(item.id);
+  } else {
+    selectedItems.value.delete(item.id);
+  }
+  console.log('Selected items:', Array.from(selectedItems.value));
+};
 
-
-// Import images with unique names to avoid conflicts
-const apiAvatar1 = '/images/avatar/1.png';
-const apiAvatar2 = '/images/avatar/2.png';
-const apiAvatar3 = '/images/avatar/3.png';
-const apiAvatar4 = '/images/avatar/4.png';
-const apiAvatar6 = '/images/avatar/6.png';
-const apiAvatar7 = '/images/avatar/07.png';
-const apiAvatar8 = '/images/avatar/08.png';
-const apiAvatar10 = '/images/avatar/10.png';
-const apiAvatar11 = '/images/avatar/11.png';
-const apiAvatar14 = '/images/avatar/14.png';
-
-
-const showApiModal = ref(false);
-const showApiKeyContent = ref(false);
-const apiKeyName = ref('');
-const generatedApiKey = ref('');
-
+// Generate API Key
 const generateApiKey = () => {
   if (!apiKeyName.value.trim()) {
     alert('Please enter an API key name');
@@ -184,243 +109,63 @@ const generateApiKey = () => {
   showApiKeyContent.value = true;
 };
 
+// Add API Key to DataTable
+const addApiKey = () => {
+  if (!apiKeyName.value.trim() || !generatedApiKey.value) {
+    alert('Please generate an API key first');
+    return;
+  }
+
+  // Create new API key object
+  const newApiKey = {
+    id: Date.now(), // Use timestamp for unique ID
+    name: apiKeyName.value,
+    avatar: apiAvatars.avatar1,
+    avatarBgClass: 'text-bg-primary',
+    parentName: 'Self Created',
+    apiKey: generatedApiKey.value,
+    date: new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}),
+    email: `${apiKeyName.value.toLowerCase().replace(/\s+/g, '')}@example.com`
+  };
+
+  // Add to the beginning of the data array
+  apiKeysData.value.unshift(newApiKey);
+
+  // Reset form and close modal
+  resetApiForm();
+  showApiModal.value = false;
+};
+
+// Reset API form
+const resetApiForm = () => {
+  apiKeyName.value = '';
+  generatedApiKey.value = '';
+  showApiKeyContent.value = false;
+};
 
 const dismissAlert = () => {
   console.log('Alert dismissed');
 };
 
-
-const apiKeysData = ref([
-  {
-    id: 1,
-    name: 'Gavin Cortez',
-    avatar: apiAvatar1,
-    avatarBgClass: 'text-bg-primary',
-    parentName: 'Patty OFurniture',
-    apiKey: '12e8d619-5ab4-41db-b574-eb727f82d836',
-    date: '1 jan 2024',
-    email: 'cristipola@gmailod.com'
-  },
-  {
-    id: 2,
-    name: 'Martena Mccray',
-    avatar: apiAvatar14,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Olive Yew',
-    apiKey: 'b589bd39-afa6-4dc2-a0e6-ee286d429689',
-    date: '8 jan 2024',
-    email: 'jiji4fast@trumvia.online'
-  },
-  {
-    id: 3,
-    name: 'Gavin Joyce',
-    avatar: apiAvatar10,
-    avatarBgClass: 'text-bg-info',
-    parentName: 'Maureen Biologist',
-    apiKey: 'cab763c0-ea2c-4077-bb6c-a0c736d36f44',
-    date: '14 jan 2024',
-    email: 'athos17@dsadsadsadas.online'
-  },
-  {
-    id: 4,
-    name: 'Gloria Little',
-    avatar: apiAvatar2,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Maureen Biologist',
-    apiKey: '0ae33477-28bb-4dfb-aaa5-1f0f19f19572',
-    date: '25 jan 2024',
-    email: 'tomasz@guthriedigitalmedia.com'
-  },
-  {
-    id: 5,
-    name: 'Jena Gaines',
-    avatar: apiAvatar8,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Maureen Biologist',
-    apiKey: 'd4f825d4-e76b-4e66-bf2e-66ee69a70263',
-    date: '16 jan 2024',
-    email: 'kamenskkz@saxophonexltd.com'
-  },
-  {
-    id: 6,
-    name: 'Jenette Caldwell',
-    avatar: apiAvatar11,
-    avatarBgClass: 'text-bg-dark',
-    parentName: '6Del Phineum',
-    apiKey: '3fefa4e0-e0f1-4167-8d36-18b753623c11',
-    date: '20 jan 2024',
-    email: 'amybeez@hamedahmed.cloud'
-  },
-  {
-    id: 7,
-    name: 'Jennifer Acosta',
-    avatar: apiAvatar4,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Percy Kewshun',
-    apiKey: '0c2b3bd4-5582-494e-b972-8bb1045bb235',
-    date: '7 June 2024',
-    email: 'carling@crysalbyrd.info'
-  },
-  {
-    id: 8,
-    name: 'Jennifer Chang',
-    avatar: apiAvatar2,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Roy L. Commishun',
-    apiKey: 'ea651456-9063-4445-b852-9212ec8e93ed',
-    date: '7 June 2024',
-    email: 'bigeminies@hamedahmed.cloud'
-  },
-  {
-    id: 9,
-    name: 'Michael Silva',
-    avatar: apiAvatar3,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Roy L. Commishun',
-    apiKey: 'c12aa92d-eaa6-4322-9b1b-bbbd1ba98e45',
-    date: '14 June 2024',
-    email: 'stepanbykov@onlinecmail.com'
-  },
-  {
-    id: 10,
-    name: 'Michelle House',
-    avatar: apiAvatar4,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Roy L. Commishun',
-    apiKey: '34c35f2c-e542-48b7-86ae-ee654f988241',
-    date: '4 July 2024',
-    email: 'ali1987j@onlinecmail.com'
-  },
-  {
-    id: 11,
-    name: 'Olivia Liang',
-    avatar: apiAvatar10,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Bridget Theriveaquai',
-    apiKey: 'ecde376e-fe22-4ff9-b675-7ca0b6957dfb',
-    date: '19 Aug 2024',
-    email: 'tjnyny@sjuanita.com'
-  },
-  {
-    id: 12,
-    name: 'Quinn Flynn',
-    avatar: apiAvatar6,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Bridget Theriveaquai',
-    apiKey: 'd234febf-c046-459c-9623-3fbb128bdcf4',
-    date: '12 Sep 2024',
-    email: 'kostyaastonmartin@sjuanita.com'
-  },
-  {
-    id: 13,
-    name: 'Prescott Bartlett',
-    avatar: apiAvatar14,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Frank N. Stein',
-    apiKey: '589d8184-7efe-4509-aab4-6b91e89f734c',
-    date: '15 jan 2024',
-    email: 'nadezhdashirshova@cwrotzxks.com'
-  },
-  {
-    id: 14,
-    name: 'Suki Burks',
-    avatar: apiAvatar2,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Frank N. Stein',
-    apiKey: '4cc1d9b9-6aea-4dad-81c3-11cce8dd43c1',
-    date: '2 Sep 2024',
-    email: 'peter709@sellxuclone.com'
-  },
-  {
-    id: 15,
-    name: 'Tatyana Fitzpatrick',
-    avatar: apiAvatar8,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Laura Norda',
-    apiKey: '7a4fcd62-b085-450b-9ecc-eedfaa5d141f',
-    date: '19 July 2024',
-    email: 'gregorylisa17@boranora.com'
-  },
-  {
-    id: 16,
-    name: 'Yuri Berry',
-    avatar: apiAvatar7,
-    avatarBgClass: 'text-bg-dark',
-    parentName: 'Mal Nurrisht',
-    apiKey: '04095ed9-cf5f-4233-b554-9bcc25d81c0b',
-    date: '11 July 2024',
-    email: 'todd29@sjuanita.com'
-  }
-]);
-
-
-const apiKeysColumns = ref([
-  {
-    key: 'checkbox',
-    header: '',
-    className: '',
-    render: (value, item) => `
-      <div class="checkbox-wrapper">
-        <label class="check-box m-0">
-          <input type="checkbox" class="ticket-checkbox" data-id="${item.id}">
-          <span class="checkmark outline-secondary"></span>
-        </label>
-      </div>
-    `
-  },
-  {
-    key: 'name',
-    header: 'Name',
-    className: '',
-    render: (value, item) => `
-      <div class="d-flex align-items-center">
-        <div class="h-30 w-30 d-flex-center b-r-50 overflow-hidden ${item.avatarBgClass} me-2">
-          <img alt="" class="img-fluid" src="${item.avatar}" onerror="this.src='/images/avatar/1.png'">
-        </div>
-        ${item.name}
-      </div>
-    `
-  },
-  {
-    key: 'parentName',
-    header: 'Parent Name',
-    className: ''
-  },
-  {
-    key: 'apiKey',
-    header: 'API Key',
-    className: '',
-    render: (value) => `
-      <span class="text-truncate d-inline-block" style="max-width: 200px;" title="${value}">
-        ${value}
-      </span>
-    `
-  },
-  {
-    key: 'date',
-    header: 'Date',
-    className: ''
-  },
-  {
-    key: 'email',
-    header: 'Email',
-    className: ''
-  }
-]);
-
-
+// Action handlers
 const handleEdit = (item) => {
   console.log('Edit API Key:', item);
-  alert(`Edit API Key: ${item.name}`);
 };
 
 const handleDelete = (item) => {
   console.log('Delete API Key:', item);
-  if (confirm(`Are you sure you want to delete API key for ${item.name}?`)) {
-    const index = apiKeysData.value.findIndex(apiKey => apiKey.id === item.id);
+  itemToDelete.value = item;
+  showDeleteModal.value = true;
+};
+
+const confirmDelete = () => {
+  if (itemToDelete.value) {
+    const index = apiKeysData.value.findIndex(apiKey => apiKey.id === itemToDelete.value.id);
     if (index !== -1) {
       apiKeysData.value.splice(index, 1);
     }
+    showDeleteModal.value = false;
+    itemToDelete.value = null;
   }
 };
 
@@ -428,21 +173,21 @@ const handleView = (item) => {
   console.log('View API Key:', item);
   alert(`View API Key Details:\nName: ${item.name}\nAPI Key: ${item.apiKey}\nEmail: ${item.email}`);
 };
+
 // Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Api ",
   items: [
-    { label: "Apps", icon: PhStack },
-    { label: "Api ", active: true },
+    {label: "Apps", icon: PhStack},
+    {label: "Api ", active: true},
   ],
 }));
 </script>
 
-
 <template>
   <AppLayout>
     <main>
-      <Breadcrumb :breadcrumb="breadcrumbItems" />
+      <Breadcrumb :breadcrumb="breadcrumbItems"/>
       <b-container fluid>
         <b-row>
           <b-col lg="6">
@@ -487,18 +232,18 @@ const breadcrumbItems = computed(() => ({
                   </div>
                 </div>
                 <div>
-                  <apexchart
+                  <VueApexCharts
                       type="area"
                       height="350"
                       :options="chartOptions"
                       :series="filteredSeries"
-                  ></apexchart>
+                  ></VueApexCharts>
                 </div>
               </b-card-body>
             </b-card>
           </b-col>
 
-          <b-col lg="6" >
+          <b-col lg="6">
             <b-row>
               <!-- Total Users Card -->
               <b-col sm="6">
@@ -554,29 +299,33 @@ const breadcrumbItems = computed(() => ({
                           class="h-45 w-45 d-flex-center b-r-50 text-bg-danger b-2-light position-relative"
                           v-b-tooltip.hover title="Sabrina Torres"
                       >
-                        <span class="position-absolute top-0 start-2 p-1 bg-danger border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatar4">
+                        <span
+                            class="position-absolute top-0 start-2 p-1 bg-danger border border-light rounded-circle"></span>
+                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar4">
                       </li>
                       <li
                           class="h-45 w-45 d-flex-center b-r-50 text-bg-success b-2-light position-relative"
                           v-b-tooltip.hover title="Sabrina Torres"
                       >
-                        <span class="position-absolute top-0 start-2 p-1 bg-success border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatar1">
+                        <span
+                            class="position-absolute top-0 start-2 p-1 bg-success border border-light rounded-circle"></span>
+                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar1">
                       </li>
                       <li
                           class="h-45 w-45 d-flex-center b-r-50 text-bg-warning b-2-light position-relative"
                           v-b-tooltip.hover title="Sabrina Torres"
                       >
-                        <span class="position-absolute top-0 start-2 p-1 bg-warning border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatar2">
+                        <span
+                            class="position-absolute top-0 start-2 p-1 bg-warning border border-light rounded-circle"></span>
+                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar2">
                       </li>
                       <li
                           class="h-45 w-45 d-flex-center b-r-50 text-bg-info b-2-light position-relative"
                           v-b-tooltip.hover title="Sabrina Torres"
                       >
-                        <span class="position-absolute top-0 start-2 p-1 bg-info border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatar3">
+                        <span
+                            class="position-absolute top-0 start-2 p-1 bg-info border border-light rounded-circle"></span>
+                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar3">
                       </li>
                       <li
                           class="text-bg-primary h-35 w-35 d-flex-center b-r-50"
@@ -590,7 +339,7 @@ const breadcrumbItems = computed(() => ({
               </b-col>
 
               <!-- Developer Card -->
-              <b-col sm="6" >
+              <b-col sm="6">
                 <b-card class="api-eshop-card" no-body>
                   <b-card-body>
                     <div class="d-flex justify-content-between align-items-center">
@@ -608,7 +357,7 @@ const breadcrumbItems = computed(() => ({
               </b-col>
 
               <!-- Alert Component -->
-              <b-col xl="12" >
+              <b-col xl="12">
                 <b-alert variant="info" class="alert-border-info bg-white" show>
                   <h6>
                     <i class="ti ti-info-circle f-s-18 me-2 text-info"></i>
@@ -634,20 +383,22 @@ const breadcrumbItems = computed(() => ({
                 header-class="bg-primary"
                 hide-footer
                 centered
+                @hidden="resetApiForm"
             >
-              <b-form>
+              <b-form class="app-form">
                 <b-form-group label="API Key name" label-for="username">
                   <b-form-input
                       id="username"
                       v-model="apiKeyName"
-                      placeholder="Enter Your API"
+                      placeholder="Enter Your API Key Name"
                       type="text"
+                      class="mb-3"
                   />
                 </b-form-group>
 
                 <b-form-group
                     v-if="showApiKeyContent"
-                    label="API Key"
+                    label="Generated API Key"
                     label-for="keygenValue"
                 >
                   <b-form-input
@@ -657,16 +408,31 @@ const breadcrumbItems = computed(() => ({
                       readonly
                       type="text"
                   />
+                  <small class="text-muted">Copy this key now - it won't be shown again!</small>
                 </b-form-group>
               </b-form>
 
               <template #footer>
-                <div class="w-100">
-                  <b-button variant="light-secondary" @click="showApiModal = false" class="me-2">
-                    Close
+                <div>
+                  <b-button
+                      v-if="!showApiKeyContent"
+                      variant="light-primary"
+                      @click="generateApiKey"
+                      :disabled="!apiKeyName.trim()"
+                  >
+                    Generate Key
                   </b-button>
-                  <b-button variant="light-primary" @click="generateApiKey">
-                    Add
+                  <b-button
+                      v-else
+                      variant="success"
+                      @click="addApiKey"
+                  >
+                    Add API Key
+                  </b-button>
+                </div>
+                <div>
+                  <b-button variant="light-secondary" @click="showApiModal = false">
+                    Close
                   </b-button>
                 </div>
               </template>
@@ -680,10 +446,11 @@ const breadcrumbItems = computed(() => ({
                 description=""
                 :columns="apiKeysColumns"
                 :data="apiKeysData"
-                :show-actions="true"
+                :show-individual-buttons="true"
                 :on-edit="handleEdit"
                 :on-delete="handleDelete"
                 :on-view="handleView"
+                @checkbox-change="handleCheckboxChange"
                 row-key="id"
                 class-name="api-keys-datatable"
                 card-class-name="card"
@@ -695,9 +462,28 @@ const breadcrumbItems = computed(() => ({
 
         </b-row>
       </b-container>
+
+      <!-- Delete Confirmation Modal -->
+      <b-modal
+          v-model="showDeleteModal"
+          centered
+          hide-header
+          content-class="border-0"
+          body-class="text-center p-4"
+      >
+        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png">
+        <div class="text-center">
+          <h4 class="text-danger f-w-600 mb-2">Are You Sure?</h4>
+          <p class="text-secondary f-s-16">You won't be able to revert this!</p>
+        </div>
+
+        <template #footer>
+          <div class="text-center mt-4">
+            <b-button variant="secondary" class="me-2" @click="showDeleteModal = false">Close</b-button>
+            <b-button variant="primary" @click="confirmDelete">Yes, Delete it</b-button>
+          </div>
+        </template>
+      </b-modal>
     </main>
   </AppLayout>
 </template>
-
-
-

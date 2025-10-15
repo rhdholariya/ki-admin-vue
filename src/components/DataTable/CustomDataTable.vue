@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, nextTick, computed, h } from "vue";
-import { BCard, BCardBody, BCardHeader, BTable, BDropdown, BDropdownItem } from "bootstrap-vue-next";
+import { BCard, BCardBody, BCardHeader, BTable, BDropdown, BDropdownItem, BButton } from "bootstrap-vue-next";
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import { IconTrash, IconEdit } from '@tabler/icons-vue';
 
 const props = defineProps({
   rowKey: { type: String, default: "id" },
@@ -12,23 +13,23 @@ const props = defineProps({
   columns: { type: Array, required: true },
   data: { type: Array, required: true },
   showActions: { type: Boolean, default: true },
-  onEdit: { type: Function },
-  onDelete: { type: Function },
-  onView: { type: Function }, // Added onView prop
-  className: { type: String, default: "" },
-  cardClassName: { type: String, default: "" },
-  tableClassName: { type: String, default: "table table-striped table-hover w-100 align-middle mb-0" },
-  pageLength: { type: Number, default: 10 },
-  showLengthMenu: { type: Boolean, default: true },
-  showFooter: { type: Boolean, default: false },
-  footerData: { type: Array, default: () => [] },
-  footerColumns: { type: Array, default: () => [] },
+  showIndividualButtons: {type: Boolean, default: false}, // Changed default to false for dropdown
+  onEdit: {type: Function},
+  onDelete: {type: Function},
+  onView: {type: Function},
+  className: {type: String, default: ""},
+  cardClassName: {type: String, default: ""},
+  tableClassName: {type: String, default: "table table-striped table-hover w-100 align-middle mb-0"},
+  pageLength: {type: Number, default: 10},
+  showLengthMenu: {type: Boolean, default: true},
+  showFooter: {type: Boolean, default: false},
+  footerData: {type: Array, default: () => []},
+  footerColumns: {type: Array, default: () => []},
 });
 
 const tableWrapperRef = ref(null);
 let dataTableInstance = null;
 
-// Transform columns for b-table
 const tableFields = computed(() => {
   const fields = props.columns.map(column => ({
     key: column.key,
@@ -49,10 +50,9 @@ const tableFields = computed(() => {
   return fields;
 });
 
-// Transform data for b-table with actions
 const tableItems = computed(() => {
   return props.data.map(item => {
-    const tableItem = { ...item };
+    const tableItem = {...item};
 
     if (props.showActions) {
       tableItem.actions = item;
@@ -62,18 +62,15 @@ const tableItems = computed(() => {
   });
 });
 
-// Helper function to detect if render returns HTML string or VNode
 const renderContent = (renderFn, value, item) => {
   if (typeof renderFn !== 'function') return value;
 
   const result = renderFn(value, item);
 
-  // If it's a string (HTML), use v-html
   if (typeof result === 'string') {
-    return h('div', { innerHTML: result });
+    return h('div', {innerHTML: result});
   }
 
-  // If it's a VNode, return as is
   return result;
 };
 
@@ -157,30 +154,69 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
               striped
           >
             <template v-for="column in columns" :key="column.key" #[`cell(${column.key})`]="data">
-              <component :is="() => renderContent(column.render, data.value, data.item)" />
+              <component :is="() => renderContent(column.render, data.value, data.item)"/>
             </template>
 
             <template #cell(actions)="data">
-              <BDropdown
-                  variant="link"
-                  toggle-class="text-decoration-none p-0 dropdown-toggle-no-caret"
-                  no-caret
-                  right
-                  class="action-dropdown"
-              >
-                <template #button-content>
-                  <i class="ti ti-dots-vertical"></i>
+              <div class="d-flex align-items-center gap-2">
+                <!-- Individual Buttons Style -->
+                <template v-if="showIndividualButtons">
+
+                  <!-- Edit Button -->
+                  <BButton
+                      v-if="onEdit"
+                      variant="outline-success"
+                      size="sm"
+                      class="icon-btn rounded-2 btn btn-success"
+                      @click="onEdit(data.value)"
+                      title="Edit"
+                  >
+                    <IconEdit size="18"/>
+                  </BButton>
+
+                  <!-- Delete Button -->
+                  <BButton
+                      v-if="onDelete"
+                      variant="outline-danger"
+                      size="sm"
+                      class="icon-btn rounded-2 btn btn-danger"
+                      @click="onDelete(data.value)"
+                      title="Delete"
+                  >
+                   <IconTrash size="18"/>
+                  </BButton>
                 </template>
-                <BDropdownItem v-if="onView" @click="onView(data.value)">
-                  <i class="ti ti-eye text-primary me-2"></i> View
-                </BDropdownItem>
-                <BDropdownItem v-if="onEdit" @click="onEdit(data.value)">
-                  <i class="ti ti-edit text-success me-2"></i> Edit
-                </BDropdownItem>
-                <BDropdownItem v-if="onDelete" @click="onDelete(data.value)">
-                  <i class="ti ti-trash text-danger me-2"></i> Delete
-                </BDropdownItem>
-              </BDropdown>
+
+                <!-- Dropdown Style -->
+                <template v-else>
+                  <BDropdown
+                      variant="link"
+                      toggle-class="text-decoration-none p-0 dropdown-toggle-no-caret"
+                      no-caret
+                      right
+                      class="action-dropdown"
+                  >
+                    <template #button-content>
+                      <i class="ti ti-dots-vertical"></i>
+                    </template>
+
+                    <!-- View in dropdown -->
+                    <BDropdownItem v-if="onView" @click="onView(data.value)">
+                      <i class="ti ti-eye text-primary me-2"></i> View
+                    </BDropdownItem>
+
+                    <!-- Edit in dropdown -->
+                    <BDropdownItem v-if="onEdit" @click="onEdit(data.value)">
+                      <i class="ti ti-edit text-success me-2"></i> Edit
+                    </BDropdownItem>
+
+                    <!-- Delete in dropdown -->
+                    <BDropdownItem v-if="onDelete" @click="onDelete(data.value)">
+                      <i class="ti ti-trash text-danger me-2"></i> Delete
+                    </BDropdownItem>
+                  </BDropdown>
+                </template>
+              </div>
             </template>
 
             <template #empty>
@@ -205,7 +241,7 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
                     v-for="column in footerColumns.length ? footerColumns : columns"
                     :key="`footer-${column.key}-${index}`"
                 >
-                  <component :is="() => renderContent(column.render, item[column.key], item)" />
+                  <component :is="() => renderContent(column.render, item[column.key], item)"/>
                 </td>
                 <td v-if="showActions"></td>
               </tr>
@@ -216,39 +252,3 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
     </BCard>
   </div>
 </template>
-
-<style scoped>
-.action-dropdown :deep(.dropdown-toggle) {
-  border: none;
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0.25rem 0.5rem;
-}
-
-.action-dropdown :deep(.dropdown-toggle::after) {
-  display: none !important;
-}
-
-.action-dropdown :deep(.dropdown-menu) {
-  min-width: 120px;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.action-dropdown :deep(.dropdown-item) {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.action-dropdown :deep(.dropdown-item:hover) {
-  background-color: #f8f9fa;
-}
-
-.action-dropdown :deep(.dropdown-item i) {
-  font-size: 1rem;
-  width: 16px;
-}
-</style>

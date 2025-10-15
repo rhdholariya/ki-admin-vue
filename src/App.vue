@@ -1,24 +1,28 @@
-
 <template>
-    <RouterView />
+  <div id="app">
+    <Loader v-if="loading" />
+    <RouterView v-else />
+  </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import { RouterView } from "vue-router";
+import Loader from "@/components/Layouts/Loader.vue";
 
-import { onMounted } from "vue";
-
+const loading = ref(true);
 
 onMounted(() => {
   const head = document.head;
 
-  // Load Tabler Icons Webfont (for ::before / ::after CSS icons)
+  // Load Tabler Icons Webfont
   const tablerLink = document.createElement("link");
   tablerLink.rel = "stylesheet";
   tablerLink.type = "text/css";
   tablerLink.href = "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css";
   head.appendChild(tablerLink);
 
-  // Load Phosphor Icons Webfont (for ::before / ::after CSS icons)
+  // Load Phosphor Icons Webfont
   const weights = ["regular", "thin", "light", "bold", "fill", "duotone"];
   weights.forEach((weight) => {
     const link = document.createElement("link");
@@ -27,6 +31,13 @@ onMounted(() => {
     link.href = `https://unpkg.com/@phosphor-icons/web@2.0.3/src/${weight}/style.css`;
     head.appendChild(link);
   });
+
+  // Hide loader after fonts are loaded (with minimum display time)
+  setTimeout(() => {
+    loading.value = false;
+  }, 1500);
 });
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 </script>
+

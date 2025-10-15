@@ -1,19 +1,121 @@
-<template>
-  <div class="page">
-    <b-container fluid>
+<script setup>
+import { reactive, onMounted } from 'vue'
+import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody } from 'bootstrap-vue-next'
 
+
+import { LMap, LTileLayer, LMarker, LPopup, LCircle } from '@vue-leaflet/vue-leaflet'
+import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
+import AppLayout from "@/views/AppLayout.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import {PhMapPinLine} from "@phosphor-icons/vue";
+
+
+delete L.Icon.Default.prototype._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+})
+
+const mapConfigs = reactive([
+  {
+    title: 'Basic Map',
+    center: [51.505, -0.09],
+    zoom: 13,
+    markers: [
+      { position: [51.505, -0.09], popup: 'Hello World!' }
+    ],
+    circles: []
+  },
+  {
+    title: 'Multiple Markers',
+    center: [50.4501, 30.5234],
+    zoom: 10,
+    markers: [
+      { position: [50.4501, 30.5234], popup: 'Kyiv, Ukraine' },
+      { position: [52.2297, 21.0122], popup: 'Warsaw, Poland' }
+    ],
+    circles: []
+  },
+  {
+    title: 'With Circle',
+    center: [51.505, -0.09],
+    zoom: 13,
+    markers: [
+      { position: [51.5, -0.09], popup: 'Marker here!' }
+    ],
+    circles: [
+      {
+        center: [51.508, -0.11],
+        radius: 500,
+        color: 'blue',
+        fillColor: '#467FFB',
+        fillOpacity: 0.6
+      }
+    ]
+  },
+  {
+    title: 'World Map',
+    center: [0, 0],
+    zoom: 2,
+    markers: [],
+    circles: []
+  },
+  {
+    title: 'USA Map',
+    center: [37.8, -96],
+    zoom: 4,
+    markers: [],
+    circles: []
+  },
+  {
+    title: 'Custom Features',
+    center: [51.5, -0.09],
+    zoom: 13,
+    markers: [
+      { position: [51.5, -0.09], popup: 'Green marker' },
+      { position: [51.495, -0.083], popup: 'Red marker' }
+    ],
+    circles: []
+  }
+])
+
+
+onMounted(() => {
+  console.log('Maps initialized')
+})
+
+
+// Breadcrumb data
+const breadcrumbItems = {
+  title: "Leaflet Map",
+  items: [
+    {label: " Map ", icon: PhMapPinLine },
+    {label: "Leaflet Map", active: true},
+  ],
+};
+</script>
+
+
+<template>
+<AppLayout>
+  <main>
+    <Breadcrumb :breadcrumb="breadcrumbItems"/>
+    <b-container fluid>
       <b-row>
         <b-col lg="6" v-for="(mapConfig, index) in mapConfigs" :key="index">
-          <b-card>
-            <template #header>
+          <b-card no-body>
+            <b-card-header>
               <h5>{{ mapConfig.title }}</h5>
-            </template>
-            <div class="map-wrapper">
+            </b-card-header>
+            <b-card-body>
+            <div class="map-wrapper" style="height: 400px;">
               <l-map
                   ref="map"
                   :zoom="mapConfig.zoom"
                   :center="mapConfig.center"
-                  :options="{ zoomControl: true }"
+                  :use-global-leaflet="false"
               >
                 <l-tile-layer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -42,87 +144,14 @@
                 />
               </l-map>
             </div>
+            </b-card-body>
           </b-card>
         </b-col>
       </b-row>
     </b-container>
-  </div>
+  </main>
+</AppLayout>
 </template>
 
-<script setup>
-import {  reactive } from 'vue'
-import { BContainer, BRow, BCol, BCard } from 'bootstrap-vue-next'
 
 
-
-// Vue Leaflet components
-import { LMap, LTileLayer, LMarker, LPopup, LCircle } from '@vue-leaflet/vue-leaflet'
-
-import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
-
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-})
-
-const mapConfigs = reactive([
-  {
-    title: 'Basic Map',
-    center: [51.505, -0.09],
-    zoom: 13,
-    markers: [
-      { position: [51.505, -0.09], popup: 'Hello World!' }
-    ]
-  },
-  {
-    title: 'Multiple Markers',
-    center: [50.4501, 30.5234],
-    zoom: 4,
-    markers: [
-      { position: [50.4501, 30.5234], popup: 'Kyiv, Ukraine' },
-      { position: [52.2297, 21.0122], popup: 'Warsaw, Poland' }
-    ]
-  },
-  {
-    title: 'With Circle',
-    center: [51.505, -0.09],
-    zoom: 13,
-    markers: [
-      { position: [51.5, -0.09], popup: 'Marker here!' }
-    ],
-    circles: [
-      {
-        center: [51.508, -0.11],
-        radius: 500,
-        color: 'blue',
-        fillColor: '#467FFB',
-        fillOpacity: 0.6
-      }
-    ]
-  },
-  {
-    title: 'Mobile Map',
-    center: [0, 0],
-    zoom: 2,
-    markers: []
-  },
-  {
-    title: 'Interactive Map',
-    center: [37.8, -96],
-    zoom: 4,
-    markers: []
-  },
-  {
-    title: 'Custom Features',
-    center: [51.5, -0.09],
-    zoom: 13,
-    markers: [
-      { position: [51.5, -0.09], popup: 'Green marker' },
-      { position: [51.495, -0.083], popup: 'Red marker' }
-    ]
-  }
-])
-</script>

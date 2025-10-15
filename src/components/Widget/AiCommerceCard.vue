@@ -1,3 +1,15 @@
+<script setup>
+import { BCard, BCardBody } from 'bootstrap-vue-next'
+
+defineProps({
+  isWidgetPage: {
+    type: Boolean,
+    default: false
+  }
+})
+</script>
+
+
 <template>
   <b-card class="service-trial-card" no-body>
     <b-card-body>
@@ -23,13 +35,3 @@
   </b-card>
 </template>
 
-<script setup>
-import { BCard, BCardBody } from 'bootstrap-vue-next'
-
-defineProps({
-  isWidgetPage: {
-    type: Boolean,
-    default: false
-  }
-})
-</script>

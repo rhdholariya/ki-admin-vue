@@ -1,3 +1,7 @@
+<script setup>
+import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
+</script>
+
 <template>
   <b-card class="overflow-hidden" no-body>
     <b-card-body class="p-0">
@@ -41,6 +45,3 @@
   </b-card>
 </template>
 
-<script setup>
-import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
-</script>
