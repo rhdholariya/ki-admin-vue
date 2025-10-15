@@ -26,7 +26,7 @@ import TextEditor from '@/components/UiKits/Editor/TextEditor.vue'
 import VueSelect from 'vue3-select'
 import 'vue3-select/dist/vue3-select.css'
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
 const options = ['Option 1', 'Option 2', 'Option 3']

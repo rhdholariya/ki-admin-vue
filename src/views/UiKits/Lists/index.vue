@@ -1,7 +1,7 @@
 <script setup>
 import {BRow} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import BasicLists from "@/components/UiKits/Lists/BasicLists.vue";
 import CustomLists from "@/components/UiKits/Lists/CustomLists.vue";

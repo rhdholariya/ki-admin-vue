@@ -13,7 +13,7 @@ import {
     BProgressBar,
     BCollapse,
 } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase, PhCode, PhTrash, PhX} from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
 

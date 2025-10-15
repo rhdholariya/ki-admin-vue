@@ -14,7 +14,7 @@ import {
   IconHeartFilled,
   IconStarFilled,
 } from "@tabler/icons-vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { whishListData } from "@/data/app/EshopPage/Wishlist/WishListData.js";
 import AppLayout from "@/views/AppLayout.vue";
 

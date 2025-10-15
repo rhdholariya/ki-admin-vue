@@ -11,7 +11,7 @@ import {
     BPlaceholder,
 } from "bootstrap-vue-next";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 // Breadcrumb
 const breadcrumbItems = {

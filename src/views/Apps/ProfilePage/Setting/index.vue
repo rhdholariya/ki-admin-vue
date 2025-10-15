@@ -162,7 +162,7 @@ import {
   PhTrash,
   PhUserCircleGear, PhStack,
 } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 
 const activeTab = ref("1");

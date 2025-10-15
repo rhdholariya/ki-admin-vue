@@ -1,7 +1,7 @@
 <script setup>
 
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {BContainer} from "bootstrap-vue-next";
 import ProjectDetailsLeft from "@/components/Apps/ProjectDetails/ProjectDetailsLeft.vue";
 import ProjectDetailsCenter from "@/components/Apps/ProjectDetails/ProjectDetailsCenter.vue";

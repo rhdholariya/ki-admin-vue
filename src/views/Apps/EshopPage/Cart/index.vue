@@ -204,7 +204,7 @@ import {
 import {IconHeart} from '@tabler/icons-vue'
 import AppLayout from "@/views/AppLayout.vue";
 import {PhStack, PhTrash} from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 const products = ref([
   {

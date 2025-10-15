@@ -12,7 +12,7 @@ import {
     BButton,
 } from "bootstrap-vue-next";
 import {PhBriefcase, PhCopySimple, PhScissors} from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 const textInput = ref("");

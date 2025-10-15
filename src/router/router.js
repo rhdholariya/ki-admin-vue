@@ -1,6 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+// dashboard routes
+import EcommerceDashboard from '@/views/Dashboard/Ecommerce/index.vue'
+import ProjectDashboard from '@/views/Dashboard/Project/index.vue'
+
+
 // uikit routes
-import HomeView from '@/views/HomeView.vue'
+
 import BadgesPage from "@/views/UiKits/Badges/index.vue";
 import ButtonPage from "@/views/UiKits/Button/index.vue";
 import CardPage from "@/views/UiKits/Card/index.vue";
@@ -145,12 +151,21 @@ import ReadEmailPage from '@/views/Apps/EmailPage/ReadEmail/index.vue'
 import TicketPage from '@/views/Apps/TicketPage/Ticket/index.vue'
 import TicketDetailsPage from '@/views/Apps/TicketPage/TicketDetails/index.vue'
 
+import WidgetsPage from '@/views/Widgets/index.vue'
+
+// maps routes
+import GoogleMapPage from '@/views/Map/GoogleMap/index.vue'
+import LeafletPage from '@/views/Map/LeafletMap/index.vue'
 
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        {path: '/', name: 'home', component: HomeView,},
+
+        // dashboard routes
+        {path: '/dashboard/ecommerce', name: 'home', component: EcommerceDashboard},
+        {path: '/dashboard/project', name: 'project-dashboard', component: ProjectDashboard},
+
         {path: '/ui-kits/alert', name: 'alerts', component: AlertPage},
         {path: '/ui-kits/badges', name: 'badges', component: BadgesPage},
         {path: '/ui-kits/buttons', name: 'button', component:ButtonPage},
@@ -159,7 +174,7 @@ const router = createRouter({
         {path: '/ui-kits/grid', name: 'grid', component:GridPage},
         {path: '/errors', name: 'error', component: Error},
         {path: '/ui-kits/avatar', name: 'Avatar', component:AvatarPage},
-         {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
+        {path: '/ui-kits/tabs', name: 'Tab', component:TabPage},
         {path: '/ui-kits/accordions', name: 'Accordion', component:AccordionPage},
         {path: '/ui-kits/progress', name: 'Progress', component:ProgressPage},
         {path: '/ui-kits/notifications', name: 'Notification', component:NotificationPage},
@@ -300,6 +315,13 @@ const router = createRouter({
         {path: '/apps/email-page/read-email', name: 'reademail', component:ReadEmailPage},
         {path: '/apps/ticket-page/ticket', name: 'ticket', component:TicketPage},
         {path: '/apps/ticket-page/ticket-details', name: 'ticket-details', component:TicketDetailsPage},
+
+        // widget routes
+        {path: '/widgets', name: 'widgets', component:WidgetsPage},
+
+        // maps routes
+        {path: '/map/google-maps', name: 'google-map', component:GoogleMapPage},
+        {path: '/map/leaflet-map', name: 'leaflet-map', component:LeafletPage},
     ],
 
 })

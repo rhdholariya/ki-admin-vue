@@ -94,7 +94,7 @@ const swiperOptions = {
               </Swiper>
             </b-card-body>
           </b-card>
-          <b-card id="post">
+          <b-card id="post" no-body>
             <b-card-header>
               <h5>Post</h5>
             </b-card-header>
@@ -346,7 +346,7 @@ const swiperOptions = {
       <!-- Tab 4: Posts -->
       <div :class="[props.data === '4' ? 'active' : '', 'tabs-content']">
         <div v-for="post in posts" :key="post.id" class="col-12 mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-body>
               <div class="d-flex align-items-center mb-3">
                 <div class="h-45 w-45 d-flex-center b-r-50 overflow-hidden bg-danger">
@@ -382,7 +382,7 @@ const swiperOptions = {
           </b-card>
         </div>
 
-        <b-card>
+        <b-card no-body>
           <b-card-body>
             <FileUploader />
             <b-form class="app-form mt-3">
@@ -403,7 +403,7 @@ const swiperOptions = {
       <div :class="[props.data === '5' ? 'active' : '', 'tabs-content']">
         <b-row class="profile-friend-box">
           <b-col v-for="friend in friends" :key="friend.id" xxl="6" class="box-col">
-            <b-card class="friend-list-card">
+            <b-card class="friend-list-card" no-body>
               <b-card-body>
                 <div class="d-flex align-items-center position-relative">
                   <div class="h-45 w-45 d-flex-center b-r-50 overflow-hidden bg-dark position-absolute">
@@ -429,7 +429,7 @@ const swiperOptions = {
             </b-card>
           </b-col>
           <b-col sm="12">
-            <b-card class="equal-card">
+            <b-card class="equal-card" no-body>
               <b-card-header><h5>Friends Requests</h5></b-card-header>
               <b-card-body>
                 <ul class="friend-list">

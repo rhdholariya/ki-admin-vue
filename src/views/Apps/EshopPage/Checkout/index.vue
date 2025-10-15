@@ -9,7 +9,7 @@ import {
 import { PhStack } from "@phosphor-icons/vue";
 import CheckoutProducts from "@/components/Apps/EshopePage/Checkout/CheckoutProducts.vue";
 import CheckoutTabs from "@/components/Apps/EshopePage/Checkout/CheckoutTabs.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 const breadcrumbItems = {

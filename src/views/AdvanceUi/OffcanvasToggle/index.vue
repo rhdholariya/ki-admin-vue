@@ -2,7 +2,7 @@
 import AppLayout from "@/views/AppLayout.vue";
 import { ref } from 'vue';
 import { BContainer, BRow, BCol, BCard, BCardBody, BButton, BOffcanvas } from 'bootstrap-vue-next';
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 
 

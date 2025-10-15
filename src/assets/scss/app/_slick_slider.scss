@@ -166,8 +166,11 @@
     content: "\ea61";
   }
 
-  .slick-dots {
-    li {
+  .swiper-pagination {
+
+    //bottom: -25px;
+
+    .swiper-pagination-bullet {
       width: 10px;
       height: 10px;
       border: none;
@@ -175,7 +178,7 @@
       background-color: rgba(var(--secondary), 0.6);
       cursor: pointer;
       // transition: width 0.5s;
-      &.slick-active {
+      &.swiper-pagination-bullet-active {
         // width: 32px;
         outline: 1px solid rgba(var(--primary), 1);
         outline-offset: 2px;

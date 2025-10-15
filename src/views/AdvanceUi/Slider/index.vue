@@ -9,7 +9,7 @@ import { Navigation, Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 
 const slides = ref([1, 2, 3])

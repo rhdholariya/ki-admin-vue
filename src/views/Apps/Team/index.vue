@@ -10,7 +10,7 @@ import {
   BTabs,
 } from "bootstrap-vue-next";
 
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import TeamCard from "@/components/Apps/Team/TeamCard.vue";
 import AppLayout from "@/views/AppLayout.vue";
 

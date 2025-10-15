@@ -27,7 +27,7 @@ import RatingBar from "@/components/AdvanceUi/Rating/RatingBar.vue";
 import ReversedRating from "@/components/AdvanceUi/Rating/ReversedRating.vue";
 import HorizontalRating from "@/components/AdvanceUi/Rating/HorizontalRating.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 
 const sliderValue = ref(5);

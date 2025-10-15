@@ -1,7 +1,7 @@
 <script setup>
 import { BDropdown, BDropdownItem } from 'bootstrap-vue-next'
 import CustomDataTable from '@/components/DataTable/CustomDataTable.vue'
-import { paymentData } from '@/data/DablePage/DataTable/jobData.js'
+import { paymentData } from '@/data/tablePage/DataTable/jobData.js'
 import { h } from 'vue'
 
 // columns setup

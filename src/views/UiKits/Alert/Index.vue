@@ -1,7 +1,7 @@
 <script setup>
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import BasicAlert from "@/components/UiKits/Alert/BasicAlert.vue";
 import OutlineAlert from "@/components/UiKits/Alert/OutlineAlert.vue";
 import LightLinkAlert from "@/components/UiKits/Alert/LightLinkAlert.vue";

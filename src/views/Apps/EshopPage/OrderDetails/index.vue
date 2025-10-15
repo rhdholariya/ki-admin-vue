@@ -18,7 +18,7 @@ import {
   IconTrash,
   IconStarFilled
 } from "@tabler/icons-vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { ordersCardData, cardData, orderTimelineData } from "@/data/app/EshopPage/OrderDetails/OrderDetailData.js";
 import AppLayout from "@/views/AppLayout.vue";
 

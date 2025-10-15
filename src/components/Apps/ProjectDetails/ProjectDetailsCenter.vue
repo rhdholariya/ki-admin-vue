@@ -1,3 +1,97 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+import {
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BCardFooter,
+  BRow,
+  BImg,
+  BButton,
+  BInputGroup,
+  BInputGroupText,
+  BFormInput,
+  BDropdown,
+  BDropdownItem,
+} from "bootstrap-vue-next";
+
+// Import icons
+import { PhImageSquare } from "@phosphor-icons/vue";
+import {
+  IconCamera,
+  IconMicrophone,
+  IconMoodSmileBeam,
+  IconPaperclip,
+  IconSend,
+} from "@tabler/icons-vue";
+
+// Import project detail data
+import { projectActivities } from "@/data/app/projectapp/ProjectDetailData.js";
+
+// Import GLightbox CSS
+import "glightbox/dist/css/glightbox.min.css";
+
+// Reactive state
+const message = ref("");
+let lightbox = null;
+
+// Methods
+const getTimelineIconClass = (id) => {
+  const classMap = {
+    1: "text-light-primary",
+    2: "text-light-info",
+    3: "text-light-success",
+    4: "text-light-danger",
+    5: "text-light-primary",
+  };
+  return classMap[id] || "text-light-primary";
+};
+
+const getTimelineTextClass = (id) => {
+  const classMap = {
+    1: "text-primary",
+    2: "text-info",
+    3: "text-success",
+    4: "text-danger",
+    5: "text-primary",
+  };
+  return classMap[id] || "text-primary";
+};
+
+const sendMessage = () => {
+  if (message.value.trim()) {
+    console.log("Sending message:", message.value);
+    // Add your message sending logic here
+    message.value = "";
+  }
+};
+
+// GLightbox initialization
+onMounted(async () => {
+  try {
+    const GLightbox = (await import("glightbox")).default;
+    lightbox = GLightbox({
+      selector: ".glightbox",
+      touchNavigation: true,
+      loop: true,
+      zoomable: true,
+      autoplayVideos: true,
+    });
+  } catch (error) {
+    console.error("Failed to load GLightbox:", error);
+  }
+});
+
+// Cleanup on unmount
+onUnmounted(() => {
+  if (lightbox) {
+    lightbox.destroy();
+  }
+});
+</script>
+
+
 <template>
   <b-col xxl="6" class="order-xxl-2" >
     <b-card no-body>
@@ -199,95 +293,4 @@
   </b-col>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import {
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BCardFooter,
-  BRow,
-  BImg,
-  BButton,
-  BInputGroup,
-  BInputGroupText,
-  BFormInput,
-  BDropdown,
-  BDropdownItem,
-} from "bootstrap-vue-next";
 
-// Import icons
-import { PhImageSquare } from "@phosphor-icons/vue";
-import {
-  IconCamera,
-  IconMicrophone,
-  IconMoodSmileBeam,
-  IconPaperclip,
-  IconSend,
-} from "@tabler/icons-vue";
-
-// Import project detail data
-import { projectActivities } from "@/data/app/projectapp/ProjectDetailData.js";
-
-// Import GLightbox CSS
-import "glightbox/dist/css/glightbox.min.css";
-
-// Reactive state
-const message = ref("");
-let lightbox = null;
-
-// Methods
-const getTimelineIconClass = (id) => {
-  const classMap = {
-    1: "text-light-primary",
-    2: "text-light-info",
-    3: "text-light-success",
-    4: "text-light-danger",
-    5: "text-light-primary",
-  };
-  return classMap[id] || "text-light-primary";
-};
-
-const getTimelineTextClass = (id) => {
-  const classMap = {
-    1: "text-primary",
-    2: "text-info",
-    3: "text-success",
-    4: "text-danger",
-    5: "text-primary",
-  };
-  return classMap[id] || "text-primary";
-};
-
-const sendMessage = () => {
-  if (message.value.trim()) {
-    console.log("Sending message:", message.value);
-    // Add your message sending logic here
-    message.value = "";
-  }
-};
-
-// GLightbox initialization
-onMounted(async () => {
-  try {
-    const GLightbox = (await import("glightbox")).default;
-    lightbox = GLightbox({
-      selector: ".glightbox",
-      touchNavigation: true,
-      loop: true,
-      zoomable: true,
-      autoplayVideos: true,
-    });
-  } catch (error) {
-    console.error("Failed to load GLightbox:", error);
-  }
-});
-
-// Cleanup on unmount
-onUnmounted(() => {
-  if (lightbox) {
-    lightbox.destroy();
-  }
-});
-</script>

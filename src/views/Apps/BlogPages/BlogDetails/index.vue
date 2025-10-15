@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {computed} from "vue";
 import {PhStack} from "@phosphor-icons/vue";
 import { BContainer, BRow, BCol } from "bootstrap-vue-next";

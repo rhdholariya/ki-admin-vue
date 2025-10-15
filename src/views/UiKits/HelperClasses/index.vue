@@ -1,7 +1,7 @@
 <script setup>
 import {BContainer, BRow} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import HelperColor from "@/components/UiKits/HelperClasses/HelperColor.vue";
 import HelperTextFont from "@/components/UiKits/HelperClasses/HelperTextFont.vue";

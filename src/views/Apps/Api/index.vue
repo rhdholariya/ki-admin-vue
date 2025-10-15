@@ -18,7 +18,7 @@ import {
 } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import CustomDataTable from "@/components/DataTable/CustomDataTable.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
 

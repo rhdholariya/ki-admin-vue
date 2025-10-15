@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { BRow, BContainer, BCol, BCard, BCardHeader, BCardBody, BTable } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import { PhCardholder } from "@phosphor-icons/vue";
 import DualListBox from "vue-dual-listbox";

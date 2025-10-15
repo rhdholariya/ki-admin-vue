@@ -21,7 +21,7 @@ import {
 } from "bootstrap-vue-next";
 import { PhStack } from "@phosphor-icons/vue";
 import { IconEdit, IconEye, IconTrash } from "@tabler/icons-vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { orders } from "@/data/app/EshopPage/Order/OrderPage.js";
 import AppLayout from "@/views/AppLayout.vue";
 

@@ -15,7 +15,7 @@ import {
 import LeftSidebar from '@/components/Apps/EmailPage/Email/LeftSidebar.vue'
 import EmailContent from '@/components/Apps/EmailPage/Email/EmailContent.vue'
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
 // Reactive data

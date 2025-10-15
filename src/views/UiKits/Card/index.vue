@@ -1,7 +1,7 @@
 <script setup>
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import BasicCard from "@/components/UiKits/Card/BasicCard.vue";
 import CardVariant from "@/components/UiKits/Card/CardVariant.vue";
 import CardStyle from "@/components/UiKits/Card/CardStyle.vue";

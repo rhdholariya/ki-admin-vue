@@ -1,6 +1,6 @@
 <script setup>
 import {  BContainer} from 'bootstrap-vue-next';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.vue';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue';
 import AppLayout from '@/views/AppLayout.vue';
 import TextEditor from '@/components/UiKits/Editor/TextEditor.vue';
 import {PhBriefcase} from "@phosphor-icons/vue";

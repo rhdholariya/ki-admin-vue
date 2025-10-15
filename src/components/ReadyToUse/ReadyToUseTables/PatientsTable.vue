@@ -1,6 +1,6 @@
 <script setup>
 import CustomDataTable from '@/components/DataTable/CustomDataTable.vue';
-import { patientsData } from '@/data/DablePage/DataTable/patientsData.js';
+import { patientsData } from '@/data/tablePage/DataTable/patientsData.js';
 
 const columns = [
     {

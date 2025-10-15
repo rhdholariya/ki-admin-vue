@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from "vue"
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 import TourTab from "@/components/AdvanceUi/Tour/TourTab.vue";
 import FeatureStories from "@/components/AdvanceUi/Tour/FeatureStories.vue";

@@ -191,7 +191,7 @@ $rippleEffectColors: (
     .service-img-box {
       width: 100%;
       height: 140px;
-      background-image: url("../images/dashboard/ecommerce-dashboard/02.png");
+      background-image: url("/public/images/dashboard/ecommerce-dashboard/02.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -398,7 +398,7 @@ $rippleEffectColors: (
 
 .offer-card-box {
   position: relative;
-  background-image: url("../images/dashboard/ecommerce-dashboard/kids-offer.png");
+  background-image: url("/public/images/dashboard/ecommerce-dashboard/kids-offer.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -492,7 +492,7 @@ $rippleEffectColors: (
   position: relative;
   width: 100%;
   height: 230px;
-  background-image: url("../images/dashboard/ecommerce-dashboard/location-bg.jpg");
+  background-image: url("/public/images/dashboard/ecommerce-dashboard/location-bg.jpg");
   border-radius: var(--app-border-radius);
   background-repeat: no-repeat;
   background-size: cover;

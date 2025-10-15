@@ -10,27 +10,29 @@ import {
 } from "@tabler/icons-vue";
 import { PhStack} from "@phosphor-icons/vue";
 
-// Swiper (v12)
+
+
+
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 import CalendarCard from "@/components/Apps/Calendar/CalendarCard.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Reactive state
+
 const calendarState = reactive({
   externalEventsRef: null,
   dropRemoveRef: null,
   dropRemoveChecked: false
 });
 
-// Refs for external events and drop remove functionality
+
 const externalEventsRef = ref(null);
 const dropRemoveRef = ref(null);
 
-// Reactive event data
+
 const eventData = ref([
   {
     title: "International Women's Day",
@@ -59,7 +61,7 @@ const eventData = ref([
   },
 ]);
 
-// Reactive draggable events data
+
 const draggableEvents = ref([
   {
     id: 'meeting',
@@ -98,7 +100,7 @@ const draggableEvents = ref([
   }
 ]);
 
-// Computed swiper settings
+
 const sliderSettings = computed(() => ({
   direction: "vertical",
   slidesPerView: 3,

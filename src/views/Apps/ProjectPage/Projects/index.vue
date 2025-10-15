@@ -24,7 +24,7 @@ import {
 } from "bootstrap-vue-next";
 
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 import {PhStack} from "@phosphor-icons/vue";
 import {IconBrandWechat, IconPlus, IconTrash} from "@tabler/icons-vue";

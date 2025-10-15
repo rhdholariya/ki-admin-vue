@@ -5,7 +5,7 @@ import { Icon } from "@iconify/vue";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhShapes} from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {IconSearch} from "@tabler/icons-vue";

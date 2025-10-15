@@ -1,7 +1,7 @@
 <script setup>
 import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BButton, BTooltip } from "bootstrap-vue-next";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 
 

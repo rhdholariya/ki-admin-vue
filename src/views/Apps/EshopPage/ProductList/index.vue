@@ -3,7 +3,7 @@ import {ref, computed, h} from "vue";
 import CustomDataTable from "@/components/DataTable/CustomDataTable.vue";
 import {productlist} from "@/data/app/EshopPage/ProductList/Productlist.js";
 import {PhStack} from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {IconEdit, IconTrash} from "@tabler/icons-vue";
 import { BContainer} from "bootstrap-vue-next";

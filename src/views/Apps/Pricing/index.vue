@@ -6,7 +6,7 @@ import { PhStack } from "@phosphor-icons/vue";
 import PricingCard from "@/components/Apps/Pricing/PricingCard.vue";
 import SimplePricingCard from "@/components/Apps/Pricing/SimplePricingCard.vue";
 import ComparePricing from "@/components/Apps/Pricing/ComparePricing.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 const plans = ref([

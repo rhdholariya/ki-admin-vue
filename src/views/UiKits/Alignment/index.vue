@@ -16,7 +16,7 @@ import {
     PhAlignCenterHorizontal,
     PhAlignCenterVertical
 } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 // === Items for text alignment
 const items = [

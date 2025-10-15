@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import {BRow, BContainer, BCol} from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import TouchSpinCard from '@/components/FormsElements/TouchSpin/TouchSpinCard.vue';
 import {PhCardholder} from "@phosphor-icons/vue";

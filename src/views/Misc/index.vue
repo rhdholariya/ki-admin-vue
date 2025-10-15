@@ -63,7 +63,7 @@ const breadcrumbSets = [
   },
 ];
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhShapes} from "@phosphor-icons/vue";
 const textList = ["page1", "page2", "page3", "page4"];
 const iconList = [IconHome, IconBooks, IconFileFilled, IconDatabaseExport];

@@ -12,7 +12,7 @@ import {
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhShapes } from "@phosphor-icons/vue";
 import {countryData} from "@/data/icons/Flag/FlagData.js"
 import AppLayout from "@/views/AppLayout.vue";

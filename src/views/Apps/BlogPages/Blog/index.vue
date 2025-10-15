@@ -28,7 +28,7 @@ import {
 import FsLightbox from "fslightbox-vue";
 import { initialBlogData } from "@/data/app/Blog/BlogData.js";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhStack } from "@phosphor-icons/vue";
 
 // state

@@ -1,7 +1,7 @@
 <script setup>
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import BasicButtons from "@/components/UiKits/Button/BasicButtons.vue";
 import SmartButton from "@/components/UiKits/Button/SmartButton.vue";
 import BlockSizeRadiousButton from "@/components/UiKits/Button/BlockSizeRadiousButton.vue";

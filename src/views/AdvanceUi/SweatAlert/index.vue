@@ -3,7 +3,7 @@ import {BRow, BCol, BContainer} from 'bootstrap-vue-next'
 import SweetAlertCard from "@/components/AdvanceUi/SweatAlert/SweetAlertCard.vue";
 import {sweetAlertData} from "@/data/advanceui/sweat-alert/SweatAlert.js";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 
 // Define handleClick logic

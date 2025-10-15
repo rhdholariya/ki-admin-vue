@@ -3,7 +3,7 @@ import { ref, onMounted, nextTick } from 'vue';
 import AppLayout from "@/views/AppLayout.vue";
 import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BButton } from 'bootstrap-vue-next';
 import {PhBell, PhCaretDoubleRight, PhDownload,  PhBriefcase , PhTrash , PhUpload} from '@phosphor-icons/vue';
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AnimateUse from '@/components/AdvanceUi/Animation/AnimateUse.vue';
 import { animationCategories } from '@/data/advanceui/animation/Animation.js';
 import Masonry from 'masonry-layout';

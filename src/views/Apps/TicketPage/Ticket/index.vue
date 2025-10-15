@@ -179,7 +179,7 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 import "swiper/css";
 import "swiper/css/autoplay";
 import {Autoplay} from "swiper/modules";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 const categories = [
   {title: "Laptop issues", count: 64},

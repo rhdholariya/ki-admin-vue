@@ -1,6 +1,6 @@
 <script setup>
 import {BRow, BContainer, BCol} from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhCardholder} from "@phosphor-icons/vue";
 import TooltipsValidation from "@/components/FormsElements/FormValidation/TooltipsValidation.vue";

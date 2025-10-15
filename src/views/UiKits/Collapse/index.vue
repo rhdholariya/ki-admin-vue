@@ -11,7 +11,7 @@ import {
     BCollapse
 } from "bootstrap-vue-next";
 
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 

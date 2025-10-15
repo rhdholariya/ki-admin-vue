@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { BContainer } from "bootstrap-vue-next";
 import FsLightbox from "fslightbox-vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import GalleryLightbox from "@/components/Apps/Gallery/GalleryLightbox.vue";
 
 import { PhStack } from "@phosphor-icons/vue";

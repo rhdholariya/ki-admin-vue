@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from 'vue';
 import {BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BForm} from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import FlatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.min.css';
 import AppLayout from "@/views/AppLayout.vue";

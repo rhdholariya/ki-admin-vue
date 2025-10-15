@@ -2,7 +2,7 @@ import './assets/main.css'
 import { createApp, nextTick  } from 'vue'
 import App from './App.vue'
 import router from './router/router.js'
-import Breadcrumbs from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumbs from "@/components/Breadcrumb/Breadcrumb.vue";
 import Prism from "prismjs";
 console.log(Prism);
 import "prismjs/themes/prism.css";

@@ -2,7 +2,7 @@
 
 import AppLayout from "@/views/AppLayout.vue";
 import {BContainer} from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
 import ScrollpyNav from "@/components/AdvanceUi/Scrollpy/ScrollpyNav.vue";
 import ScrollpyNested from "@/components/AdvanceUi/Scrollpy/ScrollpyNested.vue";

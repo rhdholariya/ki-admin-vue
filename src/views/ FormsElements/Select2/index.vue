@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import {BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BForm, BFormSelect, BFormSelectOption } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhCardholder} from "@phosphor-icons/vue";
 import Select2Basic from '@/components/FormsElements/Select2/Select2Basic.vue'

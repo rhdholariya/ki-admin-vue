@@ -30,7 +30,7 @@ import {
 
 import {bookMarkTableData} from "@/data/app/Bookmark/Bookmark1.js";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 // ----------------------------------------------------
 // Reactive state

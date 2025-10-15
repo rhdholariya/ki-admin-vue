@@ -10,7 +10,7 @@ import {
     BFormRadio,
     BRow
 } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhCardholder} from "@phosphor-icons/vue";
 import PaymentMethods from "@/components/FormsElements/CheckboxRadio/PaymentMethods.vue";

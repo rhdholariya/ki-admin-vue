@@ -14,7 +14,7 @@ import {
 } from "bootstrap-vue-next";
 
 import FileUploader from "@/components/Apps/Profile/FileUploader.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import TextEditor from "@/components/UiKits/Editor/TextEditor.vue";
 import { PhStack } from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";

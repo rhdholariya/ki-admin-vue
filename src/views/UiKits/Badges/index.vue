@@ -5,7 +5,7 @@ import BasicBadge from "@/components/UiKits/Badge/BasicBadge.vue";
 import IconBadge from "@/components/UiKits/Badge/IconBadge.vue";
 import RadiusBadge from "@/components/UiKits/Badge/RadiusBadge.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 // Breadcrumb data
 const breadcrumbItems = {

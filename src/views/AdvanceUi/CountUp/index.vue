@@ -9,7 +9,7 @@ import {
   updateCounterItems,
 } from "@/data/advanceui/CountUp/UpdateCounter.js";
 
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
 import Counter from "@/components/AdvanceUi/CountUp/Counter.vue";

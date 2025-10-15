@@ -24,7 +24,7 @@ import ChatContainer from "@/components/Apps/Chat/ChatContainer.vue";
 import ChatLeftData from "@/components/Apps/Chat/ChatLeftData.vue";
 import NewChatDropdown from "@/components/Apps/Chat/NewChatDropdown.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
 // Sidebar reference

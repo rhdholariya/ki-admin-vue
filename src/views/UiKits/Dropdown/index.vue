@@ -1,7 +1,7 @@
 <script setup>
 import {BRow, BContainer} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import SolidDropdown from "@/components/UiKits/Dropdown/SolidDropdown.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import OutlineDropdown from "@/components/UiKits/Dropdown/OutlineDropdown.vue";
