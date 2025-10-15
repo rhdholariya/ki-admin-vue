@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import {ref, onMounted, onBeforeUnmount} from "vue";
 import NoUiSlider from "nouislider-vue3";
+import noUiSlider from "nouislider";
 import "nouislider/dist/nouislider.css";
 
 import {
@@ -15,22 +16,22 @@ import {
 
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
-import { PhCardholder } from "@phosphor-icons/vue";
+import {PhCardholder} from "@phosphor-icons/vue";
 
-// Breadcrumb
+// ---- Breadcrumb ----
 const breadcrumbItems = {
     title: "Range Slider",
     items: [
-        { label: "Forms elements", icon: PhCardholder },
-        { label: "Range slider", active: true },
+        {label: "Forms elements", icon: PhCardholder},
+        {label: "Range slider", active: true},
     ],
 };
 
-// ---- Slider data ----
+// ---- Slider Data ----
 const arbitraryValuesForSlider = ["MB", "256MB", "1GB", "8GB", "16GB", "32GB", "GB"];
 const valuesForSlider = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 20, 24, 28, 32];
 
-// Format functions
+// ---- Format Functions ----
 const format = {
     to(value) {
         const index = Math.round(value);
@@ -56,7 +57,7 @@ const formatValue = {
     },
 };
 
-// Reactive state
+// ---- Reactive State ----
 const slider1 = ref(20);
 const slider2 = ref(20);
 const selectValue = ref(10);
@@ -64,48 +65,35 @@ const numberValue = ref(30);
 const rgbValues = ref([127, 127, 127]);
 const isLocked = ref(false);
 
-// Dynamic slider update handlers
+// ---- Handlers ----
 function handleUpdate(values, handle) {
     const val = parseFloat(values[handle]);
     if (!isNaN(val)) {
-        if (handle === 0) {
-            selectValue.value = Math.round(val);
-        } else {
-            numberValue.value = val;
-        }
+        if (handle === 0) selectValue.value = Math.round(val);
+        else numberValue.value = val;
     }
 }
 
 function handleSelectChange(e) {
     const val = parseFloat(e.target.value);
-    if (!isNaN(val)) {
-        numberValue.value = val;
-    }
+    if (!isNaN(val)) numberValue.value = val;
 }
 
 function handleNumberChange(e) {
     const val = parseFloat(e.target.value);
-    if (!isNaN(val)) {
-        numberValue.value = val;
-    }
+    if (!isNaN(val)) numberValue.value = val;
 }
 
-// Lock sliders functionality
 function toggleLock() {
     isLocked.value = !isLocked.value;
-    if (isLocked.value) {
-        slider2.value = slider1.value;
-    }
+    if (isLocked.value) slider2.value = slider1.value;
 }
 
-// Update handlers for individual sliders
 function updateSlider1(values, handle) {
     const val = parseFloat(values[handle]);
     if (!isNaN(val)) {
         slider1.value = val;
-        if (isLocked.value) {
-            slider2.value = val;
-        }
+        if (isLocked.value) slider2.value = val;
     }
 }
 
@@ -113,40 +101,84 @@ function updateSlider2(values, handle) {
     const val = parseFloat(values[handle]);
     if (!isNaN(val)) {
         slider2.value = val;
-        if (isLocked.value) {
-            slider1.value = val;
-        }
+        if (isLocked.value) slider1.value = val;
     }
 }
+
+// ---- Color Picker Sliders (direct instance) ----
+const redSlider = ref(null);
+const greenSlider = ref(null);
+const blueSlider = ref(null);
+
+let redInstance = null;
+let greenInstance = null;
+let blueInstance = null;
+
+onMounted(() => {
+    // Red
+    redInstance = noUiSlider.create(redSlider.value, {
+        start: rgbValues.value[0],
+        connect: [true, false],
+        step: 1,
+        range: {min: 0, max: 255},
+    });
+
+    // Green
+    greenInstance = noUiSlider.create(greenSlider.value, {
+        start: rgbValues.value[1],
+        connect: [true, false],
+        step: 1,
+        range: {min: 0, max: 255},
+    });
+
+    // Blue
+    blueInstance = noUiSlider.create(blueSlider.value, {
+        start: rgbValues.value[2],
+        connect: [true, false],
+        step: 1,
+        range: {min: 0, max: 255},
+    });
+
+    // Reactive color update
+    redInstance.on("slide", (values) => (rgbValues.value[0] = Math.round(values[0])));
+    greenInstance.on("slide", (values) => (rgbValues.value[1] = Math.round(values[0])));
+    blueInstance.on("slide", (values) => (rgbValues.value[2] = Math.round(values[0])));
+});
+
+onBeforeUnmount(() => {
+    if (redInstance?.destroy) redInstance.destroy();
+    if (greenInstance?.destroy) greenInstance.destroy();
+    if (blueInstance?.destroy) blueInstance.destroy();
+});
 </script>
 
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
+            <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-container fluid>
                 <BRow>
                     <!-- Bootstrap Range Sliders -->
                     <BCol md="12" xl="6">
-                        <BCard>
+                        <BCard no-body>
                             <BCardHeader><h5>Bootstrap Range Sliders</h5></BCardHeader>
                             <BCardBody>
                                 <BRow>
                                     <BCol md="12">
-                                        <label for="customRange1" class="form-label">Basic range Slider</label>
-                                        <input type="range" class="form-range" id="customRange1" />
+                                        <label class="form-label">Basic range Slider</label>
+                                        <input type="range" class="form-range"/>
                                     </BCol>
                                     <BCol md="12">
-                                        <label for="disabledRange" class="form-label">Disabled range Slider</label>
-                                        <input type="range" class="form-range" id="disabledRange" disabled />
+                                        <label class="form-label">Disabled range Slider</label>
+                                        <input type="range" class="form-range" disabled/>
                                     </BCol>
                                     <BCol md="12">
-                                        <label for="customRange2" class="form-label">Min and max range Slider</label>
-                                        <input type="range" class="form-range" min="0" max="2" step="0.1" id="customRange2" />
+                                        <label class="form-label">Min and max range Slider</label>
+                                        <input type="range" class="form-range" min="0" max="2" step="0.1"/>
                                     </BCol>
                                     <BCol md="12">
-                                        <label for="customRange3" class="form-label">Steps range Slider</label>
-                                        <input type="range" class="form-range" min="0" max="5" step="1" id="customRange3" />
+                                        <label class="form-label">Steps range Slider</label>
+                                        <input type="range" class="form-range" min="0" max="5" step="1"/>
                                     </BCol>
                                 </BRow>
                             </BCardBody>
@@ -159,7 +191,11 @@ function updateSlider2(values, handle) {
                             <BCardHeader><h5>Colour Variant</h5></BCardHeader>
                             <BCardBody>
                                 <BRow>
-                                    <BCol md="6" v-for="(variant, i) in ['primary','secondary','success','danger','warning','info','light','dark']" :key="i">
+                                    <BCol
+                                        md="6"
+                                        v-for="(variant, i) in ['primary','secondary','success','danger','warning','info','light','dark']"
+                                        :key="i"
+                                    >
                                         <div class="mb-3">
                                             <label class="form-label text-capitalize">{{ variant }} range slider</label>
                                             <NoUiSlider
@@ -167,7 +203,6 @@ function updateSlider2(values, handle) {
                                                 :start="[40]"
                                                 :connect="[true, false]"
                                                 orientation="horizontal"
-                                                direction="ltr"
                                                 :class="['slider-round', `slider-${variant}`]"
                                             />
                                         </div>
@@ -179,7 +214,7 @@ function updateSlider2(values, handle) {
 
                     <!-- Value Slider -->
                     <BCol cols="12">
-                        <BCard>
+                        <BCard no-body>
                             <BCardHeader><h5>Value Slider</h5></BCardHeader>
                             <BCardBody>
                                 <div class="mb-4">
@@ -191,7 +226,7 @@ function updateSlider2(values, handle) {
                                         @update="updateSlider1"
                                         class="slider-round"
                                     />
-                                    <div>value: {{ slider1 }}</div>
+                                    <div class="mt-2">value: {{ slider1 }}</div>
                                 </div>
 
                                 <div class="mb-4">
@@ -200,14 +235,10 @@ function updateSlider2(values, handle) {
                                         :start="[slider2]"
                                         :connect="[true, false]"
                                         @update="updateSlider2"
-                                        class="slider-round"
+                                        :class="['slider-round']"
                                     />
-                                    <div>value: {{ slider2 }}</div>
-                                    <BButton
-                                        variant="primary"
-                                        class="float-end"
-                                        @click="toggleLock"
-                                    >
+                                    <div class="mt-2">value: {{ slider2 }}</div>
+                                    <BButton variant="primary" class="float-end mt-2" @click="toggleLock">
                                         {{ isLocked ? 'Unlock' : 'Lock' }}
                                     </BButton>
                                 </div>
@@ -221,19 +252,18 @@ function updateSlider2(values, handle) {
                                         :step="1"
                                         :format="format"
                                         :pips="{ mode: 'steps', density: 50, format }"
-                                        class="slider-round"
+                                        :class="['slider-round']"
                                     />
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label text-secondary mb-3">Soft limits</label>
+                                    <label class="form-label text-secondary mt-5">Soft limits</label>
                                     <NoUiSlider
                                         :range="{ min: 0, max: 100 }"
                                         :start="[50]"
                                         :connect="[true, false]"
-                                        :step="1"
                                         :pips="{ mode: 'values', values: [40, 80], density: 2 }"
-                                        class="colored-slider slider-round"
+                                        :class="['slider-round']"
                                     />
                                 </div>
                             </BCardBody>
@@ -242,7 +272,7 @@ function updateSlider2(values, handle) {
 
                     <!-- Tooltip Sliders -->
                     <BCol cols="12">
-                        <BCard>
+                        <BCard no-body>
                             <BCardHeader><h5>Tooltip Slider</h5></BCardHeader>
                             <BCardBody>
                                 <div class="mb-5">
@@ -255,10 +285,9 @@ function updateSlider2(values, handle) {
                                         tooltips
                                         :format="formatValue"
                                         :pips="{ mode: 'steps', format: formatValue }"
-                                        class="slider-round primary-slider-round"
+                                        :class="['slider-round']"
                                     />
                                 </div>
-
                                 <div class="mb-5">
                                     <label class="form-label text-secondary mb-3">tooltip slider</label>
                                     <NoUiSlider
@@ -266,7 +295,7 @@ function updateSlider2(values, handle) {
                                         :start="[20]"
                                         :connect="[true, false]"
                                         tooltips
-                                        class="slider-round hide-tooltips primary-slider-round"
+                                        :class="['slider-round']"
                                     />
                                 </div>
                             </BCardBody>
@@ -285,7 +314,7 @@ function updateSlider2(values, handle) {
                                         :connect="true"
                                         :range="{ min: -20, max: 40 }"
                                         @update="handleUpdate"
-                                        class="slider-round"
+                                        :class="['slider-round']"
                                     />
                                 </div>
 
@@ -293,52 +322,42 @@ function updateSlider2(values, handle) {
                                     <select class="form-select" v-model="selectValue" @change="handleSelectChange">
                                         <option v-for="num in 61" :key="num" :value="num - 20">{{ num - 20 }}</option>
                                     </select>
-                                    <input type="number" class="form-control" v-model.number="numberValue" @input="handleNumberChange" />
+                                    <input type="number" class="form-control" v-model.number="numberValue"
+                                           @input="handleNumberChange"/>
                                 </div>
                             </BCardBody>
                         </BCard>
                     </BCol>
 
-                    <!-- Vertical Sliders -->
+
                     <BCol cols="12">
                         <BRow>
-                            <!-- Color Picker -->
+
                             <BCol md="4">
                                 <BCard>
                                     <BCardHeader><h5>Color Picker Slider</h5></BCardHeader>
                                     <BCardBody>
-                                        <div class="d-flex align-items-end colorpicker-slider">
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[0]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders red me-2"
-                                                @update="(values, handle) => rgbValues[0] = Number(values[handle])"
-                                            />
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[1]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders green me-2"
-                                                @update="(values, handle) => rgbValues[1] = Number(values[handle])"
-                                            />
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[2]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders blue"
-                                                @update="(values, handle) => rgbValues[2] = Number(values[handle])"
-                                            />
-                                            <div
-                                                class="result ms-3"
-                                                :style="{ backgroundColor: `rgb(${rgbValues.join(',')})`, width: '40px', height: '40px', borderRadius: '4px' }"
-                                            />
+                                        <div class="mb-3">
+                                            <label class="form-label">Red (R): {{ rgbValues[0] }}</label>
+                                            <div ref="redSlider" class="slider-round slider-danger "></div>
                                         </div>
-                                        <div class="mt-2 text-center">
-                                            RGB: {{ rgbValues.join(', ') }}
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Green (G): {{ rgbValues[1] }}</label>
+                                            <div ref="greenSlider" class="slider-round slider-warning"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Blue (B): {{ rgbValues[2] }}</label>
+                                            <div ref="blueSlider" class="slider-round slider-info"></div>
+                                        </div>
+
+                                        <div class="text-center mt-3">
+                                            <div
+                                                class="d-inline-block rounded"
+                                                style="width:100px; height:100px; border:1px solid #ddd;"
+                                                :style="{ backgroundColor: `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})` }"
+                                            ></div>
                                         </div>
                                     </BCardBody>
                                 </BCard>
