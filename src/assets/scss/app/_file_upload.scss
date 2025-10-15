@@ -4,7 +4,7 @@
 // >>-- 64 File upload css start --<<
 
 .app-file-upload {
-  &.filepond--root {
+  .filepond--root {
     background-color: rgba(var(--white), 1) !important;
     border: 2px dashed rgb(var(--dark), 0.2);
     border-radius: 18px;
@@ -22,7 +22,7 @@
 
 .filepond-file,
 .filepond-1 {
-  &.filepond--root {
+  .filepond--root {
     background-color: rgba(var(--white), 1) !important;
     border: 2px dashed rgb(var(--dark), 0.2);
     border-radius: 18px;
@@ -39,7 +39,7 @@
 }
 
 .filepond-2 {
-  &.filepond--root {
+  .filepond--root {
     width: 200px;
     height: 200px !important;
     background-color: rgba(var(--white), 1) !important;
@@ -64,7 +64,7 @@
 
 @mixin fileupload_mixin($name, $color) {
   .file-#{$name} {
-    &.filepond--root {
+    .filepond--root {
       background-color: rgba(#{$color}, 1) !important;
       .filepond--drop-label {
         background-color: rgba(#{$color}, 1) !important;
@@ -79,8 +79,8 @@
 }
 
 @mixin fileuploadlight_mixin($name, $color) {
-  .file-light-#{$name} {
-    &.filepond--root {
+  .file-#{$name} {
+    .filepond--root {
       border: 2px dashed rgba(#{$color}, 1) !important;
       background-color: rgba(#{$color}, 0.1);
       .filepond--drop-label {
@@ -97,7 +97,7 @@
 
 .filelight,
 .filesolid {
-  &.filepond--root {
+  .filepond--root {
     border-radius: 18px;
     overflow: hidden;
     margin-bottom: 0;

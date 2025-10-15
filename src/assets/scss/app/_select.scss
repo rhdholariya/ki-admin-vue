@@ -26,17 +26,26 @@
 .app-form{
   .v-select {
     .vs__dropdown-toggle {
+
+
+
       .vs__selected-options {
         margin: 3px 0;
         .vs__selected {
         border: 1px dashed rgb(var(--secondary), 1) !important;
+          margin: 0 3px;
+          padding: 0 2px;
+          background-color: rgb(230, 230, 230);
+        }
+        .vs__deselect{
+         margin-left: 5px;
+
         }
       }
 
-      custom-select__meny{
-        background-color: rgba(var(--primary), 1) !important;
-      }
+
     }
   }
 }
+
 // >>-- 56 Select css end --<<

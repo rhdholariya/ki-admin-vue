@@ -115,6 +115,13 @@ import TextareaPage from '@/views/ FormsElements/Textarea/index.vue'
 import ClipboardPage from '@/views/ FormsElements/Clipboard/index.vue'
 import DualListBoxesPage from '@/views/ FormsElements/DualListBoxes/index.vue'
 import DefaultFormsPage from '@/views/ FormsElements/DefaultForms/index.vue'
+import FileUploadPage from '@/views/ FormsElements/FileUpload/index.vue'
+import TypeaheadPage from '@/views/ FormsElements/Typeahead/index.vue'
+
+//Tables routes
+import BasicTablePage from '@/views/Table/BasicTable/index.vue'
+import AdvanceTablePage from '@/views/Table/AdvanceTable/index.vue'
+
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
 import ProfilePage from '@/views/Apps/ProfilePage/Profile/index.vue'
@@ -278,7 +285,12 @@ const router = createRouter({
         {path: '/forms-elements/clipboard', name: 'Clipboard', component:ClipboardPage},
         {path: '/forms-elements/dual-list-boxes', name: 'DualListBoxes', component:DualListBoxesPage},
         {path: '/forms-elements/default-forms', name: 'DefaultForms', component:DefaultFormsPage},
+        {path: '/forms-elements/file-upload', name: 'FileUpload', component:FileUploadPage},
+        {path: '/forms-elements/typeahead', name: 'Typeahead', component:TypeaheadPage},
 
+        //Tables routes
+        {path: '/table/basictable', name: 'BasicTable', component:BasicTablePage},
+        {path: '/table/advance-table', name: 'AdvanceTable', component:AdvanceTablePage},
 
         // apps routes
         {path: '/apps/calendar', name: 'calendar', component:CalendarPage},

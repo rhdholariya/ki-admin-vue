@@ -1,226 +1,199 @@
 <script setup>
-import { ref } from 'vue'
-import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BFormGroup, BFormCheckbox} from "bootstrap-vue-next";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import { ref, reactive } from "vue";
+
+import {
+    BCard,
+    BCardBody,
+    BCardHeader,
+    BCol,
+    BContainer,
+    BRow,
+
+} from "bootstrap-vue-next";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import {PhCardholder} from "@phosphor-icons/vue";
+import { PhCardholder} from "@phosphor-icons/vue";
 
+const basicSwitch1 = ref(false);
+const basicSwitch2 = ref(false);
+const switch001 = ref(true);
+const switch002 = ref(false);
+const switch003 = ref(true);
+const switch004 = ref(false);
+const switch005 = ref(true);
+const switch006 = ref(false);
 
-const basicSwitch1 = ref(false)
-const basicSwitch2 = ref(false)
-const switch001 = ref(true)
-const switch002 = ref(false)
-const switch003 = ref(true)
-const switch004 = ref(false)
-const switch005 = ref(true)
-const switch006 = ref(false)
+const switchStates = reactive({
+    primary: true,
+    secondary: true,
+    success: true,
+    danger: true,
+    warning: true,
+    info: true,
+    dark: true,
+});
 
-const switchStates = ref({
-    check5: true,
-    check6: true,
-    check7: true,
-    check8: true,
-    check9: true,
-    check10: true,
-    check01: true
-})
-
-const switchStates2 = ref({
-    check02: true,
-    check03: true,
-    check04: true,
-    check05: true,
-    check06: true,
-    check07: true,
-    check08: true
-})
-
-const labels = {
-    check5: 'Primary',
-    check6: 'Secondary',
-    check7: 'Success',
-    check8: 'Danger',
-    check9: 'Warning',
-    check10: 'Info',
-    check01: 'Dark'
-}
-
-const labels2 = {
-    check02: 'Primary',
-    check03: 'Secondary',
-    check04: 'Success',
-    check05: 'Danger',
-    check06: 'Warning',
-    check07: 'Info',
-    check08: 'Dark'
-}
-
-// Breadcrumb data
+const switchStates2 = reactive({
+    primaryCheck: true,
+    secondaryCheck: true,
+    successCheck: true,
+    dangerCheck: true,
+    warningCheck: true,
+    infoCheck: true,
+    darkCheck: true,
+});
 const breadcrumbItems = {
-    title: "Form Validation",
+    title: "switch",
     items: [
-        {label: "Form element", icon: PhCardholder},
-        {label: "Form Validation", active: true},
+        {label: "Forms elements ", icon: PhCardholder},
+        {label: "switch", active: true},
     ],
 };
 </script>
-
 <template>
     <AppLayout>
-        <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
+    <main>
+        <Breadcrumb :breadcrumb="breadcrumbItems" />
+        <BContainer fluid>
+            <BRow>
+                <BCol sm="12">
+                    <BCard no-body>
+                        <BCardHeader><h5>Basic Switch</h5></BCardHeader>
+                        <BCardBody class="main-switch">
+                            <div class="form-check form-switch d-flex">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="basic-switch-1"
+                                    v-model="basicSwitch1"
+                                />
+                                <label class="form-check-label ms-2" for="basic-switch-1">
+                                    Bootstrap Switch
+                                </label>
+                            </div>
+                            <div class="form-check form-switch d-flex">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="basic-switch-2"
+                                    v-model="basicSwitch2"
+                                    disabled
+                                />
+                                <label class="form-check-label ms-2" for="basic-switch-2">
+                                    Bootstrap Disabled
+                                </label>
+                            </div>
+                        </BCardBody>
+                    </BCard>
+                </BCol>
+                <!-- :white_check_mark: Switch Sizing -->
+                <BCol sm="6" xxl="4">
+                    <BCard class="equal-card">
+                        <BCardHeader><h5>Switch Sizing</h5></BCardHeader>
+                        <BCardBody class="main-switch main-switch-color">
+                            <div class="switch-primary my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-001"
+                                    class="toggle"
+                                    v-model="switch001"
+                                />
+                                <label for="check-001" class="text-dark">Large Size</label>
+                            </div>
+                            <div class="switch-secondary my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-002"
+                                    class="toggle"
+                                    v-model="switch002"
+                                />
+                                <label for="check-002">Large Unchecked</label>
+                            </div>
+                            <div class="swich-size my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-003"
+                                    class="toggle"
+                                    v-model="switch003"
+                                />
+                                <label for="check-003">Large Size</label>
+                            </div>
+                            <div class="switch-danger swich-size my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-004"
+                                    class="toggle"
+                                    v-model="switch004"
+                                />
+                                <label for="check-004">Normal Unchecked</label>
+                            </div>
+                            <div class="switch-warning swich-size2 my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-005"
+                                    class="toggle"
+                                    v-model="switch005"
+                                />
+                                <label for="check-005">Small Size</label>
+                            </div>
+                            <div class="switch-info swich-size2 my-3">
+                                <input
+                                    type="checkbox"
+                                    id="check-006"
+                                    class="toggle"
+                                    v-model="switch006"
+                                />
+                                <label for="check-006">Small Size Unchecked</label>
+                            </div>
+                        </BCardBody>
+                    </BCard>
+                </BCol>
 
-            <b-container fluid>
+                <BCol sm="6" xxl="4">
+                    <BCard no-body>
+                        <BCardHeader><h5>Switch Variants</h5></BCardHeader>
+                        <BCardBody class="main-switch main-switch-color switch-unchecked switch_border">
+                            <div
+                                v-for="(value, color) in switchStates"
+                                :key="color"
+                                class="my-3"
+                                :class="`switch-${color}  switch-unchecked-${color} switch-border-${color}`"
+                            >
+                                <input
+                                    type="checkbox"
+                                    :id="color"
+                                    class="toggle"
+                                    v-model="switchStates[color]"
+                                    :class="'switch-' + color"
+                                />
+                                <label :for="color">{{ color }}</label>
+                            </div>
+                        </BCardBody>
+                    </BCard>
+                </BCol>
 
-                <b-row>
-                    <!-- Basic Switch -->
-                    <b-col cols="12">
-                        <b-card no-body>
-                            <b-card-header>
-                                <h5>Basic Switch</h5>
-                            </b-card-header>
-                            <b-card-body class="main-switch">
-                                <div class="d-flex align-items-center mb-3">
-                                    <b-form-checkbox
-                                        switch
-                                        id="basic-switch-1"
-                                        v-model="basicSwitch1"
-                                    />
-                                    <label>Bootstrap Switch</label>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <b-form-checkbox
-                                        switch
-                                        id="basic-switch-2"
-                                        v-model="basicSwitch2"
-                                        disabled
-                                    />
-                                    <label class="text-secondary">Bootstrap Disabled</label>
-                                </div>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Switch Sizing -->
-                    <b-col sm="6" xxl="4">
-                        <b-card class="equal-card">
-                            <b-card-header>
-                                <h5>Switch Sizing</h5>
-                            </b-card-header>
-                            <b-card-body class="main-switch main-switch-color">
-                                <b-form-group class="switch-primary my-3">
-                                    <b-form-checkbox
-                                        id="check-001"
-                                        class="toggle "
-                                        switch
-                                        v-model="switch001"
-                                    >
-                                       <label > Large Size</label>
-                                    </b-form-checkbox>
-                                </b-form-group>
-
-                                <b-form-group class="switch-secondary my-3">
-                                    <b-form-checkbox
-                                        id="check-002"
-                                        class="toggle"
-                                        v-model="switch002"
-                                    >
-                                        Large Unchecked
-                                    </b-form-checkbox>
-                                </b-form-group>
-
-                                <b-form-group class="swich-size my-3">
-                                    <b-form-checkbox
-                                        id="check-003"
-                                        class="toggle"
-                                        v-model="switch003"
-                                    >
-                                        Large Size
-                                    </b-form-checkbox>
-                                </b-form-group>
-
-                                <b-form-group class="switch-danger swich-size my-3">
-                                    <b-form-checkbox
-                                        id="check-004"
-                                        class="toggle"
-                                        v-model="switch004"
-                                    >
-                                        Normal Unchecked
-                                    </b-form-checkbox>
-                                </b-form-group>
-
-                                <b-form-group class="switch-warning swich-size2 my-3">
-                                    <b-form-checkbox
-                                        id="check-005"
-                                        class="toggle"
-                                        v-model="switch005"
-                                    >
-                                        Small Size
-                                    </b-form-checkbox>
-                                </b-form-group>
-
-                                <b-form-group class="switch-info swich-size2 my-3">
-                                    <b-form-checkbox
-                                        id="check-006"
-                                        class="toggle"
-                                        v-model="switch006"
-                                    >
-                                        Small Size Unchecked
-                                    </b-form-checkbox>
-                                </b-form-group>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Switch Variants -->
-                    <b-col sm="6" xxl="4">
-                        <b-card>
-                            <b-card-header>
-                                <h5>Switch Variants</h5>
-                            </b-card-header>
-                            <b-card-body class="main-switch main-switch-color switch-unchecked switch_border">
-                                <b-form-group
-                                    v-for="(value, id) in switchStates"
-                                    :key="id"
-                                    :class="`switch-${id} switch-unchecked-${id} switch-border-${id} my-3`"
-                                >
-                                    <b-form-checkbox
-                                        :id="id"
-                                        class="toggle"
-                                        v-model="switchStates[id]"
-                                    >
-                                        {{ labels[id] }}
-                                    </b-form-checkbox>
-                                </b-form-group>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Switch Outline -->
-                    <b-col sm="6" xxl="4">
-                        <b-card>
-                            <b-card-header>
-                                <h5>Switch Outline</h5>
-                            </b-card-header>
-                            <b-card-body class="switch_border main-switch switch-unchecked">
-                                <b-form-group
-                                    v-for="(value, id) in switchStates2"
-                                    :key="id"
-                                    :class="`switch-border-${id} switch-${id} switch-unchecked-${id} my-3`"
-                                >
-                                    <b-form-checkbox
-                                        :id="id"
-                                        class="toggle"
-                                        v-model="switchStates2[id]"
-                                    >
-                                        {{ labels2[id] }}
-                                    </b-form-checkbox>
-                                </b-form-group>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-                </b-row>
-            </b-container>
-        </main>
+                <BCol sm="6" xxl="4">
+                    <BCard no-body>
+                        <BCardHeader><h5>Switch Outline</h5></BCardHeader>
+                        <BCardBody class="switch_border main-switch switch-unchecked">
+                            <div
+                                v-for="(value, color) in switchStates"
+                                :key="id"
+                                :class="`switch-border-${color} switch-${color} switch-unchecked-${color} my-3`"
+                            >
+                                <input
+                                    type="checkbox"
+                                    :id="`${color}Check`"
+                                    class="toggle"
+                                    v-model="switchStates2[`${color}Check`]"
+                                />
+                                <label :for="`${color}Check`">{{ color }}</label>
+                            </div>
+                        </BCardBody>
+                    </BCard>
+                </BCol>
+            </BRow>
+        </BContainer>
+    </main>
     </AppLayout>
 </template>
