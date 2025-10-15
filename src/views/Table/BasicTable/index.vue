@@ -19,7 +19,7 @@ import {
     TwoWaTableData,
     headersDatas,
     rowsDatas,
-} from "@/data/DablePage/BasicTable/BasicTableData.js";
+} from "@/data/tablePage/BasicTable/BasicTableData.js";
 
 // Fields for b-table
 const hoverFields = ['id', 'name', 'position', 'office', 'status', 'salary', 'contact'];
