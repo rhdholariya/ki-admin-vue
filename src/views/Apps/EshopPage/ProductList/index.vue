@@ -1,6 +1,6 @@
 <script setup>
 import {ref, computed, h} from "vue";
-import CustomDataTable from "@/components/DataTable/CustomDataTable.vue";
+import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
 import {productlist} from "@/data/app/EshopPage/ProductList/Productlist.js";
 import {PhStack} from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";

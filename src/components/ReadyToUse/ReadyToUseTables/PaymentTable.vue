@@ -1,5 +1,5 @@
 <script setup>
-import CustomDataTable from '@/components/DataTable/CustomDataTable.vue'
+import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue'
 import { paymentData } from '@/data/tablePage/DataTable/paymentData.js'
 
 const columns = [

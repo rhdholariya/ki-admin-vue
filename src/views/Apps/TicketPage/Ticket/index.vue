@@ -12,7 +12,7 @@ import {
   PhFileCloud,
   PhFileX, PhStack
 } from "@phosphor-icons/vue"
-import CustomDataTable from "@/components/DataTable/CustomDataTable.vue";
+import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
 
 
 import {
