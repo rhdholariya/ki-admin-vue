@@ -121,6 +121,7 @@ import TypeaheadPage from '@/views/ FormsElements/Typeahead/index.vue'
 //Tables routes
 import BasicTablePage from '@/views/Table/BasicTable/index.vue'
 import AdvanceTablePage from '@/views/Table/AdvanceTable/index.vue'
+import ListJsPage from '@/views/Table/ListJs/index.vue'
 
 // app routes
 import CalendarPage from '@/views/Apps/Calendar/index.vue'
@@ -291,6 +292,7 @@ const router = createRouter({
         //Tables routes
         {path: '/table/basictable', name: 'BasicTable', component:BasicTablePage},
         {path: '/table/advance-table', name: 'AdvanceTable', component:AdvanceTablePage},
+        {path: '/table/list-js', name: 'ListJs', component:ListJsPage},
 
         // apps routes
         {path: '/apps/calendar', name: 'calendar', component:CalendarPage},

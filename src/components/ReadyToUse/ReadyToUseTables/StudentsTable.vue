@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import CustomDataTable from '@/components/DataTable/CustomDataTable.vue';
+import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue';
 import { studentsData } from '@/data/tablePage/DataTable/studentsData.js';
 
 const selectedItems = ref([]);
