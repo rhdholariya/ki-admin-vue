@@ -167,6 +167,13 @@ import GoogleMapPage from '@/views/Map/GoogleMap/index.vue'
 import LeafletPage from '@/views/Map/LeafletMap/index.vue'
 
 
+// charts routes
+import ChartJsPage from '@/views/Chart/ChartJs/index.vue'
+import LineChartPage from '@/views/Chart/ApexChart/Line/index.vue'
+import AreaChartPage from '@/views/Chart/ApexChart/Area/index.vue'
+import ColumnPage from '@/views/Chart/ApexChart/Column/index.vue'
+import BarChartPage from '@/views/Chart/ApexChart/Bar/index.vue'
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -338,6 +345,15 @@ const router = createRouter({
         // maps routes
         {path: '/map/google-maps', name: 'google-map', component:GoogleMapPage},
         {path: '/map/leaflet-map', name: 'leaflet-map', component:LeafletPage},
+
+
+
+        // charts routes
+        {path: '/charts/chart-js', name: 'chart-js', component:ChartJsPage},
+        {path: '/charts/apexchart/line', name: 'line-chart', component:LineChartPage},
+        {path: '/charts/apexchart/area', name: 'area-chart', component:AreaChartPage},
+        {path: '/charts/apexchart/column', name: 'column-chart', component:ColumnPage},
+        {path: '/charts/apexchart/bar', name: 'bar-chart', component:BarChartPage},
     ],
 
 })

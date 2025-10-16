@@ -46,6 +46,7 @@ const tagOptions = [
 ]
 
 const productTags = ref(null)
+
 const breadcrumbItems = computed(() => ({
   title: "Add Product",
   items: [

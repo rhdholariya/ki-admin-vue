@@ -15,14 +15,14 @@ import {
   BContainer,
   BRow,
   BCol,
-  BFormCheckbox
+
 } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Import data from separate file
+
 import {
   apiAvatars,
   apiKeysData as initialApiKeysData,
@@ -31,7 +31,7 @@ import {
   chartOptions as initialChartOptions
 } from '@/data/app/Api/ApiData.js';
 
-// Reactive data
+
 const showSuccess = ref(true);
 const showError = ref(true);
 const showTotal = ref(true);
@@ -39,17 +39,17 @@ const showTotal = ref(true);
 const apiKeysData = ref([...initialApiKeysData]);
 const selectedItems = ref(new Set()); // For checkbox selection
 
-// Modal states
+
 const showApiModal = ref(false);
 const showApiKeyContent = ref(false);
 const apiKeyName = ref('');
 const generatedApiKey = ref('');
 
-// Delete modal state
+
 const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
-// Chart computed properties
+
 const filteredSeries = computed(() => {
   const series = [];
 
@@ -118,7 +118,7 @@ const addApiKey = () => {
 
   // Create new API key object
   const newApiKey = {
-    id: Date.now(), // Use timestamp for unique ID
+    id: Date.now(),
     name: apiKeyName.value,
     avatar: apiAvatars.avatar1,
     avatarBgClass: 'text-bg-primary',
@@ -128,15 +128,15 @@ const addApiKey = () => {
     email: `${apiKeyName.value.toLowerCase().replace(/\s+/g, '')}@example.com`
   };
 
-  // Add to the beginning of the data array
+
   apiKeysData.value.unshift(newApiKey);
 
-  // Reset form and close modal
+
   resetApiForm();
   showApiModal.value = false;
 };
 
-// Reset API form
+
 const resetApiForm = () => {
   apiKeyName.value = '';
   generatedApiKey.value = '';
@@ -147,7 +147,7 @@ const dismissAlert = () => {
   console.log('Alert dismissed');
 };
 
-// Action handlers
+
 const handleEdit = (item) => {
   console.log('Edit API Key:', item);
 };
@@ -174,7 +174,7 @@ const handleView = (item) => {
   alert(`View API Key Details:\nName: ${item.name}\nAPI Key: ${item.apiKey}\nEmail: ${item.email}`);
 };
 
-// Computed breadcrumb data
+
 const breadcrumbItems = computed(() => ({
   title: "Api ",
   items: [

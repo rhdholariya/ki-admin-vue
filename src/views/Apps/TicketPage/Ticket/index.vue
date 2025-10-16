@@ -377,7 +377,7 @@ const breadcrumbItems = computed(() => ({
 
             <swiper
                 :modules="[Autoplay]"
-                :slides-per-view="3"
+                :slides-per-view="2"
                 :space-between="10"
                 :loop="true"
                 :autoplay="{ delay: 2000, disableOnInteraction: false }"
@@ -432,8 +432,8 @@ const breadcrumbItems = computed(() => ({
             @ok="saveTicket"
             @hidden="resetForm"
         >
-          <b-form>
-            <b-row>
+          <b-form class="app-form">
+            <b-row class="g-2">
               <b-col cols="12">
                 <b-form-group label="Title">
                   <b-form-input v-model="title" placeholder="Enter ticket title" required/>

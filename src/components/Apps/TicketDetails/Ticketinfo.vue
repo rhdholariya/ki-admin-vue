@@ -1,5 +1,5 @@
 <template>
-  <b-card>
+  <b-card no-body>
     <b-card-body>
       <div class="ticket-details-profile mb-4 p-3 rounded-3">
         <div class="ticket-profile mb-4 d-flex align-items-center">
