@@ -1,21 +1,21 @@
 <script>
-import { BCard, BCardHeader, BCardBody, BRow, BCol } from 'bootstrap-vue-next'
+import {BCard, BCardHeader, BCardBody, BRow, BCol} from 'bootstrap-vue-next'
 
-// Import FilePond
+
 import vueFilePond from 'vue-filepond'
 
-// FilePond Plugins
+
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 
-// FilePond Styles (required)
+
 import 'filepond/dist/filepond.min.css'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
-// Create FilePond component
+
 const FilePond = vueFilePond(
     FilePondPluginFileValidateType,
     FilePondPluginImagePreview,
@@ -37,10 +37,10 @@ export default {
     data() {
         return {
             fileUploaders: [
-                { id: 'solid1', className: 'filepondsolid1 file-primary' },
-                { id: 'solid2', className: 'filepondsolid2 file-secondary' },
-                { id: 'solid3', className: 'filepondsolid3 file-success' },
-                { id: 'solid4', className: 'filepondsolid4 file-danger' }
+                {id: 'solid1', className: 'filepondsolid1 file-primary'},
+                {id: 'solid2', className: 'filepondsolid2 file-secondary'},
+                {id: 'solid3', className: 'filepondsolid3 file-success'},
+                {id: 'solid4', className: 'filepondsolid4 file-danger'}
             ],
             labelIdle: `
 
@@ -51,7 +51,7 @@ export default {
 }
 </script>
 <template>
-    <b-card>
+    <b-card no-body>
         <b-card-header>
             <h5>Solid Style</h5>
         </b-card-header>
