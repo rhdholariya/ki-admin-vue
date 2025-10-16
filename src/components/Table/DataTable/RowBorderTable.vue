@@ -2,11 +2,24 @@
 import { ref } from "vue";
 import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
 import { users } from "@/data/tablePage/DataTable/defaultDatatable.js";
-import {BButton, BModal} from "bootstrap-vue-next";
+import { BButton, BModal } from "bootstrap-vue-next";
 
+// --- Avatar generator (same logic as React) ---
+const getAvatar = (name) => {
+    const hash = name
+        .split("")
+        .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const randomNum = (hash % 16) + 1;
+    const fileName = [7, 8, 9].includes(randomNum)
+        ? `0${randomNum}`
+        : `${randomNum}`;
+    return `/images/avatar/${fileName}.png`;
+};
 
+// --- Table data ---
 const tableData = ref([...users]);
 
+// --- Badge color based on position ---
 const getPositionBadgeClass = (position) => {
     const positionLower = position.toLowerCase();
 
@@ -27,8 +40,21 @@ const getPositionBadgeClass = (position) => {
     }
 };
 
+// --- Columns setup ---
 const columns = [
-    { key: "name", label: "Name" },
+    {
+        key: "name",
+        label: "Name",
+        render: (name) => {
+            const avatar = getAvatar(name);
+            return `
+        <div class="d-flex align-items-center">
+          <img src="${avatar}" alt="User Avatar" class="rounded-circle me-2" width="32" height="32" />
+          <span>${name}</span>
+        </div>
+      `;
+        },
+    },
     {
         key: "position",
         label: "Position",
@@ -42,17 +68,16 @@ const columns = [
     { key: "totalSalary", label: "Salary" },
 ];
 
-
+// --- Delete modal ---
 const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
-
+// --- Handlers ---
 const handleEdit = (item) => {
     console.log("Edit:", item);
 };
 
 const handleDelete = (item) => {
-    console.log("Delete:", item);
     itemToDelete.value = item;
     showDeleteModal.value = true;
 };
@@ -67,16 +92,12 @@ const confirmDelete = () => {
         itemToDelete.value = null;
     }
 };
-
-const handleView = (item) => {
-    alert(`View Details:\nName: ${item.name}\nPosition: ${item.position}\nOffice: ${item.location}`);
-};
 </script>
 
 <template>
     <div class="col-12 mt-4">
         <CustomDataTable
-            title="Default Datatable"
+            title="Row Border Bottom Example"
             description="DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: new DataTable();"
             :columns="columns"
             :data="tableData"
@@ -85,10 +106,9 @@ const handleView = (item) => {
             :show-individual-buttons="true"
             :on-edit="handleEdit"
             :on-delete="handleDelete"
-            :on-view="handleView"
-            table-class-name="w-100 align-middle mb-0"
+            table-class-name="w-100 align-middle mb-0 table-border-bottom"
             :page-length="10"
-            :show-length-menu="true"
+        :show-length-menu="true"
         />
     </div>
 
