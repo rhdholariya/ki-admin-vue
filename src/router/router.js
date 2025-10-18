@@ -70,6 +70,7 @@ import SitemapPage from "@/views/OtherPages/Sitemap/index.vue";
 import CommingSoonPage from "@/views/OtherPages/ComingSoon/index.vue";
 import MaintenancePage from "@/views/OtherPages/Maintenance/index.vue";
 import BlankPage from "@/views/OtherPages/Blank/index.vue";
+import LandingPage from "@/views/OtherPages/Landing/index.vue";
 
 // error pages routes //
 import ServiceUnavailablePage from '@/views/ErrorPage/ServiceUnavailable/index.vue'
@@ -174,6 +175,17 @@ import LineChartPage from '@/views/Chart/ApexChart/Line/index.vue'
 import AreaChartPage from '@/views/Chart/ApexChart/Area/index.vue'
 import ColumnPage from '@/views/Chart/ApexChart/Column/index.vue'
 import BarChartPage from '@/views/Chart/ApexChart/Bar/index.vue'
+import MixedChartPage from '@/views/Chart/ApexChart/Mixed/index.vue'
+import TimelineChartPage from '@/views/Chart/ApexChart/TimelineRangeBar/index.vue'
+import CandlestickChartPage from '@/views/Chart/ApexChart/CandleStick/index.vue'
+import BoxplotChartPage from '@/views/Chart/ApexChart/Boxplot/index.vue'
+import BubbleChartPage from '@/views/Chart/ApexChart/Bubble/index.vue'
+import ScatterChartPage from '@/views/Chart/ApexChart/Scatter/index.vue'
+import HeatmapChartPage from '@/views/Chart/ApexChart/HeatMap/index.vue'
+import TreemapChartPage from '@/views/Chart/ApexChart/TreeMap/index.vue'
+import pieChartPage from '@/views/Chart/ApexChart/Pie/index.vue'
+import RadialBarChartPage from '@/views/Chart/ApexChart/RadialBar/index.vue'
+import RadarChartPage from '@/views/Chart/ApexChart/Radar/index.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -250,6 +262,7 @@ const router = createRouter({
         {path: '/other-pages/coming-soon', name: 'ComingSoon', component: CommingSoonPage},
         {path: '/other-pages/maintenance', name: 'Maintenance', component: MaintenancePage},
         {path: '/other-pages/blank', name: 'Blank', component: BlankPage},
+        {path: '/other-pages/landing', name: 'landing', component: LandingPage},
 
         // Error Page Routes //
         {path: '/error-pages/service-unavailable', name: 'ServiceUnavailable', component:ServiceUnavailablePage},
@@ -357,6 +370,17 @@ const router = createRouter({
         {path: '/charts/apexchart/area', name: 'area-chart', component:AreaChartPage},
         {path: '/charts/apexchart/column', name: 'column-chart', component:ColumnPage},
         {path: '/charts/apexchart/bar', name: 'bar-chart', component:BarChartPage},
+        {path: '/charts/apexchart/mixed', name: 'mixed-chart', component:MixedChartPage},
+        {path: '/charts/apexchart/timeline-range-bars', name: 'timeline-chart', component:TimelineChartPage},
+        {path: '/charts/apexchart/candlestick', name: 'candlestick', component:CandlestickChartPage},
+        {path: '/charts/apexchart/boxplot', name: 'boxplot', component:BoxplotChartPage},
+        {path: '/charts/apexchart/bubble', name: 'bubble', component:BubbleChartPage},
+        {path: '/charts/apexchart/scatter', name: 'scatter', component:ScatterChartPage},
+        {path: '/charts/apexchart/heatmap', name: 'heatmap', component:HeatmapChartPage},
+        {path: '/charts/apexchart/treemap', name: 'treemap', component:TreemapChartPage},
+        {path: '/charts/apexchart/pie', name: 'pie', component:pieChartPage},
+        {path: '/charts/apexchart/radial-bar', name: 'radial-bar', component:RadialBarChartPage},
+        {path: '/charts/apexchart/radar-chart', name: 'radar-bar', component:RadarChartPage},
     ],
 
 })

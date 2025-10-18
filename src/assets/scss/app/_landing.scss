@@ -678,7 +678,7 @@ section {
     position: relative;
     background-color: rgba(var(--dark), 1);
     border-radius: var(--app-border-radius);
-    background-image: url("../images/landing/dark-bg.png");
+    background-image: url("/public/images/landing/dark-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -813,7 +813,7 @@ section {
   }
 
   .sidebar-option-card {
-    background-image: url("../images/landing/customize.png");
+    background-image: url("/public/images/landing/customize.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -832,7 +832,7 @@ section {
   }
 
   .color-hint-card {
-    background-image: url("../images/landing/colour-theme-bg.png");
+    background-image: url("/public/images/landing/colour-theme-bg.png");
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -848,7 +848,7 @@ section {
   }
 
   .speed-performance-card {
-    background-image: url("../images/landing/speed-performance-bg.png");
+    background-image: url("/public/images/landing/speed-performance-bg.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -903,7 +903,7 @@ section {
   overflow: hidden;
   background:
     linear-gradient(to left, rgba(var(--dark), 1), rgba(var(--primary), 1)),
-    url("../images/landing/footer-bg.png");
+    url("/public/images/landing/footer-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: overlay;

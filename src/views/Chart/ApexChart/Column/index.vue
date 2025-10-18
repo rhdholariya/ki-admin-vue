@@ -114,7 +114,7 @@ onMounted(() => {
 const breadcrumbItems = computed(() => ({
   title: "Column",
   items: [
-    { label: "Charts", icon: PhStack },
+    { label: "Chart", icon: PhStack },
     { label: "Apexcharts"},
     { label: " Column" , active: true }
   ],
