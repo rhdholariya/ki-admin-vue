@@ -2,8 +2,13 @@
 import { ref, defineProps } from "vue";
 import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue-next";
 import { RouterLink } from "vue-router";
-import {PhCaretRight, PhGear, PhUserCircle, PhMagnifyingGlass, PhUserPlus, PhSignOut
-
+import {
+  PhCaretRight,
+  PhGear,
+  PhUserCircle,
+  PhMagnifyingGlass,
+  PhUserPlus,
+  PhSignOut
 } from "@phosphor-icons/vue";
 
 const props = defineProps({
@@ -27,24 +32,22 @@ const toggleSidebar = () => {
 <template>
   <div class="app-logo">
     <RouterLink class="logo d-inline-block" to="/">
-      <img alt="Logo" src="/images/logo/1.png" />
+      <img alt="Logo" src="/images/logo/1.png"/>
     </RouterLink>
 
+    <!-- Sidebar Toggle Button -->
     <span
         class="bg-light-primary toggle-semi-nav d-flex-center"
         @click="toggleSidebar"
     >
-      <PhCaretRight size="16" />
+      <PhCaretRight size="16"/>
     </span>
 
+    <!-- Profile Section -->
     <div class="d-flex align-items-center nav-profile p-3">
       <span class="h-45 w-45 d-flex-center b-r-10 position-relative bg-danger m-auto">
-        <img
-            alt="avatar"
-            class="img-fluid b-r-10"
-            src="/images/avatar/woman.jpg"
-        />
-        <span class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle" />
+        <img alt="avatar" class="img-fluid b-r-10" src="/images/avatar/woman.jpg"/>
+        <span class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle"/>
       </span>
 
       <div class="flex-grow-1 ps-2">
@@ -61,22 +64,25 @@ const toggleSidebar = () => {
           class="profile-menu-dropdown dropdown-icon-none"
       >
         <template #button-content>
-          <PhGear size="20" />
+          <PhGear size="20"/>
         </template>
 
         <b-dropdown-item as="router-link" :to="'/apps/profile-page/profile'" target="_blank">
-          <PhUserCircle size="20" class="me-1" /> Profile Details
+          <PhUserCircle size="20" class="me-1"/>
+          Profile Details
         </b-dropdown-item>
 
         <b-dropdown-item as="router-link" :to="'/apps/profile-page/setting'" target="_blank">
-          <PhGear size="20" class="me-1" /> Settings
+          <PhGear size="20" class="me-1"/>
+          Settings
         </b-dropdown-item>
 
         <b-dropdown-item as="div">
           <div class="d-flex align-items-center justify-content-between">
             <div>
               <RouterLink class="f-w-500" to="#">
-                <PhMagnifyingGlass size="20" class="me-1" /> Incognito
+                <PhMagnifyingGlass size="20" class="me-1"/>
+                Incognito
               </RouterLink>
             </div>
             <div class="flex-shrink-0">
@@ -91,18 +97,19 @@ const toggleSidebar = () => {
           </div>
         </b-dropdown-item>
 
-        <b-dropdown-item as="router-link" :to="'/auth-pages/sign-up'" target="_blank" class="mb-0 text-secondary f-w-500">
-          <PhUserPlus size="20" class="me-1" /> Add account
+        <b-dropdown-item as="router-link" :to="'/auth-pages/sign-up'" target="_blank"
+                         class="mb-0 text-secondary f-w-500">
+          <PhUserPlus size="20" class="me-1"/>
+          Add account
         </b-dropdown-item>
 
-        <b-dropdown-divider class="app-divider-v dotted py-1" />
+        <b-dropdown-divider class="app-divider-v dotted py-1"/>
 
         <b-dropdown-item as="router-link" :to="'/auth-pages/sign-in'" target="_blank" class="mb-0 text-danger">
-          <PhSignOut size="20" class="me-1" /> Log Out
+          <PhSignOut size="20" class="me-1"/>
+          Log Out
         </b-dropdown-item>
       </b-dropdown>
     </div>
   </div>
 </template>
-
-

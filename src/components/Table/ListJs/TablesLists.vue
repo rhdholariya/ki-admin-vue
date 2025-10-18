@@ -172,7 +172,7 @@ const toggleSideSort = () => {
         </b-col>
 
 
-        <b-col md="6" xxl="4">
+        <b-col md="6" xxl="4" >
             <b-card no-body>
                 <b-card-header>
                     <h5>Table with Pagination</h5>
@@ -216,7 +216,7 @@ const toggleSideSort = () => {
                     </b-table>
 
 
-                    <div class="list-pagination mt-3 text-center">
+                    <div class="list-pagination mt-3 ">
                         <ul class="pagination mb-0 d-inline-flex">
                             <li class="page-item" :class="{ disabled: tablePage === 1 }">
                                 <b-button

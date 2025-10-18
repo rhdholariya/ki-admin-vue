@@ -1,37 +1,20 @@
 <script setup>
 import { reactive } from 'vue'
-import {
-    BCard,
-    BCardHeader,
-    BCardBody,
-    BCol,
-    BContainer,
-    BFormInput,
-    BFormTextarea,
-    BFormSelect,
-    BInputGroup,
-    BInputGroupText,
-    BRow,
-    BFormGroup
-} from "bootstrap-vue-next";
+import { BCard, BCardHeader, BCardBody, BRow, BCol, BForm, BFormGroup, BFormInput, BFormSelect, BFormTextarea, BContainer } from "bootstrap-vue-next";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import { PhCardholder } from "@phosphor-icons/vue";
 
-// Reactive form state
 const form = reactive({
-    name: '',
-    password: '',
-    email: '',
-    comment: '',
-    message: '',
-    username: '',
-    select: '2',
-    selectDisabled: '2',
-    emailValue: 'test@example.com'
+    name: "",
+    password: "",
+    email: "",
+    comment: "",
+    message: "",
+    username: "",
+    select: "2",
 });
 
-// Breadcrumb
 const breadcrumbItems = {
     title: "Floating Labels",
     items: [
@@ -47,235 +30,38 @@ const breadcrumbItems = {
             <Breadcrumb :breadcrumb="breadcrumbItems" />
 
             <b-container fluid>
+
                 <b-row>
-                    <!-- Custom Labels -->
+                    <!-- Custom Floating Labels -->
                     <b-col md="6">
-                        <b-card class="mb-4">
+                        <b-card no-body>
                             <b-card-header>
-                                <h5>Custom Labels</h5>
+                                <h5>Custom Floating Labels</h5>
                             </b-card-header>
                             <b-card-body>
                                 <b-form class="app-form">
-                                    <b-form-group label="Name" class="mb-3">
-                                        <b-form-input
-                                            v-model="form.name"
-                                            placeholder="Enter Name"
-                                            required
-                                        />
-                                    </b-form-group>
-                                    <b-form-group label="Password">
-                                        <b-form-input
-                                            v-model="form.password"
-                                            type="password"
-                                            placeholder="Enter Password"
-                                            required
-                                        />
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Basic Labels -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Basic Labels</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form class="app-form">
-                                    <b-form-group label="Email address" class="mb-3">
-                                        <b-form-input
-                                            v-model="form.email"
-                                            type="email"
-                                            placeholder="Enter Email"
-                                        />
-                                    </b-form-group>
-                                    <b-form-group label="Password">
-                                        <b-form-input
-                                            v-model="form.password"
-                                            type="password"
-                                            placeholder="Enter Password"
-                                        />
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Textareas -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Textareas</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form class="app-form">
-                                    <b-form-group label="Comments" class="mb-3">
-                                        <b-form-textarea
-                                            v-model="form.comment"
-                                            placeholder="Type a comment"
-                                            rows="3"
-                                        />
-                                    </b-form-group>
-                                    <b-form-group label="Message">
-                                        <b-form-textarea
-                                            v-model="form.message"
-                                            placeholder="Type a message"
-                                            rows="3"
-                                        />
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Input Groups -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Input Groups</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-input-group class="mb-3">
-                                    <b-input-group-text>@</b-input-group-text>
-                                    <b-form-group label="Username" class="mb-0">
-                                        <b-form-input
-                                            v-model="form.username"
-                                            placeholder="Username"
-                                        />
-                                    </b-form-group>
-                                </b-input-group>
-
-                                <b-input-group>
-                                    <b-input-group-text>@</b-input-group-text>
-                                    <b-form-group label="Email Address" class="mb-0">
-                                        <b-form-input
-                                            v-model="form.email"
-                                            type="email"
-                                            placeholder="Email Address"
-                                        />
-                                    </b-form-group>
-                                </b-input-group>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Readonly -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Readonly Inputs</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form>
-                                    <b-form-group label="Empty input" class="mb-3">
-                                        <b-form-input
-                                            readonly
-                                            plaintext
-                                            placeholder="name@example.com"
-                                        />
-                                    </b-form-group>
-                                    <b-form-group label="Input with value">
-                                        <b-form-input
-                                            readonly
-                                            plaintext
-                                            value="name@example.com"
-                                        />
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Input Value & Invalid -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Input Value</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form>
-                                    <b-form-group label="Input with value" class="mb-3">
-                                        <b-form-input
-                                            v-model="form.emailValue"
-                                            type="email"
-                                        />
-                                    </b-form-group>
-                                    <b-form-group label="Invalid input">
-                                        <b-form-input
-                                            v-model="form.emailValue"
-                                            type="email"
-                                            :state="false"
-                                        />
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Select -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Select Inputs</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form>
-                                    <b-form-group label="Works with selects" class="mb-3">
-                                        <b-form-select v-model="form.select">
-                                            <option value="">Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </b-form-select>
-                                    </b-form-group>
-                                    <b-form-group label="Disabled select">
-                                        <b-form-select v-model="form.selectDisabled" disabled>
-                                            <option value="">Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </b-form-select>
-                                    </b-form-group>
-                                </b-form>
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-
-                    <!-- Layout -->
-                    <b-col md="6">
-                        <b-card class="mb-4">
-                            <b-card-header>
-                                <h5>Form Layout</h5>
-                            </b-card-header>
-                            <b-card-body>
-                                <b-form>
-                                    <b-row class="g-2">
-                                        <b-col md="6">
-                                            <b-form-group label="Email address">
-                                                <b-form-input
-                                                    type="email"
-                                                    value="mdo@example.com"
-                                                />
-                                            </b-form-group>
-                                        </b-col>
-                                        <b-col md="6">
-                                            <b-form-group label="Works with selects">
-                                                <b-form-select value="2">
-                                                    <option>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </b-form-select>
-                                            </b-form-group>
-                                        </b-col>
+                                    <b-row>
                                         <b-col cols="12">
-                                            <b-form-group label="Password">
+                                            <b-form-group class="floating-form mb-3">
+                                                <b-form-input
+                                                    type="text"
+                                                    v-model="form.name"
+                                                    required
+                                                    placeholder=" "
+                                                />
+                                                <label class="form-label">Name</label>
+                                            </b-form-group>
+                                        </b-col>
+
+                                        <b-col cols="12">
+                                            <b-form-group class="floating-form">
                                                 <b-form-input
                                                     type="password"
-                                                    placeholder="Password"
+                                                    v-model="form.password"
+                                                    required
+                                                    placeholder=" "
                                                 />
+                                                <label class="form-label">Password</label>
                                             </b-form-group>
                                         </b-col>
                                     </b-row>
@@ -284,6 +70,241 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Basic Floating Label</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <div class="form-floating mb-3">
+                                        <b-form-input
+                                            type="email"
+                                            id="floatingInput"
+                                            placeholder="Email address"
+                                            v-model="form.email"
+                                        />
+                                        <label for="floatingInput">Email address</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <b-form-input
+                                            type="password"
+                                            id="floatingPassword"
+                                            placeholder="Password"
+                                            v-model="form.password"
+                                        />
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Textareas Floating Labels</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <div class="form-floating mb-3">
+                                        <b-form-textarea
+                                            v-model="form.comment"
+                                            placeholder="Type a comment here"
+                                        />
+                                        <label>Comments</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <b-form-textarea
+                                            v-model="form.message"
+                                            placeholder="Type a message here"
+                                        />
+                                        <label>Message</label>
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Input Groups Floating Labels</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text b-r-left">@</span>
+                                        <div class="form-floating">
+                                            <b-form-input
+                                                v-model="form.username"
+                                                id="floatingInputGroup1"
+                                                placeholder="Username"
+                                                class="b-r-right"
+                                            />
+                                            <label for="floatingInputGroup1">Username</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text b-r-left">@</span>
+                                        <div class="form-floating">
+                                            <b-form-input
+                                                type="email"
+                                                v-model="form.email"
+                                                placeholder="Email Address"
+                                                class="b-r-right"
+                                            />
+                                            <label for="floatingInputGroup2">Email Address</label>
+                                        </div>
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Readonly Floating Labels</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <div class="form-floating mb-3">
+                                        <b-form-input
+                                            readonly
+                                            plaintext
+                                            id="floatingEmptyPlaintextInput"
+                                            placeholder="name@example.com"
+                                        />
+                                        <label for="floatingEmptyPlaintextInput">Empty input</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <b-form-input
+                                            readonly
+                                            plaintext
+                                            id="floatingPlaintextInput"
+                                            className="form-control-plaintext"
+                                            placeholder="name@example.com"
+                                            value="name@example.com"
+                                        />
+                                        <label for="floatingPlaintextInput">Input with value </label>
+
+
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Floating Input Value</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <div class="form-floating mb-3">
+                                        <b-form-input
+                                            id="floatingInputValue"
+                                            placeholder="name@example.com"
+                                            value="test@example.com"
+                                        />
+                                        <label for="floatingInputValue">Input with value</label>
+                                    </div>
+                                    <div class="form-floating floating-invalid">
+                                        <b-form-input
+                                            id="floatingInputInvalid"
+                                            placeholder="name@example.com"
+                                            value="test@example.com"
+                                            class="is-invalid pe-4 text-dark"
+                                        />
+                                        <label for="floatingInputInvalid">Invalid input</label>
+
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+                    <!-- Select Floating Labels -->
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Select Floating Labels</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form floating-select">
+                                    <div class="form-floating mb-3">
+                                        <b-form-select v-model="form.select" id="floatingSelect">
+                                            <option value="">Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </b-form-select>
+                                        <label for="floatingSelect">Works with selects</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <b-form-select id="floatingSelectDisabled" value="2" disabled>
+                                            <option value="">Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </b-form-select>
+                                    </div>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+
+
+                    <b-col md="6">
+                        <b-card no-body>
+                            <b-card-header>
+                                <h5>Floating labels Layout</h5>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-form class="app-form">
+                                    <b-row class="g-2">
+                                        <b-col md="6">
+                                            <div class="form-floating">
+                                                <b-form-input
+                                                    type="email"
+                                                    placeholder="name@example.com"
+                                                    value="mdo@example.com"
+                                                />
+                                                <label>Email address</label>
+                                            </div>
+                                        </b-col>
+                                        <b-col md="6">
+                                            <div class="form-floating">
+                                                <b-form-select value="2">
+                                                    <option>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </b-form-select>
+                                                <label>Works with selects</label>
+                                            </div>
+                                        </b-col>
+                                        <b-col cols="12">
+                                            <div class="form-floating">
+                                                <b-form-input
+                                                    type="password"
+                                                    placeholder="Password"
+                                                />
+                                                <label>Password</label>
+                                            </div>
+                                        </b-col>
+                                    </b-row>
+                                </b-form>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
                 </b-row>
             </b-container>
         </main>

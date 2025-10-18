@@ -13,7 +13,7 @@ import {
 } from 'bootstrap-vue-next'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.vue'
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
 import AppLayout from '@/views/AppLayout.vue'
 import { PhCardholder } from '@phosphor-icons/vue'
 
@@ -47,6 +47,17 @@ const smallSelect = ref('1')
 const defaultSelect = ref('1')
 const largeSelect = ref('1')
 
+
+// Default selected values (each select stores its selected color)
+const selectedColors = ref({
+    primary: ['orange'],
+    success: ['orange'],
+    secondary: ['orange'],
+    danger: ['orange'],
+    warning: ['orange'],
+    info: ['orange'],
+    dark: ['orange'],
+});
 // === Breadcrumb ===
 const breadcrumbItems = {
     title: 'Select2',
@@ -66,10 +77,11 @@ const breadcrumbItems = {
                 <b-row>
 
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header>
                                 <h5>Select2 With Color Tags</h5>
                             </b-card-header>
+
                             <b-card-body>
                                 <b-row class="app-form">
                                     <b-col
@@ -78,11 +90,20 @@ const breadcrumbItems = {
                                         xl="6"
                                         :class="item.class"
                                     >
-                                        <CustomSelect
-                                            :label="item.label"
+                                        <label :for="item.id" class="form-label fw-semibold mb-2">
+                                            {{ item.label }}
+                                        </label>
+
+                                        <!-- Vue Select -->
+                                        <v-select
                                             :id="item.id"
+                                            v-model="selectedColors[item.id]"
                                             :options="colourOptions"
-                                            :defaultValue="[{ value: 'orange', label: 'Orange' }]"
+                                            label="label"
+                                            multiple
+                                            :reduce="opt => opt.value"
+                                            :clearable="false"
+                                            placeholder="Select color"
                                         />
                                     </b-col>
                                 </b-row>
@@ -95,7 +116,7 @@ const breadcrumbItems = {
 
                     <!-- ============ Default Selects ============ -->
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header>
                                 <h5>Default Select</h5>
                             </b-card-header>
@@ -156,7 +177,7 @@ const breadcrumbItems = {
 
                     <!-- ============ Menu Size ============ -->
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header>
                                 <h5>Menu Size</h5>
                             </b-card-header>
@@ -196,7 +217,7 @@ const breadcrumbItems = {
 
                     <!-- ============ Select Size ============ -->
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header>
                                 <h5>Select Size</h5>
                             </b-card-header>

@@ -10,9 +10,6 @@ import JobTable from "@/components/ReadyToUse/ReadyToUseTables/JobTable.vue";
 import TicketTable from "@/components/ReadyToUse/ReadyToUseTables/TicketTable.vue";
 
 
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Ready to use table",
     items: [
