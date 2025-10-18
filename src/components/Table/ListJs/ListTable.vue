@@ -54,14 +54,14 @@ const toggleSort = () => {
             </b-card-header>
             <BCardBody>
                 <b-row class="align-items-center mb-3">
-                    <b-col xs="12" sm>
+                    <b-col cols="12" sm>
                         <b-form-input
                             type="search"
                             placeholder="Search..."
                             v-model="searchQuery"
                         />
                     </b-col>
-                    <b-col xs="12" sm="auto" class="mt-2 mt-sm-0">
+                    <b-col cols="12" sm="auto" class="mt-2 mt-sm-0">
                         <b-button variant="secondary" @click="toggleSort">
                             Sort by name
                         </b-button>

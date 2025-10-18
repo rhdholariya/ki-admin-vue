@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
-import { users } from "@/data/tablePage/DataTable/defaultDatatable.js";
-import { BButton, BModal } from "bootstrap-vue-next";
+import {users} from "@/data/tablePage/DataTable/defaultDatatable.js";
+import {BButton, BModal} from "bootstrap-vue-next";
 
-// --- Avatar generator (same logic as React) ---
 const getAvatar = (name) => {
     const hash = name
         .split("")
@@ -16,10 +15,8 @@ const getAvatar = (name) => {
     return `/images/avatar/${fileName}.png`;
 };
 
-// --- Table data ---
 const tableData = ref([...users]);
 
-// --- Badge color based on position ---
 const getPositionBadgeClass = (position) => {
     const positionLower = position.toLowerCase();
 
@@ -40,7 +37,6 @@ const getPositionBadgeClass = (position) => {
     }
 };
 
-// --- Columns setup ---
 const columns = [
     {
         key: "name",
@@ -62,17 +58,15 @@ const columns = [
             return `<span class="badge ${getPositionBadgeClass(position)}">${position}</span>`;
         },
     },
-    { key: "location", label: "Office" },
-    { key: "age", label: "Age" },
-    { key: "salary", label: "Start Date" },
-    { key: "totalSalary", label: "Salary" },
+    {key: "location", label: "Office"},
+    {key: "age", label: "Age"},
+    {key: "salary", label: "Start Date"},
+    {key: "totalSalary", label: "Salary"},
 ];
 
-// --- Delete modal ---
 const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
-// --- Handlers ---
 const handleEdit = (item) => {
     console.log("Edit:", item);
 };
@@ -84,19 +78,19 @@ const handleDelete = (item) => {
 
 const confirmDelete = () => {
     if (itemToDelete.value) {
-        const index = tableData.value.findIndex((u) => u.name === itemToDelete.value.name);
-        if (index !== -1) {
-            tableData.value.splice(index, 1);
-        }
+        tableData.value = tableData.value.filter(item => item.name !== itemToDelete.value.name);
+
         showDeleteModal.value = false;
         itemToDelete.value = null;
     }
 };
+
 </script>
 
 <template>
     <div class="col-12 mt-4">
         <CustomDataTable
+            :key="`datatable-${tableData.length}`"
             title="Row Border Bottom Example"
             description="DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: new DataTable();"
             :columns="columns"
@@ -108,19 +102,19 @@ const confirmDelete = () => {
             :on-delete="handleDelete"
             table-class-name="w-100 align-middle mb-0 table-border-bottom"
             :page-length="10"
-        :show-length-menu="true"
+            :show-length-menu="true"
         />
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <b-modal
         v-model="showDeleteModal"
         centered
         hide-header
         content-class="border-0"
         body-class="text-center p-4"
+        @hidden="itemToDelete = null"
     >
-        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png" />
+        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png"/>
         <div class="text-center">
             <h4 class="text-danger fw-semibold mb-2">Are You Sure?</h4>
             <p class="text-secondary fs-6">You won't be able to revert this!</p>

@@ -1,6 +1,6 @@
 <script setup>
-import {PhBriefcase, PhCardholder} from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import { PhCardholder} from "@phosphor-icons/vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import BasicFileUpload from "@/components/FormsElements/FileUpload/BasicFileUpload.vue";
 import {BCol, BContainer, BRow} from "bootstrap-vue-next";
@@ -25,20 +25,20 @@ const breadcrumbItems = {
             <b-container fluid>
                 <b-row>
                     <b-col cols="12">
-                        <BasicFileUpload />
+                        <BasicFileUpload/>
 
                     </b-col>
-                    <b-col cols="8">
-                        <FilepondUploader />
+                    <b-col xl="8">
+                        <FilepondUploader/>
                     </b-col>
-                    <b-col cols="4">
-                        <CircleUploader />
-                    </b-col>
-                    <b-col cols="12">
-                        <SolidFileUpload />
+                    <b-col xl="4">
+                        <CircleUploader/>
                     </b-col>
                     <b-col cols="12">
-                        <LightFileUpload />
+                        <SolidFileUpload/>
+                    </b-col>
+                    <b-col cols="12">
+                        <LightFileUpload/>
                     </b-col>
                 </b-row>
             </b-container>

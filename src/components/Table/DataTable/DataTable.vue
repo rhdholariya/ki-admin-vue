@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
-import { users } from "@/data/tablePage/DataTable/defaultDatatable.js";
+import {users} from "@/data/tablePage/DataTable/defaultDatatable.js";
 import {BButton, BModal} from "bootstrap-vue-next";
 
 
@@ -28,7 +28,7 @@ const getPositionBadgeClass = (position) => {
 };
 
 const columns = [
-    { key: "name", label: "Name" },
+    {key: "name", label: "Name"},
     {
         key: "position",
         label: "Position",
@@ -36,10 +36,10 @@ const columns = [
             return `<span class="badge ${getPositionBadgeClass(position)}">${position}</span>`;
         },
     },
-    { key: "location", label: "Office" },
-    { key: "age", label: "Age" },
-    { key: "salary", label: "Start Date" },
-    { key: "totalSalary", label: "Salary" },
+    {key: "location", label: "Office"},
+    {key: "age", label: "Age"},
+    {key: "salary", label: "Start Date"},
+    {key: "totalSalary", label: "Salary"},
 ];
 
 
@@ -61,7 +61,10 @@ const confirmDelete = () => {
     if (itemToDelete.value) {
         const index = tableData.value.findIndex((u) => u.name === itemToDelete.value.name);
         if (index !== -1) {
-            tableData.value.splice(index, 1);
+            // Use setTimeout to ensure DOM updates are complete
+            setTimeout(() => {
+                tableData.value.splice(index, 1);
+            }, 10);
         }
         showDeleteModal.value = false;
         itemToDelete.value = null;
@@ -77,7 +80,7 @@ const handleView = (item) => {
     <div class="col-12 mt-4">
         <CustomDataTable
             title="Default Datatable"
-            description="DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: new DataTable();"
+            description="DataTables has most features enabled by default..."
             :columns="columns"
             :data="tableData"
             row-key="name"
@@ -89,10 +92,11 @@ const handleView = (item) => {
             table-class-name="w-100 align-middle mb-0"
             :page-length="10"
             :show-length-menu="true"
+            :key="tableData.length"
         />
     </div>
 
-    <!-- Delete Confirmation Modal -->
+
     <b-modal
         v-model="showDeleteModal"
         centered
@@ -100,7 +104,7 @@ const handleView = (item) => {
         content-class="border-0"
         body-class="text-center p-4"
     >
-        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png" />
+        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png"/>
         <div class="text-center">
             <h4 class="text-danger fw-semibold mb-2">Are You Sure?</h4>
             <p class="text-secondary fs-6">You won't be able to revert this!</p>
