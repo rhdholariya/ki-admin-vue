@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref } from "vue";
 import Sidebar from "@/components/Layouts/sidebar/index.vue";
@@ -8,23 +7,28 @@ import Customizer from '@/components/Customizer/index.vue';
 import WelcomeModal from "@/components/Layouts/WelcomeModal.vue";
 import ScrollToTop from "@/components/Layouts/ScrollToTop.vue";
 
-const isSemiNav = ref(false);
-const toggleNav = () => (isSemiNav.value = !isSemiNav.value);
-const closeSemiNav = () => (isSemiNav.value = false);
+const sidebarOpen = ref(false);
+
+const toggleNav = () => {
+  sidebarOpen.value = !sidebarOpen.value;
+};
+const closeSemiNav = () => {
+  sidebarOpen.value = false;
+};
 </script>
 
-
 <template>
-    <div class="app-wrapper">
-        <Sidebar :class="{ 'semi-nav': isSemiNav }" />
-        <div class="app-content">
-            <HeaderMain @toggle-nav="toggleNav" @close-nav="closeSemiNav" />
-            <slot/>
-            <FooterSection />
-          <ScrollToTop />
-          <Customizer />
-          <WelcomeModal />
-        </div>
-    </div>
-</template>
+  <div class="app-wrapper">
+    <Sidebar v-model:sidebarOpen="sidebarOpen" />
 
+    <div class="app-content">
+      <HeaderMain @toggle-nav="toggleNav" @close-nav="closeSemiNav" />
+
+      <slot/>
+      <FooterSection />
+      <ScrollToTop />
+      <Customizer />
+      <WelcomeModal />
+    </div>
+  </div>
+</template>

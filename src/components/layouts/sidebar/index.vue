@@ -1,33 +1,29 @@
 <script setup>
-import { ref } from "vue";
-
+import { ref, defineProps, defineEmits } from "vue";
+import AppLogo from "@/components/layouts/sidebar/AppLogo.vue";
+import HorizontalNav from "@/components/layouts/sidebar/HorizontalNav.vue";
+import MenuItem from "@/components/layouts/sidebar/MenuItem.vue";
 import SimpleBar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 import { MenuList } from "@/data/sidebar/sidebar.js";
-import AppLogo from "@/components/Layouts/sidebar/AppLogo.vue";
-import MenuItem from "@/components/Layouts/sidebar/MenuItem.vue";
-import HorizontalNav from "@/components/Layouts/sidebar/HorizontalNav.vue";
 
 const props = defineProps({
-  sidebarOpen: {
-    type: Boolean,
-    default: false
-  },
-  setSidebarOpen: {
-    type: Function
-  }
+  sidebarOpen: Boolean
 });
-
 const sidebarOpen = props.sidebarOpen;
-const setSidebarOpen = props.setSidebarOpen;
+const emit = defineEmits(["update:sidebarOpen"]);
 
 const menuList = ref(MenuList);
+
+const toggleSidebar = () => {
+  emit("update:sidebarOpen", !props.sidebarOpen);
+};
 </script>
 
-
 <template>
-  <nav :class="['vertical-sidebar', sidebarOpen ? 'semi-nav' : '']">
-    <AppLogo :sidebarOpen="sidebarOpen" :setSidebarOpen="setSidebarOpen" />
+  <nav :class="['vertical-sidebar', props.sidebarOpen ? 'semi-nav' : '']">
+    <AppLogo :sidebarOpen="sidebarOpen" @toggle-sidebar="toggleSidebar" />
+
     <SimpleBar class="app-nav simplebar-scrollable-y" style="max-height: 100%;">
       <ul class="main-nav p-0 mt-2">
         <MenuItem
@@ -47,5 +43,3 @@ const menuList = ref(MenuList);
     <HorizontalNav />
   </nav>
 </template>
-
-
