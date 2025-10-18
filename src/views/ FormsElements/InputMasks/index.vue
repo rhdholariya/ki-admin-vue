@@ -14,10 +14,10 @@ import AppLayout from "@/views/AppLayout.vue";
 import {PhCardholder} from "@phosphor-icons/vue";
 
 const breadcrumbItems = {
-    title: "Form Validation",
+    title: "Input Masks",
     items: [
         {label: "Form element", icon: PhCardholder},
-        {label: "Form Validation", active: true},
+        {label: "Input Masks", active: true},
     ],
 };
 </script>

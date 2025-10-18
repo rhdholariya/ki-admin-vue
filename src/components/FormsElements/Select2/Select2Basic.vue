@@ -4,13 +4,13 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
 import {BCard, BCardBody, BCardHeader, BCol, BRow} from "bootstrap-vue-next";
 
-// State
+
 const isMounted = ref(false)
 const isDisable = ref(false)
 const selectedDark = ref([])
 const selectedOptions = ref([])
 
-// Options data
+
 const colourOptions = [
     { value: 'orange', label: 'Orange' },
     { value: 'purple', label: 'Purple' },
@@ -33,14 +33,14 @@ const options = [
     { value: 'TU', label: 'John Doe' }
 ]
 
-// Methods
+
 const handleChange = (selected) => {
     if (selected && selected.length <= 3) {
         selectedOptions.value = selected
     }
 }
 
-// Mounted
+
 onMounted(() => {
     isMounted.value = true
     selectedDark.value = selectOptions.filter((opt) => ['AL', 'WY'].includes(opt.value))
@@ -58,7 +58,7 @@ onMounted(() => {
                     </b-card-header>
                     <b-card-body>
                         <b-row class=" app-form">
-                            <!-- Basic -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Basic</label>
                                 <v-select
@@ -68,7 +68,7 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Multiple -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Multiple</label>
                                 <v-select
@@ -80,7 +80,6 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Disabled -->
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Disabled</label>
                                 <v-select
@@ -92,7 +91,7 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Icon Options -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Icon Options</label>
                                 <v-select
@@ -106,7 +105,7 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Limit Selections -->
+
                             <b-col md="6" xl="4" >
                                 <div class="mt-4">
                                     <label class="form-label">Limit The Number Of Selections (max 3)</label>
@@ -121,7 +120,7 @@ onMounted(() => {
                                 </div>
                             </b-col>
 
-                            <!-- RTL Support -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">RTL Support</label>
                                 <v-select
@@ -132,7 +131,7 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Disable Results -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Disable Results</label>
                                 <v-select
@@ -151,7 +150,7 @@ onMounted(() => {
                                 />
                             </b-col>
 
-                            <!-- Flags -->
+
                             <b-col md="6" xl="4" class="mt-4">
                                 <label class="form-label">Flags</label>
                                 <v-select

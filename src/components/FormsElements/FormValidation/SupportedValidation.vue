@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import {
     BButton,
     BCard,
-    BCardHeader,
     BCardBody,
     BCol,
     BForm,
@@ -43,11 +42,9 @@ const validateForm = () => {
 
 const handleSubmit = () => {
     if (validateForm()) {
-        // Form is valid - proceed with submission
         console.log('Form submitted:', formData.value)
         alert('Form submitted successfully!')
 
-        // Reset form but keep validation visible
         formData.value = {
             textarea: '',
             checkbox: false,
@@ -60,8 +57,7 @@ const handleSubmit = () => {
 
 
 const isTextareaValid = () => formData.value.textarea.trim() !== ''
-const isCheckboxValid = () => formData.value.checkbox
-const isRadioValid = () => formData.value.radio !== ''
+
 const isSelectValid = () => formData.value.select !== ''
 const isFileValid = () => formData.value.file !== null
 </script>
@@ -82,7 +78,7 @@ const isFileValid = () => formData.value.file !== null
                     novalidate
                     @submit.prevent="handleSubmit"
                 >
-                    <!-- Textarea - Keep original with error message -->
+
                     <b-form-group
                         class="mb-3"
                         label="Textarea"
@@ -102,7 +98,7 @@ const isFileValid = () => formData.value.file !== null
                         </div>
                     </b-form-group>
 
-                    <!-- Checkbox - Only danger/green text, no error message -->
+
                     <b-form-group class="mb-3">
                         <b-form-checkbox
                             id="validationFormCheck1"
@@ -116,7 +112,7 @@ const isFileValid = () => formData.value.file !== null
                         </b-form-checkbox>
                     </b-form-group>
 
-                    <!-- Radio - Only danger/green text, no error message -->
+
                     <b-form-group class="mb-3">
                         <b-form-radio
                             id="validationFormCheck3"
@@ -131,7 +127,6 @@ const isFileValid = () => formData.value.file !== null
                         </b-form-radio>
                     </b-form-group>
 
-                    <!-- Select - Keep original with error message -->
                     <b-form-group class="mb-3" label="Select" label-for="validationSelect">
                         <b-form-select
                             id="validationSelect"
@@ -152,7 +147,7 @@ const isFileValid = () => formData.value.file !== null
                         </div>
                     </b-form-group>
 
-                    <!-- File Input - Keep original with error message -->
+
                     <b-form-group class="mb-3" label="File Input" label-for="validationFile">
                         <b-form-input
                             id="validationFile"
@@ -169,7 +164,7 @@ const isFileValid = () => formData.value.file !== null
                         </div>
                     </b-form-group>
 
-                    <!-- Submit Button -->
+
                     <div class="text-end">
                         <b-button
                             variant="primary"

@@ -91,7 +91,7 @@ const toggleSideSort = () => {
 <template>
     <b-row>
 
-        <b-col md="6" xxl="4">
+        <b-col md="6" lg="4">
             <b-card no-body>
                 <b-card-header>
                     <h5>Existing List</h5>
@@ -148,7 +148,7 @@ const toggleSideSort = () => {
         </b-col>
 
 
-        <b-col md="6" xxl="4">
+        <b-col md="6" lg="4">
             <b-card no-body>
                 <b-card-header>
                     <h5>Search List Table</h5>
@@ -172,7 +172,7 @@ const toggleSideSort = () => {
         </b-col>
 
 
-        <b-col md="6" xxl="4" >
+        <b-col md="6" lg="4" >
             <b-card no-body>
                 <b-card-header>
                     <h5>Table with Pagination</h5>
@@ -217,7 +217,7 @@ const toggleSideSort = () => {
 
 
                     <div class="list-pagination mt-3 ">
-                        <ul class="pagination mb-0 d-inline-flex">
+                        <ul class="pagination mb-0 d-inline-flex d-sm-flex-wrap ">
                             <li class="page-item" :class="{ disabled: tablePage === 1 }">
                                 <b-button
                                     size="sm"

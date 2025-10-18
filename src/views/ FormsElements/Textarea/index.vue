@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import { BCard, BCardHeader, BCardBody, BRow, BCol, BForm, BFormGroup, BFormInput, BFormSelect, BFormTextarea, BContainer } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
 
@@ -15,7 +15,7 @@ const form = reactive({
     username: "",
     select: "2",
 });
-// Breadcrumb data
+
 const breadcrumbItems = {
     title: "Floating Labels",
     items: [

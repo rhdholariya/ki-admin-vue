@@ -17,11 +17,10 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
 import AppLayout from '@/views/AppLayout.vue'
 import { PhCardholder } from '@phosphor-icons/vue'
 
-// Import Select2 components
-import Select2Basic from '@/components/FormsElements/Select2/Select2Basic.vue'
-import CustomSelect from '@/components/FormsElements/Select2/MultiSelect.vue'
 
-// === Data ===
+import Select2Basic from '@/components/FormsElements/Select2/Select2Basic.vue'
+
+
 const colourOptions = [
     { value: 'orange', label: 'Orange' },
     { value: 'purple', label: 'Purple' },
@@ -48,7 +47,7 @@ const defaultSelect = ref('1')
 const largeSelect = ref('1')
 
 
-// Default selected values (each select stores its selected color)
+
 const selectedColors = ref({
     primary: ['orange'],
     success: ['orange'],
@@ -58,7 +57,7 @@ const selectedColors = ref({
     info: ['orange'],
     dark: ['orange'],
 });
-// === Breadcrumb ===
+
 const breadcrumbItems = {
     title: 'Select2',
     items: [
@@ -111,10 +110,9 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- ============ Basic Select2 (Your Existing Component) ============ -->
+
                     <Select2Basic />
 
-                    <!-- ============ Default Selects ============ -->
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -175,7 +173,7 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- ============ Menu Size ============ -->
+
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -215,7 +213,7 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- ============ Select Size ============ -->
+
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>

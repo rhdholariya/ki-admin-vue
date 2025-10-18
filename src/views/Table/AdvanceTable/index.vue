@@ -9,12 +9,11 @@ import {
     BTable,
     BButton,
 } from "bootstrap-vue-next";
-import {ref, onMounted, nextTick} from "vue";
+import {ref} from "vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {
     PhArrowsOutCardinal,
-    PhHandHeart,
     PhNotePencil, PhTable,
     PhTrash,
 } from "@phosphor-icons/vue";
@@ -98,51 +97,86 @@ const tableFields = [
 ];
 
 const draggedIndex = ref(null);
+const dragOverIndex = ref(null);
+
 
 const handleDragStart = (e, index) => {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/plain", index);
     draggedIndex.value = index;
+
+
+    setTimeout(() => {
+        e.target.closest('tr').classList.add('dragging');
+    }, 0);
 };
+
 
 const handleDragOver = (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
-};
 
-const handleDrop = (e, targetIndex) => {
-    e.preventDefault();
-    const from = parseInt(e.dataTransfer.getData("text/plain"));
-    if (from !== targetIndex) {
-        const newList = [...employees.value];
-        const [movedItem] = newList.splice(from, 1);
-        newList.splice(targetIndex, 0, movedItem);
-        employees.value = newList;
+    const table = e.currentTarget;
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const hoveredRow = e.target.closest('tr');
+
+    if (hoveredRow && hoveredRow.parentNode === table.querySelector('tbody')) {
+        const index = rows.indexOf(hoveredRow);
+        if (index !== -1) {
+            dragOverIndex.value = index;
+
+
+            rows.forEach(row => row.classList.remove('drag-over'));
+
+            hoveredRow.classList.add('drag-over');
+        }
     }
+};
+
+
+const handleDrop = (e) => {
+    e.preventDefault();
+
+    const table = e.currentTarget;
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const targetRow = e.target.closest('tr');
+
+    if (targetRow && targetRow.parentNode === table.querySelector('tbody')) {
+        const targetIndex = rows.indexOf(targetRow);
+        const from = parseInt(e.dataTransfer.getData("text/plain"));
+
+        if (from !== targetIndex && from !== -1 && targetIndex !== -1) {
+            const newList = [...employees.value];
+            const [movedItem] = newList.splice(from, 1);
+            newList.splice(targetIndex, 0, movedItem);
+            employees.value = newList;
+        }
+    }
+
+
+    cleanupDragState();
+};
+
+
+const handleDragEnd = (e) => {
+    cleanupDragState();
+};
+
+
+const cleanupDragState = () => {
     draggedIndex.value = null;
+    dragOverIndex.value = null;
+
+
+    const table = document.querySelector('.advance-drag-drop-table');
+    if (table) {
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.classList.remove('dragging', 'drag-over');
+        });
+    }
 };
 
-const handleDragEnd = () => {
-    draggedIndex.value = null;
-};
-
-onMounted(async () => {
-    await nextTick();
-    attachDragListeners();
-});
-
-const attachDragListeners = () => {
-    const rows = document.querySelectorAll(".advance-drag-drop-table tbody tr");
-    rows.forEach((row, index) => {
-        row.setAttribute("draggable", "true");
-        row.addEventListener("dragstart", (e) => handleDragStart(e, index));
-        row.addEventListener("dragover", handleDragOver);
-        row.addEventListener("drop", (e) => handleDrop(e, index));
-        row.addEventListener("dragend", handleDragEnd);
-    });
-};
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Advance Table",
     items: [
@@ -174,51 +208,54 @@ const breadcrumbItems = {
                                         responsive
                                         class="table-bottom-border advance-drag-drop-table align-middle mb-0"
                                         large
+                                        @dragover="handleDragOver"
+                                        @drop="handleDrop"
                                     >
-                                        <!-- Drag icon -->
-                                        <template #cell(drag)>
-                                            <PhArrowsOutCardinal
-                                                :size="18"
-                                                weight="fill"
-                                                class="text-secondary"
-                                                style="cursor: move;"
-                                            />
+                                        <template #cell(drag)="data">
+                                            <div
+                                                draggable="true"
+                                                @dragstart="handleDragStart($event, data.index)"
+                                                @dragend="handleDragEnd"
+                                                class="drag-handle"
+                                            >
+                                                <PhArrowsOutCardinal
+                                                    :size="18"
+                                                    weight="fill"
+                                                    class="text-secondary"
+                                                />
+                                            </div>
                                         </template>
 
-                                        <!-- Status Badge -->
                                         <template #cell(status)="data">
-                      <span
-                          :class="[
-                          'badge',
-                          data.item.status === 'High'
-                            ? 'text-outline-success'
-                            : data.item.status === 'Medium'
-                            ? 'text-outline-warning'
-                            : 'text-outline-danger'
-                        ]"
-                      >
-                        {{ data.item.status }}
-                      </span>
+                                            <span
+                                                :class="[
+                                                    'badge',
+                                                    data.item.status === 'High'
+                                                        ? 'text-outline-success'
+                                                        : data.item.status === 'Medium'
+                                                            ? 'text-outline-warning'
+                                                            : 'text-outline-danger'
+                                                ]"
+                                            >
+                                                {{ data.item.status }}
+                                            </span>
                                         </template>
 
-                                        <!-- ID -->
                                         <template #cell(id)="data">
                                             <span class="text-primary fw-bold">{{ data.item.id }}</span>
                                         </template>
 
-                                        <!-- Salary -->
                                         <template #cell(salary)="data">
                                             <span class="text-warning fw-bold">{{ data.item.salary }}</span>
                                         </template>
 
-                                        <!-- Action Buttons -->
                                         <template #cell(action)>
-                                            <BButton class="btn btn-danger icon-btn b-r-4 me-1">
+                                            <b-button class="btn btn-danger icon-btn b-r-4 me-1">
                                                 <PhTrash :size="18" weight="bold"/>
-                                            </BButton>
-                                            <BButton class="btn btn-success icon-btn b-r-4">
+                                            </b-button>
+                                            <b-button class="btn btn-success icon-btn b-r-4">
                                                 <PhNotePencil :size="18" weight="bold"/>
-                                            </BButton>
+                                            </b-button>
                                         </template>
                                     </b-table>
                                 </div>
@@ -230,3 +267,4 @@ const breadcrumbItems = {
         </main>
     </AppLayout>
 </template>
+
