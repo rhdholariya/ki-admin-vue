@@ -152,8 +152,14 @@ const resetCustomizer = () => {
     <PhGear size="24" />
   </b-button>
 
-  <b-offcanvas v-model:show="show" placement="end" class="app-customizer" no-body>
-    <!-- Header -->
+  <b-offcanvas
+      v-model:show="show"
+      placement="end"
+      class="app-customizer"
+      no-body
+      @hidden="show = false"
+  >
+  <!-- Header -->
     <template #header>
       <h5 class="text-white">Admin Customizer</h5>
       <p class="text-white opacity-75 w-100">It's time to style according to your choice!</p>

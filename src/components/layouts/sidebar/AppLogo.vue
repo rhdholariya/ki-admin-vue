@@ -1,7 +1,7 @@
 <script setup>
-import { ref, defineProps } from "vue";
-import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue-next";
-import { RouterLink } from "vue-router";
+import {ref, defineProps, defineEmits} from "vue";
+import {BDropdown, BDropdownItem, BDropdownDivider} from "bootstrap-vue-next";
+import {RouterLink} from "vue-router";
 import {
   PhCaretRight,
   PhGear,
@@ -12,21 +12,15 @@ import {
 } from "@phosphor-icons/vue";
 
 const props = defineProps({
-  sidebarOpen: Boolean,
-  setSidebarOpen: Function
+  sidebarOpen: Boolean
 });
 
+const emit = defineEmits(["toggle-sidebar"]);
+
 const dropdownOpen = ref(false);
+const setDropdownOpen = (isOpen) => (dropdownOpen.value = isOpen);
 
-const setDropdownOpen = (isOpen) => {
-  dropdownOpen.value = isOpen;
-};
-
-const toggleSidebar = () => {
-  if (props.setSidebarOpen) {
-    props.setSidebarOpen(!props.sidebarOpen);
-  }
-};
+const toggleSidebar = () => emit("toggle-sidebar");
 </script>
 
 <template>
@@ -37,7 +31,7 @@ const toggleSidebar = () => {
 
     <!-- Sidebar Toggle Button -->
     <span
-        class="bg-light-primary toggle-semi-nav d-flex-center"
+        class="bg-light-primary toggle-semi-nav d-flex-center cursor-pointer"
         @click="toggleSidebar"
     >
       <PhCaretRight size="16"/>
@@ -87,11 +81,7 @@ const toggleSidebar = () => {
             </div>
             <div class="flex-shrink-0">
               <div class="form-check form-switch">
-                <input
-                    class="form-check-input form-check-primary"
-                    id="incognitoSwitch"
-                    type="checkbox"
-                />
+                <input class="form-check-input form-check-primary" id="incognitoSwitch" type="checkbox"/>
               </div>
             </div>
           </div>
