@@ -134,26 +134,25 @@ const resetForm = () => {
                         small
                         class=" table-bottom-border list-table-data align-middle mb-0 "
                     >
-                        <!-- Checkbox -->
+
                         <template #cell(select)="data">
                             <b-form-checkbox></b-form-checkbox>
                         </template>
 
-                        <!-- Status badge -->
+
                         <template #cell(status)="data">
                             <b-badge :variant="data.item.status === 'ACTIVE' ? 'success' : 'danger'">
                                 {{ data.item.status }}
                             </b-badge>
                         </template>
 
-                        <!-- Edit button -->
                         <template #cell(edit)="data">
                             <b-button size="sm" variant="success" @click="editEmployee(data.index)">
                                 Edit
                             </b-button>
                         </template>
 
-                        <!-- Delete button -->
+
                         <template #cell(delete)="data">
                             <b-button size="sm" variant="danger" @click="deleteEmployee(data.index)">
                                 Remove

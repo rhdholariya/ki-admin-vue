@@ -16,11 +16,9 @@ import {
     BSpinner
 } from 'bootstrap-vue-next'
 
-// reactive state
 const loading = ref(false)
 const isChecked = ref(false)
 
-// form data model
 const formData = ref({
     firstName: '',
     lastName: '',
@@ -30,7 +28,7 @@ const formData = ref({
     zip: ''
 })
 
-// submit handler
+
 const handleSubmit = (e) => {
     e.preventDefault()
     loading.value = true
@@ -57,7 +55,6 @@ const handleSubmit = (e) => {
 
             <b-card-body>
                 <b-form class="row g-3 app-form" @submit="handleSubmit">
-                    <!-- First Name -->
                     <b-col md="4">
                         <b-form-group label="First name" label-for="firstName">
                             <b-form-input
@@ -69,7 +66,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Last Name -->
                     <b-col md="4">
                         <b-form-group label="Last name" label-for="lastName">
                             <b-form-input
@@ -81,7 +77,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Username -->
                     <b-col md="4">
                         <b-form-group label="Username" label-for="username">
                             <b-input-group>
@@ -96,7 +91,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- City -->
                     <b-col md="6">
                         <b-form-group label="City" label-for="city">
                             <b-form-input
@@ -108,7 +102,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- State -->
                     <b-col md="3">
                         <b-form-group label="State" label-for="state">
                             <b-form-select
@@ -124,7 +117,7 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Zip -->
+
                     <b-col md="3">
                         <b-form-group label="Zip" label-for="zip">
                             <b-form-input
@@ -136,7 +129,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Checkbox -->
                     <b-col md="12">
                         <b-form-group>
                             <b-form-checkbox
@@ -149,7 +141,6 @@ const handleSubmit = (e) => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Submit Button -->
                     <b-col md="12" class="text-end">
                         <b-button type="submit" variant="primary">
                             <template v-if="loading">

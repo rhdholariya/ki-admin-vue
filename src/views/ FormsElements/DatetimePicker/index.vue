@@ -17,7 +17,7 @@ const weekNumbers = ref(null);
 const timeWithLimits = ref(null);
 const hourTime = ref(null);
 const inlineDate = ref(null);
-// Breadcrumb data
+
 const breadcrumbItems = {
     title: "Datetimepicker",
     items: [
@@ -43,8 +43,8 @@ const breadcrumbItems = {
                             <b-card-body>
                                 <b-form class="app-form">
                                     <flat-pickr
-                                        class="form-control"
                                         v-model="date"
+                                        class="form-control"
                                         :config="{ dateFormat: 'Y-m-d' }"
                                         placeholder="YYYY-MM-DD"
                                     />
@@ -81,8 +81,8 @@ const breadcrumbItems = {
                             <b-card-body>
                                 <b-form class="app-form">
                                     <flat-pickr
-                                        class="form-control"
                                         v-model="dateTime"
+                                        class="form-control"
                                         :config="{ dateFormat: 'Y-m-d' }"
                                         placeholder="YYYY-MM-DD"
                                     />
@@ -175,8 +175,8 @@ const breadcrumbItems = {
                             <b-card-body>
                                 <b-form class="app-form">
                                     <flat-pickr
-                                        class="form-control"
                                         v-model="timeWithLimits"
+                                        class="form-control"
                                         :config="{
                                              enableTime: true,
                                              noCalendar: true,
@@ -200,8 +200,8 @@ const breadcrumbItems = {
                             <b-card-body>
                                 <b-form class="app-form">
                                     <flat-pickr
-                                        class="form-control"
                                         v-model="hourTime"
+                                        class="form-control"
                                         :config="{ enableTime: true, noCalendar: true, dateFormat: 'H:i' }"
                                         placeholder="HH:mm"
                                     />
@@ -211,15 +211,15 @@ const breadcrumbItems = {
                     </b-col>
 
                     <b-col md="6">
-                        <b-card class="mb-4" no-body>
+                        <b-card class="mb-4 overflow-scroll app-scroll" no-body >
                             <b-card-header>
                                 <h5>Inline</h5>
                             </b-card-header>
                             <b-card-body>
                                 <b-form class="app-form">
                                     <flat-pickr
-                                        class="form-control mb-2"
                                         v-model="inlineDate"
+                                        class="form-control mb-2"
                                         :config="{ inline: true, dateFormat: 'Y-m-d' }"
                                         placeholder="YYYY-MM-DD"
                                     />

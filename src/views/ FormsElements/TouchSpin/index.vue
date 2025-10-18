@@ -6,8 +6,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import TouchSpinCard from '@/components/FormsElements/TouchSpin/TouchSpinCard.vue';
 import {PhCardholder} from "@phosphor-icons/vue";
 
-
-// Counts and colors
 const countsA = ref([25, 25, 25]);
 const colorsA = ['light-primary', 'light-secondary', 'light-success'];
 const updateCountA = (i, d) => (countsA.value[i] += d);
@@ -47,10 +45,10 @@ const toggleDropdown = () => (dropdownOpen.value = !dropdownOpen.value);
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "Form Validation",
+    title: "Touchspin",
     items: [
         {label: "Form element", icon: PhCardholder},
-        {label: "Form Validation", active: true},
+        {label: "Touchspin", active: true},
     ],
 };
 </script>
@@ -64,90 +62,90 @@ const breadcrumbItems = {
                 <b-row>
                     <b-col xl="3">
                         <TouchSpinCard
-                            title="Basic Touchspin"
                             :counts="countsA"
                             :colors="colorsA"
                             variant="button"
+                            title="Basic Touchspin"
                             :update-count="updateCountA"
                         />
                     </b-col>
 
                     <b-col xl="3">
                         <TouchSpinCard
-                            title="Basic Touchspin - Card B"
                             :counts="countsB"
                             :colors="colorsA"
                             variant="anchor"
+                            title="Basic Touchspin - Card B"
                             :update-count="updateCountB"
                         />
                     </b-col>
 
                     <b-col xl="3">
                         <TouchSpinCard
-                            title="Basic Touchspin - Card C"
                             :counts="countsC"
                             :colors="colorsC"
                             variant="custom"
+                            title="Basic Touchspin - Card C"
                             :update-count="updateCountC"
                         />
                     </b-col>
 
                     <b-col xl="3">
                         <TouchSpinCard
-                            title="Basic Touchspin - Card D"
                             :counts="countsD"
                             :colors="colorsD"
                             variant="custom"
+                            title="Basic Touchspin - Card D"
                             :update-count="updateCountD"
                         />
                     </b-col>
 
                     <b-col xxl="6" xl="6" lg="12">
                         <TouchSpinCard
-                            title="Custom Round Touchspin"
-                            :counts="countsG"
                             :colors="['primary', 'secondary', 'success']"
+                            :counts="countsG"
                             variant="round"
+                            title="Custom Round Touchspin"
                             :update-count="updateCountG"
                         />
                     </b-col>
 
                     <b-col xxl="6" xl="6" lg="12">
                         <TouchSpinCard
-                            title="Custom Round Touchspin E"
-                            :counts="countsE"
                             :colors="['primary', 'secondary', 'success']"
+                            :counts="countsE"
                             variant="round-alt"
+                            title="Custom Round Touchspin E"
                             :update-count="updateCountE"
                         />
                     </b-col>
 
                     <b-col lg="6">
                         <TouchSpinCard
-                            title="Default Touchspin"
-                            :counts="countF"
                             :colors="['primary']"
+                            :counts="countF"
                             variant="default"
+                            title="Default Touchspin"
                             :update-count="updateCountF"
                         />
                     </b-col>
 
                     <b-col lg="6">
                         <TouchSpinCard
-                            title="Horizontal Touchspin"
-                            :counts="countH"
                             :colors="['primary']"
+                            :counts="countH"
                             variant="horizontal"
+                            title="Horizontal Touchspin"
                             :update-count="updateCountH"
                         />
                     </b-col>
 
                     <b-col lg="6">
                         <TouchSpinCard
-                            title="Touchspin With Dropdown"
                             :counts="countDrop"
                             :colors="['primary']"
                             variant="with-dropdown"
+                            title="Touchspin With Dropdown"
                             :with-dropdown="true"
                             :dropdown-open="dropdownOpen"
                             :toggle-dropdown="toggleDropdown"
@@ -157,10 +155,10 @@ const breadcrumbItems = {
 
                     <b-col lg="6">
                         <TouchSpinCard
-                            title="Touchspin With Postfix & Prefix"
+                            variant="prefix-postfix"
                             :counts="count3"
                             :colors="['primary']"
-                            variant="prefix-postfix"
+                            title="Touchspin With Postfix & Prefix"
                             :update-count="updateCount3"
                         />
                     </b-col>

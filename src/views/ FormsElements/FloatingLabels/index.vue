@@ -1,9 +1,21 @@
 <script setup>
-import { reactive } from 'vue'
-import { BCard, BCardHeader, BCardBody, BRow, BCol, BForm, BFormGroup, BFormInput, BFormSelect, BFormTextarea, BContainer } from "bootstrap-vue-next";
+import {reactive} from 'vue'
+import {
+    BCard,
+    BCardHeader,
+    BCardBody,
+    BRow,
+    BCol,
+    BForm,
+    BFormGroup,
+    BFormInput,
+    BFormSelect,
+    BFormTextarea,
+    BContainer
+} from "bootstrap-vue-next";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import { PhCardholder } from "@phosphor-icons/vue";
+import {PhCardholder} from "@phosphor-icons/vue";
 
 const form = reactive({
     name: "",
@@ -18,8 +30,8 @@ const form = reactive({
 const breadcrumbItems = {
     title: "Floating Labels",
     items: [
-        { label: "Form element", icon: PhCardholder },
-        { label: "Floating Labels", active: true },
+        {label: "Form element", icon: PhCardholder},
+        {label: "Floating Labels", active: true},
     ],
 };
 </script>
@@ -27,12 +39,12 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
+            <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
             <b-container fluid>
 
                 <b-row>
-                    <!-- Custom Floating Labels -->
+
                     <b-col md="6">
                         <b-card no-body>
                             <b-card-header>
@@ -230,8 +242,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Select Floating Labels -->
                     <b-col md="6">
                         <b-card no-body>
                             <b-card-header>
