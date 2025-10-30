@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, h } from "vue";
+import {reactive, ref, h} from "vue";
 import {
     BContainer,
     BRow,
@@ -8,22 +8,20 @@ import {
     BFormInput,
     BButton,
     BFormCheckbox,
-    BFormFloatingLabel
 } from "bootstrap-vue-next";
-import { RouterLink, useRouter } from "vue-router";
-import { PhFacebookLogo, PhGoogleLogo, PhTwitterLogo } from "@phosphor-icons/vue";
+import {RouterLink, useRouter} from "vue-router";
+import {PhFacebookLogo, PhGoogleLogo, PhTwitterLogo} from "@phosphor-icons/vue";
 
-// Router for redirect after submit
 const router = useRouter();
 
-// Reactive form data
+
 const formData = reactive({
     username: "",
     password: "",
     remember: false
 });
 
-// Input fields
+
 const inputFields = [
     {
         id: "username",
@@ -42,20 +40,18 @@ const inputFields = [
 
 // Social buttons
 const socialButtons = [
-    { icon: h(PhFacebookLogo, { size: 18, weight: "bold",  }), className: "btn-light-white" },
-    { icon: h(PhGoogleLogo, { size: 18, weight: "bold",  }), className: "btn-light-white" },
-    { icon: h(PhTwitterLogo, { size: 18, weight: "bold",  }), className: "btn-light-white" }
+    {icon: h(PhFacebookLogo, {size: 18, weight: "bold",}), className: "btn-light-white"},
+    {icon: h(PhGoogleLogo, {size: 18, weight: "bold",}), className: "btn-light-white"},
+    {icon: h(PhTwitterLogo, {size: 18, weight: "bold",}), className: "btn-light-white"}
 ];
 
-// Submission state
+
 const isSubmitting = ref(false);
 
-// Handle form submit
 const handleSubmit = (e) => {
     e.preventDefault();
     isSubmitting.value = true;
 
-    // Simulate API call and redirect
     setTimeout(() => {
         isSubmitting.value = false;
         router.push("/dashboard/ecommerce");
@@ -68,21 +64,19 @@ const handleSubmit = (e) => {
         <div class="main-container">
             <b-container>
                 <b-row class="main-content-box">
-                    <!-- Left Image Section -->
                     <b-col lg="7" class="image-contentbox d-none d-lg-block">
                         <div class="form-container">
                             <div class="signup-content mt-4">
                 <span>
-                  <img src="/images/logo/1.png" alt="Logo" class="img-fluid" />
+                  <img src="/images/logo/1.png" alt="Logo" class="img-fluid"/>
                 </span>
                             </div>
                             <div class="signup-bg-img">
-                                <img src="/images/login/01.png" alt="Background" class="img-fluid" />
+                                <img src="/images/login/01.png" alt="Background" class="img-fluid"/>
                             </div>
                         </div>
                     </b-col>
 
-                    <!-- Form Section -->
                     <b-col lg="5" class="form-content-box">
                         <div class="form-container">
                             <b-form class="app-form" @submit.prevent="handleSubmit">
@@ -96,7 +90,6 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Input Fields -->
                                     <b-col
                                         cols="12"
                                         v-for="field in inputFields"
@@ -126,28 +119,26 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Remember Checkbox -->
                                     <b-col cols="12">
                                         <b-form-checkbox
                                             id="remember"
                                             v-model="formData.remember"
                                             class="d-flex align-items-center gap-2 mb-3"
                                         >
-                                            <span class="text-white mt-2 f-s-16">Remember me</span>
+                                            <label class="text-white"> Remember me</label>
                                         </b-form-checkbox>
                                     </b-col>
 
-                                    <!-- Sign In Button -->
                                     <b-col cols="12" class="mb-3">
                                         <b-button type="submit" class="w-100" variant="primary">
                                             <template v-if="isSubmitting">
-                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                <span class="spinner-border spinner-border-sm" role="status"
+                                                      aria-hidden="true"></span>
                                             </template>
                                             <template v-else>Sign In</template>
                                         </b-button>
                                     </b-col>
 
-                                    <!-- Sign Up Link -->
                                     <b-col cols="12">
                                         <div class="text-center text-lg-start f-s-14 f-w-500">
                                             Don't Have An Account yet?
@@ -160,12 +151,10 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Divider -->
                                     <div class="app-divider-v light justify-content-center py-lg-5 py-3">
                                         <p>OR</p>
                                     </div>
 
-                                    <!-- Social Buttons -->
                                     <b-col cols="12">
                                         <div class="d-flex gap-3 justify-content-center text-center">
                                             <b-button
@@ -175,7 +164,7 @@ const handleSubmit = (e) => {
                                                 variant=""
                                                 class="icon-btn w-45 h-45 b-r-15 btn-light-white btn btn-btn-light-white"
                                             >
-                                                <component :is="btn.icon" size="20" weight="bold" />
+                                                <component :is="btn.icon" size="20" weight="bold" class="icon"/>
                                             </b-button>
                                         </div>
                                     </b-col>
@@ -189,6 +178,3 @@ const handleSubmit = (e) => {
     </div>
 </template>
 
-<style scoped>
-/* Keep your original styling intact */
-</style>

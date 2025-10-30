@@ -22,7 +22,7 @@ const breadcrumbItems = {
         <main>
             <b-container fluid>
                 <Breadcrumb :breadcrumb="breadcrumbItems"/>
-                <b-row class="list-item">
+                <b-row class="overlay-page">
                     <CustomWrapperPage />
                   <ContentOverlayWrapper />
                 </b-row>

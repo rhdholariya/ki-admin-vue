@@ -10,7 +10,7 @@ import {
     BRow,
 
 } from "bootstrap-vue-next";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import { PhCardholder} from "@phosphor-icons/vue";
 
@@ -53,13 +53,13 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
     <main>
-        <Breadcrumb :breadcrumb="breadcrumbItems" />
-        <BContainer fluid>
-            <BRow>
-                <BCol sm="12">
-                    <BCard no-body>
-                        <BCardHeader><h5>Basic Switch</h5></BCardHeader>
-                        <BCardBody class="main-switch">
+        <b-container fluid>
+            <Breadcrumb :breadcrumb="breadcrumbItems" />
+            <b-row>
+                <b-col sm="12">
+                    <b-card no-body>
+                        <b-card-header><h5>Basic Switch</h5></b-card-header>
+                        <b-card-body class="main-switch">
                             <div class="form-check form-switch d-flex">
                                 <input
                                     class="form-check-input"
@@ -83,14 +83,14 @@ const breadcrumbItems = {
                                     Bootstrap Disabled
                                 </label>
                             </div>
-                        </BCardBody>
-                    </BCard>
-                </BCol>
-                <!-- :white_check_mark: Switch Sizing -->
-                <BCol sm="6" xxl="4">
-                    <BCard class="equal-card">
-                        <BCardHeader><h5>Switch Sizing</h5></BCardHeader>
-                        <BCardBody class="main-switch main-switch-color">
+                        </b-card-body>
+                    </b-card>
+                </b-col>
+
+                <b-col sm="6" xxl="4">
+                    <b-card class="equal-card">
+                        <b-card-header><h5>Switch Sizing</h5></b-card-header>
+                        <b-card-body class="main-switch main-switch-color">
                             <div class="switch-primary my-3">
                                 <input
                                     type="checkbox"
@@ -145,14 +145,14 @@ const breadcrumbItems = {
                                 />
                                 <label for="check-006">Small Size Unchecked</label>
                             </div>
-                        </BCardBody>
-                    </BCard>
-                </BCol>
+                        </b-card-body>
+                    </b-card>
+                </b-col>
 
-                <BCol sm="6" xxl="4">
-                    <BCard no-body>
-                        <BCardHeader><h5>Switch Variants</h5></BCardHeader>
-                        <BCardBody class="main-switch main-switch-color switch-unchecked switch_border">
+                <b-col sm="6" xxl="4">
+                    <b-card no-body>
+                        <b-card-header><h5>Switch Variants</h5></b-card-header>
+                        <b-card-body class="main-switch main-switch-color switch-unchecked switch_border">
                             <div
                                 v-for="(value, color) in switchStates"
                                 :key="color"
@@ -168,14 +168,14 @@ const breadcrumbItems = {
                                 />
                                 <label :for="color">{{ color }}</label>
                             </div>
-                        </BCardBody>
-                    </BCard>
-                </BCol>
+                        </b-card-body>
+                    </b-card>
+                </b-col>
 
-                <BCol sm="6" xxl="4">
-                    <BCard no-body>
-                        <BCardHeader><h5>Switch Outline</h5></BCardHeader>
-                        <BCardBody class="switch_border main-switch switch-unchecked">
+                <b-col sm="6" xxl="4">
+                    <b-card no-body>
+                        <b-card-header><h5>Switch Outline</h5></b-card-header>
+                        <b-card-body class="switch_border main-switch switch-unchecked">
                             <div
                                 v-for="(value, color) in switchStates"
                                 :key="id"
@@ -189,11 +189,11 @@ const breadcrumbItems = {
                                 />
                                 <label :for="`${color}Check`">{{ color }}</label>
                             </div>
-                        </BCardBody>
-                    </BCard>
-                </BCol>
-            </BRow>
-        </BContainer>
+                        </b-card-body>
+                    </b-card>
+                </b-col>
+            </b-row>
+        </b-container>
     </main>
     </AppLayout>
 </template>

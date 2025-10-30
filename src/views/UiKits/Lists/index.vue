@@ -1,5 +1,5 @@
 <script setup>
-import {BRow} from "bootstrap-vue-next";
+import {BContainer, BRow} from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
@@ -22,12 +22,14 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
+            <b-container fluid>
             <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-row class="list-item">
                 <BasicLists />
                 <ListVariants/>
                 <CustomLists/>
             </b-row>
+            </b-container>
         </main>
     </AppLayout>
 </template>

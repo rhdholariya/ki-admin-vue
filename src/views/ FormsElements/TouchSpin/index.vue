@@ -56,9 +56,8 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row>
                     <b-col xl="3">
                         <TouchSpinCard

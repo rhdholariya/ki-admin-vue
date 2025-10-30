@@ -24,7 +24,6 @@ import FormWithGrid from "@/components/FormsElements/DefaultForms/FormWithGrid.v
 import FormWithGutter from "@/components/FormsElements/DefaultForms/FormWithGutter.vue";
 
 
-// State
 const loading = ref(false)
 const username = ref('')
 const preference = ref('1')
@@ -49,16 +48,16 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row>
-                    <!-- Form components -->
+
                     <vertical-form/>
                     <horizontal-form/>
                     <form-with-grid />
                     <form-with-gutter />
 
-                    <!-- Inline form -->
+
                     <b-col cols="12">
                         <b-card>
                             <b-card-header>

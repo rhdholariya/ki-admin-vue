@@ -1,13 +1,9 @@
-<script setup >
-import {BAlert, BButton, BCard, BCol, BCollapse , BCardHeader} from "bootstrap-vue-next";
+<script setup>
+import {BAlert, BButton, BCard, BCol, BCollapse, BCardHeader} from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
-import { ref} from "vue";
-
+import {ref} from "vue";
 const open = ref(false);
 
-
-
-// Outline Alerts
 const alerts = [
     {type: "outline-primary", message: "Outline-alert primary - check it out!"},
     {type: "outline-secondary", message: "Outline-alert secondary - check it out!"},

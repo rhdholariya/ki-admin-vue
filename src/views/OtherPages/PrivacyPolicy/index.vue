@@ -15,10 +15,10 @@ import {
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// === Heading
+
 const heading = "What Information do we collect from you?";
 
-// === Paragraphs
+
 const paragraphs = [
     `ki-admin Store ("Company") is committed to safeguarding your privacy. This Privacy Policy applies to information we collect on our website located at gragertsgrocerystore.com (the "Website") our SMS text messaging program and third party text message service (the "SMS Service") our digital coupon service (the "Digital Coupon Program") our customer loyalty program (the "Loyalty Program") and our mobile shopping app (the "ki-admin"). In this Privacy Policy, we refer to the Website, the SMS Service, the Digital Coupon Program, the Loyalty Program and the ki-admin together as the "Services".`,
     `We use this Privacy Policy to clearly disclose to you our privacy practices in a manner that is easy to understand. If there is something you do not understand about our privacy practices, please feel free to contact us at the contact information at the bottom of this Privacy Policy.`,
@@ -26,7 +26,6 @@ const paragraphs = [
     `We collect information in several ways. Some of the information we collect is personal to you. Other information is anonymous. We collect the following categories of information:`,
 ];
 
-// === List Items
 const listItems = [
     'During registration on the Website or the ki-admin, we ask for your name and email address',
     'When you sign up for digital coupons, we ask for your mobile phone number',
@@ -40,14 +39,11 @@ const listItems = [
     'When you visit and navigate our site, use our applications or third party sites, or open our emails, we may collect technical information about your use of our site including IP address, device identifier, the type of browser you use, the files you request and the domain name and country from which you request information.',
 ];
 
-// === How We Collect
 const howWeCollectHeading = "How do we collect information from you?";
 const howWeCollectPara = `We collect much of the information listed above directly from you when you submit it on our Website or in the ki-admin. This includes information such as registration information, contact information, and information used in our digital coupon and loyalty programs. If you do not want to share your information, you can choose not to participate in a particular service or activity.`;
 
-// === Last Update
 const lastUpdated = "Last update: 11 Sep, 2024";
 
-// === Breadcrumb
 const breadcrumbItems = {
     title: "Privacy Policy",
     items: [
@@ -73,7 +69,7 @@ const breadcrumbItems = {
                                 </h3>
 
                                 <div class="mt-4">
-                                    <!-- Paragraphs -->
+
                                     <p
                                         v-for="(para, idx) in paragraphs"
                                         :key="idx"
@@ -87,7 +83,7 @@ const breadcrumbItems = {
                                         {{ para }}
                                     </p>
 
-                                    <!-- List Items -->
+
                                     <ul class="px-5 py-3">
                                         <li
                                             v-for="(item, idx) in listItems"
@@ -98,7 +94,7 @@ const breadcrumbItems = {
                                         </li>
                                     </ul>
 
-                                    <!-- How We Collect -->
+
                                     <h4 class="text-primary mt-3">
                                         <PhStarFour size="18" weight="fill" class="text-primary me-2" />
                                         {{ howWeCollectHeading }}
@@ -113,7 +109,7 @@ const breadcrumbItems = {
                                         {{ howWeCollectPara }}
                                     </p>
 
-                                    <!-- Last Updated -->
+
                                     <p class="text-primary text-end f-w-600 text-d-underline">
                                         {{ lastUpdated }}
                                     </p>

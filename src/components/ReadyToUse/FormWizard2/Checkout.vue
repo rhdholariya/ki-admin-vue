@@ -10,7 +10,7 @@ import {
     PhListChecks, PhPlus, PhInfo, PhStar, PhStarHalf,
 } from '@phosphor-icons/vue';
 
-// Reactive data
+
 const currentTab = ref('tabs1');
 const modalOpen = ref(false);
 const selectedAddress = ref('home');
@@ -95,7 +95,6 @@ const preferenceOptions = ref([
     }
 ]);
 
-// Methods
 const setCurrentTab = (tabId) => {
     currentTab.value = tabId;
 };
@@ -104,9 +103,6 @@ const toggleModal = () => {
     modalOpen.value = !modalOpen.value;
 };
 
-const handlePaymentSelect = (method) => {
-    selectedPayment.value = method;
-};
 </script>
 
 <template>
@@ -139,7 +135,7 @@ const handlePaymentSelect = (method) => {
 
                 <b-col lg="8" xl="6">
                     <div class="tab-contentlist">
-                        <!-- Cart Tab -->
+
                         <b-row v-if="currentTab === 'tabs1'">
                             <b-col cols="12">
                                 <div v-for="item in cartItems" :key="item.id" class="cart-box">
@@ -178,13 +174,12 @@ const handlePaymentSelect = (method) => {
                             </b-col>
                         </b-row>
 
-                        <!-- Address Tab -->
+
                         <b-row v-if="currentTab === 'tabs2'">
                             <b-col md="12">
                                 <h5 class="tab-heading mb-3">Your Address</h5>
                             </b-col>
 
-                            <!-- Home Address -->
                             <b-col md="6">
                                 <b-card class="shadow-none" no-body>
                                     <b-card-body class="address-content">
@@ -205,7 +200,6 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Office Address -->
                             <b-col md="6">
                                 <b-card class="shadow-none">
                                     <b-card-body class="address-content">
@@ -488,7 +482,7 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Cash on Delivery -->
+
                             <b-col md="12">
                                 <b-card class="shadow-none" no-body>
                                     <b-card-body class="select-content">
@@ -514,7 +508,7 @@ const handlePaymentSelect = (method) => {
 
 
                         <b-row v-if="currentTab === 'tabs4'" class="offer-content-box">
-                            <!-- Bank Offers -->
+
                             <b-col md="6" xxl="4">
                                 <b-card no-body>
                                     <b-card-body>
@@ -529,7 +523,7 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Partner Offers -->
+
                             <b-col md="6" xxl="4">
                                 <b-card no-body>
                                     <b-card-body>
@@ -545,7 +539,7 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Other Offers -->
+
                             <b-col md="6" xxl="4">
                                 <b-card no-body>
                                     <b-card-body>
@@ -560,7 +554,7 @@ const handlePaymentSelect = (method) => {
                                 </b-card>
                             </b-col>
 
-                            <!-- Offer List -->
+
                             <b-col md="12">
                                 <ul class="list-group b-r-0 list-contact-box offer-list-group mb-3">
                                     <li v-for="(offer, index) in offers" :key="index" class="list-group-item">
@@ -578,7 +572,7 @@ const handlePaymentSelect = (method) => {
                                 </ul>
                             </b-col>
 
-                            <!-- Gift Wrap Alert -->
+
                             <b-col md="12" v-if="giftWrapVisible">
                                 <b-alert variant="success" show
                                          class="alert-light-border-success d-flex align-items-center justify-content-between">

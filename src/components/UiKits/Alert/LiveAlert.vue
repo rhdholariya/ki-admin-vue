@@ -3,16 +3,13 @@ import { ref } from "vue";
 import {BButton, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
-// reactive states
 const open = ref(false);
 const alerts = ref([]);
 
-// add alert
 const appendAlert = (message, type) => {
     alerts.value.push({ message, type });
 };
 
-// remove alert
 const removeAlert = (index) => {
     alerts.value.splice(index, 1);
 };
@@ -55,7 +52,7 @@ const removeAlert = (index) => {
                 Show live alert
             </b-button>
 
-        <!-- Prism / Code Preview -->
+
         <b-collapse v-model="open">
       <pre class="language-html mt-3">
         <code class="language-html">

@@ -69,7 +69,6 @@ const fields = [
         <b-card-body>
             <b-form class="app-form">
                 <b-row class="justify-content-center">
-                    <!-- Image Upload Section -->
                     <b-col cols="12" class="text-center mb-3">
                         <div class="d-flex justify-content-center mb-3">
                             <div class="avatar-upload">
@@ -96,7 +95,6 @@ const fields = [
                         </div>
                     </b-col>
 
-                    <!-- Dynamic Form Fields -->
                     <b-col
                         v-for="(field, index) in fields"
                         :key="index"
@@ -116,14 +114,13 @@ const fields = [
                             </option>
                         </b-form-select>
 
-                        <!-- Textarea -->
                         <b-form-textarea
                             v-else-if="field.type === 'textarea'"
                             :placeholder="field.placeholder"
                             rows="1"
                         ></b-form-textarea>
 
-                        <!-- Email Input Group -->
+
                         <b-input-group v-else-if="field.type === 'email-group'">
                             <b-input-group-text>@</b-input-group-text>
                             <b-form-input
@@ -178,7 +175,7 @@ const fields = [
                     </b-col>
                 </b-row>
                 <b-row>
-                    <!-- Buttons -->
+
                     <b-col cols="12" class="text-end">
                         <b-button variant="primary" type="submit" class="me-2">Add</b-button>
                         <b-button variant="secondary" type="reset">Reset</b-button>

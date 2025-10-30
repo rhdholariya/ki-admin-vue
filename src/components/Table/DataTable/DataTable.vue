@@ -77,7 +77,7 @@ const handleView = (item) => {
 </script>
 
 <template>
-    <div class="col-12 mt-4">
+    <div class="col-12 ">
         <CustomDataTable
             title="Default Datatable"
             description="DataTables has most features enabled by default..."

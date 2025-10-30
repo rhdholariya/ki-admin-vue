@@ -47,10 +47,7 @@ const overlayStyle = [
 </script>
 
 <template>
-    <div class="overlay-page">
-        <b-container fluid>
-            <b-row>
-                <b-col cols="12">
+    <b-col cols="12">
                     <b-card no-body>
                         <b-card-header>
                             <h5>Custome Overlay</h5>
@@ -178,7 +175,4 @@ const overlayStyle = [
                         </b-card-body>
                     </b-card>
                 </b-col>
-            </b-row>
-        </b-container>
-    </div>
 </template>

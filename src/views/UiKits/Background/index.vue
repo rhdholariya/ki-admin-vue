@@ -11,10 +11,10 @@ import BasicBackground from "@/components/UiKits/Background/BasicBackground.vue"
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "Divider",
+    title: "Background",
     items: [
         {label: "Ui-kits", icon: PhBriefcase},
-        {label: "Divider", active: true},
+        {label: "Background", active: true},
     ],
 };
 </script>
@@ -22,8 +22,9 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
+
                 <b-row>
                     <BasicBackground />
                 </b-row>

@@ -41,7 +41,6 @@ const activeTab = ref('step1')
                     class="custom-navstpes mb-3"
                     nav-class="tab-light-primary"
                 >
-                    >
                     <b-tab key="step1" active>
                         <template #title>
                             <div class="d-flex align-items-center">

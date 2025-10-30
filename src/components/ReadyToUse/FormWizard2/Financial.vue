@@ -151,7 +151,7 @@ const accordionRadios = [
                             <div class="step">
                                 <component :is="step.icon" size="20" weight="bold"/>
                             </div>
-                            <div class="px-2">
+                            <div class="px-2 d-none d-sm-none d-md-block">
                                 <h6 class="mb-0">{{ step.title }}</h6>
                                 <span class="text-secondary">{{ step.subtitle }}</span>
                             </div>
@@ -164,7 +164,6 @@ const accordionRadios = [
             <b-row>
                 <b-col cols="12">
                     <div class="tab-contents-list">
-                        <!-- Tab 1: About -->
                         <div v-if="activeTab === 'tab-1'">
                             <b-form class="app-form">
                                 <b-row>
@@ -287,7 +286,7 @@ const accordionRadios = [
 
                                 <b-accordion flush class="mt-4">
                                     <b-accordion-item v-for="section in accordionRadios" :key="section.title"
-                                                      :title="section.title">
+                                                      :title="section.title" class="d-sm-none">
                                         <b-row class="custome-radio-list">
                                             <b-col v-for="opt in section.options" :key="opt.value" md="6" xl="4">
                                                 <b-card class="shadow-none">

@@ -23,9 +23,8 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
     <main>
-        <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
         <b-container fluid>
+            <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-row>
                 <BasicButtons/>
                 <SmartButton />

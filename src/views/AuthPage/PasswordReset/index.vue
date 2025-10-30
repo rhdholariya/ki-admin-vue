@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
+import {reactive} from "vue";
+import {useRouter} from "vue-router";
 import {
     BContainer,
     BRow,
@@ -12,17 +12,14 @@ import {
 
 const router = useRouter();
 
-// reactive form values
 const formValues = reactive({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
 });
 
-// submit handler
 const handleSubmit = (e) => {
     e.preventDefault();
-    // here you can add validation logic if needed
     router.push("/auth-pages/sign-in");
 };
 </script>
@@ -32,7 +29,6 @@ const handleSubmit = (e) => {
         <div class="main-container">
             <b-container>
                 <b-row class="main-content-box">
-                    <!-- Left side image content -->
                     <b-col lg="7" class="image-contentbox d-none d-lg-block">
                         <div class="form-container">
                             <div class="signup-content mt-4">
@@ -54,7 +50,6 @@ const handleSubmit = (e) => {
                         </div>
                     </b-col>
 
-                    <!-- Right side form -->
                     <b-col lg="5" class="form-content-box">
                         <div class="form-container">
                             <b-form class="app-form" @submit="handleSubmit">
@@ -68,7 +63,6 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Current Password - Full width -->
                                     <b-col cols="12">
                                         <div class="mb-3">
                                             <b-form-input
@@ -81,7 +75,6 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- New & Confirm Password - Side by side -->
                                     <b-col lg="6">
                                         <div class="mb-3">
                                             <b-form-input
@@ -103,7 +96,6 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Submit button -->
                                     <b-col cols="12" class="mt-3">
                                         <b-button type="submit" variant="primary" size="lg" class="w-100">
                                             Reset Password

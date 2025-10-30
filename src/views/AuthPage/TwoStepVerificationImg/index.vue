@@ -23,7 +23,6 @@ const handleSubmit = () => {
         otp[i] = '';
     }
 
-    // Focus first input
     inputRefs[0].value?.focus();
 };
 </script>

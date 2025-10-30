@@ -69,9 +69,9 @@ const ribbonDataPosition = [
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems" />
+
                 <b-row>
                     <!-- Basic Ribbon -->
                     <b-col cols="12">

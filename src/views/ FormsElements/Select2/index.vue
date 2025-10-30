@@ -70,11 +70,9 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems" />
                 <b-row>
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>

@@ -123,8 +123,8 @@ function updateSlider2(values, handle) {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems" />
                 <BRow>
                     <!-- Bootstrap Range Sliders -->
                     <BCol md="12" xl="6">

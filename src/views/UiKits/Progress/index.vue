@@ -16,11 +16,6 @@ import {
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase, PhCode, PhTrash, PhX} from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
-
-
-
-
-
 const breadcrumbItems = {
     title: "Progress",
     items: [

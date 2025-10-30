@@ -217,12 +217,12 @@ const toggleSideSort = () => {
 
 
                     <div class="list-pagination mt-3 ">
-                        <ul class="pagination mb-0 d-inline-flex d-sm-flex-wrap ">
+                        <ul class="pagination mb-0 d-inline-flex">
                             <li class="page-item" :class="{ disabled: tablePage === 1 }">
                                 <b-button
                                     size="sm"
                                     variant="secondary"
-                                    class="me-1"
+                                    class="me-1 "
                                     @click="goToPage(tablePage - 1)"
                                 >
                                     Prev

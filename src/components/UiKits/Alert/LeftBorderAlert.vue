@@ -4,7 +4,7 @@ import {PhCode} from "@phosphor-icons/vue";
 import {ref} from "vue";
 
 const open = ref(false);
-// Outline Alerts
+
 const alerts = [
     {color: "border-primary", message: "Primary border alert - check out!"},
     {color: "border-secondary", message: "Secondary border alert - check out!"},

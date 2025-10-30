@@ -15,6 +15,8 @@ import 'simplebar/dist/simplebar.min.css';
 import VueApexCharts from "vue3-apexcharts";
 const app = createApp(App)
 import '@/assets/scss/style.scss';
+import '@/assets/scss/responsive.scss'
+
 app.component("Breadcrumbs", Breadcrumbs);
 app.use(router)
 app.use(FlagIcon)

@@ -7,8 +7,6 @@ import {
 const open = ref(false);
 
 
-
-// Outline Alerts
 const alerts = [
     {
         color: "primary",

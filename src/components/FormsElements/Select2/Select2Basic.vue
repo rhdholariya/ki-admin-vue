@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
-import {BCard, BCardBody, BCardHeader, BCol, BRow} from "bootstrap-vue-next";
+import {BCard, BCardBody, BCardHeader, BCol, BContainer, BRow} from "bootstrap-vue-next";
 
 
 const isMounted = ref(false)
@@ -49,9 +49,8 @@ onMounted(() => {
 
 <template>
     <div v-if="!isMounted">Loading...</div>
-    <b-row v-else>
-        <b-row>
-            <b-col xl="12">
+
+        <b-col cols="12">
                 <b-card no-body>
                     <b-card-header>
                         <h5>Advanced Select2 Examples</h5>
@@ -197,6 +196,7 @@ onMounted(() => {
                     </b-card-body>
                 </b-card>
             </b-col>
-        </b-row>
-    </b-row>
+
+
+
 </template>

@@ -2,9 +2,8 @@
 import { BDropdown, BDropdownItem } from 'bootstrap-vue-next'
 import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue'
 import { paymentData } from '@/data/tablePage/DataTable/jobData.js'
-import { h } from 'vue'
 
-// columns setup
+
 const columns = [
     {
         key: 'avatar',
@@ -72,7 +71,7 @@ const columns = [
         card-class-name=""
         :show-actions="false"
     >
-        <!-- ✅ Dropdown Slot -->
+
         <template #cell(actions)="row">
             <b-dropdown variant="white" no-caret class="shadow-none border-0 icon-btn p-0">
                 <template #button-content>

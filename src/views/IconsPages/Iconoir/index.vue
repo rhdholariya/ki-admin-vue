@@ -49,10 +49,10 @@ function copyToClipboard(iconName) {
 
 // Component data
 const breadcrumbItems = computed(() => ({
-  title: "Animated",
+  title: "Iconoir",
   items: [
     {label: " Icons ", icon: PhShapes},
-    {label: "Animated", active: true},
+    {label: "Iconoir", active: true},
   ],
 }));
 </script>

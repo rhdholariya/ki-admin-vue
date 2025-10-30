@@ -8,9 +8,6 @@ import {
 
 const open = ref(false);
 
-
-
-// Outline Alerts
 const alerts = [
     {
         color: "light-border-primary",

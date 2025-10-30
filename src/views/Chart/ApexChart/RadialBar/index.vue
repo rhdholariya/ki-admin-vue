@@ -1,9 +1,9 @@
 <template>
   <AppLayout>
     <main>
-      <Breadcrumb :breadcrumb="breadcrumbItems"/>
       <b-container fluid>
-        <b-row>
+          <Breadcrumb :breadcrumb="breadcrumbItems"/>
+          <b-row>
           <b-col lg="6" xxl="4">
             <b-card no-body>
               <b-card-header>

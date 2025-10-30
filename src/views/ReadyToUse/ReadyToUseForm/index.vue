@@ -12,7 +12,7 @@ import StudentForm from "@/components/ReadyToUse/ReadyToUseForm/StudentForm.vue"
 
 
 
-// Breadcrumb data
+
 const breadcrumbItems = {
     title: "Ready To Use Form",
     items: [
@@ -25,9 +25,8 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row>
                     <b-col cols="12">
                        <AppointmentForm />

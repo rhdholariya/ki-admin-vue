@@ -28,7 +28,6 @@ import {
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// --- SITEMAP DATA ---
 const sitemapData = [
     {
         title: 'Dashboards',
@@ -539,7 +538,6 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- Right Side: Map With Description -->
                     <b-col>
                         <b-card class="sitemap-card" no-body>
                             <b-card-header>

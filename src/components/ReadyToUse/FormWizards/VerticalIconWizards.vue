@@ -69,7 +69,6 @@ const handleSubmit = () => {
         alert("Form submitted successfully!");
         console.log("Form Data:", formData.value);
 
-        // Reset form instead of page reload
         formData.value = {
             name: "",
             aboutSelf: "",

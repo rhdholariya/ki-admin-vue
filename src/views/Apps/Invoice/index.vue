@@ -56,9 +56,9 @@ const handlePrint = () => {
   <app-layout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
-        <breadcrumb :breadcrumb="breadcrumbItems" />
 
+        <breadcrumb :breadcrumb="breadcrumbItems" />
+       <div class="container-lg">
         <b-row>
           <b-col cols="12">
             <b-card>
@@ -180,6 +180,7 @@ const handlePrint = () => {
             </div>
           </b-col>
         </b-row>
+       </div>
       </b-container>
     </main>
   </app-layout>

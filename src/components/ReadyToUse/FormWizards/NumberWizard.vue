@@ -31,7 +31,6 @@ const formData = ref({
 
 const errors = ref({});
 
-// Update field and remove error for this field immediately
 const handleChange = (field, value) => {
     formData.value[field] = value;
 

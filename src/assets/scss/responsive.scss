@@ -1,6 +1,6 @@
 // General theme contents
 
-@use "app/variables";
+@import "app/variables";
 
 @media screen and (max-width: 1660px) and (min-width: 992px) {
   .orders-details-cards {
@@ -647,10 +647,11 @@
   }
 
 }
+
 @media screen and (max-width: 1399px) and (min-width: 567px) {
-  .widget-card{
-    .project-row{
-      + .row{
+  .widget-card {
+    .project-row {
+      + .row {
         height: 70px;
         overflow-y: auto;
       }
@@ -1300,9 +1301,9 @@
 
   .sign-in-bg {
     .form-container {
-      background-color: rgba(var(--white), 0.6);
-      border: 1px solid rgba(var(--white), 0.8);
-      -webkit-backdrop-filter: blur(4px);
+      background-color: rgba(var(--white), 0.6) !important;
+      border: 1px solid rgba(var(--white), 0.8) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
       //backdrop-filter: blur(4px);
       border-radius: var(--app-border-radius);
       box-shadow: var(--box-shadow);
@@ -1328,11 +1329,11 @@
         border: 1px solid rgba(var(--secondary), 0.4);
       }
 
-      i {
+      .icon {
         color: rgba(var(--primary), 1) !important;
       }
 
-      label {
+      label  {
         color: rgba(var(--primary), 1) !important;
       }
 
@@ -1405,7 +1406,8 @@
     .ms-5 {
       margin-left: 0.5rem !important;
     }
-    .ps-4{
+
+    .ps-4 {
       padding-left: 0 !important;
     }
 
@@ -2066,6 +2068,7 @@
         font-size: 13px;
       }
     }
+
     .form-select {
       margin-bottom: 5px;
     }
@@ -2470,20 +2473,22 @@
     }
   }
 
-  .chat-container-content-box{
-    .card-footer{
+  .chat-container-content-box {
+    .card-footer {
       padding: 1rem;
-      .btn-sm{}
+
+      .btn-sm {
+      }
     }
   }
 }
 
 @media screen and (max-width: 480px) {
   .profile-container
-    .image-details
-    .profile-pic
-    .avatar-upload
-    .avatar-preview {
+  .image-details
+  .profile-pic
+  .avatar-upload
+  .avatar-preview {
     width: 100px;
     height: 100px;
   }

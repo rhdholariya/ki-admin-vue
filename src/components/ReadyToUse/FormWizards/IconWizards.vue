@@ -64,7 +64,7 @@
         return Object.keys(currentErrors).length === 0;
     };
 
-    // Next and Previous buttons
+
     const handleNext = () => {
         if (validateStep()) step.value++;
     };
@@ -73,17 +73,6 @@
         step.value--;
     };
 
-    const handleSubmit = (event) => {
-
-        if (validateStep()) {
-            if (validateStep()) {
-                alert("Form submitted successfully!");
-                console.log("Form Data:", formData.value);
-                window.location.reload();
-            }
-        }
-
-    };
     </script>
 
     <template>
@@ -96,7 +85,7 @@
 
             <b-card-body>
                 <div class="form-wizard">
-                    <!-- Steps -->
+
                     <div class="form-wizard-header mb-4">
                         <ul class="form-wizard-steps d-flex gap-3 list-unstyled">
                             <li :class="[{ activated: step >= 1, active: step === 1, 'fw-bold': step === 1 }]">
@@ -111,9 +100,7 @@
                         </ul>
                     </div>
 
-                    <!-- Form -->
                     <b-form class="app-form" @submit="handleSubmit">
-                        <!-- Step 1 -->
                         <template v-if="step === 1">
                             <b-row>
                                 <b-col cols="12">
@@ -158,7 +145,7 @@
                             </b-row>
                         </template>
 
-                        <!-- Step 2 -->
+
                         <template v-else-if="step === 2">
                             <b-row>
                                 <b-col cols="12">
@@ -234,7 +221,6 @@
                             </b-row>
                         </template>
 
-                        <!-- Buttons -->
                         <div class="d-flex justify-content-end gap-2">
                             <b-button v-if="step > 1" variant="secondary" type="button" @click="handlePrev">Previous</b-button>
                             <b-button v-if="step < 3" variant="primary" type="button" @click="handleNext">Next</b-button>

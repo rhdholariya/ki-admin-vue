@@ -25,7 +25,6 @@ const selectedService = ref('Consulting')
 <template>
     <div>
         <b-row>
-            <!-- Payment Methods -->
             <b-col md="6" xl="4">
                 <b-card no-body>
                     <b-card-header>
@@ -67,7 +66,7 @@ const selectedService = ref('Consulting')
                 </b-card>
             </b-col>
 
-            <!-- Project Manager -->
+
             <b-col md="6" xl="4">
                 <b-card no-body>
                     <b-card-header>
@@ -108,7 +107,7 @@ const selectedService = ref('Consulting')
                 </b-card>
             </b-col>
 
-            <!-- Custom Select Group -->
+
             <b-col md="6" xl="4">
                 <b-card class="equal-card" no-body>
                     <b-card-header>
@@ -124,7 +123,7 @@ const selectedService = ref('Consulting')
                             >
                                 <b-card class="shadow-none border" no-body>
                                     <b-card-body class="custom-selection address-content position-relative">
-                                        <!-- Radio Input -->
+
                                         <div class="position-absolute" >
                                             <b-form-radio
                                                 name="service"
@@ -134,13 +133,13 @@ const selectedService = ref('Consulting')
                                             />
                                         </div>
 
-                                        <!-- Content with Phosphor Icon -->
+
                                         <div class="ps-4">
                                             <div class="mb-2">
                                                 <span class="fs-6 fw-semibold">{{ service.name }}</span>
                                             </div>
                                             <div class="d-flex align-items-start">
-                                                <!-- Replace with Phosphor Icon -->
+
                                                 <PhCode
                                                     v-if="service.name === 'Web Development'"
                                                     :size="50"

@@ -1,11 +1,22 @@
 <script setup>
 import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BCardFooter, BButton } from "bootstrap-vue-next";
 import AppLayout from "@/views/AppLayout.vue";
+import {PhNotepad} from "@phosphor-icons/vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+
+const breadcrumbItems = {
+    title: "Blank",
+    items: [
+        { label: "Other Pages", icon: PhNotepad },
+        { label: "Blank", active: true },
+    ],
+};
 </script>
 
 <template>
     <AppLayout>
         <main>
+            <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-container fluid>
             <b-row>
                 <b-col cols="12">

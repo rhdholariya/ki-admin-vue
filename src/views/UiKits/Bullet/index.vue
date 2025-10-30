@@ -51,10 +51,10 @@ watch(
 
 // === Breadcrumb data
 const breadcrumbItems = {
-    title: "Collapse",
+    title: "Bullet",
     items: [
         {label: "Ui Kits", icon: PhBriefcase},
-        {label: "Collapse", active: true},
+        {label: "Bullet", active: true},
     ]
 }
 </script>

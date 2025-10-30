@@ -20,10 +20,11 @@ const breadcrumbItems = {
     <AppLayout>
         <main>
             <!-- Breadcrumb -->
-            <Breadcrumb :breadcrumb="breadcrumbItems" />
 
             <!-- Notifications -->
              <b-container fluid>
+                 <Breadcrumb :breadcrumb="breadcrumbItems" />
+                 
                  <b-row>
                 <!-- Default Toasts -->
                 <DefaultTost />

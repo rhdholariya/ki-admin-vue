@@ -11,7 +11,6 @@ import FilePondUploaderBase from '@/components/Apps/Profile/FileUploader.vue'
         <b-card-body>
             <b-row class="file-uploader-box">
                 <b-col cols="6">
-                    <!-- Single File Upload -->
                     <FilePondUploaderBase
                         class="filepond-file"
                         :allow-multiple="false"
@@ -21,7 +20,6 @@ import FilePondUploaderBase from '@/components/Apps/Profile/FileUploader.vue'
                 </b-col>
 
                 <b-col cols="6">
-                    <!-- Multiple File Upload -->
                     <FilePondUploaderBase
                         class="filepond-1 "
                         :allow-multiple="true"

@@ -86,7 +86,7 @@ const iconSocialButtons = [
 </script>
 
 <template>
-    <b-row class="g-3">
+    <b-row >
         <!-- Basic Buttons -->
         <b-col xl="12">
             <b-card no-body>

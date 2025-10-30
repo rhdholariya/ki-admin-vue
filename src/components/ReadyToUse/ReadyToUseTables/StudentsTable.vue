@@ -9,7 +9,7 @@ const selectAll = ref(false);
 const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
-// Select All functionality
+
 const toggleSelectAll = () => {
     if (selectAll.value) {
         selectedItems.value = [];
@@ -19,7 +19,7 @@ const toggleSelectAll = () => {
     selectAll.value = !selectAll.value;
 };
 
-// Individual item selection
+
 const toggleItemSelection = (id) => {
     if (selectedItems.value.includes(id)) {
         selectedItems.value = selectedItems.value.filter((itemId) => itemId !== id);
@@ -28,19 +28,19 @@ const toggleItemSelection = (id) => {
     }
 };
 
-// Edit handler
+
 const handleEdit = (student) => {
     console.log("Edit student:", student);
-    // Add your edit logic here
+
 };
 
-// Delete handler
+
 const handleDelete = (student) => {
     itemToDelete.value = student;
     showDeleteModal.value = true;
 };
 
-// Confirm delete
+
 const confirmDelete = () => {
     if (itemToDelete.value) {
         const index = studentsData.findIndex((student) => student.id === itemToDelete.value.id);
@@ -52,7 +52,7 @@ const confirmDelete = () => {
     }
 };
 
-// Define table columns
+
 const columns = [
     {
         key: 'checkbox',
@@ -108,7 +108,6 @@ const columns = [
     },
 ];
 
-// Define footer columns
 const footerColumns = [
     { key: 'checkbox', header: '' },
     { key: 'name', header: 'Name' },
@@ -139,7 +138,6 @@ const footerColumns = [
         :footer-columns="footerColumns"
     />
 
-    <!-- Delete Confirmation Modal -->
     <b-modal
         v-model="showDeleteModal"
         centered

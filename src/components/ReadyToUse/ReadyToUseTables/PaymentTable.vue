@@ -35,7 +35,6 @@ const columns = [
     }
 ]
 
-// Footer columns (for table footer)
 const footerColumns = [
     { key: 'name', header: 'Name' },
     { key: 'billNo', header: 'Bill No' },

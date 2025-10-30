@@ -1,13 +1,22 @@
 <script setup>
 import { ref } from 'vue'
-import { BButton, BCard, BCardHeader, BCardBody, BCol, BForm, BFormGroup, BFormInput, BRow } from 'bootstrap-vue-next'
+import {
+    BButton,
+    BCard,
+    BCardHeader,
+    BCardBody,
+    BCol,
+    BForm,
+    BFormGroup,
+    BFormInput,
+    BRow
+} from 'bootstrap-vue-next'
 
 const fileName = ref('No file chosen, yet.')
 const fileInputRef = ref(null)
 
-
 const handleCustomFileUpload = () => {
-    fileInputRef.value?.click()
+    fileInputRef.value?.$el.click()
 }
 
 const handleFileChange = (e) => {
@@ -28,7 +37,6 @@ const handleFileChange = (e) => {
 
         <b-card-body>
             <b-row>
-
                 <b-col sm="12" xl="6">
                     <b-form>
                         <b-form-group class="mb-3">
@@ -37,7 +45,6 @@ const handleFileChange = (e) => {
                         </b-form-group>
                     </b-form>
                 </b-col>
-
 
                 <b-col sm="12" xl="6">
                     <b-form-group class="mb-3">

@@ -6,7 +6,7 @@ import { BCard, BCardHeader, BCardBody, BRow, BCol, BForm,
 import FileUploader from "@/components/Apps/Profile/FileUploader.vue";
 
 
-// Form data
+
 const form = ref({
     departmentName: "",
     email: "",
@@ -40,28 +40,28 @@ const handleReset = () => {
         <b-card-body>
             <b-form @submit.prevent="handleSubmit" @reset="handleReset" class="app-form">
                 <b-row>
-                    <!-- Department Name -->
+
                     <b-col md="6" class="mb-3">
                         <b-form-group label="Department Name">
                             <b-form-input v-model="form.departmentName" placeholder="Enter Department" />
                         </b-form-group>
                     </b-col>
 
-                    <!-- Email Address -->
+
                     <b-col md="6" class="mb-3">
                         <b-form-group label="Email Address">
                             <b-form-input v-model="form.email" type="email" placeholder="@department.com" />
                         </b-form-group>
                     </b-col>
 
-                    <!-- Department Head -->
+
                     <b-col md="6" xl="8" class="mb-3">
                         <b-form-group label="Department Head">
                             <b-form-input v-model="form.departmentHead" placeholder="Enter Department Head" />
                         </b-form-group>
                     </b-col>
 
-                    <!-- Add Employee -->
+
                     <b-col md="6" xl="4" class="mb-3">
                         <b-form-group label="Add Employee">
                             <b-form-select v-model="form.employee">
@@ -76,14 +76,14 @@ const handleReset = () => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Upload Files -->
+
                     <b-col cols="12" class="mb-3">
                         <b-form-group label="Upload Files">
                           <FileUploader />
                         </b-form-group>
                     </b-col>
 
-                    <!-- Department Bio -->
+
                     <b-col xs="12" class="mb-3">
                         <b-form-group label="Department Bio">
                             <b-form-textarea
@@ -94,7 +94,6 @@ const handleReset = () => {
                         </b-form-group>
                     </b-col>
 
-                    <!-- Buttons -->
                     <b-col cols="12" class="text-end mb-3">
                         <b-button type="submit" variant="primary" class="me-2">Add</b-button>
                         <b-button type="reset" variant="secondary">Reset</b-button>

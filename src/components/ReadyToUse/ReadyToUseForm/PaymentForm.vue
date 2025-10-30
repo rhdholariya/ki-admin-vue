@@ -14,7 +14,6 @@ import PaymentDataForm from "./PaymentDataForm.vue";
 const activeTab = ref("card");
 const refreshTrigger = ref(0);
 
-// when tab changes → trigger refresh
 watch(activeTab, () => {
     refreshTrigger.value++;
 });
@@ -32,7 +31,7 @@ function handleTabChange(tab) {
 
         <b-card-body>
             <b-row>
-                <!-- Tabs Section -->
+
                 <b-col xl="3" lg="4" class="mb-3">
                     <b-tabs
                         v-model="activeTab"

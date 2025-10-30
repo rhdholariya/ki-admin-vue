@@ -23,16 +23,18 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row>
                     <b-col cols="12">
                         <Checkout />
+                    </b-col>
+                    <b-col cols="12">
                         <Financial />
+                    </b-col>
+                    <b-col cols="12">
                         <Booking />
                     </b-col>
-
                 </b-row>
             </b-container>
         </main>

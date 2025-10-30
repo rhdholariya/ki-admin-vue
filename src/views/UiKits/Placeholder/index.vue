@@ -15,10 +15,10 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 // Breadcrumb
 const breadcrumbItems = {
-    title: "Shadow",
+    title: "Placeholder",
     items: [
         {label: "Ui Kits", icon: PhBriefcase},
-        {label: "Shadow", active: true}
+        {label: "Placeholder", active: true}
     ]
 };
 
@@ -66,8 +66,9 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
+                
                 <b-row class="list-item">
                     <!-- Card Placeholder -->
                     <b-col cols="12">

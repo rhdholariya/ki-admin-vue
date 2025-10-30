@@ -5,24 +5,20 @@ import { BContainer, BRow, BCol, BForm, BFormInput, BButton, BFormGroup } from '
 
 const router = useRouter();
 
-// Reactive form fields
 const formValues = reactive({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
 });
 
-// Fields definition
 const fields = [
     { id: 'currentPassword', label: 'Current Password', placeholder: 'Enter Your Password', type: 'password' },
     { id: 'newPassword', label: 'New Password', placeholder: 'Enter Your Password', type: 'password' },
     { id: 'confirmPassword', label: 'Confirm Password', placeholder: 'Enter Your Password', type: 'password' },
 ];
 
-// Submit handler
 const handleSubmit = (e) => {
     e.preventDefault();
-    // Navigate to dashboard
     router.push('/dashboard/ecommerce');
 };
 </script>
@@ -33,14 +29,12 @@ const handleSubmit = (e) => {
             <b-col xs="12" class="p-0">
                 <div class="login-form-container">
 
-                    <!-- Logo -->
                     <div class="mb-4 text-center">
                         <router-link to="/dashboard/ecommerce" class="logo">
                             <img src="/images/logo/3.png" alt="logo" />
                         </router-link>
                     </div>
 
-                    <!-- Form -->
                     <div class="form_container">
                         <b-form class="app-form" @submit="handleSubmit">
 
@@ -52,7 +46,6 @@ const handleSubmit = (e) => {
                                 </p>
                             </div>
 
-                            <!-- Password Fields -->
                             <b-col
                                 cols="12"
                                 v-for="field in fields"
@@ -70,7 +63,6 @@ const handleSubmit = (e) => {
                                 </b-form-group>
                             </b-col>
 
-                            <!-- Reset Button -->
                             <b-col cols="12">
                                 <b-button type="submit" variant="primary" class="w-100">
                                     Reset Password

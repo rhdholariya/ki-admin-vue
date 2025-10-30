@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import {
     BContainer,
     BRow,
@@ -9,9 +9,8 @@ import {
     BButton,
     BFormCheckbox
 } from "bootstrap-vue-next";
-import { RouterLink } from "vue-router";
-import { PhFacebookLogo, PhGoogleLogo, PhTwitterLogo } from "@phosphor-icons/vue";
-
+import {RouterLink} from "vue-router";
+import {PhFacebookLogo, PhGoogleLogo, PhTwitterLogo} from "@phosphor-icons/vue";
 
 const formData = ref({
     username: "",
@@ -21,20 +20,18 @@ const formData = ref({
 });
 
 const inputFields = [
-    { id: "username", label: "Username", placeholder: "Enter Your Username", type: "text" },
-    { id: "email", label: "Email", placeholder: "Enter Your Email", type: "email" },
-    { id: "password", label: "Password", placeholder: "Enter Your Password", type: "password" },
-    { id: "confirmPassword", label: "Confirm Password", placeholder: "Enter Your Password", type: "password" }
+    {id: "username", label: "Username", placeholder: "Enter Your Username", type: "text"},
+    {id: "email", label: "Email", placeholder: "Enter Your Email", type: "email"},
+    {id: "password", label: "Password", placeholder: "Enter Your Password", type: "password"},
+    {id: "confirmPassword", label: "Confirm Password", placeholder: "Enter Your Password", type: "password"}
 ];
 
-// Social buttons
 const socialButtons = [
-    { icon: PhFacebookLogo, className: "btn-light-white" },
-    { icon: PhGoogleLogo, className: "btn-light-white" },
-    { icon: PhTwitterLogo, className: "btn-light-white" }
+    {icon: PhFacebookLogo, className: "btn-light-white"},
+    {icon: PhGoogleLogo, className: "btn-light-white"},
+    {icon: PhTwitterLogo, className: "btn-light-white"}
 ];
 
-// Handle form submit
 const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,21 +43,21 @@ const handleSubmit = (e) => {
         <div class="main-container">
             <b-container class="main-container">
                 <b-row class="main-content-box">
-                    <!-- Left Image Section -->
+
                     <b-col lg="7" class="image-contentbox d-none d-lg-block">
                         <div class="form-container">
                             <div class="signup-content mt-4">
                                 <span>
-                                    <img src="/images/logo/1.png" alt="Logo" class="img-fluid" />
+                                    <img src="/images/logo/1.png" alt="Logo" class="img-fluid"/>
                                 </span>
                             </div>
                             <div class="signup-bg-img">
-                                <img src="/images/login/02.png" alt="Background" class="img-fluid" />
+                                <img src="/images/login/02.png" alt="Background" class="img-fluid"/>
                             </div>
                         </div>
                     </b-col>
 
-                    <!-- Form Section -->
+
                     <b-col lg="5" class="form-content-box">
                         <div class="form-container">
                             <b-form class="app-form" @submit="handleSubmit">
@@ -74,7 +71,7 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Username & Email -->
+
                                     <b-col cols="12" v-for="field in inputFields.slice(0,2)" :key="field.id">
                                         <div class="form-floating mb-3">
                                             <b-form-input
@@ -88,7 +85,7 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Password & Confirm Password -->
+
                                     <b-row>
                                         <b-col md="6" xs="12" v-for="field in inputFields.slice(2)" :key="field.id">
                                             <div class="form-floating mb-3">
@@ -104,17 +101,17 @@ const handleSubmit = (e) => {
                                         </b-col>
                                     </b-row>
 
-                                    <!-- Terms & Conditions -->
+
                                     <b-col cols="12">
                                         <b-form-checkbox
                                             id="checkDefault"
                                             class="d-flex align-items-center gap-2 mb-3"
                                         >
-                                            <span class="text-white mt-2 f-s-16">Accept Terms & Conditions</span>
+                                            <label class="text-white mt-2 f-s-16">Accept Terms & Conditions</label>
                                         </b-form-checkbox>
                                     </b-col>
 
-                                    <!-- Sign Up Button -->
+
                                     <b-col xs="12">
                                         <RouterLink
                                             to="/dashboard/ecommerce"
@@ -124,7 +121,7 @@ const handleSubmit = (e) => {
                                         </RouterLink>
                                     </b-col>
 
-                                    <!-- Sign In Link -->
+
                                     <b-col cols="12">
                                         <div class="text-center text-lg-start f-s-14 f-w-500">
                                             Already Have An Account?
@@ -137,12 +134,12 @@ const handleSubmit = (e) => {
                                         </div>
                                     </b-col>
 
-                                    <!-- Divider -->
+
                                     <div class="app-divider-v light justify-content-center py-lg-5 py-3">
                                         <p>OR</p>
                                     </div>
 
-                                    <!-- Social Buttons -->
+
                                     <b-col cols="12">
                                         <div class="d-flex gap-3 justify-content-center text-center">
                                             <b-button
@@ -152,7 +149,7 @@ const handleSubmit = (e) => {
                                                 variant=""
                                                 class="icon-btn w-45 h-45 b-r-15 btn-light-white btn btn-btn-light-white"
                                             >
-                                                <component :is="btn.icon" size="20" weight="bold" />
+                                                <component :is="btn.icon" size="20" weight="bold" class="icon"/>
                                             </b-button>
                                         </div>
                                     </b-col>

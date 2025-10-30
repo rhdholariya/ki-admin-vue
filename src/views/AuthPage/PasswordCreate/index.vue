@@ -1,18 +1,15 @@
 <script setup>
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { BContainer, BRow, BCol, BForm, BFormInput, BButton } from 'bootstrap-vue-next';
+import {reactive, ref} from 'vue';
+import {useRouter} from 'vue-router';
+import {BContainer, BRow, BCol, BForm, BFormInput, BButton} from 'bootstrap-vue-next';
 
 const router = useRouter();
 const isSubmitting = ref(false);
 
-// Reactive form values
 const formValues = reactive({
     newPassword: '',
     confirmPassword: ''
 });
-
-// Fields definition
 const fields = [
     {
         id: 'newPassword',
@@ -26,12 +23,6 @@ const fields = [
     }
 ];
 
-// Handle input change
-const handleChange = (id, value) => {
-    formValues[id] = value;
-};
-
-// Handle form submit
 const handleSubmit = (e) => {
     e.preventDefault();
     isSubmitting.value = true;
@@ -50,26 +41,22 @@ const handleSubmit = (e) => {
             <b-container>
                 <b-row class="main-content-box">
 
-                    <!-- Left Image Box -->
                     <b-col lg="7" class="image-contentbox d-none d-lg-block">
                         <div class="form-container">
                             <div class="signup-content mt-4">
                 <span>
-                  <img src="/images/logo/1.png" alt="" class="img-fluid" />
+                  <img src="/images/logo/1.png" alt="" class="img-fluid"/>
                 </span>
                             </div>
                             <div class="signup-bg-img">
-                                <img src="/images/login/05.png" alt="" class="img-fluid" />
+                                <img src="/images/login/05.png" alt="" class="img-fluid"/>
                             </div>
                         </div>
                     </b-col>
-
-                    <!-- Form Box -->
                     <b-col lg="5" class="form-content-box">
                         <div class="form-container">
                             <b-form class="app-form" @submit="handleSubmit">
 
-                                <!-- Header -->
                                 <b-col cols="12">
                                     <div class="mb-5 text-center text-lg-start">
                                         <h2 class="text-white fw-bold">
@@ -79,31 +66,30 @@ const handleSubmit = (e) => {
                                     </div>
                                 </b-col>
 
-                                <!-- Password Fields -->
                                 <b-row>
-                                <b-col
-                                    xl="6"
-                                    v-for="field in fields"
-                                    :key="field.id"
-                                >
-                                    <div class="form-floating mb-3">
-                                        <b-form-input
-                                            :id="field.id"
-                                            type="password"
-                                            :placeholder="field.placeholder"
-                                            v-model="formValues[field.id]"
-                                            required
-                                        />
-                                        <label :for="field.id">{{ field.label }}</label>
-                                    </div>
-                                </b-col>
+                                    <b-col
+                                        xl="6"
+                                        v-for="field in fields"
+                                        :key="field.id"
+                                    >
+                                        <div class="form-floating mb-3">
+                                            <b-form-input
+                                                :id="field.id"
+                                                type="password"
+                                                :placeholder="field.placeholder"
+                                                v-model="formValues[field.id]"
+                                                required
+                                            />
+                                            <label :for="field.id">{{ field.label }}</label>
+                                        </div>
+                                    </b-col>
                                 </b-row>
 
-                                <!-- Submit Button -->
                                 <b-col cols="12" class="mt-3">
                                     <b-button type="submit" class="w-100" variant="primary">
                                         <template v-if="isSubmitting">
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                  aria-hidden="true"></span>
                                         </template>
                                         <template v-else>
                                             Create Password

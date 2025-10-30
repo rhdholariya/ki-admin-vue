@@ -14,6 +14,7 @@ const breadcrumbItems = computed(() => ({
   title: "Ticket Details",
   items: [
     { label: "Apps", icon: PhStack },
+      {label: "Ticket Page"},
     { label: "Ticket Details", active: true }
   ],
 }));

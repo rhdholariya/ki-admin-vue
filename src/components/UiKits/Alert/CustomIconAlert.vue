@@ -10,7 +10,7 @@ import {
 
 const open = ref(false);
 
-// Alerts data
+
 const alerts = ref([
     {
         type: "basic",
@@ -58,7 +58,7 @@ const alerts = ref([
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Card Header -->
+
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Custom Alerts With Dismissing</h5>
@@ -68,7 +68,7 @@ const alerts = ref([
                 </div>
             </b-card-header>
             <b-card-body>
-                <!-- Render Alerts -->
+
                 <div v-for="(alert, index) in alerts" :key="index">
                     <!-- Basic Alert -->
                     <b-alert v-if="alert.type === 'basic' && alert.show" :variant="alert.color" show dismissible>
@@ -100,7 +100,7 @@ const alerts = ref([
                             </p>
                         </div>
                     </b-alert>
-                    <!-- Border Alert -->
+
                     <b-alert v-else-if="alert.type === 'border' && alert.show" :variant="`border-${alert.color}`" show>
                         <h6>
                             <component :is="alert.icon" class="me-2"/>
@@ -118,7 +118,7 @@ const alerts = ref([
                             >
                         </div>
                     </b-alert>
-                    <!-- Custom Alert -->
+
                     <div v-else-if="alert.type === 'custom' && alert.show" :variant="alert.color"
                          class="custom-alert p-0">
                         <div class="alert-header">
@@ -149,7 +149,7 @@ const alerts = ref([
                     </div>
                 </div>
 
-            <!-- PrismJS Collapse -->
+
             <b-collapse v-model="open" class="mt-3">
         <pre class="language-html" tabindex="0">
 <code>

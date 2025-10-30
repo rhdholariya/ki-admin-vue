@@ -2,10 +2,8 @@
 import {BAlert, BCard, BCardBody, BCol, BCollapse , BButton} from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
 import {ref} from "vue";
-
 const open = ref(false);
 
-// Outline Alerts - Updated with real links
 const alerts = [
     {type: "primary", text: "Light primary color alert with", linkText: "an example link", linkHref: "/docs/getting-started"},
     {type: "secondary", text: "Light secondary color alert with", linkText: "an example link", linkHref: "/docs/components"},
@@ -24,7 +22,6 @@ const alerts = [
             <template #header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Light Alerts With Link</h5>
-                    <!-- Better approach: use button instead of javascript:void(0) -->
                     <b-button @click="open = !open" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
                     </b-button>

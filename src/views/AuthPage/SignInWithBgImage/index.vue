@@ -43,7 +43,7 @@ const handleSubmit = () => {
 
     setTimeout(() => {
         isSubmitting.value = false;
-        router.push("/dashboard/ecommerce"); // Navigate to dashboard
+        router.push("/dashboard/ecommerce");
     }, 1500);
 };
 </script>

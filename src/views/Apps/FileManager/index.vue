@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { BRow } from 'bootstrap-vue-next'
+import {computed, ref} from 'vue'
+import {BContainer, BRow} from 'bootstrap-vue-next'
 import Sidebar from '@/components/Apps/FileManager/FileSidebar.vue'
 import QuickAccess from '@/components/Apps/FileManager/QuickAccess.vue'
 import Folders from '@/components/Apps/FileManager/Folders.vue'
@@ -10,6 +10,8 @@ import StarredContent from '@/components/Apps/FileManager/StarredContent.vue'
 import RecycleBinContent from '@/components/Apps/FileManager/RecycleBinContent.vue'
 import RecentContent from '@/components/Apps/FileManager/RecentContent.vue'
 import AppLayout from "@/views/AppLayout.vue";
+import {PhStack} from "@phosphor-icons/vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 const activeTab = ref(1)
 const modalsRef = ref(null)
@@ -88,12 +90,22 @@ const handleDeleteFile = (file) => {
 const handleRenameConfirmed = (item, newName) => {
   item.name = newName
 }
+
+const breadcrumbItems = computed(() => ({
+    title: "File Manager",
+    items: [
+        { label: "Apps", icon: PhStack },
+        { label: "File Manager", active: true }
+    ],
+}));
 </script>
 
 
 <template>
   <AppLayout>
     <main>
+        <b-container fluid>
+        <Breadcrumb :breadcrumb="breadcrumbItems" />
   <div class="file-manager">
     <b-row>
       <!-- Sidebar -->
@@ -165,6 +177,7 @@ const handleRenameConfirmed = (item, newName) => {
         @rename-confirmed="handleRenameConfirmed"
     />
   </div>
+        </b-container>
     </main>
   </AppLayout>
 </template>

@@ -8,7 +8,7 @@ import {
 } from 'bootstrap-vue-next'
 import { useRouter } from 'vue-router'
 
-// Countdown state
+
 const timeLeft = ref({
     days: 0,
     hours: 0,
@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
                                 </p>
                             </div>
 
-                            <!-- Timer -->
+
                             <div class="timmer-content justify-content-center align-items-center gap-3 mt-4 d-flex flex-wrap">
                                 <div class="time text-center">
                                     <span id="days" class="numbers">{{ timeLeft.days }}</span>
@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
                                 </div>
                             </div>
 
-                            <!-- Email Input -->
+
                             <div class="app-form mb-3 mt-4">
                                 <b-form-input
                                     class="form-control-lg m-auto text-center coming-soon-input"
@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
                                 />
                             </div>
 
-                            <!-- Subscribe Button -->
+
                             <RouterLink
                                 to="/dashboard/ecommerce"
                                 class="btn btn-lg btn-primary mt-3 d-inline-flex align-items-center justify-content-center gap-1"

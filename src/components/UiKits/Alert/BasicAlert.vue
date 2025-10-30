@@ -6,7 +6,7 @@ import { ref} from "vue";
 
 const open = ref(false);
 
-// Prism setup
+
 
 
 // Alerts data

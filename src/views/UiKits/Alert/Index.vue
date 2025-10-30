@@ -1,6 +1,6 @@
 <script setup>
 import {BRow, BContainer} from "bootstrap-vue-next";
-import { PhBriefcase } from "@phosphor-icons/vue";
+import {PhBriefcase} from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import BasicAlert from "@/components/UiKits/Alert/BasicAlert.vue";
 import OutlineAlert from "@/components/UiKits/Alert/OutlineAlert.vue";
@@ -13,7 +13,6 @@ import AlertContent from "@/components/UiKits/Alert/AlertContent.vue";
 import LiveAlert from "@/components/UiKits/Alert/LiveAlert.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Alert",
     items: [
@@ -26,36 +25,28 @@ const breadcrumbItems = {
 <template>
     <AppLayout>
         <main>
-            <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
             <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row>
 
-                    <!-- Basic Alerts -->
+
                     <BasicAlert/>
-                    <!-- Outline Alerts -->
-                    <OutlineAlert />
 
-                    <!-- Light Alerts -->
-                    <LightLinkAlert />
+                    <OutlineAlert/>
 
-                    <!-- Alerts With Icons -->
-                    <IconAlert />
+                    <LightLinkAlert/>
 
-                    <!-- Alerts With Left Border -->
-                    <LeftBorderAlert />
+                    <IconAlert/>
 
-                    <!-- Alerts With Label Icons -->
-                    <LableIconAlert />
+                    <LeftBorderAlert/>
 
-                    <!-- Alerts With custom Icons -->
-                    <CustomIconAlert />
+                    <LableIconAlert/>
 
-                    <!-- Alerts With AlertContent -->
-                    <AlertContent />
+                    <CustomIconAlert/>
 
-                    <!-- Alerts With LiveAlert -->
-                    <LiveAlert />
+                    <AlertContent/>
+
+                    <LiveAlert/>
                 </b-row>
             </b-container>
         </main>
