@@ -198,17 +198,34 @@ const accordionRadios = [
                                 <b-row>
                                     <b-col cols="12"><h6 class="tab-heading mb-3">Do you have an account?</h6></b-col>
 
-                                    <b-col v-for="option in accountOptions" :key="option.value" md="6" xl="4">
-                                        <b-card class="shadow-none">
-                                            <b-card-body class="select-content">
-                                                <b-form-radio :id="option.value" v-model="accountType"
-                                                              :name="'accountType'" :value="option.value"
-                                                              :label="option.label"/>
-                                            </b-card-body>
-                                        </b-card>
-                                    </b-col>
+                                  <b-col
+                                      v-for="option in accountOptions"
+                                      :key="option.value"
+                                      md="6"
+                                      xl="4"
+                                  >
+                                    <b-card class="shadow-none">
+                                      <b-card-body>
+                                        <div class="d-flex align-items-center gap-2">
 
-                                    <b-col v-for="field in accountFormFields" :key="field.id"
+                                          <!-- Radio -->
+                                          <b-form-radio
+                                              :id="option.value"
+                                              v-model="accountType"
+                                              name="accountType"
+                                              :value="option.value"
+                                          />
+
+                                          <!-- Label -->
+                                          <label :for="option.value" class="mb-0">{{ option.label }}</label>
+
+                                        </div>
+                                      </b-card-body>
+                                    </b-card>
+                                  </b-col>
+
+
+                                  <b-col v-for="field in accountFormFields" :key="field.id"
                                            :md="field.id === 'email' ? 12 : 6" cols="12">
                                         <b-form-group :label="field.label" class="mb-3">
                                             <b-form-input :type="field.type" :id="field.id" :name="field.name"
@@ -227,24 +244,42 @@ const accordionRadios = [
                         <div v-if="activeTab === 'tab-3'">
                             <b-form class="app-form">
                                 <b-row>
-                                    <b-col v-for="role in ownershipRoles" :key="role.value" lg="4">
-                                        <b-card class="shadow-none">
-                                            <b-card-body class="select-content">
-                                                <b-form-radio :id="role.value" v-model="selectedRole"
-                                                              :name="'ownershipRole'" :value="role.value">
-                                                    <template #label>
-                                                        <span class="d-flex align-items-center">
-                                                            <img :src="role.image" :alt="role.label" class="me-2"
-                                                                 style="width: 30px; height: 30px;"/>
-                                                            <span class="fs-6 tab-heading">{{ role.label }}</span>
-                                                        </span>
-                                                    </template>
-                                                </b-form-radio>
-                                            </b-card-body>
-                                        </b-card>
-                                    </b-col>
+                                  <b-row class="custome-radio-list">
+                                    <b-col
+                                        v-for="role in ownershipRoles"
+                                        :key="role.value"
+                                        lg="4"
+                                    >
+                                      <b-card class="shadow-none p-3">
 
-                                    <b-col md="6">
+                                        <div class="ownership-option d-flex align-items-center gap-3">
+
+                                          <!-- Radio -->
+                                          <b-form-radio
+                                              :id="role.value"
+                                              v-model="selectedRole"
+                                              :name="'ownershipRole'"
+                                              :value="role.value"
+                                          />
+
+                                          <!-- Right: Image + Label (Row) -->
+                                          <div class="d-flex align-items-center gap-2">
+                                            <img
+                                                :src="role.image"
+                                                :alt="role.label"
+                                                style="width:50px;height:50px;"
+                                            />
+                                            <span class="fs-6 tab-heading">{{ role.label }}</span>
+                                          </div>
+
+                                        </div>
+
+                                      </b-card>
+                                    </b-col>
+                                  </b-row>
+
+
+                                  <b-col md="6">
                                         <b-form-group label="Username" class="mb-3">
                                             <b-form-input type="text" id="username" name="username" required/>
                                         </b-form-group>
@@ -264,27 +299,41 @@ const accordionRadios = [
 
                         <div v-if="activeTab === 'tab-4'">
                             <b-form class="app-form">
-                                <b-row class="custome-radio-list">
-                                    <b-col v-for="opt in financingOptions" :key="opt.value" md="6" xl="4">
-                                        <b-card class="shadow-none">
-                                            <b-card-body class="address-content">
-                                                <b-form-radio :id="opt.value" v-model="selectedFinancingRole"
-                                                              :name="'financingRole'" :value="opt.value">
-                                                    <template #label>
-                                                        <div class="text-center">
-                                                            <img :src="opt.img" :alt="opt.label"
-                                                                 style="width: 50px; height: 50px;"/>
-                                                            <h6 class="tab-heading mt-2">{{ opt.label }}</h6>
-                                                            <p class="text-muted mb-0">{{ opt.desc }}</p>
-                                                        </div>
-                                                    </template>
-                                                </b-form-radio>
-                                            </b-card-body>
-                                        </b-card>
-                                    </b-col>
-                                </b-row>
+                              <b-row class="custome-radio-list">
+                                <b-col
+                                    v-for="opt in financingOptions"
+                                    :key="opt.value"
+                                    md="6"
+                                    xl="4"
+                                >
+                                  <b-card class="shadow-none p-3">
+                                    <div class="financing-option d-flex align-items-start gap-3">
 
-                                <b-accordion flush class="mt-4">
+                                      <b-form-radio
+                                          :id="opt.value"
+                                          v-model="selectedFinancingRole"
+                                          :name="'financingRole'"
+                                          :value="opt.value"
+                                          class="mt-1"
+                                      />
+
+                                      <div>
+                                        <img
+                                            :src="opt.img"
+                                            :alt="opt.label"
+                                            style="width:50px;height:50px;"
+                                            class="mb-2"
+                                        />
+                                        <h6 class="tab-heading">{{ opt.label }}</h6>
+                                        <p class="text-muted mb-0">{{ opt.desc }}</p>
+                                      </div>
+
+                                    </div>
+                                  </b-card>
+                                </b-col>
+                              </b-row>
+
+                              <b-accordion flush class="mt-4">
                                     <b-accordion-item v-for="section in accordionRadios" :key="section.title"
                                                       :title="section.title" class="d-sm-none">
                                         <b-row class="custome-radio-list">
