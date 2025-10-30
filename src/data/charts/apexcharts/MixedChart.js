@@ -24,7 +24,7 @@ export const lineColumnComboChartData = {
         },
         colors: [
             hexToRGB(getLocalStorageItem("color-primary", "#0f626a"), 1),
-            hexToRGB(getLocalStorageItem("color-secondary", "#626262"), 1)
+            hexToRGB(getLocalStorageItem("color-secondary", "#626262"))
         ],
         stroke: {
             width: [0, 4],

@@ -1,41 +1,64 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 import { PhCaretDoubleLeft, PhCaretDoubleRight } from "@phosphor-icons/vue";
 
 const navRef = ref(null);
 const scrollPositionRef = ref(0);
 const size = 150;
 
-// Function to get layout from localStorage
+// --- Helpers to read from localStorage ---
 const getLayout = () => {
   if (typeof window === "undefined") return "ltr";
-  const layout = localStorage.getItem("Ki-Admin-React-Theme-layout-option");
-  return layout || "ltr";
+  return localStorage.getItem("Ki-Admin-React-Theme-layout-option") || "ltr";
 };
 
-// Function to get sidebar option from localStorage
 const getSidebarOption = () => {
   if (typeof window === "undefined") return "vertical-sidebar";
-  return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option");
+  return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option") || "vertical-sidebar";
 };
 
+// --- Reactive refs ---
+const layout = ref(getLayout());
 const sidebarOption = ref(getSidebarOption());
 
-onMounted(() => {
-  setInterval(() => {
-    const currentOption = getSidebarOption();
-    if (currentOption !== sidebarOption.value) {
-      sidebarOption.value = currentOption;
-    }
-  }, 100);
+// --- Listen for localStorage changes ---
+const handleStorageChange = (event) => {
+  if (event.key === "Ki-Admin-React-Theme-layout-option") {
+    layout.value = event.newValue || "ltr";
+  }
+  if (event.key === "Ki-Admin-React-Theme-sidebar-option") {
+    sidebarOption.value = event.newValue || "vertical-sidebar";
+  }
+};
 
-  // Get nav element
+// --- Lifecycle ---
+onMounted(() => {
+  // Get nav reference
   navRef.value = document.querySelector(".main-nav");
+
+  // Listen for layout changes in other tabs or scripts
+  window.addEventListener("storage", handleStorageChange);
+
+  // Optional: Also check every 200ms (if the app changes localStorage in same tab)
+  const syncInterval = setInterval(() => {
+    const currentLayout = getLayout();
+    if (currentLayout !== layout.value) layout.value = currentLayout;
+
+    const currentSidebar = getSidebarOption();
+    if (currentSidebar !== sidebarOption.value) sidebarOption.value = currentSidebar;
+  }, 200);
+
+  // Cleanup
+  onBeforeUnmount(() => {
+    clearInterval(syncInterval);
+    window.removeEventListener("storage", handleStorageChange);
+  });
 });
 
-const layout = computed(() => getLayout());
+// --- Computed ---
 const isRTL = computed(() => layout.value === "rtl");
 
+// --- Scroll Function ---
 const scrollNav = (direction) => {
   const nav = navRef.value;
   if (!nav) return;
@@ -50,6 +73,7 @@ const scrollNav = (direction) => {
   let newOffset;
 
   if (isRTL.value) {
+    // RTL Mode
     if (direction === "right") {
       newOffset = Math.max(scrollPositionRef.value - size, -maxOffset);
     } else {
@@ -57,6 +81,7 @@ const scrollNav = (direction) => {
     }
     nav.style.marginRight = `${newOffset}px`;
   } else {
+    // LTR Mode
     if (direction === "left") {
       newOffset = Math.max(scrollPositionRef.value - size, 0);
     } else {
@@ -69,30 +94,30 @@ const scrollNav = (direction) => {
 };
 </script>
 
-
 <template>
   <div v-if="sidebarOption === 'horizontal-sidebar'" class="menu-navs">
+    <!-- Previous Button -->
     <span
         class="menu-previous"
-        @click="scrollNav(isRTL ? 'right' : 'left')"
+        @click="scrollNav(isRTL.value ? 'right' : 'left')"
         :style="{
-        transform: isRTL ? 'rotate(180deg)' : 'none',
-        float: isRTL ? 'right' : 'left'
+        transform: isRTL.value ? 'rotate(180deg)' : 'none',
+        float: isRTL.value ? 'right' : 'left'
       }"
     >
-   <PhCaretDoubleLeft :size="32" />
+      <PhCaretDoubleLeft :size="32" />
     </span>
+
+    <!-- Next Button -->
     <span
         class="menu-next"
-        @click="scrollNav(isRTL ? 'left' : 'right')"
+        @click="scrollNav(isRTL.value ? 'left' : 'right')"
         :style="{
-        transform: isRTL ? 'rotate(180deg)' : 'none',
-        float: isRTL ? 'left' : 'right'
+        transform: isRTL.value ? 'rotate(180deg)' : 'none',
+        float: isRTL.value ? 'left' : 'right'
       }"
     >
-         <PhCaretDoubleRight size="24" />
+      <PhCaretDoubleRight size="24" />
     </span>
   </div>
 </template>
-
-

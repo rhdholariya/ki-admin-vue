@@ -24,7 +24,7 @@ const toggleSidebar = () => {
   <nav :class="['vertical-sidebar', props.sidebarOpen ? 'semi-nav' : '']">
     <AppLogo :sidebarOpen="sidebarOpen" @toggle-sidebar="toggleSidebar" />
 
-    <SimpleBar class="app-nav simplebar-scrollable-y" style="max-height: 100%;">
+    <SimpleBar class="app-nav simplebar-scrollable-y">
       <ul class="main-nav p-0 mt-2">
         <MenuItem
             v-for="(opt, index) in menuList"
