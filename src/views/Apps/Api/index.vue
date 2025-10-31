@@ -89,7 +89,6 @@ const handleCheckboxChange = ({ checked, item }) => {
   } else {
     selectedItems.value.delete(item.id);
   }
-  console.log('Selected items:', Array.from(selectedItems.value));
 };
 
 // Generate API Key
@@ -144,16 +143,15 @@ const resetApiForm = () => {
 };
 
 const dismissAlert = () => {
-  console.log('Alert dismissed');
+
 };
 
 
-const handleEdit = (item) => {
-  console.log('Edit API Key:', item);
+const handleEdit = () => {
+
 };
 
 const handleDelete = (item) => {
-  console.log('Delete API Key:', item);
   itemToDelete.value = item;
   showDeleteModal.value = true;
 };
@@ -170,7 +168,6 @@ const confirmDelete = () => {
 };
 
 const handleView = (item) => {
-  console.log('View API Key:', item);
   alert(`View API Key Details:\nName: ${item.name}\nAPI Key: ${item.apiKey}\nEmail: ${item.email}`);
 };
 

@@ -3,7 +3,6 @@ import { onMounted } from "vue";
 import Sortable from "sortablejs";
 
 import {
-  BContainer,
   BRow,
   BCol,
   BCard,

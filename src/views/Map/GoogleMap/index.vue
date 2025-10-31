@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue'
 import { BContainer, BRow, BCol, BCard } from 'bootstrap-vue-next'
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhMapPinLine, PhSquaresFour} from "@phosphor-icons/vue";
+import {PhMapPinLine} from "@phosphor-icons/vue";
 
 // Refs for map containers
 const mapRef = ref(null)

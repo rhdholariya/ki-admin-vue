@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, nextTick} from "vue";
+import {ref} from "vue";
 import {BCard, BCol, BRow, BCollapse, BButton, BBadge, BCardBody, BCardHeader} from "bootstrap-vue-next";
 import {PhCode, PhBellRinging} from "@phosphor-icons/vue";
 // Badge + Button data
@@ -41,7 +41,6 @@ const iconMap = {"bell-ringing": PhBellRinging};
 const openButton = ref(false);
 const openHead = ref(false);
 
-;
 </script>
 
 <template>
@@ -98,8 +97,8 @@ const openHead = ref(false);
                 ({label, color, badge, badgeColor, badgeHtml, icon, extraClass}) =>
                     `  &lt;b-button variant="${color}" class="position-relative${extraClass ? ` ${extraClass}` : ''}"&gt;
     ${label}
-    ${icon ? `&ltb-badge class="position-absolute top-0 start-100 translate-middle w-25 h-25 bg-${badgeColor} border border-light rounded-circle">&lt;PhBellRinging /&gt;&lt;/b-badge&gt;`
-                        : badge ? `&ltb-badge class="position-absolute top-0 start-100 translate-middle rounded-pill bg-${badgeColor}">${badge}&lt;/b-badge&gt;`
+    ${icon ? `&lt;-badge class="position-absolute top-0 start-100 translate-middle w-25 h-25 bg-${badgeColor} border border-light rounded-circle">&lt;PhBellRinging /&gt;&lt;/b-badge&gt;`
+                        : badge ? `&lt;-badge class="position-absolute top-0 start-100 translate-middle rounded-pill bg-${badgeColor}">${badge}&lt;/b-badge&gt;`
                             : badgeHtml?.trim() || ''}
   &lt;/b-button&gt;`
             )

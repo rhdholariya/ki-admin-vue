@@ -1,5 +1,5 @@
 <script setup>
-import { BRow, BContainer, BCol } from "bootstrap-vue-next";
+import { BRow, BContainer } from "bootstrap-vue-next";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";

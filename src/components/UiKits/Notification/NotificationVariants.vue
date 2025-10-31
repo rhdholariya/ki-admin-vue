@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import { BCard, BCardHeader, BCardBody, BCol, BRow, BButton } from "bootstrap-vue-next";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";

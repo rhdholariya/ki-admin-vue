@@ -18,7 +18,6 @@ const form = ref({
 const files = ref([]);
 
 const handleSubmit = () => {
-    console.log("Form submitted:", form.value, files.value);
 };
 
 const handleReset = () => {

@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
 import {
   Chart,
   CategoryScale,
@@ -48,7 +47,7 @@ Chart.register(
 import { BCard, BCardBody, BCol, BContainer, BRow, BCardHeader } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhChartPieSlice, PhMapPinLine} from "@phosphor-icons/vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
 // Chart components
 const BarChart = Bar;
 const LineChart = Line;
@@ -57,9 +56,6 @@ const PieChart = Pie;
 const PolarAreaChart = PolarArea;
 const RadarChart = Radar;
 
-onMounted(() => {
-  console.log('Chart.js components mounted');
-});
 
 
 // Breadcrumb data

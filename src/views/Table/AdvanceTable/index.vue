@@ -158,7 +158,7 @@ const handleDrop = (e) => {
 };
 
 
-const handleDragEnd = (e) => {
+const handleDragEnd = () => {
     cleanupDragState();
 };
 

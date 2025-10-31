@@ -1,5 +1,5 @@
 <script setup>
-import { BContainer, BRow, BCol, BCardBody, BLink } from 'bootstrap-vue-next';
+import { BContainer, BRow, BCol, BCardBody } from 'bootstrap-vue-next';
 import { PhHouse } from "@phosphor-icons/vue";
 import { RouterLink } from 'vue-router';
 </script>

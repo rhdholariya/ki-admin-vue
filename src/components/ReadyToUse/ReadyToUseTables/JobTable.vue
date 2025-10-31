@@ -72,7 +72,7 @@ const columns = [
         :show-actions="false"
     >
 
-        <template #cell(actions)="row">
+      <template #cell-actions>
             <b-dropdown variant="white" no-caret class="shadow-none border-0 icon-btn p-0">
                 <template #button-content>
                     <svg

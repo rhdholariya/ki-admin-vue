@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
+import Prism from "prismjs"
+import "prismjs/themes/prism.css"
 import {
     BButton,
     BCard,
@@ -69,7 +71,7 @@ watch(openAvtar3, async (val) => {
   &lt;b-card-header&gt;
     &lt;h5&gt;Colors&lt;/h5&gt;
     &lt;p class="text-muted"&gt;
-      For outline style use&lt;code&gttext-outline-*&lt;/code&gt; class.
+      For outline style use &lt;code&gt;text-outline-*&lt;/code&gt; class.
     &lt;/p&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;

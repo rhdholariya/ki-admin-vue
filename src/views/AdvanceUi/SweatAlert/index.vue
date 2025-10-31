@@ -1,27 +1,31 @@
 <script setup>
-import {BRow, BCol, BContainer} from 'bootstrap-vue-next'
-import SweetAlertCard from "@/components/AdvanceUi/SweatAlert/SweetAlertCard.vue";
-import {sweetAlertData} from "@/data/advanceui/sweat-alert/SweatAlert.js";
-import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhBriefcase} from "@phosphor-icons/vue";
+import { BRow, BCol, BContainer } from 'bootstrap-vue-next'
+import SweetAlertCard from '@/components/AdvanceUi/SweatAlert/SweetAlertCard.vue'
+import { sweetAlertData } from '@/data/advanceui/sweat-alert/SweatAlert.js'
+import AppLayout from '@/views/AppLayout.vue'
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
+import { PhBriefcase } from '@phosphor-icons/vue'
+import Swal from 'sweetalert2'
 
-// Define handleClick logic
+// ✅ Handle SweetAlert events
 const handleClick = async (type) => {
   switch (type) {
     case 'click_1':
       Swal.fire({
         title: 'Any Fool Can Use a Computer',
-        customClass: {confirmButton: 'btn btn-primary'},
+        customClass: { confirmButton: 'btn btn-primary' },
         buttonsStyling: false
       })
       break
+
     case 'click_2':
       Swal.fire('The Internet?', 'That thing is still around?', 'question')
       break
+
     case 'click_3':
       Swal.fire('Good job!', 'You clicked the button!', 'success')
       break
+
     case 'click_4':
       Swal.fire({
         position: 'top-end',
@@ -31,28 +35,31 @@ const handleClick = async (type) => {
         timer: 1500
       })
       break
+
     case 'click_5':
       Swal.fire({
         title: 'Custom animation with Animate.css',
-        showClass: {popup: 'animate__animated animate__fadeInDown'},
-        hideClass: {popup: 'animate__animated animate__fadeOutUp'}
+        showClass: { popup: 'animate__animated animate__fadeInDown' },
+        hideClass: { popup: 'animate__animated animate__fadeOutUp' }
       })
       break
+
     case 'click_6':
       Swal.fire({
-        title: "Sweet!",
-        text: "Modal with a custom image.",
-        imageUrl: "../assets/images/blog/21.jpg",
+        title: 'Sweet!',
+        text: 'Modal with a custom image.',
+        imageUrl: '/assets/images/blog/21.jpg',
         imageWidth: 400,
         imageHeight: 400,
-        imageAlt: "Custom image"
+        imageAlt: 'Custom image'
       })
       break
+
     case 'click_7':
       Swal.fire({
         title: 'Submit your Github username',
         input: 'text',
-        inputAttributes: {autocapitalize: 'off'},
+        inputAttributes: { autocapitalize: 'off' },
         showCancelButton: true,
         confirmButtonText: 'Look up',
         showLoaderOnConfirm: true,
@@ -63,26 +70,32 @@ const handleClick = async (type) => {
             return response.json()
           } catch (error) {
             Swal.showValidationMessage(`Request failed: ${error}`)
+            return null
           }
         },
         allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({title: `${result.value.login}'s avatar`, imageUrl: result.value.avatar_url})
+        if (result.isConfirmed && result.value) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+          })
         }
       })
       break
+
     case 'click_8':
       Swal.fire({
         title: 'How old are you?',
         icon: 'question',
         input: 'range',
         inputLabel: 'Your age',
-        inputAttributes: {min: 8, max: 120, step: 1},
+        inputAttributes: { min: 8, max: 120, step: 1 },
         inputValue: 25
       })
       break
-    case 'click_9':
+
+    case 'click_9': {
       let timerInterval
       Swal.fire({
         title: 'Auto close alert!',
@@ -93,29 +106,28 @@ const handleClick = async (type) => {
           Swal.showLoading()
           const b = Swal.getHtmlContainer().querySelector('b')
           timerInterval = setInterval(() => {
-            b.textContent = Swal.getTimerLeft()
+            if (b) b.textContent = Swal.getTimerLeft()
           }, 100)
         },
         willClose: () => clearInterval(timerInterval)
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
       })
       break
+    }
+
     case 'click_10':
       Swal.fire({
-        title: "<strong>Welcome</strong>",
-        html: "Start Multipurpose, clean modern responsive bootstrap 5 admin template",
+        title: '<strong>Welcome</strong>',
+        html: 'Start Multipurpose, clean modern responsive bootstrap 5 admin template',
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
-        confirmButtonAriaLabel: "Thumbs up, great!",
+        confirmButtonAriaLabel: 'Thumbs up, great!',
         cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-        cancelButtonAriaLabel: "Thumbs down"
+        cancelButtonAriaLabel: 'Thumbs down'
       })
       break
+
     case 'click_11':
       Swal.fire({
         title: 'Are you sure?',
@@ -131,11 +143,16 @@ const handleClick = async (type) => {
         }
       })
       break
-    case 'click_12':
+
+    case 'click_12': {
       const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {confirmButton: 'btn btn-primary ms-2', cancelButton: 'btn btn-danger'},
+        customClass: {
+          confirmButton: 'btn btn-primary ms-2',
+          cancelButton: 'btn btn-danger'
+        },
         buttonsStyling: false
       })
+
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -146,28 +163,53 @@ const handleClick = async (type) => {
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire('Deleted!', 'Your file has been deleted.', 'success')
+          swalWithBootstrapButtons.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+          )
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire('Cancelled', 'Your imaginary file is safe :)', 'error')
+          swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'Your imaginary file is safe :)',
+              'error'
+          )
         }
       })
       break
+    }
+
     case 'click_13':
-      Swal.fire({title: 'Sweet!', text: 'Custom width, padding, background..'})
+      Swal.fire({
+        title: 'Sweet!',
+        text: 'Custom width, padding, background..'
+      })
       break
-    case 'click_14':
+
+    case 'click_14': {
       const ipAPI = '//api.ipify.org?format=json'
-      const inputValue = await fetch(ipAPI).then(r => r.json()).then(data => data.ip)
+      const inputValue = await fetch(ipAPI)
+          .then((r) => r.json())
+          .then((data) => data.ip)
+
       const {value: ipAddress} = await Swal.fire({
         title: 'Enter your IP address',
         input: 'text',
         inputLabel: 'Your IP address',
-        inputValue: inputValue,
+        inputValue,
         showCancelButton: true,
-        inputValidator: (value) => !value ? 'You need to write something!' : undefined
+        inputValidator: (value) => {
+          if (!value) return 'You need to write something!'
+          return null
+        }
       })
-      if (ipAddress) Swal.fire(`Your IP address is ${ipAddress}`)
+
+      if (ipAddress) {
+        Swal.fire(`Your IP address is ${ipAddress}`)
+      }
       break
+    }
+
     case 'click_15':
       Swal.fire({
         icon: 'error',
@@ -176,11 +218,9 @@ const handleClick = async (type) => {
         footer: '<a href="">Why do I have this issue?</a>'
       })
       break
-    case 'click_16':
+
+    case 'click_16': {
       const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
@@ -188,20 +228,29 @@ const handleClick = async (type) => {
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-      Toast.fire({icon: 'success', title: 'Signed in successfully'})
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully'
+      })
+      break
+    }
+
+    default:
       break
   }
 }
 
-// Breadcrumb data
+// ✅ Breadcrumb data
 const breadcrumbItems = {
-  title: "Sweat Alert",
+  title: 'Sweat Alert',
   items: [
-    {label: " Advance UI ", icon: PhBriefcase},
-    {label: "Sweat Alert", active: true},
-  ],
-};
+    {label: 'Advance UI', icon: PhBriefcase},
+    {label: 'Sweat Alert', active: true}
+  ]
+}
 </script>
+
 <template>
   <AppLayout>
     <main>
@@ -219,11 +268,11 @@ const breadcrumbItems = {
                 :title="card.title"
                 :description="card.description"
                 :color="card.color"
-                :onClick="() => handleClick(card.description)"
+                @click="handleClick(card.description)"
             />
           </b-col>
         </b-row>
-        </b-container>
+      </b-container>
     </main>
   </AppLayout>
 </template>

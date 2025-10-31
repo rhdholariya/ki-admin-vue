@@ -1,10 +1,7 @@
 <script setup>
-import {
-  BCol,
-    BButton
-} from "bootstrap-vue-next";
+import { BCol, BButton } from "bootstrap-vue-next";
 
-const props = defineProps({
+defineProps({
   plan: String,
   price: Number,
   yearlyPrice: Number,
@@ -13,7 +10,7 @@ const props = defineProps({
   imgSrcBack: String,
   isBest: { type: Boolean, default: false },
   bgColor: String
-})
+});
 </script>
 
 <template>
@@ -42,7 +39,7 @@ const props = defineProps({
             <ul class="pricing-list">
               <li v-for="(feature, index) in features" :key="index">{{ feature }}</li>
             </ul>
-            <b-button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
+            <b-button :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
           </div>
         </div>
 
@@ -64,7 +61,7 @@ const props = defineProps({
             <ul class="pricing-list">
               <li v-for="(feature, index) in features" :key="index">{{ feature }}</li>
             </ul>
-            <b-button type="button" :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
+            <b-button :class="`btn btn-${bgColor} w-100`">Buy Plans</b-button>
           </div>
         </div>
       </div>

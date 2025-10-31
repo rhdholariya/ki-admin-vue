@@ -28,7 +28,6 @@ const handleCardInputChange = (field, value) => {
 
 const handleCardSubmit = (e) => {
   e.preventDefault();
-  console.log("Submitted card data:", cardData.value);
   alert("Payment submitted successfully!");
 };
 </script>

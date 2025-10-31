@@ -1,10 +1,9 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { BButton, BOffcanvas } from 'bootstrap-vue-next'
 import {
   PhBell,
   PhTrash,
-  PhShoppingBagOpen,
   PhBellRinging
 } from '@phosphor-icons/vue'
 
@@ -84,9 +83,9 @@ function removeNotification(id) {
           <div v-if="notifications.length">
             <div v-for="notification in notifications" :key="notification.id" class="notification-message head-box p-3 border-bottom d-flex align-items-start">
               <div class="message-content-box flex-grow-1 pe-2">
-                <a class="f-s-15 text-dark mb-2" href="./read_email.html">
+                <router-link class="f-s-15 text-dark mb-2" to="./read_email.html">
                   {{ notification.title }}
-                </a>
+                </router-link>
                 <div v-if="notification.actions.length">
                   <a
                       v-for="(action, index) in notification.actions"

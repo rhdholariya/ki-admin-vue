@@ -20,7 +20,6 @@ const toggleDropdown = () => {
 };
 
 const selectLanguage = (lang) => {
-  console.log("selectLanguage => ", lang)
   selectedLang.value = lang;
   dropdownOpen.value = false;
 };
@@ -31,7 +30,6 @@ const selectLanguage = (lang) => {
     <a href="#" class="head-icon ps-0" @click.prevent="toggleDropdown">
       <div class="lang-flag" :class="`lang-${selectedLang.code}`">
         <span class="flag rounded-circle overflow-hidden">
-<!--          <i :class="selectedLang.flag"></i>-->
           <flag :iso="selectedLang.code" class="flag-icon-squared b-r-15 f-s-28" />
         </span>
       </div>
