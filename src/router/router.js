@@ -10,7 +10,7 @@ import ProjectDashboard from '@/views/Dashboard/Project/index.vue'
 import BadgesPage from "@/views/UiKits/Badges/index.vue";
 import ButtonPage from "@/views/UiKits/Button/index.vue";
 import CardPage from "@/views/UiKits/Card/index.vue";
-import GridPage from "@/views/UiKits/grid/index.vue";
+import GridPage from "@/views/UiKits/Grid/index.vue";
 import DropdownPage from "@/views/UiKits/Dropdown/index.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
