@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCol, BCard, BCardHeader, BCardBody, BTabs, BTab, BCollapse, BButton } from "bootstrap-vue-next";
+import { BCol, BCard, BCardHeader, BTabs, BTab, BCollapse, BButton } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
 // Convert tab content to arrays instead of HTML strings

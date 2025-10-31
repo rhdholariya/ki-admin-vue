@@ -1,7 +1,7 @@
 <script setup>
-import {ref, defineProps, defineEmits} from "vue";
-import {BDropdown, BDropdownItem, BDropdownDivider} from "bootstrap-vue-next";
-import {RouterLink} from "vue-router";
+import { ref, defineProps, defineEmits } from "vue";
+import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue-next";
+import { RouterLink } from "vue-router";
 import {
   PhCaretRight,
   PhGear,
@@ -11,20 +11,29 @@ import {
   PhSignOut
 } from "@phosphor-icons/vue";
 
-const props = defineProps({
-  sidebarOpen: Boolean
+// Props
+defineProps({
+  sidebarOpen: Boolean,
 });
 
+// Emits
 const emit = defineEmits(["toggle-sidebar"]);
 
+// Dropdown state
 const dropdownOpen = ref(false);
-const setDropdownOpen = (isOpen) => (dropdownOpen.value = isOpen);
+const setDropdownOpen = (isOpen) => {
+  dropdownOpen.value = isOpen;
+};
 
-const toggleSidebar = () => emit("toggle-sidebar");
+// Sidebar toggle handler
+const toggleSidebar = () => {
+  emit("toggle-sidebar");
+};
 </script>
 
 <template>
   <div class="app-logo">
+    <!-- Logo -->
     <RouterLink class="logo d-inline-block" to="/">
       <img alt="Logo" src="/images/logo/1.png"/>
     </RouterLink>
@@ -41,7 +50,9 @@ const toggleSidebar = () => emit("toggle-sidebar");
     <div class="d-flex align-items-center nav-profile p-3">
       <span class="h-45 w-45 d-flex-center b-r-10 position-relative bg-danger m-auto">
         <img alt="avatar" class="img-fluid b-r-10" src="/images/avatar/woman.jpg"/>
-        <span class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle"/>
+        <span
+            class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle"
+        />
       </span>
 
       <div class="flex-grow-1 ps-2">
@@ -49,6 +60,7 @@ const toggleSidebar = () => emit("toggle-sidebar");
         <p class="text-muted f-s-12 mb-0">Web Developer</p>
       </div>
 
+      <!-- Profile Dropdown -->
       <b-dropdown
           :model-value="dropdownOpen"
           @update:model-value="setDropdownOpen"
@@ -56,17 +68,18 @@ const toggleSidebar = () => emit("toggle-sidebar");
           toggle-class="p-0"
           menu-class="dropdown-menu"
           class="profile-menu-dropdown dropdown-icon-none"
+          no-caret
       >
         <template #button-content>
           <PhGear size="20"/>
         </template>
 
-        <b-dropdown-item as="router-link" :to="'/apps/profile-page/profile'" target="_blank">
+        <b-dropdown-item as="router-link" to="/apps/profile-page/profile" target="_blank">
           <PhUserCircle size="20" class="me-1"/>
           Profile Details
         </b-dropdown-item>
 
-        <b-dropdown-item as="router-link" :to="'/apps/profile-page/setting'" target="_blank">
+        <b-dropdown-item as="router-link" to="/apps/profile-page/setting" target="_blank">
           <PhGear size="20" class="me-1"/>
           Settings
         </b-dropdown-item>
@@ -81,21 +94,34 @@ const toggleSidebar = () => emit("toggle-sidebar");
             </div>
             <div class="flex-shrink-0">
               <div class="form-check form-switch">
-                <input class="form-check-input form-check-primary" id="incognitoSwitch" type="checkbox"/>
+                <input
+                    class="form-check-input form-check-primary"
+                    id="incognitoSwitch"
+                    type="checkbox"
+                />
               </div>
             </div>
           </div>
         </b-dropdown-item>
 
-        <b-dropdown-item as="router-link" :to="'/auth-pages/sign-up'" target="_blank"
-                         class="mb-0 text-secondary f-w-500">
+        <b-dropdown-item
+            as="router-link"
+            to="/auth-pages/sign-up"
+            target="_blank"
+            class="mb-0 text-secondary f-w-500"
+        >
           <PhUserPlus size="20" class="me-1"/>
           Add account
         </b-dropdown-item>
 
         <b-dropdown-divider class="app-divider-v dotted py-1"/>
 
-        <b-dropdown-item as="router-link" :to="'/auth-pages/sign-in'" target="_blank" class="mb-0 text-danger">
+        <b-dropdown-item
+            as="router-link"
+            to="/auth-pages/sign-in"
+            target="_blank"
+            class="mb-0 text-danger"
+        >
           <PhSignOut size="20" class="me-1"/>
           Log Out
         </b-dropdown-item>

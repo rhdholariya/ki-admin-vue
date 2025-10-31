@@ -208,11 +208,10 @@ const settingsTabs = ref([
 
 
 const handleDeleteClick = async () => {
-  console.log("Delete tab clicked");
+
 
   try {
     const { default: Swal } = await import("sweetalert2");
-    console.log("Swal loaded:", Swal);
 
     const result = await Swal.fire({
       title: "Are you sure?",

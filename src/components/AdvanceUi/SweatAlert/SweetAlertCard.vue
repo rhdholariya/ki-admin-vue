@@ -1,14 +1,6 @@
 <!-- SweetAlertCard.vue -->
 <script setup>
-import { defineProps } from 'vue'
-import { BCard, BCardHeader, BCardBody, BButton } from 'bootstrap-vue-next'
-
-const props = defineProps({
-  title: String,
-  description: String,
-  color: String,
-  onClick: Function
-})
+import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
 </script>
 
 <template>

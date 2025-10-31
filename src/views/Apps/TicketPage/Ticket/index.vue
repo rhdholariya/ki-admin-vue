@@ -111,7 +111,6 @@ const saveTicket = () => {
 
     ticketData.value.unshift(newTicket);
 
-    console.log('New ticket added:', newTicket);
     showModal.value = false;
     resetForm();
 };
@@ -138,7 +137,6 @@ const saveEditTicket = () => {
             };
         }
 
-        console.log('Updated ticket:', ticketData.value[ticketIndex]);
         showEditModal.value = false;
         resetEditForm();
     }
@@ -211,7 +209,7 @@ const columns = ref([
         key: 'agent',
         header: 'Agent',
         className: '',
-        render: (value, item) => `
+        render: (value) => `
       <div class="d-flex align-items-center">
         <div class="h-30 w-30 d-flex-center b-r-50 overflow-hidden ${value.bgClass} me-2">
           <img alt="" class="img-fluid" src="${value.image}" onerror="this.src='/images/avatar/1.png'">
@@ -224,7 +222,7 @@ const columns = ref([
         key: 'priority',
         header: 'Priority',
         className: '',
-        render: (value, item) => `
+        render: (value) => `
       <span class="badge ${value.class}">${value.text}</span>
     `
     },
@@ -237,7 +235,7 @@ const columns = ref([
         key: 'status',
         header: 'Status',
         className: '',
-        render: (value, item) => `
+        render: (value) => `
       <span class="badge ${value.class}">${value.text}</span>
     `
     },
@@ -255,7 +253,6 @@ const columns = ref([
 
 
 const handleEdit = (item) => {
-    console.log('Edit item:', item);
     currentEditingTicket.value = item;
 
 
@@ -270,13 +267,13 @@ const handleEdit = (item) => {
 };
 
 const handleDelete = (item) => {
-    console.log('Delete item:', item);
+
     currentDeletingTicket.value = item;
     showDeleteModal.value = true;
 };
 
-const handleView = (item) => {
-    console.log('View item:', item);
+const handleView = () => {
+
 
 };
 

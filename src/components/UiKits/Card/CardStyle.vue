@@ -10,12 +10,6 @@ const avatarImages = [
     "/images/avatar/3.png",
 ];
 
-const avatarBgClasses = [
-    "text-bg-danger",
-    "text-bg-success",
-    "text-bg-warning",
-    "text-bg-info",
-];
 
 const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
 

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCard, BCardHeader, BCardBody, BCol, BRow, BButton , BListGroupItem , BListGroup } from "bootstrap-vue-next";
+import { BCard, BCardHeader, BCardBody, BCol, BRow , BListGroupItem , BListGroup } from "bootstrap-vue-next";
 import { PhArrowSquareRight, PhLinkBreak } from "@phosphor-icons/vue";
 
 // --- Lists Data ---
@@ -47,10 +47,11 @@ const activeIndex = ref(0);
 const toggleActive = (index) => {
     activeIndex.value = activeIndex.value === index ? null : index;
 };
-const handleLinkClick = (link) => {
-    console.log("Clicked:", link.text);
-    // Yahan aap reactive navigation ya koi action kar sakte ho
+const handleLinkClick = (item) => {
+  emit("edit-item", item);
 };
+
+const emit = defineEmits(["edit-item", "delete-item", "view-item"]);
 
 </script>
 

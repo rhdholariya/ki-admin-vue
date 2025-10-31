@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { BCard, BCardBody } from "bootstrap-vue-next";
 import FsLightbox from "fslightbox-vue";
-import { IconBrandHipchat, IconDotsVertical, IconHeart, IconSend } from "@tabler/icons-vue";
 
 // Image sources - make sure these paths are correct
 const imageSources = [

@@ -8,10 +8,11 @@ import {
   BCardHeader,
   BCardBody
 } from "bootstrap-vue-next";
-
+import Prism from "prismjs";
+import "prismjs/themes/prism.css";
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhBriefcase} from "@phosphor-icons/vue";
+import { PhBriefcase } from "@phosphor-icons/vue";
 
 onMounted(() => {
   Prism.highlightAll();
@@ -21,33 +22,30 @@ onMounted(() => {
 const breadcrumbItems = {
   title: "Prismjs",
   items: [
-    {label: "Advance UI", icon: PhBriefcase},
-    {label: "Prismjs", active: true},
+    { label: "Advance UI", icon: PhBriefcase },
+    { label: "Prismjs", active: true },
   ],
 };
 </script>
 
-
-
 <template>
   <AppLayout>
     <main>
-    <b-container fluid>
-      <Breadcrumb :breadcrumb="breadcrumbItems"/>
+      <b-container fluid>
+        <Breadcrumb :breadcrumb="breadcrumbItems" />
 
-      <b-row>
-        <!-- Left Column -->
-        <b-col xxl="6" xl="6" lg="12">
-          <b-row>
-
-            <b-col cols="12">
-              <b-card no-body>
-                <b-card-header>
-                  <h5>Dual Listboxes - HTML</h5>
-                </b-card-header>
-                <b-card-body>
-      <pre>
-        <code class="language-html" v-pre>
+        <b-row>
+          <!-- Left Column -->
+          <b-col xxl="6" xl="6" lg="12">
+            <b-row>
+              <!-- HTML Example -->
+              <b-col cols="12">
+                <b-card no-body>
+                  <b-card-header>
+                    <h5>Dual Listboxes - HTML</h5>
+                  </b-card-header>
+                  <b-card-body>
+                    <pre><code class="language-html" v-pre>
 &lt;div class="container-fluid"&gt;
   &lt;b-row&gt;
     &lt;b-col md="6"&gt;
@@ -74,21 +72,19 @@ const breadcrumbItems = {
     &lt;/b-col&gt;
   &lt;/b-row&gt;
 &lt;/div&gt;
-        </code>
-      </pre>
-                </b-card-body>
-              </b-card>
-            </b-col>
+                    </code></pre>
+                  </b-card-body>
+                </b-card>
+              </b-col>
 
-            <!-- CSS Example -->
-            <b-col cols="12">
-              <b-card no-body>
-                <b-card-header>
-                  <h5>Dual Listboxes-css</h5>
-                </b-card-header>
-                <b-card-body>
-                  <pre>
-                    <code class="language-css">
+              <!-- CSS Example -->
+              <b-col cols="12">
+                <b-card no-body>
+                  <b-card-header>
+                    <h5>Dual Listboxes - CSS</h5>
+                  </b-card-header>
+                  <b-card-body>
+                    <pre><code class="language-css">
 {`.dual-listbox .dual-listbox__button {
   border-radius: 5px;
   background-color: rgba(var(--primary), 0.9);
@@ -102,26 +98,24 @@ const breadcrumbItems = {
   background-color: rgba(var(--primary), 0.1);
   color: rgba(var(--primary), 1);
 }`}
-                    </code>
-                  </pre>
-                </b-card-body>
-              </b-card>
-            </b-col>
-          </b-row>
-        </b-col>
+                    </code></pre>
+                  </b-card-body>
+                </b-card>
+              </b-col>
+            </b-row>
+          </b-col>
 
-        <!-- Right Column -->
-        <b-col xxl="6" xl="6" lg="12">
-          <b-row>
-            <!-- SCSS Example -->
-            <b-col cols="12">
-              <b-card no-body>
-                <b-card-header>
-                  <h5>Dual Listboxes-scss</h5>
-                </b-card-header>
-                <b-card-body>
-                  <pre class="h-390">
-                    <code class="language-css">
+          <!-- Right Column -->
+          <b-col xxl="6" xl="6" lg="12">
+            <b-row>
+              <!-- SCSS Example -->
+              <b-col cols="12">
+                <b-card no-body>
+                  <b-card-header>
+                    <h5>Dual Listboxes - SCSS</h5>
+                  </b-card-header>
+                  <b-card-body>
+                    <pre class="h-390"><code class="language-css">
 {`.dual-listbox {
   width: 100%;
   .dual-listbox__container {
@@ -154,43 +148,40 @@ const breadcrumbItems = {
     border: 1px solid rgba(var(--dark), 0.20);
   }
 }`}
-                    </code>
-                  </pre>
-                </b-card-body>
-              </b-card>
-            </b-col>
+                    </code></pre>
+                  </b-card-body>
+                </b-card>
+              </b-col>
 
-            <!-- JS Example -->
-            <b-col cols="12">
-              <b-card no-body>
-                <b-card-header>
-                  <h5>Dual Listboxes-javascript</h5>
-                </b-card-header>
-                <b-card-body>
-                  <pre>
-                    <code class="language-javascript">
-{`var dlb4 = new DualListbox(".select4", {
-  showSortButtons: true,
-});
-var sources = document.querySelectorAll(".source");
-for (var i = 0; i < sources.length; i++) {
-  var source = sources[i];
-  source.addEventListener("click", function(event) {
-    var code = document.querySelector("." + event.currentTarget.dataset.source);
-    code.classList.toggle("open");
+              <!-- JS Example -->
+              <b-col cols="12">
+                <b-card no-body>
+                  <b-card-header>
+                    <h5>Dual Listboxes - JavaScript</h5>
+                  </b-card-header>
+                  <b-card-body>
+  <pre><code class="language-javascript" v-pre>
+&lt;script&gt;
+  var dlb4 = new DualListbox(".select4", {
+    showSortButtons: true,
   });
-}`}
-                    </code>
-                  </pre>
-                </b-card-body>
-              </b-card>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+  var sources = document.querySelectorAll(".source");
+  for (var i = 0; i &lt; sources.length; i++) {
+    var source = sources[i];
+    source.addEventListener("click", function(event) {
+      var code = document.querySelector("." + event.currentTarget.dataset.source);
+      code.classList.toggle("open");
+    });
+  }
+&lt;/script&gt;
+  </code></pre>
+                  </b-card-body>
+                </b-card>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
     </main>
   </AppLayout>
 </template>
-
-

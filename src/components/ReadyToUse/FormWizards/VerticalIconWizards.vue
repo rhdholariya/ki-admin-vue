@@ -67,7 +67,6 @@ const handlePrev = () => {
 const handleSubmit = () => {
     if (validateStep()) {
         alert("Form submitted successfully!");
-        console.log("Form Data:", formData.value);
 
         formData.value = {
             name: "",

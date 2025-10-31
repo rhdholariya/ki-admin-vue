@@ -63,8 +63,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Register apexcharts component
-const apexchart = VueApexCharts;
 
 // Create reactive references for chart configs
 const basicBoxWhiskerChart = ref({});

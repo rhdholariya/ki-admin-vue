@@ -55,7 +55,6 @@ const getBadgeClass = (index) => {
 // Handle subscription form
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log("Subscribed with email:", email.value);
   email.value = "";
 };
 </script>

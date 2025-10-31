@@ -40,7 +40,6 @@ const breadcrumbItems = ref({
 // Handle form submission
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log("Form submitted:", formData.value);
 };
 
 // Handle cancel

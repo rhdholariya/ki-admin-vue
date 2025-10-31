@@ -78,7 +78,7 @@ import AppLayout from "@/views/AppLayout.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
 
-const apexchart = VueApexCharts;
+
 
 const basicRadarChart = ref({});
 const multiSeriesRadarChart = ref({});

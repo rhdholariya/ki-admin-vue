@@ -82,7 +82,7 @@ import {
   BCardHeader,
   BCardBody
 } from 'bootstrap-vue-next';
-import VueApexCharts from "vue3-apexcharts";
+
 
 
 import {
@@ -93,10 +93,8 @@ import {
 } from '@/data/charts/apexcharts/LineChart.js';
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhChartPieSlice, PhStack} from "@phosphor-icons/vue";
+import {PhStack} from "@phosphor-icons/vue";
 
-// Register apexcharts component
-const apexchart = VueApexCharts;
 
 // Create reactive references for chart configs with different names
 const basicChart = ref({});

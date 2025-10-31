@@ -7,7 +7,6 @@ import {
   PhTrash,
   PhStar,
   PhShoppingBagOpen,
-  PhX
 } from '@phosphor-icons/vue'
 
 // Offcanvas visibility
@@ -95,7 +94,7 @@ function toggleCart() {
 
     <!-- Cart Offcanvas -->
     <b-offcanvas v-model="showCart" placement="end" class="cart-offcanvas">
-      <template #header class="justify-content-between">
+      <template #header>
         <h5 class="offcanvas-title">Cart</h5>
         <b-button aria-label="Close" class="btn-close" type="button" @click="toggleCart"></b-button>
       </template>

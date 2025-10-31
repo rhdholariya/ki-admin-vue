@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import Sortable from "sortablejs";
-import { BCard, BCardBody, BCardImg, BCardTitle, BCardText, BCol, BRow } from "bootstrap-vue-next";
+import { BCard, BCardBody, BCardImg, BCol, BRow } from "bootstrap-vue-next";
 import { IconHeart } from "@tabler/icons-vue";
 
 // Sample card items

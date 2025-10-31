@@ -19,8 +19,7 @@ import AboutMe from "@/components/Apps/Profile/AboutMe.vue";
 const data = ref("1");
 
 // Watch for changes to debug
-watch(data, (newValue) => {
-  console.log('Profile data changed to:', newValue);
+watch(data, () => {
 });
 
 // Computed breadcrumb data

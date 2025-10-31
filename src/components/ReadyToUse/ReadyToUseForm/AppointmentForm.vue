@@ -34,7 +34,6 @@ const form = ref({
 });
 
 const handleSubmit = () => {
-    console.log('Form submitted:', form.value);
 };
 
 const handleReset = () => {

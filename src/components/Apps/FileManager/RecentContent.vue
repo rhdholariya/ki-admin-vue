@@ -50,7 +50,7 @@ const toggleFavorite = (id) => {
 }
 
 const viewItem = (item) => {
-  console.log('View recent item:', item)
+  emit('view-item', item)
 }
 
 const editItem = (item) => {

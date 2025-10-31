@@ -7,7 +7,6 @@ import ColorAvatar from "@/components/UiKits/Avatar/ColorAvatar.vue";
 import ImagesAvatar from "@/components/UiKits/Avatar/ImagesAvatar.vue";
 import LightAvatar from "@/components/UiKits/Avatar/LightAvatar.vue";
 import OutlineAvatar from "@/components/UiKits/Avatar/OutlineAvatar.vue";
-import RadiusBadge from "@/components/UiKits/Badge/RadiusBadge.vue";
 import RadiusAvatar from "@/components/UiKits/Avatar/RadiusAvatar.vue";
 import TooltipAvatar from "@/components/UiKits/Avatar/TooltipAvatar.vue";
 

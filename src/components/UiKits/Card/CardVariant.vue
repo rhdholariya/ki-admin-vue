@@ -1,5 +1,5 @@
 <script setup>
-import {BCard, BCol, BRow} from "bootstrap-vue-next";
+import {BCard, BCol} from "bootstrap-vue-next";
 import {
     PhAlarm,
     PhBug,

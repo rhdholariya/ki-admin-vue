@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { BCard, BCardHeader, BCardBody, BButton } from 'bootstrap-vue-next';
+import { BCard, BCardHeader, BCardBody } from 'bootstrap-vue-next';
 import FileUploader from '@/components/Apps/Profile/FileUploader.vue';
 import { IconFolderFilled, IconDownload, IconBrandHipchat} from '@tabler/icons-vue'
 </script>

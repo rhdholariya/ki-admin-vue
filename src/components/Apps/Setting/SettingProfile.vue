@@ -219,8 +219,6 @@ const handleFileChange = (event) => {
 };
 
 const handleSubmit = () => {
-  console.log("Form submitted:", formData.value);
-  // Add your form submission logic here
 };
 </script>
 
