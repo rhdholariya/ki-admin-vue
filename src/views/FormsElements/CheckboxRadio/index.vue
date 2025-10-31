@@ -23,7 +23,7 @@ import {
     radioImageOptions,
     radioPlatforms,
     toggleData
-} from '@/data/FormElements/Checkbox/checkboxData'
+} from '@/data/formelements/Checkbox/CheckboxData.js'
 
 
 const selectedRadios = reactive({
