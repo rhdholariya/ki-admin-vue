@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import SvgIcon from "@/components/layouts/sidebar/SvgIcon.vue";
+import SvgIcon from "@/components/Layouts/sidebar/SvgIcon.vue";
 
 const props = defineProps({
   title: String,
