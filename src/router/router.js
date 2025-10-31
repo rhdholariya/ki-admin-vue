@@ -44,7 +44,7 @@ import SliderPage from "@/views/AdvanceUi/Slider/index.vue";
 import BootstrapVuePage from "@/views/AdvanceUi/BootstrapVueSlider/index.vue";
 import ScrollpyPage from "@/views/AdvanceUi/Scrollpy/index.vue";
 import TooltipPage from "@/views/AdvanceUi/TooltipPopover/index.vue";
-import RatingPage from "@/views/AdvanceUi/rating/index.vue";
+import RatingPage from "@/views/AdvanceUi/Rating/index.vue";
 import PrismPage from "@/views/AdvanceUi/Prism/index.vue";
 import CountDownPage from "@/views/AdvanceUi/CountDown/index.vue";
 import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
