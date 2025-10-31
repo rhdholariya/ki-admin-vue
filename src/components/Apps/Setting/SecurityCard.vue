@@ -40,9 +40,9 @@
           <b-col md="6" class="security-discription">
             <p class="text-secondary fs-6 mb-2">{{ item.description }}</p>
             <b-badge
+                variant="secondary-light"
               v-if="item.badge"
-              :bg="item.badge.color"
-              class="text-secondary p-2"
+              class="text-light-secondary p-2"
             >
               {{ item.badge.icon }}
               {{ item.badge.text }}
@@ -109,8 +109,8 @@
                   </div>
                   <div class="device-menu-icons">
                     <b-badge
-                      bg="light-secondary"
-                      class="p-2 f-s-16 text-secondary"
+                      variant="secondary-light"
+                      class="p-2 f-s-16 text-light-secondary"
                     >
                       <IconCircleXFilled
                         :size="16"
@@ -147,8 +147,8 @@
                   </div>
                   <div class="device-menu-icons">
                     <b-badge
-                      bg="light-secondary"
-                      class="p-2 f-s-16 text-secondary"
+                      variant="secondary-light"
+                      class="p-2 f-s-16 text-light-secondary"
                     >
                       <IconCircleXFilled
                         :size="16"

@@ -1,13 +1,26 @@
+<script setup>
+import { BCard, BCardBody, BBadge, BCol } from 'bootstrap-vue-next'
+import VueApexCharts from 'vue3-apexcharts'
+
+import {
+  taskOverviewCards,
+  taskOverviewOptions
+} from '@/data/dashboard/project/TopCardsData.js'
+
+import ProjectMeetingCard from "@/components/Widget/ProjectMeetingCard.vue"
+import ProjectDetailsCard from "@/components/Widget/ProjectDetailsCard.vue"
+</script>
+
 <template>
   <!-- Task Overview Cards -->
   <b-col md="7" xxl="5">
-    <BCard
+    <b-card
         v-for="card in taskOverviewCards"
         :key="card.id"
         :class="`overview-details-box b-s-3-${card.borderColor}`"
         no-body
     >
-      <BCardBody>
+      <b-card-body>
         <div class="row">
           <b-col cols="6">
             <div class="d-flex gap-3 align-items-center">
@@ -23,16 +36,16 @@
                   Task Overview
                 </p>
                 <div class="chart-card-box d-flex align-items-center">
-                  <VueApexCharts
+                  <vue-apex-charts
                       :options="taskOverviewOptions(card.bgColor)"
                       :series="taskOverviewOptions(card.bgColor).series"
                       type="line"
                       height="40"
                       width="100"
                   />
-                  <BBadge :bg="card.badgeColor" class="b-r-50">
+                  <b-badge :bg="card.badgeColor" class="b-r-50">
                     {{ card.badgeValue }}
-                  </BBadge>
+                  </b-badge>
                 </div>
               </div>
             </div>
@@ -58,10 +71,9 @@
               </div>
             </div>
           </b-col>
-
         </div>
-      </BCardBody>
-    </BCard>
+      </b-card-body>
+    </b-card>
   </b-col>
 
   <!-- Meeting Card -->
@@ -70,19 +82,7 @@
   </b-col>
 
   <!-- Project Card -->
-  <b-col md="7" lg="4" >
-    <ProjectDetailsCard />
+  <b-col md="7" lg="4">
+    <ProjectDetailsCard/>
   </b-col>
 </template>
-
-<script setup>
-import { BCard, BCardBody, BBadge, BCol } from 'bootstrap-vue-next'
-import VueApexCharts from 'vue3-apexcharts'
-
-import {
-  taskOverviewCards,
-  taskOverviewOptions
-} from '@/data/dashboard/project/TopCardsData.js'
-import ProjectMeetingCard from "@/components/Widget/ProjectMeetingCard.vue";
-import ProjectDetailsCard from "@/components/Widget/ProjectDetailsCard.vue";
-</script>

@@ -1,4 +1,4 @@
-// Sample data for ActivityTimeline component
+import { PhDeviceMobile , PhLaptop } from "@phosphor-icons/vue";
 export const activities = [
   {
     id: 1,
@@ -326,22 +326,22 @@ export const leftSessionList = [
     location: "San Francisco, CA",
     status: "online",
     iconColor: "primary",
-    icon: "ph-device-mobile" // This would be a Phosphor icon component
+    icon: PhLaptop ,
   },
   {
     name: "iPhone 13",
     location: "San Francisco, CA",
     status: "online",
     iconColor: "success",
-    icon: "ph-smartphone" // This would be a Phosphor icon component
+    icon: PhDeviceMobile ,
   },
   {
     name: "iPad Air",
     location: "San Francisco, CA",
     status: "offline",
     iconColor: "info",
-    icon: "ph-tablet" // This would be a Phosphor icon component
-  }
+    icon: PhDeviceMobile ,
+  },
 ];
 
 // Right session list data
@@ -351,20 +351,20 @@ export const rightSessionList = [
     location: "New York, NY",
     status: "online",
     iconColor: "primary",
-    icon: "ph-desktop"
+    icon: PhDeviceMobile ,
   },
   {
     name: "Android Phone",
     location: "New York, NY",
     status: "offline",
     iconColor: "success",
-    icon: "ph-device-mobile"
+    icon: PhDeviceMobile,
   },
   {
     name: "Chrome Browser",
     location: "New York, NY",
     status: "online",
     iconColor: "warning",
-    icon: "ph-browser"
+    icon: PhDeviceMobile ,
   }
 ];
