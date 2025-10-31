@@ -135,7 +135,7 @@ import ProjectDetailsPage from '@/views/Apps/ProjectPage/ProjectDetails/index.vu
 import ToDoPage from '@/views/Apps/Todo/index.vue'
 import TeamPage from '@/views/Apps/Team/index.vue'
 import ApiPage from '@/views/Apps/Api/index.vue'
-import InvoicePage from '@/views/Apps/invoice/index.vue'
+import InvoicePage from '@/views/Apps/Invoice/index.vue'
 import ChatPage from '@/views/Apps/Chat/index.vue'
 import FileManagerPage from '@/views/Apps/FileManager/index.vue'
 import BookmarkPage from '@/views/Apps/Bookmark/index.vue'
