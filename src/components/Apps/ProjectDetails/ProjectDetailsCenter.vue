@@ -1,5 +1,6 @@
 <script setup>
-import {ref, onMounted, onUnmounted} from "vue";
+import { ref, onMounted } from "vue";
+import FsLightbox from "fslightbox-vue";
 import {
   BCol,
   BCard,
@@ -15,9 +16,9 @@ import {
   BDropdown,
   BDropdownItem,
 } from "bootstrap-vue-next";
+import { Tooltip } from "bootstrap";
 
-// Icons
-import {PhImageSquare} from "@phosphor-icons/vue";
+import { PhImageSquare } from "@phosphor-icons/vue";
 import {
   IconCamera,
   IconMicrophone,
@@ -26,39 +27,56 @@ import {
   IconSend,
 } from "@tabler/icons-vue";
 
-// Project activities data
-import {projectActivities} from "@/data/app/projectapp/ProjectDetailData.js";
+import { projectActivities } from "@/data/app/projectapp/ProjectDetailData.js";
 
-// GLightbox CSS
-import "glightbox/dist/css/glightbox.min.css";
-
-// Reactive state
+// -------------------
+// State & lightbox
+// -------------------
 const message = ref("");
-let lightbox = null;
+const lightboxToggler = ref(false);
+const currentSlide = ref(1);
+const lightboxSources = ref([]);
 
-// Helper: timeline icon color
-const getTimelineIconClass = (id) => {
-  const map = {
-    1: "text-light-primary",
-    2: "text-light-info",
-    3: "text-light-success",
-    4: "text-light-danger",
-    5: "text-light-primary",
-  };
-  return map[id] || "text-light-primary";
+// Collect all image sources
+const getAllImageSources = () =>
+    projectActivities.flatMap((activity) => activity.images || []);
+
+// Handle image click (open lightbox)
+const handleImageClick = (images, index = 0) => {
+  const clickedImage = images[index];
+  const allImages = getAllImageSources();
+
+  const matchingIndices = [];
+  allImages.forEach((img, idx) => {
+    if (img === clickedImage) matchingIndices.push(idx);
+  });
+
+  if (matchingIndices.length > 0) {
+    lightboxSources.value = allImages;
+    const occurrenceIndex = Math.min(index, matchingIndices.length - 1);
+    currentSlide.value = matchingIndices[occurrenceIndex] + 1;
+    lightboxToggler.value = !lightboxToggler.value;
+  }
 };
 
-// Helper: timeline text color
-const getTimelineTextClass = (id) => {
-  const map = {
-    1: "text-primary",
-    2: "text-info",
-    3: "text-success",
-    4: "text-danger",
-    5: "text-primary",
-  };
-  return map[id] || "text-primary";
-};
+// Helper: timeline icon & text classes
+const getTimelineIconClass = (id) =>
+    ({
+      1: "text-light-primary",
+      2: "text-light-info",
+      3: "text-light-success",
+      4: "text-light-danger",
+      5: "text-light-primary",
+    }[id] || "text-light-primary");
+
+const getTimelineTextClass = (id) =>
+    ({
+      1: "text-primary",
+      2: "text-info",
+      3: "text-success",
+      4: "text-danger",
+      5: "text-primary",
+    }[id] || "text-primary");
 
 // Send message
 const sendMessage = () => {
@@ -67,30 +85,25 @@ const sendMessage = () => {
   }
 };
 
-onMounted(async () => {
-  try {
-    const { default: Lightbox } = await import("glightbox");
-
-    lightbox = Lightbox({
-      selector: ".glightbox",
-      touchNavigation: true,
-      loop: true,
-      zoomable: true,
-      autoplayVideos: true,
-    });
-  } catch (err) {
-    console.error("Failed to load GLightbox:", err);
-  }
-});
-
-// Unmount: cleanup
-onUnmounted(() => {
-  if (lightbox) lightbox.destroy();
+// Initialize tooltips safely in Vue lifecycle
+onMounted(() => {
+  document
+      .querySelectorAll('[data-bs-toggle="tooltip"]')
+      .forEach((el) => new Tooltip(el));
 });
 </script>
 
 <template>
   <b-col xxl="6" class="order-xxl-2">
+    <FsLightbox
+        v-if="lightboxSources.length > 0"
+        :toggler="lightboxToggler"
+        :sources="lightboxSources"
+        :slide="currentSlide"
+        type="image"
+        :key="lightboxSources.join()"
+    />
+
     <b-card no-body>
       <b-card-header>
         <h5>Project Activity</h5>
@@ -107,7 +120,7 @@ onUnmounted(() => {
               <span
                   :class="[
                   'h-35 w-35 d-flex-center rounded-circle',
-                  getTimelineIconClass(activity.id)
+                  getTimelineIconClass(activity.id),
                 ]"
               >
                 <PhImageSquare
@@ -122,10 +135,7 @@ onUnmounted(() => {
             <div class="timeline-content pt-0">
               <div class="d-flex f-s-16">
                 <p
-                    :class="[
-                    'f-s-16 mb-0',
-                    getTimelineTextClass(activity.id)
-                  ]"
+                    :class="['f-s-16 mb-0', getTimelineTextClass(activity.id)]"
                 >
                   {{ activity.user }}
                 </p>
@@ -151,13 +161,18 @@ onUnmounted(() => {
                       :key="index"
                       sm="4"
                   >
-                    <a
-                        :href="image"
-                        class="glightbox img-hover-zoom"
-                        data-glightbox="type: image; zoomable: true;"
+                    <!-- ✅ Vue-safe clickable element -->
+                    <button
+                        type="button"
+                        class="img-hover-zoom btn p-0 border-0 bg-transparent"
+                        @click="handleImageClick(activity.images, index)"
                     >
-                      <b-img :src="image" class="w-100 rounded" alt="Activity image"/>
-                    </a>
+                      <b-img
+                          :src="image"
+                          class="w-100 rounded"
+                          alt="Activity image"
+                      />
+                    </button>
                   </b-col>
                 </b-row>
               </div>
@@ -171,7 +186,9 @@ onUnmounted(() => {
                 <p class="mb-4 text-secondary">
                   {{ activity.feature.description }}
                 </p>
-                <span class="badge bg-light-primary text-success me-2 timeline-badge">
+                <span
+                    class="badge bg-light-primary text-success me-2 timeline-badge"
+                >
                   {{ activity.feature.reactions }}
                 </span>
                 <span class="badge bg-light-primary text-success me-2">
@@ -200,7 +217,7 @@ onUnmounted(() => {
                     title="Emoji"
                     role="button"
                 >
-                  <IconMoodSmileBeam :size="20"/>
+                  <IconMoodSmileBeam :size="20" />
                 </a>
               </b-input-group-text>
 
@@ -216,7 +233,7 @@ onUnmounted(() => {
                   type="button"
                   @click="sendMessage"
               >
-                <IconSend :size="20"/>
+                <IconSend :size="20" />
                 Send
               </b-button>
             </b-input-group>
@@ -224,33 +241,36 @@ onUnmounted(() => {
 
           <!-- Desktop buttons -->
           <div class="ms-2 d-none d-sm-block">
-            <a
-                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1"
+            <button
+                type="button"
+                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Microphone"
-                role="button"
+                data-bs-toggle="tooltip"
             >
-              <IconMicrophone :size="20"/>
-            </a>
+              <IconMicrophone :size="20" />
+            </button>
           </div>
 
           <div class="d-none d-sm-block">
-            <a
-                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1"
+            <button
+                type="button"
+                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Camera"
-                role="button"
+                data-bs-toggle="tooltip"
             >
-              <IconCamera :size="20"/>
-            </a>
+              <IconCamera :size="20" />
+            </button>
           </div>
 
           <div class="d-none d-sm-block">
-            <a
-                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1"
+            <button
+                type="button"
+                class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Paperclip"
-                role="button"
+                data-bs-toggle="tooltip"
             >
-              <IconPaperclip :size="20"/>
-            </a>
+              <IconPaperclip :size="20" />
+            </button>
           </div>
 
           <!-- Mobile dropdown -->
@@ -264,13 +284,16 @@ onUnmounted(() => {
               <i class="ti ti-dots-vertical"></i>
             </template>
             <b-dropdown-item>
-              <i class="ti ti-microphone"></i> <span class="f-s-13">Microphone</span>
+              <i class="ti ti-microphone"></i>
+              <span class="f-s-13">Microphone</span>
             </b-dropdown-item>
             <b-dropdown-item>
-              <i class="ti ti-camera-plus"></i> <span class="f-s-13">Camera</span>
+              <i class="ti ti-camera-plus"></i>
+              <span class="f-s-13">Camera</span>
             </b-dropdown-item>
             <b-dropdown-item>
-              <i class="ti ti-paperclip"></i> <span class="f-s-13">Paperclip</span>
+              <i class="ti ti-paperclip"></i>
+              <span class="f-s-13">Paperclip</span>
             </b-dropdown-item>
           </b-dropdown>
         </div>

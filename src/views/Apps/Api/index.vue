@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed} from 'vue';
+import { ref, computed, nextTick } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import {
   BCard,
@@ -15,107 +15,82 @@ import {
   BContainer,
   BRow,
   BCol,
+  BFormCheckbox
+} from 'bootstrap-vue-next'
 
-} from 'bootstrap-vue-next';
-import AppLayout from "@/views/AppLayout.vue";
-import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhStack} from "@phosphor-icons/vue";
+import AppLayout from '@/views/AppLayout.vue'
+import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue'
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
+import { PhStack } from '@phosphor-icons/vue'
 
-
+// Data imports
 import {
   apiAvatars,
   apiKeysData as initialApiKeysData,
   apiKeysColumns,
   chartData,
   chartOptions as initialChartOptions
-} from '@/data/app/Api/ApiData.js';
+} from '@/data/app/Api/ApiData.js'
 
+// ✅ Reactive states
+const showSuccess = ref(true)
+const showError = ref(true)
+const showTotal = ref(true)
 
-const showSuccess = ref(true);
-const showError = ref(true);
-const showTotal = ref(true);
+const apiKeysData = ref([...initialApiKeysData])
+const selectedItems = ref(new Set())
 
-const apiKeysData = ref([...initialApiKeysData]);
-const selectedItems = ref(new Set()); // For checkbox selection
+// Modals
+const showApiModal = ref(false)
+const showApiKeyContent = ref(false)
+const apiKeyName = ref('')
+const generatedApiKey = ref('')
 
+const showDeleteModal = ref(false)
+const itemToDelete = ref(null)
 
-const showApiModal = ref(false);
-const showApiKeyContent = ref(false);
-const apiKeyName = ref('');
-const generatedApiKey = ref('');
+const showViewModal = ref(false)
+const selectedApiKey = ref(null)
 
+const showInfoAlert = ref(true)
 
-const showDeleteModal = ref(false);
-const itemToDelete = ref(null);
-
-
+// ✅ Computed Chart Series
 const filteredSeries = computed(() => {
-  const series = [];
-
+  const series = []
   if (showSuccess.value) {
-    series.push({
-      name: 'Success',
-      data: chartData,
-      color: '#0dcaf0'
-    });
+    series.push({ name: 'Success', data: chartData, color: '#0dcaf0' })
   }
-
   if (showError.value) {
-    series.push({
-      name: 'Error',
-      data: chartData.map(val => val * 0.1),
-      color: '#dc3545'
-    });
+    series.push({ name: 'Error', data: chartData.map(v => v * 0.1), color: '#dc3545' })
   }
-
   if (showTotal.value) {
-    series.push({
-      name: 'Total',
-      data: chartData.map(val => val * 1.1),
-      color: '#0d6efd'
-    });
+    series.push({ name: 'Total', data: chartData.map(v => v * 1.1), color: '#0d6efd' })
   }
+  return series
+})
 
-  return series;
-});
+const chartOptions = ref({ ...initialChartOptions })
 
-const chartOptions = ref({ ...initialChartOptions });
-
-// Handle checkbox changes from CustomDataTable
+// ✅ Handle checkbox changes
 const handleCheckboxChange = ({ checked, item }) => {
-  if (checked) {
-    selectedItems.value.add(item.id);
-  } else {
-    selectedItems.value.delete(item.id);
-  }
-};
+  if (checked) selectedItems.value.add(item.id)
+  else selectedItems.value.delete(item.id)
+}
 
-// Generate API Key
+// ✅ Generate API Key
 const generateApiKey = () => {
-  if (!apiKeyName.value.trim()) {
-    alert('Please enter an API key name');
-    return;
-  }
+  if (!apiKeyName.value.trim()) return
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let key = 'api_'
+  for (let i = 0; i < 32; i++) key += chars.charAt(Math.floor(Math.random() * chars.length))
+  generatedApiKey.value = key
+  showApiKeyContent.value = true
+}
 
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let key = 'api_';
-  for (let i = 0; i < 32; i++) {
-    key += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
+// ✅ Add API Key safely (no DOM mutation conflict)
+const addApiKey = async () => {
+  if (!apiKeyName.value.trim() || !generatedApiKey.value) return
 
-  generatedApiKey.value = key;
-  showApiKeyContent.value = true;
-};
-
-// Add API Key to DataTable
-const addApiKey = () => {
-  if (!apiKeyName.value.trim() || !generatedApiKey.value) {
-    alert('Please generate an API key first');
-    return;
-  }
-
-  // Create new API key object
   const newApiKey = {
     id: Date.now(),
     name: apiKeyName.value,
@@ -123,129 +98,91 @@ const addApiKey = () => {
     avatarBgClass: 'text-bg-primary',
     parentName: 'Self Created',
     apiKey: generatedApiKey.value,
-    date: new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}),
+    date: new Date().toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    }),
     email: `${apiKeyName.value.toLowerCase().replace(/\s+/g, '')}@example.com`
-  };
-
-
-  apiKeysData.value.unshift(newApiKey);
-
-
-  resetApiForm();
-  showApiModal.value = false;
-};
-
-
-const resetApiForm = () => {
-  apiKeyName.value = '';
-  generatedApiKey.value = '';
-  showApiKeyContent.value = false;
-};
-
-const dismissAlert = () => {
-
-};
-
-
-const handleEdit = () => {
-
-};
-
-const handleDelete = (item) => {
-  itemToDelete.value = item;
-  showDeleteModal.value = true;
-};
-
-const confirmDelete = () => {
-  if (itemToDelete.value) {
-    const index = apiKeysData.value.findIndex(apiKey => apiKey.id === itemToDelete.value.id);
-    if (index !== -1) {
-      apiKeysData.value.splice(index, 1);
-    }
-    showDeleteModal.value = false;
-    itemToDelete.value = null;
   }
-};
 
-const handleView = (item) => {
-  alert(`View API Key Details:\nName: ${item.name}\nAPI Key: ${item.apiKey}\nEmail: ${item.email}`);
-};
+  // Close modal, then safely update data
+  showApiModal.value = false
+  await nextTick()
+  apiKeysData.value.unshift(newApiKey)
+  resetApiForm()
+}
 
+// ✅ Reset Form
+const resetApiForm = () => {
+  apiKeyName.value = ''
+  generatedApiKey.value = ''
+  showApiKeyContent.value = false
+}
 
+// ✅ Dismiss alert
+const dismissAlert = () => (showInfoAlert.value = false)
+
+// ✅ Handle delete
+const handleDelete = item => {
+  itemToDelete.value = item
+  showDeleteModal.value = true
+}
+
+const confirmDelete = async () => {
+  if (itemToDelete.value) {
+    const index = apiKeysData.value.findIndex(apiKey => apiKey.id === itemToDelete.value.id)
+    if (index !== -1) apiKeysData.value.splice(index, 1)
+    showDeleteModal.value = false
+    await nextTick()
+    itemToDelete.value = null
+  }
+}
+
+const handleView = item => {
+  selectedApiKey.value = item
+  showViewModal.value = true
+}
+
+const handleEdit = item => console.log('Edit:', item)
+
+// ✅ Breadcrumb
 const breadcrumbItems = computed(() => ({
-  title: "Api ",
+  title: 'Api',
   items: [
-    {label: "Apps", icon: PhStack},
-    {label: "Api ", active: true},
-  ],
-}));
+    { label: 'Apps', icon: PhStack },
+    { label: 'Api', active: true }
+  ]
+}))
 </script>
 
 <template>
   <AppLayout>
     <main>
-      <Breadcrumb :breadcrumb="breadcrumbItems"/>
+      <Breadcrumb :breadcrumb="breadcrumbItems" />
       <b-container fluid>
         <b-row>
+          <!-- Chart Section -->
           <b-col lg="6">
             <b-card no-body>
-              <b-card-header>
-                <h5>API request</h5>
-              </b-card-header>
+              <b-card-header><h5>API request</h5></b-card-header>
               <b-card-body>
-                <div class="api-chart d-flex gap-3 justify-content-end">
-                  <div class="form-check ps-0">
-                    <input
-                        class="form-check-input form-check-info mg-2 w-20 h-20"
-                        id="apiCheckbox"
-                        type="checkbox"
-                        v-model="showSuccess"
-                    >
-                    <label class="form-check-label ms-2" for="apiCheckbox">
-                      22k successfully
-                    </label>
-                  </div>
-                  <div class="form-check ps-0">
-                    <input
-                        class="form-check-input form-check-info mg-2 w-20 h-20"
-                        id="apiCheckbox1"
-                        type="checkbox"
-                        v-model="showError"
-                    >
-                    <label class="form-check-label ms-2" for="apiCheckbox1">
-                      2 error
-                    </label>
-                  </div>
-                  <div class="form-check ps-0">
-                    <input
-                        class="form-check-input form-check-info mg-2 w-20 h-20"
-                        id="apiCheckbox2"
-                        type="checkbox"
-                        v-model="showTotal"
-                    >
-                    <label class="form-check-label ms-2" for="apiCheckbox2">
-                      123 Total request
-                    </label>
-                  </div>
+                <div class="d-flex gap-3 justify-content-end">
+                  <b-form-checkbox v-model="showSuccess" switch>22k successfully</b-form-checkbox>
+                  <b-form-checkbox v-model="showError" switch>2 error</b-form-checkbox>
+                  <b-form-checkbox v-model="showTotal" switch>123 Total request</b-form-checkbox>
                 </div>
-                <div>
-                  <VueApexCharts
-                      type="area"
-                      height="350"
-                      :options="chartOptions"
-                      :series="filteredSeries"
-                  ></VueApexCharts>
-                </div>
+                <VueApexCharts type="area" height="350" :options="chartOptions" :series="filteredSeries" />
               </b-card-body>
             </b-card>
           </b-col>
 
+          <!-- Stats Section -->
           <b-col lg="6">
             <b-row>
-              <!-- Total Users Card -->
               <b-col sm="6">
                 <b-card class="api-eshop-card" no-body>
-                  <BCardBody>
+                  <b-card-body>
                     <div class="d-flex justify-content-between align-items-center">
                       <h6>Total Users</h6>
                       <div class="dropdown bg-light-primary h-40 w-40 d-flex-center b-r-15">
@@ -257,11 +194,10 @@ const breadcrumbItems = computed(() => ({
                       <i class="ph-bold ph-arrow-up-right text-success f-s-20"></i>92.9%
                       <span class="text-secondary f-s-16 f-w-200">users income</span>
                     </p>
-                  </BCardBody>
+                  </b-card-body>
                 </b-card>
               </b-col>
 
-              <!-- Members Card -->
               <b-col sm="6">
                 <b-card class="api-eshop-card" no-body>
                   <b-card-body>
@@ -280,7 +216,6 @@ const breadcrumbItems = computed(() => ({
                 </b-card>
               </b-col>
 
-              <!-- Active Now Card -->
               <b-col sm="6">
                 <b-card class="api-eshop-card" no-body>
                   <b-card-body>
@@ -293,49 +228,18 @@ const breadcrumbItems = computed(() => ({
                     <h3>416k</h3>
                     <ul class="avatar-group justify-content-start">
                       <li
-                          class="h-45 w-45 d-flex-center b-r-50 text-bg-danger b-2-light position-relative"
-                          v-b-tooltip.hover title="Sabrina Torres"
+                          v-for="(avatar, index) in [apiAvatars.avatar4, apiAvatars.avatar1, apiAvatars.avatar2, apiAvatars.avatar3]"
+                          :key="index"
+                          class="h-45 w-45 d-flex-center b-r-50 text-bg-light b-2-light position-relative"
                       >
-                        <span
-                            class="position-absolute top-0 start-2 p-1 bg-danger border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar4">
+                        <img :src="avatar" class="img-fluid b-r-50 overflow-hidden" />
                       </li>
-                      <li
-                          class="h-45 w-45 d-flex-center b-r-50 text-bg-success b-2-light position-relative"
-                          v-b-tooltip.hover title="Sabrina Torres"
-                      >
-                        <span
-                            class="position-absolute top-0 start-2 p-1 bg-success border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar1">
-                      </li>
-                      <li
-                          class="h-45 w-45 d-flex-center b-r-50 text-bg-warning b-2-light position-relative"
-                          v-b-tooltip.hover title="Sabrina Torres"
-                      >
-                        <span
-                            class="position-absolute top-0 start-2 p-1 bg-warning border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar2">
-                      </li>
-                      <li
-                          class="h-45 w-45 d-flex-center b-r-50 text-bg-info b-2-light position-relative"
-                          v-b-tooltip.hover title="Sabrina Torres"
-                      >
-                        <span
-                            class="position-absolute top-0 start-2 p-1 bg-info border border-light rounded-circle"></span>
-                        <img alt="" class="img-fluid b-r-50 overflow-hidden" :src="apiAvatars.avatar3">
-                      </li>
-                      <li
-                          class="text-bg-primary h-35 w-35 d-flex-center b-r-50"
-                          v-b-tooltip.hover title="5 More"
-                      >
-                        5+
-                      </li>
+                      <li class="text-bg-primary h-35 w-35 d-flex-center b-r-50">5+</li>
                     </ul>
                   </b-card-body>
                 </b-card>
               </b-col>
 
-              <!-- Developer Card -->
               <b-col sm="6">
                 <b-card class="api-eshop-card" no-body>
                   <b-card-body>
@@ -346,23 +250,20 @@ const breadcrumbItems = computed(() => ({
                       </div>
                     </div>
                     <h3 class="mb-3">64</h3>
-                    <BButton variant="primary" @click="showApiModal = true">
-                      Create API
-                    </BButton>
+                    <b-button variant="primary" @click="showApiModal = true">Create API</b-button>
                   </b-card-body>
                 </b-card>
               </b-col>
 
-              <!-- Alert Component -->
               <b-col xl="12">
-                <b-alert variant="info" class="alert-border-info bg-white" show>
+                <b-alert v-model="showInfoAlert" variant="info" class="alert-border-info bg-white" dismissible>
                   <h6>
                     <i class="ti ti-info-circle f-s-18 me-2 text-info"></i>
                     Review API Token
                   </h6>
                   <p class="text-secondary">
-                    Here is your new api token.This is the only time the token will ever be
-                    displayed, so be sure not to lose it!
+                    Here is your new api token. This is the only time the token will ever be displayed, so be sure not
+                    to lose it!
                   </p>
                   <div class="text-end">
                     <BLink href="#" class="link-primary text-d-underline" @click="dismissAlert">Don't allow</BLink>
@@ -372,65 +273,37 @@ const breadcrumbItems = computed(() => ({
               </b-col>
             </b-row>
 
-            <!-- Create API Modal -->
+            <!-- ✅ Create API Modal -->
             <b-modal
                 v-model="showApiModal"
                 title="Create API"
-                title-class="text-white"
-                header-class="bg-primary"
-                hide-footer
+                header-class="bg-primary text-white"
                 centered
                 @hidden="resetApiForm"
             >
-              <b-form class="app-form">
-                <b-form-group label="API Key name" label-for="username">
-                  <b-form-input
-                      id="username"
-                      v-model="apiKeyName"
-                      placeholder="Enter Your API Key Name"
-                      type="text"
-                      class="mb-3"
-                  />
+              <b-form>
+                <b-form-group label="API Key name" label-for="apiName">
+                  <b-form-input id="apiName" v-model="apiKeyName" placeholder="Enter Your API Key Name" />
                 </b-form-group>
 
-                <b-form-group
-                    v-if="showApiKeyContent"
-                    label="Generated API Key"
-                    label-for="keygenValue"
-                >
-                  <b-form-input
-                      id="keygenValue"
-                      v-model="generatedApiKey"
-                      placeholder="Your API key will appear here"
-                      readonly
-                      type="text"
-                  />
+                <b-form-group v-if="showApiKeyContent" label="Generated API Key" label-for="keyValue">
+                  <b-form-input id="keyValue" v-model="generatedApiKey" readonly />
                   <small class="text-muted">Copy this key now - it won't be shown again!</small>
                 </b-form-group>
               </b-form>
 
               <template #footer>
-                <div>
+                <div class="d-flex justify-content-end gap-2">
                   <b-button
                       v-if="!showApiKeyContent"
                       variant="light-primary"
-                      @click="generateApiKey"
                       :disabled="!apiKeyName.trim()"
+                      @click="generateApiKey"
                   >
                     Generate Key
                   </b-button>
-                  <b-button
-                      v-else
-                      variant="success"
-                      @click="addApiKey"
-                  >
-                    Add API Key
-                  </b-button>
-                </div>
-                <div>
-                  <b-button variant="light-secondary" @click="showApiModal = false">
-                    Close
-                  </b-button>
+                  <b-button v-else variant="success" @click="addApiKey">Add API Key</b-button>
+                  <b-button variant="light-secondary" @click="showApiModal = false">Close</b-button>
                 </div>
               </template>
             </b-modal>
@@ -440,27 +313,28 @@ const breadcrumbItems = computed(() => ({
           <div class="col-12 mt-4">
             <CustomDataTable
                 title="API Keys"
-                description=""
                 :columns="apiKeysColumns"
                 :data="apiKeysData"
-                :show-individual-buttons="true"
                 :on-edit="handleEdit"
                 :on-delete="handleDelete"
                 :on-view="handleView"
                 @checkbox-change="handleCheckboxChange"
                 row-key="id"
-                class-name="api-keys-datatable"
-                card-class-name="card"
-                table-class-name="w-100 display apikey-data-table table-bottom-border align-middle mb-0"
                 :page-length="10"
                 :show-length-menu="true"
             />
           </div>
-
         </b-row>
       </b-container>
 
-      <!-- Delete Confirmation Modal -->
+      <!-- View Modal -->
+      <b-modal v-model="showViewModal" title="API Key Details" centered>
+        <p><strong>Name:</strong> {{ selectedApiKey?.name }}</p>
+        <p><strong>API Key:</strong> {{ selectedApiKey?.apiKey }}</p>
+        <p><strong>Email:</strong> {{ selectedApiKey?.email }}</p>
+      </b-modal>
+
+      <!-- Delete Modal -->
       <b-modal
           v-model="showDeleteModal"
           centered
@@ -468,12 +342,11 @@ const breadcrumbItems = computed(() => ({
           content-class="border-0"
           body-class="text-center p-4"
       >
-        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png">
+        <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png" />
         <div class="text-center">
           <h4 class="text-danger f-w-600 mb-2">Are You Sure?</h4>
           <p class="text-secondary f-s-16">You won't be able to revert this!</p>
         </div>
-
         <template #footer>
           <div class="text-center mt-4">
             <b-button variant="secondary" class="me-2" @click="showDeleteModal = false">Close</b-button>
