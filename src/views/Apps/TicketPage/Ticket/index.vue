@@ -109,7 +109,7 @@ const saveTicket = () => {
         dueDate: formatDateForDisplay(dueDate.value) || getFutureDateFormatted()
     };
 
-    ticketData.value.unshift(newTicket);
+    ticketData.value = [newTicket, ...ticketData.value];
 
     showModal.value = false;
     resetForm();
@@ -401,6 +401,7 @@ const breadcrumbItems = computed(() => ({
                         <CustomDataTable
                             title="Tickets"
                             description=""
+                            :key="ticketData.length"
                             :columns="columns"
                             :data="ticketData"
                             :show-actions="true"

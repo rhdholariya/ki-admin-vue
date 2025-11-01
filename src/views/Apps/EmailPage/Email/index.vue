@@ -32,7 +32,7 @@ const inboxEmails = ref([
     avatarBg: 'text-bg-primary',
     preview: 'This is the content of the email. It may contain anything the user....',
     date: 'sep 23',
-    badge: {text: 'Important', variant: 'success'},
+   badge: { text: 'Primary', variant: 'bg-light-success' } ,
     starred: false
   },
   {
@@ -42,7 +42,7 @@ const inboxEmails = ref([
     avatarBg: 'text-bg-secondary',
     preview: 'It enables users to easily send and receive documents, images, links and ....',
     date: 'Oct 23',
-    badge: {text: 'Company', variant: 'primary'},
+    badge: {text: 'Company', variant: 'bg-light-primary'},
     starred: true
   },
   {
@@ -52,7 +52,7 @@ const inboxEmails = ref([
     avatarBg: 'text-bg-dark',
     preview: 'Companies can use email to convey information to a large number of ....',
     date: 'Dec 22',
-    badge: {text: 'Social', variant: 'danger'},
+    badge: {text: 'Social', variant: 'bg-light-danger'},
     starred: false
   }
 ])
@@ -65,7 +65,7 @@ const sentEmails = ref([
     avatarBg: 'text-bg-success',
     preview: 'E-mail has become one of the most widely used aspects of the Internet, ....',
     date: 'Oct 23',
-    badge: {text: 'Company', variant: 'primary'},
+    badge: {text: 'Company', variant: 'bg-light-primary'},
     starred: false
   },
   {
@@ -75,7 +75,7 @@ const sentEmails = ref([
     avatarBg: 'text-bg-info',
     preview: 'Regarding the project timeline and deliverables for Q4 2024....',
     date: 'Nov 5',
-    badge: {text: 'Important', variant: 'success'},
+    badge: {text: 'Important', variant: 'bg-light-success'},
     starred: true
   }
 ])
@@ -88,7 +88,7 @@ const draftEmails = ref([
     avatarBg: 'text-bg-danger',
     preview: 'One of the great things about it is that it\'s fast, cost-effective, and convenient....',
     date: 'sep 23',
-    badge: {text: 'Company', variant: 'primary'},
+    badge: {text: 'Company', variant: 'bg-light-primary'},
     starred: false
   },
   {
@@ -98,7 +98,7 @@ const draftEmails = ref([
     avatarBg: 'text-bg-dark',
     preview: 'Email messages are sent from software programs and web browsers, collectively as email....',
     date: 'Oct 23',
-    badge: {text: 'Important', variant: 'success'},
+    badge: {text: 'Important', variant: 'bg-light-success'},
     starred: false
   }
 ])
@@ -111,7 +111,7 @@ const starredEmails = ref([
     avatarBg: 'text-bg-secondary',
     preview: 'It enables users to easily send and receive documents, images, links and ....',
     date: 'Oct 23',
-    badge: {text: 'Company', variant: 'primary'},
+    badge: {text: 'Company', variant: 'bg-light-primary'},
     starred: true
   },
   {
@@ -121,7 +121,7 @@ const starredEmails = ref([
     avatarBg: 'text-bg-info',
     preview: 'Regarding the project timeline and deliverables for Q4 2024....',
     date: 'Nov 5',
-    badge: {text: 'Important', variant: 'success'},
+    badge: {text: 'Important', variant: 'bg-light-success'},
     starred: true
   },
   {
@@ -131,7 +131,7 @@ const starredEmails = ref([
     avatarBg: 'text-bg-warning',
     preview: 'Follow up on the meeting notes and action items from yesterday....',
     date: 'Dec 1',
-    badge: {text: 'Company', variant: 'primary'},
+    badge: {text: 'Company', variant: 'bg-light-primary'},
     starred: true
   }
 ])
@@ -144,7 +144,7 @@ const trashEmails = ref([
     avatarBg: 'text-bg-warning',
     preview: 'Promotional email for our new product line and special discounts....',
     date: 'Nov 18',
-    badge: {text: 'Promotions', variant: 'secondary'},
+    badge: {text: 'Promotions', variant: 'bg-light-secondary'},
     starred: false
   },
   {
@@ -154,7 +154,7 @@ const trashEmails = ref([
     avatarBg: 'text-bg-success',
     preview: 'Newsletter subscription confirmation and welcome message....',
     date: 'Dec 3',
-    badge: {text: 'Social', variant: 'danger'},
+    badge: {text: 'Social', variant: 'bg-light-danger'},
     starred: false
   }
 ])

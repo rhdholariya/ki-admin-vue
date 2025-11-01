@@ -62,7 +62,7 @@ import {BButton, BCard, BCardBody, BCardHeader, BCol} from "bootstrap-vue-next";
     </b-card>
 
     <!-- About -->
-    <b-card class="mt-3" no-body>
+    <b-card id="about-me" class="mt-3" no-body>
       <b-card-header><h5>About Me</h5></b-card-header>
       <b-card-body>
         <p class="text-muted f-s-13">

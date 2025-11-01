@@ -1,6 +1,6 @@
 <script setup>
-import { IconBrandHipchat, IconPhoneCall, IconPlus } from "@tabler/icons-vue";
-import { BDropdown, BDropdownItem } from "bootstrap-vue-next";
+import { IconBrandHipchat, IconPhoneCall, IconPlus } from "@tabler/icons-vue"
+import { BDropdown, BDropdownItem } from "bootstrap-vue-next"
 </script>
 
 <template>
@@ -13,10 +13,12 @@ import { BDropdown, BDropdownItem } from "bootstrap-vue-next";
           end
           auto-close="true"
       >
+        <!-- Dropdown toggle button -->
         <template #button-content>
           <IconPlus size="18" />
         </template>
 
+        <!-- Dropdown menu items -->
         <b-dropdown-item href="#">
           <IconBrandHipchat size="18" class="me-2" />
           <span class="f-s-13">New Chat</span>

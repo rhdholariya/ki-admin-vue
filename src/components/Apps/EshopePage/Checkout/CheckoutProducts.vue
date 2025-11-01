@@ -7,9 +7,10 @@ import {
   BBadge,
   BInputGroup,
   BFormInput,
-  BInputGroupText
+  BInputGroupText,
 } from "bootstrap-vue-next";
 import { IconGift, IconStarFilled, IconX } from "@tabler/icons-vue";
+
 const promoCode = ref("");
 const cartItems = ref([
   {
@@ -44,17 +45,15 @@ const cartItems = ref([
   },
 ]);
 
-const subtotal = computed(() => {
-  return cartItems.value.reduce((sum, item) => sum + item.price * item.items, 0);
-});
-
+// 💰 Computed totals
+const subtotal = computed(() =>
+    cartItems.value.reduce((sum, item) => sum + item.price * item.items, 0)
+);
 const estimatedTax = 5.0;
 const shippingHandling = 10.0;
+const total = computed(() => subtotal.value + estimatedTax + shippingHandling);
 
-const total = computed(() => {
-  return subtotal.value + estimatedTax + shippingHandling;
-});
-
+// 🗑 Remove item
 const handleRemove = (id) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== id);
 };
@@ -62,21 +61,21 @@ const handleRemove = (id) => {
 
 <template>
   <div>
-    <div
-        v-for="item in cartItems"
-        :key="item.id"
-        class="checkout-cart-box"
-    >
+    <!-- 🛒 Cart Items -->
+    <div v-for="item in cartItems" :key="item.id" class="checkout-cart-box">
       <div class="cart-images d-flex-center flex-shrink-0">
         <a href="#">
           <b-img :src="item.image" :alt="item.name" width="80" fluid />
         </a>
       </div>
+
       <div class="ms-2 flex-grow-1">
         <h6 class="mb-1">
-          {{ item.name }} -
+          {{ item.name }}
           <span class="text-muted">({{ item.description }})</span>
         </h6>
+
+        <!-- ⭐ Rating -->
         <div class="mb-2">
           <IconStarFilled
               v-for="index in 5"
@@ -85,32 +84,36 @@ const handleRemove = (id) => {
               :class="index <= item.rating ? 'text-warning' : 'text-secondary'"
           />
         </div>
+
         <p class="mb-1">
           <span class="fw-semibold">
-            {{ item.size ? 'Size' : 'Color' }}
+            {{ item.size ? "Size" : "Color" }}
           </span>
           : {{ item.size || item.color }}
         </p>
+
         <p class="mb-0">
           <span class="fw-semibold">Items</span>: {{ item.items }}
         </p>
       </div>
+
+      <!-- 💵 Price + Remove -->
       <div class="cart-price-box">
-        <b-button
-            variant="link"
-            @click="handleRemove(item.id)"
-            class="p-0 mb-2"
-        >
+        <b-button variant="link" @click="handleRemove(item.id)" class="p-0 mb-2">
           <IconX size="18" class="text-secondary" />
         </b-button>
         <h5 class="mb-0">${{ item.price.toFixed(2) }}</h5>
       </div>
     </div>
 
+    <!-- 💳 Pricing Details -->
     <div class="pricing-details mt-4">
       <div class="mb-3">
         <b-input-group>
-          <b-form-input v-model="promoCode" placeholder="Enter promo code / Gift Certificate" />
+          <b-form-input
+              v-model="promoCode"
+              placeholder="Enter promo code / Gift Certificate"
+          />
           <b-input-group-text class="bg-dark text-white">
             <IconGift size="18" />
           </b-input-group-text>
@@ -118,13 +121,11 @@ const handleRemove = (id) => {
       </div>
 
       <b-table borderless class="mb-0">
-        <thead>
-        <tr>
-          <th>Subtotal</th>
-          <th class="text-end">${{ subtotal.toFixed(2) }}</th>
-        </tr>
-        </thead>
         <tbody>
+        <tr>
+          <td>Subtotal</td>
+          <td class="text-end">${{ subtotal.toFixed(2) }}</td>
+        </tr>
         <tr>
           <td>Estimated Tax</td>
           <td class="text-end">${{ estimatedTax.toFixed(2) }}</td>
@@ -147,12 +148,12 @@ const handleRemove = (id) => {
       </b-table>
 
       <b-table class="mb-0 mt-3">
-        <thead>
+        <tbody>
         <tr>
-          <th class="fs-6 text-dark">Total</th>
-          <th class="text-end text-success">${{ total.toFixed(2) }}</th>
+          <td class="fs-6 text-dark">Total</td>
+          <td class="text-end text-success">${{ total.toFixed(2) }}</td>
         </tr>
-        </thead>
+        </tbody>
       </b-table>
 
       <b-button variant="primary" class="w-100 mt-3 rounded-1" id="next">
@@ -161,4 +162,3 @@ const handleRemove = (id) => {
     </div>
   </div>
 </template>
-

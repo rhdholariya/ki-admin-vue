@@ -19,11 +19,51 @@ import '@/assets/scss/responsive.scss'
 app.component("Breadcrumbs", Breadcrumbs);
 app.use(router)
 app.use(FlagIcon)
+
+const applyTheme = () => {
+    const currentTheme = localStorage.getItem('theme-mode') || 'light';
+    if (!document.body.classList.contains(currentTheme)) {
+        document.body.classList.remove('light', 'dark');
+        document.body.classList.add(currentTheme);
+    }
+};
+
+const storedTheme = localStorage.getItem('theme-mode');
+if (!storedTheme) {
+    localStorage.setItem('theme-mode', 'light');
+}
+
+applyTheme();
+
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+            const currentTheme = localStorage.getItem('theme-mode') || 'light';
+            if (!document.body.classList.contains(currentTheme)) {
+                setTimeout(() => {
+                    document.body.classList.add(currentTheme);
+                }, 0);
+            }
+        }
+    });
+});
+
+observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class']
+});
+
 router.afterEach(() => {
     nextTick(() => {
         Prism.highlightAll();
+        applyTheme();
     });
 });
+
 app.use(createBootstrap())
 app.component("apexchart", VueApexCharts);
 app.mount('#app')
+
+nextTick(() => {
+    applyTheme();
+});

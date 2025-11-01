@@ -49,8 +49,12 @@ const activeTabInner = ref(0);
 
             <!-- Contact Info -->
             <div class="flex-grow-1">
-              <p class="mb-0 f-w-500 text-dark text-truncate">{{ contact.name }}</p>
-              <p class="text-secondary f-s-12 chat-message mb-0 d-flex align-items-center">
+              <p class="mb-0 f-w-500 text-dark text-truncate">
+                {{ contact.name }}
+              </p>
+              <p
+                  class="text-secondary f-s-12 chat-message mb-0 d-flex align-items-center"
+              >
                 <IconChecks size="16" class="me-1" />
                 <span class="txt-ellipsis-1">{{ contact.message }}</span>
               </p>
@@ -73,27 +77,52 @@ const activeTabInner = ref(0);
 
         <div class="chat-contact chat-group-list">
           <div
-              v-for="(group, index) in chatGroups"
-              :key="index"
+              v-for="group in chatGroups"
+              :key="group.id"
               class="chat-contactbox d-flex align-items-center position-relative"
           >
             <div class="position-relative me-3">
-              <ul class="avatar-group list-unstyled d-flex align-items-center mb-0">
-                <li v-if="group.imageSrc" :class="['h-45 w-45 d-flex-center overflow-hidden b-r-50', 'bg-' + group.avatarBg]">
-                  <img :src="group.imageSrc" :alt="group.groupName" class="img-fluid" />
+              <ul
+                  class="avatar-group list-unstyled d-flex align-items-center mb-0"
+              >
+                <li
+                    v-if="group.imageSrc"
+                    :class="[
+                    'h-45 w-45 d-flex-center overflow-hidden b-r-50',
+                    'bg-' + group.avatarBg
+                  ]"
+                >
+                  <img
+                      :src="group.imageSrc"
+                      :alt="group.groupName"
+                      class="img-fluid"
+                  />
                 </li>
-                <li v-else :class="['text-bg-' + group.avatarBg, 'h-45 w-45 d-flex-center b-r-50']">
+                <li
+                    v-else
+                    :class="[
+                    'text-bg-' + group.avatarBg,
+                    'h-45 w-45 d-flex-center b-r-50'
+                  ]"
+                >
                   {{ group.avatars[0] }}
                 </li>
-                <li class="text-bg-secondary h-35 w-35 d-flex-center b-r-50" :title="group.avatars[1]">
+                <li
+                    class="text-bg-secondary h-35 w-35 d-flex-center b-r-50"
+                    :title="group.avatars[1]"
+                >
                   {{ group.avatars[1] }}
                 </li>
               </ul>
             </div>
 
             <div class="flex-grow-1 text-start">
-              <p class="mb-0 f-w-500 text-dark txt-ellipsis-1">{{ group.groupName }}</p>
-              <p class="text-secondary f-s-12 chat-message mb-0">{{ group.lastMessage }}</p>
+              <p class="mb-0 f-w-500 text-dark txt-ellipsis-1">
+                {{ group.groupName }}
+              </p>
+              <p class="text-secondary f-s-12 chat-message mb-0">
+                {{ group.lastMessage }}
+              </p>
             </div>
 
             <div>

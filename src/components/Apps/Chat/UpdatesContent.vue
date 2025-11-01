@@ -1,5 +1,5 @@
 <script setup>
-import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js";
+import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js"
 </script>
 
 <template>
@@ -7,18 +7,27 @@ import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js";
     <div
         v-for="update in ChatUpdates"
         :key="update.id"
-        class="updates-box d-flex align-items-center py-3"
+        class="updates-box d-flex align-items-center py-3 border-bottom"
     >
-      <div :class="`b-2-${update.borderColor} b-r-50 p-1`">
+      <!-- Avatar with border color -->
+      <div :class="['b-r-50 p-1', `b-2-${update.borderColor}`]">
         <span
-            :class="['h-40 w-40 d-flex-center b-r-50 position-relative', update.bgColor]"
+            :class="[
+            'h-40 w-40 d-flex-center b-r-50 position-relative overflow-hidden',
+            update.bgColor
+          ]"
         >
-          <img :src="update.avatar" :alt="update.name" class="img-fluid b-r-50" />
+          <img
+              :src="update.avatar"
+              :alt="update.name"
+              class="img-fluid b-r-50"
+          />
         </span>
       </div>
 
+      <!-- Info Section -->
       <div class="flex-grow-1 text-start ps-2">
-        <span>{{ update.name }}</span>
+        <span class="d-block f-w-500 text-dark">{{ update.name }}</span>
         <p class="f-s-12 text-secondary mb-0">{{ update.time }}</p>
       </div>
     </div>

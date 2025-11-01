@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center">
         <div class="d-lg-none">
           <b-button
-              variant="link"
+              variant="secondary"
               class="me-3 toggle-btn p-0"
               @click="$emit('toggle-sidebar')"
           >

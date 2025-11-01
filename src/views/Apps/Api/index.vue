@@ -109,7 +109,7 @@ const addApiKey = async () => {
   // Close modal, then safely update data
   showApiModal.value = false
   await nextTick()
-  apiKeysData.value.unshift(newApiKey)
+  apiKeysData.value = [newApiKey, ...apiKeysData.value]
   resetApiForm()
 }
 
@@ -313,6 +313,7 @@ const breadcrumbItems = computed(() => ({
           <div class="col-12 mt-4">
             <CustomDataTable
                 title="API Keys"
+                :key="apiKeysData.length"
                 :columns="apiKeysColumns"
                 :data="apiKeysData"
                 :on-edit="handleEdit"

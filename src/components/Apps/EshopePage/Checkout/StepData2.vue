@@ -29,13 +29,13 @@ const toggleModal = () => {
 <template>
   <div>
     <b-row>
-      <b-col md="12">
+      <b-col cols="12">
         <h5 class="mb-3">Your Address</h5>
       </b-col>
 
       <b-col md="6" xl="4">
         <b-card class="shadow-none">
-          <b-card-body class="address-content">
+          <b-card-body>
             <b-form-group class="mb-2">
               <b-form-radio
                   name="address"
@@ -46,9 +46,7 @@ const toggleModal = () => {
                 Home Address
               </b-form-radio>
             </b-form-group>
-            <p class="text-muted mb-1">
-              260 Zulma Stravenue, Wisozkton, KY 44193-0738
-            </p>
+            <p class="text-muted mb-1">260 Zulma Stravenue, Wisozkton, KY 44193-0738</p>
             <p class="text-muted mb-1">collins@stroman.net</p>
             <p class="mb-0">+1 828-726-3669</p>
           </b-card-body>
@@ -57,7 +55,7 @@ const toggleModal = () => {
 
       <b-col md="6" xl="4">
         <b-card class="shadow-none">
-          <b-card-body class="address-content">
+          <b-card-body>
             <b-form-group class="mb-2">
               <b-form-radio
                   name="address"
@@ -68,9 +66,7 @@ const toggleModal = () => {
                 Office Address
               </b-form-radio>
             </b-form-group>
-            <p class="text-muted mb-1">
-              90897 Franecki Haven, West Maximo, KY 40770-5993
-            </p>
+            <p class="text-muted mb-1">90897 Franecki Haven, West Maximo, KY 40770-5993</p>
             <p class="text-muted mb-1">bjast@hotmail.com</p>
             <p class="mb-0">+1 863-422-2979</p>
           </b-card-body>
@@ -78,13 +74,9 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6" xl="4">
-        <b-card class="equal-card shadow-none">
-          <b-card-body class="added-content">
-            <b-button
-                variant="link"
-                class="text-decoration-none p-0"
-                @click="toggleModal"
-            >
+        <b-card class="shadow-none">
+          <b-card-body class="text-center">
+            <b-button variant="link" class="p-0" @click="toggleModal">
               <IconPlus size="18" class="me-1" />
               Add A New Address
             </b-button>
@@ -92,27 +84,29 @@ const toggleModal = () => {
         </b-card>
       </b-col>
 
-      <b-modal v-model="modalOpen" hide-footer title="Add New Address">
-
+      <b-modal v-model="modalOpen" title="Add New Address">
         <b-form>
           <b-row>
-            <b-col md="12">
-              <b-form-group label="Address" class="mb-3">
-                <b-form-input type="text" placeholder="Enter address" />
+            <b-col cols="12">
+              <b-form-group label="Address">
+                <b-form-input placeholder="Enter address" />
               </b-form-group>
             </b-col>
-            <b-col md="12">
-              <b-form-group label="Address 2" class="mb-3">
-                <b-form-input type="text" placeholder="Additional info" />
+
+            <b-col cols="12">
+              <b-form-group label="Address 2">
+                <b-form-input placeholder="Additional info" />
               </b-form-group>
             </b-col>
+
             <b-col md="6">
-              <b-form-group label="City" class="mb-3">
-                <b-form-input type="text" placeholder="Enter city" />
+              <b-form-group label="City">
+                <b-form-input placeholder="Enter city" />
               </b-form-group>
             </b-col>
+
             <b-col md="4">
-              <b-form-group label="State" class="mb-3">
+              <b-form-group label="State">
                 <b-form-select>
                   <option>Choose...</option>
                   <option>NY</option>
@@ -120,29 +114,28 @@ const toggleModal = () => {
                 </b-form-select>
               </b-form-group>
             </b-col>
+
             <b-col md="2">
-              <b-form-group label="Zip" class="mb-3">
-                <b-form-input type="text" placeholder="Zip code" />
+              <b-form-group label="Zip">
+                <b-form-input placeholder="Zip code" />
               </b-form-group>
             </b-col>
           </b-row>
         </b-form>
 
         <template #footer>
-          <b-button variant="secondary" @click="toggleModal">
-            Close
-          </b-button>
+          <b-button variant="secondary" @click="toggleModal">Close</b-button>
           <b-button variant="primary">Add</b-button>
         </template>
       </b-modal>
 
-      <b-col md="12">
+      <b-col cols="12">
         <h5 class="mb-3">Delivery Method</h5>
       </b-col>
 
       <b-col md="6">
         <b-card class="shadow-none">
-          <b-card-body class="select-content">
+          <b-card-body>
             <b-form-radio
                 name="delivery"
                 id="economyShipping"
@@ -158,7 +151,7 @@ const toggleModal = () => {
 
       <b-col md="6">
         <b-card class="shadow-none">
-          <b-card-body class="select-content">
+          <b-card-body>
             <b-form-radio
                 name="delivery"
                 id="priorityShipping"
@@ -166,42 +159,32 @@ const toggleModal = () => {
                 value="priority"
             >
               <span class="d-block">Priority Overnight - $18.50</span>
-              <small class="text-muted">
-                Based on chosen delivery date
-              </small>
+              <small class="text-muted">Based on chosen delivery date</small>
             </b-form-radio>
           </b-card-body>
         </b-card>
       </b-col>
 
-      <b-col md="12" v-if="showAlert">
+      <b-col cols="12" v-if="showAlert">
         <b-alert
             variant="info"
-            class="alert-border-info"
             dismissible
             @dismissed="showAlert = false"
             show
         >
           <p class="d-flex align-items-center mb-2">
             <IconInfoCircle size="18" class="me-2" />
-            Expected delivery <strong>date</strong> is not guaranteed. If
-            you're ordering for an event, we suggest allowing 1 extra day.
+            Expected delivery <strong>date</strong> is not guaranteed.
+            If you're ordering for an event, allow 1 extra day.
           </p>
           <div class="text-end">
-            <b-button
-                variant="link"
-                class="p-0 me-2"
-                @click="showAlert = false"
-            >
+            <b-button variant="link" class="p-0 me-2" @click="showAlert = false">
               Don't allow
             </b-button>
-            <b-button variant="link" class="p-0">
-              Allow
-            </b-button>
+            <b-button variant="link" class="p-0">Allow</b-button>
           </div>
         </b-alert>
       </b-col>
     </b-row>
   </div>
 </template>
-

@@ -300,6 +300,8 @@ const breadcrumbItems = computed(() => ({
                         variant="link"
                         class="p-0 text-dark hover-dropdown"
                         toggle-class="waves-effect waves-light text-dark p-0"
+                        no-caret
+
                     >
                       <template #button-content>
                         to

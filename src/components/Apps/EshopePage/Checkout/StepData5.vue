@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import {
   BCard,
   BCardBody,
@@ -7,6 +8,8 @@ import {
   BFormRadio,
   BImg
 } from "bootstrap-vue-next";
+
+const selectedOption = ref(""); // ✅ Track user choice
 
 const options = [
   { id: "option1", label: "Call Help Center for any substitutes" },
@@ -47,9 +50,13 @@ const options = [
               xl="4"
               class="mt-3"
           >
-            <b-card class="shadow-none equal-card">
+            <b-card
+                class="shadow-none equal-card"
+                :class="selectedOption === option.id ? 'border-primary' : ''"
+            >
               <b-card-body class="address-content">
                 <b-form-radio
+                    v-model="selectedOption"
                     name="preference"
                     :id="option.id"
                     :value="option.id"
