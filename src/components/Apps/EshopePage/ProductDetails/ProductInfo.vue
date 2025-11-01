@@ -1,3 +1,41 @@
+<script setup>
+import { ref } from "vue";
+import { BCard, BCardBody, BCol, BProgress } from "bootstrap-vue-next";
+import { IconStarFilled } from "@tabler/icons-vue";
+import { RouterLink } from "vue-router";
+
+const ratingData = [
+  { star: 5, count: 4567, percent: 74, color: "primary" },
+  { star: 4, count: 2765, percent: 65, color: "secondary" },
+  { star: 3, count: 1682, percent: 40, color: "success" },
+  { star: 2, count: 2380, percent: 25, color: "warning" },
+  { star: 1, count: 19211, percent: 10, color: "danger" },
+];
+
+const sizes = [6, 7, 25, 30, 40];
+const colors = [
+  "primary",
+  "secondary",
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "light",
+  "dark",
+];
+
+const selectedSizes = ref([6]);
+const selectedColor = ref("primary");
+
+function toggleSize(size) {
+  if (selectedSizes.value.includes(size)) {
+    selectedSizes.value = selectedSizes.value.filter((s) => s !== size);
+  } else {
+    selectedSizes.value.push(size);
+  }
+}
+</script>
+
 <template>
   <b-col xxl="6" class="order-xxl-2">
     <b-card no-body>
@@ -144,40 +182,4 @@
   </b-col>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { BCard, BCardBody, BCol, BProgress } from "bootstrap-vue-next";
-import { IconStarFilled } from "@tabler/icons-vue";
-import { RouterLink } from "vue-router";
 
-const ratingData = [
-  { star: 5, count: 4567, percent: 74, color: "primary" },
-  { star: 4, count: 2765, percent: 65, color: "secondary" },
-  { star: 3, count: 1682, percent: 40, color: "success" },
-  { star: 2, count: 2380, percent: 25, color: "warning" },
-  { star: 1, count: 19211, percent: 10, color: "danger" },
-];
-
-const sizes = [6, 7, 25, 30, 40];
-const colors = [
-  "primary",
-  "secondary",
-  "success",
-  "danger",
-  "warning",
-  "info",
-  "light",
-  "dark",
-];
-
-const selectedSizes = ref([6]);
-const selectedColor = ref("primary");
-
-function toggleSize(size) {
-  if (selectedSizes.value.includes(size)) {
-    selectedSizes.value = selectedSizes.value.filter((s) => s !== size);
-  } else {
-    selectedSizes.value.push(size);
-  }
-}
-</script>

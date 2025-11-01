@@ -1,33 +1,14 @@
 <script setup>
+import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
 import {
-  BCard,
-  BCardBody,
-  BButton
-} from 'bootstrap-vue-next'
-
-import {
-  IconMail,
-  IconSend,
-  IconFile,
-  IconStar,
-  IconAlertOctagon,
-  IconTrash,
-  IconCircleFilled,
-  IconAlbum,
-  IconTag,
-  IconUsers,
-  IconAlignJustified
+  IconMail, IconSend, IconFile, IconStar,
+  IconAlertOctagon, IconTrash, IconCircleFilled,
+  IconAlbum, IconTag, IconUsers, IconAlignJustified
 } from '@tabler/icons-vue'
 
 defineProps({
-  activeTab: {
-    type: Number,
-    default: 1
-  }
+  activeTab: { type: Number, default: 1 }
 })
-
-defineEmits(['open-compose', 'toggle-sidebar', 'tab-change'])
-
 
 const tabs = [
   { id: 1, icon: IconMail, label: 'Inbox', count: '10+' },
@@ -38,14 +19,12 @@ const tabs = [
   { id: 6, icon: IconTrash, label: 'Trash' }
 ]
 
-
 const labels = [
   { id: 1, name: 'Social', color: 'danger' },
   { id: 2, name: 'Company', color: 'primary' },
   { id: 3, name: 'Important', color: 'success' },
   { id: 4, name: 'Private', color: 'info' }
 ]
-
 
 const menuItems = [
   { id: 1, icon: IconMail, label: 'All Mail' },

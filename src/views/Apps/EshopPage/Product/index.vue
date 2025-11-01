@@ -29,13 +29,13 @@ import AppLayout from "@/views/AppLayout.vue"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Reactive states
+
 const layout = ref("col-xxl-3")
 const isListView = ref(false)
 const searchQuery = ref("")
 const isSidebarOpen = ref(false)
 
-// Methods
+
 const handleViewChange = (newLayout) => {
   layout.value = newLayout
   isListView.value = false
@@ -50,7 +50,7 @@ const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value
 }
 
-// Computed filtered products
+
 const products = computed(() => {
   if (!searchQuery.value) return productData
   return productData.filter(product =>
@@ -71,7 +71,7 @@ const breadcrumbItems = {
 <template>
   <AppLayout>
     <main>
-      <BContainer fluid>
+      <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
         <b-row>
           <b-col cols="12">
@@ -147,28 +147,28 @@ const breadcrumbItems = {
                             </a>
                             <ul class="product-links">
                               <li>
-                                <RouterLink to="/apps/e-shop/wishlist" target="_blank" class="bg-danger h-40 w-40 d-flex-center b-r-20">
+                                <router-link to="/apps/e-shop/wishlist" target="_blank" class="bg-danger h-40 w-40 d-flex-center b-r-20">
                                   <IconHeart :size="18" class="text-white"/>
-                                </RouterLink>
+                                </router-link>
                               </li>
                               <li>
-                                <RouterLink to="/apps/e-shop/cart" target="_blank" class="bg-primary h-40 w-40 d-flex-center b-r-20">
+                                <router-link to="/apps/e-shop/cart" target="_blank" class="bg-primary h-40 w-40 d-flex-center b-r-20">
                                   <IconShoppingCartBolt :size="18" class="text-white"/>
-                                </RouterLink>
+                                </router-link>
                               </li>
                               <li>
-                                <RouterLink to="/apps/e-shop/product-details" target="_blank" class="bg-success h-40 w-40 d-flex-center b-r-20">
+                                <router-link to="/apps/e-shop/product-details" target="_blank" class="bg-success h-40 w-40 d-flex-center b-r-20">
                                   <IconEye :size="18" class="text-white"/>
-                                </RouterLink>
+                                </router-link>
                               </li>
                             </ul>
                           </div>
                         </div>
                         <div class="p-3">
                           <div class="d-flex justify-content-between align-items-center">
-                            <RouterLink to="/apps/e-shop/product-details" class="m-0 f-s-20 f-w-500">
+                            <router-link to="/apps/e-shop/product-details" class="m-0 f-s-20 f-w-500">
                               {{ product.title }}
-                            </RouterLink>
+                            </router-link>
                             <p class="text-warning m-0">
                               {{ product.rating }} <IconStarFilled :size="14" class="text-warning"/>
                             </p>
@@ -190,7 +190,7 @@ const breadcrumbItems = {
             </div>
           </b-col>
         </b-row>
-      </BContainer>
+      </b-container>
     </main>
   </AppLayout>
 </template>

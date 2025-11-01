@@ -1,3 +1,57 @@
+<script setup>
+import { ref } from "vue";
+import {
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BRow,
+  BCol,
+  BForm,
+  BFormCheckbox,
+  BFormRadio,
+} from "bootstrap-vue-next";
+
+// Import Phosphor icons
+import { PhDeviceMobileSpeaker, PhDesktop, PhWatch } from "@phosphor-icons/vue";
+
+// Email settings state
+const emailSettings = ref({
+  comments: false,
+  candidates: false,
+  offers: false,
+});
+
+// Push notification preference
+const pushNotification = ref("everything");
+
+// Devices state
+const devices = ref([
+  {
+    id: "mobile",
+    name: "Mobile push notification",
+    icon: PhDeviceMobileSpeaker,
+    description: "Receive all notifications via your mobile app",
+    colorClass: "text-outline-primary",
+    checked: true,
+  },
+  {
+    id: "desktop",
+    name: "Desktop push notification",
+    icon: PhDesktop,
+    description: "Receive all notifications via your desktop app",
+    colorClass: "text-outline-success",
+    checked: false,
+  },
+  {
+    id: "smartwatch",
+    name: "Smartwatch push notification",
+    icon: PhWatch,
+    description: "Receive all notifications via your smartwatch app",
+    colorClass: "text-outline-danger",
+    checked: false,
+  },
+]);
+</script>
 <template>
   <b-card>
     <b-card-header>
@@ -120,57 +174,4 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BRow,
-  BCol,
-  BForm,
-  BFormCheckbox,
-  BFormRadio,
-} from "bootstrap-vue-next";
 
-// Import Phosphor icons
-import { PhDeviceMobileSpeaker, PhDesktop, PhWatch } from "@phosphor-icons/vue";
-
-// Email settings state
-const emailSettings = ref({
-  comments: false,
-  candidates: false,
-  offers: false,
-});
-
-// Push notification preference
-const pushNotification = ref("everything");
-
-// Devices state
-const devices = ref([
-  {
-    id: "mobile",
-    name: "Mobile push notification",
-    icon: PhDeviceMobileSpeaker,
-    description: "Receive all notifications via your mobile app",
-    colorClass: "text-outline-primary",
-    checked: true,
-  },
-  {
-    id: "desktop",
-    name: "Desktop push notification",
-    icon: PhDesktop,
-    description: "Receive all notifications via your desktop app",
-    colorClass: "text-outline-success",
-    checked: false,
-  },
-  {
-    id: "smartwatch",
-    name: "Smartwatch push notification",
-    icon: PhWatch,
-    description: "Receive all notifications via your smartwatch app",
-    colorClass: "text-outline-danger",
-    checked: false,
-  },
-]);
-</script>
