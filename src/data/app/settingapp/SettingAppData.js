@@ -101,9 +101,9 @@ export const monthActivities = [
     message: "Excited about the new product launch!",
     badges: ["Launch", "Product", "Marketing"],
     images: [
-      "/images/profile-app/25.jpg",
-      "/images/profile-app/26.jpg",
-      "/images/profile-app/27.jpg"
+      "/images/draggable/02.jpg",
+      "/images/draggable/04.jpg",
+      "/images/draggable/01.jpg"
     ],
     buttons: [
       { label: "Learn More", class: "btn btn-primary" },
