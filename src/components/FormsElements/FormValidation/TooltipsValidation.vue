@@ -100,7 +100,6 @@ const handleSubmit = (e) => {
             <b-card-body>
                 <b-form class="needs-validation app-form row g-3" @submit="handleSubmit" novalidate>
 
-                    <!-- User Name -->
                     <b-col md="6">
                         <b-form-group label="User Name">
                             <b-form-input
