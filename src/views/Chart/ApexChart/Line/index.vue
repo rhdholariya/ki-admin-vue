@@ -122,27 +122,3 @@ const breadcrumbItems = computed(() => ({
 
 </template>
 
-
-// Create reactive references for chart configs with different names
-const basicChart = ref({});
-const gradientChart = ref({});
-const dashedChart = ref({});
-const steplineChart = ref({});
-
-onMounted(() => {
-  // Assign imported configurations to reactive references
-  basicChart.value = basicLineChartConfig;
-  gradientChart.value = gradientLineChartConfig;
-  dashedChart.value = dashedLineChartConfig;
-  steplineChart.value = steplineChartConfig;
-});
-// Breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "Line",
-  items: [
-    { label: "Charts", icon: PhStack },
-    { label: "Apexcharts"},
-    { label: " Line" , active: true }
-  ],
-}));
-</script>

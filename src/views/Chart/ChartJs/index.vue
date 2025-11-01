@@ -219,13 +219,3 @@ const breadcrumbItems = {
   </main>
 </AppLayout>
 </template>
-
-<style scoped>
-.card {
-  margin-bottom: 1rem;
-}
-
-.card-body {
-  padding: 1.25rem;
-}
-</style>
