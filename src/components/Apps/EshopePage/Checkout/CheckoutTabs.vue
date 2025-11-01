@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import {
-  BCard,
-  BCardBody,
-} from "bootstrap-vue-next";
+import { BCard, BCardBody } from "bootstrap-vue-next";
 import {
   IconCurrencyDollar,
   IconDisc,
@@ -28,36 +25,32 @@ const handleStepClick = (stepId) => {
 </script>
 
 <template>
-
-    <b-card class="mb-3">
-      <b-card-body class="p-0">
-        <div class="checkout-tabs-step">
-          <div
-              v-for="step in steps"
-              :key="step.id"
-              :class="`tab d-flex align-items-center ${
-              currentStep === step.id ? 'checkout-current-step' : ''
-            }`"
-              @click="handleStepClick(step.id)"
-              role="button"
-              style="cursor: pointer"
-          >
-            <div class="tabs-steps me-2">
-              <component :is="step.icon" size="20" />
-            </div>
-            <div>
-              <h6 class="mb-0">{{ step.title }}</h6>
-              <span class="text-secondary">Step {{ step.id }}</span>
-            </div>
+  <b-card class="mb-3">
+    <b-card-body class="p-0">
+      <div class="checkout-tabs-step">
+        <div
+            v-for="step in steps"
+            :key="step.id"
+            :class="['tab', 'd-flex', 'align-items-center', { 'checkout-current-step': currentStep === step.id }]"
+            @click="handleStepClick(step.id)"
+            role="button"
+            style="cursor: pointer"
+        >
+          <div class="tabs-steps me-2">
+            <component :is="step.icon" size="20" />
+          </div>
+          <div>
+            <h6 class="mb-0">{{ step.title }}</h6>
+            <span class="text-secondary">Step {{ step.id }}</span>
           </div>
         </div>
-      </b-card-body>
-    </b-card>
-    <b-card>
-      <b-card-body>
-        <CheckoutTabsData :current-step="currentStep" />
-      </b-card-body>
-    </b-card>
+      </div>
+    </b-card-body>
+  </b-card>
 
+  <b-card>
+    <b-card-body>
+      <CheckoutTabsData :current-step="currentStep" />
+    </b-card-body>
+  </b-card>
 </template>
-

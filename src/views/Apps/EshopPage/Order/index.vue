@@ -26,14 +26,11 @@ import {
   IconTruckLoading
 } from "@tabler/icons-vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {orders} from "@/data/app/EshopPage/Order/OrderPage.js";
+import { orders } from "@/data/app/EshopPage/Order/OrderPage.js";
 import AppLayout from "@/views/AppLayout.vue";
 
 const activeTab = ref("all-orders");
 
-
-
-// Filter orders based on status
 const allOrders = orders;
 const deliveredOrders = orders.filter(order => order.status === "DELIVERED");
 const pickupOrders = orders.filter(order => order.status === "PICKUPS");
@@ -62,438 +59,465 @@ const breadcrumbItems = {
   items: [
     { label: "Apps", icon: PhStack },
     { label: "E-shop" },
-    { label: "Orders", active: true },
-  ],
+    { label: "Orders", active: true }
+  ]
 };
 </script>
 
 <template>
-  <AppLayout>
+  <app-layout>
     <main>
-  <BContainer fluid>
-    <Breadcrumb :breadcrumb="breadcrumbItems" />
+      <b-container fluid>
+        <breadcrumb :breadcrumb="breadcrumbItems" />
 
-    <BRow>
-      <BCol xs="12">
-        <BCard no-body>
-          <BCardBody class="p-0">
-            <BTabs v-model="activeTab" class="order-tabs-container app-tabs-primary order-tabs">
-              <BTab title="All Orders" title-item-class="order-tab-item" active >
-                <template #title>
-                  <div class="d-flex align-items-center gap-1">
-                    <IconSortDescending2 size="18" /> All Orders
-                  </div>
-                </template>
-                <div class="order-list-table table-responsive app-scroll">
-                  <BTable
-                      hover
-                      :items="allOrders"
-                      :fields="[
-                      { key: 'checkbox', label: '' },
-                      { key: 'id', label: 'Order Id' },
-                      { key: 'customer', label: 'Customer' },
-                      { key: 'product', label: 'Product' },
-                      { key: 'status', label: 'Status' },
-                      { key: 'orderDate', label: 'Order Date' },
-                      { key: 'paymentMethod', label: 'Payment Method' },
-                      { key: 'amount', label: 'Amount' },
-                      { key: 'actions', label: 'Actions' }
-                    ]"
-                      class="table-bottom-border table-striped align-middle mb-0"
-                  >
-                    <template #head(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(customer)="data">
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle overflow-hidden" style="width: 25px; height: 25px">
-                          <BImg
-                              :src="data.item.customer.avatar"
-                              :alt="data.item.customer.name"
-                              rounded="circle"
-                              fluid
-                              class="w-100 h-100"
-                          />
-                        </div>
-                        <span>{{ data.item.customer.name }}</span>
+        <b-row>
+          <b-col xs="12">
+            <b-card no-body>
+              <b-card-body class="p-0">
+                <b-tabs
+                    v-model="activeTab"
+                    class="order-tabs-container app-tabs-primary order-tabs"
+                >
+                  <!-- All Orders -->
+                  <b-tab title="All Orders" title-item-class="order-tab-item" active>
+                    <template #title>
+                      <div class="d-flex align-items-center gap-1">
+                        <icon-sort-descending2 size="18" /> All Orders
                       </div>
                     </template>
 
-                    <template #cell(status)="data">
-                    <BBadge :variant="getBadgeVariant(data.item.status)">
-  {{ data.item.status }}
-</BBadge>
-                    </template>
+                    <div class="order-list-table table-responsive app-scroll">
+                      <b-table
+                          hover
+                          :items="allOrders"
+                          :fields="[
+                          { key: 'checkbox', label: '' },
+                          { key: 'id', label: 'Order Id' },
+                          { key: 'customer', label: 'Customer' },
+                          { key: 'product', label: 'Product' },
+                          { key: 'status', label: 'Status' },
+                          { key: 'orderDate', label: 'Order Date' },
+                          { key: 'paymentMethod', label: 'Payment Method' },
+                          { key: 'amount', label: 'Amount' },
+                          { key: 'actions', label: 'Actions' }
+                        ]"
+                          class="table-bottom-border table-striped align-middle mb-0"
+                      >
+                        <template #head(checkbox)>
+                          <b-form-checkbox />
+                        </template>
 
-                    <template #cell(actions)>
-                      <div class="d-flex gap-2">
-                        <BButton
-                            variant="outline-primary"
-                            size="sm"
-                            class="rounded-circle d-flex-center p-0 w-30 h-30"
-                            :to="{ path: '/apps/e-shop/orders-details' }"
-                        >
-                          <IconEye size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-success"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconEdit size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-danger"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconTrash size="14" />
-                        </BButton>
-                      </div>
-                    </template>
-                  </BTable>
-                </div>
-              </BTab>
+                        <template #cell(checkbox)>
+                          <b-form-checkbox />
+                        </template>
 
-              <BTab title="Delivered" title-item-class="order-tab-item">
-                <template #title>
-                  <div class="d-flex align-items-center gap-1">
-                    <IconTruckDelivery size="18" /> Delivered
-                  </div>
-                </template>
-                <div class="order-list-table table-responsive app-scroll">
-                  <BTable
-                      hover
-                      :items="deliveredOrders"
-                      :fields="[
-                      { key: 'checkbox', label: '' },
-                      { key: 'id', label: 'Order Id' },
-                      { key: 'customer', label: 'Customer' },
-                      { key: 'product', label: 'Product' },
-                      { key: 'status', label: 'Status' },
-                      { key: 'orderDate', label: 'Order Date' },
-                      { key: 'paymentMethod', label: 'Payment Method' },
-                      { key: 'amount', label: 'Amount' },
-                      { key: 'actions', label: 'Actions' }
-                    ]"
-                      class="table-bottom-border table-striped align-middle mb-0"
-                  >
-                    <template #head(checkbox)>
-                      <BFormCheckbox />
-                    </template>
+                        <template #cell(customer)="data">
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="rounded-circle overflow-hidden"
+                                style="width: 25px; height: 25px"
+                            >
+                              <b-img
+                                  :src="data.item.customer.avatar"
+                                  :alt="data.item.customer.name"
+                                  rounded="circle"
+                                  fluid
+                                  class="w-100 h-100"
+                              />
+                            </div>
+                            <span>{{ data.item.customer.name }}</span>
+                          </div>
+                        </template>
 
-                    <template #cell(checkbox)>
-                      <BFormCheckbox />
-                    </template>
+                        <template #cell(status)="data">
+                          <b-badge :variant="getBadgeVariant(data.item.status)">
+                            {{ data.item.status }}
+                          </b-badge>
+                        </template>
 
-                    <template #cell(customer)="data">
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle overflow-hidden" style="width: 25px; height: 25px">
-                          <BImg
-                              :src="data.item.customer.avatar"
-                              :alt="data.item.customer.name"
-                              rounded="circle"
-                              fluid
-                              class="w-100 h-100"
-                          />
-                        </div>
-                        <span>{{ data.item.customer.name }}</span>
-                      </div>
-                    </template>
+                        <template #cell(actions)>
+                          <div class="d-flex gap-2">
+                            <b-button
+                                variant="outline-primary"
+                                size="sm"
+                                class="rounded-circle d-flex-center p-0 w-30 h-30"
+                                :to="{ path: '/apps/e-shop/orders-details' }"
+                            >
+                              <icon-eye size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-success"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-edit size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-danger"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-trash size="14" />
+                            </b-button>
+                          </div>
+                        </template>
+                      </b-table>
+                    </div>
+                  </b-tab>
 
-                    <template #cell(status)="data">
-                    <BBadge :variant="getBadgeVariant(data.item.status)">
-  {{ data.item.status }}
-</BBadge>
-                    </template>
-
-                    <template #cell(actions)>
-                      <div class="d-flex gap-2">
-                        <BButton
-                            variant="outline-primary"
-                            size="sm"
-                            class="rounded-circle d-flex-center p-0 w-30 h-30"
-                            :to="{ path: '/apps/e-shop/orders-details' }"
-                        >
-                          <IconEye size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-success"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconEdit size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-danger"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconTrash size="14" />
-                        </BButton>
-                      </div>
-                    </template>
-                  </BTable>
-                </div>
-              </BTab>
-
-              <BTab title="Pickups" title-item-class="order-tab-item">
-                <template #title>
-                  <div class="d-flex align-items-center gap-1">
-                    <IconTruckLoading size="18" /> Pickups
-                  </div>
-                </template>
-                <div class="order-list-table table-responsive app-scroll">
-                  <BTable
-                      hover
-                      :items="pickupOrders"
-                      :fields="[
-                      { key: 'checkbox', label: '' },
-                      { key: 'id', label: 'Order Id' },
-                      { key: 'customer', label: 'Customer' },
-                      { key: 'product', label: 'Product' },
-                      { key: 'status', label: 'Status' },
-                      { key: 'orderDate', label: 'Order Date' },
-                      { key: 'paymentMethod', label: 'Payment Method' },
-                      { key: 'amount', label: 'Amount' },
-                      { key: 'actions', label: 'Actions' }
-                    ]"
-                      class="table-bottom-border table-striped align-middle mb-0"
-                  >
-                    <template #head(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(customer)="data">
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle overflow-hidden" style="width: 25px; height: 25px">
-                          <BImg
-                              :src="data.item.customer.avatar"
-                              :alt="data.item.customer.name"
-                              rounded="circle"
-                              fluid
-                              class="w-100 h-100"
-                          />
-                        </div>
-                        <span>{{ data.item.customer.name }}</span>
+                  <!-- Delivered -->
+                  <b-tab title="Delivered" title-item-class="order-tab-item">
+                    <template #title>
+                      <div class="d-flex align-items-center gap-1">
+                        <icon-truck-delivery size="18" /> Delivered
                       </div>
                     </template>
 
-                    <template #cell(status)="data">
-                    <BBadge :variant="getBadgeVariant(data.item.status)">
-  {{ data.item.status }}
-</BBadge>
-                    </template>
+                    <div class="order-list-table table-responsive app-scroll">
+                      <b-table
+                          hover
+                          :items="deliveredOrders"
+                          :fields="[
+                          { key: 'checkbox', label: '' },
+                          { key: 'id', label: 'Order Id' },
+                          { key: 'customer', label: 'Customer' },
+                          { key: 'product', label: 'Product' },
+                          { key: 'status', label: 'Status' },
+                          { key: 'orderDate', label: 'Order Date' },
+                          { key: 'paymentMethod', label: 'Payment Method' },
+                          { key: 'amount', label: 'Amount' },
+                          { key: 'actions', label: 'Actions' }
+                        ]"
+                          class="table-bottom-border table-striped align-middle mb-0"
+                      >
+                        <template #head(checkbox)>
+                          <b-form-checkbox />
+                        </template>
 
-                    <template #cell(actions)>
-                      <div class="d-flex gap-2">
-                        <BButton
-                            variant="outline-primary"
-                            size="sm"
-                            class="rounded-circle d-flex-center p-0 w-30 h-30"
-                            :to="{ path: '/apps/e-shop/orders-details' }"
-                        >
-                          <IconEye size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-success"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconEdit size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-danger"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconTrash size="14" />
-                        </BButton>
-                      </div>
-                    </template>
-                  </BTable>
-                </div>
-              </BTab>
+                        <template #cell(checkbox)>
+                          <b-form-checkbox />
+                        </template>
 
-              <BTab title="Returns" title-item-class="order-tab-item">
-                <template #title>
-                  <div class="d-flex align-items-center gap-1">
-                    <IconArrowBack size="18" /> Returns
-                  </div>
-                </template>
-                <div class="order-list-table table-responsive app-scroll">
-                  <BTable
-                      hover
-                      :items="returnOrders"
-                      :fields="[
-                      { key: 'checkbox', label: '' },
-                      { key: 'id', label: 'Order Id' },
-                      { key: 'customer', label: 'Customer' },
-                      { key: 'product', label: 'Product' },
-                      { key: 'status', label: 'Status' },
-                      { key: 'orderDate', label: 'Order Date' },
-                      { key: 'paymentMethod', label: 'Payment Method' },
-                      { key: 'amount', label: 'Amount' },
-                      { key: 'actions', label: 'Actions' }
-                    ]"
-                      class="table-bottom-border table-striped align-middle mb-0"
-                  >
-                    <template #head(checkbox)>
-                      <BFormCheckbox />
-                    </template>
+                        <template #cell(customer)="data">
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="rounded-circle overflow-hidden"
+                                style="width: 25px; height: 25px"
+                            >
+                              <b-img
+                                  :src="data.item.customer.avatar"
+                                  :alt="data.item.customer.name"
+                                  rounded="circle"
+                                  fluid
+                                  class="w-100 h-100"
+                              />
+                            </div>
+                            <span>{{ data.item.customer.name }}</span>
+                          </div>
+                        </template>
 
-                    <template #cell(checkbox)>
-                      <BFormCheckbox />
-                    </template>
+                        <template #cell(status)="data">
+                          <b-badge :variant="getBadgeVariant(data.item.status)">
+                            {{ data.item.status }}
+                          </b-badge>
+                        </template>
 
-                    <template #cell(customer)="data">
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle overflow-hidden" style="width: 25px; height: 25px">
-                          <BImg
-                              :src="data.item.customer.avatar"
-                              :alt="data.item.customer.name"
-                              rounded="circle"
-                              fluid
-                              class="w-100 h-100"
-                          />
-                        </div>
-                        <span>{{ data.item.customer.name }}</span>
-                      </div>
-                    </template>
+                        <template #cell(actions)>
+                          <div class="d-flex gap-2">
+                            <b-button
+                                variant="outline-primary"
+                                size="sm"
+                                class="rounded-circle d-flex-center p-0 w-30 h-30"
+                                :to="{ path: '/apps/e-shop/orders-details' }"
+                            >
+                              <icon-eye size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-success"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-edit size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-danger"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-trash size="14" />
+                            </b-button>
+                          </div>
+                        </template>
+                      </b-table>
+                    </div>
+                  </b-tab>
 
-                    <template #cell(status)="data">
-                    <BBadge :variant="getBadgeVariant(data.item.status)">
-  {{ data.item.status }}
-</BBadge>
-                    </template>
-
-                    <template #cell(actions)>
-                      <div class="d-flex gap-2">
-                        <BButton
-                            variant="outline-primary"
-                            size="sm"
-                            class="rounded-circle d-flex-center p-0 w-30 h-30"
-                            :to="{ path: '/apps/e-shop/orders-details' }"
-                        >
-                          <IconEye size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-success"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconEdit size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-danger"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconTrash size="14" />
-                        </BButton>
-                      </div>
-                    </template>
-                  </BTable>
-                </div>
-              </BTab>
-
-              <BTab title="Cancelled" title-item-class="order-tab-item">
-                <template #title>
-                  <div class="d-flex align-items-center gap-1">
-                    <IconSquareRoundedX size="18" /> Cancelled
-                  </div>
-                </template>
-                <div class="order-list-table table-responsive app-scroll">
-                  <BTable
-                      hover
-                      :items="cancelledOrders"
-                      :fields="[
-                      { key: 'checkbox', label: '' },
-                      { key: 'id', label: 'Order Id' },
-                      { key: 'customer', label: 'Customer' },
-                      { key: 'product', label: 'Product' },
-                      { key: 'status', label: 'Status' },
-                      { key: 'orderDate', label: 'Order Date' },
-                      { key: 'paymentMethod', label: 'Payment Method' },
-                      { key: 'amount', label: 'Amount' },
-                      { key: 'actions', label: 'Actions' }
-                    ]"
-                      class="table-bottom-border table-striped align-middle mb-0"
-                  >
-                    <template #head(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(checkbox)>
-                      <BFormCheckbox />
-                    </template>
-
-                    <template #cell(customer)="data">
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle overflow-hidden" style="width: 25px; height: 25px">
-                          <BImg
-                              :src="data.item.customer.avatar"
-                              :alt="data.item.customer.name"
-                              rounded="circle"
-                              fluid
-                              class="w-100 h-100"
-                          />
-                        </div>
-                        <span>{{ data.item.customer.name }}</span>
+                  <!-- Pickups -->
+                  <b-tab title="Pickups" title-item-class="order-tab-item">
+                    <template #title>
+                      <div class="d-flex align-items-center gap-1">
+                        <icon-truck-loading size="18" /> Pickups
                       </div>
                     </template>
 
-                    <template #cell(status)="data">
-                    <BBadge :variant="getBadgeVariant(data.item.status)">
-  {{ data.item.status }}
-</BBadge>
-                    </template>
+                    <div class="order-list-table table-responsive app-scroll">
+                      <b-table
+                          hover
+                          :items="pickupOrders"
+                          :fields="[
+                          { key: 'checkbox', label: '' },
+                          { key: 'id', label: 'Order Id' },
+                          { key: 'customer', label: 'Customer' },
+                          { key: 'product', label: 'Product' },
+                          { key: 'status', label: 'Status' },
+                          { key: 'orderDate', label: 'Order Date' },
+                          { key: 'paymentMethod', label: 'Payment Method' },
+                          { key: 'amount', label: 'Amount' },
+                          { key: 'actions', label: 'Actions' }
+                        ]"
+                          class="table-bottom-border table-striped align-middle mb-0"
+                      >
+                        <template #head(checkbox)>
+                          <b-form-checkbox />
+                        </template>
 
-                    <template #cell(actions)>
-                      <div class="d-flex gap-2">
-                        <BButton
-                            variant="outline-primary"
-                            size="sm"
-                            class="rounded-circle d-flex-center p-0 w-30 h-30"
-                            :to="{ path: '/apps/e-shop/orders-details' }"
-                        >
-                          <IconEye size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-success"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconEdit size="14" />
-                        </BButton>
-                        <BButton
-                            variant="outline-danger"
-                            size="sm"
-                            class="rounded-circle p-0 w-30 h-30"
-                        >
-                          <IconTrash size="14" />
-                        </BButton>
+                        <template #cell(checkbox)>
+                          <b-form-checkbox />
+                        </template>
+
+                        <template #cell(customer)="data">
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="rounded-circle overflow-hidden"
+                                style="width: 25px; height: 25px"
+                            >
+                              <b-img
+                                  :src="data.item.customer.avatar"
+                                  :alt="data.item.customer.name"
+                                  rounded="circle"
+                                  fluid
+                                  class="w-100 h-100"
+                              />
+                            </div>
+                            <span>{{ data.item.customer.name }}</span>
+                          </div>
+                        </template>
+
+                        <template #cell(status)="data">
+                          <b-badge :variant="getBadgeVariant(data.item.status)">
+                            {{ data.item.status }}
+                          </b-badge>
+                        </template>
+
+                        <template #cell(actions)>
+                          <div class="d-flex gap-2">
+                            <b-button
+                                variant="outline-primary"
+                                size="sm"
+                                class="rounded-circle d-flex-center p-0 w-30 h-30"
+                                :to="{ path: '/apps/e-shop/orders-details' }"
+                            >
+                              <icon-eye size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-success"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-edit size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-danger"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-trash size="14" />
+                            </b-button>
+                          </div>
+                        </template>
+                      </b-table>
+                    </div>
+                  </b-tab>
+
+                  <!-- Returns -->
+                  <b-tab title="Returns" title-item-class="order-tab-item">
+                    <template #title>
+                      <div class="d-flex align-items-center gap-1">
+                        <icon-arrow-back size="18" /> Returns
                       </div>
                     </template>
-                  </BTable>
-                </div>
-              </BTab>
-            </BTabs>
-          </BCardBody>
-        </BCard>
-      </BCol>
-    </BRow>
-  </BContainer>
+
+                    <div class="order-list-table table-responsive app-scroll">
+                      <b-table
+                          hover
+                          :items="returnOrders"
+                          :fields="[
+                          { key: 'checkbox', label: '' },
+                          { key: 'id', label: 'Order Id' },
+                          { key: 'customer', label: 'Customer' },
+                          { key: 'product', label: 'Product' },
+                          { key: 'status', label: 'Status' },
+                          { key: 'orderDate', label: 'Order Date' },
+                          { key: 'paymentMethod', label: 'Payment Method' },
+                          { key: 'amount', label: 'Amount' },
+                          { key: 'actions', label: 'Actions' }
+                        ]"
+                          class="table-bottom-border table-striped align-middle mb-0"
+                      >
+                        <template #head(checkbox)>
+                          <b-form-checkbox />
+                        </template>
+
+                        <template #cell(checkbox)>
+                          <b-form-checkbox />
+                        </template>
+
+                        <template #cell(customer)="data">
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="rounded-circle overflow-hidden"
+                                style="width: 25px; height: 25px"
+                            >
+                              <b-img
+                                  :src="data.item.customer.avatar"
+                                  :alt="data.item.customer.name"
+                                  rounded="circle"
+                                  fluid
+                                  class="w-100 h-100"
+                              />
+                            </div>
+                            <span>{{ data.item.customer.name }}</span>
+                          </div>
+                        </template>
+
+                        <template #cell(status)="data">
+                          <b-badge :variant="getBadgeVariant(data.item.status)">
+                            {{ data.item.status }}
+                          </b-badge>
+                        </template>
+
+                        <template #cell(actions)>
+                          <div class="d-flex gap-2">
+                            <b-button
+                                variant="outline-primary"
+                                size="sm"
+                                class="rounded-circle d-flex-center p-0 w-30 h-30"
+                                :to="{ path: '/apps/e-shop/orders-details' }"
+                            >
+                              <icon-eye size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-success"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-edit size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-danger"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-trash size="14" />
+                            </b-button>
+                          </div>
+                        </template>
+                      </b-table>
+                    </div>
+                  </b-tab>
+
+                  <!-- Cancelled -->
+                  <b-tab title="Cancelled" title-item-class="order-tab-item">
+                    <template #title>
+                      <div class="d-flex align-items-center gap-1">
+                        <icon-square-rounded-x size="18" /> Cancelled
+                      </div>
+                    </template>
+
+                    <div class="order-list-table table-responsive app-scroll">
+                      <b-table
+                          hover
+                          :items="cancelledOrders"
+                          :fields="[
+                          { key: 'checkbox', label: '' },
+                          { key: 'id', label: 'Order Id' },
+                          { key: 'customer', label: 'Customer' },
+                          { key: 'product', label: 'Product' },
+                          { key: 'status', label: 'Status' },
+                          { key: 'orderDate', label: 'Order Date' },
+                          { key: 'paymentMethod', label: 'Payment Method' },
+                          { key: 'amount', label: 'Amount' },
+                          { key: 'actions', label: 'Actions' }
+                        ]"
+                          class="table-bottom-border table-striped align-middle mb-0"
+                      >
+                        <template #head(checkbox)>
+                          <b-form-checkbox />
+                        </template>
+
+                        <template #cell(checkbox)>
+                          <b-form-checkbox />
+                        </template>
+
+                        <template #cell(customer)="data">
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="rounded-circle overflow-hidden"
+                                style="width: 25px; height: 25px"
+                            >
+                              <b-img
+                                  :src="data.item.customer.avatar"
+                                  :alt="data.item.customer.name"
+                                  rounded="circle"
+                                  fluid
+                                  class="w-100 h-100"
+                              />
+                            </div>
+                            <span>{{ data.item.customer.name }}</span>
+                          </div>
+                        </template>
+
+                        <template #cell(status)="data">
+                          <b-badge :variant="getBadgeVariant(data.item.status)">
+                            {{ data.item.status }}
+                          </b-badge>
+                        </template>
+
+                        <template #cell(actions)>
+                          <div class="d-flex gap-2">
+                            <b-button
+                                variant="outline-primary"
+                                size="sm"
+                                class="rounded-circle d-flex-center p-0 w-30 h-30"
+                                :to="{ path: '/apps/e-shop/orders-details' }"
+                            >
+                              <icon-eye size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-success"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-edit size="14" />
+                            </b-button>
+                            <b-button
+                                variant="outline-danger"
+                                size="sm"
+                                class="rounded-circle p-0 w-30 h-30"
+                            >
+                              <icon-trash size="14" />
+                            </b-button>
+                          </div>
+                        </template>
+                      </b-table>
+                    </div>
+                  </b-tab>
+                </b-tabs>
+              </b-card-body>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
     </main>
-  </AppLayout>
+  </app-layout>
 </template>
-

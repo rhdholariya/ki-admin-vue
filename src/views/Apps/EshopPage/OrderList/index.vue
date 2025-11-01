@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import {
   BCard,
   BCardBody,
@@ -19,20 +19,20 @@ import {
   BInputGroupText,
   BFormCheckbox,
 } from "bootstrap-vue-next";
-import { PhStack } from "@phosphor-icons/vue";
-import { IconEdit, IconEye, IconTrash } from "@tabler/icons-vue";
+import {PhStack} from "@phosphor-icons/vue";
+import {IconEdit, IconEye, IconTrash} from "@tabler/icons-vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import { orders } from "@/data/app/EshopPage/Order/OrderPage.js";
+import {orders} from "@/data/app/EshopPage/Order/OrderPage.js";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Modal and reactive order list
+// Reactive state
 const showModal = ref(false);
 const editOrder = ref(null);
 const ordersList = ref([...orders]);
 
-// Open modal and set current order for editing
+// Open modal for editing
 const handleShow = (order) => {
-  editOrder.value = { ...order }; // shallow copy to edit safely
+  editOrder.value = {...order}; // shallow copy
   showModal.value = true;
 };
 
@@ -40,6 +40,17 @@ const handleShow = (order) => {
 const handleClose = () => {
   showModal.value = false;
   editOrder.value = null;
+};
+
+// Save edited order
+const handleSave = () => {
+  if (!editOrder.value) return;
+
+  ordersList.value = ordersList.value.map((order) =>
+      order.idNum === editOrder.value.idNum ? {...editOrder.value} : order
+  );
+
+  handleClose();
 };
 
 // Delete order
@@ -69,9 +80,9 @@ const getBadgeVariant = (status) => {
 const breadcrumbItems = {
   title: "Orders List",
   items: [
-    { label: "Apps", icon: PhStack },
-    { label: "E-shop" },
-    { label: "Orders List", active: true },
+    {label: "Apps", icon: PhStack},
+    {label: "E-shop"},
+    {label: "Orders List", active: true},
   ],
 };
 </script>
@@ -80,7 +91,7 @@ const breadcrumbItems = {
   <app-layout>
     <main>
       <b-container fluid>
-        <breadcrumb :breadcrumb="breadcrumbItems" />
+        <breadcrumb :breadcrumb="breadcrumbItems"/>
 
         <b-row>
           <b-col>
@@ -105,17 +116,17 @@ const breadcrumbItems = {
                   >
                     <!-- Select All -->
                     <template #head(checkbox)>
-                      <b-form-checkbox />
+                      <b-form-checkbox/>
                     </template>
 
                     <template #cell(checkbox)>
-                      <b-form-checkbox />
+                      <b-form-checkbox/>
                     </template>
 
-                    <!-- Customer cell -->
+                    <!-- Customer -->
                     <template #cell(customer)="data">
                       <div class="d-flex align-items-center gap-2">
-                        <div :class="`rounded-circle overflow-hidden w-25 h-25 ${data.item.avatarBgColor}`">
+                        <div class="rounded-circle overflow-hidden" style="width: 30px; height: 30px;">
                           <b-img
                               :src="data.item.customer.avatar"
                               :alt="data.item.customer.name"
@@ -141,26 +152,26 @@ const breadcrumbItems = {
                         <b-button
                             variant="outline-primary"
                             size="sm"
-                            class="d-flex-center p-0 w-30 h-30 rounded-circle"
+                            class="p-0 w-30 h-30 rounded-circle d-flex align-items-center justify-content-center"
                             :to="{ path: '/apps/e-shop/orders-details' }"
                         >
-                          <icon-eye size="16" />
+                          <icon-eye size="16"/>
                         </b-button>
                         <b-button
                             variant="outline-success"
                             size="sm"
-                            class="p-0 w-30 h-30 rounded-circle"
+                            class="p-0 w-30 h-30 rounded-circle d-flex align-items-center justify-content-center"
                             @click="handleShow(data.item)"
                         >
-                          <icon-edit size="16" />
+                          <icon-edit size="16"/>
                         </b-button>
                         <b-button
                             variant="outline-danger"
                             size="sm"
-                            class="p-0 w-30 h-30 rounded-circle"
+                            class="p-0 w-30 h-30 rounded-circle d-flex align-items-center justify-content-center"
                             @click="handleDelete(data.item.idNum)"
                         >
-                          <icon-trash size="16" />
+                          <icon-trash size="16"/>
                         </b-button>
                       </div>
                     </template>
@@ -175,24 +186,15 @@ const breadcrumbItems = {
         <b-modal v-model="showModal" hide-footer backdrop="static" title="Edit Order">
           <b-form v-if="editOrder">
             <b-form-group label="Customer" class="mb-3">
-              <b-form-input
-                  v-model="editOrder.customer.name"
-                  placeholder="Customer Name"
-              />
+              <b-form-input v-model="editOrder.customer.name" placeholder="Customer Name"/>
             </b-form-group>
 
             <b-form-group label="Product" class="mb-3">
-              <b-form-input
-                  v-model="editOrder.product"
-                  placeholder="Product Name"
-              />
+              <b-form-input v-model="editOrder.product" placeholder="Product Name"/>
             </b-form-group>
 
             <b-form-group label="Order Date" class="mb-3">
-              <b-form-input
-                  type="datetime-local"
-                  v-model="editOrder.orderDate"
-              />
+              <b-form-input type="datetime-local" v-model="editOrder.orderDate"/>
             </b-form-group>
 
             <b-form-group label="Payment Method" class="mb-3">
@@ -207,22 +209,14 @@ const breadcrumbItems = {
             <b-form-group label="Amount" class="mb-3">
               <b-input-group>
                 <b-input-group-text>$</b-input-group-text>
-                <b-form-input
-                    type="text"
-                    v-model="editOrder.amount"
-                    placeholder="Enter Amount"
-                />
+                <b-form-input v-model="editOrder.amount" placeholder="Enter Amount"/>
               </b-input-group>
             </b-form-group>
           </b-form>
 
           <template #footer>
-            <b-button variant="secondary" @click="handleClose">
-              Close
-            </b-button>
-            <b-button variant="primary" @click="handleClose">
-              Save
-            </b-button>
+            <b-button variant="secondary" @click="handleClose">Close</b-button>
+            <b-button variant="primary" @click="handleSave">Save</b-button>
           </template>
         </b-modal>
       </b-container>

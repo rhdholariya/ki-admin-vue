@@ -1,37 +1,28 @@
 <script setup>
-import { ref } from "vue";
-import { BCard, BCardBody, BCol, BProgress } from "bootstrap-vue-next";
-import { IconStarFilled } from "@tabler/icons-vue";
-import { RouterLink } from "vue-router";
+import { ref } from 'vue'
+import { BCard, BCardBody, BCol, BProgress } from 'bootstrap-vue-next'
+import { IconStarFilled } from '@tabler/icons-vue'
+import { RouterLink } from 'vue-router'
 
 const ratingData = [
-  { star: 5, count: 4567, percent: 74, color: "primary" },
-  { star: 4, count: 2765, percent: 65, color: "secondary" },
-  { star: 3, count: 1682, percent: 40, color: "success" },
-  { star: 2, count: 2380, percent: 25, color: "warning" },
-  { star: 1, count: 19211, percent: 10, color: "danger" },
-];
+  { star: 5, count: 4567, percent: 74, color: 'primary' },
+  { star: 4, count: 2765, percent: 65, color: 'secondary' },
+  { star: 3, count: 1682, percent: 40, color: 'success' },
+  { star: 2, count: 2380, percent: 25, color: 'warning' },
+  { star: 1, count: 19211, percent: 10, color: 'danger' }
+]
 
-const sizes = [6, 7, 25, 30, 40];
-const colors = [
-  "primary",
-  "secondary",
-  "success",
-  "danger",
-  "warning",
-  "info",
-  "light",
-  "dark",
-];
+const sizes = [6, 7, 25, 30, 40]
+const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']
 
-const selectedSizes = ref([6]);
-const selectedColor = ref("primary");
+const selectedSizes = ref([6])
+const selectedColor = ref('primary')
 
 function toggleSize(size) {
   if (selectedSizes.value.includes(size)) {
-    selectedSizes.value = selectedSizes.value.filter((s) => s !== size);
+    selectedSizes.value = selectedSizes.value.filter(s => s !== size)
   } else {
-    selectedSizes.value.push(size);
+    selectedSizes.value.push(size)
   }
 }
 </script>
@@ -41,7 +32,7 @@ function toggleSize(size) {
     <b-card no-body>
       <b-card-body>
         <div class="product-details-contentbox">
-          <!-- Product title -->
+          <!-- Product Title -->
           <h4>Trendy & Stylish Loafers For Men</h4>
 
           <!-- Ratings -->
@@ -121,15 +112,15 @@ function toggleSize(size) {
           <div class="mt-4">
             <h5>Description:</h5>
             <p class="mt-2">
-              A product description is a piece of writing that conveys the
-              features and benefits of a product, ranging from basic facts to
-              stories that make a product compelling to an ideal buyer.
+              A product description is a piece of writing that conveys the features
+              and benefits of a product, ranging from basic facts to stories that make
+              a product compelling to an ideal buyer.
             </p>
             <p>
               Aside from educating and enticing potential customers, the best
               descriptions can help you differentiate your product and brand
-              from your competitors by putting forward your most salient
-              features and benefits.
+              from your competitors by putting forward your most salient features
+              and benefits.
             </p>
           </div>
 
@@ -166,20 +157,18 @@ function toggleSize(size) {
 
           <!-- Action Buttons -->
           <div class="product-details-btn text-end mt-4">
-            <router-link to="/apps/e-shop/cart" class="btn btn-primary me-2">
+            <RouterLink to="/apps/e-shop/cart" class="btn btn-primary me-2">
               Add To Cart
-            </router-link>
-            <router-link to="/apps/e-shop/checkout" class="btn btn-success me-2">
+            </RouterLink>
+            <RouterLink to="/apps/e-shop/checkout" class="btn btn-success me-2">
               Buy Now
-            </router-link>
-            <router-link to="/apps/e-shop/wishlist" class="btn btn-danger">
+            </RouterLink>
+            <RouterLink to="/apps/e-shop/wishlist" class="btn btn-danger">
               Add to Wishlist
-            </router-link>
+            </RouterLink>
           </div>
         </div>
       </b-card-body>
     </b-card>
   </b-col>
 </template>
-
-

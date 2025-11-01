@@ -1,23 +1,23 @@
 <script setup>
-import {ref, computed, h} from "vue";
+import { ref, computed, h } from "vue";
 import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
-import {productlist} from "@/data/app/EshopPage/ProductList/Productlist.js";
-import {PhStack} from "@phosphor-icons/vue";
+import { productlist } from "@/data/app/EshopPage/ProductList/Productlist.js";
+import { PhStack } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import {IconEdit, IconTrash} from "@tabler/icons-vue";
-import { BContainer} from "bootstrap-vue-next";
+import { IconEdit, IconTrash } from "@tabler/icons-vue";
+import { BContainer, BFormCheckbox } from "bootstrap-vue-next";
 
 const products = ref([...productlist]);
 const selectedItems = ref([]);
 
-
+// 🗑 Delete a product
 const handleDelete = (id) => {
   products.value = products.value.filter((p) => p.id !== id);
   selectedItems.value = selectedItems.value.filter((itemId) => itemId !== id);
 };
 
-
+// ✅ Toggle single selection
 const toggleItemSelection = (id) => {
   if (selectedItems.value.includes(id)) {
     selectedItems.value = selectedItems.value.filter((itemId) => itemId !== id);
@@ -26,16 +26,16 @@ const toggleItemSelection = (id) => {
   }
 };
 
-
+// ✅ Toggle "Select All"
 const toggleSelectAll = (checked) => {
   if (checked) {
-    selectedItems.value = products.value.map(p => p.id);
+    selectedItems.value = products.value.map((p) => p.id);
   } else {
     selectedItems.value = [];
   }
 };
 
-
+// Category badge color map
 const categoryColorMap = {
   Purse: "info",
   Watch: "success",
@@ -43,98 +43,101 @@ const categoryColorMap = {
   Clothing: "danger",
 };
 
-
+// ✅ Table Columns Definition
 const columns = [
   {
     key: "checkbox",
     header: "Select",
-    render: (value, product) => {
-      return h("input", {
-        type: "checkbox",
-        class: "form-check-input mt-0",
-        checked: selectedItems.value.includes(product.id),
-        onChange: () => toggleItemSelection(product.id)
-      });
-    },
-    className: "text-center no-export"
+    render: (value, product) =>
+        h(BFormCheckbox, {
+          modelValue: selectedItems.value.includes(product.id),
+          "onUpdate:modelValue": () => toggleItemSelection(product.id),
+          class: "mt-0",
+        }),
+    className: "text-center no-export",
   },
   {
     key: "product",
     header: "Product",
-    render: (value, product) => {
-      return h("div", {class: "d-flex align-items-center"}, [
-        h("div", {class: "me-2 w-35 h-35"}, [
-          h("img", {
-            src: product.image,
-            alt: product.name,
-            class: "img-fluid rounded object-fit-cover w-100 h-100"
-          })
+    render: (value, product) =>
+        h("div", { class: "d-flex align-items-center" }, [
+          h("div", { class: "me-2 w-35 h-35" }, [
+            h("img", {
+              src: product.image,
+              alt: product.name,
+              class: "img-fluid rounded object-fit-cover w-100 h-100",
+            }),
+          ]),
+          h("span", { class: "fw-medium" }, product.name),
         ]),
-        h("span", {class: "fw-medium"}, product.name)
-      ]);
-    },
   },
   {
     key: "price",
     header: "Price",
-    render: (value, product) => {
-      return h("span", {class: 'text-success fw-semibold'}, product.price);
-    },
+    render: (value, product) =>
+        h("span", { class: "text-success fw-semibold" }, product.price),
   },
-  {key: "stock", header: "Stock"},
+  { key: "stock", header: "Stock" },
   {
     key: "category",
     header: "Category",
-    render: (value, product) => {
-      return h("span", {
-        class: `badge bg-${categoryColorMap[product.category] || "secondary"}`
-      }, product.category);
-    },
+    render: (value, product) =>
+        h(
+            "span",
+            {
+              class: `badge bg-${
+                  categoryColorMap[product.category] || "secondary"
+              }`,
+            },
+            product.category
+        ),
   },
-  {key: "seller", header: "Seller"},
-  {key: "published", header: "Published", className: "fw-semibold"},
+  { key: "seller", header: "Seller" },
+  { key: "published", header: "Published", className: "fw-semibold" },
   {
     key: "action",
     header: "Action",
-    render: (value, product) => {
-      return h("div", {class: "d-flex gap-3"}, [
-        h(
-            "button",
-            {
-              class: "btn btn-outline-success btn-sm rounded-circle d-flex-center p-0 w-30 h-30",
-            },
-            [h(IconEdit, {size: 16})]
-        ),
-        h(
-            "button",
-            {
-              class: "btn btn-outline-danger btn-sm rounded-circle d-flex-center p-0 w-30 h-30",
-              onClick: () => handleDelete(product.id)
-            },
-            [h(IconTrash, {size: 16})]
-        ),
-      ]);
-    },
+    render: (value, product) =>
+        h("div", { class: "d-flex gap-3" }, [
+          h(
+              "button",
+              {
+                class:
+                    "btn btn-outline-success btn-sm rounded-circle d-flex-center p-0 w-30 h-30",
+              },
+              [h(IconEdit, { size: 16 })]
+          ),
+          h(
+              "button",
+              {
+                class:
+                    "btn btn-outline-danger btn-sm rounded-circle d-flex-center p-0 w-30 h-30",
+                onClick: () => handleDelete(product.id),
+              },
+              [h(IconTrash, { size: 16 })]
+          ),
+        ]),
   },
 ];
 
+// Footer columns
 const footerColumns = [
-  {key: "product", header: "Product"},
-  {key: "price", header: "Price"},
-  {key: "stock", header: "Stock"},
-  {key: "category", header: "Category"},
-  {key: "seller", header: "Seller"},
-  {key: "published", header: "Published"},
-  {key: "action", header: "Action"},
+  { key: "product", header: "Product" },
+  { key: "price", header: "Price" },
+  { key: "stock", header: "Stock" },
+  { key: "category", header: "Category" },
+  { key: "seller", header: "Seller" },
+  { key: "published", header: "Published" },
+  { key: "action", header: "Action" },
 ];
 
-// 🟢 Breadcrumb items
+// Breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Product List",
   items: [
-    {label: "Apps", icon: PhStack},
-    {label: "E-shop"},
-    {label: "Product List", active: true},
+    { label: "Apps", icon: PhStack },
+    { label: "E-shop" },
+    { label: "Product List", active: true },
   ],
 }));
 </script>
@@ -143,7 +146,7 @@ const breadcrumbItems = computed(() => ({
   <AppLayout>
     <main>
       <b-container fluid>
-        <Breadcrumb :breadcrumb="breadcrumbItems"/>
+        <Breadcrumb :breadcrumb="breadcrumbItems" />
 
         <CustomDataTable
             :show-description="false"
@@ -164,4 +167,3 @@ const breadcrumbItems = computed(() => ({
     </main>
   </AppLayout>
 </template>
-

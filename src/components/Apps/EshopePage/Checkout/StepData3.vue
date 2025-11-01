@@ -13,8 +13,10 @@ import {
   BImg
 } from "bootstrap-vue-next";
 
+// Selected payment option
 const selectedPayment = ref("card");
 
+// Card form data
 const cardData = ref({
   name: "",
   number: "",
@@ -22,10 +24,7 @@ const cardData = ref({
   cvc: "",
 });
 
-const handleCardInputChange = (field, value) => {
-  cardData.value[field] = value;
-};
-
+// Handle form submit
 const handleCardSubmit = (e) => {
   e.preventDefault();
   alert("Payment submitted successfully!");
@@ -49,6 +48,7 @@ const handleCardSubmit = (e) => {
               Credit / Debit Card
             </b-form-radio>
 
+            <!-- Card Payment Form -->
             <b-form
                 v-if="selectedPayment === 'card'"
                 class="app-form"
@@ -58,47 +58,47 @@ const handleCardSubmit = (e) => {
                 <b-col md="12">
                   <b-form-group label="Cardholder Name" class="mb-3">
                     <b-form-input
+                        v-model="cardData.name"
                         type="text"
                         placeholder="Olaf"
-                        :value="cardData.name"
-                        @input="(e) => handleCardInputChange('name', e.target.value)"
                         required
                     />
                   </b-form-group>
                 </b-col>
+
                 <b-col md="12">
                   <b-form-group label="Card Number" class="mb-3">
                     <b-form-input
+                        v-model="cardData.number"
                         type="text"
                         placeholder="xxxx-xxxx-xxxx-xxxx"
-                        :value="cardData.number"
-                        @input="(e) => handleCardInputChange('number', e.target.value)"
                         required
                     />
                   </b-form-group>
                 </b-col>
+
                 <b-col md="6">
                   <b-form-group label="Expiration Date" class="mb-3">
                     <b-form-input
+                        v-model="cardData.expiry"
                         type="text"
                         placeholder="MM/YY"
-                        :value="cardData.expiry"
-                        @input="(e) => handleCardInputChange('expiry', e.target.value)"
                         required
                     />
                   </b-form-group>
                 </b-col>
+
                 <b-col md="6">
                   <b-form-group label="CVC Code" class="mb-3">
                     <b-form-input
+                        v-model="cardData.cvc"
                         type="text"
                         placeholder="xxx"
-                        :value="cardData.cvc"
-                        @input="(e) => handleCardInputChange('cvc', e.target.value)"
                         required
                     />
                   </b-form-group>
                 </b-col>
+
                 <b-col md="12" class="text-end">
                   <b-button type="submit" variant="primary">
                     Submit
@@ -134,6 +134,10 @@ const handleCardSubmit = (e) => {
                 </div>
               </div>
             </b-form-radio>
+
+            <div v-if="selectedPayment === 'visa'" class="mt-2 text-muted">
+              You selected <strong>Visa</strong> as your payment option.
+            </div>
           </b-card-body>
         </b-card>
       </b-col>
@@ -157,11 +161,15 @@ const handleCardSubmit = (e) => {
                     class="me-2"
                 />
                 <div>
-                  <div class="fs-6 tab-heading">Paypal</div>
+                  <div class="fs-6 tab-heading">PayPal</div>
                   <p class="text-secondary mb-0">Select PayPal</p>
                 </div>
               </div>
             </b-form-radio>
+
+            <div v-if="selectedPayment === 'paypal'" class="mt-2 text-muted">
+              You selected <strong>PayPal</strong> for secure online payment.
+            </div>
           </b-card-body>
         </b-card>
       </b-col>
@@ -181,6 +189,10 @@ const handleCardSubmit = (e) => {
                 Select Other UPI Apps for payment
               </p>
             </b-form-radio>
+
+            <div v-if="selectedPayment === 'upi'" class="mt-2 text-muted">
+              You selected <strong>UPI</strong> — use any supported app to pay.
+            </div>
           </b-card-body>
         </b-card>
       </b-col>
@@ -196,16 +208,20 @@ const handleCardSubmit = (e) => {
                 value="cod"
             >
               <div class="fs-6 tab-heading">
-                Cash on Delivery/Pay on Delivery
+                Cash on Delivery / Pay on Delivery
               </div>
               <p class="text-secondary mb-0">
-                Cash, UPI and Cards accepted.
+                Cash, UPI, and Cards accepted.
               </p>
             </b-form-radio>
+
+            <div v-if="selectedPayment === 'cod'" class="mt-2 text-muted">
+              You selected <strong>Cash on Delivery</strong> — pay when your
+              order arrives.
+            </div>
           </b-card-body>
         </b-card>
       </b-col>
     </b-row>
   </div>
 </template>
-

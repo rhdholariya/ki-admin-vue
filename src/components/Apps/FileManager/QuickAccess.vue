@@ -81,7 +81,7 @@ const deleteItem = (item) => {
                   />
                 </div>
 
-                <b-dropdown variant="link" no-caret right class="custom-dropdown">
+                <b-dropdown variant="link" no-caret right class="custom-dropdown p-0">
                   <template #button-content>
                     <PhDotsThreeVertical :size="16" class="text-muted" />
                   </template>

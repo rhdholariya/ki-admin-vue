@@ -14,13 +14,11 @@ const thumbnails = [
 const offers = [
   {
     title: 'Bank Offer',
-    details:
-        '10% Instant Discount on ICICI Bank Credit Card, up to ₹1250 on orders of ₹5,000 and above'
+    details: '10% Instant Discount on ICICI Bank Credit Card, up to ₹1250 on orders of ₹5,000 and above'
   },
   {
     title: 'Bank Offer',
-    details:
-        'Kotak Bank Credit Card, up to ₹1250 on orders of ₹5,000 and above'
+    details: 'Kotak Bank Credit Card, up to ₹1250 on orders of ₹5,000 and above'
   }
 ]
 </script>
@@ -43,9 +41,9 @@ const offers = [
 
           <!-- Thumbnails -->
           <b-col
-              cols="3"
               v-for="(img, index) in thumbnails"
               :key="index"
+              cols="3"
           >
             <div class="product-image-box">
               <img
@@ -57,6 +55,7 @@ const offers = [
           </b-col>
         </b-row>
 
+        <!-- Stock Info -->
         <div class="mt-4">
           <h6 class="text-danger f-s-18">
             <strong>Only 2 left in stock.</strong>
@@ -73,15 +72,16 @@ const offers = [
             </a>
           </p>
 
-          <div class="app-divider-v dotted p-2 m-0" />
+          <div class="app-divider-v dotted p-2 m-0"></div>
 
+          <!-- Offer List -->
           <ul class="offer-details-list list-unstyled">
             <li
-                class="f-w-500 d-flex align-items-start mb-2"
                 v-for="(offer, idx) in offers"
                 :key="idx"
+                class="f-w-500 d-flex align-items-start mb-2"
             >
-              <icon-tag size="18" class="text-primary me-2 mt-1" />
+              <IconTag size="18" class="text-primary me-2 mt-1"/>
               <span>
                 <b class="text-dark">{{ offer.title }}:</b>
                 {{ offer.details }}
