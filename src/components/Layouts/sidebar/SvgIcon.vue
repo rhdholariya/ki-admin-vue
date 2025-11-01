@@ -1,18 +1,18 @@
 <script setup>
-const props = defineProps({
+defineProps({
   iconId: {
     type: String,
     required: true
   },
   className: {
     type: String,
-    default: ""
+    default: ''
   },
   size: {
     type: Number,
     default: 20
   }
-});
+})
 </script>
 
 <template>
@@ -26,5 +26,3 @@ const props = defineProps({
     <use :href="`/svg/_sprite.svg#${iconId}`" />
   </svg>
 </template>
-
-

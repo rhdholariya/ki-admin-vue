@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from "vue"
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhBriefcase} from "@phosphor-icons/vue";
@@ -19,7 +18,7 @@ const breadcrumbItems = {
 };
 
 
-import Shepherd from "shepherd.js"
+
 import 'shepherd.js/dist/css/shepherd.css'
 
 // onMounted(() => {

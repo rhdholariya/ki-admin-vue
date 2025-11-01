@@ -1,4 +1,87 @@
+<script setup>
+import { ref } from "vue";
+import FsLightbox from "fslightbox-vue";
+import {
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BNav,
+  BNavItem,
+  BRow,
+  BCol,
+  BImg,
+  BBadge,
+  BButton,
+} from "bootstrap-vue-next";
+
+
+import {
+  activities,
+  monthActivities,
+  weekActivities,
+} from "@/data/app/settingapp/SettingAppData.js";
+
+
+const activeTab = ref("today");
+
+
+const tabs = [
+  { key: "today", title: "Today" },
+  { key: "week", title: "Week" },
+  { key: "month", title: "Month" },
+];
+
+
+const setActiveTab = (tabKey) => {
+  activeTab.value = tabKey;
+};
+
+const lightboxToggler = ref(false);
+const currentSlide = ref(1);
+const lightboxSources = ref([]);
+
+// Get all images from all tabs
+const getAllImageSources = () => {
+  const allActivities = [
+    ...activities,
+    ...(weekActivities || []),
+    ...(monthActivities || [])
+  ];
+  return allActivities.flatMap(activity => activity.images || []);
+};
+
+// Handle image click
+const handleImageClick = (images, index = 0) => {
+  const clickedImage = images[index];
+  const allImages = getAllImageSources();
+  
+
+  const matchingIndices = [];
+  allImages.forEach((img, idx) => {
+    if (img === clickedImage) {
+      matchingIndices.push(idx);
+    }
+  });
+
+  if (matchingIndices.length > 0) {
+    lightboxSources.value = allImages;
+    const occurrenceIndex = Math.min(index, matchingIndices.length - 1);
+    currentSlide.value = matchingIndices[occurrenceIndex] + 1;
+    lightboxToggler.value = !lightboxToggler.value;
+  }
+};
+</script>
+
+
 <template>
+  <FsLightbox
+    v-if="lightboxSources.length > 0"
+    :toggler="lightboxToggler"
+    :sources="lightboxSources"
+    :slide="currentSlide"
+    type="image"
+    :key="lightboxSources.join()"
+  />
   <b-card class="equal-card month-timeline" no-body>
     <b-card-header>
       <div class="activity-time">
@@ -63,9 +146,10 @@
                     sm="4"
                   >
                     <a
-                      :href="img"
-                      class="glightbox img-hover-zoom"
-                      data-glightbox="type: image; zoomable: true;"
+                      href="javascript:void(0)"
+                      class="img-hover-zoom"
+                      @click="handleImageClick(activity.images, index)"
+                      style="cursor: pointer; display: block;"
                     >
                       <b-img
                         :src="img"
@@ -201,9 +285,10 @@
                     sm="4"
                   >
                     <a
-                      :href="image"
-                      class="glightbox img-hover-zoom"
-                      data-glightbox="type: image; zoomable: true;"
+                      href="javascript:void(0)"
+                      class="img-hover-zoom"
+                      @click="handleImageClick(item.images, index)"
+                      style="cursor: pointer; display: block;"
                     >
                       <b-img
                         :src="image"
@@ -238,60 +323,6 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import {
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BNav,
-  BNavItem,
-  BRow,
-  BCol,
-  BImg,
-  BBadge,
-  BButton,
-} from "bootstrap-vue-next";
 
-// Import data (you'll need to create this file or adjust the import path)
-import {
-  activities,
-  monthActivities,
-  weekActivities,
-} from "@/data/app/settingapp/SettingAppData.js";
-
-// Import GLightbox
-import GLightbox from "glightbox";
-import "glightbox/dist/css/glightbox.min.css";
-
-// Reactive state
-const activeTab = ref("today");
-
-// Tab configuration
-const tabs = [
-  { key: "today", title: "Today" },
-  { key: "week", title: "Week" },
-  { key: "month", title: "Month" },
-];
-
-// Methods
-const setActiveTab = (tabKey) => {
-  activeTab.value = tabKey;
-};
-
-// GLightbox instance
-let lightbox = null;
-
-// Lifecycle hooks
-onMounted(() => {
-  lightbox = GLightbox({ selector: ".glightbox" });
-});
-
-onUnmounted(() => {
-  if (lightbox) {
-    lightbox.destroy();
-  }
-});
-</script>
 
 

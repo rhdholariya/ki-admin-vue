@@ -303,15 +303,6 @@ const updateQuantity = (id, amount) => {
   }
 }
 
-const handleChange = (id, event) => {
-  const value = parseInt(event.target.value)
-  if (!isNaN(value) && value >= 0) {
-    const product = products.value.find(p => p.id === id)
-    if (product) {
-      product.quantity = value
-    }
-  }
-}
 
 const handleDelete = (id) => {
   products.value = products.value.filter(p => p.id !== id)

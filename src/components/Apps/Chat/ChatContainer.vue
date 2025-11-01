@@ -30,7 +30,7 @@ import {
   IconVideo,
 } from "@tabler/icons-vue";
 
-import { chatmessages } from "@/data/app/chatapp/ChatData.js";
+import { chatmessages } from "@/data/app/Chatapp/ChatData.js";
 
 const callModal = ref(false);
 const videoModal = ref(false);

@@ -1,7 +1,8 @@
 <script setup>
 import { ref, nextTick, watch } from "vue";
 import {BCard, BButton, BRow, BCol, BCollapse, BCardBody, BCardHeader} from "bootstrap-vue-next";
-
+import Prism from "prismjs"
+import "prismjs/themes/prism.css"
 
 import {
     PhCode,
@@ -148,7 +149,7 @@ ${blockButtonGroups
   ${btn.position === "start" ? btn.iconName : ""}
   ${btn.text}
   ${btn.position === "end" ? btn.iconName : ""}
-&lt;/b-button&gt`
+&lt;/b-button&gt;`
   )
   .join("\n")}` }}
                  &lt;/div&gt;
@@ -196,7 +197,7 @@ ${blockButtonGroups
               .map(
                   (btn) => `&lt;b-button variant="${btn.variant}" class="w-auto ${btn.radiusClass}">
   ${btn.text}
-&lt;/b-button&gt`
+&lt;/b-button&gt;`
   )
   .join("\n")}` }}
                 &lt;/div&gt;

@@ -1,10 +1,18 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { BButton , BCard,BForm, BModal , BFormInput , BFormGroup , BDropdown , BDropdownItem, BTable , BPagination } from "bootstrap-vue-next";
-const showCreateFileModal = ref(false)
-const newFileName = ref('')
-const currentPage = ref(1)
-const perPage = ref(6)
+import { ref } from 'vue'
+import {
+  BButton,
+  BCard,
+  BForm,
+  BModal,
+  BFormInput,
+  BFormGroup,
+  BDropdown,
+  BDropdownItem,
+  BTable,
+  BPagination
+} from 'bootstrap-vue-next'
+
 import {
   PhStar,
   PhDotsThreeVertical,
@@ -12,6 +20,17 @@ import {
   PhPencil,
   PhTrash
 } from '@phosphor-icons/vue'
+
+// Reactive state
+const showCreateFileModal = ref(false)
+const newFileName = ref('')
+const currentPage = ref(1)
+const perPage = ref(6)
+
+// Define emitted events
+const emit = defineEmits(['edit-file', 'view-item', 'delete-file'])
+
+// Table columns
 const fields = [
   { key: 'name', label: 'Name' },
   { key: 'totalItems', label: 'Total Items', class: 'text-success f-w-500' },
@@ -20,68 +39,23 @@ const fields = [
   { key: 'actions', label: 'Actions' }
 ]
 
+// Sample data
 const recentFiles = ref([
-  {
-    id: 1,
-    name: 'Monthly Report july',
-    icon: '/images/icons/file-manager-icon/file.png',
-    totalItems: 17,
-    size: '120MB',
-    lastModified: '21 May,2024',
-    isFavorite: true
-  },
-  {
-    id: 2,
-    name: 'Thesis-Brain McKnight',
-    icon: '/images/icons/file-manager-icon/pdf.png',
-    totalItems: 15,
-    size: '25MB',
-    lastModified: '10 july,2024',
-    isFavorite: false
-  },
-  {
-    id: 3,
-    name: 'Campaign Plan Q4-2020',
-    icon: '/images/icons/file-manager-icon/folder.png',
-    totalItems: 1,
-    size: '24MB',
-    lastModified: '2 jan,2024',
-    isFavorite: true
-  },
-  {
-    id: 4,
-    name: 'Quick CV & Portfolio',
-    icon: '/images/icons/file-manager-icon/music.png',
-    totalItems: 10,
-    size: '209MB',
-    lastModified: '15 march,2024',
-    isFavorite: false
-  },
-  {
-    id: 5,
-    name: 'Wireframes Project A',
-    icon: '/images/icons/file-manager-icon/zip.png',
-    totalItems: 8,
-    size: '100MB',
-    lastModified: '11 may,2024',
-    isFavorite: true
-  },
-  {
-    id: 6,
-    name: 'Campaign plan Q4-2021',
-    icon: '/images/icons/file-manager-icon/gallery.png',
-    totalItems: 3,
-    size: '103MB',
-    lastModified: '2 May,2024',
-    isFavorite: false
-  }
+  { id: 1, name: 'Monthly Report July', icon: '/images/icons/file-manager-icon/file.png', totalItems: 17, size: '120MB', lastModified: '21 May, 2024', isFavorite: true },
+  { id: 2, name: 'Thesis - Brain McKnight', icon: '/images/icons/file-manager-icon/pdf.png', totalItems: 15, size: '25MB', lastModified: '10 July, 2024', isFavorite: false },
+  { id: 3, name: 'Campaign Plan Q4-2020', icon: '/images/icons/file-manager-icon/folder.png', totalItems: 1, size: '24MB', lastModified: '2 Jan, 2024', isFavorite: true },
+  { id: 4, name: 'Quick CV & Portfolio', icon: '/images/icons/file-manager-icon/music.png', totalItems: 10, size: '209MB', lastModified: '15 March, 2024', isFavorite: false },
+  { id: 5, name: 'Wireframes Project A', icon: '/images/icons/file-manager-icon/zip.png', totalItems: 8, size: '100MB', lastModified: '11 May, 2024', isFavorite: true },
+  { id: 6, name: 'Campaign Plan Q4-2021', icon: '/images/icons/file-manager-icon/gallery.png', totalItems: 3, size: '103MB', lastModified: '2 May, 2024', isFavorite: false }
 ])
 
+// 🟢 Create new file
 const createFile = () => {
-  if (newFileName.value.trim()) {
+  const name = newFileName.value.trim()
+  if (name) {
     const newFile = {
       id: Date.now(),
-      name: newFileName.value,
+      name,
       icon: '/images/icons/file-manager-icon/file.png',
       totalItems: Math.floor(Math.random() * 20) + 1,
       size: `${Math.floor(Math.random() * 200) + 1}MB`,
@@ -94,32 +68,40 @@ const createFile = () => {
   }
 }
 
+// 🟢 Toggle favorite
 const toggleFileFavorite = (id) => {
-  const file = recentFiles.value.find(file => file.id === id)
-  if (file) {
-    file.isFavorite = !file.isFavorite
-  }
+  const file = recentFiles.value.find(f => f.id === id)
+  if (file) file.isFavorite = !file.isFavorite
 }
 
+// 🟢 View file
 const viewFile = (file) => {
-  console.log('View file:', file)
+  emit('view-item', file)
 }
 
+// 🟢 Edit file
 const editFile = (file) => {
   emit('edit-file', file)
 }
 
+// 🟢 Delete file
 const deleteFile = (file) => {
   const index = recentFiles.value.findIndex(f => f.id === file.id)
   if (index > -1) {
     recentFiles.value.splice(index, 1)
+    emit('delete-file', file)
   }
 }
 
-const emit = defineEmits(['edit-file'])
+// 🟢 Reset form when modal closes
+const resetForm = () => {
+  newFileName.value = ''
+}
 </script>
+
 <template>
   <b-card class="h-100">
+    <!-- Header -->
     <template #header>
       <div class="d-flex gap-2 justify-content-between flex-sm-row flex-column">
         <h5 class="mb-0">Recent Added</h5>
@@ -129,6 +111,7 @@ const emit = defineEmits(['edit-file'])
       </div>
     </template>
 
+    <!-- Table -->
     <b-table
         :items="recentFiles"
         :fields="fields"
@@ -144,21 +127,25 @@ const emit = defineEmits(['edit-file'])
       </template>
 
       <template #cell(actions)="data">
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
           <b-dropdown variant="link" no-caret>
             <template #button-content>
-              <PhDotsThreeVertical :size="16" />
+              <PhDotsThreeVertical :size="16"/>
             </template>
             <b-dropdown-item @click="viewFile(data.item)">
-              <PhExport :size="16" class="text-primary me-2" />View
+              <PhExport :size="16" class="text-primary me-2"/>
+              View
             </b-dropdown-item>
             <b-dropdown-item @click="editFile(data.item)">
-              <PhPencil :size="16" class="text-success me-2" />Rename
+              <PhPencil :size="16" class="text-success me-2"/>
+              Rename
             </b-dropdown-item>
-            <b-dropdown-item @click="deleteFile(data.item)" variant="danger">
-              <PhTrash :size="16" class="text-danger me-2" />Delete
+            <b-dropdown-item @click="deleteFile(data.item)">
+              <PhTrash :size="16" class="text-danger me-2"/>
+              Delete
             </b-dropdown-item>
           </b-dropdown>
+
           <div class="starreddiv ms-3" @click="toggleFileFavorite(data.item.id)">
             <PhStar
                 :weight="data.item.isFavorite ? 'fill' : 'regular'"
@@ -170,15 +157,18 @@ const emit = defineEmits(['edit-file'])
       </template>
     </b-table>
 
+    <!-- Footer -->
     <template #footer>
       <div class="seller-table-footer d-flex gap-2 justify-content-between align-items-center">
-        <p class="text-secondary text-truncate">Showing 1 to {{ recentFiles.length }} of {{ recentFiles.length }} entries</p>
+        <p class="text-secondary text-truncate">
+          Showing 1 to {{ recentFiles.length }} of {{ recentFiles.length }} entries
+        </p>
         <b-pagination
             v-model="currentPage"
             :total-rows="recentFiles.length"
             :per-page="perPage"
             size="sm"
-        ></b-pagination>
+        />
       </div>
     </template>
   </b-card>
@@ -201,7 +191,7 @@ const emit = defineEmits(['edit-file'])
               size="lg"
               class="file-input"
               autofocus
-          ></b-form-input>
+          />
         </b-form-group>
       </b-form>
     </template>
@@ -227,4 +217,3 @@ const emit = defineEmits(['edit-file'])
     </template>
   </b-modal>
 </template>
-

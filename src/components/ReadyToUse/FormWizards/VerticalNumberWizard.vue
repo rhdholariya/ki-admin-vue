@@ -68,7 +68,6 @@ const handleSubmit = () => {
     if (validateStep()) {
         if (validateStep()) {
             alert("Form submitted successfully!");
-            console.log("Form Data:", formData.value);
             window.location.reload();
         }
     }

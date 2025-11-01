@@ -15,7 +15,7 @@ import {
     PhArrowFatLineRight,
     PhArrowBendDownRight,
     PhPlus,
-    PhCode, PhDiamond, PhCircle, PhTriangle, PhSquare, PhHeart, PhSparkle,
+    PhCode,
 } from '@phosphor-icons/vue'
 import {PhBriefcase} from "@phosphor-icons/vue"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue"

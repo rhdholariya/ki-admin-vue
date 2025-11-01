@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import {
   BAccordion,
@@ -6,6 +6,7 @@ import {
   BButton,
   BFormInput,
   BFormCheckbox,
+
 } from 'bootstrap-vue-next'
 import { IconStar, IconStarFilled } from '@tabler/icons-vue'
 import {
@@ -16,12 +17,12 @@ import {
   PhShoppingCart
 } from '@phosphor-icons/vue'
 
-const active = ref("1")
+const active = ref('1')
 
 const selectedColor = ref('primary')
-const checkedGenders = ref<string[]>([])
+const checkedGenders = ref([])
 const selectedSort = ref('Featured')
-const selectedCategories = ref<string[]>([])
+const selectedCategories = ref([])
 const rating = ref(3)
 
 const colorOptions = [
@@ -143,7 +144,7 @@ const clearAll = () => {
               class="text-warning"
           />
           <IconStar
-              v-for="i in (5 - rating)"
+              v-for="i in 5 - rating"
               :key="`empty-${i}`"
               class="text-muted"
           />
@@ -153,7 +154,13 @@ const clearAll = () => {
       <!-- Price Range -->
       <b-accordion-item value="5">
         <template #title>Price Range</template>
-        <b-form-range class="mb-2" />
+        <input
+            type="range"
+            min="0"
+            max="1000"
+            step="10"
+            class="form-range mb-2"
+        />
         <div class="d-flex gap-2">
           <b-form-input type="number" placeholder="Min" />
           <b-form-input type="number" placeholder="Max" />

@@ -1,6 +1,21 @@
+<script setup>
+import { RouterLink } from "vue-router";
+import {
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BImg,
+} from "bootstrap-vue-next";
+
+
+import { projectDetails1, projectFiles } from "@/data/app/projectapp/ProjectDetailData.js";
+</script>
+
+
 <template>
   <b-col md="6" xxl="3" class="order-md-1 order-xxl-3" >
-    <!-- About Project Card -->
+
     <b-card no-body>
       <b-card-header>
         <h5>About Project</h5>
@@ -65,16 +80,4 @@
   </b-col>
 </template>
 
-<script setup>
-import { RouterLink } from "vue-router";
-import {
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BImg,
-} from "bootstrap-vue-next";
 
-// Import project data
-import { projectDetails1, projectFiles } from "@/data/app/projectapp/ProjectDetailData.js";
-</script>

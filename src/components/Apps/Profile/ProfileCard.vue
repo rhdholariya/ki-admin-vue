@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref } from "vue";
 import { BCard, BCardBody, BRow, BButton } from "bootstrap-vue-next";
@@ -7,16 +6,17 @@ import { IconPhotoHeart, IconUser } from "@tabler/icons-vue";
 const imagePreview = ref(null);
 
 const handleFileUpload = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imagePreview.value = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    imagePreview.value = e.target.result;
+  };
+  reader.readAsDataURL(file);
 };
 </script>
+
 <template>
   <b-card no-body>
     <b-card-body>
@@ -35,12 +35,18 @@ const handleFileUpload = (event) => {
                     @change="handleFileUpload"
                 />
                 <label for="imageUpload" class="cursor-pointer">
-                  <IconPhotoHeart size="16" />
+                  <IconPhotoHeart size="16"/>
                 </label>
               </div>
+
               <div class="avatar-preview mt-3">
                 <div id="imgPreview">
-                  <img v-if="imagePreview" :src="imagePreview" alt="Preview" />
+                  <img
+                      v-if="imagePreview"
+                      :src="imagePreview"
+                      alt="Preview"
+                      class="img-fluid rounded-circle"
+                  />
                 </div>
               </div>
             </div>
@@ -78,7 +84,7 @@ const handleFileUpload = (event) => {
 
           <div class="my-2">
             <b-button variant="primary" class="rounded-pill">
-              <IconUser size="16" class="me-1" />
+              <IconUser size="16" class="me-1"/>
               Follow
             </b-button>
           </div>
@@ -87,7 +93,3 @@ const handleFileUpload = (event) => {
     </b-card-body>
   </b-card>
 </template>
-
-
-
-

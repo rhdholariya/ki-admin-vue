@@ -1,5 +1,5 @@
 <script setup>
-import { ChatUpdates } from "@/data/app/chatapp/ChatData.js";
+import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js";
 </script>
 
 <template>

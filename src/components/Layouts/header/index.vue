@@ -1,10 +1,10 @@
 <script setup>
-import HeaderApp from "@/components/layouts/header/HeaderApp.vue";
-import HeaderCart from "@/components/layouts/header/HeaderCart.vue";
-import DarkMode from "@/components/layouts/header/DarkMode.vue";
-import HeaderNotification from "@/components/layouts/header/HeaderNotification.vue";
+import HeaderApp from "@/components/Layouts/header/HeaderApp.vue";
+import HeaderCart from "@/components/Layouts/header/HeaderCart.vue";
+import DarkMode from "@/components/Layouts/header/DarkMode.vue";
+import HeaderNotification from "@/components/Layouts/header/HeaderNotification.vue";
 import {PhSquaresFour, PhMagnifyingGlass} from "@phosphor-icons/vue";
-import HeaderLanguage from "@/components/layouts/header/HeaderLanguage.vue";
+import HeaderLanguage from "@/components/Layouts/header/HeaderLanguage.vue";
 defineEmits(['toggle-nav']);
 
 </script>

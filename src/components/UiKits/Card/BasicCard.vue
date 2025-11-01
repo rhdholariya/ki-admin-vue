@@ -100,7 +100,7 @@ const cardsData = ref([
 <template>
   <div class="row">
     <b-Col
-      v-for="(card, index) in cardsData"
+      v-for="(card) in cardsData"
       :key="card.id"
       md="6"
       xl="3"

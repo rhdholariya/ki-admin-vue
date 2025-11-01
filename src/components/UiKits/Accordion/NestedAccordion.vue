@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
+import Prism from "prismjs"
+import "prismjs/themes/prism.css"
 import {
     BRow,
     BCol,

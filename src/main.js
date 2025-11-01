@@ -4,7 +4,6 @@ import App from './App.vue'
 import router from './router/router.js'
 import Breadcrumbs from "@/components/Breadcrumb/Breadcrumb.vue";
 import Prism from "prismjs";
-console.log(Prism);
 import "prismjs/themes/prism.css";
 import 'animate.css';
 import FlagIcon from "vue-flag-icon";

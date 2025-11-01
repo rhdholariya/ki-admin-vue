@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { BTabs, BTab } from "bootstrap-vue-next";
 import { IconChecks } from "@tabler/icons-vue";
 import { PhLockKeyOpen, PhUsersThree } from "@phosphor-icons/vue";
-import { chatGroups, privateContacts } from "@/data/app/chatapp/ChatData.js";
+import { chatGroups, privateContacts } from "@/data/app/Chatapp/ChatData.js";
 
 const activeTabInner = ref(0);
 </script>

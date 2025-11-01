@@ -102,7 +102,6 @@ const columns = [
             "button",
             {
               class: "btn btn-outline-success btn-sm rounded-circle d-flex-center p-0 w-30 h-30",
-              onClick: () => console.log('Edit product:', product.id)
             },
             [h(IconEdit, {size: 16})]
         ),

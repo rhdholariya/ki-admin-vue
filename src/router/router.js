@@ -10,7 +10,7 @@ import ProjectDashboard from '@/views/Dashboard/Project/index.vue'
 import BadgesPage from "@/views/UiKits/Badges/index.vue";
 import ButtonPage from "@/views/UiKits/Button/index.vue";
 import CardPage from "@/views/UiKits/Card/index.vue";
-import GridPage from "@/views/UiKits/grid/index.vue";
+import GridPage from "@/views/UiKits/Grid/index.vue";
 import DropdownPage from "@/views/UiKits/Dropdown/index.vue";
 import AvatarPage from "@/views/UiKits/Avatar/index.vue";
 import NotificationPage from "@/views/UiKits/Notification/index.vue";
@@ -44,7 +44,7 @@ import SliderPage from "@/views/AdvanceUi/Slider/index.vue";
 import BootstrapVuePage from "@/views/AdvanceUi/BootstrapVueSlider/index.vue";
 import ScrollpyPage from "@/views/AdvanceUi/Scrollpy/index.vue";
 import TooltipPage from "@/views/AdvanceUi/TooltipPopover/index.vue";
-import RatingPage from "@/views/AdvanceUi/rating/index.vue";
+import RatingPage from "@/views/AdvanceUi/Rating/index.vue";
 import PrismPage from "@/views/AdvanceUi/Prism/index.vue";
 import CountDownPage from "@/views/AdvanceUi/CountDown/index.vue";
 import CountUpPage from "@/views/AdvanceUi/CountUp/index.vue";
@@ -101,23 +101,23 @@ import FormWizards2Page from '@/views/ReadyToUse/FormWizard2/index.vue'
 import ReadyToUseFormPage from '@/views/ReadyToUse/ReadyToUseForm/index.vue'
 
 // Form validation routes
-import FormValidationPage from '@/views/ FormsElements/FormValidation/index.vue'
-import BaseInputPage from '@/views/ FormsElements/BaseInput/index.vue'
-import CheckboxRadioPage from '@/views/ FormsElements/CheckboxRadio/index.vue'
-import InputGroupsPage from '@/views/ FormsElements/InputGroups/index.vue'
-import InputMasksPage from '@/views/ FormsElements/InputMasks/index.vue'
-import FloatingLabelsPage from '@/views/ FormsElements/FloatingLabels/index.vue'
-import DatetimepickerPage from '@/views/ FormsElements/Datetimepicker/index.vue'
-import TouchspinPage from '@/views/ FormsElements/Touchspin/index.vue'
-import Select2Page from '@/views/ FormsElements/Select2/index.vue'
-import SwitchPage from '@/views/ FormsElements/Switch/index.vue'
-import RangeSliderPage from '@/views/ FormsElements/RangeSlider/index.vue'
-import TextareaPage from '@/views/ FormsElements/Textarea/index.vue'
-import ClipboardPage from '@/views/ FormsElements/Clipboard/index.vue'
-import DualListBoxesPage from '@/views/ FormsElements/DualListBoxes/index.vue'
-import DefaultFormsPage from '@/views/ FormsElements/DefaultForms/index.vue'
-import FileUploadPage from '@/views/ FormsElements/FileUpload/index.vue'
-import TypeaheadPage from '@/views/ FormsElements/Typeahead/index.vue'
+import FormValidationPage from '@/views/FormsElements/FormValidation/index.vue'
+import BaseInputPage from '@/views/FormsElements/BaseInput/index.vue'
+import CheckboxRadioPage from '@/views/FormsElements/CheckboxRadio/index.vue'
+import InputGroupsPage from '@/views/FormsElements/InputGroups/index.vue'
+import InputMasksPage from '@/views/FormsElements/InputMasks/index.vue'
+import FloatingLabelsPage from '@/views/FormsElements/FloatingLabels/index.vue'
+import DatetimepickerPage from '@/views/FormsElements/DatetimePicker/index.vue'
+import TouchspinPage from '@/views/FormsElements/TouchSpin/index.vue'
+import Select2Page from '@/views/FormsElements/Select2/index.vue'
+import SwitchPage from '@/views/FormsElements/Switch/index.vue'
+import RangeSliderPage from '@/views/FormsElements/RangeSlider/index.vue'
+import TextareaPage from '@/views/FormsElements/Textarea/index.vue'
+import ClipboardPage from '@/views/FormsElements/Clipboard/index.vue'
+import DualListBoxesPage from '@/views/FormsElements/DualListBoxes/index.vue'
+import DefaultFormsPage from '@/views/FormsElements/DefaultForms/index.vue'
+import FileUploadPage from '@/views/FormsElements/FileUpload/index.vue'
+import TypeaheadPage from '@/views/FormsElements/Typeahead/index.vue'
 
 //Tables routes
 import BasicTablePage from '@/views/Table/BasicTable/index.vue'
@@ -135,7 +135,7 @@ import ProjectDetailsPage from '@/views/Apps/ProjectPage/ProjectDetails/index.vu
 import ToDoPage from '@/views/Apps/Todo/index.vue'
 import TeamPage from '@/views/Apps/Team/index.vue'
 import ApiPage from '@/views/Apps/Api/index.vue'
-import InvoicePage from '@/views/Apps/invoice/index.vue'
+import InvoicePage from '@/views/Apps/Invoice/index.vue'
 import ChatPage from '@/views/Apps/Chat/index.vue'
 import FileManagerPage from '@/views/Apps/FileManager/index.vue'
 import BookmarkPage from '@/views/Apps/Bookmark/index.vue'

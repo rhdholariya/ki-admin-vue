@@ -34,7 +34,6 @@ const dropdownOptions = [
 
 // Handle dropdown item clicks
 const handleAction = (optionValue) => {
-    console.log('Dropdown action:', optionValue);
     // Add your action logic here
     alert(`Action: ${optionValue}`);
 };

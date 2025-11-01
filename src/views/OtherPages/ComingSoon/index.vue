@@ -6,7 +6,7 @@ import {
     BCol,
     BFormInput,
 } from 'bootstrap-vue-next'
-import { useRouter } from 'vue-router'
+
 
 
 const timeLeft = ref({
@@ -17,7 +17,7 @@ const timeLeft = ref({
 })
 
 let interval = null
-const router = useRouter()
+
 
 onMounted(() => {
     const deadlineDate = new Date(2026, 11, 31, 23, 59, 59).getTime()

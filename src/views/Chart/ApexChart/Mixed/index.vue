@@ -12,9 +12,9 @@
             <b-card-body>
               <apexchart
                   :series="lineColumnComboChart.series"
+                  :options="lineColumnComboChart.options"
                   type="line"
                   height="350"
-                  :options="lineColumnComboChart.options"
               />
             </b-card-body>
           </b-card>

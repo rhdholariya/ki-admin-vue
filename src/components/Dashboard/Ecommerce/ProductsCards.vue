@@ -46,7 +46,7 @@ const productImages = [
     alt: "Product 6",
     rounded: true,
   },
-  // Add more product images as needed
+
 ]
 
 const tagOptions = reactive([
@@ -59,13 +59,16 @@ const tagOptions = reactive([
 ])
 
 
-const lightboxToggler = ref(false)
-const lightboxSources = ref([])
+const lightboxToggler = ref(false);
+const currentSlide = ref(1);
 
-const openLightbox = (src) => {
-  lightboxSources.value = [src]
-  lightboxToggler.value = !lightboxToggler.value
-}
+
+const productLightboxSources = productImages.map(img => img.src);
+
+const openLightbox = (index) => {
+  currentSlide.value = index + 1;
+  lightboxToggler.value = !lightboxToggler.value;
+};
 
 onMounted(() => {
 
@@ -74,27 +77,31 @@ onMounted(() => {
 onUnmounted(() => {
 
 })
+
+const updateCheckbox = (index, event) => {
+  tagOptions[index].checked = event.target.checked
+}
 </script>
 
 
 <template>
   <div class="row">
-    <!-- AiCommerce Card -->
+
     <div class="col-sm-6 col-md-4 col-xxl-2 order-3-md">
       <AiCommerceCard />
     </div>
 
-    <!-- Revenue Chart Card -->
+
     <div class="col-md-6 col-lg-4">
       <TotalRevenueCard />
     </div>
 
-    <!-- Product Gallery Card -->
+
     <div class="col-md-8 col-xxl-6">
       <BCard class="ecommerce-product-box" no-body>
         <BCardBody>
           <div class="row">
-            <!-- Product Images -->
+
             <div class="col-sm-5">
               <div class="row g-2 h-100">
                 <div
@@ -110,9 +117,8 @@ onUnmounted(() => {
                     </div>
                   </div>
                   <a
-                      href="#"
                       class="brand-img-box"
-                      @click.prevent="openLightbox(image.src)"
+                      @click.prevent="openLightbox(image.id - 1)"
                   >
                     <img
                         :src="image.src"
@@ -124,7 +130,6 @@ onUnmounted(() => {
               </div>
             </div>
 
-            <!-- Product Details -->
             <div class="col-sm-7">
               <div class="my-3">
                 <h3 class="text-dark-800 f-w-700 txt-ellipsis-1">
@@ -170,8 +175,8 @@ onUnmounted(() => {
     <!-- FsLightbox -->
     <FsLightbox
         :toggler="lightboxToggler"
-        :sources="lightboxSources"
-        :type="'image'"
+        :sources="productLightboxSources"
+        :slide="currentSlide"
     />
   </div>
 </template>

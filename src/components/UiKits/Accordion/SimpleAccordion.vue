@@ -10,7 +10,8 @@ import {
   BCollapse,
 } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
-
+import Prism from "prismjs"
+import "prismjs/themes/prism.css"
 
 // Accordion data
 const accordionItems = [

@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue"
 import {
   BContainer,
   BRow,
@@ -14,41 +14,40 @@ import {
   BNavItem,
   BNavItemDropdown,
   BDropdownItem,
-  BDropdownDivider,
-} from "bootstrap-vue-next";
+  BDropdownDivider
+} from "bootstrap-vue-next"
 
-const activeId = ref("");
-const scrollContainer = ref<HTMLElement>();
+const activeId = ref("")
+/** @type {import('vue').Ref<HTMLElement|null>} */
+const scrollContainer = ref(null)
 
 onMounted(() => {
-  // Wait for DOM to be fully rendered
-  setTimeout(() => {
-    scrollContainer.value = document.querySelector('.app-scroll') as HTMLElement;
+  const container = scrollContainer.value
 
-    if (scrollContainer.value) {
-      const handleScroll = () => {
-        const sections = document.querySelectorAll('[id^="scrollspyHeading"]');
-        const scrollPos = scrollContainer.value?.scrollTop || 0;
+  if (container) {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('[id^="scrollspyHeading"]')
+      const scrollPos = container.scrollTop
 
-        sections.forEach((section) => {
-          const sectionTop = (section as HTMLElement).offsetTop - 100;
-          const sectionBottom = sectionTop + (section as HTMLElement).offsetHeight;
+      sections.forEach(section => {
+        const sectionEl = section
+        const sectionTop = sectionEl.offsetTop - 100
+        const sectionBottom = sectionTop + sectionEl.offsetHeight
 
-          if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-            activeId.value = section.id;
-          }
-        });
-      };
-
-      scrollContainer.value.addEventListener('scroll', handleScroll);
-      handleScroll(); // Initial check
-
-      onBeforeUnmount(() => {
-        scrollContainer.value?.removeEventListener('scroll', handleScroll);
-      });
+        if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+          activeId.value = sectionEl.id
+        }
+      })
     }
-  }, 100);
-});
+
+    container.addEventListener("scroll", handleScroll)
+    handleScroll()
+
+    onBeforeUnmount(() => {
+      container.removeEventListener("scroll", handleScroll)
+    })
+  }
+})
 </script>
 
 <template>
@@ -86,62 +85,50 @@ onMounted(() => {
                     </b-nav-item>
                     <b-nav-item-dropdown
                         text="Dropdown"
-                        :class="['nav-pill-primary',
+                        :class="[
+                        'nav-pill-primary',
                         activeId === 'scrollspyHeading3' ||
                         activeId === 'scrollspyHeading4' ||
-                        activeId === 'scrollspyHeading5' ? 'active' : '']"
+                        activeId === 'scrollspyHeading5'
+                          ? 'active'
+                          : ''
+                      ]"
                     >
-                      <b-dropdown-item href="#scrollspyHeading3">
-                        Third
-                      </b-dropdown-item>
-                      <b-dropdown-item href="#scrollspyHeading4">
-                        Fourth
-                      </b-dropdown-item>
+                      <b-dropdown-item href="#scrollspyHeading3">Third</b-dropdown-item>
+                      <b-dropdown-item href="#scrollspyHeading4">Fourth</b-dropdown-item>
                       <b-dropdown-divider />
-                      <b-dropdown-item href="#scrollspyHeading5">
-                        Fifth
-                      </b-dropdown-item>
+                      <b-dropdown-item href="#scrollspyHeading5">Fifth</b-dropdown-item>
                     </b-nav-item-dropdown>
                   </b-navbar-nav>
                 </b-collapse>
               </b-container>
             </div>
 
-            <!-- Content -->
+            <!-- Scrollable Content -->
             <div ref="scrollContainer" class="p-3 rounded-2 h-250 overflow-y-auto app-scroll">
-              <h5 id="scrollspyHeading1" class="f-w-500 mb-2 text-dark">
-                First paragraph
-              </h5>
+              <h5 id="scrollspyHeading1" class="f-w-500 mb-2 text-dark">First paragraph</h5>
               <p class="f-s-15 text-secondary mb-3">
-                Platea platea, sapien rutrum duis adipiscing, dictumst...
+                Platea platea, sapien rutrum duis adipiscing, dictumst gravida mollis sapien...
               </p>
 
-              <h5 id="scrollspyHeading2" class="f-w-500 mb-2 text-dark">
-                Second paragraph
-              </h5>
+              <h5 id="scrollspyHeading2" class="f-w-500 mb-2 text-dark">Second paragraph</h5>
               <p class="f-s-15 text-secondary mb-3">
-                Lectus torquent sapien placerat bibendum, convallis cras...
+                Lectus torquent sapien placerat bibendum, convallis cras habitasse egestas...
               </p>
 
-              <h5 id="scrollspyHeading3" class="f-w-500 mb-2 text-dark">
-                Third paragraph
-              </h5>
+              <h5 id="scrollspyHeading3" class="f-w-500 mb-2 text-dark">Third paragraph</h5>
               <p class="f-s-15 text-secondary mb-3">
-                Ligula platea at eleifend vivamus nibh porta auctor ornare...
+                Ligula platea at eleifend vivamus nibh porta auctor ornare proin...
               </p>
 
-              <h5 id="scrollspyHeading4" class="f-w-500 mb-2 text-dark">
-                Fourth paragraph
-              </h5>
+              <h5 id="scrollspyHeading4" class="f-w-500 mb-2 text-dark">Fourth paragraph</h5>
               <p class="f-s-15 text-secondary mb-3">
-                Diam condimentum etiam. In adipiscing dis aliquet nam...
+                Diam condimentum etiam. In adipiscing dis aliquet nam tempus...
               </p>
 
-              <h5 id="scrollspyHeading5" class="f-w-500 mb-2 text-dark">
-                Fifth paragraph
-              </h5>
+              <h5 id="scrollspyHeading5" class="f-w-500 mb-2 text-dark">Fifth paragraph</h5>
               <p class="f-s-15 text-secondary">
-                Hymenaeos tincidunt donec vivamus suspendisse condimentum...
+                Hymenaeos tincidunt donec vivamus suspendisse condimentum feugiat...
               </p>
             </div>
           </b-card-body>
@@ -150,4 +137,3 @@ onMounted(() => {
     </b-row>
   </b-container>
 </template>
-

@@ -34,7 +34,6 @@ const gallerySources = [
 
 // Handle image click from gallery
 const handleImageClick = (slideNumber) => {
-  console.log('Opening lightbox at slide:', slideNumber); // For debugging
   currentSlide.value = slideNumber;
   lightboxToggler.value = !lightboxToggler.value;
 };

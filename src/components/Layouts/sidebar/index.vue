@@ -1,8 +1,8 @@
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
-import AppLogo from "@/components/layouts/sidebar/AppLogo.vue";
-import HorizontalNav from "@/components/layouts/sidebar/HorizontalNav.vue";
-import MenuItem from "@/components/layouts/sidebar/MenuItem.vue";
+import AppLogo from "@/components/Layouts/sidebar/AppLogo.vue";
+import HorizontalNav from "@/components/Layouts/sidebar/HorizontalNav.vue";
+import MenuItem from "@/components/Layouts/sidebar/MenuItem.vue";
 import SimpleBar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 import { MenuList } from "@/data/sidebar/sidebar.js";
@@ -24,7 +24,7 @@ const toggleSidebar = () => {
   <nav :class="['vertical-sidebar', props.sidebarOpen ? 'semi-nav' : '']">
     <AppLogo :sidebarOpen="sidebarOpen" @toggle-sidebar="toggleSidebar" />
 
-    <SimpleBar class="app-nav simplebar-scrollable-y" style="max-height: 100%;">
+    <SimpleBar class="app-nav simplebar-scrollable-y">
       <ul class="main-nav p-0 mt-2">
         <MenuItem
             v-for="(opt, index) in menuList"

@@ -1,6 +1,5 @@
 <script setup>
 import {
-    BContainer,
     BRow,
     BCol,
     BCard,

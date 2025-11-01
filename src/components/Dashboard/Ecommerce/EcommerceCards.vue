@@ -1,3 +1,52 @@
+<script setup>
+import {
+  BCard,
+  BCardBody,
+  BBadge,
+  BTable,
+  BLink,
+} from 'bootstrap-vue-next'
+
+
+
+
+import {ref} from "vue";
+import {notifications, statCards, timelineItems} from "@/data/dashboard/ecommerce/EcommerceCardsData.js";
+
+
+
+const tableFields = [
+  { key: 'description', label: '' },
+  { key: 'amount', label: '' }
+]
+
+const tableItems = ref([
+  {
+    description: 'Sub Total :',
+    amount: '$359.96',
+    _rowVariant: 'total-price',
+    _cellClasses: { description: 'fw-bold', amount: 'text-end fw-bold' }
+  },
+  {
+    description: 'Discount:',
+    amount: '-$53.00',
+    textClass: 'text-success'
+  },
+  {
+    description: 'Estimated Tax (12.5%) :',
+    amount: '$44.99',
+    textClass: 'text-danger'
+  },
+  {
+    description: 'Total (USD) :',
+    amount: '$415.96',
+    _rowVariant: 'total-price',
+    _cellClasses: { description: 'fw-bold', amount: 'text-end fw-bold' }
+  }
+])
+</script>
+
+
 <template>
     <!-- Stats Cards Column -->
     <div class="col-lg-5 col-xxl-3 eshop-cards-container">
@@ -30,7 +79,7 @@
       </div>
     </div>
 
-    <!-- Main Content Column -->
+
     <div class="col-lg-7 col-xxl-6">
       <!-- Order Summary Card -->
       <BCard class="mb-3" no-body>
@@ -90,7 +139,7 @@
         </BCardBody>
       </BCard>
 
-      <!-- Timeline Card -->
+
       <BCard no-body>
         <BCardBody>
           <ul class="app-side-timeline shipping-timeline">
@@ -186,50 +235,3 @@
 
 </template>
 
-<script setup>
-import {
-  BCard,
-  BCardBody,
-  BBadge,
-  BTable,
-  BLink,
-} from 'bootstrap-vue-next'
-
-
-
-
-import {ref} from "vue";
-import {notifications, statCards, timelineItems} from "@/data/dashboard/ecommerce/EcommerceCardsData.js";
-
-
-
-const tableFields = [
-  { key: 'description', label: '' },
-  { key: 'amount', label: '' }
-]
-
-const tableItems = ref([
-  {
-    description: 'Sub Total :',
-    amount: '$359.96',
-    _rowVariant: 'total-price',
-    _cellClasses: { description: 'fw-bold', amount: 'text-end fw-bold' }
-  },
-  {
-    description: 'Discount:',
-    amount: '-$53.00',
-    textClass: 'text-success'
-  },
-  {
-    description: 'Estimated Tax (12.5%) :',
-    amount: '$44.99',
-    textClass: 'text-danger'
-  },
-  {
-    description: 'Total (USD) :',
-    amount: '$415.96',
-    _rowVariant: 'total-price',
-    _cellClasses: { description: 'fw-bold', amount: 'text-end fw-bold' }
-  }
-])
-</script>

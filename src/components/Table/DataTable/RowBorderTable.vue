@@ -68,8 +68,9 @@ const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
 const handleEdit = (item) => {
-    console.log("Edit:", item);
+  emit("edit-item", item);
 };
+const emit = defineEmits(["edit-item", "delete-item", "view-item"]);
 
 const handleDelete = (item) => {
     itemToDelete.value = item;

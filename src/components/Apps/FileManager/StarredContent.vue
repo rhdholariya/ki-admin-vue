@@ -45,7 +45,7 @@ const toggleStarredFolder = (id) => {
 }
 
 const viewItem = (item) => {
-  console.log('View starred item:', item)
+  emit('view-item', item)
 }
 
 const editItem = (item) => {
@@ -57,7 +57,7 @@ const deleteItem = (item) => {
 }
 
 const viewFolder = (folder) => {
-  console.log('View starred folder:', folder)
+  emit('view-folder', folder)
 }
 
 const editFolder = (folder) => {

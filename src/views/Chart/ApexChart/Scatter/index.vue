@@ -62,8 +62,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Register apexcharts component
-const apexchart = VueApexCharts;
 
 
 const scatterChart = ref({});

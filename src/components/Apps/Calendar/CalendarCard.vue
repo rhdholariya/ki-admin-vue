@@ -8,7 +8,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 
-// Props for external events and drop remove functionality
+// Props
 const props = defineProps({
   externalEventsRef: {
     type: Object,
@@ -20,25 +20,25 @@ const props = defineProps({
   }
 });
 
-// Reactive refs
+// Reactive state
 const calendarRef = ref(null);
 const dropRemoveChecked = ref(false);
-let draggableRef = null;
+let draggableInstance = null;
 
-// Computed properties for calendar options
+// Calendar Options
 const calendarOptions = computed(() => ({
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin],
   initialView: "dayGridMonth",
   headerToolbar: {
     left: "prev,next,addEventButton",
     center: "title",
-    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
   },
   customButtons: {
     addEventButton: {
       text: "Add event...",
-      click: handleCustomEventAdd,
-    },
+      click: handleCustomEventAdd
+    }
   },
   editable: true,
   droppable: true,
@@ -55,16 +55,17 @@ const calendarOptions = computed(() => ({
       groupId: "availableForMeeting",
       start: "2025-06-11T10:00:00",
       end: "2025-06-11T16:00:00",
-      display: "background",
-    },
+      display: "background"
+    }
   ],
-  height: "auto",
+  height: "auto"
 }));
 
 // Event handlers
 const handleEventReceive = (info) => {
+  // If checkbox is enabled, remove dragged event after drop
   if (dropRemoveChecked.value) {
-    info.event.remove();
+    info.draggedEl?.parentNode?.removeChild(info.draggedEl);
   }
 };
 
@@ -77,60 +78,61 @@ const handleCustomEventAdd = () => {
     calendarApi.addEvent({
       title: "Dynamic Event",
       start: date,
-      allDay: true,
+      allDay: true
     });
-    alert("Event added.");
+    alert("Event added!");
   } else {
     alert("Invalid date.");
   }
 };
 
-// Initialize draggable functionality
+// Initialize external drag events
 const initializeDraggable = () => {
-  const externalElement = props.externalEventsRef;
+  const externalEl = props.externalEventsRef;
 
-  if (externalElement && !draggableRef) {
-    draggableRef = new Draggable(externalElement, {
+  if (externalEl && !draggableInstance) {
+    draggableInstance = new Draggable(externalEl, {
       itemSelector: ".fc-event",
-      eventData: (el) => {
-        return {
-          title: el.innerText.trim(),
-          className: el.getAttribute("data-classname") || "",
-        };
-      },
+      eventData: (el) => ({
+        title: el.innerText.trim(),
+        className: el.getAttribute("data-classname") || ""
+      })
     });
   }
 };
 
-// Watch for external events ref changes
-watch(() => props.externalEventsRef, (newRef) => {
-  if (newRef) {
-    nextTick(() => {
-      initializeDraggable();
-    });
-  }
-}, { immediate: true });
+// Watchers
+watch(
+    () => props.externalEventsRef,
+    (newRef) => {
+      if (newRef) nextTick(() => initializeDraggable());
+    },
+    {immediate: true}
+);
 
-// Watch for drop remove ref changes
-watch(() => props.dropRemoveRef, (newRef) => {
-  if (newRef) {
-    // Watch for checkbox changes
-    watch(() => newRef.checked, (checked) => {
-      dropRemoveChecked.value = checked;
-    }, { immediate: true });
-  }
-}, { immediate: true });
+watch(
+    () => props.dropRemoveRef,
+    (newRef) => {
+      if (newRef) {
+        watch(
+            () => newRef.checked,
+            (checked) => {
+              dropRemoveChecked.value = checked;
+            },
+            {immediate: true}
+        );
+      }
+    },
+    {immediate: true}
+);
 
-onMounted(() => {
-  nextTick(() => {
-    initializeDraggable();
-  });
-});
+// Lifecycle hooks
+onMounted(() => nextTick(() => initializeDraggable()));
 
 onBeforeUnmount(() => {
-  if (draggableRef) {
-    draggableRef.destroy();
-    draggableRef = null;
+  if (draggableInstance) {
+    draggableInstance.destroy();
+    draggableInstance = null;
   }
 });
 </script>
@@ -138,7 +140,7 @@ onBeforeUnmount(() => {
 <template>
   <b-card>
     <b-card-body class="app-calendar">
-      <FullCalendar ref="calendarRef" :options="calendarOptions" />
+      <FullCalendar ref="calendarRef" :options="calendarOptions"/>
     </b-card-body>
   </b-card>
 </template>

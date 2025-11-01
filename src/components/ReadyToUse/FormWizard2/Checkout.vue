@@ -7,7 +7,7 @@ import {
 } from 'bootstrap-vue-next';
 import {
     PhShoppingCart, PhBook, PhCurrencyDollar, PhCheckSquare,
-    PhListChecks, PhPlus, PhInfo, PhStar, PhStarHalf,
+    PhListChecks, PhPlus, PhInfo, PhStar,
 } from '@phosphor-icons/vue';
 
 

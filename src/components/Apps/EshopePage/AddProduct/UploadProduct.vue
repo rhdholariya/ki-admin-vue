@@ -14,7 +14,7 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 
-import { IconCloudUpload } from '@tabler/icons-vue'
+
 
 // ✅ Register plugins by passing them to vueFilePond
 const FilePond = vueFilePond(
