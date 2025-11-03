@@ -35,7 +35,6 @@ const iconCategories = {
   temperature: "Temperature & Units",
   wind: "Wind & Direction",
   time: "Time & Clock",
-  maritime: "Maritime & Warnings",
   special: "Special Phenomena",
   utility: "Utility Icons"
 };
@@ -55,8 +54,8 @@ const categorizeIcons = () => {
       !icon.startsWith('wi-direction-') &&
       !['wi-solar-eclipse', 'wi-hot', 'wi-lunar-eclipse', 'wi-stars'].includes(icon) &&
       !['wi-celsius', 'wi-fahrenheit', 'wi-degrees', 'wi-thermometer', 'wi-thermometer-exterior', 'wi-thermometer-internal'].includes(icon) &&
-      !['wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-barometer', 'wi-humidity', 'wi-na', 'wi-train'].includes(icon) &&
-      !['wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh', 'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise', 'wi-moonset'].includes(icon)
+      !['wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-train'].includes(icon) &&
+      !['wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh', 'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise'].includes(icon)
     ),
     moon: weatherIcons.filter(icon => icon.startsWith('wi-moon-')),
     temperature: weatherIcons.filter(icon => 
@@ -68,14 +67,11 @@ const categorizeIcons = () => {
       ['wi-windy', 'wi-strong-wind', 'wi-wind-direction'].includes(icon)
     ),
     time: weatherIcons.filter(icon => icon.startsWith('wi-time-')),
-    maritime: weatherIcons.filter(icon => 
-      ['wi-small-craft-advisory', 'wi-gale-warning', 'wi-storm-warning', 'wi-hurricane-warning'].includes(icon)
-    ),
     special: weatherIcons.filter(icon => 
       ['wi-sandstorm', 'wi-earthquake', 'wi-fire', 'wi-flood', 'wi-meteor', 'wi-tsunami', 'wi-volcano', 'wi-hurricane', 'wi-tornado', 'wi-alien'].includes(icon)
     ),
     utility: weatherIcons.filter(icon => 
-      ['wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-barometer', 'wi-humidity', 'wi-na', 'wi-train', 'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh', 'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise', 'wi-moonset'].includes(icon)
+      ['wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh', 'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise'].includes(icon)
     )
   };
   return categorized;
@@ -90,30 +86,25 @@ const weatherIcons = [
   'wi-day-sleet', 'wi-day-sleet-storm', 'wi-day-snow', 'wi-day-snow-thunderstorm',
   'wi-day-snow-wind', 'wi-day-sprinkle', 'wi-day-storm-showers', 'wi-day-sunny-overcast',
   'wi-day-thunderstorm', 'wi-day-windy', 'wi-solar-eclipse', 'wi-hot',
-  'wi-day-cloudy-high', 'wi-day-light-wind',
 
   // Night Weather Icons
   'wi-night-clear', 'wi-night-alt-cloudy', 'wi-night-alt-cloudy-gusts', 'wi-night-alt-cloudy-windy',
   'wi-night-alt-hail', 'wi-night-alt-lightning', 'wi-night-alt-rain', 'wi-night-alt-rain-mix',
   'wi-night-alt-rain-wind', 'wi-night-alt-showers', 'wi-night-alt-sleet', 'wi-night-alt-sleet-storm',
   'wi-night-alt-snow', 'wi-night-alt-snow-thunderstorm', 'wi-night-alt-snow-wind', 'wi-night-alt-sprinkle',
-  'wi-night-alt-storm-showers', 'wi-night-alt-thunderstorm', 'wi-night-alt-windy', 'wi-night-cloudy',
+  'wi-night-alt-storm-showers', 'wi-night-alt-thunderstorm', 'wi-night-cloudy',
   'wi-night-cloudy-gusts', 'wi-night-cloudy-windy', 'wi-night-fog', 'wi-night-hail',
   'wi-night-lightning', 'wi-night-partly-cloudy', 'wi-night-rain', 'wi-night-rain-mix',
   'wi-night-rain-wind', 'wi-night-showers', 'wi-night-sleet', 'wi-night-sleet-storm',
   'wi-night-snow', 'wi-night-snow-thunderstorm', 'wi-night-snow-wind', 'wi-night-sprinkle',
-  'wi-night-storm-showers', 'wi-night-thunderstorm', 'wi-night-windy', 'wi-lunar-eclipse',
-  'wi-stars', 'wi-night-alt-cloudy-high', 'wi-night-alt-partly-cloudy',
+  'wi-night-storm-showers', 'wi-night-thunderstorm', 'wi-lunar-eclipse',
+  'wi-stars',
 
   // Neutral Weather Icons
   'wi-cloud', 'wi-cloudy', 'wi-cloudy-gusts', 'wi-cloudy-windy', 'wi-fog',
   'wi-hail', 'wi-rain', 'wi-rain-mix', 'wi-rain-wind', 'wi-showers', 'wi-sleet',
   'wi-snow', 'wi-sprinkle', 'wi-storm-showers', 'wi-thunderstorm', 'wi-snow-wind',
-  'wi-smog', 'wi-smoke', 'wi-lightning', 'wi-raindrops', 'wi-raindrop',
-  'wi-snowflake-cold', 'wi-windy', 'wi-strong-wind', 'wi-sandstorm', 'wi-earthquake',
-  'wi-fire', 'wi-flood', 'wi-meteor', 'wi-tsunami', 'wi-volcano', 'wi-hurricane',
-  'wi-tornado', 'wi-small-craft-advisory', 'wi-gale-warning', 'wi-storm-warning',
-  'wi-hurricane-warning', 'wi-wind-direction', 'wi-alien',
+  'wi-smog', 'wi-smoke', 'wi-lightning', 'wi-snowflake-cold', 'wi-windy', 'wi-strong-wind', 'wi-alien',
 
   // Temperature & Units
   'wi-celsius', 'wi-fahrenheit', 'wi-degrees', 'wi-thermometer', 'wi-thermometer-exterior',
@@ -123,61 +114,35 @@ const weatherIcons = [
   'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh',
 
   // Horizon & Sun/Moon
-  'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise', 'wi-moonset',
+  'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset',
 
   // Utility Icons
-  'wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-barometer', 'wi-humidity', 'wi-na', 'wi-train',
+  'wi-refresh', 'wi-refresh-alt', 'wi-umbrella',
 
   // Moon Phases (28 phases)
-  'wi-moon-new', 'wi-moon-waxing-crescent-1', 'wi-moon-waxing-crescent-2', 'wi-moon-waxing-crescent-3',
-  'wi-moon-waxing-crescent-4', 'wi-moon-waxing-crescent-5', 'wi-moon-waxing-crescent-6',
-  'wi-moon-first-quarter', 'wi-moon-waxing-gibbous-1', 'wi-moon-waxing-gibbous-2', 'wi-moon-waxing-gibbous-3',
+  'wi-moon-new', 'wi-moon-first-quarter', 'wi-moon-waxing-gibbous-1', 'wi-moon-waxing-gibbous-2', 'wi-moon-waxing-gibbous-3',
   'wi-moon-waxing-gibbous-4', 'wi-moon-waxing-gibbous-5', 'wi-moon-waxing-gibbous-6',
   'wi-moon-full', 'wi-moon-waning-gibbous-1', 'wi-moon-waning-gibbous-2', 'wi-moon-waning-gibbous-3',
   'wi-moon-waning-gibbous-4', 'wi-moon-waning-gibbous-5', 'wi-moon-waning-gibbous-6',
-  'wi-moon-third-quarter', 'wi-moon-waning-crescent-1', 'wi-moon-waning-crescent-2', 'wi-moon-waning-crescent-3',
+  'wi-moon-waning-crescent-1', 'wi-moon-waning-crescent-2', 'wi-moon-waning-crescent-3',
   'wi-moon-waning-crescent-4', 'wi-moon-waning-crescent-5', 'wi-moon-waning-crescent-6',
-
-  // Alternative Moon Phases
-  'wi-moon-alt-new', 'wi-moon-alt-waxing-crescent-1', 'wi-moon-alt-waxing-crescent-2', 'wi-moon-alt-waxing-crescent-3',
-  'wi-moon-alt-waxing-crescent-4', 'wi-moon-alt-waxing-crescent-5', 'wi-moon-alt-waxing-crescent-6',
-  'wi-moon-alt-first-quarter', 'wi-moon-alt-waxing-gibbous-1', 'wi-moon-alt-waxing-gibbous-2', 'wi-moon-alt-waxing-gibbous-3',
-  'wi-moon-alt-waxing-gibbous-4', 'wi-moon-alt-waxing-gibbous-5', 'wi-moon-alt-waxing-gibbous-6',
-  'wi-moon-alt-full', 'wi-moon-alt-waning-gibbous-1', 'wi-moon-alt-waning-gibbous-2', 'wi-moon-alt-waning-gibbous-3',
-  'wi-moon-alt-waning-gibbous-4', 'wi-moon-alt-waning-gibbous-5', 'wi-moon-alt-waning-gibbous-6',
-  'wi-moon-alt-third-quarter', 'wi-moon-alt-waning-crescent-1', 'wi-moon-alt-waning-crescent-2', 'wi-moon-alt-waning-crescent-3',
-  'wi-moon-alt-waning-crescent-4', 'wi-moon-alt-waning-crescent-5', 'wi-moon-alt-waning-crescent-6',
-
-  // Beaufort Wind Scale (0-12)
-  'wi-beaufort-0', 'wi-beaufort-1', 'wi-beaufort-2', 'wi-beaufort-3', 'wi-beaufort-4',
-  'wi-beaufort-5', 'wi-beaufort-6', 'wi-beaufort-7', 'wi-beaufort-8', 'wi-beaufort-9',
-  'wi-beaufort-10', 'wi-beaufort-11', 'wi-beaufort-12',
 
   // Clock Icons (12 hours)
   'wi-time-1', 'wi-time-2', 'wi-time-3', 'wi-time-4', 'wi-time-5', 'wi-time-6',
   'wi-time-7', 'wi-time-8', 'wi-time-9', 'wi-time-10', 'wi-time-11', 'wi-time-12',
 
-  // Directional Arrows
-  'wi-direction-up', 'wi-direction-up-right', 'wi-direction-right', 'wi-direction-down-right',
-  'wi-direction-down', 'wi-direction-down-left', 'wi-direction-left', 'wi-direction-up-left',
-
   // Additional Weather Conditions
-  'wi-dust', 'wi-squalls', 'wi-sleet', 'wi-snow', 'wi-snow-wind', 'wi-snowflake-cold',
+  'wi-dust', 'wi-sleet', 'wi-snow', 'wi-snow-wind', 'wi-snowflake-cold',
   'wi-rain-mix', 'wi-rain-wind', 'wi-rain', 'wi-showers', 'wi-sprinkle', 'wi-storm-showers',
-  'wi-thunderstorm', 'wi-lightning', 'wi-raindrops', 'wi-raindrop', 'wi-snowflake-cold',
-
-  // Maritime & Warning Icons
-  'wi-small-craft-advisory', 'wi-gale-warning', 'wi-storm-warning', 'wi-hurricane-warning',
-  'wi-tornado', 'wi-wind-direction', 'wi-alien',
+  'wi-thunderstorm', 'wi-lightning', 'wi-snowflake-cold',
 
   // Special Weather Phenomena
-  'wi-sandstorm', 'wi-earthquake', 'wi-fire', 'wi-flood', 'wi-meteor', 'wi-tsunami',
-  'wi-volcano', 'wi-hurricane', 'wi-tornado',
+  'wi-hurricane', 'wi-tornado',
 
   // Additional Utility Icons
-  'wi-refresh', 'wi-refresh-alt', 'wi-umbrella', 'wi-barometer', 'wi-humidity',
-  'wi-na', 'wi-train', 'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh',
-  'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset', 'wi-moonrise', 'wi-moonset'
+  'wi-refresh', 'wi-refresh-alt', 'wi-umbrella',
+  'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh',
+  'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset'
 ];
 
 onMounted(() => {
