@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, nextTick } from "vue";
 import {
   BContainer,
   BRow,
@@ -14,7 +14,8 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick();
   Prism.highlightAll();
 });
 

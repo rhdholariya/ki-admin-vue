@@ -15,21 +15,6 @@ import {
 } from 'chart.js';
 import { Bar, Line, Doughnut, Pie, PolarArea, Radar } from 'vue-chartjs';
 
-// Import all chart data
-import {
-  barBorderRadiusData,
-  DoughnutData,
-  LineChartData,
-  MultiSeriesPie,
-  PieData,
-  PolarAreaData,
-  ProgressiveLineData,
-  ProgressiveLineOptions,
-  RadarSkipPoints,
-  SteppedLineCharts,
-  verticalBarChart
-} from '@/data/charts/chartjs/ChartJsData.js';
-
 // Register Chart.js components
 Chart.register(
     CategoryScale,
@@ -44,178 +29,161 @@ Chart.register(
     Title,
     Filler
 );
+
+// BootstrapVueNext
 import { BCard, BCardBody, BCol, BContainer, BRow, BCardHeader } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhChartPieSlice} from "@phosphor-icons/vue";
-// Chart components
-const BarChart = Bar;
-const LineChart = Line;
-const DoughnutChart = Doughnut;
-const PieChart = Pie;
-const PolarAreaChart = PolarArea;
-const RadarChart = Radar;
+import { PhChartPieSlice } from "@phosphor-icons/vue";
 
+// Import chart data
+import {
+  barBorderRadiusData,
+  DoughnutData,
+  LineChartData,
+  MultiSeriesPie,
+  PieData,
+  PolarAreaData,
+  ProgressiveLineData,
+  ProgressiveLineOptions,
+  RadarSkipPoints,
+  SteppedLineCharts,
+  verticalBarChart
+} from '@/data/charts/chartjs/ChartJsData.js';
 
+// Convert chart data to refs (reactive)
+import { ref } from 'vue';
 
-// Breadcrumb data
+const barData = ref(structuredClone(barBorderRadiusData));
+const verticalBarData = ref(structuredClone(verticalBarChart));
+const pieData = ref(structuredClone(PieData));
+const multiSeriesPieData = ref(structuredClone(MultiSeriesPie));
+const radarData = ref(structuredClone(RadarSkipPoints));
+const doughnutData = ref(structuredClone(DoughnutData));
+const polarData = ref(structuredClone(PolarAreaData));
+const lineData = ref(structuredClone(LineChartData));
+const steppedLineData = ref(structuredClone(SteppedLineCharts));
+const progressiveLineData = ref(structuredClone(ProgressiveLineData));
+const progressiveLineOptions = ref(structuredClone(ProgressiveLineOptions));
+
+// Breadcrumb
 const breadcrumbItems = {
   title: "Chart js",
   items: [
-    {label: " Chart ", icon: PhChartPieSlice },
-    {label: "Chart js", active: true},
+    { label: "Chart", icon: PhChartPieSlice },
+    { label: "Chart js", active: true },
   ],
 };
 </script>
 
 <template>
-<AppLayout>
-  <main>
+  <AppLayout>
+    <main>
     <b-container fluid>
-        <Breadcrumb :breadcrumb="breadcrumbItems"/>
+      <Breadcrumb :breadcrumb="breadcrumbItems" />
       <b-row>
+        <!-- Bar Chart -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Bar Chart Border Radius</h5>
-            </b-card-header>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Bar Chart Border Radius</h5></b-card-header>
             <b-card-body>
-              <BarChart
-                  :data="barBorderRadiusData"
-                  :options="barBorderRadiusData.options"
-              />
+              <Bar :data="barData" :options="barData.options" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Vertical Bar Chart -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Vertical Bar Chart</h5>
-            </b-card-header>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Vertical Bar Chart</h5></b-card-header>
             <b-card-body>
-              <BarChart
-                  :data="verticalBarChart"
-                  :options="verticalBarChart.options"
-              />
+              <Bar :data="verticalBarData" :options="verticalBarData.options" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Multi Series Pie -->
         <b-col xl="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Multi Series Pie</h5>
-            </b-card-header>
-            <b-card-body>
-              <div class="d-flex justify-content-center" style="height: 400px;">
-                <PieChart
-                    :data="MultiSeriesPie"
-                    :options="MultiSeriesPie.options"
-                />
-              </div>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Multi Series Pie</h5></b-card-header>
+            <b-card-body class="d-flex justify-content-center" style="height: 400px;">
+              <Pie :data="multiSeriesPieData" :options="multiSeriesPieData.options" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Radar -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Radar Skip Points</h5>
-            </b-card-header>
-            <b-card-body>
-              <div class="d-flex justify-content-center" style="height: 400px;">
-                <RadarChart
-                    :data="RadarSkipPoints"
-                    :options="RadarSkipPoints.options"
-                />
-              </div>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Radar Skip Points</h5></b-card-header>
+            <b-card-body class="d-flex justify-content-center" style="height: 400px;">
+              <Radar :data="radarData" :options="radarData.options" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Doughnut -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Doughnut</h5>
-            </b-card-header>
-            <b-card-body>
-              <div class="d-flex justify-content-center" style="height: 400px;">
-                <DoughnutChart :data="DoughnutData" />
-              </div>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Doughnut</h5></b-card-header>
+            <b-card-body class="d-flex justify-content-center" style="height: 400px;">
+              <Doughnut :data="doughnutData" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Polar Area -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Polar Area</h5>
-            </b-card-header>
-            <b-card-body>
-              <div class="d-flex justify-content-center" style="height: 400px;">
-                <PolarAreaChart :data="PolarAreaData" />
-              </div>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Polar Area</h5></b-card-header>
+            <b-card-body class="d-flex justify-content-center" style="height: 400px;">
+              <PolarArea :data="polarData" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Pie -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Pie</h5>
-            </b-card-header>
-            <b-card-body>
-              <div class="d-flex justify-content-center" style="height: 400px;">
-                <PieChart :data="PieData" />
-              </div>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Pie</h5></b-card-header>
+            <b-card-body class="d-flex justify-content-center" style="height: 400px;">
+              <Pie :data="pieData" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Progressive Line -->
         <b-col xl="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Progressive Line</h5>
-            </b-card-header>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Progressive Line</h5></b-card-header>
             <b-card-body>
-              <LineChart
-                  :data="ProgressiveLineData"
-                  :options="ProgressiveLineOptions"
-              />
+              <Line :data="progressiveLineData" :options="progressiveLineOptions" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Line -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Line Chart</h5>
-            </b-card-header>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Line Chart</h5></b-card-header>
             <b-card-body>
-              <LineChart
-                  :data="LineChartData"
-                  :options="LineChartData.options"
-              />
+              <Line :data="lineData" :options="lineData.options" />
             </b-card-body>
           </b-card>
         </b-col>
 
+        <!-- Stepped Line -->
         <b-col lg="6" class="mb-4">
-          <b-card no-body>
-            <b-card-header>
-              <h5 class="mb-0">Stepped Line Charts</h5>
-            </b-card-header>
+          <b-card>
+            <b-card-header><h5 class="mb-0">Stepped Line Charts</h5></b-card-header>
             <b-card-body>
-              <LineChart
-                  :data="SteppedLineCharts"
-                  :options="SteppedLineCharts.options"
-              />
+              <Line :data="steppedLineData" :options="steppedLineData.options" />
             </b-card-body>
           </b-card>
         </b-col>
       </b-row>
     </b-container>
-  </main>
-</AppLayout>
+    </main>
+  </AppLayout>
 </template>
+

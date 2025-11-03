@@ -223,20 +223,3 @@ const breadcrumbItems = {
   </AppLayout>
 </template>
 
-<style scoped>
-
-
-.variable-slide-content {
-  height: 200px;
-  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.app-arrow {
-  padding: 0 20px;
-}
-</style>

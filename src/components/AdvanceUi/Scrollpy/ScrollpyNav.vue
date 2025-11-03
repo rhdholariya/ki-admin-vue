@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue"
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import {
   BContainer,
   BRow,
@@ -15,39 +15,51 @@ import {
   BNavItemDropdown,
   BDropdownItem,
   BDropdownDivider
-} from "bootstrap-vue-next"
+} from "bootstrap-vue-next";
 
-const activeId = ref("")
-/** @type {import('vue').Ref<HTMLElement|null>} */
-const scrollContainer = ref(null)
+const activeId = ref("");
+const scrollContainer = ref(null);
+const sections = ref([]);
+
+// Section data (reactive instead of hard-coded DOM IDs)
+const sectionList = [
+  { id: "scrollspyHeading1", title: "First paragraph" },
+  { id: "scrollspyHeading2", title: "Second paragraph" },
+  { id: "scrollspyHeading3", title: "Third paragraph" },
+  { id: "scrollspyHeading4", title: "Fourth paragraph" },
+  { id: "scrollspyHeading5", title: "Fifth paragraph" },
+];
 
 onMounted(() => {
-  const container = scrollContainer.value
+  // Store refs to section elements
+  sections.value = sectionList.map(s =>
+      document.getElementById(s.id)
+  );
 
-  if (container) {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('[id^="scrollspyHeading"]')
-      const scrollPos = container.scrollTop
+  const container = scrollContainer.value;
+  if (!container) return;
 
-      sections.forEach(section => {
-        const sectionEl = section
-        const sectionTop = sectionEl.offsetTop - 100
-        const sectionBottom = sectionTop + sectionEl.offsetHeight
+  const handleScroll = () => {
+    const scrollPos = container.scrollTop;
 
-        if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-          activeId.value = sectionEl.id
-        }
-      })
+    for (const section of sections.value) {
+      if (!section) continue;
+      const top = section.offsetTop - 100;
+      const bottom = top + section.offsetHeight;
+
+      if (scrollPos >= top && scrollPos < bottom) {
+        activeId.value = section.id;
+      }
     }
+  };
 
-    container.addEventListener("scroll", handleScroll)
-    handleScroll()
+  container.addEventListener("scroll", handleScroll);
+  handleScroll();
 
-    onBeforeUnmount(() => {
-      container.removeEventListener("scroll", handleScroll)
-    })
-  }
-})
+  onBeforeUnmount(() => {
+    container.removeEventListener("scroll", handleScroll);
+  });
+});
 </script>
 
 <template>
@@ -60,10 +72,7 @@ onMounted(() => {
           </b-card-header>
           <b-card-body>
             <!-- Navbar -->
-            <div
-                id="navbar-example3"
-                class="navbar navbar-expand-lg scrollpy-navbar bg-body-tertiary"
-            >
+            <div class="navbar navbar-expand-lg scrollpy-navbar bg-body-tertiary">
               <b-container fluid>
                 <b-navbar-brand href="#">
                   <img src="/images/logo/1.png" class="w-150" alt="logo" />
@@ -72,24 +81,19 @@ onMounted(() => {
                 <b-collapse id="navbarSupportedContent" is-nav>
                   <b-navbar-nav class="ms-auto nav-pills">
                     <b-nav-item
-                        href="#scrollspyHeading1"
-                        :class="['nav-pill-primary', activeId === 'scrollspyHeading1' ? 'active' : '']"
+                        v-for="item in sectionList.slice(0, 2)"
+                        :key="item.id"
+                        :href="'#' + item.id"
+                        :class="['nav-pill-primary', activeId === item.id ? 'active' : '']"
                     >
-                      First
+                      {{ item.title.split(' ')[0] }}
                     </b-nav-item>
-                    <b-nav-item
-                        href="#scrollspyHeading2"
-                        :class="['nav-pill-primary', activeId === 'scrollspyHeading2' ? 'active' : '']"
-                    >
-                      Second
-                    </b-nav-item>
+
                     <b-nav-item-dropdown
                         text="Dropdown"
                         :class="[
                         'nav-pill-primary',
-                        activeId === 'scrollspyHeading3' ||
-                        activeId === 'scrollspyHeading4' ||
-                        activeId === 'scrollspyHeading5'
+                        ['scrollspyHeading3', 'scrollspyHeading4', 'scrollspyHeading5'].includes(activeId)
                           ? 'active'
                           : ''
                       ]"
@@ -106,30 +110,13 @@ onMounted(() => {
 
             <!-- Scrollable Content -->
             <div ref="scrollContainer" class="p-3 rounded-2 h-250 overflow-y-auto app-scroll">
-              <h5 id="scrollspyHeading1" class="f-w-500 mb-2 text-dark">First paragraph</h5>
-              <p class="f-s-15 text-secondary mb-3">
-                Platea platea, sapien rutrum duis adipiscing, dictumst gravida mollis sapien...
-              </p>
-
-              <h5 id="scrollspyHeading2" class="f-w-500 mb-2 text-dark">Second paragraph</h5>
-              <p class="f-s-15 text-secondary mb-3">
-                Lectus torquent sapien placerat bibendum, convallis cras habitasse egestas...
-              </p>
-
-              <h5 id="scrollspyHeading3" class="f-w-500 mb-2 text-dark">Third paragraph</h5>
-              <p class="f-s-15 text-secondary mb-3">
-                Ligula platea at eleifend vivamus nibh porta auctor ornare proin...
-              </p>
-
-              <h5 id="scrollspyHeading4" class="f-w-500 mb-2 text-dark">Fourth paragraph</h5>
-              <p class="f-s-15 text-secondary mb-3">
-                Diam condimentum etiam. In adipiscing dis aliquet nam tempus...
-              </p>
-
-              <h5 id="scrollspyHeading5" class="f-w-500 mb-2 text-dark">Fifth paragraph</h5>
-              <p class="f-s-15 text-secondary">
-                Hymenaeos tincidunt donec vivamus suspendisse condimentum feugiat...
-              </p>
+              <div v-for="item in sectionList" :key="item.id">
+                <h5 :id="item.id" class="f-w-500 mb-2 text-dark">{{ item.title }}</h5>
+                <p class="f-s-15 text-secondary mb-3">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem...
+                </p>
+              </div>
             </div>
           </b-card-body>
         </b-card>

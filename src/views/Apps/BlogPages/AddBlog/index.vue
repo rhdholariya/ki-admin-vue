@@ -19,7 +19,6 @@ import TextEditor from "@/components/UiKits/Editor/TextEditor.vue";
 import { PhStack } from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Form data
 const formData = ref({
   blogTitle: "",
   blogCategory: "",
@@ -27,22 +26,19 @@ const formData = ref({
   blogDate: "",
 });
 
-// Breadcrumb data
 const breadcrumbItems = ref({
   title: "Add Blog",
   items: [
     { label: "Apps", icon: PhStack },
-    { label: "Blog Page", active: false },
+    { label: "Blog Page" },
     { label: "Add Blog", active: true },
   ],
 });
 
-// Handle form submission
-const handleSubmit = (e) => {
-  e.preventDefault();
+const handleSubmit = () => {
+  console.log("Form submitted:", formData.value);
 };
 
-// Handle cancel
 const handleCancel = () => {
   formData.value = {
     blogTitle: "",
@@ -58,14 +54,12 @@ const handleCancel = () => {
     <main>
       <b-container fluid>
         <breadcrumb :breadcrumb="breadcrumbItems" />
-
         <b-row>
           <b-col xl="12">
             <b-card class="add-blog p-4" no-body>
-              <b-form class="app-form" @submit="handleSubmit">
+              <b-form class="app-form" @submit.prevent="handleSubmit">
                 <b-row>
                   <b-col md="6">
-                    <!-- Blog Title -->
                     <b-form-group class="mb-3">
                       <div class="form-floating">
                         <b-form-input
@@ -78,13 +72,11 @@ const handleCancel = () => {
                       </div>
                     </b-form-group>
 
-                    <!-- Blog Category -->
                     <b-form-group class="mb-3">
                       <div class="form-floating">
                         <b-form-select
                             id="blogCategory"
                             v-model="formData.blogCategory"
-                            aria-label="Blog category select"
                         >
                           <option value="">Open this select menu</option>
                           <option value="1">One</option>
@@ -95,7 +87,6 @@ const handleCancel = () => {
                       </div>
                     </b-form-group>
 
-                    <!-- Blog Description -->
                     <b-form-group class="mb-3">
                       <div class="form-floating">
                         <b-form-textarea
@@ -108,7 +99,6 @@ const handleCancel = () => {
                       </div>
                     </b-form-group>
 
-                    <!-- Blog Date -->
                     <b-form-group class="mb-3">
                       <div class="form-floating">
                         <b-form-input

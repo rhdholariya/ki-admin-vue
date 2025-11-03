@@ -120,9 +120,10 @@ const viewFolder = (folder) => emit('view-folder', folder)
             :key="folder.id"
             class="col-sm-6 col-xl-4 col-xxl-3 mb-3"
         >
-          <div class="folder-card position-relative p-3 border rounded">
+       <b-card no-body class="quick-access h-100">
+    <b-card-body>
             <!-- Top Actions -->
-            <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex justify-content-between mb-3">
               <!-- Star -->
               <div class="starreddiv" @click.stop="toggleFolderFavorite(folder.id)">
                 <PhStar
@@ -150,6 +151,7 @@ const viewFolder = (folder) => emit('view-folder', folder)
                   <span>Delete</span>
                 </b-dropdown-item>
               </b-dropdown>
+
             </div>
 
             <!-- Folder Content -->
@@ -168,8 +170,11 @@ const viewFolder = (folder) => emit('view-folder', folder)
               <p class="text-secondary mb-0 f-w-500">{{ folder.used }}</p>
               <p class="text-secondary mb-0 f-w-500 text-end">{{ folder.total }}</p>
             </div>
+    </b-card-body>
+       </b-card>
+
           </div>
-        </div>
+
       </b-row>
     </b-card-body>
   </b-card>

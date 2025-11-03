@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, onBeforeUnmount} from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import {
   BCard,
   BCardHeader,
@@ -16,23 +16,22 @@ const sectionIds = ["list-item-1", "list-item-2", "list-item-3", "list-item-4"];
 const handleScroll = () => {
   if (!contentRef.value) return;
   const scrollPosition = contentRef.value.scrollTop + 100;
-  let currentSection = "list-item-1";
+  let currentSection = sectionIds[0];
 
-  for (const sectionId of sectionIds) {
-    const section = document.getElementById(sectionId);
-    if (!section) continue;
-    const sectionOffset = section.offsetTop;
-    if (scrollPosition >= sectionOffset) {
-      currentSection = sectionId;
+  sectionIds.forEach((id) => {
+    const section = contentRef.value.querySelector(`#${id}`);
+    if (section && scrollPosition >= section.offsetTop) {
+      currentSection = id;
     }
-  }
+  });
 
   activeItem.value = currentSection;
 };
 
-const handleNavClick = (id) => {
+const handleNavClick = async (id) => {
   activeItem.value = id;
-  const element = document.getElementById(id);
+  await nextTick(); // ensure elements exist
+  const element = contentRef.value?.querySelector(`#${id}`);
   if (element && contentRef.value) {
     contentRef.value.scrollTo({
       top: element.offsetTop - 100,
@@ -41,7 +40,8 @@ const handleNavClick = (id) => {
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick();
   if (contentRef.value) {
     contentRef.value.addEventListener("scroll", handleScroll);
   }
@@ -68,7 +68,6 @@ onBeforeUnmount(() => {
                 v-for="id in sectionIds"
                 :key="id"
                 action
-                :href="'#' + id"
                 class="nav-pill-primary"
                 :class="{ active: activeItem === id }"
                 @click.prevent="handleNavClick(id)"
@@ -86,32 +85,28 @@ onBeforeUnmount(() => {
         <b-card-body>
           <div
               ref="contentRef"
-              class="scrollspy-example h-215 overflow-y-scroll app-scroll"
+              class="scrollspy-example overflow-y-scroll"
+              style="height: 215px"
               tabindex="0"
           >
-            <h5 id="list-item-1" class="f-w-500 mb-2 text-dark">Item 1</h5>
-            <p class="f-s-15 text-secondary mg-b-14">
-              A digital artisan, skilled in the art of crafting captivating
-              online experiences, is what one would refer to as a web designer...
+            <h5 id="list-item-1" class="fw-semibold mb-2 text-dark">Item 1</h5>
+            <p class="text-secondary mb-4">
+              A digital artisan, skilled in crafting captivating online experiences...
             </p>
 
-            <h5 id="list-item-2" class="f-w-500 mb-2 text-dark">Item 2</h5>
-            <p class="f-s-15 text-secondary mg-b-14">
-              Picture a modern-day Leonardo da Vinci, armed with a palette
-              of pixels and a canvas of code, and you have the essence of
-              a web designer...
+            <h5 id="list-item-2" class="fw-semibold mb-2 text-dark">Item 2</h5>
+            <p class="text-secondary mb-4">
+              Picture a modern-day Leonardo da Vinci, armed with pixels and code...
             </p>
 
-            <h5 id="list-item-3" class="f-w-500 mb-2 text-dark">Item 3</h5>
-            <p class="f-s-15 text-secondary mg-b-14">
-              In the realm of the digital realm, the web designer reigns supreme
-              as the virtuoso of the online universe...
+            <h5 id="list-item-3" class="fw-semibold mb-2 text-dark">Item 3</h5>
+            <p class="text-secondary mb-4">
+              In the realm of the digital world, the web designer reigns supreme...
             </p>
 
-            <h5 id="list-item-4" class="f-w-500 mb-2 text-dark">Item 4</h5>
-            <p class="f-s-15 text-secondary mg-b-14">
-              A digital artisan, skilled in the art of crafting captivating
-              online experiences, is what one would refer to as a web designer...
+            <h5 id="list-item-4" class="fw-semibold mb-2 text-dark">Item 4</h5>
+            <p class="text-secondary mb-0">
+              A digital artisan, skilled in the art of crafting captivating online experiences...
             </p>
           </div>
         </b-card-body>
@@ -119,3 +114,5 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
+
+

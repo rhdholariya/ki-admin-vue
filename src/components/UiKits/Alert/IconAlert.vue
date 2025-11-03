@@ -84,17 +84,17 @@ const alerts = [
                 </b-alert>
                 <b-collapse v-model="open" class="mt-3">
   <pre class="language-html" tabindex="0">
-    <code>{{ `
+    <code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Alerts With Icons&lt;/h5&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-${alerts.map(alert => `    &lt;b-alert variant="${alert.color}" show dismissible class="d-flex justify-content-between align-items-center"&gt;
+{{alerts.map(alert => `    &lt;b-alert variant="${alert.color}" show dismissible class="d-flex justify-content-between align-items-center"&gt;
       &lt;p class="mb-0 d-flex align-items-center"&gt;${alert.type} ${alert.message}&lt;/p&gt;
-    &lt;/b-alert&gt;`).join('\n')}
+    &lt;/b-alert&gt;`).join('\n')}}
   &lt;/b-card-body&gt;
-&lt;/b-card&gt;` }}</code>
+&lt;/b-card&gt;</code>
   </pre>
                 </b-collapse>
             </b-card-body>

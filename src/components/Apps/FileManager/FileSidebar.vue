@@ -1,10 +1,55 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import { BCard, BProgress } from 'bootstrap-vue-next'
+import {
+  PhFolder, PhStar, PhTrash, PhClock, PhShare, PhQuestion, PhGear, PhImage, PhVideo, PhFileZip, PhFiles
+} from '@phosphor-icons/vue'
+
+const activeTab = ref(1)
+const emit = defineEmits(['tab-change'])
+
+const changeTab = (tabId) => {
+  activeTab.value = tabId
+  emit('tab-change', tabId)
+}
+
+const polarChart = ref(null)
+
+onMounted(() => {
+  // Initialize chart here (using polarChart.value)
+})
+
+const tabs = [
+  { id: 1, name: 'My Cloud', iconComponent: PhFolder, count: 10 },
+  { id: 2, name: 'Starred', iconComponent: PhStar },
+  { id: 3, name: 'Recycle Bin', iconComponent: PhTrash, count: 2 },
+  { id: 4, name: 'Recent', iconComponent: PhClock }
+]
+
+const menuItems = [
+  { name: 'Shared File', iconComponent: PhShare },
+  { name: 'Help', iconComponent: PhQuestion },
+  { name: 'Settings', iconComponent: PhGear }
+]
+
+const overviewItems = [
+  { type: 'Images', files: '1.195 Files', size: '37.2GB', iconComponent: PhImage, colorClass: 'text-light-primary' },
+  { type: 'Videos', files: '53 Files', size: '19.1 GB', iconComponent: PhVideo, colorClass: 'text-light-success' },
+  { type: 'Documents', files: '486 Files', size: '23.5 MB', iconComponent: PhFileZip, colorClass: 'text-light-danger' },
+  { type: 'Others', files: '32 Files', size: '13 MB', iconComponent: PhFiles, colorClass: 'text-light-warning' }
+]
+
+const uploads = [
+  { title: 'Uploading 59 photos', name: 'Photoes 01', percentage: 65 },
+  { title: 'Uploading 7 videos', name: 'Museum', percentage: 25 },
+  { title: 'Uploading 12 Documents', name: 'My Work', percentage: 90 }
+]
+</script>
+
 <template>
   <div class="col-lg-4 col-xxl-3">
-    <!-- My Drive Card -->
     <b-card class="mb-3">
-      <template #header>
-        <h5 class="mb-0">My Drive</h5>
-      </template>
+      <template #header><h5 class="mb-0">My Drive</h5></template>
       <div class="horizontal-tab-wrapper">
         <ul class="filemenu-list mt-3 tabs">
           <li
@@ -19,20 +64,17 @@
           </li>
           <li class="app-divider-v dashed m-0 p-2"></li>
           <li v-for="item in menuItems" :key="item.name">
-            <i :class="item.icon"></i>
+            <component :is="item.iconComponent" :size="20" class="pe-2" />
             <span class="flex-grow-1">{{ item.name }}</span>
           </li>
         </ul>
       </div>
     </b-card>
 
-    <!-- Overview Card -->
     <b-card class="mb-3">
-      <template #header>
-        <h5 class="mb-0">Overview</h5>
-      </template>
+      <template #header><h5 class="mb-0">Overview</h5></template>
       <div class="mb-3">
-        <div id="polar2"></div>
+        <div ref="polarChart"></div>
       </div>
       <div
           v-for="item in overviewItems"
@@ -41,7 +83,7 @@
       >
         <div class="d-flex align-items-center position-relative">
           <span :class="['h-40 w-40 d-flex-center b-r-10 position-absolute', item.colorClass]">
-             <component :is="item.iconComponent" :size="20" />
+            <component :is="item.iconComponent" :size="20" />
           </span>
           <div class="flex-grow-1 ms-5">
             <h6 class="mb-0">{{ item.type }}</h6>
@@ -52,16 +94,9 @@
       </div>
     </b-card>
 
-    <!-- File Upload Card -->
     <b-card>
-      <template #header>
-        <h5 class="mb-0">File Upload</h5>
-      </template>
-      <div
-          v-for="upload in uploads"
-          :key="upload.name"
-          class="mb-4"
-      >
+      <template #header><h5 class="mb-0">File Upload</h5></template>
+      <div v-for="upload in uploads" :key="upload.name" class="mb-4">
         <h6 class="mb-1 text-dark">{{ upload.title }}</h6>
         <div>
           <div class="d-flex justify-content-between">
@@ -75,104 +110,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { BCard, BProgress } from "bootstrap-vue-next";
-const activeTab = ref(1)
-import {
-  PhFolder,
-  PhStar,
-  PhTrash,
-  PhClock,
-  PhShare,
-  PhQuestion,
-  PhGear,
-  PhImage,
-  PhVideo,
-  PhFileZip,
-  PhFiles
-} from '@phosphor-icons/vue'
-const tabs = [
-  {
-    id: 1,
-    name: 'My Cloud',
-    iconComponent: PhFolder,
-    count: 10
-  },
-  {
-    id: 2,
-    name: 'Starred',
-    iconComponent: PhStar
-  },
-  {
-    id: 3,
-    name: 'Recycle Bin',
-    iconComponent: PhTrash,
-    count: 2
-  },
-  {
-    id: 4,
-    name: 'Recent',
-    iconComponent: PhClock
-  }
-]
 
-const menuItems = [
-  {
-    name: 'Shared File',
-    iconComponent: PhShare
-  },
-  {
-    name: 'Help',
-    iconComponent: PhQuestion
-  },
-  {
-    name: 'Settings',
-    iconComponent: PhGear
-  }
-]
-
-const overviewItems = [
-  {
-    type: 'Images',
-    files: '1.195 Files',
-    size: '37.2GB',
-    iconComponent: PhImage,
-    colorClass: 'text-light-primary'
-  },
-  {
-    type: 'Videos',
-    files: '53 Files',
-    size: '19.1 GB',
-    iconComponent: PhVideo,
-    colorClass: 'text-light-success'
-  },
-  {
-    type: 'Documents',
-    files: '486 Files',
-    size: '23.5 MB',
-    iconComponent: PhFileZip,
-    colorClass: 'text-light-danger'
-  },
-  {
-    type: 'Others',
-    files: '32 Files',
-    size: '13 MB',
-    iconComponent: PhFiles,
-    colorClass: 'text-light-warning'
-  }
-]
-
-const uploads = [
-  { title: 'Uploading 59 photos', name: 'Photoes 01', percentage: 65 },
-  { title: 'Uploading 7 videos', name: 'Museum', percentage: 25 },
-  { title: 'Uploading 12 Documents', name: 'My Work', percentage: 90 }
-]
-
-const changeTab = (tabId) => {
-  activeTab.value = tabId
-  emit('tab-change', tabId)
-}
-
-const emit = defineEmits(['tab-change'])
-</script>

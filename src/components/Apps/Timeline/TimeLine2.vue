@@ -51,7 +51,6 @@ const timelineData = [
 ];
 </script>
 
-
 <template>
   <b-card class="h-100" no-body>
     <b-card-body>
@@ -76,6 +75,7 @@ const timelineData = [
               />
             </span>
           </div>
+
           <div class="timeline-content">
             <div class="mb-2">
               <b-card-title :class="`text-${item.color} mb-1`">
@@ -85,12 +85,14 @@ const timelineData = [
                 {{ item.time }}
               </b-card-subtitle>
             </div>
+
             <b-card-text class="mb-1 text-dark">
               {{ item.description }}
               <b-card-link :href="item.moreInfoLink" class="text-primary">
                 [more info]
               </b-card-link>
             </b-card-text>
+
             <div v-if="item.tags" class="mt-2">
               <b-badge
                   v-for="(tag, tagIndex) in item.tags"
@@ -107,7 +109,3 @@ const timelineData = [
     </b-card-body>
   </b-card>
 </template>
-
-
-
-

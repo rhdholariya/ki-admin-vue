@@ -56,7 +56,7 @@ const open = ref(false);
 
             <b-collapse v-model="open" class="mt-3">
         <pre class="language-html">
-<code class="language-html">
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Colors&lt;/h5&gt;

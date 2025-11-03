@@ -1,40 +1,45 @@
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import Sortable from "sortablejs";
-
 import { BCol, BCard, BCardBody, BCardHeader } from "bootstrap-vue-next";
 
-const gridItems = Array.from({ length: 18 }, (_, i) => `Grid-${i + 1}`);
+// Template ref for Sortable container
+const gridListRef = ref(null);
+
+// Reactive data
+const gridItems = ref(Array.from({ length: 18 }, (_, i) => `Grid-${i + 1}`));
 
 onMounted(() => {
-  const gridList = document.getElementById("gridList");
-  if (gridList) {
-    new Sortable(gridList, {
+  if (gridListRef.value) {
+    new Sortable(gridListRef.value, {
+      animation: 150,
       swap: true,
       swapClass: "highlight",
-      animation: 150,
+      onEnd: (evt) => {
+        // Optional: reorder items reactively
+        const movedItem = gridItems.value.splice(evt.oldIndex, 1)[0];
+        gridItems.value.splice(evt.newIndex, 0, movedItem);
+      },
     });
   }
 });
 </script>
 
 <template>
-  <BCol xxl="6">
-    <BCard class="equal-card" no-body>
-      <BCardHeader>
+  <b-col xxl="6">
+    <b-card class="equal-card" no-body>
+      <b-card-header>
         <h5>Draggable Grid</h5>
-      </BCardHeader>
-      <BCardBody>
-        <ul class="grid-box-list" id="gridList">
+      </b-card-header>
+      <b-card-body>
+        <ul class="grid-box-list" ref="gridListRef">
           <li v-for="(item, index) in gridItems" :key="index">
             <div class="grid-box">
               <h6>{{ item }}</h6>
             </div>
           </li>
         </ul>
-      </BCardBody>
-    </BCard>
-  </BCol>
+      </b-card-body>
+    </b-card>
+  </b-col>
 </template>
-
-

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { BCard, BCardHeader, BCardBody } from "bootstrap-vue-next";
 
 const activeItem = ref("simple-list-item-1");
@@ -15,11 +15,12 @@ const sectionIds = [
 
 const handleScroll = () => {
   if (!contentRef.value) return;
+
   const scrollPosition = contentRef.value.scrollTop;
   let currentSection = sectionIds[0];
 
   sectionIds.forEach((id) => {
-    const section = document.getElementById(id);
+    const section = contentRef.value.querySelector(`#${id}`);
     if (section && scrollPosition >= section.offsetTop - 20) {
       currentSection = id;
     }
@@ -28,9 +29,10 @@ const handleScroll = () => {
   activeItem.value = currentSection;
 };
 
-const handleNavClick = (id) => {
+const handleNavClick = async (id) => {
   activeItem.value = id;
-  const element = document.getElementById(id);
+  await nextTick(); // ensure elements exist
+  const element = contentRef.value?.querySelector(`#${id}`);
   if (element && contentRef.value) {
     contentRef.value.scrollTo({
       top: element.offsetTop,
@@ -39,7 +41,8 @@ const handleNavClick = (id) => {
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick();
   if (contentRef.value) {
     contentRef.value.addEventListener("scroll", handleScroll);
   }
@@ -89,8 +92,8 @@ onBeforeUnmount(() => {
             <div v-for="(id, index) in sectionIds" :key="id">
               <h5 :id="id" class="f-w-500 mb-2 text-dark">Item {{ index + 1 }}</h5>
               <p class="f-s-15 text-secondary mg-b-14">
-                <!-- Replace this with your actual content -->
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Content for {{ id }} goes here.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Content for {{ id }} goes here.
               </p>
             </div>
           </div>
@@ -99,3 +102,4 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
+
