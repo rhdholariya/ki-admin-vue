@@ -74,12 +74,12 @@ const iconListWithPack = allIconPacks
 // Computed properties for better reactivity
 const filteredIconList = computed(() => {
   const searchTerm = searchValue.value.toLowerCase().trim();
-  
+
   if (!searchTerm) {
     return iconListWithPack;
   }
 
-  return iconListWithPack.filter(icon => 
+  return iconListWithPack.filter(icon =>
     icon.originalName.toLowerCase().includes(searchTerm) ||
     icon.iconName.toLowerCase().includes(searchTerm) ||
     icon.displayName.toLowerCase().includes(searchTerm)
@@ -90,9 +90,9 @@ const filteredIconList = computed(() => {
 const copyIcon = async (iconName, iconPack) => {
   try {
     const iconCode = `<FontAwesomeIcon :icon="['${iconPack}', '${iconName}']" size="${ICON_CONFIG.downloadSize}" color="${ICON_CONFIG.color}" />`;
-    
+
     await navigator.clipboard.writeText(iconCode);
-    
+
     Toastify({
       text: "Copied to the clipboard successfully",
       duration: 3000,
@@ -182,9 +182,3 @@ const breadcrumbItems = computed(() => ({
     </b-container>
   </AppLayout>
 </template>
-
-<style scoped>
-.search-bar {
-  position: relative;
-}
-</style>

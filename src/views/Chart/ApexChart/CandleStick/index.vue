@@ -1,3 +1,39 @@
+<script setup>
+import {ref, onMounted, computed} from 'vue';
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody
+} from 'bootstrap-vue-next';
+import VueApexCharts from "vue3-apexcharts";
+
+import {basicCandlestickChartData} from '@/data/charts/apexcharts/CandleStick.js';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import AppLayout from "@/views/AppLayout.vue";
+import {PhStack} from "@phosphor-icons/vue";
+
+
+const candlestickChart = ref({});
+
+onMounted(() => {
+  candlestickChart.value = basicCandlestickChartData;
+});
+
+// Breadcrumb data
+const breadcrumbItems = computed(() => ({
+  title: "Candlestick",
+  items: [
+    {label: "Charts", icon: PhStack},
+    {label: "Apexcharts"},
+    {label: " Candlestick", active: true}
+  ],
+}));
+</script>
+
+
 <template>
   <AppLayout>
     <main>
@@ -25,41 +61,3 @@
   </AppLayout>
 </template>
 
-<script setup>
-import {ref, onMounted, computed} from 'vue';
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody
-} from 'bootstrap-vue-next';
-import VueApexCharts from "vue3-apexcharts";
-
-
-// Import chart configuration
-import {basicCandlestickChartData} from '@/data/charts/apexcharts/CandleStick.js';
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import AppLayout from "@/views/AppLayout.vue";
-import {PhStack} from "@phosphor-icons/vue";
-
-
-// Create reactive reference for chart config
-const candlestickChart = ref({});
-
-onMounted(() => {
-  // Assign imported configuration to reactive reference
-  candlestickChart.value = basicCandlestickChartData;
-});
-
-// Breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "Candlestick",
-  items: [
-    {label: "Charts", icon: PhStack},
-    {label: "Apexcharts"},
-    {label: " Candlestick", active: true}
-  ],
-}));
-</script>
