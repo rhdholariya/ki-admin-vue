@@ -1,7 +1,6 @@
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import Sortable from "sortablejs";
-
 import {
   BRow,
   BCol,
@@ -10,78 +9,53 @@ import {
   BCardHeader,
   BButton,
 } from "bootstrap-vue-next";
-
 import {
   IconBrandFacebook,
   IconBrandTwitter,
   IconBrandWhatsapp,
 } from "@tabler/icons-vue";
 
-// left list
-const shareMenuItemsLeft = [
-  {
-    imgSrc: "/images/avatar/1.png",
-    name: "Wilson Terry",
-    role: "web designer",
-    bgColor: "primary",
-  },
-  {
-    imgSrc: "/images/avatar/2.png",
-    name: "Jalyn Donnelly",
-    role: "web developer",
-    bgColor: "secondary",
-  },
-  {
-    imgSrc: "/images/avatar/3.png",
-    name: "Betty Mante",
-    role: "Ui/ux designer",
-    bgColor: "success",
-  },
-  {
-    imgSrc: "/images/avatar/4.png",
-    name: "Pinkie Corkery",
-    role: "React developer",
-    bgColor: "danger",
-  },
-];
+// template refs
+const shareMenuLeftRef = ref(null);
+const shareMenuRightRef = ref(null);
 
-// right list
-const shareMenuItemsRight = [
-  {
-    imgSrc: "/images/avatar/5.png",
-    name: "Clara Schmidt",
-    role: "Php developer",
-    bgColor: "info",
-  },
-  {
-    imgSrc: "/images/avatar/5.png",
-    name: "Dane Wiza",
-    role: "Node js developer",
-    bgColor: "warning",
-  },
-  {
-    imgSrc: "/images/avatar/6.png",
-    name: "Palma Rohan",
-    role: "Ios developer",
-    bgColor: "light",
-  },
-  {
-    imgSrc: "/images/avatar/07.png",
-    name: "Ora Kreiger",
-    role: "Flutter developer",
-    bgColor: "dark",
-  },
-];
+// reactive lists
+const shareMenuItemsLeft = ref([
+  { imgSrc: "/images/avatar/1.png", name: "Wilson Terry", role: "Web designer", bgColor: "primary" },
+  { imgSrc: "/images/avatar/2.png", name: "Jalyn Donnelly", role: "Web developer", bgColor: "secondary" },
+  { imgSrc: "/images/avatar/3.png", name: "Betty Mante", role: "UI/UX designer", bgColor: "success" },
+  { imgSrc: "/images/avatar/4.png", name: "Pinkie Corkery", role: "React developer", bgColor: "danger" },
+]);
+
+const shareMenuItemsRight = ref([
+  { imgSrc: "/images/avatar/5.png", name: "Clara Schmidt", role: "PHP developer", bgColor: "info" },
+  { imgSrc: "/images/avatar/5.png", name: "Dane Wiza", role: "Node.js developer", bgColor: "warning" },
+  { imgSrc: "/images/avatar/6.png", name: "Palma Rohan", role: "iOS developer", bgColor: "light" },
+  { imgSrc: "/images/avatar/07.png", name: "Ora Kreiger", role: "Flutter developer", bgColor: "dark" },
+]);
 
 onMounted(() => {
-  const shareMenuLeft = document.getElementById("shareMenuLeft");
-  const shareMenuRight = document.getElementById("shareMenuRight");
-
-  if (shareMenuLeft) {
-    new Sortable(shareMenuLeft, { group: "shared", animation: 150 });
+  if (shareMenuLeftRef.value) {
+    new Sortable(shareMenuLeftRef.value, {
+      group: "shared",
+      animation: 150,
+      onEnd: (evt) => {
+        if (evt.from === shareMenuLeftRef.value && evt.to === shareMenuRightRef.value) {
+          const movedItem = shareMenuItemsLeft.value.splice(evt.oldIndex, 1)[0];
+          shareMenuItemsRight.value.splice(evt.newIndex, 0, movedItem);
+        } else if (evt.from === shareMenuRightRef.value && evt.to === shareMenuLeftRef.value) {
+          const movedItem = shareMenuItemsRight.value.splice(evt.oldIndex, 1)[0];
+          shareMenuItemsLeft.value.splice(evt.newIndex, 0, movedItem);
+        }
+      },
+    });
   }
-  if (shareMenuRight) {
-    new Sortable(shareMenuRight, { group: "shared", animation: 150 });
+
+  if (shareMenuRightRef.value) {
+    new Sortable(shareMenuRightRef.value, {
+      group: "shared",
+      animation: 150,
+    });
   }
 });
 </script>
@@ -97,14 +71,12 @@ onMounted(() => {
         <b-row>
           <!-- Left Column -->
           <b-col cols="6" class="box-layout-draggable">
-            <ul class="draggable-share-list share-menu-list" id="shareMenuLeft">
+            <ul class="draggable-share-list share-menu-list" ref="shareMenuLeftRef">
               <li v-for="(item, index) in shareMenuItemsLeft" :key="index">
-                <BCard no-body>
-                  <BCardBody>
-                    <div class="share-menu-item" draggable="false">
-                      <div
-                          :class="`h-40 w-40 d-flex-center b-r-50 overflow-hidden text-bg-${item.bgColor} share-menu-img`"
-                      >
+                <b-card no-body>
+                  <b-card-body>
+                    <div class="share-menu-item">
+                      <div :class="`h-40 w-40 d-flex-center b-r-50 overflow-hidden text-bg-${item.bgColor} share-menu-img`">
                         <img :src="item.imgSrc" :alt="item.name" class="img-fluid" />
                       </div>
                       <div class="share-menu-content">
@@ -123,22 +95,20 @@ onMounted(() => {
                         </b-button>
                       </div>
                     </div>
-                  </BCardBody>
-                </BCard>
+                  </b-card-body>
+                </b-card>
               </li>
             </ul>
           </b-col>
 
           <!-- Right Column -->
           <b-col cols="6" class="box-layout-draggable">
-            <ul class="draggable-share-list share-menu-list" id="shareMenuRight">
+            <ul class="draggable-share-list share-menu-list" ref="shareMenuRightRef">
               <li v-for="(item, index) in shareMenuItemsRight" :key="index">
                 <b-card no-body>
                   <b-card-body>
-                    <div class="share-menu-item" draggable="false">
-                      <div
-                          :class="`h-40 w-40 d-flex-center b-r-50 overflow-hidden text-bg-${item.bgColor} share-menu-img`"
-                      >
+                    <div class="share-menu-item">
+                      <div :class="`h-40 w-40 d-flex-center b-r-50 overflow-hidden text-bg-${item.bgColor} share-menu-img`">
                         <img :src="item.imgSrc" :alt="item.name" class="img-fluid" />
                       </div>
                       <div class="share-menu-content">

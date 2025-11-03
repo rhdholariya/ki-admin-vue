@@ -57,14 +57,17 @@ const initializeLightboxSources = () => {
   ];
 };
 
-// Open lightbox
+// Safe lightbox open
 const openLightbox = (imageSrc) => {
   const imageUrl = imageSrc.startsWith('/') ? imageSrc : `/images/blog-app/${imageSrc}`;
   const slideIndex = lightboxSources.value.findIndex(src => src === imageUrl);
   currentSlideIndex.value = slideIndex >= 0 ? slideIndex + 1 : 1;
 
+  // Safe toggle - avoids DOM manipulation issues
   nextTick(() => {
-    lightboxToggler.value = !lightboxToggler.value;
+    requestAnimationFrame(() => {
+      lightboxToggler.value = !lightboxToggler.value;
+    });
   });
 };
 
@@ -88,6 +91,7 @@ onMounted(() => initializeLightboxSources());
 
 <template>
   <div>
+    <!-- Blog Card -->
     <b-card no-body>
       <b-card-body>
         <!-- Video & Images -->
@@ -153,7 +157,7 @@ onMounted(() => initializeLightboxSources());
           <p>The commercial introduction of digital cameras in the 1990s...</p>
         </div>
 
-        <!-- Author Actions -->
+        <!-- Author Info -->
         <div class="app-divider-v mb-2"></div>
         <div class="d-flex align-items-center flex-wrap">
           <div class="h-50 w-50 d-flex-center b-r-10 overflow-hidden">
@@ -250,6 +254,11 @@ onMounted(() => initializeLightboxSources());
     </b-row>
 
     <!-- FsLightbox -->
-    <fs-lightbox v-if="lightboxSources.length > 0" :toggler="lightboxToggler" :sources="lightboxSources" :slide="currentSlideIndex" />
+    <fs-lightbox
+        v-if="lightboxSources.length > 0"
+        :toggler="lightboxToggler"
+        :sources="lightboxSources"
+        :slide="currentSlideIndex"
+    />
   </div>
 </template>

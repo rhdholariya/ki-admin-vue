@@ -84,7 +84,7 @@ const openHead = ref(false);
 
                     <!-- Prism preview using v-for in template -->
                     <b-collapse v-model="openButton" class="mt-3">
-<pre class="language-html"><code>
+<pre class="language-html"><code v-prism>
     &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;
@@ -139,7 +139,7 @@ const openHead = ref(false);
 
                     <!-- Prism preview using v-for in template -->
                     <b-collapse v-model="openHead" class="mt-3">
-<pre class="language-html"><code>
+<pre class="language-html"><code v-prism>
     &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Icon's Badges&lt;/h5&gt;

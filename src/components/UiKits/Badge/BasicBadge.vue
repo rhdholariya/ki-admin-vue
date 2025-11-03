@@ -52,21 +52,21 @@ const openRadius = ref(false);
 
                     <b-collapse v-model="open" class="mt-3">
   <pre class="language-html" tabindex="0">
-    <code>{{ `
+    <code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Basic Badges&lt;/h5&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
     &lt;div class="d-flex flex-wrap gap-2"&gt;
-${badgeColors
+{{badgeColors
         .map(
             (c) => `      &lt;b-badge variant="${c}"&gt;${c.charAt(0).toUpperCase() + c.slice(1)}&lt;/b-badge&gt;`
         )
-        .join('\n')}
+        .join('\n')}}
     &lt;/div&gt;
   &lt;/b-card-body&gt;
-&lt;/b-card&gt;` }}</code>
+&lt;/b-card&gt;</code>
   </pre>
                     </b-collapse>
 
@@ -99,7 +99,7 @@ ${badgeColors
                 </b-card-body>
                 <b-collapse v-model="openOutline" class="mt-3">
           <pre class="language-html">
-<code>
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Outline Badges&lt;/h5&gt;
@@ -149,7 +149,7 @@ ${badgeColors
 
                     <b-collapse v-model="openLight" class="mt-3">
           <pre class="language-html">
-<code>
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Light Badges&lt;/h5&gt;
@@ -201,7 +201,7 @@ ${badgeColors
 
                     <b-collapse v-model="openRadius" class="mt-3">
           <pre class="language-html">
-<code>
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Radius option on Badges&lt;/h5&gt;

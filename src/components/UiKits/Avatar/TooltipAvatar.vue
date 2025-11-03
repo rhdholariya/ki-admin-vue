@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
+import { ref } from "vue";
 import {
   BCard,
   BCardHeader,
@@ -9,8 +9,7 @@ import {
   BButton,
 } from "bootstrap-vue-next";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
+
 
 // State
 const openAvtar = ref(false);
@@ -41,13 +40,7 @@ const avatarGroups = [
   },
 ];
 
-// Watcher for Prism highlighting when code section opens
-watch(openAvtar, async (val) => {
-  if (val) {
-    await nextTick();
-    Prism.highlightAll();
-  }
-});
+
 </script>
 
 <template>
@@ -115,7 +108,7 @@ watch(openAvtar, async (val) => {
 
       <!-- Prism Code -->
       <b-collapse v-model="openAvtar">
-        <pre class="language-html mb-0"><code class="language-html">
+        <pre class="language-html mb-0"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Group with Tooltip&lt;/h5&gt;

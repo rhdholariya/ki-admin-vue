@@ -29,15 +29,13 @@ const alerts = [
                 </b-alert>
                 <b-collapse v-model="open" class="mt-3">
   <pre class="language-html" tabindex="0">
-    <code>{{
-            `
+    <code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;&lt;h5&gt;Alerts With Left Border&lt;/h5&gt;&lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-${alerts.map(alert => `    &lt;b-alert variant="${alert.color}" show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
+{{alerts.map(alert => `    &lt;b-alert variant="${alert.color}" show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}}
   &lt;/b-card-body&gt;
-&lt;/b-card&gt;`
-        }}</code>
+&lt;/b-card&gt;</code>
   </pre>
                 </b-collapse>
             </b-card-body>

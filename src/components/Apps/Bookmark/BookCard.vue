@@ -20,30 +20,31 @@ import {
   PhWhatsappLogo,
 } from "@phosphor-icons/vue";
 
+// Props
 const props = defineProps({
   bookmark: {
     type: Object,
     required: true,
   },
-  onDelete: {
-    type: Function,
-    required: true,
-  },
-  onFavouriteToggle: {
-    type: Function,
-    required: true,
-  },
-  onShareToggle: Function,
-  onStarToggle: Function,
-  onEdit: Function,
 });
 
+// Emits (Vue-native event system)
+const emit = defineEmits([
+  "delete",
+  "favourite-toggle",
+  "share-toggle",
+  "star-toggle",
+  "edit",
+]);
+
+// Tooltip reactive state
 const showTooltip = ref(false);
 
+// Handlers
 const handleShareClick = (event) => {
   event.stopPropagation();
   event.preventDefault();
-  if (props.onShareToggle) props.onShareToggle(props.bookmark.id);
+  emit("share-toggle", props.bookmark.id);
 };
 </script>
 
@@ -58,11 +59,12 @@ const handleShareClick = (event) => {
         />
         <div class="video-transparent-box"></div>
 
+        <!-- Top-right icon group -->
         <div class="draggable-card-icon position-absolute top-0 end-0 p-2">
           <!-- Heart -->
           <div
               class="bg-white h-35 w-35 d-flex-center b-r-50 me-3 heartBtn mb-2"
-              @click="props.onFavouriteToggle(bookmark.id)"
+              @click="emit('favourite-toggle', bookmark.id)"
           >
             <ph-heart
                 :size="18"
@@ -89,10 +91,10 @@ const handleShareClick = (event) => {
                   class="custom-share-tooltip bg-white shadow-sm p-2 b-r-6 position-absolute end-100 me-2 top-50 translate-middle-y"
                   @click.stop
               >
-                <ph-whatsapp-logo size="18" class="text-success ms-2"/>
-                <ph-instagram-logo size="18" class="text-danger ms-2"/>
-                <ph-facebook-logo size="18" class="text-primary ms-2"/>
-                <ph-messenger-logo size="18" class="text-info ms-2"/>
+                <ph-whatsapp-logo size="18" class="text-success ms-2" />
+                <ph-instagram-logo size="18" class="text-danger ms-2" />
+                <ph-facebook-logo size="18" class="text-primary ms-2" />
+                <ph-messenger-logo size="18" class="text-info ms-2" />
               </div>
             </transition>
           </div>
@@ -100,7 +102,7 @@ const handleShareClick = (event) => {
           <!-- Star -->
           <div
               class="bg-white h-35 w-35 d-flex-center b-r-50 me-3 starBtn mb-2"
-              @click="props.onStarToggle && props.onStarToggle(bookmark.id)"
+              @click="emit('star-toggle', bookmark.id)"
           >
             <ph-star
                 :size="18"
@@ -118,24 +120,24 @@ const handleShareClick = (event) => {
             no-caret
         >
           <template #button-content>
-            <ph-dots-three-vertical size="20" weight="bold" class="text-white"/>
+            <ph-dots-three-vertical size="20" weight="bold" class="text-white" />
           </template>
 
           <b-dropdown-item
               button
               class="text-success"
-              @click="props.onEdit && props.onEdit(bookmark)"
+              @click="emit('edit', bookmark)"
           >
-            <ph-pen-nib class="f-s-18 text-success me-2"/>
+            <ph-pen-nib class="f-s-18 text-success me-2" />
             Edit
           </b-dropdown-item>
 
           <b-dropdown-item
               button
               class="text-danger deletbtn"
-              @click="props.onDelete(bookmark.id)"
+              @click="emit('delete', bookmark.id)"
           >
-            <ph-trash class="f-s-18 text-danger me-2"/>
+            <ph-trash class="f-s-18 text-danger me-2" />
             Delete
           </b-dropdown-item>
         </b-dropdown>

@@ -142,10 +142,6 @@ const breadcrumbItems = {
 };
 </script>
 
-
-
-
-
 <template>
   <AppLayout>
     <main>

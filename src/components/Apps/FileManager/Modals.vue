@@ -52,10 +52,12 @@ defineExpose({
       <b-form-group label="Folder Name">
         <b-form-input v-model="renameName" placeholder="Enter new name" required></b-form-input>
       </b-form-group>
+      <template #footer>
       <div class="d-flex justify-content-end gap-2">
         <b-button variant="secondary" @click="showRenameModal = false">Close</b-button>
         <b-button variant="primary" type="submit">Save changes</b-button>
       </div>
+      </template>
     </b-form>
   </b-modal>
 

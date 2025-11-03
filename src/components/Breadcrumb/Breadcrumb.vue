@@ -29,7 +29,7 @@ const props = defineProps({
                 class="f-s-14 f-w-500 text-decoration-none"
                 :href="item.href || '#'"
             >
-              <span class="d-inline-flex align-items-center gap-1 f-w-500">
+              <span>
                 <!-- Render Phosphor Icon if passed -->
                 <component
                     v-if="item.icon"

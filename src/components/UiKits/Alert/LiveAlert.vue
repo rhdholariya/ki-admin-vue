@@ -18,14 +18,14 @@ const removeAlert = (index) => {
 <template>
     <b-col lg="12">
     <b-card no-body>
-        <template #header>
+        <b-card-header>
             <div class="code-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Live Alert</h5>
                 <b-button @click="open = !open" class="p-0 border-0">
                     <PhCode size="30" weight="bold" class="source" />
                 </b-button>
             </div>
-        </template>
+        </b-card-header>
         <b-card-body>
             <div id="liveAlert">
                 <div
@@ -55,11 +55,11 @@ const removeAlert = (index) => {
 
         <b-collapse v-model="open">
       <pre class="language-html mt-3">
-        <code class="language-html">
+        <code v-prism>
 &lt;b-card no-body&gt;
-  &lt;template #header&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Live Alert&lt;/h5&gt;
-  &lt;/template&gt;
+  &lt;/b-card-header&gt;
             &lt;b-card-body&gt;
     &lt;div id="liveAlert"&gt;&lt;/div&gt;
     &lt;b-button variant="primary"&gt;Show live alert&lt;/b-button&gt;

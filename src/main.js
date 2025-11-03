@@ -15,7 +15,14 @@ import VueApexCharts from "vue3-apexcharts";
 const app = createApp(App)
 import '@/assets/scss/style.scss';
 import '@/assets/scss/responsive.scss'
-
+app.directive("prism", {
+    mounted(el) {
+        Prism.highlightElement(el);
+    },
+    updated(el) {
+        Prism.highlightElement(el);
+    },
+});
 app.component("Breadcrumbs", Breadcrumbs);
 app.use(router)
 app.use(FlagIcon)

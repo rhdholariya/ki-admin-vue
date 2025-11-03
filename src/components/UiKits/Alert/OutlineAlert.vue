@@ -1,5 +1,5 @@
 <script setup>
-import {BAlert, BButton, BCard, BCol, BCollapse, BCardHeader} from "bootstrap-vue-next";
+import {BAlert, BButton, BCard, BCol, BCollapse, BCardHeader, BCardBody} from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
 import {ref} from "vue";
 const open = ref(false);
@@ -18,7 +18,7 @@ const alerts = [
 </script>
 <template>
     <b-col lg="6">
-        <b-card>
+        <b-card no-body>
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Outline Alerts</h5>
@@ -27,19 +27,24 @@ const alerts = [
                     </b-button>
                 </div>
             </b-card-header>
+          <b-card-body>
             <b-alert v-for="(alert, index) in alerts" :key="index" :variant="alert.type" show>
                 {{ alert.message }}
             </b-alert>
             <b-collapse v-model="open" class="mt-3">
 <pre class="language-html" tabindex="0">
-<code v-text="`&lt;b-card&gt;
-  &lt;b-cardheader&gt;
+    <code v-prism>
+&lt;b-card&gt;
+  &lt;b-card-header&gt;
     &lt;h5&gt;Outline Alerts&lt;/h5&gt;
   &lt;/b-card-header&gt;
-${alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.type}&quot; show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}
-&lt;/b-card&gt;`"></code>
+      &lt;b-card-body&gt;
+{{alerts.map(alert => `  &lt;b-alert variant=&quot;${alert.type}&quot; show&gt;${alert.message}&lt;/b-alert&gt;`).join('\n')}}
+        &lt;/b-card-body&gt;
+&lt;/b-card&gt;</code>
 </pre>
             </b-collapse>
+          </b-card-body>
         </b-card>
     </b-col>
 </template>

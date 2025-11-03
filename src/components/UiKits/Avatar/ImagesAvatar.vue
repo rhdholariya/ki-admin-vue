@@ -103,7 +103,7 @@ const openAvtar7 = ref(false);
             </b-card-body>
             <b-collapse v-model="openAvtar5">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Images&lt;/h5&gt;
@@ -149,7 +149,7 @@ const openAvtar7 = ref(false);
             </b-card-body>
             <b-collapse v-model="openAvtar6">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Size&lt;/h5&gt;
@@ -203,7 +203,7 @@ const openAvtar7 = ref(false);
             </b-card-body>
             <b-collapse v-model="openAvtar7">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Indicator Position And Icon&lt;/h5&gt;

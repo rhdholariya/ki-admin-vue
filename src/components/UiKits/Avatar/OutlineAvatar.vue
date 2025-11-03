@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
-import Prism from "prismjs"
+import { ref} from "vue";
+
 import "prismjs/themes/prism.css"
 import {
     BButton,
@@ -23,13 +23,6 @@ const outlineAvatarColors = [
     { colorClass: "danger", icon: "TE", isIcon: false },
 ];
 
-// Watch collapse open → Prism highlight
-watch(openAvtar3, async (val) => {
-    if (val) {
-        await nextTick();
-        Prism.highlightAll();
-    }
-});
 </script>
 <template>
     <b-col md="6">
@@ -66,7 +59,7 @@ watch(openAvtar3, async (val) => {
 
             <b-collapse v-model="openAvtar3">
         <pre class="mt-3 language-html">
-          <code class="language-html" >
+          <code v-prism>
               &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Colors&lt;/h5&gt;

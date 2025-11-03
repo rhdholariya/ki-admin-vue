@@ -152,7 +152,7 @@ const alerts = ref([
 
             <b-collapse v-model="open" class="mt-3">
         <pre class="language-html" tabindex="0">
-<code>
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Custom Alerts With Dismissing&lt;/h5&gt;

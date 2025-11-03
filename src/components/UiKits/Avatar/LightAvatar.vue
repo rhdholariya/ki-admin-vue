@@ -48,7 +48,7 @@ const openAvtar4 = ref(false);
 
             <b-collapse v-model="openAvtar4">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Light Background&lt;/h5&gt;

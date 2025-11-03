@@ -27,12 +27,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <BCol xxl="6">
-    <BCard class="equal-card" no-body>
-      <BCardHeader>
+  <b-col xxl="6">
+    <b-card class="equal-card" no-body>
+      <b-card-header>
         <h5>Draggable Handle List</h5>
-      </BCardHeader>
-      <BCardBody>
+      </b-card-header>
+      <b-card-body>
         <ul class="list-group handle-list-group" id="handleList">
           <li
               v-for="(item, index) in handleListItems"
@@ -43,7 +43,7 @@ onMounted(() => {
             {{ item.text }}
           </li>
         </ul>
-      </BCardBody>
-    </BCard>
-  </BCol>
+      </b-card-body>
+    </b-card>
+  </b-col>
 </template>

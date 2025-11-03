@@ -1,13 +1,7 @@
 <script setup>
 import { h } from "vue";
 import { BCard, BCardBody, BListGroup, BListGroupItem, BBadge } from "bootstrap-vue-next";
-
-import {
-  IconCircleCheck,
-  IconClipboardCheck,
-  IconClock,
-  IconMessageCircle,
-} from "@tabler/icons-vue";
+import { IconCircleCheck, IconClipboardCheck, IconClock, IconMessageCircle } from "@tabler/icons-vue";
 
 const timelineItems = [
   {
@@ -49,8 +43,6 @@ const timelineItems = [
 ];
 </script>
 
-
-
 <template>
   <b-card class="equal-card" no-body>
     <b-card-body>
@@ -61,19 +53,13 @@ const timelineItems = [
             as="li"
             class="timeline-section"
         >
-          <!-- Icon Circle -->
           <div class="timeline-icon">
-            <span
-                :class="`text-light-${item.variant} h-35 w-35 d-flex-center b-r-50`"
-            >
+            <span :class="`text-light-${item.variant} h-35 w-35 d-flex-center b-r-50`">
               <component :is="item.icon" />
             </span>
           </div>
 
-          <!-- Timeline Content -->
-          <div
-              :class="`timeline-content bg-light-${item.variant} b-1-${item.variant} rounded`"
-          >
+          <div :class="`timeline-content bg-light-${item.variant} b-1-${item.variant} rounded`">
             <div class="d-flex justify-content-between align-items-center timeline-flex">
               <h6 :class="`mt-2 text-${item.variant}`">{{ item.heading }}</h6>
               <span class="text-dark">{{ item.timestamp }}</span>
@@ -100,7 +86,3 @@ const timelineItems = [
     </b-card-body>
   </b-card>
 </template>
-
-
-
-
