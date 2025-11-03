@@ -18,10 +18,6 @@ import {countryData} from "@/data/icons/Flag/FlagData.js"
 import AppLayout from "@/views/AppLayout.vue";
 import {IconSearch} from "@tabler/icons-vue";
 
-// Country data structure for better Vue reactivity
-
-
-// Search functionality
 const searchValue = ref("");
 
 const copyCode = (country) => {
@@ -40,7 +36,7 @@ const copyCode = (country) => {
   }).showToast();
 };
 
-// Computed properties for Vue-friendly reactivity
+
 const filteredCountries = computed(() => {
   if (!searchValue.value.trim()) {
     return countryData;
@@ -51,7 +47,7 @@ const filteredCountries = computed(() => {
   );
 });
 
-// Breadcrumb data
+
 const breadcrumbItems = {
   title: "Flag",
   items: [

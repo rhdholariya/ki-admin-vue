@@ -1,3 +1,49 @@
+<script setup>
+import {ref, onMounted, computed} from "vue";
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody,
+} from "bootstrap-vue-next";
+
+
+import {
+  basicAreaChart,
+  splineAreaChart,
+  irregularSeries,
+  stackedAreaChart,
+} from "@/data/charts/apexcharts/AreaChart.js";
+import AppLayout from "@/views/AppLayout.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
+import VueApexCharts from "vue3-apexcharts";
+// ✅ Create reactive references for chart configs
+const basicChart = ref({});
+const splineChart = ref({});
+const irregularChart = ref({});
+const stackedChart = ref({});
+
+onMounted(() => {
+  basicChart.value = basicAreaChart;
+  splineChart.value = splineAreaChart;
+  irregularChart.value = irregularSeries;
+  stackedChart.value = stackedAreaChart;
+});
+
+// ✅ Breadcrumb data
+const breadcrumbItems = computed(() => ({
+  title: "Area",
+  items: [
+    {label: "Charts", icon: PhChartPieSlice},
+    {label: "Apexcharts"},
+    {label: "Area", active: true},
+  ],
+}));
+</script>
+
 <template>
   <AppLayout>
     <main>
@@ -73,48 +119,4 @@
   </AppLayout>
 </template>
 
-<script setup>
-import {ref, onMounted, computed} from "vue";
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody,
-} from "bootstrap-vue-next";
-import VueApexCharts from "vue3-apexcharts";
 
-import {
-  basicAreaChart,
-  splineAreaChart,
-  irregularSeries,
-  stackedAreaChart,
-} from "@/data/charts/apexcharts/AreaChart.js";
-import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import {PhStack} from "@phosphor-icons/vue";
-
-// ✅ Create reactive references for chart configs
-const basicChart = ref({});
-const splineChart = ref({});
-const irregularChart = ref({});
-const stackedChart = ref({});
-
-onMounted(() => {
-  basicChart.value = basicAreaChart;
-  splineChart.value = splineAreaChart;
-  irregularChart.value = irregularSeries;
-  stackedChart.value = stackedAreaChart;
-});
-
-// ✅ Breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "Area",
-  items: [
-    {label: "Charts", icon: PhStack},
-    {label: "Apexcharts"},
-    {label: "Area", active: true},
-  ],
-}));
-</script>
