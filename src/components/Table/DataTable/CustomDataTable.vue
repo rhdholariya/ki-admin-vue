@@ -57,10 +57,6 @@ const renderContent = (renderFn, value, item) => {
 
   const result = renderFn(value, item);
 
-  if (typeof result === 'string') {
-    return result;
-  }
-
   return result;
 };
 
@@ -69,11 +65,15 @@ const getCellValue = (item, column) => {
   return renderContent(column.render, value, item);
 };
 
+const isVNode = (value) => {
+  return value && typeof value === 'object' && '__v_isVNode' in value;
+};
+
 const initDataTable = async () => {
-  if (!tableRef.value) return;
+  if (typeof window === 'undefined' || !tableRef.value) return;
 
   try {
-    const DataTableModule = await import("datatables.net-dt");
+    const DataTableModule = await import('datatables.net-dt');
     const DataTable = DataTableModule.default || DataTableModule;
 
     if (dataTableInstance) {
@@ -83,33 +83,38 @@ const initDataTable = async () => {
 
     await nextTick();
 
-    dataTableInstance = new DataTable(tableRef.value, {
-      pagingType: "full_numbers",
-      pageLength: props.pageLength,
-      dom: props.showLengthMenu
-          ? `<"dt-layout-top"<"dt-layout-row"<"dt-layout-cell dt-layout-start"l><"dt-layout-cell dt-layout-end"f>>>
-           <"dt-layout-middle"tr>
-           <"dt-layout-bottom"<"dt-layout-row"<"dt-layout-cell dt-layout-start"i><"dt-layout-cell dt-layout-end"p>>>`
-          : `<"dt-layout-top"<"dt-layout-row"<"dt-layout-cell dt-layout-end"f>>>
-           <"dt-layout-middle"tr>
-           <"dt-layout-bottom"<"dt-layout-row"<"dt-layout-cell dt-layout-start"i><"dt-layout-cell dt-layout-end"p>>>`,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search...",
-        lengthMenu: "Show _MENU_ entries",
-        info: "Showing _START_ to _END_ of _TOTAL_ entries",
-        infoEmpty: "Showing 0 to 0 of 0 entries",
-        infoFiltered: "(filtered from _MAX_ total entries)",
-      },
-      order: [],
-      autoWidth: false,
-      deferRender: false,
-      columnDefs: [
-        { targets: "_all", orderable: true }
-      ],
-    });
-  } catch (err) {
-    console.error("Error initializing DataTable:", err);
+    if (tableRef.value && !tableRef.value.classList.contains('dataTable')) {
+      dataTableInstance = new DataTable(tableRef.value, {
+        pagingType: "full_numbers",
+        pageLength: props.pageLength,
+        dom: props.showLengthMenu
+            ? `<"dt-layout-top"<"dt-layout-row"<"dt-layout-cell dt-layout-start"l><"dt-layout-cell dt-layout-end"f>>>
+             <"dt-layout-middle"tr>
+             <"dt-layout-bottom"<"dt-layout-row"<"dt-layout-cell dt-layout-start"i><"dt-layout-cell dt-layout-end"p>>>`
+            : `<"dt-layout-top"<"dt-layout-row"<"dt-layout-cell dt-layout-end"f>>>
+             <"dt-layout-middle"tr>
+             <"dt-layout-bottom"<"dt-layout-row"<"dt-layout-cell dt-layout-start"i><"dt-layout-cell dt-layout-end"p>>>`,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Show _MENU_ entries",
+          info: "Showing _START_ to _END_ of _TOTAL_ entries",
+          infoEmpty: "Showing 0 to 0 of 0 entries",
+          infoFiltered: "(filtered from _MAX_ total entries)",
+        },
+        order: [],
+        autoWidth: false,
+        deferRender: false,
+        columnDefs: [
+          {
+            targets: '_all',
+            orderable: true
+          }
+        ]
+      });
+    }
+  } catch (error) {
+    console.error('Error initializing DataTable:', error);
   }
 };
 
@@ -169,8 +174,13 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
                   v-for="column in columns"
                   :key="column.key"
                   :class="column.className"
-                  v-html="getCellValue(item, column)"
-              ></td>
+              >
+                <component
+                    v-if="isVNode(getCellValue(item, column))"
+                    :is="getCellValue(item, column)"
+                />
+                <span v-else v-html="getCellValue(item, column)"></span>
+              </td>
 
               <td v-if="showActions" class="text-nowrap">
                 <div class="d-flex align-items-center gap-2">
@@ -250,8 +260,13 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
               <td
                   v-for="column in footerColumns.length ? footerColumns : columns"
                   :key="`footer-${column.key}-${index}`"
-                  v-html="getCellValue(item, column)"
-              ></td>
+              >
+                <component
+                    v-if="isVNode(getCellValue(item, column))"
+                    :is="getCellValue(item, column)"
+                />
+                <span v-else v-html="getCellValue(item, column)"></span>
+              </td>
               <td v-if="showActions"></td>
             </tr>
             </tfoot>
