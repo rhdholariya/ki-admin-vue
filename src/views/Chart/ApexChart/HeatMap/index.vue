@@ -92,7 +92,7 @@ import {
 } from '@/data/charts/apexcharts/HeatMapChart.js';
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import {PhStack} from "@phosphor-icons/vue";
+import {PhChartPieSlice, PhStack} from "@phosphor-icons/vue";
 
 
 
@@ -114,7 +114,7 @@ onMounted(() => {
 const breadcrumbItems = computed(() => ({
   title: "HeatMap",
   items: [
-    {label: "Chart", icon: PhStack},
+    {label: "Chart", icon: PhChartPieSlice},
     {label: "Apexcharts"},
     {label: " HeatMap", active: true}
   ],
