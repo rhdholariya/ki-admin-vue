@@ -38,17 +38,18 @@ const handleFileChange = (e) => {
         <b-card-body>
             <b-row>
                 <b-col sm="12" xl="6">
-                    <b-form>
-                        <b-form-group class="mb-3">
-                            <label class="mt-2">File Upload</label>
+                    <b-form class="app-form">
+                        <b-form-group class="mb-3 ">
+                            <label class="mt-2 form-label">File Upload</label>
                             <b-form-input type="file" />
                         </b-form-group>
                     </b-form>
                 </b-col>
 
                 <b-col sm="12" xl="6">
+                  <b-form class="app-form">
                     <b-form-group class="mb-3">
-                        <label class="mt-2">Custom File Upload</label>
+                        <label class="mt-2 form-label">Custom File Upload</label>
                         <b-form-input
                             ref="fileInputRef"
                             type="file"
@@ -66,6 +67,7 @@ const handleFileChange = (e) => {
                             <span id="custom-text">{{ fileName }}</span>
                         </div>
                     </b-form-group>
+                  </b-form>
                 </b-col>
             </b-row>
         </b-card-body>

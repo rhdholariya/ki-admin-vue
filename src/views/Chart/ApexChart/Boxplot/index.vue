@@ -10,14 +10,13 @@ import {
 } from 'bootstrap-vue-next';
 import VueApexCharts from "vue3-apexcharts";
 
-
 import {
   basicBoxWhiskerChartData,
   boxPlotWithScatterData
 } from '@/data/charts/apexcharts/BoxplotChart.js';
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import {PhStack} from "@phosphor-icons/vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
 
 const basicBoxWhiskerChart = ref({});
 const boxPlotWithScatterChart = ref({});
@@ -32,7 +31,7 @@ onMounted(() => {
 const breadcrumbItems = computed(() => ({
   title: "Boxplot",
   items: [
-    {label: "Charts", icon: PhStack},
+    {label: "Charts", icon: PhChartPieSlice},
     {label: "Apexcharts"},
     {label: " Boxplot", active: true}
   ],

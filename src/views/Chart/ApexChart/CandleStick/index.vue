@@ -13,7 +13,7 @@ import VueApexCharts from "vue3-apexcharts";
 import {basicCandlestickChartData} from '@/data/charts/apexcharts/CandleStick.js';
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
-import {PhStack} from "@phosphor-icons/vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
 
 
 const candlestickChart = ref({});
@@ -26,7 +26,7 @@ onMounted(() => {
 const breadcrumbItems = computed(() => ({
   title: "Candlestick",
   items: [
-    {label: "Charts", icon: PhStack},
+    {label: "Charts", icon: PhChartPieSlice},
     {label: "Apexcharts"},
     {label: " Candlestick", active: true}
   ],
