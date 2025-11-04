@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, nextTick, computed, h } from "vue";
-import { BCard, BCardBody, BCardHeader, BDropdown, BDropdownItem, BButton } from "bootstrap-vue-next";
+import { BCard, BCardBody, BCardHeader, BTable, BDropdown, BDropdownItem, BButton } from "bootstrap-vue-next";
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import { IconTrash, IconEdit } from '@tabler/icons-vue';
 
@@ -27,6 +27,7 @@ const props = defineProps({
   footerColumns: {type: Array, default: () => []},
 });
 
+const tableWrapperRef = ref(null);
 const tableRef = ref(null);
 let dataTableInstance = null;
 
@@ -35,6 +36,7 @@ const tableFields = computed(() => {
     key: column.key,
     label: column.header || column.label,
     class: column.className,
+    sortable: false,
   }));
 
   if (props.showActions) {
@@ -42,6 +44,7 @@ const tableFields = computed(() => {
       key: 'actions',
       label: 'Action',
       class: 'text-nowrap',
+      sortable: false
     });
   }
 
@@ -49,7 +52,15 @@ const tableFields = computed(() => {
 });
 
 const tableItems = computed(() => {
-  return props.data;
+  return props.data.map(item => {
+    const tableItem = {...item};
+
+    if (props.showActions) {
+      tableItem.actions = item;
+    }
+
+    return tableItem;
+  });
 });
 
 const renderContent = (renderFn, value, item) => {
@@ -57,23 +68,18 @@ const renderContent = (renderFn, value, item) => {
 
   const result = renderFn(value, item);
 
+  if (typeof result === 'string') {
+    return h('div', {innerHTML: result});
+  }
+
   return result;
 };
 
-const getCellValue = (item, column) => {
-  const value = item[column.key];
-  return renderContent(column.render, value, item);
-};
-
-const isVNode = (value) => {
-  return value && typeof value === 'object' && '__v_isVNode' in value;
-};
-
 const initDataTable = async () => {
-  if (typeof window === 'undefined' || !tableRef.value) return;
+  if (typeof window === "undefined" || !tableRef.value) return;
 
   try {
-    const DataTableModule = await import('datatables.net-dt');
+    const DataTableModule = await import("datatables.net-dt");
     const DataTable = DataTableModule.default || DataTableModule;
 
     if (dataTableInstance) {
@@ -83,8 +89,15 @@ const initDataTable = async () => {
 
     await nextTick();
 
-    if (tableRef.value && !tableRef.value.classList.contains('dataTable')) {
-      dataTableInstance = new DataTable(tableRef.value, {
+    let tableWrapper = tableRef.value?.$el;
+
+    let tableElement =
+        tableWrapper?.tagName === "TABLE"
+            ? tableWrapper
+            : tableWrapper?.getElementsByTagName("table")[0];
+
+    if (tableElement && !tableElement.classList.contains("dataTable")) {
+      dataTableInstance = new DataTable(tableElement, {
         pagingType: "full_numbers",
         pageLength: props.pageLength,
         dom: props.showLengthMenu
@@ -105,16 +118,10 @@ const initDataTable = async () => {
         order: [],
         autoWidth: false,
         deferRender: false,
-        columnDefs: [
-          {
-            targets: '_all',
-            orderable: true
-          }
-        ]
       });
     }
   } catch (error) {
-    console.error('Error initializing DataTable:', error);
+    console.error("Error initializing DataTable:", error);
   }
 };
 
@@ -143,134 +150,111 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
       </BCardHeader>
 
       <BCardBody class="p-0">
-        <div class="app-scroll table-responsive app-datatable-default">
-          <table ref="tableRef" :class="tableClassName">
-            <thead>
-            <tr>
-              <th
-                  v-for="field in tableFields"
-                  :key="field.key"
-                  :class="field.class"
-              >
-                {{ field.label }}
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-                v-if="tableItems.length === 0"
-                class="empty-row"
-            >
-              <td :colspan="tableFields.length" class="text-center py-4">
+        <div ref="tableWrapperRef" class="app-scroll table-responsive app-datatable-default cursor-pointer">
+          <BTable
+              ref="tableRef"
+              :items="tableItems"
+              :fields="tableFields"
+              :class="tableClassName"
+              responsive
+              show-empty
+              hover
+              striped
+          >
+            <template v-for="column in columns" :key="column.key" #[`cell(${column.key})`]="data">
+              <component :is="() => renderContent(column.render, data.value, data.item)"/>
+            </template>
+
+            <template #cell(actions)="data">
+              <div class="d-flex align-items-center gap-2">
+                <!-- Individual Buttons Style -->
+                <template v-if="showIndividualButtons">
+
+                  <!-- Edit Button -->
+                  <BButton
+                      v-if="onEdit"
+                      variant="outline-success"
+                      size="sm"
+                      class="icon-btn rounded-2 btn btn-success"
+                      @click="onEdit(data.value)"
+                      title="Edit"
+                  >
+                    <IconEdit size="18"/>
+                  </BButton>
+
+                  <!-- Delete Button -->
+                  <BButton
+                      v-if="onDelete"
+                      variant="outline-danger"
+                      size="sm"
+                      class="icon-btn rounded-2 btn btn-danger"
+                      @click="onDelete(data.value)"
+                      title="Delete"
+                  >
+                    <IconTrash size="18"/>
+                  </BButton>
+                </template>
+
+                <!-- Dropdown Style -->
+                <template v-else>
+                  <BDropdown
+                      variant="link"
+                      toggle-class="text-decoration-none p-0 dropdown-toggle-no-caret"
+                      no-caret
+                      right
+                      class="action-dropdown"
+                  >
+                    <template #button-content>
+                      <i class="ti ti-dots-vertical"></i>
+                    </template>
+
+                    <!-- View in dropdown -->
+                    <BDropdownItem v-if="onView" @click="onView(data.value)">
+                      <i class="ti ti-eye text-primary me-2"></i> View
+                    </BDropdownItem>
+
+                    <!-- Edit in dropdown -->
+                    <BDropdownItem v-if="onEdit" @click="onEdit(data.value)">
+                      <i class="ti ti-edit text-success me-2"></i> Edit
+                    </BDropdownItem>
+
+                    <!-- Delete in dropdown -->
+                    <BDropdownItem v-if="onDelete" @click="onDelete(data.value)">
+                      <i class="ti ti-trash text-danger me-2"></i> Delete
+                    </BDropdownItem>
+                  </BDropdown>
+                </template>
+              </div>
+            </template>
+
+            <template #empty>
+              <div class="text-center my-4">
                 <span>No records found</span>
-              </td>
-            </tr>
-            <tr
-                v-for="(item, index) in tableItems"
-                :key="item[rowKey] || index"
-                class="cursor-pointer"
-            >
-              <td
-                  v-for="column in columns"
-                  :key="column.key"
-                  :class="column.className"
-              >
-                <component
-                    v-if="isVNode(getCellValue(item, column))"
-                    :is="getCellValue(item, column)"
-                />
-                <span v-else v-html="getCellValue(item, column)"></span>
-              </td>
+              </div>
+            </template>
 
-              <td v-if="showActions" class="text-nowrap">
-                <div class="d-flex align-items-center gap-2">
-                  <!-- Individual Buttons Style -->
-                  <template v-if="showIndividualButtons">
-                    <!-- Edit Button -->
-                    <BButton
-                        v-if="onEdit"
-                        variant="outline-success"
-                        size="sm"
-                        class="icon-btn rounded-2 btn btn-success"
-                        @click="onEdit(item)"
-                        title="Edit"
-                    >
-                      <IconEdit :size="18"/>
-                    </BButton>
-
-                    <!-- Delete Button -->
-                    <BButton
-                        v-if="onDelete"
-                        variant="outline-danger"
-                        size="sm"
-                        class="icon-btn rounded-2 btn btn-danger"
-                        @click="onDelete(item)"
-                        title="Delete"
-                    >
-                      <IconTrash :size="18"/>
-                    </BButton>
-                  </template>
-
-                  <!-- Dropdown Style -->
-                  <template v-else>
-                    <BDropdown
-                        variant="link"
-                        toggle-class="text-decoration-none p-0 dropdown-toggle-no-caret"
-                        no-caret
-                        right
-                        class="action-dropdown"
-                    >
-                      <template #button-content>
-                        <i class="ti ti-dots-vertical"></i>
-                      </template>
-
-                      <!-- View in dropdown -->
-                      <BDropdownItem v-if="onView" @click="onView(item)">
-                        <i class="ti ti-eye text-primary me-2"></i> View
-                      </BDropdownItem>
-
-                      <!-- Edit in dropdown -->
-                      <BDropdownItem v-if="onEdit" @click="onEdit(item)">
-                        <i class="ti ti-edit text-success me-2"></i> Edit
-                      </BDropdownItem>
-
-                      <!-- Delete in dropdown -->
-                      <BDropdownItem v-if="onDelete" @click="onDelete(item)">
-                        <i class="ti ti-trash text-danger me-2"></i> Delete
-                      </BDropdownItem>
-                    </BDropdown>
-                  </template>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-
-            <tfoot v-if="showFooter">
-            <tr>
-              <th
-                  v-for="column in footerColumns.length ? footerColumns : columns"
-                  :key="`footer-${column.key}`"
-                  :class="column.className"
-              >
-                {{ column.header || column.label }}
-              </th>
-              <th v-if="showActions">Action</th>
-            </tr>
-            <tr v-for="(item, index) in footerData" :key="`footer-row-${index}`">
-              <td
-                  v-for="column in footerColumns.length ? footerColumns : columns"
-                  :key="`footer-${column.key}-${index}`"
-              >
-                <component
-                    v-if="isVNode(getCellValue(item, column))"
-                    :is="getCellValue(item, column)"
-                />
-                <span v-else v-html="getCellValue(item, column)"></span>
-              </td>
-              <td v-if="showActions"></td>
-            </tr>
-            </tfoot>
-          </table>
+            <template #foot v-if="showFooter">
+              <tr>
+                <th
+                    v-for="column in footerColumns.length ? footerColumns : columns"
+                    :key="`footer-${column.key}`"
+                    :class="column.className"
+                >
+                  {{ column.header || column.label }}
+                </th>
+                <th v-if="showActions">Action</th>
+              </tr>
+              <tr v-for="(item, index) in footerData" :key="`footer-row-${index}`">
+                <td
+                    v-for="column in footerColumns.length ? footerColumns : columns"
+                    :key="`footer-${column.key}-${index}`"
+                >
+                  <component :is="() => renderContent(column.render, item[column.key], item)"/>
+                </td>
+                <td v-if="showActions"></td>
+              </tr>
+            </template>
+          </BTable>
         </div>
       </BCardBody>
     </BCard>
