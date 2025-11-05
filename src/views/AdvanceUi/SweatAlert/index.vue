@@ -48,7 +48,7 @@ const handleClick = async (type) => {
       Swal.fire({
         title: 'Sweet!',
         text: 'Modal with a custom image.',
-        imageUrl: '/assets/images/blog/21.jpg',
+        imageUrl: '/images/blog-app/11.jpg',
         imageWidth: 400,
         imageHeight: 400,
         imageAlt: 'Custom image'
