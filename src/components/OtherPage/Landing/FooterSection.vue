@@ -1,3 +1,21 @@
+<script>
+import {
+    BButton,
+    BCol,
+    BContainer,
+    BRow
+} from 'bootstrap-vue-next';
+
+export default {
+    name: 'LandingFooter',
+    components: {
+        BButton,
+        BCol,
+        BContainer,
+        BRow,
+    },
+};
+</script>
 <template>
   <section class="landing-footer section-lg-space-x">
     <b-container>
@@ -40,21 +58,3 @@
   </section>
 </template>
 
-<script>
-import {
-  BButton,
-  BCol,
-  BContainer,
-  BRow
-} from 'bootstrap-vue-next';
-
-export default {
-  name: 'LandingFooter',
-  components: {
-    BButton,
-    BCol,
-    BContainer,
-    BRow,
-  },
-};
-</script>

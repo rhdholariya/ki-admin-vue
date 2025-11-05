@@ -1,18 +1,39 @@
+<script setup>
+import {
+    BBadge,
+    BButton,
+    BCard,
+    BCardBody,
+    BCol,
+    BContainer,
+    BRow
+} from 'bootstrap-vue-next';
+
+import { IconCheck } from '@tabler/icons-vue';
+import { PhCards } from '@phosphor-icons/vue';
+
+const pricingFeatures = [
+    "6 Month support",
+    "Single end product use",
+    "Future upgrades included",
+    "Free for use in end products",
+];
+</script>
 <template>
   <section class="plans-section" id="Pricing">
-    <BContainer>
+    <b-container>
       <div class="card-section-content section-lg-space-x">
-        <BRow>
-          <BCol xl="8">
+        <b-row>
+          <b-col xl="8">
             <div class="landing-title">
-              <BBadge class="title-badge mb-3" variant="light-primary">
+              <b-badge class="title-badge mb-3" variant="light-primary">
                 <PhCards
                     :size="14"
                     class="align-text-bottom me-1"
                     weight="fill"
                 />
                 Cards
-              </BBadge>
+              </b-badge>
               <h2>
                 Purchase <span class="highlight-title">Plans</span>
               </h2>
@@ -21,33 +42,33 @@
                 select a plan, and complete the transaction.
               </p>
             </div>
-          </BCol>
-        </BRow>
+          </b-col>
+        </b-row>
 
-        <BRow class="justify-content-center">
+        <b-row class="justify-content-center">
           <!-- Left Card - Basic Plan -->
-          <BCol md="7" xl="8">
+          <b-col md="7" xl="8">
             <BCard class="pricing-cards equal-card mb-0">
               <BCardBody>
-                <BRow class="align-items-center">
-                  <BCol lg="5" xl="6">
+                <b-row class="align-items-center">
+                  <b-col lg="5" xl="6">
                     <img
                         alt="img"
                         class="w-120"
                         src="/images/landing/wallet.png"
                     />
                     <div>
-                      <BBadge variant="primary" class="f-s-16 mt-3">
+                      <b-badge variant="primary" class="f-s-16 mt-3">
                         Basic Plans
-                      </BBadge>
+                      </b-badge>
                       <h1 class="text-primary fw-bold mt-3">$14.00</h1>
                       <p class="text-secondary fw-medium f-s-16">
                         Essential features at the best value. Get started
                         today with our budget-friendly pricing!
                       </p>
                     </div>
-                  </BCol>
-                  <BCol lg="7" xl="6">
+                  </b-col>
+                  <b-col lg="7" xl="6">
                     <div class="pricing-details">
                       <div class="price-title">
                         <h3 class="text-dark fw-semibold">Basic Plans</h3>
@@ -76,14 +97,13 @@
                         </div>
                       </div>
                     </div>
-                  </BCol>
-                </BRow>
+                  </b-col>
+                </b-row>
               </BCardBody>
             </BCard>
-          </BCol>
+          </b-col>
 
-          <!-- Right Card - Business Plan -->
-          <BCol md="5" xl="4">
+          <b-col md="5" xl="4">
             <BCard class="pricing-cards active mb-0">
               <BCardBody class="p-0">
                 <div class="pricing-details">
@@ -101,44 +121,23 @@
                       </li>
                     </ul>
                     <div class="text-center price-btn">
-                      <BButton
+                      <b-button
                           size="lg"
                           variant="light-white"
                           href="https://themeforest.net/user/la-themes"
                           target="_blank"
                       >
                         Buy Plans
-                      </BButton>
+                      </b-button>
                     </div>
                   </div>
                 </div>
               </BCardBody>
             </BCard>
-          </BCol>
-        </BRow>
+          </b-col>
+        </b-row>
       </div>
-    </BContainer>
+    </b-container>
   </section>
 </template>
 
-<script setup>
-import {
-  BBadge,
-  BButton,
-  BCard,
-  BCardBody,
-  BCol,
-  BContainer,
-  BRow
-} from 'bootstrap-vue-next';
-
-import { IconCheck } from '@tabler/icons-vue';
-import { PhCards } from '@phosphor-icons/vue';
-
-const pricingFeatures = [
-  "6 Month support",
-  "Single end product use",
-  "Future upgrades included",
-  "Free for use in end products",
-];
-</script>

@@ -9,9 +9,9 @@ import {
     BFormGroup,
     BFormInput,
     BButton,
+    BFormCheckbox  // Added missing import
 } from "bootstrap-vue-next";
 import {RouterLink} from "vue-router";
-
 
 import {
     PhFacebookLogo,
@@ -33,7 +33,6 @@ const fields = [
     {label: "Email", type: "email", placeholder: "Enter Your Email", controlId: "email", model: "email"},
     {label: "Password", type: "password", placeholder: "Enter Your Password", controlId: "password", model: "password"},
 ];
-
 
 const socialButtons = [
     {icon: h(PhFacebookLogo, {size: 18, weight: "bold", color: "white"}), variant: "primary",},
@@ -61,14 +60,12 @@ const handleSubmit = (e) => {
                                 </RouterLink>
                             </div>
 
-
                             <div class="form_container">
                                 <b-form class="app-form p-3" @submit="handleSubmit">
                                     <div class="mb-3 text-center">
                                         <h3>Create Account</h3>
                                         <p class="f-s-12 text-secondary">Get started for Free Today.</p>
                                     </div>
-
 
                                     <b-form-group v-for="field in fields" :key="field.controlId" class="mb-3">
                                         <label :for="field.controlId">{{ field.label }}</label>
@@ -81,16 +78,16 @@ const handleSubmit = (e) => {
                                         />
                                     </b-form-group>
 
-
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="remember"
-                                               v-model="formValues.remember"/>
-                                        <label class="form-check-label" for="remember">Remember me</label>
-                                    </div>
-
+                                    <!-- Fixed: Using BFormCheckbox instead of native input -->
+                                    <b-form-checkbox
+                                        id="remember"
+                                        v-model="formValues.remember"
+                                        class="mb-3"
+                                    >
+                                        Remember me
+                                    </b-form-checkbox>
 
                                     <b-button type="submit" variant="primary" class="w-100">Submit</b-button>
-
 
                                     <div class="app-divider-v justify-content-center my-3"><p>OR</p></div>
 
@@ -105,7 +102,6 @@ const handleSubmit = (e) => {
                                             {{ btn.label }}
                                         </b-button>
                                     </div>
-
 
                                     <div class="text-center">
                                         <RouterLink to="/other-pages/terms-condition"

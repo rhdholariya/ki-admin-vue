@@ -1,3 +1,15 @@
+<script setup>
+import {
+    BContainer,
+    BRow,
+    BCol,
+    BCard,
+    BCardBody,
+    BBadge,
+    BButton
+} from 'bootstrap-vue-next';
+import { IconSettings } from '@tabler/icons-vue';
+</script>
 <template>
   <section class="options-section section-lg-space-x" id="Customization">
     <b-container>
@@ -137,16 +149,5 @@
   </section>
 </template>
 
-<script setup>
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardBody,
-  BBadge,
-  BButton
-} from 'bootstrap-vue-next';
-import { IconSettings } from '@tabler/icons-vue';
-</script>
+
 

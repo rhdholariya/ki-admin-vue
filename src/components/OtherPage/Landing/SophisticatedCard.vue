@@ -1,19 +1,33 @@
+<script setup>
+import { BBadge, BCol, BContainer, BRow } from "bootstrap-vue-next";
+import * as PhIcons from "@phosphor-icons/vue";
+import {PhCardsThree} from "@phosphor-icons/vue";
+
+const cardDetails = [
+    { icon: "PhCreditCard", text: "200+ Cards Collection" },
+    { icon: "PhDiamondsFour", text: "Basic Components Included" },
+    { icon: "PhGear", text: "Customization and Personalization" },
+    { icon: "PhDeviceTablet", text: "Responsive Card Design" },
+    { icon: "PhGearFine", text: "Advanced Functionality" },
+    { icon: "PhPalette", text: "Styleguide Included" },
+];
+</script>
 <template>
   <div>
     <section class="card-section" id="Cards">
-      <BContainer fluid>
+      <b-container fluid>
         <div class="card-section-content section-lg-space-x">
-          <BRow class="align-items-center mb-5">
-            <BCol xl="8" class="offset-xl-2 text-md-center">
+          <b-row class="align-items-center mb-5">
+            <b-col xl="8" class="offset-xl-2 text-md-center">
               <div class="landing-title">
-                <BBadge class="title-badge mb-3" variant="light-primary">
-                  <PhLayout
+                <b-badge class="title-badge mb-3" variant="light-primary">
+                  <PhCardsThree
                       :size="14"
                       class="align-text-bottom me-1"
                       weight="fill"
                   />
                   Cards
-                </BBadge>
+                </b-badge>
                 <h2>
                   Sophisticated
                   <span class="highlight-title px-3">Cards</span>
@@ -25,19 +39,19 @@
                   and more engaging user experience in a concise card format.
                 </p>
               </div>
-            </BCol>
-          </BRow>
+            </b-col>
+          </b-row>
 
-          <BRow class="align-items-center">
-            <BCol xl="7" class="text-center position-relative">
+          <b-row class="align-items-center">
+            <b-col xl="7" class="text-center position-relative">
               <img
                   src="/images/landing/cards-img.png"
                   alt="cards-img"
                   class="img-fluid cards-img"
               />
-            </BCol>
+            </b-col>
 
-            <BCol xl="5">
+            <b-col xl="5">
               <ul class="card-details-list px-sm-4 px-0 list-unstyled">
                 <li
                     v-for="(item, index) in cardDetails"
@@ -53,24 +67,12 @@
                   {{ item.text }}
                 </li>
               </ul>
-            </BCol>
-          </BRow>
+            </b-col>
+          </b-row>
         </div>
-      </BContainer>
+      </b-container>
     </section>
   </div>
 </template>
 
-<script setup>
-import { BBadge, BCol, BContainer, BRow } from "bootstrap-vue-next";
-import * as PhIcons from "@phosphor-icons/vue";
 
-const cardDetails = [
-  { icon: "PhCreditCard", text: "200+ Cards Collection" },
-  { icon: "PhDiamondsFour", text: "Basic Components Included" },
-  { icon: "PhGear", text: "Customization and Personalization" },
-  { icon: "PhDeviceTablet", text: "Responsive Card Design" },
-  { icon: "PhGearFine", text: "Advanced Functionality" },
-  { icon: "PhPalette", text: "Styleguide Included" },
-];
-</script>

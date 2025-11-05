@@ -32,7 +32,6 @@ const errors = ref({});
 const handleChange = (field, value) => {
     formData.value[field] = value;
 
-    // Remove error for this specific field when user starts typing
     if (errors.value[field]) {
         delete errors.value[field];
     }
@@ -66,10 +65,19 @@ const handlePrev = () => {
 
 const handleSubmit = () => {
     if (validateStep()) {
-        if (validateStep()) {
-            alert("Form submitted successfully!");
-            window.location.reload();
-        }
+        alert("Form submitted successfully!");
+        step.value = 1;
+        formData.value = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            contact: "",
+            dob: "",
+            section: "",
+            position: "",
+            officeAddress: "",
+        };
+        errors.value = {};
     }
 };
 </script>
@@ -101,7 +109,6 @@ const handleSubmit = () => {
 
                     <b-col cols="9">
                         <b-form class="app-form" @submit.prevent="handleSubmit">
-                            <!-- Step 1 -->
                             <template v-if="step === 1">
                                 <b-row>
                                     <b-col md="6">
@@ -173,7 +180,6 @@ const handleSubmit = () => {
                                 </b-row>
                             </template>
 
-                            <!-- Step 2 -->
                             <template v-else-if="step === 2">
                                 <b-row>
                                     <b-col md="6">
@@ -226,7 +232,6 @@ const handleSubmit = () => {
                                 </b-row>
                             </template>
 
-                            <!-- Step 3 -->
                             <template v-else-if="step === 3">
                                 <b-row>
                                     <b-col cols="12">

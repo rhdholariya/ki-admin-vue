@@ -38,7 +38,6 @@ const activeTab = ref('details')
                     nav-class="tab-light-primary"
 
                 >
-                    <!-- Tab 1: Create Account -->
                     <b-tab key="details" active>
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
@@ -76,7 +75,6 @@ const activeTab = ref('details')
                         </b-form>
                     </b-tab>
 
-                    <!-- Tab 2: Personal Account -->
                     <b-tab key="personal">
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
@@ -133,7 +131,6 @@ const activeTab = ref('details')
                         </b-form>
                     </b-tab>
 
-                    <!-- Tab 3: Payment Method -->
                     <b-tab key="payment">
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">

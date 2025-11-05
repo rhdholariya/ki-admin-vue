@@ -35,7 +35,6 @@ const handleSubmit = async () => {
     loading.value = false
 }
 
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Form Validation",
     items: [

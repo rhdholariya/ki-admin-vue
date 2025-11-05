@@ -1,10 +1,15 @@
 <script setup>
-import {ref} from "vue";
+import {ref, reactive} from "vue";
 import {useRouter} from "vue-router";
-import {BContainer, BRow, BCol, BForm, BFormGroup, BFormInput, BButton} from "bootstrap-vue-next";
+import {BContainer, BRow, BCol, BForm, BFormGroup, BFormInput, BButton, BFormCheckbox, BSpinner} from "bootstrap-vue-next";
 
 const router = useRouter();
 const isSubmitting = ref(false);
+
+const form = reactive({
+    password: '',
+    rememberMe: false
+});
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +72,7 @@ const handleSubmit = (e) => {
                                         >
                                             <b-form-input
                                                 id="password"
-                                                name="password"
+                                                v-model="form.password"
                                                 type="password"
                                                 placeholder="Enter Your Password"
                                                 required
@@ -80,32 +85,36 @@ const handleSubmit = (e) => {
                                     </b-col>
 
                                     <b-col cols="12">
-                                        <div class="mb-3 form-check">
-                                            <input type="checkbox" id="rememberMe" name="rememberMe"
-                                                   class="form-check-input w-15 h-15"/>
-                                            <label for="rememberMe" class="text-white f-s-16 form-check-label">Remember
-                                                me</label>
-                                        </div>
+                                        <b-form-checkbox
+                                            id="rememberMe"
+                                            v-model="form.rememberMe"
+                                            class="mb-3"
+                                        >
+                                            <span class="text-white f-s-16">Remember me</span>
+                                        </b-form-checkbox>
                                     </b-col>
 
                                     <b-col cols="12" class="mt-3">
-                                        <b-button type="submit" class="w-100 mb-3" variant="primary">
+                                        <b-button
+                                            type="submit"
+                                            class="w-100 mb-3"
+                                            variant="primary"
+                                            :disabled="isSubmitting"
+                                        >
                                             <template v-if="isSubmitting">
-                                                <span class="spinner-border spinner-border-sm" role="status"
-                                                      aria-hidden="true"></span>
+                                                <!-- Use Bootstrap-Vue spinner -->
+                                                <b-spinner small type="border" />
+                                                Unlocking...
                                             </template>
                                             <template v-else>
                                                 Unlock
                                             </template>
                                         </b-button>
                                     </b-col>
-
                                 </b-row>
-
                             </b-form>
                         </div>
                     </b-col>
-
                 </b-row>
             </b-container>
         </div>

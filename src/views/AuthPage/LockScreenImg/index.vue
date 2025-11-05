@@ -34,23 +34,16 @@ const handleSubmit = (e) => {
         <b-row>
             <b-col xs="12" class="p-0">
                 <div class="login-form-container">
-
-                    <!-- Logo -->
-
                     <div class="mb-4">
                         <RouterLink to="/" class="logo">
                             <img src="/images/logo/3.png" alt="logo"/>
                         </RouterLink>
                     </div>
 
-
-                    <!-- Form -->
-
                     <div class="form_container">
                         <b-form @submit="handleSubmit" class="app-form p-3">
                             <b-row>
                                 <b-col cols="12">
-                                    <!-- Header -->
                                     <div class="mb-3 text-center">
                                         <h3 class="text-primary-dark">Lock Screen</h3>
                                         <p>Hello, enter your password to unlock the screen</p>
@@ -67,8 +60,6 @@ const handleSubmit = (e) => {
                                         <p class="text-secondary">Enter Your Password to View your Screen</p>
                                     </div>
                                 </b-col>
-
-
                                 <b-col cols="12">
                                     <b-form-group label="Password" label-for="password" class="mb-3">
                                         <b-form-input
@@ -80,7 +71,6 @@ const handleSubmit = (e) => {
                                         />
                                     </b-form-group>
                                 </b-col>
-
                                 <b-col cols="12">
                                     <b-form-group class="mb-3">
                                         <b-form-checkbox id="rememberMe" name="rememberMe">

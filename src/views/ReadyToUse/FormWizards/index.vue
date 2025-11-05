@@ -8,8 +8,6 @@ import IconWizards from "@/components/ReadyToUse/FormWizards/IconWizards.vue";
 import VerticalNumberWizard from "@/components/ReadyToUse/FormWizards/VerticalNumberWizard.vue";
 import VerticalIconWizards from "@/components/ReadyToUse/FormWizards/VerticalIconWizards.vue";
 
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "form wizards",
     items: [

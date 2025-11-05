@@ -7,10 +7,6 @@ import Checkout from "@/components/ReadyToUse/FormWizard2/Checkout.vue";
 import Financial from "@/components/ReadyToUse/FormWizard2/Financial.vue";
 import Booking from "@/components/ReadyToUse/FormWizard2/Booking.vue";
 
-
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "form wizards 2",
     items: [
