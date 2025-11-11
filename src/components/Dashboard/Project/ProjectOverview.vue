@@ -40,7 +40,7 @@ const modules = [Autoplay, Pagination]
 </script>
 
 <template>
-  <b-row>
+
     <!-- Yearly Earning Card -->
     <b-col sm="6" md="5" lg="4" xxl="3">
       <YearlyEarningCard :chart-height="180" />
@@ -165,5 +165,5 @@ const modules = [Autoplay, Pagination]
     <b-col sm="6" md="5" lg="4" xxl="3">
       <ProfitOverviewCard />
     </b-col>
-  </b-row>
+
 </template>

@@ -3,7 +3,6 @@ import { reactive } from "vue";
 import { PhUserPlus, PhCirclesThree, PhChatCircle, PhGear, PhDotsThree } from "@phosphor-icons/vue";
 import {BCard, BCardBody, BCol, BRow, BButton, BCardHeader} from "bootstrap-vue-next";
 
-// Dropdown menu configurations
 const dropdowns = [
     { menuClass: "menu-primary" },
     { menuClass: "menu-secondary" },
@@ -15,7 +14,6 @@ const dropdowns = [
     { menuClass: "menu-dark" },
 ];
 
-// Items inside each dropdown
 const dropdownItems = [
     { label: "Action", icon: PhUserPlus },
     { label: "Another action", icon: PhCirclesThree },
@@ -24,10 +22,8 @@ const dropdownItems = [
     { label: "Settings", icon: PhGear },
 ];
 
-// Track which dropdown is open
 const openDropdowns = reactive(dropdowns.map(() => true)); // default all open
 
-// Toggle a specific card
 const toggleDropdown = (index) => {
     openDropdowns[index] = !openDropdowns[index];
 };

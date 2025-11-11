@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { BCol, BRow, BCard, BCardHeader, BCardBody, BTabs, BTab } from "bootstrap-vue-next";
 
-// ---- Avatar Tabs Data ----
 const avatarTabItems = [
     {
         id: "home",
@@ -48,7 +47,6 @@ const avatarTabItems = [
     }
 ];
 
-// ---- Flag Tabs Data (using vue-flag-icon) ----
 const flagTabItems = [
     {
         id: "home",
@@ -110,9 +108,8 @@ const activeFlagTab = ref(flagTabItems[0].id);
 
 <template>
     <b-row>
-        <!-- Avatar Tabs -->
         <b-col lg="6">
-            <b-card>
+            <b-card no-body>
                 <b-card-header>
                     <h5>Avatar-based Tabs</h5>
                 </b-card-header>
@@ -142,7 +139,6 @@ const activeFlagTab = ref(flagTabItems[0].id);
                                 </div>
                             </template>
 
-                            <!-- Render content -->
                             <div
                                 v-for="(item, i) in tab.content"
                                 :key="i"
@@ -161,9 +157,8 @@ const activeFlagTab = ref(flagTabItems[0].id);
             </b-card>
         </b-col>
 
-        <!-- Flag Tabs -->
         <b-col lg="6">
-            <b-card>
+            <b-card no-body>
                 <b-card-header>
                     <h5>Flag-based Tabs</h5>
                 </b-card-header>
@@ -184,7 +179,6 @@ const activeFlagTab = ref(flagTabItems[0].id);
                                 </div>
                             </template>
 
-                            <!-- Render content -->
                             <div
                                 v-for="(item, i) in tab.content"
                                 :key="i"

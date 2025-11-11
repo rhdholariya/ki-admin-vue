@@ -1,7 +1,14 @@
 <script setup>
 import {ref} from 'vue';
-import {BButton, BRow, BCol, BCard, BCardBody} from 'bootstrap-vue-next';
-
+import {
+    BButton,
+    BRow,
+    BCol,
+    BCard,
+    BCardBody,
+    BModal,
+    BFormInput
+} from 'bootstrap-vue-next';
 import {EditorContent, useEditor} from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -9,8 +16,6 @@ import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';
 
-
-// Phosphor icons
 import {
     PhTextB,
     PhTextItalic,
@@ -29,14 +34,16 @@ import {
     PhArrowBendUpRight,
     PhList,
     PhListNumbers,
-
 } from '@phosphor-icons/vue';
 
-
-// Initial content
 const content = ref('<p>Hello!</p>');
 
-// Editor
+// Modal states
+const showImageModal = ref(false);
+const showLinkModal = ref(false);
+const imageUrl = ref('');
+const linkUrl = ref('');
+
 const editor = useEditor({
     extensions: [
         StarterKit,
@@ -54,40 +61,56 @@ const editor = useEditor({
     },
 });
 
-// Add image
-const addImage = () => {
+const openImageModal = () => {
     if (!editor.value) return;
-    const url = window.prompt('Enter the URL of the image:');
-    if (url) editor.value.chain().focus().setImage({src: url}).run();
+    imageUrl.value = '';
+    showImageModal.value = true;
 };
 
+const confirmImage = () => {
+    if (imageUrl.value && editor.value) {
+        editor.value.chain().focus().setImage({src: imageUrl.value}).run();
+    }
+    showImageModal.value = false;
+    imageUrl.value = '';
+};
 
-const setLink = () => {
+const openLinkModal = () => {
     if (!editor.value) return;
 
     const previousUrl = editor.value.isActive('link') ? editor.value.getAttributes('link').href : '';
-    const url = window.prompt('Enter URL', previousUrl);
+    linkUrl.value = previousUrl;
+    showLinkModal.value = true;
+};
 
-    if (url === null) return;
-    if (url === '') {
+const confirmLink = () => {
+    if (!editor.value) return;
+
+    if (linkUrl.value === '') {
         editor.value.chain().focus().extendMarkRange('link').unsetLink().run();
-        return;
+    } else {
+        editor.value.chain().focus().extendMarkRange('link').setLink({href: linkUrl.value}).run();
     }
 
-    editor.value.chain().focus().extendMarkRange('link').setLink({href: url}).run();
+    showLinkModal.value = false;
+    linkUrl.value = '';
+};
+
+const cancelModal = () => {
+    showImageModal.value = false;
+    showLinkModal.value = false;
+    imageUrl.value = '';
+    linkUrl.value = '';
 };
 </script>
 
 <template>
-
     <b-col>
         <b-card no-body>
             <b-card-body>
                 <b-row class="list-item">
-                    <!-- Toolbar -->
                     <div class="text-editor-container p-0">
                         <div class="editor-toolbar d-flex flex-wrap">
-                            <!-- Style buttons -->
                             <div class="toolbar-group">
                                 <b-button variant="primary" @click="editor?.chain().focus().toggleBold().run()"
                                           :class="{ 'is-active': editor?.isActive('bold') }" title="Bold">
@@ -107,7 +130,6 @@ const setLink = () => {
                                 </b-button>
                             </div>
 
-                            <!-- Alignment buttons -->
                             <div class="toolbar-group">
                                 <b-button variant="primary" @click="editor?.chain().focus().setTextAlign('left').run()"
                                           :class="{ 'is-active': editor?.isActive({ textAlign: 'left' }) }"
@@ -133,7 +155,6 @@ const setLink = () => {
                                 </b-button>
                             </div>
 
-                            <!-- Headings -->
                             <div class="toolbar-group">
                                 <b-button variant="primary" @click="editor?.chain().focus().setParagraph().run()"
                                           :class="{ 'is-active': editor?.isActive('paragraph') }" title="Paragraph">
@@ -153,7 +174,6 @@ const setLink = () => {
                                 </b-button>
                             </div>
 
-                            <!-- Lists -->
                             <div class="toolbar-group">
                                 <b-button variant="primary" @click="editor?.chain().focus().toggleBulletList().run()"
                                           :class="{ 'is-active': editor?.isActive('bulletList') }" title="Bullet list">
@@ -166,17 +186,15 @@ const setLink = () => {
                                 </b-button>
                             </div>
 
-                            <!-- Link & Image -->
                             <div class="toolbar-group">
-                                <b-button variant="primary" @click="setLink" title="Link">
+                                <b-button variant="primary" @click="openLinkModal" title="Link">
                                     <PhLink size="18"/>
                                 </b-button>
-                                <b-button variant="primary" @click="addImage" title="Image">
+                                <b-button variant="primary" @click="openImageModal" title="Image">
                                     <PhImage size="18"/>
                                 </b-button>
                             </div>
 
-                            <!-- Undo/Redo -->
                             <div class="toolbar-group">
                                 <b-button variant="" @click="editor?.chain().focus().undo().run()"
                                           :disabled="!editor?.can().undo()" title="Undo">
@@ -189,12 +207,26 @@ const setLink = () => {
                             </div>
                         </div>
 
-                        <!-- Editor content -->
                         <EditorContent :editor="editor" class="editor-content app-editor-content"/>
                     </div>
                 </b-row>
             </b-card-body>
         </b-card>
-    </b-col>
 
+        <b-modal v-model="showImageModal" title="Add Image" hide-footer>
+            <b-form-input v-model="imageUrl" placeholder="Enter the URL of the image" class="mb-3"/>
+            <div class="d-flex justify-content-end gap-2">
+                <b-button variant="secondary" @click="cancelModal">Cancel</b-button>
+                <b-button variant="primary" @click="confirmImage">Add Image</b-button>
+            </div>
+        </b-modal>
+
+        <b-modal v-model="showLinkModal" title="Add Link" hide-footer>
+            <b-form-input v-model="linkUrl" placeholder="Enter URL" class="mb-3"/>
+            <div class="d-flex justify-content-end gap-2">
+                <b-button variant="secondary" @click="cancelModal">Cancel</b-button>
+                <b-button variant="primary" @click="confirmLink">Add Link</b-button>
+            </div>
+        </b-modal>
+    </b-col>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import {
     BCol,
     BCard,
@@ -10,9 +10,8 @@ import {
     BTab,
     BButton,
 } from "bootstrap-vue-next";
-import { PhClock, PhCode, PhDisc, PhStar } from "@phosphor-icons/vue";
+import {PhClock, PhCode, PhDisc, PhStar} from "@phosphor-icons/vue";
 
-// Tabs Data
 const tabs = [
     {
         id: "v-features",
@@ -52,29 +51,28 @@ const openCode = ref(false);
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Card Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Vertical Tabs Left Side</h5>
                     <b-button @click="openCode = !openCode" class="p-0 border-0">
-                        <PhCode size="30" class="source" weight="bold" />
+                        <PhCode size="30" class="source" weight="bold"/>
                     </b-button>
                 </div>
             </b-card-header>
 
-            <!-- Card Body -->
             <b-card-body>
                 <b-tabs
                     v-model="activeTab"
                     vertical
                     pills
                     card
-                    nav-class="flex-column app-tabs-secondary"
+                    class="p-0"
+                    nav-class="flex-column app-tabs-secondary "
                 >
-                    <b-tab v-for="tab in tabs" :key="tab.id" :active="tab.id === activeTab">
-                        <template #title>
+                    <b-tab v-for="tab in tabs" :key="tab.id" :active="tab.id === activeTab" class="p-0">
+                        <template #title class="">
                             <div class="d-flex align-items-center">
-                                <component :is="tab.icon" size="20" class="me-2" />
+                                <component :is="tab.icon" size="20" class="me-2"/>
                                 <span>{{ tab.label }}</span>
                             </div>
                         </template>
@@ -90,21 +88,23 @@ const openCode = ref(false);
             <!-- PrismJS Preview (unchanged structure) -->
             <b-collapse v-model="openCode">
         <pre class="language-html mt-3" tabindex="0">
-          <code>{{ `
+          <code v-prism>
 &lt;b-tabs vertical pills card nav-class="flex-column app-tabs-secondary"&gt;
-${tabs
-              .map(
-                  (t) => `  &lt;b-tab&gt;
+{{
+                  tabs
+                      .map(
+                          (t) => `  &lt;b-tab&gt;
     &lt;template #title&gt;
       &lt;${t.iconName} size="20" class="me-2" /&gt; ${t.label}
     &lt;/template&gt;
 ${t.content
-                      .map((c) => `    &lt;p&gt;${c.replace(/&/g, '&amp;').replace(/>/g, '&gt;')}&lt;/p&gt;`)
-                      .join('\n')}
+                              .map((c) => `    &lt;p&gt;${c.replace(/&/g, '&amp;').replace(/>/g, '&gt;')}&lt;/p&gt;`)
+                              .join('\n')}
   &lt;/b-tab&gt;`
-              )
-              .join('\n\n')}
-&lt;/b-tabs&gt;` }}</code>
+                      )
+                      .join('\n\n')
+              }}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
         </b-card>

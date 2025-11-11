@@ -216,13 +216,13 @@ const toggleSideSort = () => {
                     </b-table>
 
 
-                    <div class="list-pagination mt-3 ">
-                        <ul class="pagination mb-0 d-inline-flex">
+                    <div class="list-pagination mt-2 ">
+                        <ul class="pagination mb-0 d-inline-flex flex-wrap">
                             <li class="page-item" :class="{ disabled: tablePage === 1 }">
                                 <b-button
                                     size="sm"
                                     variant="secondary"
-                                    class="me-1 "
+                                    class="me-1 mt-1"
                                     @click="goToPage(tablePage - 1)"
                                 >
                                     Prev
@@ -238,7 +238,7 @@ const toggleSideSort = () => {
                                 <b-button
                                     size="sm"
                                     variant="outline-secondary"
-                                    class="me-1"
+                                    class="me-1 mt-1"
                                     @click="goToPage(p)"
                                 >
                                     {{ p }}
@@ -249,6 +249,7 @@ const toggleSideSort = () => {
                                 <b-button
                                     size="sm"
                                     variant="secondary"
+                                    class="mt-1"
                                     @click="goToPage(tablePage + 1)"
                                 >
                                     Next

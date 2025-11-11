@@ -16,7 +16,6 @@ import {
 import {PhCode} from "@phosphor-icons/vue";
 
 
-// Data for groups
 const buttonGroupData = [
     {
         className: "secondary",
@@ -53,15 +52,14 @@ const sizes = [
     },
 ];
 
-// Variants list
+
 const nestedVariants = [
     {label: "secondary", variant: "secondary"},
     {label: "secondary", variant: "outline-secondary"},
     {label: "secondary", variant: "light-secondary"},
 ];
-//
 
-// checkbox options
+
 const radioItems = [
     {value: "radio1", text: "Radio 1"},
     {value: "radio2", text: "Radio 2"},
@@ -69,7 +67,6 @@ const radioItems = [
 ];
 
 
-// checkbox options
 const checkboxItems = [
     {value: "check1", text: "Checkbox 1"},
     {value: "check2", text: "Checkbox 2"},
@@ -82,51 +79,62 @@ const verticalButtonGroups = ref([
         name: "vbtn-radio",
         ariaLabel: "Vertical radio toggle button group",
         buttons: [
-            { id: "vbtn-radio1", label: "Radio 1", checked: true },
-            { id: "vbtn-radio2", label: "Radio 2" },
-            { id: "vbtn-radio3", label: "Radio 3" },
+            {id: "vbtn-radio1", label: "Radio 1", checked: true},
+            {id: "vbtn-radio2", label: "Radio 2"},
+            {id: "vbtn-radio3", label: "Radio 3"},
         ],
     },
     {
         type: "buttons",
         ariaLabel: "Vertical button group",
         buttons: [
-            { label: "Button", class: "btn btn-secondary" },
-            { label: "Button", class: "btn btn-secondary" },
-            { label: "Dropdown", class: "btn btn-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+            {label: "Button", class: "btn btn-secondary"},
+            {label: "Button", class: "btn btn-secondary"},
+            {
+                label: "Dropdown",
+                class: "btn btn-secondary",
+                dropdown: true,
+                dropdownItems: ["Dropdown link", "Dropdown link"]
+            },
         ],
     },
     {
         type: "buttons",
         ariaLabel: "Vertical button group",
         buttons: [
-            { label: "Button", class: "btn btn-outline-secondary" },
-            { label: "Button", class: "btn btn-outline-secondary" },
-            { label: "Dropdown", class: "btn btn-outline-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+            {label: "Button", class: "btn btn-outline-secondary"},
+            {label: "Button", class: "btn btn-outline-secondary"},
+            {
+                label: "Dropdown",
+                class: "btn btn-outline-secondary",
+                dropdown: true,
+                dropdownItems: ["Dropdown link", "Dropdown link"]
+            },
         ],
     },
     {
         type: "buttons",
         ariaLabel: "Vertical button group",
         buttons: [
-            { label: "Button", class: "btn btn-light-secondary" },
-            { label: "Button", class: "btn btn-light-secondary" },
-            { label: "Dropdown", class: "btn btn-light-secondary", dropdown: true, dropdownItems: ["Dropdown link", "Dropdown link"] },
+            {label: "Button", class: "btn btn-light-secondary"},
+            {label: "Button", class: "btn btn-light-secondary"},
+            {
+                label: "Dropdown",
+                class: "btn btn-light-secondary",
+                dropdown: true,
+                dropdownItems: ["Dropdown link", "Dropdown link"]
+            },
         ],
     },
 ]);
 
 
-
-
-// collapse toggles
 const openGroup = ref(false);
 const openGroup2 = ref(false);
 const openNesting = ref(false);
 const openToggle = ref(false);
 const openVertical = ref(false);
 
-// radio selection state
 const selectedRadio = ref("radio1");
 
 
@@ -167,7 +175,7 @@ const selectedRadio = ref("radio1");
                     </b-row>
 
                     <b-collapse v-model="openGroup" class="mt-3">
-            <pre class="language-html"><code>
+            <pre class="language-html"><code v-prism>
 {{
                     `&lt;b-row&gt;
 ${buttonGroupData.map(group =>
@@ -187,7 +195,6 @@ ${group.links.map((link, idx) =>
             </b-card>
         </b-col>
 
-        <!-- Sizes -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
                 <b-card-header>
@@ -218,7 +225,7 @@ ${group.links.map((link, idx) =>
                     </b-row>
 
                     <b-collapse v-model="openGroup2" class="mt-3">
-            <pre class="language-html"><code>
+            <pre class="language-html"><code v-prism>
 {{
                     `&lt;b-row&gt;
 ${sizes.map(size =>
@@ -238,7 +245,6 @@ ${sizes.map(size =>
             </b-card>
         </b-col>
 
-        <!-- Nesting -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
                 <b-card-header>
@@ -250,7 +256,6 @@ ${sizes.map(size =>
                     </div>
                 </b-card-header>
                 <b-card-body>
-                    <!-- UI with loop -->
                     <b-row>
                         <b-col
                             v-for="(item, idx) in nestedVariants"
@@ -269,9 +274,8 @@ ${sizes.map(size =>
                         </b-col>
                     </b-row>
 
-                    <!-- Prism block with loop -->
                     <b-collapse v-model="openNesting" class="mt-3">
-            <pre class="language-html"><code>
+            <pre class="language-html"><code v-prism>
 {{
                     `&lt;b-row&gt;
 ${nestedVariants
@@ -296,10 +300,8 @@ ${nestedVariants
             </b-card>
         </b-col>
 
-        <!-- Checkbox and Radio -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
-                <!-- header -->
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Checkbox Radio</h5>
@@ -322,7 +324,6 @@ ${nestedVariants
                             />
                         </b-col>
 
-                        <!-- Radio Toggle Buttons -->
                         <b-col cols="12" class="mb-3">
                             <b-form-radio-group
                                 v-model="selectedRadio"
@@ -333,7 +334,6 @@ ${nestedVariants
                             />
                         </b-col>
 
-                        <!-- Toolbar with Button Groups -->
                         <b-col cols="12" class="mb-3">
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <b-button-group class="me-2" aria-label="First group">
@@ -349,9 +349,8 @@ ${nestedVariants
                         </b-col>
                     </b-row>
 
-                    <!--  Prism Preview -->
                     <b-collapse v-model="openToggle" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
 &lt;b-form-checkbox-group buttons button-variant="outline-secondary"&gt;
   &lt;b-form-checkbox value="check1"&gt;Checkbox 1&lt;/b-form-checkbox&gt;
   &lt;b-form-checkbox value="check2"&gt;Checkbox 2&lt;/b-form-checkbox&gt;
@@ -379,7 +378,6 @@ ${nestedVariants
             </b-card>
         </b-col>
 
-        <!-- Vertical -->
         <b-row>
             <b-col cols="12">
                 <b-card no-body>
@@ -395,21 +393,29 @@ ${nestedVariants
                         <b-row class="btn-responsive">
                             <b-col auto class="m-2" v-for="(group, gIndex) in verticalButtonGroups" :key="gIndex">
                                 <div class="btn-group-vertical" role="group" :aria-label="group.ariaLabel">
-                                    <!-- Radio Buttons -->
                                     <template v-if="group.type === 'radio'">
                                         <div v-for="(btn, index) in group.buttons" :key="index">
-                                            <input type="radio" class="btn-check" :id="btn.id" :name="group.name" :checked="btn.checked" />
-                                            <label class="btn btn-outline-secondary" :for="btn.id">{{ btn.label }}</label>
+                                            <input type="radio" class="btn-check" :id="btn.id" :name="group.name"
+                                                   :checked="btn.checked"/>
+                                            <label class="btn btn-outline-secondary" :for="btn.id">{{
+                                                    btn.label
+                                                }}</label>
                                         </div>
                                     </template>
 
-                                    <!-- Normal Buttons & Dropdown -->
                                     <template v-else>
                                         <div v-for="(btn, index) in group.buttons" :key="index">
 
-                                            <button v-if="!btn.dropdown" type="button" :class="btn.class">{{ btn.label }}</button>
-                                            <b-dropdown v-else :variant="btn.class"  :text="btn.label" :split="false" class="btn-group">
-                                                <b-dropdown-item v-for="(item, i) in btn.dropdownItems" :key="i">{{ item }}</b-dropdown-item>
+                                            <button v-if="!btn.dropdown" type="button" :class="btn.class">{{
+                                                    btn.label
+                                                }}
+                                            </button>
+                                            <b-dropdown v-else :variant="btn.class" :text="btn.label" :split="false"
+                                                        class="btn-group">
+                                                <b-dropdown-item v-for="(item, i) in btn.dropdownItems" :key="i">{{
+                                                        item
+                                                    }}
+                                                </b-dropdown-item>
                                             </b-dropdown>
 
                                         </div>
@@ -422,9 +428,28 @@ ${nestedVariants
                     <!-- PrismJS Code Preview -->
                     <b-collapse v-model="openVertical" class="mt-3">
           <pre class="language-html">
-<code>{{ prismCode }}</code>
+<code v-prism>{{
+        `&lt;div class=&quot;btn-group-vertical&quot; role=&quot;group&quot;&gt;
+${verticalButtonGroups.map(group =>
+            group.type === "radio"
+                ? group.buttons.map(btn =>
+                    `  &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; id=&quot;${btn.id}&quot; name=&quot;${group.name}&quot;${btn.checked ? ' checked' : ''} /&gt;
+  &lt;label class=&quot;btn btn-outline-secondary&quot; for=&quot;${btn.id}&quot;&gt;${btn.label}&lt;/label&gt;`
+                ).join("\n")
+                : group.buttons.map(btn =>
+                    !btn.dropdown
+                        ? `  &lt;button type=&quot;button&quot; class=&quot;${btn.class}&quot;&gt;${btn.label}&lt;/button&gt;`
+                        : `  &lt;b-dropdown text=&quot;${btn.label}&quot; variant=&quot;${btn.class}&quot;&gt;
+${btn.dropdownItems.map(i => `    &lt;b-dropdown-item&gt;${i}&lt;/b-dropdown-item&gt;`).join("\n")}
+  &lt;/b-dropdown&gt;`
+                ).join("\n")
+        ).join("\n")}
+&lt;/div&gt;`
+    }}</code>
           </pre>
                     </b-collapse>
+
+
                 </b-card>
             </b-col>
         </b-row>

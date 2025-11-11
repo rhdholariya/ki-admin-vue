@@ -173,7 +173,6 @@ const breadcrumbItems = {
             </b-card-body>
           </b-card>
         </b-col>
-
       </main>
     </b-container>
   </AppLayout>

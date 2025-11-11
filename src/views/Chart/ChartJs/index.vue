@@ -15,7 +15,6 @@ import {
 } from 'chart.js';
 import { Bar, Line, Doughnut, Pie, PolarArea, Radar } from 'vue-chartjs';
 
-// Register Chart.js components
 Chart.register(
     CategoryScale,
     LinearScale,
@@ -30,13 +29,11 @@ Chart.register(
     Filler
 );
 
-// BootstrapVueNext
 import { BCard, BCardBody, BCol, BContainer, BRow, BCardHeader } from 'bootstrap-vue-next';
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhChartPieSlice } from "@phosphor-icons/vue";
 
-// Import chart data
 import {
   barBorderRadiusData,
   DoughnutData,
@@ -51,7 +48,6 @@ import {
   verticalBarChart
 } from '@/data/charts/chartjs/ChartJsData.js';
 
-// Convert chart data to refs (reactive)
 import { ref } from 'vue';
 
 const barData = ref(structuredClone(barBorderRadiusData));
@@ -66,7 +62,7 @@ const steppedLineData = ref(structuredClone(SteppedLineCharts));
 const progressiveLineData = ref(structuredClone(ProgressiveLineData));
 const progressiveLineOptions = ref(structuredClone(ProgressiveLineOptions));
 
-// Breadcrumb
+
 const breadcrumbItems = {
   title: "Chart js",
   items: [
@@ -82,9 +78,8 @@ const breadcrumbItems = {
     <b-container fluid>
       <Breadcrumb :breadcrumb="breadcrumbItems" />
       <b-row>
-        <!-- Bar Chart -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Bar Chart Border Radius</h5></b-card-header>
             <b-card-body>
               <Bar :data="barData" :options="barData.options" />
@@ -92,9 +87,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Vertical Bar Chart -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Vertical Bar Chart</h5></b-card-header>
             <b-card-body>
               <Bar :data="verticalBarData" :options="verticalBarData.options" />
@@ -102,9 +96,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Multi Series Pie -->
         <b-col xl="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Multi Series Pie</h5></b-card-header>
             <b-card-body class="d-flex justify-content-center" style="height: 400px;">
               <Pie :data="multiSeriesPieData" :options="multiSeriesPieData.options" />
@@ -112,9 +105,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Radar -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Radar Skip Points</h5></b-card-header>
             <b-card-body class="d-flex justify-content-center" style="height: 400px;">
               <Radar :data="radarData" :options="radarData.options" />
@@ -122,9 +114,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Doughnut -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Doughnut</h5></b-card-header>
             <b-card-body class="d-flex justify-content-center" style="height: 400px;">
               <Doughnut :data="doughnutData" />
@@ -132,9 +123,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Polar Area -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Polar Area</h5></b-card-header>
             <b-card-body class="d-flex justify-content-center" style="height: 400px;">
               <PolarArea :data="polarData" />
@@ -142,9 +132,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Pie -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Pie</h5></b-card-header>
             <b-card-body class="d-flex justify-content-center" style="height: 400px;">
               <Pie :data="pieData" />
@@ -152,9 +141,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Progressive Line -->
         <b-col xl="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Progressive Line</h5></b-card-header>
             <b-card-body>
               <Line :data="progressiveLineData" :options="progressiveLineOptions" />
@@ -162,9 +150,9 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Line -->
+
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Line Chart</h5></b-card-header>
             <b-card-body>
               <Line :data="lineData" :options="lineData.options" />
@@ -172,9 +160,8 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Stepped Line -->
         <b-col lg="6" class="mb-4">
-          <b-card>
+          <b-card no-body>
             <b-card-header><h5 class="mb-0">Stepped Line Charts</h5></b-card-header>
             <b-card-body>
               <Line :data="steppedLineData" :options="steppedLineData.options" />

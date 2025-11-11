@@ -20,7 +20,6 @@ import {
   IconUsers,
 } from "@tabler/icons-vue";
 
-// breadcrumb data
 const breadcrumbSets = [
   {
     className: "breadcrumb bg-light-secondary p-2",
@@ -106,10 +105,8 @@ const breadcrumbItems = computed(() => ({
   <AppLayout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-row>
-          <!-- Default Breadcrumbs -->
           <b-col lg="5">
             <b-card no-body>
               <b-card-header><h5>Breadcrumbs</h5></b-card-header>
@@ -137,19 +134,16 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Custom Breadcrumbs -->
           <b-col lg="7">
             <b-card class="equal-card" no-body>
               <b-card-header><h5>Custom Breadcrumbs</h5></b-card-header>
               <b-card-body>
-                <!-- text list -->
                 <ul class="line-breadcrumbs">
                   <li v-for="(text, index) in textList" :key="index">
                     <a :class="{ active: index < 2 }" href="#">{{ text }}</a>
                   </li>
                 </ul>
 
-                <!-- icons + text -->
                 <div class="mt-4">
                   <ul class="breadcrumbs">
                     <li v-for="(text, index) in textList" :key="index">
@@ -160,7 +154,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- circle icons -->
                 <div class="mt-4">
                   <ul class="circle-breadcrumbs breadcrumbs-primary">
                     <li
@@ -173,7 +166,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- simple text -->
                 <div class="mt-4">
                   <ul class="simple-breadcrumbs">
                     <li
@@ -186,7 +178,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- simple shape -->
                 <div class="mt-4">
                   <ul class="simple-shape-breadcrumbs">
                     <li
@@ -202,7 +193,6 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Custom Shape Breadcrumb -->
           <b-col xl="6">
             <b-card class="equal-card" no-body>
               <b-card-header><h5>Custom Breadcrumb</h5></b-card-header>
@@ -230,12 +220,10 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Rounded Breadcrumb -->
           <b-col xl="6">
             <b-card class="equal-card" no-body>
               <b-card-header><h5>Rounded Breadcrumb</h5></b-card-header>
               <b-card-body>
-                <!-- text -->
                 <ul class="rounded-breadcrumbs mb-3">
                   <li
                       v-for="(text, index) in breadcrumbTexts"
@@ -249,7 +237,6 @@ const breadcrumbItems = computed(() => ({
                   </li>
                 </ul>
 
-                <!-- icons + text -->
                 <ul class="rounded-breadcrumbs mb-3">
                   <li
                       v-for="(text, index) in breadcrumbTexts"
@@ -269,7 +256,6 @@ const breadcrumbItems = computed(() => ({
                   </li>
                 </ul>
 
-                <!-- icons only -->
                 <ul class="rounded-breadcrumbs">
                   <li
                       v-for="(icon, index) in breadcrumbIconsOnly"
@@ -286,12 +272,11 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Steps -->
+
           <b-col xl="6">
             <b-card no-body>
               <b-card-header><h5>Steps</h5></b-card-header>
               <b-card-body>
-                <!-- number steps -->
                 <div class="form-wizard">
                   <div class="form-wizard-header">
                     <ul class="form-wizard-steps">
@@ -306,7 +291,6 @@ const breadcrumbItems = computed(() => ({
                   </div>
                 </div>
 
-                <!-- icon steps -->
                 <div class="form-wizard">
                   <div class="form-wizard-header">
                     <ul class="form-wizard-steps">
@@ -323,7 +307,6 @@ const breadcrumbItems = computed(() => ({
                   </div>
                 </div>
 
-                <!-- shape steps -->
                 <ul class="shape-step mb-3">
                   <li
                       v-for="(step, index) in shapeSteps"
@@ -337,12 +320,10 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Pagination -->
-          <b-col lg="6">
+          <b-col xl="6">
             <b-card class="equal-card" no-body>
               <b-card-header><h5>Pagination</h5></b-card-header>
               <b-card-body>
-                <!-- text nav -->
                 <div class="app-pagination-link">
                   <ul class="pagination app-pagination">
                     <li class="page-item"><a class="page-link">Previous</a></li>
@@ -357,7 +338,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- arrows -->
                 <div class="mt-3">
                   <ul class="pagination app-pagination">
                     <li class="page-item"><a class="page-link">&laquo;</a></li>
@@ -368,7 +348,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- active + disabled -->
                 <div class="mt-3">
                   <ul class="pagination app-pagination">
                     <li class="page-item disabled"><a class="page-link">Previous</a></li>
@@ -383,7 +362,6 @@ const breadcrumbItems = computed(() => ({
                   </ul>
                 </div>
 
-                <!-- large pagination -->
                 <div class="mt-3">
                   <ul class="pagination pagination-lg justify-content-end app-pagination">
                     <li class="page-item disabled"><a class="page-link">«</a></li>

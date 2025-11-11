@@ -3,7 +3,6 @@ import { ref} from "vue";
 import { PhCode, PhUser, PhEnvelope } from "@phosphor-icons/vue";
 import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 
-// Data arrays
 const avatarImages = [
     { src: "/images/avatar/1.png", bg: "primary" },
     { src: "/images/avatar/2.png", bg: "secondary" },
@@ -68,7 +67,6 @@ const indicatorAvatars = [
     },
 ];
 
-// Collapse states
 const openAvtar5 = ref(false);
 const openAvtar6 = ref(false);
 const openAvtar7 = ref(false);
@@ -78,7 +76,6 @@ const openAvtar7 = ref(false);
 </script>
 
 <template>
-    <!-- Images Section -->
     <b-col md="6">
         <b-card no-body>
             <b-card-header>
@@ -123,7 +120,6 @@ const openAvtar7 = ref(false);
         </b-card>
     </b-col>
 
-    <!-- Size Section -->
     <b-col md="6">
         <b-card no-body>
             <b-card-header>
@@ -168,7 +164,6 @@ const openAvtar7 = ref(false);
         </b-card>
     </b-col>
 
-    <!-- Indicator Section -->
     <b-col md="5">
         <b-card no-body>
             <b-card-header>

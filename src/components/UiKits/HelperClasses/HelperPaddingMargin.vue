@@ -79,7 +79,6 @@ export default {
 </script>
 <template>
     <b-row>
-        <!-- Padding Card -->
         <b-col cols="12">
             <b-card no-body>
                 <b-card-header>
@@ -119,7 +118,6 @@ export default {
             </b-card>
         </b-col>
 
-        <!-- Side Padding Card -->
         <b-col cols="12">
             <b-card no-body>
                 <b-card-header>
@@ -153,7 +151,6 @@ export default {
             </b-card>
         </b-col>
 
-        <!-- Margin Card -->
         <b-col cols="12">
             <b-card>
                 <b-card-header>
@@ -197,7 +194,6 @@ export default {
             </b-card>
         </b-col>
 
-        <!-- Side Margin Card -->
         <b-col cols="12">
             <b-card>
                 <b-card-header>
@@ -235,7 +231,7 @@ export default {
             </b-card>
         </b-col>
 
-        <!-- Width and Height Card -->
+
         <b-col cols="12">
             <b-card>
                 <b-card-header>

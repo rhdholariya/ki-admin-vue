@@ -1,278 +1,254 @@
 <script setup>
-import { BRow, BCol, BContainer } from 'bootstrap-vue-next'
-import SweetAlertCard from '@/components/AdvanceUi/SweatAlert/SweetAlertCard.vue'
-import { sweetAlertData } from '@/data/advanceui/sweat-alert/SweatAlert.js'
-import AppLayout from '@/views/AppLayout.vue'
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
-import { PhBriefcase } from '@phosphor-icons/vue'
-import Swal from 'sweetalert2'
+import {
+    BContainer,
+    BRow,
+    BCol,
+    BCard,
+    BCardHeader,
+    BCardBody,
+    BButton
+} from "bootstrap-vue-next";
+import Swal from "sweetalert2";
+import AppLayout from "@/views/AppLayout.vue";
+import { PhBriefcase } from "@phosphor-icons/vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// ✅ Handle SweetAlert events
-const handleClick = async (type) => {
-  switch (type) {
-    case 'click_1':
-      Swal.fire({
-        title: 'Any Fool Can Use a Computer',
-        customClass: { confirmButton: 'btn btn-primary' },
-        buttonsStyling: false
-      })
-      break
+// ========================= SweetAlert Examples =========================
 
-    case 'click_2':
-      Swal.fire('The Internet?', 'That thing is still around?', 'question')
-      break
 
-    case 'click_3':
-      Swal.fire('Good job!', 'You clicked the button!', 'success')
-      break
+const showAlert1 = () => Swal.fire("Any fool can use a computer");
 
-    case 'click_4':
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
+const showAlert2 = () =>
+    Swal.fire("The Internet?", "That thing is still around?", "question");
+
+const showAlert3 = () => Swal.fire("Good job!", "You clicked the button!", "success");
+
+const showAlert4 = () =>
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
         showConfirmButton: false,
         timer: 1500
-      })
-      break
+    });
 
-    case 'click_5':
-      Swal.fire({
-        title: 'Custom animation with Animate.css',
-        showClass: { popup: 'animate__animated animate__fadeInDown' },
-        hideClass: { popup: 'animate__animated animate__fadeOutUp' }
-      })
-      break
+const showAlert5 = () =>
+    Swal.fire({
+        title: "Custom animation with Animate.css",
+        showClass: { popup: "animate__animated animate__fadeInDown" },
+        hideClass: { popup: "animate__animated animate__fadeOutUp" }
+    });
 
-    case 'click_6':
-      Swal.fire({
-        title: 'Sweet!',
-        text: 'Modal with a custom image.',
-        imageUrl: '/images/blog-app/11.jpg',
+const showAlert6 = () =>
+    Swal.fire({
+        title: "Sweet!",
+        text: "Modal with a custom image.",
+        imageUrl: "/images/blog-app/08.jpg",
         imageWidth: 400,
-        imageHeight: 400,
-        imageAlt: 'Custom image'
-      })
-      break
+        imageHeight: 200,
+        imageAlt: "Custom image"
+    });
 
-    case 'click_7':
-      Swal.fire({
-        title: 'Submit your Github username',
-        input: 'text',
-        inputAttributes: { autocapitalize: 'off' },
+const showAlert7 = () =>
+    Swal.fire({
+        title: "Submit your Github username",
+        input: "text",
+        inputAttributes: { autocapitalize: "off" },
         showCancelButton: true,
-        confirmButtonText: 'Look up',
+        confirmButtonText: "Look up",
         showLoaderOnConfirm: true,
-        preConfirm: async (login) => {
-          try {
-            const response = await fetch(`https://api.github.com/users/${login}`)
-            if (!response.ok) throw new Error(response.statusText)
-            return response.json()
-          } catch (error) {
-            Swal.showValidationMessage(`Request failed: ${error}`)
-            return null
-          }
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.isConfirmed && result.value) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
-      break
+        preConfirm: (login) => new Promise((resolve) => setTimeout(() => resolve(login), 1000))
+    });
 
-    case 'click_8':
-      Swal.fire({
-        title: 'How old are you?',
-        icon: 'question',
-        input: 'range',
-        inputLabel: 'Your age',
-        inputAttributes: { min: 8, max: 120, step: 1 },
-        inputValue: 25
-      })
-      break
+const showAlert8 = async () => {
+    const { value: step1 } = await Swal.fire({
+        title: "Step 1",
+        input: "text",
+        inputLabel: "Enter your name",
+        showCancelButton: true
+    });
+    if (step1) {
+        await Swal.fire({
+            title: "Step 2",
+            text: `Hello ${step1}!`,
+            icon: "success"
+        });
+    }
+};
 
-    case 'click_9': {
-      let timerInterval
-      Swal.fire({
-        title: 'Auto close alert!',
-        html: 'I will close in <b></b> milliseconds.',
+const showAlert9 = () => {
+    let timerInterval;
+    Swal.fire({
+        title: "Auto close alert!",
+        html: "I will close in <b>2000</b> milliseconds.",
         timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading()
-          const b = Swal.getHtmlContainer().querySelector('b')
-          timerInterval = setInterval(() => {
-            if (b) b.textContent = Swal.getTimerLeft()
-          }, 100)
+            Swal.showLoading();
+            timerInterval = setInterval(() => {
+                const timerLeft = Swal.getTimerLeft();
+                if (timerLeft !== undefined) {
+                    Swal.update({
+                        html: `I will close in <b>${timerLeft}</b> milliseconds.`
+                    });
+                }
+            }, 100);
         },
         willClose: () => clearInterval(timerInterval)
-      })
-      break
-    }
+    });
+};
 
-    case 'click_10':
-      Swal.fire({
-        title: '<strong>Welcome</strong>',
-        html: 'Start Multipurpose, clean modern responsive bootstrap 5 admin template',
+const showHtmlAlert = () =>
+    Swal.fire({
+        title: "<strong>HTML <u>example</u></strong>",
+        icon: "info",
+        html: `
+      You can use <b>bold text</b>,
+      <a href="//sweetalert2.github.io">links</a>
+      and other HTML tags
+    `,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
-        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
-        confirmButtonAriaLabel: 'Thumbs up, great!',
-        cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-        cancelButtonAriaLabel: 'Thumbs down'
-      })
-      break
+        confirmButtonText: `<i class="fa fa-thumbs-up"></i> Great!`,
+        confirmButtonAriaLabel: "Thumbs up, great!",
+        cancelButtonText: `<i class="fa fa-thumbs-down"></i>`,
+        cancelButtonAriaLabel: "Thumbs down"
+    });
 
-    case 'click_11':
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
+const showTriggerConfirm = () =>
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won’t be able to revert this!",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
-      })
-      break
+    });
 
-    case 'click_12': {
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-primary ms-2',
-          cancelButton: 'btn btn-danger'
+const showApproveConfirm = () =>
+    Swal.fire({
+        title: "Do you want to save the changes?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+            Swal.fire("Changes are not saved", "", "info");
+        }
+    });
+
+const showEmailAlert = () =>
+    Swal.fire({
+        title: "Enter your email address",
+        input: "email",
+        inputPlaceholder: "example@mail.com",
+        showCancelButton: true,
+        confirmButtonText: "Submit"
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire(`Email submitted: ${result.value}`);
+        }
+    });
+
+const showSelectAlert = () =>
+    Swal.fire({
+        title: "Select your country",
+        input: "select",
+        inputOptions: {
+            india: "India",
+            usa: "United States",
+            uk: "United Kingdom",
+            canada: "Canada"
         },
-        buttonsStyling: false
-      })
-
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-          )
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire(
-              'Cancelled',
-              'Your imaginary file is safe :)',
-              'error'
-          )
+        inputPlaceholder: "Select a country",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire(`You selected: ${result.value}`);
         }
-      })
-      break
-    }
+    });
 
-    case 'click_13':
-      Swal.fire({
-        title: 'Sweet!',
-        text: 'Custom width, padding, background..'
-      })
-      break
-
-    case 'click_14': {
-      const ipAPI = '//api.ipify.org?format=json'
-      const inputValue = await fetch(ipAPI)
-          .then((r) => r.json())
-          .then((data) => data.ip)
-
-      const {value: ipAddress} = await Swal.fire({
-        title: 'Enter your IP address',
-        input: 'text',
-        inputLabel: 'Your IP address',
-        inputValue,
-        showCancelButton: true,
-        inputValidator: (value) => {
-          if (!value) return 'You need to write something!'
-          return null
+const showRangeAlert = () =>
+    Swal.fire({
+        title: "Rate your experience",
+        input: "range",
+        inputAttributes: { min: 0, max: 10, step: 1 },
+        inputValue: 5
+    }).then((result) => {
+        if (result.value !== undefined) {
+            Swal.fire(`You rated: ${result.value}/10`);
         }
-      })
+    });
 
-      if (ipAddress) {
-        Swal.fire(`Your IP address is ${ipAddress}`)
-      }
-      break
-    }
+const fullAlertList = [
+    { title: "Basic Example", text: "click_1", variant: "primary", onClick: showAlert1 },
+    { title: "A title with a text under", text: "click_2", variant: "secondary", onClick: showAlert2 },
+    { title: "A success message!", text: "click_3", variant: "success", onClick: showAlert3 },
+    { title: "A custom positioned dialog", text: "click_4", variant: "warning", onClick: showAlert4 },
+    { title: "Custom animation", text: "click_5", variant: "info", onClick: showAlert5 },
+    { title: "A message with custom Image Header", text: "click_6", variant: "danger", onClick: showAlert6 },
+    { title: "Ajax request example", text: "click_7", variant: "secondary", onClick: showAlert7 },
+    { title: "Modals (queue) example", text: "click_8", variant: "danger", onClick: showAlert8 },
+    { title: "A message with auto close timer", text: "click_9", variant: "info", onClick: showAlert9 },
+    { title: "Custom HTML description and buttons", text: "click_10", variant: "primary", onClick: showHtmlAlert },
+    { title: "Confirmation With Triggers", text: "click_11", variant: "success", onClick: showTriggerConfirm },
+    { title: "Confirmation With Approvals", text: "click_12", variant: "warning", onClick: showApproveConfirm },
+    { title: "Input email validation", text: "click_13", variant: "info", onClick: showEmailAlert },
+    { title: "Select dropdown example", text: "click_14", variant: "secondary", onClick: showSelectAlert },
+    { title: "Range slider example", text: "click_15", variant: "success", onClick: showRangeAlert },
 
-    case 'click_15':
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
-      break
+];
 
-    case 'click_16': {
-      const Toast = Swal.mixin({
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-      })
-      break
-    }
-
-    default:
-      break
-  }
-}
-
-// ✅ Breadcrumb data
 const breadcrumbItems = {
-  title: 'Sweat Alert',
-  items: [
-    {label: 'Advance UI', icon: PhBriefcase},
-    {label: 'Sweat Alert', active: true}
-  ]
-}
+    title: "Sweet Alert",
+    items: [
+        { label: " Advance UI ", icon: PhBriefcase },
+        { label: "Sweet Alert", active: true }
+    ]
+};
 </script>
 
 <template>
-  <AppLayout>
-    <main>
-      <b-container fluid>
-        <Breadcrumb :breadcrumb="breadcrumbItems"/>
-        <b-row>
-          <b-col
-              v-for="(card, index) in sweetAlertData"
-              :key="index"
-              sm="12"
-              md="6"
-              xl="4"
-          >
-            <SweetAlertCard
-                :title="card.title"
-                :description="card.description"
-                :color="card.color"
-                @click="handleClick(card.description)"
-            />
-          </b-col>
-        </b-row>
-      </b-container>
-    </main>
-  </AppLayout>
+    <AppLayout>
+        <main>
+            <b-container fluid>
+                <Breadcrumb :breadcrumb="breadcrumbItems" />
+                <b-row>
+                    <b-col
+                        v-for="(item, index) in fullAlertList"
+                        :key="index"
+                        sm="12"
+                        md="6"
+                        xl="4"
+                    >
+                        <b-card class="equal-card" no-body>
+                            <b-card-header>
+                                <h5>{{ item.title }}</h5>
+                                <p class="mb-0 text-secondary">
+                                    if you want to keep this sweet alert then you can keep it using
+                                    <span class="text-danger">{{ item.text }}</span>
+                                </p>
+                            </b-card-header>
+                            <b-card-body>
+                                <b-button :variant="item.variant" @click="item.onClick">
+                                    Click Now
+                                </b-button>
+                            </b-card-body>
+                        </b-card>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </main>
+    </AppLayout>
 </template>
+
+

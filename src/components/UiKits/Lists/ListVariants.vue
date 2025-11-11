@@ -2,13 +2,9 @@
 import { BCard, BCardHeader, BCardBody, BCol, BRow, BListGroup, BListGroupItem } from "bootstrap-vue-next";
 import { PhEnvelopeSimple } from "@phosphor-icons/vue";
 import { usersList, variantList } from '@/data/uikit/lists/listPageData';
-
-
 </script>
-
 <template>
     <b-row>
-        <!-- Variants -->
         <b-col lg="6">
             <b-card no-body>
                 <b-card-header><h5>Variants</h5></b-card-header>
@@ -26,7 +22,6 @@ import { usersList, variantList } from '@/data/uikit/lists/listPageData';
             </b-card>
         </b-col>
 
-        <!-- Custom Content -->
         <b-col lg="6">
             <b-card no-body>
                 <b-card-header><h5>Custom Content</h5></b-card-header>
@@ -38,7 +33,6 @@ import { usersList, variantList } from '@/data/uikit/lists/listPageData';
                             class="list-group-item list-group-item-action flex-wrap position-relative"
                             :class="{ active: index === 0 }"
                         >
-                            <!-- Avatar and Status -->
                             <div class="position-absolute">
                 <span class="bg-secondary h-45 w-45 d-flex-center b-r-50 position-relative">
                   <img :src="user.avatar" :alt="user.name" class="img-fluid b-r-50" />
@@ -54,8 +48,6 @@ import { usersList, variantList } from '@/data/uikit/lists/listPageData';
                   </span>
                 </span>
                             </div>
-
-                            <!-- User Info -->
                             <div class="mg-s-60">
                                 <h6 class="mb-0 txt-ellipsis-1">{{ user.name }}</h6>
                                 <p class="mb-0 text-secondary">{{ user.email }}</p>
@@ -64,7 +56,6 @@ import { usersList, variantList } from '@/data/uikit/lists/listPageData';
                                 </div>
                             </div>
 
-                            <!-- Time -->
                             <div class="flex-shrink-0 text-end w-100">
                                 <small>{{ user.time }}</small>
                             </div>

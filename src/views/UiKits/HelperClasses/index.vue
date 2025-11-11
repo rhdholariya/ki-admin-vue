@@ -13,10 +13,10 @@ import HelperRadiusBorder from "@/components/UiKits/HelperClasses/HelperRadiusBo
 
 // Breadcrumb data
 const breadcrumbItems = {
-    title: "Background",
+    title: "Helper Classes",
     items: [
         {label: "Ui-kits", icon: PhBriefcase},
-        {label: "Background", active: true},
+        {label: "Helper Classes", active: true},
     ],
 };
 </script>

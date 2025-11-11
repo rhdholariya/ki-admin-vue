@@ -7,9 +7,6 @@ import BasicLists from "@/components/UiKits/Lists/BasicLists.vue";
 import CustomLists from "@/components/UiKits/Lists/CustomLists.vue";
 import ListVariants from "@/components/UiKits/Lists/ListVariants.vue";
 
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "List",
     items: [

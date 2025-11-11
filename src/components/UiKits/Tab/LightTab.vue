@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { BCol, BCard, BCardHeader, BTabs, BTab, BCollapse, BButton } from "bootstrap-vue-next";
-import { PhCode, PhLifebuoy, PhKeyboard, PhFileMinus } from "@phosphor-icons/vue";
+import {ref} from "vue";
+import {BCol, BCard, BCardHeader, BTabs, BTab, BCollapse, BButton} from "bootstrap-vue-next";
+import {PhCode, PhLifebuoy, PhKeyboard, PhFileMinus} from "@phosphor-icons/vue";
 
-// Tabs data
 const tabs = [
     {
         id: "description",
@@ -40,21 +39,19 @@ const openCode = ref(false);
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Light Tabs</h5>
                     <b-button @click="openCode = !openCode" class="p-0 border-0">
-                        <PhCode size="30" class="source" weight="bold" />
+                        <PhCode size="30" class="source" weight="bold"/>
                     </b-button>
                 </div>
             </b-card-header>
 
-            <!-- Tabs -->
             <b-tabs v-model="activeTab" pills card class="tab-light-primary">
                 <b-tab v-for="tab in tabs" :key="tab.id" :active="tab.id === activeTab">
                     <template #title>
-                        <component :is="tab.icon" size="20" class="me-2" />
+                        <component :is="tab.icon" size="20" class="me-2"/>
                         {{ tab.label }}
                     </template>
 
@@ -65,27 +62,27 @@ const openCode = ref(false);
                 </b-tab>
             </b-tabs>
 
-            <!-- PrismJS Code Collapse (your original structure kept) -->
             <b-collapse v-model="openCode">
         <pre class="language-html" tabindex="0">
-          <code>{{ `
+          <code v-prism>
 &lt;b-tabs pills card class='tab-light-primary'&gt;
-${tabs
-              .map(
-                  (t, i) => `  &lt;b-tab title="${t.label}"${i === 0 ? ' active' : ''}&gt;
+{{
+                  tabs
+                      .map(
+                          (t, i) => `  &lt;b-tab title="${t.label}"${i === 0 ? ' active' : ''}&gt;
     &lt;template #title&gt;
       &lt;${t.icon.name} size='20' class='me-2' /&gt;
       ${t.label}
     &lt;/template&gt;
 ${t.content.map(c => `    &lt;p&gt;${c.replace(/&/g, '&amp;').replace(/>/g, '&gt;')}&lt;/p&gt;`).join('\n')}
   &lt;/b-tab&gt;`
-              )
-              .join('\n')}
-&lt;/b-tabs&gt;` }}</code>
+                      )
+                      .join('\n')
+              }}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
         </b-card>
-
 
     </b-col>
 </template>

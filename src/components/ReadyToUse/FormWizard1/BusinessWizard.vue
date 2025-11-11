@@ -142,7 +142,9 @@ const activeTab = ref('details')
                         <b-form class="app-form">
                             <b-row>
                                 <b-col cols="12">
-                                    <b-form-checkbox type="radio" label="Credit / Debit Card" class="mb-3"/>
+                                    <b-form-checkbox type="radio" label="" class="mb-3">
+                                        Credit / Debit Card
+                                    </b-form-checkbox>
                                     <b-form-group label="Cardholder Name" label-class="f-w-500">
                                         <b-form-input placeholder="Olaf" class="mb-3"/>
                                     </b-form-group>

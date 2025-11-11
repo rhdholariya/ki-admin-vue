@@ -3,8 +3,6 @@ import { ref } from "vue";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
 import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 
-
-// Avatar data
 const avatars = [
     { colorClass: "primary", component: PhUser, text: null, raw: "<PhUser />" },
     { colorClass: "secondary", component: PhUser, text: null, raw: "<PhUser />" },
@@ -14,7 +12,6 @@ const avatars = [
     { colorClass: "danger", component: null, text: "AD", raw: "AD" },
 ];
 
-// Collapse toggle state
 const open = ref(false);
 
 </script>

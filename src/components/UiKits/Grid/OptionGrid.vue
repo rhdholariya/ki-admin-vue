@@ -35,7 +35,6 @@ const rows = [
 
 <template>
 
-    <!-- First Card: Grid Options Table -->
     <b-col lg="12">
         <b-card no-body>
             <b-card-header>
@@ -76,5 +75,4 @@ const rows = [
             </b-card-body>
         </b-card>
     </b-col>
-
 </template>

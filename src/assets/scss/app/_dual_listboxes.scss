@@ -46,25 +46,6 @@
   }
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .dual-listbox {
-    .listbox-section {
-      flex: none;
-
-      &:first-child {
-        order: 1;
-      }
-      &:last-child {
-        order: 3;
-      }
-    }
-    .selected-element {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-}
 
 @media (max-width: 576px) {
   .dual-listbox {

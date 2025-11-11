@@ -10,8 +10,6 @@ import {
 } from 'bootstrap-vue-next';
 import VueApexCharts from "vue3-apexcharts";
 
-
-// Import chart configurations
 import {
   simplePieChartData,
   simpleDonutChartData,
@@ -58,7 +56,7 @@ const breadcrumbItems = computed(() => ({
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-row>
         <b-col lg="6" xl="4">
-          <b-card>
+          <b-card no-body>
             <b-card-header>
               <h5>Simple Pie Chart</h5>
             </b-card-header>
@@ -73,7 +71,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
         <b-col lg="6" xl="4">
-          <b-card>
+          <b-card no-body>
             <b-card-header>
               <h5>Simple Donut Chart</h5>
             </b-card-header>
@@ -88,7 +86,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
         <b-col lg="6" xl="4">
-          <b-card>
+          <b-card no-body>
             <b-card-header>
               <h5>Gradient Donut Chart</h5>
             </b-card-header>
@@ -103,7 +101,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
         <b-col lg="6" xl="4">
-          <b-card>
+          <b-card no-body>
             <b-card-header>
               <h5>Patterned Donut Chart</h5>
             </b-card-header>

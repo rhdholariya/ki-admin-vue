@@ -23,7 +23,7 @@ const activeTab2 = ref("features");
 
 <template>
     <b-row>
-        <!-- First Card (Image Left) -->
+
         <b-col xl="6">
             <b-card no-body class="hover-effect mb-3">
                 <b-row no-gutters>
@@ -45,7 +45,6 @@ const activeTab2 = ref("features");
             </b-card>
         </b-col>
 
-        <!-- First Tab Card -->
         <b-col xl="6">
             <b-card class="hover-effect equal-card tab-card">
                 <b-tabs
@@ -55,7 +54,7 @@ const activeTab2 = ref("features");
                     active-nav-item-class="active"
                     fill
                 >
-                    <!-- Description -->
+
                     <b-tab key="description" active title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhLifebuoy size="18" weight="duotone" class="me-1" /> Description
@@ -66,7 +65,6 @@ const activeTab2 = ref("features");
                         </p>
                     </b-tab>
 
-                    <!-- How it Works -->
                     <b-tab key="howworks" title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhKeyboard size="18" weight="duotone" class="me-1" /> How It Works
@@ -81,7 +79,6 @@ const activeTab2 = ref("features");
                         </ol>
                     </b-tab>
 
-                    <!-- Drawbacks -->
                     <b-tab key="drawbacks" title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhFileX size="18" weight="duotone" class="me-1" /> Drawbacks
@@ -95,7 +92,6 @@ const activeTab2 = ref("features");
             </b-card>
         </b-col>
 
-        <!-- Middle Card (Image Right) -->
         <b-col xl="6">
             <b-card no-body class="hover-effect mb-3">
                 <b-row no-gutters>
@@ -117,7 +113,6 @@ const activeTab2 = ref("features");
             </b-card>
         </b-col>
 
-        <!-- Second Tab Card -->
         <b-col xl="6">
             <b-card class="hover-effect equal-card tab-card">
                 <b-tabs
@@ -127,7 +122,7 @@ const activeTab2 = ref("features");
                     active-nav-item-class="active"
                     fill
                 >
-                    <!-- Features -->
+
                     <b-tab key="features" active title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhDisc size="18" weight="duotone" class="me-1" /> Features
@@ -138,7 +133,6 @@ const activeTab2 = ref("features");
                         </p>
                     </b-tab>
 
-                    <!-- History -->
                     <b-tab key="history" title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhClockCounterClockwise size="18" weight="duotone" class="me-1" />
@@ -154,7 +148,6 @@ const activeTab2 = ref("features");
                         </ol>
                     </b-tab>
 
-                    <!-- Reviews -->
                     <b-tab key="reviews" title-link-class="d-flex align-items-center">
                         <template #title>
                             <PhStar size="18" weight="duotone" class="me-1" /> Reviews

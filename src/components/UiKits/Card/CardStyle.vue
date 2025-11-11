@@ -13,7 +13,6 @@ const avatarImages = [
 
 const listItems = ["An item", "A second item", "A third item", "A Fourth item"];
 
-// Tooltip data for Vue-compatible tooltips
 const tooltipData = ref([
     { name: "Sabrina Torres" },
     { name: "John Doe" },
@@ -25,7 +24,6 @@ const tooltipData = ref([
 
 <template>
     <b-row>
-        <!-- Top Image Card -->
         <b-col md="6" xxl="4">
             <b-card img-src="/images/blog-app/06.jpg" img-top class="hover-effect" no-body>
                 <b-card-body>
@@ -35,8 +33,6 @@ const tooltipData = ref([
                 </b-card-body>
             </b-card>
         </b-col>
-
-        <!-- Bottom Image Card -->
         <b-col md="6" xxl="4">
             <b-card no-body class="hover-effect">
                 <b-card-body>
@@ -47,11 +43,8 @@ const tooltipData = ref([
                 <img src="/images/blog-app/02.jpg" alt="Card image">
             </b-card>
         </b-col>
-
-        <!-- Profile + Featured Cards -->
         <b-col xxl="4">
             <b-row>
-                <!-- Profile Card -->
                 <b-col md="6" xxl="12">
                     <b-card no-body class="hover-effect">
                         <div class="card-header">
@@ -76,7 +69,6 @@ const tooltipData = ref([
                                             :key="i"
                                             class="h-25 w-25 d-flex-center b-r-50 b-2-light position-relative"
                                         >
-                                            <!-- Vue Bootstrap Tooltip -->
                                             <b-tooltip :target="`avatar-tooltip-${i}`" placement="top">
                                                 {{ tooltipData[i]?.name || 'User' }}
                                             </b-tooltip>
@@ -103,7 +95,6 @@ const tooltipData = ref([
                     </b-card>
                 </b-col>
 
-                <!-- Featured List Card -->
                 <b-col md="6" xxl="12">
                     <b-card no-body class="hover-effect">
                         <div class="card-header">Featured</div>

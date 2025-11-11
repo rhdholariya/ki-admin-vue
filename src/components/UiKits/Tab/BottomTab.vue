@@ -12,7 +12,6 @@ import {
 } from "bootstrap-vue-next";
 import { PhCode, PhDisc, PhClock, PhStar } from "@phosphor-icons/vue";
 
-// Tabs Data
 const tabs = [
     {
         id: "b-features",
@@ -64,7 +63,6 @@ const openCode = ref(false);
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Card Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Tabs Bottom Side</h5>
@@ -74,7 +72,6 @@ const openCode = ref(false);
                 </div>
             </b-card-header>
 
-            <!-- Card Body -->
             <b-card-body class="bottom-tab">
                 <b-tabs v-model="activeTab" pills card nav-class="app-tabs-secondary" end>
                     <b-tab v-for="tab in tabs" :key="tab.id" :active="tab.id === activeTab">
@@ -96,12 +93,11 @@ const openCode = ref(false);
                 </b-tabs>
             </b-card-body>
 
-            <!-- PrismJS Code Preview -->
             <b-collapse v-model="openCode">
         <pre class="language-html mt-3" tabindex="0">
-<code>{{ `
+<code v-prism>
 &lt;b-tabs pills card end nav-class=" app-tabs-secondary"&gt;
-${tabs
+{{tabs
     .map(
         (t) => `  &lt;b-tab&gt;
     &lt;template #title&gt;
@@ -118,8 +114,8 @@ ${t.content
   .join("\n")}
   &lt;/b-tab&gt;`
   )
-  .join("\n\n")}
-&lt;/b-tabs&gt;` }}</code>
+  .join("\n\n")}}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
 

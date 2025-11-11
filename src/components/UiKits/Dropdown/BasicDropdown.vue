@@ -17,28 +17,22 @@ import {
 } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
-// Collapse controls
 const openBasic = ref(false);
 const openPreview = ref(false);
 
-// Dropdown state
 const dropdownOpen1 = ref(false);
 const dropdownOpen2 = ref(false);
 
-// Dropdown options
 const dropdownOptions = [
     { label: "Action", value: "action" },
     { label: "Another action", value: "another-action" },
     { label: "Something else here", value: "something-else" },
 ];
 
-// Handle dropdown item clicks
 const handleAction = (optionValue) => {
-    // Add your action logic here
     alert(`Action: ${optionValue}`);
 };
 
-// Map-based dropdowns - FIXED: No more HTML strings
 const dropdowns = [
     {
         type: "success",
@@ -70,18 +64,16 @@ const dropdowns = [
         title: "Forms",
         header: null,
         items: [],
-        customContent: { type: "form" }, // Use object instead of string
+        customContent: { type: "form" },
     },
 ];
 
-// Form data
 const formData = ref({
     email: "",
     password: "",
     remember: false,
 });
 
-// Form submit handler
 const handleSubmit = () => {
     alert(`Email: ${formData.value.email}\nPassword: ${formData.value.password}\nRemember: ${formData.value.remember}`);
 };
@@ -89,7 +81,6 @@ const handleSubmit = () => {
 
 <template>
     <b-col lg="12">
-        <!-- Single Button & Link Dropdown Card -->
         <b-card no-body>
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
@@ -121,10 +112,9 @@ const handleSubmit = () => {
             </b-card-body>
         </b-card>
 
-        <!-- Collapse for code preview -->
         <b-collapse v-model="openBasic" class="mt-3">
-            <pre>
-<code class="language-html">
+            <pre class="language-html">
+<code v-prism>
 &lt;b-card&gt;
   &lt;b-card-body class="d-flex flex-wrap gap-2"&gt;
     &lt;b-dropdown variant="primary" text="Dropdown button"&gt;
@@ -143,7 +133,6 @@ const handleSubmit = () => {
             </pre>
         </b-collapse>
 
-        <!-- Dropdown Map Card -->
         <b-col cols="12" class="mt-4">
             <b-card no-body>
                 <b-card-header>
@@ -164,14 +153,12 @@ const handleSubmit = () => {
                         toggle-class="d-flex align-items-center"
                         menu-class="dropdown-menu-md"
                     >
-                        <!-- Header -->
                         <template v-if="dropdown.header">
                             <div class="dropdown-header noti-title">
                                 <h5 class="text-muted text-truncate mn-0">{{ dropdown.header }}</h5>
                             </div>
                         </template>
 
-                        <!-- Items -->
                         <template v-for="(item, i) in dropdown.items" :key="i">
                             <BDropdownDivider v-if="item.isDivider"/>
                             <BDropdownItem v-else @click="handleAction(item.label.toLowerCase())">
@@ -179,7 +166,6 @@ const handleSubmit = () => {
                             </BDropdownItem>
                         </template>
 
-                        <!-- Custom text content - FIXED: No v-html -->
                         <template v-if="dropdown.customContent?.type === 'text'">
                             <div class="p-3">
                                 <p v-for="(paragraph, pIdx) in dropdown.customContent.paragraphs" :key="pIdx">
@@ -188,7 +174,6 @@ const handleSubmit = () => {
                             </div>
                         </template>
 
-                        <!-- Vue 3 Form -->
                         <b-form v-if="dropdown.customContent?.type === 'form'" class="p-3" @submit.prevent="handleSubmit">
                             <b-form-group label="Email address" label-for="exampleDropdownFormEmail" class="mb-2">
                                 <b-form-input
@@ -214,10 +199,9 @@ const handleSubmit = () => {
                     </b-dropdown>
                 </b-card-body>
 
-                <!-- Prism preview -->
                 <b-collapse v-model="openPreview" class="mt-3">
                     <pre class="language-html">
-<code>
+<code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-body class="d-flex flex-wrap gap-2"&gt;
     &lt;b-dropdown variant="success" text="Header"&gt;

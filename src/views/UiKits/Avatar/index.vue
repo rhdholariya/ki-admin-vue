@@ -10,10 +10,6 @@ import OutlineAvatar from "@/components/UiKits/Avatar/OutlineAvatar.vue";
 import RadiusAvatar from "@/components/UiKits/Avatar/RadiusAvatar.vue";
 import TooltipAvatar from "@/components/UiKits/Avatar/TooltipAvatar.vue";
 
-
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Avatar",
     items: [

@@ -67,14 +67,15 @@ onMounted(() => {
       >
 
         <div class="landing-navbar-container d-block d-xxl-flex d-lg-flex d-md-block d-sm-block w-100 justify-content-between align-items-center">
+            <div class="d-flex justify-content-between">
           <b-navbar-brand href="#home" class="logo">
             <img src="/images/logo/1.png" alt="Logo" class="w-200" />
           </b-navbar-brand>
 
           <b-navbar-toggle target="landing_nav" />
-
-          <b-collapse id="landing_nav" is-nav>
-            <b-nav class="flex-grow-1 justify-content-center">
+            </div>
+          <b-collapse id="landing_nav" is-nav class="navbar-collapse collapse">
+            <b-nav class="navbar-nav flex-grow-1 justify-content-center">
               <b-nav-item href="#Demo" class="active">Demo</b-nav-item>
               <b-nav-item href="#Cards">Cards</b-nav-item>
               <b-nav-item href="#Features">Features</b-nav-item>

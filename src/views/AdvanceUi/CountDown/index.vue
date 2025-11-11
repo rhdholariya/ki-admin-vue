@@ -62,7 +62,7 @@ const countdownSections = [
     className: "countdown-seconds",
     labelClass: "text-danger",
     label: "countdown-seconds",
-    colSize: "md",
+    colSize: "lg",
     type: "seconds",
   },
   {
@@ -71,7 +71,7 @@ const countdownSections = [
     className: "app-countdown-min",
     labelClass: "text-danger",
     label: "app-countdown-min",
-    colSize: "md",
+    colSize: "lg",
     type: "minutes",
   },
   {
@@ -80,7 +80,7 @@ const countdownSections = [
     className: "app-countdown-hours",
     labelClass: "text-danger",
     label: "app-countdown-hours",
-    colSize: "xl",
+    colSize: "lg",
     type: "hours",
   },
   {
@@ -98,7 +98,7 @@ const countdownSections = [
     className: "app-countdown-circle",
     labelClass: "text-danger",
     label: "app-countdown-circle",
-    colSize: "xl",
+    colSize: "lg",
     type: "circle",
   },
   {
@@ -226,7 +226,7 @@ const breadcrumbItems = {
                   </ul>
                 </div>
 
-                <!-- Square background -->
+
                 <div
                     v-else-if="section.type === 'square'"
                     :class="section.className"

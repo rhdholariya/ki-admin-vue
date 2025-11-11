@@ -85,7 +85,7 @@ const updateCheckbox = (index, event) => {
 
 
 <template>
-  <div class="row">
+
 
     <div class="col-sm-6 col-md-4 col-xxl-2 order-3-md">
       <AiCommerceCard />
@@ -178,6 +178,5 @@ const updateCheckbox = (index, event) => {
         :sources="productLightboxSources"
         :slide="currentSlide"
     />
-  </div>
 </template>
 

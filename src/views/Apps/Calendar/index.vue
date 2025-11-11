@@ -166,9 +166,11 @@ const handleDropRemoveChange = (checked) => {
                   <BFormCheckbox
                       id="drop-remove"
                       ref="dropRemoveRef"
-                      label="Remove After Drop"
+                      label=""
                       @update:model-value="handleDropRemoveChange"
-                  />
+                  >
+                      Remove After Drop
+                  </BFormCheckbox>
                 </div>
               </div>
             </b-card>

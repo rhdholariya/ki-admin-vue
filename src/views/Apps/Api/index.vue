@@ -167,7 +167,7 @@ const breadcrumbItems = computed(() => ({
             <b-card no-body>
               <b-card-header><h5>API request</h5></b-card-header>
               <b-card-body>
-                <div class="d-flex gap-3 justify-content-end">
+                <div class="api-chart d-flex gap-3 justify-content-end">
                   <b-form-checkbox v-model="showSuccess" switch>22k successfully</b-form-checkbox>
                   <b-form-checkbox v-model="showError" switch>2 error</b-form-checkbox>
                   <b-form-checkbox v-model="showTotal" switch>123 Total request</b-form-checkbox>

@@ -83,7 +83,6 @@ const rotateData = [
 </script>
 
 <template>
-    <!-- Radius -->
     <b-col cols="12">
         <b-card no-body>
             <b-card-header>
@@ -110,7 +109,6 @@ const rotateData = [
         </b-card>
     </b-col>
 
-    <!-- Border -->
     <b-col cols="12">
         <b-card no-body>
             <b-card-header>
@@ -122,7 +120,6 @@ const rotateData = [
                 </div>
             </b-card-header>
             <b-card-body>
-                <!-- Border Styles -->
                 <div class="app-example">
                     <div v-for="(cls, index) in borderStyles" :key="index" :class="[cls, 'b-r-22']">
                         {{ cls }}
@@ -186,7 +183,6 @@ const rotateData = [
         </b-card>
     </b-col>
 
-    <!-- Rotate -->
     <b-col cols="12">
         <b-card no-body>
             <b-card-header>

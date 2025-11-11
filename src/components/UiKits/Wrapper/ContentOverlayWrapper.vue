@@ -1,7 +1,6 @@
 <script setup>
-import { BCard, BCardHeader, BCardBody, BRow, BCol } from "bootstrap-vue-next";
+import {BCard, BCardHeader, BCardBody, BRow, BCol} from "bootstrap-vue-next";
 
-// Overlay items data
 const overlayItems = [
     {
         title: 'Left Overlay',
@@ -33,19 +32,17 @@ const overlayItems = [
     },
 ]
 
-// Basic image overlay data
 const imageWrapper = [
-    { image: '/images/wrapper/overlay-1.jpg' },
-    { image: '/images/wrapper/overlay-2.jpg', position: 'bottom' },
-    { image: '/images/wrapper/overlay-3.jpg', position: 'top' },
-    { image: '/images/wrapper/overlay-4.jpg', position: 'top' },
+    {image: '/images/wrapper/overlay-1.jpg'},
+    {image: '/images/wrapper/overlay-2.jpg', position: 'bottom'},
+    {image: '/images/wrapper/overlay-3.jpg', position: 'top'},
+    {image: '/images/wrapper/overlay-4.jpg', position: 'top'},
 ]
 </script>
 
 <template>
-    <!-- Content Overlay -->
     <b-col cols="12">
-        <b-card>
+        <b-card no-body>
             <b-card-header>
                 <h5>Content Overlay</h5>
             </b-card-header>
@@ -59,7 +56,7 @@ const imageWrapper = [
                         lg="3"
                     >
                         <div :class="`content-overlay content-overlay-${item.position} position-relative`">
-                            <img :src="item.image" :alt="item.title" class="img-fluid" />
+                            <img :src="item.image" :alt="item.title" class="img-fluid"/>
                             <div class="content-overlay-text">
                                 <h5 class="mb-2">{{ item.title }}</h5>
                                 <p>{{ item.description }}</p>
@@ -71,9 +68,8 @@ const imageWrapper = [
         </b-card>
     </b-col>
 
-    <!-- Basic Overlay -->
     <b-col cols="12">
-        <b-card>
+        <b-card no-body>
             <b-card-header>
                 <h5>Basic Overlay</h5>
             </b-card-header>

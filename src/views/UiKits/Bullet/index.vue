@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, nextTick} from 'vue'
+import {ref} from 'vue'
 import {
     BContainer,
     BRow,
@@ -7,7 +7,8 @@ import {
     BCard,
     BCardHeader,
     BCardBody,
-    BCollapse
+    BCollapse,
+    BButton
 } from "bootstrap-vue-next"
 import {
     PhStarFour,
@@ -21,7 +22,6 @@ import {PhBriefcase} from "@phosphor-icons/vue"
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue"
 import AppLayout from "@/views/AppLayout.vue"
 
-// === Bullet Variants
 const bulletVariants = [
     'primary',
     'secondary',
@@ -33,23 +33,7 @@ const bulletVariants = [
     'dark'
 ]
 
-// === Open states for all 12 bullet types
 const openStates = Array.from({length: 12}, () => ref(false))
-
-// === PrismJS dynamic highlight
-watch(
-    openStates,
-    async () => {
-        if (openStates.some(s => s.value)) {
-            const Prism = await import('prismjs')
-            nextTick(() => Prism.highlightAll())
-        }
-    },
-    {deep: true}
-)
-
-
-// === Breadcrumb data
 const breadcrumbItems = {
     title: "Bullet",
     items: [
@@ -65,16 +49,14 @@ const breadcrumbItems = {
             <b-container fluid>
                 <Breadcrumb :breadcrumb="breadcrumbItems"/>
                 <b-row class="list-item bullet-item g-3">
-
-                    <!-- Diamond Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Diamond Bullet</h5>
-                                    <a @click="openStates[0].value = !openStates[0].value">
+                                    <b-button @click="openStates[0].value = !openStates[0].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -85,28 +67,26 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[0].value">
-                <pre class="language-html">
-<code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-        '&lt;ul&gt;\n' + bulletVariants.map(v =>
-            `  &lt;li&gt;&lt;PhDiamond size="16" weight="fill" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`).join('\n') + '\n&lt;/ul&gt;'
-    }}
-</code>
-</pre>
+                                                '&lt;ul&gt;\n' + bulletVariants.map(v =>
+                                                    `  &lt;li class="diamond diamond-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`).join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Heart Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Heart Bullet</h5>
-                                    <a @click="openStates[1].value = !openStates[1].value">
+                                    <b-button @click="openStates[1].value = !openStates[1].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -117,29 +97,27 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[1].value">
-               <pre class="language-html">
-                   <code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                           '&lt;ul&gt;\n' + bulletVariants.map(v =>
-                               `  &lt;li&gt;&lt;PhHeart size="16" weight="fill" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`).join('\n') + '\n&lt;/ul&gt;'
-                       }}
-</code>
-        </pre>
-
+                                                '&lt;ul&gt;\n' + bulletVariants.map(v =>
+                                                    `  &lt;li class="heart heart-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`).join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Star Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Star Bullet</h5>
-                                    <a @click="openStates[2].value = !openStates[2].value">
+                                    <b-button @click="openStates[2].value = !openStates[2].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -150,27 +128,28 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[2].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhStarFour weight="bold" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="bullet-list-box"&gt;&lt;PhStarFour weight="bold" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Right Arrow Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Right Arrow Bullet</h5>
-                                    <a @click="openStates[3].value = !openStates[3].value">
+                                    <b-button @click="openStates[3].value = !openStates[3].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -182,27 +161,27 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[3].value">
-                <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                        '&lt;ul&gt;\n' + bulletVariants
-                            .map(v => `  &lt;li&gt;&lt;PhArrowFatLineRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                            .join('\n') + '\n&lt;/ul&gt;'
-                    }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="bullet-list-box right-arrow"&gt;&lt;PhArrowFatLineRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Corner Arrow Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Corner Arrow Bullet</h5>
-                                    <a @click="openStates[4].value = !openStates[4].value">
+                                    <b-button @click="openStates[4].value = !openStates[4].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -214,27 +193,27 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[4].value">
-                  <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                          '&lt;ul&gt;\n' + bulletVariants
-                              .map(v => `  &lt;li&gt;&lt;PhArrowBendDownRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                              .join('\n') + '\n&lt;/ul&gt;'
-                      }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="bullet-list-box corner-arrow"&gt;&lt;PhArrowBendDownRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Line Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Line Bullet</h5>
-                                    <a @click="openStates[5].value = !openStates[5].value">
+                                    <b-button @click="openStates[5].value = !openStates[5].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -245,28 +224,27 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[5].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhArrowFatLineRight size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="line line-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
-
                         </b-card>
                     </b-col>
-
-                    <!-- Arrow Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
                                 <div class="code-header d-flex justify-content-between">
                                     <h5>Arrow Bullet</h5>
-                                    <a @click="openStates[6].value = !openStates[6].value">
+                                    <b-button @click="openStates[6].value = !openStates[6].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -277,27 +255,28 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[6].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhCaretRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="bullet-list-box"&gt;&lt;PhCaretRight weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Circle Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Circle Bullet</h5>
-                                    <a @click="openStates[7].value = !openStates[7].value">
+                                    <b-button @click="openStates[7].value = !openStates[7].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -308,27 +287,28 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[7].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhCircle weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="circle circle-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Triangle Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Triangle Bullet</h5>
-                                    <a @click="openStates[8].value = !openStates[8].value">
+                                    <b-button @click="openStates[8].value = !openStates[8].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -339,27 +319,28 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[8].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhTriangle weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="triangle triangle-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Square Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Square Bullet</h5>
-                                    <a @click="openStates[9].value = !openStates[9].value">
+                                    <b-button @click="openStates[9].value = !openStates[9].value" class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -370,27 +351,29 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[9].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhSquare size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="square square-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Plus Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Plus Bullet</h5>
-                                    <a @click="openStates[10].value = !openStates[10].value">
+                                    <b-button @click="openStates[10].value = !openStates[10].value"
+                                              class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -401,27 +384,29 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[10].value">
-        <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-                '&lt;ul&gt;\n' + bulletVariants
-                    .map(v => `  &lt;li&gt;&lt;PhPlus weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-                    .join('\n') + '\n&lt;/ul&gt;'
-            }}
-        </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="bullet-list-box"&gt;&lt;PhPlus weight="fill" size="16" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
 
-                    <!-- Burst Bullet -->
                     <b-col sm="6" lg="4" xxl="3">
                         <b-card no-body>
                             <b-card-header>
-                                <div class=" code-header d-flex justify-content-between">
+                                <div class="code-header d-flex justify-content-between">
                                     <h5>Burst Bullet</h5>
-                                    <a @click="openStates[11].value = !openStates[11].value">
+                                    <b-button @click="openStates[11].value = !openStates[11].value"
+                                              class="p-0 border-0">
                                         <PhCode size="30" weight="bold" class="source"/>
-                                    </a>
+                                    </b-button>
                                 </div>
                             </b-card-header>
                             <b-card-body>
@@ -432,18 +417,19 @@ const breadcrumbItems = {
                                     </li>
                                 </ul>
                                 <b-collapse v-model="openStates[11].value">
-  <pre class="language-html"><code>
+                                    <pre class="language-html mt-3">
+                                        <code v-prism>
 {{
-          '&lt;ul&gt;\n' + bulletVariants
-              .map(v => `  &lt;li&gt;&lt;PhSparkle size="16" weight="fill" class="text-${v} me-2"/&gt; ${v} Bullet&lt;/li&gt;`)
-              .join('\n') + '\n&lt;/ul&gt;'
-      }}
-  </code></pre>
+                                                '&lt;ul&gt;\n' + bulletVariants
+                                                    .map(v => `  &lt;li class="burst burst-bullet-${v}"&gt;${v} Bullet&lt;/li&gt;`)
+                                                    .join('\n') + '\n&lt;/ul&gt;'
+                                            }}
+                                        </code>
+                                    </pre>
                                 </b-collapse>
                             </b-card-body>
                         </b-card>
                     </b-col>
-
                 </b-row>
             </b-container>
         </main>

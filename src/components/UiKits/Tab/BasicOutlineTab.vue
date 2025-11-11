@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { BCol, BCard, BCardHeader, BTabs, BTab, BCollapse, BButton } from "bootstrap-vue-next";
-import { PhCode } from "@phosphor-icons/vue";
+import {ref} from "vue";
+import {BCol, BCard, BCardHeader, BTabs, BTab, BCollapse, BButton} from "bootstrap-vue-next";
+import {PhCode} from "@phosphor-icons/vue";
 
-// Convert tab content to arrays instead of HTML strings
 const tabs = [
     {
         label: "HTML",
@@ -28,7 +27,6 @@ const tabs = [
     },
 ];
 
-// Collapse state
 const openBasic = ref(false);
 const openOutline = ref(false);
 </script>
@@ -36,7 +34,6 @@ const openOutline = ref(false);
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Basic Tabs</h5>
@@ -45,8 +42,6 @@ const openOutline = ref(false);
                     </b-button>
                 </div>
             </b-card-header>
-
-            <!-- Tabs -->
             <b-tabs pills card class="app-tabs-primary">
                 <b-tab
                     v-for="(tab, i) in tabs"
@@ -59,20 +54,20 @@ const openOutline = ref(false);
                     <p v-for="(line, j) in tab.content" :key="j" class="mb-0">{{ line }}</p>
                 </b-tab>
             </b-tabs>
-
-            <!-- Prism Code Collapse -->
             <b-collapse v-model="openBasic">
         <pre class="language-html" tabindex="0">
-          <code>{{ `
+          <code v-prism>
 &lt;b-tabs pills card class='app-tabs-primary'&gt;
-${tabs
-              .map(
-                  (t, i) => `  &lt;b-tab title=&quot;${t.label}&quot; title-class=&quot;bg-primary text-white&quot;${i === 0 ? ' active' : ''}&gt;
+{{
+                  tabs
+                      .map(
+                          (t, i) => `  &lt;b-tab title=&quot;${t.label}&quot; title-class=&quot;bg-primary text-white&quot;${i === 0 ? ' active' : ''}&gt;
 ${t.content.map(line => `    &lt;p&gt;${line}&lt;/p&gt;`).join('\n')}
   &lt;/b-tab&gt;`
-  )
-  .join('\n')}
-&lt;/b-tabs&gt;` }}</code>
+                      )
+                      .join('\n')
+              }}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
         </b-card>
@@ -80,7 +75,6 @@ ${t.content.map(line => `    &lt;p&gt;${line}&lt;/p&gt;`).join('\n')}
 
     <b-col lg="6">
         <b-card no-body>
-            <!-- Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Outline Tabs</h5>
@@ -90,7 +84,6 @@ ${t.content.map(line => `    &lt;p&gt;${line}&lt;/p&gt;`).join('\n')}
                 </div>
             </b-card-header>
 
-            <!-- Tabs -->
             <b-tabs pills card class="tab-outline-primary">
                 <b-tab
                     v-for="(tab, i) in tabs"
@@ -99,28 +92,26 @@ ${t.content.map(line => `    &lt;p&gt;${line}&lt;/p&gt;`).join('\n')}
                     :active="i === 0"
                     title-class="outline-primary text-white"
                 >
-                    <!-- Render content declaratively instead of v-html -->
                     <p v-for="(line, j) in tab.content" :key="j" class="mb-0">{{ line }}</p>
                 </b-tab>
             </b-tabs>
 
-            <!-- Prism Code Collapse -->
             <b-collapse v-model="openOutline">
         <pre class="language-html" tabindex="0">
-          <code>{{ `
+          <code v-prism>
 &lt;b-tabs pills card class='tab-outline-primary'&gt;
-${tabs
-              .map(
-                  (t, i) => `  &lt;b-tab title=&quot;${t.label}&quot; title-class=&quot;outline-primary text-white&quot;${i === 0 ? ' active' : ''}&gt;
+{{
+                  tabs
+                      .map(
+                          (t, i) => `  &lt;b-tab title=&quot;${t.label}&quot; title-class=&quot;outline-primary text-white&quot;${i === 0 ? ' active' : ''}&gt;
 ${t.content.map(line => `    &lt;p&gt;${line}&lt;/p&gt;`).join('\n')}
   &lt;/b-tab&gt;`
-  )
-  .join('\n')}
-&lt;/b-tabs&gt;` }}</code>
+                      )
+                      .join('\n')
+              }}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
         </b-card>
-
-
     </b-col>
 </template>
