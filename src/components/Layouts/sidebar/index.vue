@@ -8,7 +8,7 @@ import "simplebar/dist/simplebar.min.css";
 import { MenuList } from "@/data/sidebar/sidebar.js";
 
 const props = defineProps({
-  sidebarOpen: Boolean
+    sidebarOpen: Boolean
 });
 
 const emit = defineEmits(["update:sidebarOpen"]);
@@ -17,63 +17,64 @@ const menuList = ref(MenuList);
 const sidebarOption = ref("vertical-sidebar");
 
 const getSidebarOption = () => {
-  if (typeof window === "undefined") return "vertical-sidebar";
-  return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option") || "vertical-sidebar";
+    if (typeof window === "undefined") return "vertical-sidebar";
+    return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option") || "vertical-sidebar";
 };
 
 const updateSidebarOption = () => {
-  sidebarOption.value = getSidebarOption();
+    sidebarOption.value = getSidebarOption();
 };
 
 const handleStorageChange = (e) => {
-  if (e.key === "Ki-Admin-React-Theme-sidebar-option") {
-    updateSidebarOption();
-  }
+    if (e.key === "Ki-Admin-React-Theme-sidebar-option") {
+        updateSidebarOption();
+    }
 };
 
 onMounted(() => {
-  updateSidebarOption();
-  window.addEventListener("storage", handleStorageChange);
+    updateSidebarOption();
+    window.addEventListener("storage", handleStorageChange);
 
-  window.addEventListener("sidebar-option-changed", updateSidebarOption);
+    window.addEventListener("sidebar-option-changed", updateSidebarOption);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("storage", handleStorageChange);
-  window.removeEventListener("sidebar-option-changed", updateSidebarOption);
+    window.removeEventListener("storage", handleStorageChange);
+    window.removeEventListener("sidebar-option-changed", updateSidebarOption);
 });
 
 const sidebarClass = computed(() => {
-  const baseClass = sidebarOption.value;
-  return props.sidebarOpen ? `${baseClass} semi-nav` : baseClass;
+    updateSidebarOption();
+    const baseClass = sidebarOption.value;
+    return props.sidebarOpen ? `${baseClass} semi-nav` : baseClass;
 });
 
 const toggleSidebar = () => {
-  updateSidebarOption();
-  emit("update:sidebarOpen", !props.sidebarOpen);
+    updateSidebarOption();
+    emit("update:sidebarOpen", !props.sidebarOpen);
 };
 </script>
 
 <template>
-  <nav :class="sidebarClass">
-    <AppLogo :sidebarOpen="props.sidebarOpen" @toggle-sidebar="toggleSidebar"/>
+    <nav :class="sidebarClass">
+        <AppLogo :sidebarOpen="props.sidebarOpen" @toggle-sidebar="toggleSidebar"/>
 
-    <SimpleBar class="app-nav simplebar-scrollable-y">
-      <ul class="main-nav p-0 mt-2">
-        <MenuItem
-            v-for="(opt, index) in menuList"
-            :key="index"
-            :title="opt.title"
-            :type="opt.type"
-            :path="opt.path"
-            :name="opt.name"
-            :iconClass="opt.iconClass"
-            :badgeCount="opt.badgeCount"
-            :links="opt.children"
-            :collapseId="opt.collapseId"
-        />
-      </ul>
-    </SimpleBar>
-    <HorizontalNav/>
-  </nav>
+        <SimpleBar class="app-nav simplebar-scrollable-y">
+            <ul class="main-nav p-0 mt-2">
+                <MenuItem
+                    v-for="(opt, index) in menuList"
+                    :key="index"
+                    :title="opt.title"
+                    :type="opt.type"
+                    :path="opt.path"
+                    :name="opt.name"
+                    :iconClass="opt.iconClass"
+                    :badgeCount="opt.badgeCount"
+                    :links="opt.children"
+                    :collapseId="opt.collapseId"
+                />
+            </ul>
+        </SimpleBar>
+        <HorizontalNav/>
+    </nav>
 </template>

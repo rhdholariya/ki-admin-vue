@@ -1,119 +1,115 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import Sortable from "sortablejs";
+import {ref} from "vue";
+import {BCol, BCard, BCardBody, BCardHeader, BRow} from "bootstrap-vue-next";
+import {PhDotsThreeVertical} from "@phosphor-icons/vue";
 
-import {
-  BCol,
-  BCard,
-  BCardBody,
-  BCardHeader,
-  BRow
-} from "bootstrap-vue-next";
-
-import { PhDotsThreeVertical } from "@phosphor-icons/vue";
-
-// Left list items
 const clonicMenuItemsLeft = ref([
-  { label: "A", title: "Clonic Menu List 1" },
-  { label: "B", title: "Clonic Menu List 2" },
-  { label: "C", title: "Clonic Menu List 3" },
-  { label: "D", title: "Clonic Menu List 4" },
-  { label: "E", title: "Clonic Menu List 5" },
+    {label: "A", title: "Clonic Menu List 1", id: 1},
+    {label: "B", title: "Clonic Menu List 2", id: 2},
+    {label: "C", title: "Clonic Menu List 3", id: 3},
+    {label: "D", title: "Clonic Menu List 4", id: 4},
+    {label: "E", title: "Clonic Menu List 5", id: 5},
 ]);
 
-// Right list items
 const clonicMenuItemsRight = ref([
-  { label: "A", title: "Clonic Menu List 6" },
-  { label: "B", title: "Clonic Menu List 7" },
-  { label: "C", title: "Clonic Menu List 8" },
-  { label: "D", title: "Clonic Menu List 9" },
-  { label: "E", title: "Clonic Menu List 10" },
+    {label: "A", title: "Clonic Menu List 6", id: 6},
+    {label: "B", title: "Clonic Menu List 7", id: 7},
+    {label: "C", title: "Clonic Menu List 8", id: 8},
+    {label: "D", title: "Clonic Menu List 9", id: 9},
+    {label: "E", title: "Clonic Menu List 10", id: 10},
 ]);
 
-// Refs for DOM nodes (Vue way)
-const leftListRef = ref(null);
-const rightListRef = ref(null);
+const onDragStart = (event, item, fromLeft) => {
+    event.dataTransfer.setData('application/json', JSON.stringify({
+        item,
+        fromLeft
+    }));
+};
 
-let leftSortable = null;
-let rightSortable = null;
+const onDrop = (event, toLeft) => {
+    event.preventDefault();
+    const data = JSON.parse(event.dataTransfer.getData('application/json'));
 
-// Setup SortableJS instances safely
-onMounted(() => {
-  if (leftListRef.value) {
-    leftSortable = new Sortable(leftListRef.value, {
-      group: { name: "shared1", pull: "clone", put: false },
-      animation: 150,
-      sort: false,
-    });
-  }
+    if (data.fromLeft === toLeft) return; // Don't move within same list
 
-  if (rightListRef.value) {
-    rightSortable = new Sortable(rightListRef.value, {
-      group: { name: "shared1", pull: "clone" },
-      animation: 150,
-    });
-  }
-});
+    if (toLeft) {
+        clonicMenuItemsLeft.value.push(data.item);
+        clonicMenuItemsRight.value = clonicMenuItemsRight.value.filter(i => i.id !== data.item.id);
+    } else {
+        clonicMenuItemsRight.value.push(data.item);
+        clonicMenuItemsLeft.value = clonicMenuItemsLeft.value.filter(i => i.id !== data.item.id);
+    }
+};
 
-onUnmounted(() => {
-  // Destroy instances when component unmounts
-  if (leftSortable) leftSortable.destroy();
-  if (rightSortable) rightSortable.destroy();
-});
+const onDragOver = (event) => {
+    event.preventDefault();
+};
 </script>
 
 <template>
-  <b-col xxl="6">
-    <b-card class="equal-card" no-body>
-      <b-card-header>
-        <h5>Draggable Clonic List</h5>
-      </b-card-header>
+    <b-col xxl="6">
+        <b-card class="equal-card" no-body>
+            <b-card-header>
+                <h5>Draggable Clonic List</h5>
+            </b-card-header>
 
-      <b-card-body>
-        <b-row>
-          <!-- Left Column -->
-          <b-col cols="6" class="box-layout-draggable">
-            <ul class="clonic-menu-list" ref="leftListRef">
-              <li v-for="(item, index) in clonicMenuItemsLeft" :key="index">
-                <div class="clonic-menu-item" draggable="false">
-                  <span
-                      class="text-light-primary h-40 w-40 d-flex-center b-r-50 clonic-menu-img"
-                  >
+            <b-card-body>
+                <b-row>
+                    <b-col cols="6" class="box-layout-draggable">
+                        <ul
+                            class="clonic-menu-list"
+                            @drop="onDrop($event, true)"
+                            @dragover="onDragOver"
+                        >
+                            <li
+                                v-for="(item, index) in clonicMenuItemsLeft"
+                                :key="item.id"
+                                draggable="true"
+                                @dragstart="onDragStart($event, item, true)"
+                            >
+                                <div class="clonic-menu-item">
+                  <span class="text-light-primary h-40 w-40 d-flex-center b-r-50 clonic-menu-img">
                     {{ item.label }}
                   </span>
-                  <div class="clonic-menu-content">
-                    <h6 class="mb-0">{{ item.title }}</h6>
-                  </div>
-                  <span>
-                    <PhDotsThreeVertical :size="32" />
+                                    <div class="clonic-menu-content">
+                                        <h6 class="mb-0">{{ item.title }}</h6>
+                                    </div>
+                                    <span>
+                    <PhDotsThreeVertical :size="32"/>
                   </span>
-                </div>
-              </li>
-            </ul>
-          </b-col>
+                                </div>
+                            </li>
+                        </ul>
+                    </b-col>
 
-          <!-- Right Column -->
-          <b-col cols="6" class="box-layout-draggable">
-            <ul class="clonic-menu-list" ref="rightListRef">
-              <li v-for="(item, index) in clonicMenuItemsRight" :key="index">
-                <div class="clonic-menu-item" draggable="false">
-                  <span
-                      class="text-light-primary h-40 w-40 d-flex-center b-r-50 clonic-menu-img"
-                  >
+                    <b-col cols="6" class="box-layout-draggable">
+                        <ul
+                            class="clonic-menu-list"
+                            @drop="onDrop($event, false)"
+                            @dragover="onDragOver"
+                        >
+                            <li
+                                v-for="(item, index) in clonicMenuItemsRight"
+                                :key="item.id"
+                                draggable="true"
+                                @dragstart="onDragStart($event, item, false)"
+                            >
+                                <div class="clonic-menu-item">
+                  <span class="text-light-primary h-40 w-40 d-flex-center b-r-50 clonic-menu-img">
                     {{ item.label }}
                   </span>
-                  <div class="clonic-menu-content">
-                    <h6 class="mb-0">{{ item.title }}</h6>
-                  </div>
-                  <span>
-                    <PhDotsThreeVertical :size="32" />
+                                    <div class="clonic-menu-content">
+                                        <h6 class="mb-0">{{ item.title }}</h6>
+                                    </div>
+                                    <span>
+                    <PhDotsThreeVertical :size="32"/>
                   </span>
-                </div>
-              </li>
-            </ul>
-          </b-col>
-        </b-row>
-      </b-card-body>
-    </b-card>
-  </b-col>
+                                </div>
+                            </li>
+                        </ul>
+                    </b-col>
+                </b-row>
+            </b-card-body>
+        </b-card>
+    </b-col>
 </template>

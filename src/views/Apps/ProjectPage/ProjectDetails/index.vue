@@ -12,7 +12,6 @@ import {
   BRow
 } from "bootstrap-vue-next";
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Project Details",
   items: [

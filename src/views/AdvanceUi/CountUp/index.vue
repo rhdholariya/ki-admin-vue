@@ -23,12 +23,10 @@ const activeTabItems = computed(() => {
 
 const handleUpdateCounters = () => {
   updateCounterItems.forEach(item => {
-    // Assign new random values or updated data
     item.value = Math.floor(Math.random() * 1000);
   });
 };
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: "count-up",
   items: [
@@ -42,10 +40,8 @@ const breadcrumbItems = {
   <AppLayout>
     <b-container fluid>
       <main>
-        <!-- Breadcrumb -->
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
-        <!-- Simple Counter -->
         <b-col cols="12">
           <b-card class="mb-4">
             <template #header>
@@ -76,7 +72,6 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Customized Counter -->
         <b-col cols="12">
           <b-card class="mb-4">
             <template #header>
@@ -103,7 +98,6 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Update Counter -->
         <b-col cols="12">
           <b-card class="mb-4">
             <template #header>
@@ -137,7 +131,6 @@ const breadcrumbItems = {
           </b-card>
         </b-col>
 
-        <!-- Under Tab Sections -->
         <b-col cols="12">
           <b-card class="mb-4">
             <template #header>

@@ -17,11 +17,11 @@ import {
     <b-card-body class="offer-card-body overflow-hidden">
       <div>
         <div class="d-flex justify-content-center gap-2 my-3">
-          <BBadge class="text-primary f-s-10 bg-white-500">Clothing</BBadge>
-          <BBadge class="text-primary f-s-10 bg-white-500">Toys</BBadge>
-          <BBadge class="text-primary f-s-10 bg-white-500">
+          <b-badge class="text-primary f-s-10 bg-white-500">Clothing</b-badge>
+          <b-badge class="text-primary f-s-10 bg-white-500">Toys</b-badge>
+          <b-badge class="text-primary f-s-10 bg-white-500">
             Accessories
-          </BBadge>
+          </b-badge>
         </div>
         <h5 class="text-white mt-4">
           Super

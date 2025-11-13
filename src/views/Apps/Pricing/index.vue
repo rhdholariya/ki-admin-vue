@@ -63,30 +63,22 @@ const breadcrumbItems = computed(() => ({
   <app-layout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
         <breadcrumb :breadcrumb="breadcrumbItems" />
-
-        <b-row>
-          <!-- Flip Pricing Plans -->
-          <b-col xs="12" class="mb-3">
+          <b-row>
+              <b-col cols="12" class="mb-3">
             <b-card no-body>
               <b-card-header>
                 <h5>Pricing Plans</h5>
               </b-card-header>
               <b-card-body>
                 <b-row class="flip-pricing-container app-arrow">
-                  <pricing-card
-                      v-for="(plan, index) in plans"
-                      :key="index"
-                      v-bind="plan"
-                  />
+                  <pricing-card />
                 </b-row>
               </b-card-body>
             </b-card>
           </b-col>
 
-          <!-- Simple Pricing Plans -->
-          <b-col xs="12" class="mb-3">
+          <b-col cols="12" class="mb-3">
             <b-card no-body>
               <b-card-header>
                 <h5>Simple Pricing Plans</h5>
@@ -97,8 +89,7 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Compare Pricing -->
-          <b-col xs="12" class="mb-3">
+          <b-col cols="12" class="mb-3">
             <b-card no-body>
               <b-card-header>
                 <h5>Compare Plans</h5>

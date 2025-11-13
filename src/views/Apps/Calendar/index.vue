@@ -10,9 +10,6 @@ import {
 } from "@tabler/icons-vue";
 import { PhStack} from "@phosphor-icons/vue";
 
-
-
-
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -114,7 +111,6 @@ const sliderSettings = computed(() => ({
   modules: [Autoplay],
 }));
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Calendar",
   items: [
@@ -123,7 +119,6 @@ const breadcrumbItems = computed(() => ({
   ],
 }));
 
-// Methods
 const handleDropRemoveChange = (checked) => {
   calendarState.dropRemoveChecked = checked;
 };
@@ -136,10 +131,8 @@ const handleDropRemoveChange = (checked) => {
     <Breadcrumb :breadcrumb="breadcrumbItems" />
 
     <b-row class="m-1 calendar app-fullcalendar">
-      <!-- Sidebar -->
       <b-col xxl="3">
         <b-row>
-          <!-- Draggable Events -->
           <b-col md="6" xxl="12">
             <b-card>
               <b-card-header>
@@ -176,7 +169,6 @@ const handleDropRemoveChange = (checked) => {
             </b-card>
           </b-col>
 
-          <!-- Events Update List -->
           <b-col md="6" xxl="12" class="mt-3 mt-md-0">
             <b-card>
               <b-card-header>
@@ -200,7 +192,6 @@ const handleDropRemoveChange = (checked) => {
         </b-row>
       </b-col>
 
-      <!-- Calendar -->
       <b-col xxl="9" class="mt-3 mt-md-0">
         <CalendarCard :external-events-ref="externalEventsRef" :drop-remove-ref="dropRemoveRef" />
       </b-col>

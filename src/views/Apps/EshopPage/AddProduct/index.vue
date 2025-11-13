@@ -26,13 +26,11 @@ import AppLayout from '@/views/AppLayout.vue'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
 import { PhStack } from '@phosphor-icons/vue'
 
-// reactive data
 const options = ['Option 1', 'Option 2', 'Option 3']
 const selectedOption = ref(null)
 const showModal = ref(false)
 const productTags = ref(null)
 
-// tag options
 const tagOptions = [
   { value: 'Cl', label: 'Clothing' },
   { value: 'SH', label: 'Shoes' },
@@ -42,7 +40,6 @@ const tagOptions = [
   { value: 'AS', label: 'Art Supplies' }
 ]
 
-// breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: 'Add Product',
   items: [
@@ -60,12 +57,10 @@ const breadcrumbItems = computed(() => ({
         <breadcrumb :breadcrumb="breadcrumbItems" />
 
         <b-row>
-          <!-- Left Column -->
           <b-col lg="8" xxl="9">
             <b-card no-body>
               <b-card-body>
                 <div class="app-product-section">
-                  <!-- General Information -->
                   <div class="main-title mb-3">
                     <h6>General Information</h6>
                   </div>
@@ -89,7 +84,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed my-4" />
 
-                  <!-- Category -->
                   <div class="main-title mb-3">
                     <h6>Category</h6>
                   </div>
@@ -120,7 +114,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed my-4" />
 
-                  <!-- Inventory -->
                   <div class="main-title mb-3">
                     <h6>Inventory</h6>
                   </div>
@@ -152,7 +145,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed my-4" />
 
-                  <!-- Shipping -->
                   <div class="main-title mb-3">
                     <h6>Shipping</h6>
                   </div>
@@ -198,7 +190,6 @@ const breadcrumbItems = computed(() => ({
                       </b-col>
                     </b-row>
 
-                    <!-- Buttons -->
                     <div class="mt-4 text-end">
                       <b-button variant="outline-secondary" class="me-2">Discard</b-button>
                       <b-button variant="primary">Add Product</b-button>
@@ -209,12 +200,10 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Right Column -->
           <b-col lg="4" xxl="3">
             <b-card no-body>
               <b-card-body>
                 <div class="app-product-section">
-                  <!-- Product Media -->
                   <div class="main-title">
                     <h6>Product Media</h6>
                   </div>
@@ -223,7 +212,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed" />
 
-                  <!-- Pricing -->
                   <div class="main-title">
                     <h6>Pricing</h6>
                   </div>
@@ -258,7 +246,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed" />
 
-                  <!-- Product Variants -->
                   <div class="main-title">
                     <h6>Product Variants</h6>
                   </div>
@@ -295,7 +282,6 @@ const breadcrumbItems = computed(() => ({
 
                   <div class="app-divider-v dashed" />
 
-                  <!-- Visibility -->
                   <div class="main-title">
                     <h6>Visibility</h6>
                   </div>

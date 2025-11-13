@@ -16,7 +16,7 @@ const showBoth = ref(false);
 
 const showStatic = ref(false);
 
-// Breadcrumb data
+
 const breadcrumbItems = {
   title: "Offcanvas",
   items: [
@@ -42,7 +42,6 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Trigger buttons -->
                 <b-button
                     variant="primary"
                     class="m-2"
@@ -59,7 +58,6 @@ const breadcrumbItems = {
                   Button with click
                 </b-button>
 
-                <!-- Offcanvas component -->
                 <b-offcanvas
                     title="Offcanvas"
                     :show="showOffcanvas"
@@ -92,7 +90,7 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Top Offcanvas -->
+
                 <b-button
                     variant="primary"
                     @click="showTop = true"
@@ -145,7 +143,6 @@ const breadcrumbItems = {
                   <div class="offcanvas-body">...</div>
                 </b-offcanvas>
 
-                <!-- Bottom Offcanvas -->
                 <b-button
                     variant="primary"
                     class="m-2"
@@ -186,7 +183,6 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Trigger Buttons -->
                 <b-button class="m-2" variant="primary" @click="showScrolling = true">
                   Enable body scrolling
                 </b-button>
@@ -197,7 +193,6 @@ const breadcrumbItems = {
                   Enable both scrolling & backdrop
                 </b-button>
 
-                <!-- Offcanvas with body scrolling -->
                 <b-offcanvas
                     title="Colored with scrolling"
                     :show="showScrolling"
@@ -220,7 +215,6 @@ const breadcrumbItems = {
                   </div>
                 </b-offcanvas>
 
-                <!-- Offcanvas with backdrop -->
                 <b-offcanvas
                     title="Offcanvas with backdrop"
                     :show="showBackdrop"
@@ -241,7 +235,6 @@ const breadcrumbItems = {
                   </div>
                 </b-offcanvas>
 
-                <!-- Offcanvas with both scrolling & backdrop -->
                 <b-offcanvas
                     title="Backdroped with scrolling"
                     :show="showBoth"
@@ -274,7 +267,6 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Trigger Button -->
                 <b-button
                     variant="primary"
                     class="m-2"
@@ -283,7 +275,7 @@ const breadcrumbItems = {
                   Enable body scrolling
                 </b-button>
 
-                <!-- Offcanvas with body scrolling -->
+
                 <b-offcanvas
                     id="offcanvasScrolling"
                     title="Offcanvas with body scrolling"
@@ -320,7 +312,7 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Trigger Button -->
+
                 <b-button
                     variant="primary"
                     class="m-2"
@@ -329,7 +321,7 @@ const breadcrumbItems = {
                   Toggle static offcanvas
                 </b-button>
 
-                <!-- Offcanvas with static backdrop -->
+
                 <b-offcanvas
                     title="Offcanvas"
                     :show="showStatic"
@@ -366,7 +358,6 @@ const breadcrumbItems = {
               </template>
 
               <b-card-body>
-                <!-- Trigger Button -->
                 <b-button
                     variant="primary"
                     class="m-2"
@@ -375,7 +366,6 @@ const breadcrumbItems = {
                   Enable both scrolling & backdrop
                 </b-button>
 
-                <!-- Offcanvas with both scrolling & backdrop -->
                 <b-offcanvas
                     id="offcanvasWithBothOptions"
                     title="Backdrop with scrolling"
@@ -403,7 +393,6 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
         </b-row>
-
       </b-container>
     </main>
   </AppLayout>

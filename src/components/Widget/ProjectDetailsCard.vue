@@ -21,7 +21,8 @@ defineProps({
 
 <template>
   <b-card
-      :class="`equal-card project-data-container ${isWidgetPage ? 'widget-card' : ''}`"
+      class="equal-card"
+      :class="` project-data-container ${isWidgetPage ? 'widget-card' : ''}`"
       no-body
   >
     <b-card-body>
@@ -40,7 +41,7 @@ defineProps({
 
       <div :class="`row mt-4 project-row`">
         <div class="col-sm-4">
-          <b-card class="project-status-card mb-0 text-center bg-primary text-white shadow rounded p-3">
+          <b-card class="project-status-card mb-0 text-center bg-primary text-white shadow rounded p-3" no-body>
             <div class="bg-white status-icon rounded-circle d-flex-center w-45 h-45">
               <i class="ph ph-clock text-primary f-s-20"></i>
             </div>
@@ -49,7 +50,7 @@ defineProps({
         </div>
 
         <div class="col-sm-4">
-          <b-card class="project-status-card mb-0 text-center bg-success text-white shadow rounded p-3">
+          <b-card class="project-status-card mb-0 text-center bg-success text-white shadow rounded p-3" no-body>
             <div class="bg-white status-icon rounded-circle d-flex-center w-45 h-45">
               <i class="ph ph-check-circle text-success f-s-20"></i>
             </div>
@@ -58,7 +59,7 @@ defineProps({
         </div>
 
         <div class="col-sm-4">
-          <b-card class="project-status-card mb-0 text-center bg-danger text-white shadow rounded p-3">
+          <b-card class="project-status-card mb-0 text-center bg-danger text-white shadow rounded p-3" no-body>
             <div class="bg-white status-icon rounded-circle d-flex-center w-45 h-45">
               <i class="ph ph-arrow-clockwise text-danger f-s-20"></i>
             </div>

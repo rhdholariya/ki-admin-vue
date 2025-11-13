@@ -79,7 +79,6 @@ const breadcrumbItems = {
               <b-card-body>
                 <div class="product-header d-flex justify-content-between gap-3 align-items-center">
                   <div class="d-flex align-items-center">
-                    <!-- Sidebar toggle -->
                     <a
                         class="me-3 toggle-btn d-inline-block d-lg-none"
                         role="button"
@@ -87,7 +86,6 @@ const breadcrumbItems = {
                     >
                       <IconAlignJustified class="f-s-24" />
                     </a>
-                    <!-- Search -->
                     <b-form class="app-form app-icon-form d-inline-block" @submit.prevent>
                       <div class="position-relative">
                         <b-form-input
@@ -101,7 +99,7 @@ const breadcrumbItems = {
                       </div>
                     </b-form>
                   </div>
-                  <!-- Layout buttons -->
+
                   <div>
                     <b-button variant="secondary" class="me-2" @click="handleViewChange('col-xxl-3')">IV</b-button>
                     <b-button variant="secondary" class="me-2" @click="handleViewChange('col-md-4')">III</b-button>
@@ -116,7 +114,6 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Filter Sidebar -->
           <b-col :class="[ 'product-box productbox', { 'd-none d-lg-block': !isSidebarOpen } ]" xxl="3" lg="4">
             <b-card no-body>
               <b-card-header><h5>Filters</h5></b-card-header>
@@ -126,7 +123,6 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Products -->
           <b-col xxl="9" lg="8">
             <div class="product-wrapper-grid">
               <b-row :class="{ 'list-view': isListView }">

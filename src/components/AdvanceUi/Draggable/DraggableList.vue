@@ -15,11 +15,11 @@ import {
   IconBrandWhatsapp,
 } from "@tabler/icons-vue";
 
-// template refs
+
 const shareMenuLeftRef = ref(null);
 const shareMenuRightRef = ref(null);
 
-// reactive lists
+
 const shareMenuItemsLeft = ref([
   { imgSrc: "/images/avatar/1.png", name: "Wilson Terry", role: "Web designer", bgColor: "primary" },
   { imgSrc: "/images/avatar/2.png", name: "Jalyn Donnelly", role: "Web developer", bgColor: "secondary" },

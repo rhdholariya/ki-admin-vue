@@ -13,9 +13,7 @@ import {
   BModal,
   BNav, BNavItem
 } from "bootstrap-vue-next";
-
 import BookCard from "@/components/Apps/Bookmark/BookCard.vue";
-
 import {
   PhBookmark,
   PhHeartStraight,
@@ -32,9 +30,6 @@ import {bookMarkTableData} from "@/data/app/Bookmark/Bookmark1.js";
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// ----------------------------------------------------
-// Reactive state
-// ----------------------------------------------------
 const activeTab = ref("tab1");
 const modalOpen = ref(false);
 const editModalOpen = ref(false);
@@ -135,8 +130,6 @@ const filteredCards = computed(() => {
   }
 });
 
-
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Bookmark",
   items: [
@@ -149,59 +142,58 @@ const breadcrumbItems = computed(() => ({
 <template>
   <AppLayout>
     <main>
-  <BContainer fluid>
+  <b-container fluid>
     <Breadcrumb :breadcrumb="breadcrumbItems" />
-    <BRow>
-      <!-- Sidebar -->
-      <BCol lg="3">
-        <BCard no-body>
-          <BCardBody>
-            <BNav pills vertical class="app-tabs-primary">
-              <BNavItem
+    <b-row>
+      <b-col lg="3">
+        <b-card no-body>
+          <b-card-body>
+            <b-nav pills vertical class="app-tabs-primary">
+              <b-nav-item
                   href="#"
                   :active="activeTab === 'tab1'"
                   @click.prevent="activeTab = 'tab1'"
               >
                 <PhBookmark size="20" class="me-2" />
                 Book Mark
-              </BNavItem>
+              </b-nav-item>
 
-              <BNavItem
+              <b-nav-item
                   href="#"
                   :active="activeTab === 'tab2'"
                   @click.prevent="activeTab = 'tab2'"
               >
                 <PhHeartStraight size="20" class="me-2" />
                 Favourites
-              </BNavItem>
+              </b-nav-item>
 
-              <BNavItem
+              <b-nav-item
                   href="#"
                   :active="activeTab === 'tab3'"
                   @click.prevent="activeTab = 'tab3'"
               >
                 <PhShareNetwork size="20" class="me-2" />
                 Share
-              </BNavItem>
+              </b-nav-item>
 
-              <BNavItem
+              <b-nav-item
                   href="#"
                   :active="activeTab === 'tab4'"
                   @click.prevent="activeTab = 'tab4'"
               >
                 <PhStar size="20" class="me-2" />
                 Important
-              </BNavItem>
+              </b-nav-item>
 
-              <BNavItem
+              <b-nav-item
                   href="#"
                   :active="activeTab === 'tab5'"
                   @click.prevent="activeTab = 'tab5'"
               >
                 <PhTrash size="20" class="me-2" />
                 Delete
-              </BNavItem>
-            </BNav>
+              </b-nav-item>
+            </b-nav>
 
             <hr/>
 
@@ -246,21 +238,20 @@ const breadcrumbItems = computed(() => ({
               </li>
             </ul>
 
-            <BButton
+            <b-button
                 variant="primary"
                 class="w-100 mt-4 rounded"
                 @click="toggleModal"
             >
               Add Bookmark
-            </BButton>
-          </BCardBody>
-        </BCard>
-      </BCol>
+            </b-button>
+          </b-card-body>
+        </b-card>
+      </b-col>
 
-      <!-- Main Content -->
-      <BCol lg="9">
-        <BRow class="bookmark-card">
-          <BCol
+      <b-col lg="9">
+        <b-row class="bookmark-card">
+          <b-col
               v-for="bookmark in filteredCards"
               :key="bookmark.id"
               sm="6"
@@ -274,28 +265,27 @@ const breadcrumbItems = computed(() => ({
                 :onStarToggle="handleStarToggle"
                 :onEdit="handleEditClick"
             />
-          </BCol>
-        </BRow>
-      </BCol>
-    </BRow>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
 
-    <!-- Add Modal -->
-    <BModal v-model="modalOpen" title="New Bookmark" centered hide-footer>
+    <b-modal v-model="modalOpen" title="New Bookmark" centered hide-footer>
       <template #default>
-      <BForm class="app-form">
-        <BFormGroup class="mb-3">
+      <b-form class="app-form">
+        <b-form-group class="mb-3">
           <label >Title</label >
-          <BFormInput v-model="title" type="text"/>
-        </BFormGroup>
-        <BFormGroup class="mb-3">
+          <b-form-input v-model="title" type="text"/>
+        </b-form-group>
+        <b-form-group class="mb-3">
           <label >Url</label >
-          <BFormInput v-model="url" type="text"/>
-        </BFormGroup>
-        <BFormGroup>
+          <b-form-input v-model="url" type="text"/>
+        </b-form-group>
+        <b-form-group>
           <label >Image</label >
-          <BFormInput type="file" @change="handleFileChange"/>
-        </BFormGroup>
-      </BForm>
+          <b-form-input type="file" @change="handleFileChange"/>
+        </b-form-group>
+      </b-form>
         </template>
       <template #footer>
         <div class="text-end mt-3">
@@ -307,53 +297,49 @@ const breadcrumbItems = computed(() => ({
           </BButton>
         </div>
       </template>
+    </b-modal>
 
-    </BModal>
-
-    <!-- Edit Modal -->
-    <BModal
+      <b-modal
         v-model="editModalOpen"
         title="Edit Bookmark"
         centered
         hide-footer
     >
-      <!-- Modal Body -->
       <template #default>
-        <BForm class="app-form">
-          <BFormGroup class="mb-3">
+        <b-form class="app-form">
+          <b-form-group class="mb-3">
             <label for="bookmark-title">Title</label>
-            <BFormInput id="bookmark-title" v-model="title" type="text" />
-          </BFormGroup>
+            <b-form-input id="bookmark-title" v-model="title" type="text" />
+          </b-form-group>
 
-          <BFormGroup class="mb-3">
+          <b-form-group class="mb-3">
             <label for="bookmark-url">URL</label>
-            <BFormInput id="bookmark-url" v-model="url" type="text" />
-          </BFormGroup>
+            <b-form-input id="bookmark-url" v-model="url" type="text" />
+          </b-form-group>
 
-          <BFormGroup class="mb-3">
+          <b-form-group class="mb-3">
             <label for="bookmark-image">Image</label>
-            <BFormInput
+            <b-form-input
                 id="bookmark-image"
                 type="file"
                 @change="handleFileChange"
             />
-          </BFormGroup>
-        </BForm>
+          </b-form-group>
+        </b-form>
       </template>
 
-      <!-- Modal Footer -->
       <template #footer>
         <div class="text-end">
-          <BButton variant="secondary" class="me-2" @click="toggleEditModal">
+          <b-button variant="secondary" class="me-2" @click="toggleEditModal">
             Close
-          </BButton>
-          <BButton variant="primary" @click="handleSaveChanges">
+          </b-button>
+          <b-button variant="primary" @click="handleSaveChanges">
             Save Changes
-          </BButton>
+          </b-button>
         </div>
       </template>
-    </BModal>
-  </BContainer>
+    </b-modal>
+  </b-container>
     </main>
   </AppLayout>
 </template>

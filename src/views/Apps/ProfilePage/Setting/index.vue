@@ -1,3 +1,117 @@
+<script setup>
+import {ref,  computed} from "vue";
+import {
+    BCard,
+    BCardBody,
+    BCardHeader,
+    BCol,
+    BImg,
+    BNav,
+    BNavItem,
+    BProgress,
+    BProgressBar,
+    BRow,
+} from "bootstrap-vue-next";
+
+import AppLayout from "@/views/AppLayout.vue";
+import ActivityTimeline from "@/components/Apps/Setting/ActivityTimeline.vue";
+import Connection from "@/components/Apps/Setting/Connection.vue";
+import NotificationSettings from "@/components/Apps/Setting/NotificationSettings.vue";
+import PrivacyCard from "@/components/Apps/Setting/PrivacyCard.vue";
+import SecurityCard from "@/components/Apps/Setting/SecurityCard.vue";
+import SettingProfile from "@/components/Apps/Setting/SettingProfile.vue";
+import Subscription from "@/components/Apps/Setting/Subscription.vue";
+import TimeSpent from "@/components/Apps/Setting/TimeSpent.vue";
+
+import {
+    PhBellSimple,
+    PhGraph,
+    PhLockOpen,
+    PhNotification,
+    PhAlarm,
+    PhShieldCheck,
+    PhTrash,
+    PhUserCircleGear, PhStack,
+} from "@phosphor-icons/vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+
+
+const activeTab = ref("1");
+
+
+const settingsTabs = ref([
+    {
+        eventKey: "1",
+        title: "Profile",
+        icon: PhUserCircleGear,
+    },
+    {
+        eventKey: "2",
+        title: "Activity",
+        icon: PhAlarm,
+    },
+    {
+        eventKey: "3",
+        title: "Security",
+        icon: PhShieldCheck,
+    },
+    {
+        eventKey: "4",
+        title: "Privacy",
+        icon: PhLockOpen,
+    },
+    {
+        eventKey: "5",
+        title: "Notification",
+        icon: PhNotification,
+    },
+    {
+        eventKey: "6",
+        title: "Subscription",
+        icon: PhBellSimple,
+    },
+    {
+        eventKey: "7",
+        title: "Connection",
+        icon: PhGraph,
+    },
+]);
+
+
+const handleDeleteClick = async () => {
+
+
+    try {
+        const { default: Swal } = await import("sweetalert2");
+
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        });
+
+        if (result.isConfirmed) {
+            await Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+    } catch (error) {
+        console.error("Error loading SweetAlert2:", error);
+    }
+};
+
+
+const breadcrumbItems = computed(() => ({
+    title: "Setting",
+    items: [
+        { label: "Apps", icon: PhStack },
+        { label: "Profile"},
+        { label: "Setting" , active: true }
+    ],
+}));
+</script>
 <template>
   <AppLayout>
     <main>
@@ -5,7 +119,6 @@
         <Breadcrumb :breadcrumb="breadcrumbItems" />
         
         <b-row class="row m-1">
-          <!-- Left Sidebar -->
           <b-col lg="4" xxl="3">
             <b-card no-body>
               <b-card-header>
@@ -31,7 +144,6 @@
               </b-card-body>
             </b-card>
 
-            <!-- Time Spent Card -->
             <b-card class="mb-4" no-body>
               <b-card-header>
                 <h5>Time Spent</h5>
@@ -41,7 +153,6 @@
               </b-card-body>
             </b-card>
 
-            <!-- Used Space Card -->
             <b-card class="mb-4" no-body>
               <b-card-body>
                 <b-card class="hover-effect card-light-primary mt-4">
@@ -69,8 +180,7 @@
                 </b-card>
                 
                 <div class="my-3 border-top"></div>
-                
-                <!-- User Profile Section -->
+
                 <div class="d-flex align-items-center">
                   <span class="h-45 w-45 d-flex justify-content-center align-items-center bg-warning rounded-circle position-relative">
                     <b-img
@@ -94,9 +204,7 @@
             </b-card>
           </b-col>
 
-          <!-- Main Content Area -->
           <b-col lg="8" xxl="9">
-            <!-- Tab Content -->
             <div class="tab-content">
               <div v-if="activeTab === '1'" class="tab-pane active">
                 <SettingProfile />
@@ -127,118 +235,5 @@
   </AppLayout>
 </template>
 
-<script setup>
-import {ref,  computed} from "vue";
-import {
-  BCard,
-  BCardBody,
-  BCardHeader,
-  BCol,
-  BImg,
-  BNav,
-  BNavItem,
-  BProgress,
-  BProgressBar,
-  BRow,
-} from "bootstrap-vue-next";
 
-import AppLayout from "@/views/AppLayout.vue";
-import ActivityTimeline from "@/components/Apps/Setting/ActivityTimeline.vue";
-import Connection from "@/components/Apps/Setting/Connection.vue";
-import NotificationSettings from "@/components/Apps/Setting/NotificationSettings.vue";
-import PrivacyCard from "@/components/Apps/Setting/PrivacyCard.vue";
-import SecurityCard from "@/components/Apps/Setting/SecurityCard.vue";
-import SettingProfile from "@/components/Apps/Setting/SettingProfile.vue";
-import Subscription from "@/components/Apps/Setting/Subscription.vue";
-import TimeSpent from "@/components/Apps/Setting/TimeSpent.vue";
-
-import {
-  PhBellSimple,
-  PhGraph,
-  PhLockOpen,
-  PhNotification,
-  PhAlarm,
-  PhShieldCheck,
-  PhTrash,
-  PhUserCircleGear, PhStack,
-} from "@phosphor-icons/vue";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-
-
-const activeTab = ref("1");
-
-
-const settingsTabs = ref([
-  {
-    eventKey: "1",
-    title: "Profile",
-    icon: PhUserCircleGear,
-  },
-  {
-    eventKey: "2",
-    title: "Activity",
-    icon: PhAlarm,
-  },
-  {
-    eventKey: "3",
-    title: "Security",
-    icon: PhShieldCheck,
-  },
-  {
-    eventKey: "4",
-    title: "Privacy",
-    icon: PhLockOpen,
-  },
-  {
-    eventKey: "5",
-    title: "Notification",
-    icon: PhNotification,
-  },
-  {
-    eventKey: "6",
-    title: "Subscription",
-    icon: PhBellSimple,
-  },
-  {
-    eventKey: "7",
-    title: "Connection",
-    icon: PhGraph,
-  },
-]);
-
-
-const handleDeleteClick = async () => {
-
-
-  try {
-    const { default: Swal } = await import("sweetalert2");
-
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
-
-    if (result.isConfirmed) {
-      await Swal.fire("Deleted!", "Your file has been deleted.", "success");
-    }
-  } catch (error) {
-    console.error("Error loading SweetAlert2:", error);
-  }
-};
-
-
-const breadcrumbItems = computed(() => ({
-  title: "Setting",
-  items: [
-    { label: "Apps", icon: PhStack },
-    { label: "Profile"},
-    { label: "Setting" , active: true }
-  ],
-}));
-</script>
 

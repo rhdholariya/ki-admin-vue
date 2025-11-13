@@ -14,7 +14,6 @@ import { PhStack } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 
-
 const breadcrumbItems = computed(() => ({
   title: "Invoice",
   items: [
@@ -95,7 +94,6 @@ const handlePrint = async () => {
             <b-col cols="12">
               <b-card>
                 <b-card-body>
-                  <!-- Header -->
                   <b-row class="align-items-center mb-4">
                     <b-col md="6">
                       <img
@@ -118,7 +116,6 @@ const handlePrint = async () => {
                     </b-col>
                   </b-row>
 
-                  <!-- Billing Info -->
                   <b-row class="mb-4">
                     <b-col md="4">
                       <h6 class="fw-semibold">Bill From</h6>
@@ -149,7 +146,6 @@ const handlePrint = async () => {
                     </b-col>
                   </b-row>
 
-                  <!-- Invoice Table -->
                   <b-row>
                     <b-col md="12">
                       <b-table
@@ -175,7 +171,6 @@ const handlePrint = async () => {
                       </b-table>
                     </b-col>
 
-                    <!-- Totals -->
                     <b-col md="12" class="mt-3 mt-md-0">
                       <table
                           class="table table-borderless mb-0 d-flex justify-content-end"
@@ -204,7 +199,6 @@ const handlePrint = async () => {
                 </b-card-body>
               </b-card>
 
-              <!-- Footer Buttons -->
               <div class="invoice-footer float-end mb-3">
                 <b-button variant="primary" class="m-1 rounded" @click="handlePrint">
                   <IconPrinter :size="15"/>

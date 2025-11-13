@@ -92,7 +92,7 @@ const handleCancel = () => {
                         <b-form-textarea
                             id="blogDescription"
                             placeholder="Type a comment here"
-                            style="height: 100px"
+                            class="h-100"
                             v-model="formData.blogDescription"
                         />
                         <label for="blogDescription">Blog Description</label>

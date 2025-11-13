@@ -23,7 +23,6 @@ import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
 import { PhStack } from '@phosphor-icons/vue'
 
-// Data imports
 import {
   apiAvatars,
   apiKeysData as initialApiKeysData,
@@ -32,7 +31,6 @@ import {
   chartOptions as initialChartOptions
 } from '@/data/app/Api/ApiData.js'
 
-// ✅ Reactive states
 const showSuccess = ref(true)
 const showError = ref(true)
 const showTotal = ref(true)
@@ -40,7 +38,6 @@ const showTotal = ref(true)
 const apiKeysData = ref([...initialApiKeysData])
 const selectedItems = ref(new Set())
 
-// Modals
 const showApiModal = ref(false)
 const showApiKeyContent = ref(false)
 const apiKeyName = ref('')
@@ -54,7 +51,6 @@ const selectedApiKey = ref(null)
 
 const showInfoAlert = ref(true)
 
-// ✅ Computed Chart Series
 const filteredSeries = computed(() => {
   const series = []
   if (showSuccess.value) {
@@ -71,13 +67,11 @@ const filteredSeries = computed(() => {
 
 const chartOptions = ref({ ...initialChartOptions })
 
-// ✅ Handle checkbox changes
 const handleCheckboxChange = ({ checked, item }) => {
   if (checked) selectedItems.value.add(item.id)
   else selectedItems.value.delete(item.id)
 }
 
-// ✅ Generate API Key
 const generateApiKey = () => {
   if (!apiKeyName.value.trim()) return
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -87,7 +81,6 @@ const generateApiKey = () => {
   showApiKeyContent.value = true
 }
 
-// ✅ Add API Key safely (no DOM mutation conflict)
 const addApiKey = async () => {
   if (!apiKeyName.value.trim() || !generatedApiKey.value) return
 
@@ -106,24 +99,20 @@ const addApiKey = async () => {
     email: `${apiKeyName.value.toLowerCase().replace(/\s+/g, '')}@example.com`
   }
 
-  // Close modal, then safely update data
   showApiModal.value = false
   await nextTick()
   apiKeysData.value = [newApiKey, ...apiKeysData.value]
   resetApiForm()
 }
 
-// ✅ Reset Form
 const resetApiForm = () => {
   apiKeyName.value = ''
   generatedApiKey.value = ''
   showApiKeyContent.value = false
 }
 
-// ✅ Dismiss alert
 const dismissAlert = () => (showInfoAlert.value = false)
 
-// ✅ Handle delete
 const handleDelete = item => {
   itemToDelete.value = item
   showDeleteModal.value = true
@@ -143,10 +132,8 @@ const handleView = item => {
   selectedApiKey.value = item
   showViewModal.value = true
 }
-
 const handleEdit = item => console.log('Edit:', item)
 
-// ✅ Breadcrumb
 const breadcrumbItems = computed(() => ({
   title: 'Api',
   items: [
@@ -162,7 +149,6 @@ const breadcrumbItems = computed(() => ({
       <Breadcrumb :breadcrumb="breadcrumbItems" />
       <b-container fluid>
         <b-row>
-          <!-- Chart Section -->
           <b-col lg="6">
             <b-card no-body>
               <b-card-header><h5>API request</h5></b-card-header>
@@ -177,7 +163,6 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
 
-          <!-- Stats Section -->
           <b-col lg="6">
             <b-row>
               <b-col sm="6">
@@ -273,7 +258,6 @@ const breadcrumbItems = computed(() => ({
               </b-col>
             </b-row>
 
-            <!-- ✅ Create API Modal -->
             <b-modal
                 v-model="showApiModal"
                 title="Create API"
@@ -309,7 +293,6 @@ const breadcrumbItems = computed(() => ({
             </b-modal>
           </b-col>
 
-          <!-- API Keys DataTable -->
           <div class="col-12 mt-4">
             <CustomDataTable
                 title="API Keys"
@@ -328,14 +311,12 @@ const breadcrumbItems = computed(() => ({
         </b-row>
       </b-container>
 
-      <!-- View Modal -->
       <b-modal v-model="showViewModal" title="API Key Details" centered>
         <p><strong>Name:</strong> {{ selectedApiKey?.name }}</p>
         <p><strong>API Key:</strong> {{ selectedApiKey?.apiKey }}</p>
         <p><strong>Email:</strong> {{ selectedApiKey?.email }}</p>
       </b-modal>
 
-      <!-- Delete Modal -->
       <b-modal
           v-model="showDeleteModal"
           centered

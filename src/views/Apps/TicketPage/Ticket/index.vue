@@ -277,7 +277,6 @@ const handleView = () => {
 
 };
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
     title: "Ticket",
     items: [
@@ -396,7 +395,6 @@ const breadcrumbItems = computed(() => ({
                         </swiper>
                     </b-col>
 
-                    <!-- DataTable Section -->
                     <b-col cols="12" class="mt-4">
                         <CustomDataTable
                             title="Tickets"
@@ -419,7 +417,6 @@ const breadcrumbItems = computed(() => ({
 
                 </b-row>
 
-                <!-- Add Ticket Modal -->
                 <b-modal
                     v-model="showModal"
                     title="Add Ticket"
@@ -492,7 +489,6 @@ const breadcrumbItems = computed(() => ({
                     </b-form>
                 </b-modal>
 
-                <!-- Edit Ticket Modal -->
                 <b-modal
                     v-model="showEditModal"
                     title="Edit Ticket"
@@ -563,7 +559,6 @@ const breadcrumbItems = computed(() => ({
                     </b-form>
                 </b-modal>
 
-                <!-- Delete Confirmation Modal -->
                 <b-modal
                     v-model="showDeleteModal"
                     centered

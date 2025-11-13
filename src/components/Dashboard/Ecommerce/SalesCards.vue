@@ -17,13 +17,12 @@ const topBrands = [
 </script>
 
 <template>
-  <!-- Earning Card -->
-  <BCol sm="5" lg="4" xxl="3">
-    <TotalEarningCard />
-  </BCol>
 
-  <!-- Recent Purchases -->
-  <BCol sm="6" lg="4" xxl="3">
+  <b-col sm="5" lg="4" xxl="3">
+    <TotalEarningCard />
+  </b-col>
+
+  <b-col sm="6" lg="4" xxl="3">
     <ul class="box-list mb-4">
       <li class="b-s-4-primary"><h5>Recent Purchases</h5></li>
       <li
@@ -41,10 +40,9 @@ const topBrands = [
         <BBadge bg="light-primary">{{ item.price }}</BBadge>
       </li>
     </ul>
-  </BCol>
+  </b-col>
 
-  <!-- Top Brands -->
-  <BCol sm="6" lg="4" xxl="3">
+  <b-col sm="6" lg="4" xxl="3">
     <ul class="list-box top-brand-list mb-4">
       <li class="b-s-4-primary"><h5>Top Brands</h5></li>
       <li
@@ -60,14 +58,13 @@ const topBrands = [
           <p class="text-secondary-800 mb-0">{{ brand.category }}</p>
         </div>
         <div class="text-end">
-          <BBadge :bg="brand.ratingColor">{{ brand.rating }}</BBadge>
+          <b-badge :bg="brand.ratingColor">{{ brand.rating }}</b-badge>
         </div>
       </li>
     </ul>
-  </BCol>
+  </b-col>
 
-  <!-- Offer Card -->
-  <BCol sm="6" lg="4" xxl="3">
+  <b-col sm="6" lg="4" xxl="3">
     <SaleOfferCard />
-  </BCol>
+  </b-col>
 </template>

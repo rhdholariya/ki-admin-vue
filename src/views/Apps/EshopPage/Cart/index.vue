@@ -107,7 +107,6 @@ const priceFields = [
   {key: 'value', label: ''}
 ]
 
-// Methods
 const updateQuantity = (id, amount) => {
   const product = products.value.find(p => p.id === id)
   if (product) {

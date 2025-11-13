@@ -13,7 +13,7 @@ import AppLayout from "@/views/AppLayout.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// ========================= SweetAlert Examples =========================
+
 
 
 const showAlert1 = () => Swal.fire("Any fool can use a computer");

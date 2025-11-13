@@ -19,7 +19,6 @@ onMounted(async () => {
   Prism.highlightAll();
 });
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: "Prismjs",
   items: [
@@ -36,10 +35,10 @@ const breadcrumbItems = {
         <Breadcrumb :breadcrumb="breadcrumbItems" />
 
         <b-row>
-          <!-- Left Column -->
+
           <b-col xxl="6" xl="6" lg="12">
             <b-row>
-              <!-- HTML Example -->
+
               <b-col cols="12">
                 <b-card no-body>
                   <b-card-header>
@@ -106,10 +105,8 @@ const breadcrumbItems = {
             </b-row>
           </b-col>
 
-          <!-- Right Column -->
           <b-col xxl="6" xl="6" lg="12">
             <b-row>
-              <!-- SCSS Example -->
               <b-col cols="12">
                 <b-card no-body>
                   <b-card-header>

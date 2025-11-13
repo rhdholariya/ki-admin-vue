@@ -83,7 +83,7 @@ const chartOptions = {
 
 
 <template>
-  <b-card no-body>
+  <b-card no-body class="equal-card">
     <b-card-body class="pb-0">
       <div class="mb-2">
         <h4 class="text-primary">

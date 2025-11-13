@@ -24,7 +24,6 @@ import {
   IconMailFast,
 } from "@tabler/icons-vue";
 
-// Mock data
 const blogDetailsCategories = ref([
   { label: "Photography", count: 12, color: "primary" },
   { label: "Travel", count: 8, color: "success" },
@@ -46,13 +45,11 @@ const popularPosts = ref([
 
 const email = ref("");
 
-// Get badge variant based on index
 const getBadgeClass = (index) => {
   const variants = ['secondary', 'success', 'info', 'warning', 'danger', 'primary', 'dark', 'light'];
   return variants[index % variants.length];
 };
 
-// Handle subscription form
 const handleSubmit = (e) => {
   e.preventDefault();
   email.value = "";
@@ -61,7 +58,6 @@ const handleSubmit = (e) => {
 
 <template>
   <b-row>
-    <!-- About Me -->
     <b-col md="12">
       <b-card no-body>
         <b-card-header><h5>About Me</h5></b-card-header>
@@ -85,7 +81,6 @@ const handleSubmit = (e) => {
       </b-card>
     </b-col>
 
-    <!-- Categories -->
     <b-col md="12">
       <b-card class="equal-card" no-body>
         <b-card-header><h5>Categories</h5></b-card-header>
@@ -108,7 +103,6 @@ const handleSubmit = (e) => {
       </b-card>
     </b-col>
 
-    <!-- Popular Blog Posts -->
     <b-col md="12">
       <b-card no-body>
         <b-card-header><h5>Popular Blog Posts</h5></b-card-header>
@@ -134,7 +128,6 @@ const handleSubmit = (e) => {
       </b-card>
     </b-col>
 
-    <!-- Tags -->
     <b-col md="12">
       <b-card no-body>
         <b-card-header><h5>Popular Blog Tags</h5></b-card-header>
@@ -153,7 +146,6 @@ const handleSubmit = (e) => {
       </b-card>
     </b-col>
 
-    <!-- Subscribe -->
     <b-col md="12">
       <b-card no-body>
         <b-card-header><h5>Subscribe</h5></b-card-header>

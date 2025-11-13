@@ -41,10 +41,8 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
 
 <template>
   <b-card class="chat-container-content-box" no-body>
-    <!-- Header -->
     <b-card-header>
       <div class="chat-header d-flex align-items-center ms-lg-0 ms-5">
-        <!-- Profile Section -->
         <router-link to="/apps/profile">
           <span
               class="profileimg h-45 w-45 d-flex-center b-r-50 position-relative bg-secondary"
@@ -65,7 +63,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           <p class="text-muted f-s-12 text-success mb-0">Online</p>
         </div>
 
-        <!-- Call Button -->
         <b-button
             variant="success"
             class="h-45 w-45 icon-btn b-r-22 me-sm-2"
@@ -74,7 +71,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           <icon-phone-call size="18"/>
         </b-button>
 
-        <!-- Call Modal -->
         <b-modal
             v-model="callModal"
             centered
@@ -113,7 +109,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           </div>
         </b-modal>
 
-        <!-- Video Button -->
         <b-button
             variant="primary"
             class="h-45 w-45 icon-btn b-r-22 me-sm-2"
@@ -122,7 +117,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           <icon-video size="18"/>
         </b-button>
 
-        <!-- Video Modal -->
         <b-modal
             v-model="videoModal"
             centered
@@ -168,7 +162,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           </div>
         </b-modal>
 
-        <!-- Settings Dropdown -->
         <b-dropdown
             class="dropdown-icon-none"
             toggle-class="h-45 w-45 icon-btn b-r-22 me-sm-2"
@@ -194,7 +187,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
       </div>
     </b-card-header>
 
-    <!-- Body -->
     <b-card-body class="p-0">
       <div class="chat-container">
         <div class="text-center">
@@ -206,7 +198,7 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
             :key="chat.id"
             class="position-relative"
         >
-          <!-- Left chat -->
+
           <template v-if="chat.position === 'left'">
             <div
                 class="chatdp h-45 w-45 b-r-50 position-absolute start-0 bg-secondary"
@@ -226,7 +218,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
             </div>
           </template>
 
-          <!-- Right chat -->
           <template v-else>
             <div class="chat-box-right">
               <p class="chat-text">{{ chat.message }}</p>
@@ -249,10 +240,8 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
       </div>
     </b-card-body>
 
-    <!-- Footer -->
     <b-card-footer>
       <div class="chat-footer d-flex">
-        <!-- Input + Emoji -->
         <div class="app-form flex-grow-1">
           <b-input-group>
             <span
@@ -275,7 +264,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           </b-input-group>
         </div>
 
-        <!-- Extra Buttons -->
         <div class="d-none d-sm-flex">
           <b-button
               id="mic-btn"
@@ -305,7 +293,6 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
           <b-tooltip target="attach-btn" placement="top">Attach file</b-tooltip>
         </div>
 
-        <!-- Mobile Dropdown -->
         <b-dropdown
             class="dropdown-icon-none d-sm-none"
             toggle-class="d-flex-center ms-1 p-0"

@@ -172,7 +172,6 @@ const updateCheckbox = (index, event) => {
       </BCard>
     </div>
 
-    <!-- FsLightbox -->
     <FsLightbox
         :toggler="lightboxToggler"
         :sources="productLightboxSources"

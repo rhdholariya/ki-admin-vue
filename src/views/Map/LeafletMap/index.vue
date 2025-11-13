@@ -22,7 +22,6 @@ import AppLayout from '@/views/AppLayout.vue'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.vue'
 import {PhMapPinLine} from '@phosphor-icons/vue'
 
-// Properly override default Leaflet icons (ESLint safe)
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
       'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -92,7 +91,6 @@ const mapConfigs = reactive([
   }
 ])
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: 'Leaflet Map',
   items: [
@@ -132,7 +130,7 @@ const breadcrumbItems = {
                         name="OpenStreetMap"
                     />
 
-                    <!-- Markers -->
+
                     <l-marker
                         v-for="(marker, markerIndex) in mapConfig.markers"
                         :key="`marker-${index}-${markerIndex}`"
@@ -143,7 +141,7 @@ const breadcrumbItems = {
                       </l-popup>
                     </l-marker>
 
-                    <!-- Circles -->
+
                     <l-circle
                         v-for="(circle, circleIndex) in mapConfig.circles"
                         :key="`circle-${index}-${circleIndex}`"

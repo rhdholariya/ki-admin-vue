@@ -18,12 +18,10 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Reactive data
 const showComposeModal = ref(false)
 const activeTab = ref(1)
 const sidebarVisible = ref(true)
 
-// Email data - Different data for each tab
 const inboxEmails = ref([
   {
     id: 1,
@@ -159,7 +157,6 @@ const trashEmails = ref([
   }
 ])
 
-// Methods
 const setActiveTab = (tabId) => {
   activeTab.value = tabId
 }
@@ -209,7 +206,6 @@ const breadcrumbItems = computed(() => ({
     </main>
   </AppLayout>
 
-  <!-- Compose Modal -->
   <b-modal
       v-model="showComposeModal"
       title="New Message"

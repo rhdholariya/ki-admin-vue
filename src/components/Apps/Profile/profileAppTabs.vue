@@ -21,11 +21,7 @@ const props = defineProps({
     required: true,
   },
 });
-
-
 const emit = defineEmits(["update:modelValue"]);
-
-
 const setData = (value) => {
   emit("update:modelValue", value);
 };

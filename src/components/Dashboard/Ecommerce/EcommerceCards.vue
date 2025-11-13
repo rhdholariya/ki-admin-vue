@@ -6,15 +6,8 @@ import {
   BTable,
   BLink,
 } from 'bootstrap-vue-next'
-
-
-
-
 import {ref} from "vue";
 import {notifications, statCards, timelineItems} from "@/data/dashboard/ecommerce/EcommerceCardsData.js";
-
-
-
 const tableFields = [
   { key: 'description', label: '' },
   { key: 'amount', label: '' }
@@ -48,7 +41,6 @@ const tableItems = ref([
 
 
 <template>
-    <!-- Stats Cards Column -->
     <div class="col-lg-5 col-xxl-3 eshop-cards-container">
       <div class="row">
         <div
@@ -56,13 +48,13 @@ const tableItems = ref([
             :key="card.id"
             class="col-6 col-md-3 col-lg-6"
         >
-          <BCard no-body>
+          <b-card no-body>
           <span
               :class="`bg-${card.bgColor} h-50 w-50 d-flex-center rounded-circle m-auto eshop-icon-box`"
           >
             <component :is="card.icon" :size="24" weight="duotone" />
           </span>
-            <BCardBody class="eshop-cards">
+            <b-card-body class="eshop-cards">
               <span class="ripple-effect"></span>
               <div class="overflow-hidden">
                 <h3 :class="`text-${card.textColor} mb-0`">
@@ -71,19 +63,17 @@ const tableItems = ref([
                 <p class="mg-b-35 f-w-600 text-dark-800 txt-ellipsis-1">
                   {{ card.title }}
                 </p>
-                <BBadge :bg="card.badgeBg">{{ card.badgeText }}</BBadge>
+                <b-badge :bg="card.badgeBg">{{ card.badgeText }}</b-badge>
               </div>
-            </BCardBody>
-          </BCard>
+            </b-card-body>
+          </b-card>
         </div>
       </div>
     </div>
 
-
     <div class="col-lg-7 col-xxl-6">
-      <!-- Order Summary Card -->
-      <BCard class="mb-3" no-body>
-        <BCardBody>
+      <b-card class="mb-3" no-body>
+        <b-card-body>
           <div class="row align-items-center">
             <div class="col-sm-6 position-relative">
               <div class="location-container">
@@ -102,9 +92,9 @@ const tableItems = ref([
                         r72qU2892
                       </h6>
                     </div>
-                    <BBadge bg="primary" class="f-s-10 ms-2">
+                    <b-badge bg="primary" class="f-s-10 ms-2">
                       • On The Way
-                    </BBadge>
+                    </b-badge>
                   </div>
                 </div>
               </div>
@@ -116,7 +106,7 @@ const tableItems = ref([
                   Delivery Date : 20 Feb 2025
                 </h6>
               </div>
-              <BTable
+              <b-table
                   class="cart-side-table mb-0"
                   :items="tableItems"
                   :fields="tableFields"
@@ -124,7 +114,7 @@ const tableItems = ref([
                 <template #cell(amount)="data">
                   <span :class="data.item.textClass">{{ data.value }}</span>
                 </template>
-              </BTable>
+              </b-table>
               <p class="f-w-500 mb-0 txt-ellipsis-1">
                 Support:
                 <BLink
@@ -136,12 +126,12 @@ const tableItems = ref([
               </p>
             </div>
           </div>
-        </BCardBody>
-      </BCard>
+        </b-card-body>
+      </b-card>
 
 
-      <BCard no-body>
-        <BCardBody>
+      <b-card no-body>
+        <b-card-body>
           <ul class="app-side-timeline shipping-timeline">
             <li
                 v-for="item in timelineItems"
@@ -176,11 +166,10 @@ const tableItems = ref([
               </div>
             </li>
           </ul>
-        </BCardBody>
-      </BCard>
+        </b-card-body>
+      </b-card>
     </div>
 
-    <!-- Notifications Column -->
     <div class="col-sm-7 col-lg-4 col-xxl-3">
       <ul class="notifications-list box-list mb-4">
         <li

@@ -29,19 +29,14 @@ import {
 
 import { projectActivities } from "@/data/app/projectapp/ProjectDetailData.js";
 
-// -------------------
-// State & lightbox
-// -------------------
 const message = ref("");
 const lightboxToggler = ref(false);
 const currentSlide = ref(1);
 const lightboxSources = ref([]);
 
-// Collect all image sources
 const getAllImageSources = () =>
     projectActivities.flatMap((activity) => activity.images || []);
 
-// Handle image click (open lightbox)
 const handleImageClick = (images, index = 0) => {
   const clickedImage = images[index];
   const allImages = getAllImageSources();
@@ -59,7 +54,6 @@ const handleImageClick = (images, index = 0) => {
   }
 };
 
-// Helper: timeline icon & text classes
 const getTimelineIconClass = (id) =>
     ({
       1: "text-light-primary",
@@ -78,14 +72,12 @@ const getTimelineTextClass = (id) =>
       5: "text-primary",
     }[id] || "text-primary");
 
-// Send message
 const sendMessage = () => {
   if (String(message.value).trim()) {
     message.value = "";
   }
 };
 
-// Initialize tooltips safely in Vue lifecycle
 onMounted(() => {
   document
       .querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -150,7 +142,6 @@ onMounted(() => {
 
               <p>{{ activity.time }}</p>
 
-              <!-- Images -->
               <div
                   v-if="activity.images"
                   class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3"
@@ -161,7 +152,6 @@ onMounted(() => {
                       :key="index"
                       sm="4"
                   >
-                    <!-- ✅ Vue-safe clickable element -->
                     <button
                         type="button"
                         class="img-hover-zoom btn p-0 border-0 bg-transparent"
@@ -176,8 +166,6 @@ onMounted(() => {
                   </b-col>
                 </b-row>
               </div>
-
-              <!-- Feature -->
               <div
                   v-if="activity.feature"
                   class="timeline-border-box me-2 ms-0 mt-3"
@@ -195,8 +183,6 @@ onMounted(() => {
                   {{ activity.feature.replies }}
                 </span>
               </div>
-
-              <!-- Buttons -->
               <div v-if="activity.buttons">
                 <b-button variant="danger" class="me-2">Accept</b-button>
                 <b-button variant="outline-danger">Reject</b-button>
@@ -239,7 +225,6 @@ onMounted(() => {
             </b-input-group>
           </div>
 
-          <!-- Desktop buttons -->
           <div class="ms-2 d-none d-sm-block">
             <button
                 type="button"
@@ -273,7 +258,6 @@ onMounted(() => {
             </button>
           </div>
 
-          <!-- Mobile dropdown -->
           <b-dropdown
               variant="link"
               toggle-class="h-35 w-35 d-flex-center ms-1"

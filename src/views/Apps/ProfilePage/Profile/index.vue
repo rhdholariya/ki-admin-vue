@@ -15,14 +15,11 @@ import StorisFeature from "@/components/Apps/Profile/StorisFeature.vue";
 import ProfileCard from "@/components/Apps/Profile/ProfileCard.vue";
 import AboutMe from "@/components/Apps/Profile/AboutMe.vue";
 
-// Local reactive state
 const data = ref("1");
 
-// Watch for changes to debug
 watch(data, () => {
 });
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Profile",
   items: [
@@ -39,15 +36,12 @@ const breadcrumbItems = computed(() => ({
       <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
         <b-row>
-          <!-- Left Sidebar -->
           <b-col lg="3">
             <ProfileAppTabs v-model="data" />
             <FriendsCard />
             <FeaturedPost />
           </b-col>
-          <!-- Middle Content -->
           <StorisFeature :data="data" />
-          <!-- Right Sidebar -->
           <b-col lg="4" xxl="3" class="order--1-lg col-box-4">
             <ProfileCard />
             <AboutMe />

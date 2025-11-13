@@ -24,7 +24,7 @@ import {
   projectNotificationsData
 } from '@/data/dashboard/project/OtherCardsData.js'
 
-// Reactive Data
+
 const candidates = reactive([...candidatesData])
 const clients = clientsData
 const notifications = projectNotificationsData
@@ -36,7 +36,6 @@ const tableFields = [
   { key: 'actions', label: 'Actions' }
 ]
 
-// Toggle Checkbox Handler
 const handleCandidateToggle = (id) => {
   const candidate = candidates.find((c) => c.id === id)
   if (candidate) candidate.checked = !candidate.checked
@@ -44,10 +43,8 @@ const handleCandidateToggle = (id) => {
 </script>
 
 <template>
-  <!-- Profit Cards Column -->
   <b-col lg="4" xxl="2" class="order-1-lg">
     <b-row>
-      <!-- Profit Card -->
       <b-col sm="6" lg="12">
         <b-card class="project-profit-card" no-body>
           <b-card-body>
@@ -85,14 +82,13 @@ const handleCandidateToggle = (id) => {
     </b-row>
   </b-col>
 
-  <!-- Online Candidates Column -->
   <b-col md="7" lg="4">
     <div class="header-box">
       <h5>Online Candidates</h5>
     </div>
 
     <b-card no-body>
-      <b-card-body class="px-2 pt-2 equal-card">
+      <b-card-body class="px-2 pt-2 pb-1 equal-card">
         <div class="table-responsive app-scroll">
           <b-table
               :items="candidates"
@@ -100,7 +96,6 @@ const handleCandidateToggle = (id) => {
               class="table-bottom-border align-middle mb-0"
               thead-class="d-none"
           >
-            <!-- Candidate Column -->
             <template #cell(candidate)="data">
               <div class="d-flex align-items-center">
                 <div :class="`h-40 w-40 d-flex-center b-r-12 overflow-hidden ${data.item.bgColor}`">
@@ -113,14 +108,12 @@ const handleCandidateToggle = (id) => {
               </div>
             </template>
 
-            <!-- Points Column -->
             <template #cell(points)="data">
               <b-badge bg="light-primary" class="f-s-12 f-w-700">
                 {{ data.item.points }}
               </b-badge>
             </template>
 
-            <!-- Actions Column -->
             <template #cell(actions)="data">
               <b-form-checkbox
                   switch
@@ -142,7 +135,6 @@ const handleCandidateToggle = (id) => {
     </b-card>
   </b-col>
 
-  <!-- Client List Column -->
   <b-col sm="6" lg="4" xxl="3">
     <div class="header-box d-flex justify-content-between align-items-center">
       <h5>Client List</h5>
@@ -179,7 +171,6 @@ const handleCandidateToggle = (id) => {
     </b-card>
   </b-col>
 
-  <!-- Notifications Column -->
   <b-col sm="6" lg="4" xxl="3">
     <ul class="box-list">
       <li class="d-flex justify-content-between align-items-center mt-3">
