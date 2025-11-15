@@ -15,7 +15,7 @@ import {
   BContainer,
   BRow,
   BCol,
-  BFormCheckbox
+  BFormCheckbox, BImg
 } from 'bootstrap-vue-next'
 
 import AppLayout from '@/views/AppLayout.vue'
@@ -215,10 +215,12 @@ const breadcrumbItems = computed(() => ({
                       <li
                           v-for="(avatar, index) in [apiAvatars.avatar4, apiAvatars.avatar1, apiAvatars.avatar2, apiAvatars.avatar3]"
                           :key="index"
-                          class="h-45 w-45 d-flex-center b-r-50 text-bg-light b-2-light position-relative"
+                          class="h-45 w-45 d-flex-center b-r-50 position-relative"
+                          :class="avatar.bg"
                       >
-                        <img :src="avatar" class="img-fluid b-r-50 overflow-hidden" />
+                        <b-img :src="avatar.img" class="img-fluid b-r-50 overflow-hidden" />
                       </li>
+
                       <li class="text-bg-primary h-35 w-35 d-flex-center b-r-50">5+</li>
                     </ul>
                   </b-card-body>
@@ -261,11 +263,12 @@ const breadcrumbItems = computed(() => ({
             <b-modal
                 v-model="showApiModal"
                 title="Create API"
-                header-class="bg-primary text-white"
+                header-class="bg-primary"
+                title-class="text-white"
                 centered
                 @hidden="resetApiForm"
             >
-              <b-form>
+              <b-form class="app-form">
                 <b-form-group label="API Key name" label-for="apiName">
                   <b-form-input id="apiName" v-model="apiKeyName" placeholder="Enter Your API Key Name" />
                 </b-form-group>
@@ -295,6 +298,7 @@ const breadcrumbItems = computed(() => ({
 
           <div class="col-12 mt-4">
             <CustomDataTable
+                class="w-100 display apikey-data-table table-bottom-border dataTable no-footer"
                 title="API Keys"
                 :key="apiKeysData.length"
                 :columns="apiKeysColumns"

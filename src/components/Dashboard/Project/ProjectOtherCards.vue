@@ -109,7 +109,7 @@ const handleCandidateToggle = (id) => {
             </template>
 
             <template #cell(points)="data">
-              <b-badge bg="light-primary" class="f-s-12 f-w-700">
+              <b-badge class="f-s-12 f-w-700 bg-light-primary">
                 {{ data.item.points }}
               </b-badge>
             </template>

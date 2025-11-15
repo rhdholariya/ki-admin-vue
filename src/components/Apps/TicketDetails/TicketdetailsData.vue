@@ -8,6 +8,7 @@ import {
 } from 'bootstrap-vue-next';
 import TextEditor from '@/components/UiKits/Editor/TextEditor.vue';
 </script>
+
 <template>
   <div>
     <b-card class="mb-4" no-body>

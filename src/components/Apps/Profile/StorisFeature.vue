@@ -1,17 +1,17 @@
 <script setup>
 import {ref, nextTick} from "vue";
 import {
-    BCard,
-    BCardHeader,
-    BCardBody,
-    BRow,
-    BCol,
-    BButton,
-    BListGroup,
-    BListGroupItem,
-    BBadge,
-    BForm,
-    BProgress
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BRow,
+  BCol,
+  BButton,
+  BListGroup,
+  BListGroupItem,
+  BBadge,
+  BForm,
+  BProgress, BImg
 } from "bootstrap-vue-next";
 import FsLightbox from "fslightbox-vue";
 import {RouterLink} from "vue-router";
@@ -123,11 +123,11 @@ const swiperOptions = {
                                 :key="idx"
                             >
                                 <div @click="handleImageClick(getStoryIndex(idx) + 1)" class="story">
-                                    <img :src="story.imgSrc" alt="story" class="rounded img-fluid"/>
+                                    <b-img :src="story.imgSrc" alt="story" class="rounded img-fluid"/>
                                     <div
                                         :class="['h-50 w-50 d-flex-center b-r-50 overflow-hidden story-icon', story.bgColor]"
                                     >
-                                        <img :src="story.avatar" alt="avatar" class="img-fluid"/>
+                                        <b-img :src="story.avatar" alt="avatar" class="img-fluid"/>
                                     </div>
                                 </div>
                             </swiper-slide>
@@ -140,7 +140,7 @@ const swiperOptions = {
                     <b-card-body>
                         <div class="photos-container">
                             <div class="left-main-img img-box" @click="handleImageClick(getPostImageIndex(0) + 1)">
-                                <img src="/images/profile-app/20.jpg" alt="Main Post"/>
+                                <b-img src="/images/profile-app/20.jpg" alt="Main Post"/>
                                 <div class="transparent-box2">
                                     <div class="captions">Simple image example</div>
                                 </div>
@@ -153,7 +153,7 @@ const swiperOptions = {
                                     class="img-box"
                                     @click="handleImageClick(getPostImageIndex(idx + 1) + 1)"
                                 >
-                                    <img :src="img" :alt="`Post ${idx + 2}`"/>
+                                    <b-img :src="img" :alt="`Post ${idx + 2}`"/>
                                     <div v-if="idx < 3" class="transparent-box2">
                                         <div class="captions">Simple image example</div>
                                     </div>
@@ -171,7 +171,7 @@ const swiperOptions = {
                                 :class="['img-box', idx === 0 ? 'left-main-img' : 'right-main-img']"
                                 @click="handleVideoClick(video.video)"
                             >
-                                <img :src="video.thumbnail" :alt="`Video ${idx + 1}`"/>
+                                <b-img :src="video.thumbnail" :alt="`Video ${idx + 1}`"/>
                                 <div class="transparent-box">
                                     <div class="caption">
                                         <i class="fa-solid fa-play-circle fa-fw"></i>
@@ -212,7 +212,7 @@ const swiperOptions = {
                                                 sm="4"
                                             >
                                                 <div @click="handleImageClick(getPostImageIndex(imgIdx) + 1)">
-                                                    <img :src="img" class="img-fluid rounded timeline-img"/>
+                                                    <b-img :src="img" class="img-fluid rounded timeline-img"/>
                                                 </div>
                                             </b-col>
                                         </b-row>
@@ -236,7 +236,7 @@ const swiperOptions = {
                             <b-card no-body>
                                 <b-card-header class="d-flex align-items-center">
                                     <div class="h-40 w-40 d-flex-center b-r-50 overflow-hidden">
-                                        <img :src="project.logo" alt="" class="img-fluid"/>
+                                        <b-img :src="project.logo" alt="" class="img-fluid"/>
                                     </div>
                                     <router-link
                                         to="/apps/projects-page/projects-details"
@@ -312,7 +312,7 @@ const swiperOptions = {
                         <b-card-body>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="h-45 w-45 d-flex-center b-r-50 overflow-hidden bg-danger">
-                                    <img :src="post.user.avatar" alt="avatar" class="img-fluid"/>
+                                    <b-img :src="post.user.avatar" alt="avatar" class="img-fluid"/>
                                 </div>
                                 <div class="flex-grow-1 ps-2">
                                     <div class="f-w-500">{{ post.user.name }}</div>
@@ -330,7 +330,7 @@ const swiperOptions = {
                             <div v-for="comment in post.comments" :key="comment.id" class="mt-3">
                                 <div class="d-flex align-items-center">
                                     <div class="h-45 w-45 d-flex-center b-r-50 overflow-hidden bg-primary">
-                                        <img :src="comment.avatar" alt="avatar" class="img-fluid"/>
+                                        <b-img :src="comment.avatar" alt="avatar" class="img-fluid"/>
                                     </div>
                                     <div class="flex-grow-1 ps-2">
                                         <div class="f-w-600">{{ comment.name }}</div>
@@ -377,7 +377,7 @@ const swiperOptions = {
                                 <div class="d-flex align-items-center position-relative">
                                     <div
                                         class="h-45 w-45 d-flex-center b-r-50 overflow-hidden bg-dark position-absolute">
-                                        <img :src="friend.avatar" alt="avatar" class="img-fluid"/>
+                                        <b-img :src="friend.avatar" alt="avatar" class="img-fluid"/>
                                     </div>
                                     <div class="flex-grow-1 ms-5">
                                         <div class="fw-medium">{{ friend.name }}</div>
@@ -417,7 +417,7 @@ const swiperOptions = {
                                             class="h-50 w-50 d-flex-center b-r-50 overflow-hidden position-absolute"
                                             :class="`bg-${friend.job === 'Web Developer' ? 'danger' : 'primary'}`"
                                         >
-                                            <img :src="friend.avatar" alt="avatar" class="img-fluid"/>
+                                            <b-img :src="friend.avatar" alt="avatar" class="img-fluid"/>
                                         </div>
                                         <div class="flex-grow-1 ms-5">
                                             <h6 class="mb-0 fw-medium text-ellipsis">@{{

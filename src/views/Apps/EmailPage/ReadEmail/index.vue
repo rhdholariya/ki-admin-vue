@@ -231,7 +231,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
 
-        <BCol xl="9">
+        <b-col xl="9">
           <b-card no-body>
             <b-card-body>
               <div class="d-flex align-items-center flex-wrap mb-3">
@@ -426,7 +426,7 @@ const breadcrumbItems = computed(() => ({
               </div>
             </b-card-body>
           </b-card>
-        </BCol>
+        </b-col>
       </b-row>
       </b-container>
     </main>

@@ -158,9 +158,9 @@ const resetCustomizer = () => {
 </script>
 
 <template>
-  <b-button variant="primary" class="customizer-btn" @click="handleShow">
+  <button class="customizer-btn" @click="handleShow">
     <PhGear size="24" />
-  </b-button>
+  </button>
 
   <b-offcanvas
       v-model:show="show"

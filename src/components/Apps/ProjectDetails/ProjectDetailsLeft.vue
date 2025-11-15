@@ -122,7 +122,7 @@ onMounted(() => {
           >
             <div
                 v-if="member.imgSrc"
-                class="bg-primary h-35 w-35 d-flex-center rounded overflow-hidden"
+                :class="`h-35 w-35 d-flex-center rounded overflow-hidden bg-${member.bgColor}`"
             >
               <b-img :src="member.imgSrc" :alt="member.name" class="img-fluid" />
             </div>

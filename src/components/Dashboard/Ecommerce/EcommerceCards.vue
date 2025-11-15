@@ -37,6 +37,8 @@ const tableItems = ref([
     _cellClasses: { description: 'fw-bold', amount: 'text-end fw-bold' }
   }
 ])
+
+
 </script>
 
 
@@ -63,7 +65,9 @@ const tableItems = ref([
                 <p class="mg-b-35 f-w-600 text-dark-800 txt-ellipsis-1">
                   {{ card.title }}
                 </p>
-                <b-badge :bg="card.badgeBg">{{ card.badgeText }}</b-badge>
+                <b-badge :class="`badge bg-${card.badgeBg}`">
+                  {{ card.badgeText }}
+                </b-badge>
               </div>
             </b-card-body>
           </b-card>

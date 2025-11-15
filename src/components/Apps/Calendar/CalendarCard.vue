@@ -60,7 +60,6 @@ const calendarOptions = computed(() => ({
 
 // Event handlers
 const handleEventReceive = (info) => {
-  // If checkbox is enabled, remove dragged event after drop
   if (dropRemoveChecked.value) {
     info.draggedEl?.parentNode?.removeChild(info.draggedEl);
   }

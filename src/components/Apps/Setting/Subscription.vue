@@ -1,3 +1,92 @@
+<script setup>
+import { ref } from "vue";
+import {
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BRow,
+  BCol,
+  BButton,
+  BFormRadio,
+  BFormInput,
+  BInputGroup,
+  BImg,
+} from "bootstrap-vue-next";
+
+
+import { PhCheckCircle } from "@phosphor-icons/vue";
+
+
+const teamCount = ref(25);
+const selectedPlan = ref("planOption1");
+
+
+const plans = ref([
+  {
+    id: "planOption2",
+    label: "Mark Moen",
+    subLabel: "UI/UX Designer",
+    price: "$69.44",
+    users: "1 users/quarterly",
+  },
+  {
+    id: "planOption1",
+    label: "Mark Moen",
+    subLabel: "UI/UX Designer",
+    price: "$69.44",
+    users: "1 users/quarterly",
+    features: [
+      "40 downloads per day.",
+      "Access to all products or bundles.",
+      "Early access to new/beta release features.",
+    ],
+    hasTeamOption: true,
+  },
+  {
+    id: "planOption3",
+    label: "Business Pro",
+    subLabel: "for big teams",
+    price: "$250.44",
+    users: "31 users/quarterly",
+  },
+]);
+
+
+const paymentMethods = ref([
+  {
+    id: "paymentCheckbox1",
+    value: "paymentoption1",
+    label: "**** 4426",
+    subLabel: "Visa card",
+    img: "/images/setting-app/visa-icon.png",
+    alt: "Visa",
+    defaultChecked: false,
+  },
+  {
+    id: "paymentCheckbox2",
+    value: "paymentoption2",
+    label: "**** 6790",
+    subLabel: "Master card",
+    img: "/images/setting-app/master-icon.png",
+    alt: "MasterCard",
+    defaultChecked: true,
+  },
+]);
+
+
+const handleIncrement = () => {
+  teamCount.value += 1;
+};
+
+const handleDecrement = () => {
+  if (teamCount.value > 1) {
+    teamCount.value -= 1;
+  }
+};
+</script>
+
+
+
 <template>
   <b-card no-body>
     <b-card-header>
@@ -207,91 +296,6 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BRow,
-  BCol,
-  BButton,
-  BFormRadio,
-  BFormInput,
-  BInputGroup,
-  BImg,
-} from "bootstrap-vue-next";
 
-// Import icons
-import { PhCheckCircle } from "@phosphor-icons/vue";
-
-// Reactive state
-const teamCount = ref(25);
-const selectedPlan = ref("planOption1");
-
-// Plans data
-const plans = ref([
-  {
-    id: "planOption2",
-    label: "Mark Moen",
-    subLabel: "UI/UX Designer",
-    price: "$69.44",
-    users: "1 users/quarterly",
-  },
-  {
-    id: "planOption1",
-    label: "Mark Moen",
-    subLabel: "UI/UX Designer",
-    price: "$69.44",
-    users: "1 users/quarterly",
-    features: [
-      "40 downloads per day.",
-      "Access to all products or bundles.",
-      "Early access to new/beta release features.",
-    ],
-    hasTeamOption: true,
-  },
-  {
-    id: "planOption3",
-    label: "Business Pro",
-    subLabel: "for big teams",
-    price: "$250.44",
-    users: "31 users/quarterly",
-  },
-]);
-
-// Payment methods data
-const paymentMethods = ref([
-  {
-    id: "paymentCheckbox1",
-    value: "paymentoption1",
-    label: "**** 4426",
-    subLabel: "Visa card",
-    img: "/images/setting-app/visa-icon.png",
-    alt: "Visa",
-    defaultChecked: false,
-  },
-  {
-    id: "paymentCheckbox2",
-    value: "paymentoption2",
-    label: "**** 6790",
-    subLabel: "Master card",
-    img: "/images/setting-app/master-icon.png",
-    alt: "MasterCard",
-    defaultChecked: true,
-  },
-]);
-
-// Methods
-const handleIncrement = () => {
-  teamCount.value += 1;
-};
-
-const handleDecrement = () => {
-  if (teamCount.value > 1) {
-    teamCount.value -= 1;
-  }
-};
-</script>
 
 

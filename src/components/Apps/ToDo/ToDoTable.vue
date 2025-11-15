@@ -17,7 +17,7 @@ import {
   BPagination,
 } from "bootstrap-vue-next";
 import { IconEdit, IconSearch, IconTrash } from "@tabler/icons-vue";
-import * as bootstrap from "bootstrap";
+
 import { initialTodos } from "@/data/app/todo/todoData.js";
 
 const todos = ref([...initialTodos]);

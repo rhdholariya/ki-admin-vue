@@ -397,6 +397,7 @@ const breadcrumbItems = computed(() => ({
 
                     <b-col cols="12" class="mt-4">
                         <CustomDataTable
+                            class="w-100 display ticket-app-table dataTable no-footer"
                             title="Tickets"
                             description=""
                             :key="ticketData.length"
@@ -503,7 +504,7 @@ const breadcrumbItems = computed(() => ({
                     @hidden="resetEditForm"
                 >
                     <b-form class="app-form">
-                        <b-row>
+                        <b-row class="gap-1">
                             <b-col cols="12">
                                 <b-form-group label="Title">
                                     <b-form-input v-model="editTitle" placeholder="Title"/>

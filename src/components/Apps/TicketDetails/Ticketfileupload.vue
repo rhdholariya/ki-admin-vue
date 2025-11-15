@@ -3,6 +3,7 @@ import { BCard, BCardHeader, BCardBody } from 'bootstrap-vue-next';
 import FileUploader from '@/components/Apps/Profile/FileUploader.vue';
 import { IconFolderFilled, IconDownload, IconBrandHipchat} from '@tabler/icons-vue'
 </script>
+
 <template>
   <div>
     <b-card no-body>

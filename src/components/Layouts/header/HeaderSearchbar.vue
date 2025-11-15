@@ -19,10 +19,10 @@ const recentSearches = ref([
 </script>
 
 <template>
-  <a href="#" class="d-block head-icon" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+  <router-link to="#" class="d-block head-icon" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
      aria-controls="offcanvasRight">
     <PhMagnifyingGlass size="24" />
-  </a>
+  </router-link>
 
   <div class="offcanvas offcanvas-end header-searchbar-canvas" tabindex="-1" id="offcanvasRight"
        aria-labelledby="offcanvasRight">

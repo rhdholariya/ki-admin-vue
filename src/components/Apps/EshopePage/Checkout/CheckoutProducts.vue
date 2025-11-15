@@ -61,7 +61,6 @@ const handleRemove = (id) => {
 
 <template>
   <div>
-    <!-- 🛒 Cart Items -->
     <div v-for="item in cartItems" :key="item.id" class="checkout-cart-box">
       <div class="cart-images d-flex-center flex-shrink-0">
         <a href="#">
@@ -75,7 +74,6 @@ const handleRemove = (id) => {
           <span class="text-muted">({{ item.description }})</span>
         </h6>
 
-        <!-- ⭐ Rating -->
         <div class="mb-2">
           <IconStarFilled
               v-for="index in 5"
@@ -84,7 +82,6 @@ const handleRemove = (id) => {
               :class="index <= item.rating ? 'text-warning' : 'text-secondary'"
           />
         </div>
-
         <p class="mb-1">
           <span class="fw-semibold">
             {{ item.size ? "Size" : "Color" }}
@@ -97,7 +94,6 @@ const handleRemove = (id) => {
         </p>
       </div>
 
-      <!-- 💵 Price + Remove -->
       <div class="cart-price-box">
         <b-button variant="link" @click="handleRemove(item.id)" class="p-0 mb-2">
           <IconX size="18" class="text-secondary" />
@@ -106,7 +102,6 @@ const handleRemove = (id) => {
       </div>
     </div>
 
-    <!-- 💳 Pricing Details -->
     <div class="pricing-details mt-4">
       <div class="mb-3">
         <b-input-group>

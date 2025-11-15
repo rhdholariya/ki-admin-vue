@@ -5,14 +5,14 @@ import TotalEarningCard from '@/components/Widget/TotalEarningCard.vue'
 
 const recentPurchases = [
   { id: 1, name: 'Wireless Headphones', brand: 'SoundMax', image: '/images/dashboard/ecommerce-dashboard/product/02.png', price: '$129.99' },
-  { id: 2, name: 'Smart Watch', brand: 'TechGear', image: '/images/dashboard/ecommerce-dashboard/product/03.png', price: '$199.99' },
-  { id: 3, name: 'Smart Watch', brand: 'TechWear', image: '/images/dashboard/ecommerce-dashboard/product/01.png', price: '$199' }
+  { id: 2, name: 'Smart Watch', brand: 'TechGear', image: '/images/dashboard/ecommerce-dashboard/product/03.png', price: '$199.99'  },
+  { id: 3, name: 'Smart Watch', brand: 'TechWear', image: '/images/dashboard/ecommerce-dashboard/product/01.png', price: '$199'  }
 ]
 
 const topBrands = [
-  { id: 1, name: 'Nike', category: 'Sportswear', image: '/images/dashboard/ecommerce-dashboard/product/04.png', rating: '4.8', ratingColor: 'success' },
-  { id: 2, name: 'Apple', category: 'Electronics', image: '/images/dashboard/ecommerce-dashboard/product/06.png', rating: '4.9', ratingColor: 'success' },
-  { id: 3, name: 'TrekVibe', category: "Bag's", image: '/images/dashboard/ecommerce-dashboard/product/07.png', rating: '74.30%', ratingColor: 'light-danger' }
+  { id: 1, name: 'Nike', category: 'Sportswear', image: '/images/dashboard/ecommerce-dashboard/product/04.png', rating: '4.8', ratingColor: 'success' , badgeBg: 'light-primary'},
+  { id: 2, name: 'Apple', category: 'Electronics', image: '/images/dashboard/ecommerce-dashboard/product/06.png', rating: '4.9', ratingColor: 'success' , badgeBg: 'light-success' },
+  { id: 3, name: 'TrekVibe', category: "Bag's", image: '/images/dashboard/ecommerce-dashboard/product/07.png', rating: '74.30%', ratingColor: 'light-danger' , badgeBg: 'light-danger' }
 ]
 </script>
 
@@ -37,7 +37,7 @@ const topBrands = [
           <h6 class="mb-0 text-dark-800 f-w-500 txt-ellipsis-1">{{ item.name }}</h6>
           <p class="text-secondary-800 mb-0">{{ item.brand }}</p>
         </div>
-        <BBadge bg="light-primary">{{ item.price }}</BBadge>
+        <BBadge class="bg-light-primary">{{ item.price }}</BBadge>
       </li>
     </ul>
   </b-col>
@@ -58,7 +58,7 @@ const topBrands = [
           <p class="text-secondary-800 mb-0">{{ brand.category }}</p>
         </div>
         <div class="text-end">
-          <b-badge :bg="brand.ratingColor">{{ brand.rating }}</b-badge>
+          <b-badge :class="`badge bg-${brand.badgeBg}`">{{ brand.rating }}</b-badge>
         </div>
       </li>
     </ul>

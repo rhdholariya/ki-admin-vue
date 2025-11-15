@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCard, BCardBody } from "bootstrap-vue-next";
+import {BCard, BCardBody, BImg} from "bootstrap-vue-next";
 import FsLightbox from "fslightbox-vue";
 
 const imageSources = [
@@ -31,7 +31,7 @@ const openLightbox = (index) => {
             class="gallery-thumbnail"
             @click="openLightbox(index)"
         >
-          <img
+          <b-img
               :src="image"
               class="img-fluid rounded w-90 h-90 object-fit-cover "
               :alt="`Gallery image ${index + 1}`"

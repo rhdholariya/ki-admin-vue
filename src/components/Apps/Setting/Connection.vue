@@ -1,3 +1,24 @@
+<script setup>
+import {
+  BRow,
+  BCol,
+  BCard,
+  BCardBody,
+  BCardFooter,
+  BFormCheckbox,
+  BImg,
+} from "bootstrap-vue-next"
+
+
+import { connections } from "@/data/app/settingapp/SettingAppData.js"
+
+
+const viewIntegration = (_id) => {
+
+}
+</script>
+
+
 <template>
   <b-row>
     <b-col
@@ -46,22 +67,4 @@
   </b-row>
 </template>
 
-<script setup>
-import {
-  BRow,
-  BCol,
-  BCard,
-  BCardBody,
-  BCardFooter,
-  BFormCheckbox,
-  BImg,
-} from "bootstrap-vue-next"
 
-
-import { connections } from "@/data/app/settingapp/SettingAppData.js"
-
-
-const viewIntegration = (_id) => {
-
-}
-</script>

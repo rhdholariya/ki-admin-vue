@@ -1,3 +1,18 @@
+<script setup>
+import {
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BRow,
+  BCol,
+  BButton,
+} from "bootstrap-vue-next";
+import { privacyOptions, userOptions } from "@/data/app/settingapp/SettingAppData.js";
+const unpublish = () => {
+};
+</script>
+
+
 <template>
   <b-card class="equal-card privacy-card" no-body>
     <b-card-header>
@@ -126,24 +141,6 @@
   </b-card>
 </template>
 
-<script setup>
-import {
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BRow,
-  BCol,
-  BButton,
-} from "bootstrap-vue-next";
 
-
-import { privacyOptions, userOptions } from "@/data/app/settingapp/SettingAppData.js";
-
-
-
-
-const unpublish = () => {
-};
-</script>
 
 

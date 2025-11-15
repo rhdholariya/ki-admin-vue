@@ -27,17 +27,17 @@ import {
 
 // App shortcuts
 const apps = [
-  { name: "E-shop", href: "product.html", icon: PhShoppingBagOpen, color: "text-light-primary" },
-  { name: "Email", href: "email.html", icon: PhEnvelope, color: "text-light-danger" },
-  { name: "Chat", href: "chat.html", icon: PhChatCircleText, color: "text-light-success" },
-  { name: "Project", href: "project_app.html", icon: PhProjectorScreenChart, color: "text-light-warning" },
-  { name: "Invoice", href: "invoice.html", icon: PhScroll, color: "text-light-info" },
-  { name: "Blog", href: "blog.html", icon: PhNotebook, color: "text-light-dark" },
-  { name: "Calendar", href: "calendar.html", icon: PhCalendar, color: "text-light-danger" },
-  { name: "File Manager", href: "file_manager.html", icon: PhFolderOpen, color: "text-light-warning" },
-  { name: "Gallery", href: "gallery.html", icon: PhGooglePhotosLogo, color: "text-light-primary" },
-  { name: "Profile", href: "profile.html", icon: PhUsersThree, color: "text-light-success" },
-  { name: "Task Board", href: "kanban_board.html", icon: PhSelectionForeground, color: "text-light-secondary" }
+  { name: "E-shop", href: "/apps/e-shop/product", icon: PhShoppingBagOpen, color: "text-light-primary" },
+  { name: "Email", href: "/apps/email-page/email", icon: PhEnvelope, color: "text-light-danger" },
+  { name: "Chat", href: "/apps/chat", icon: PhChatCircleText, color: "text-light-success" },
+  { name: "Project", href: "apps/projects-page/projects", icon: PhProjectorScreenChart, color: "text-light-warning" },
+  { name: "Invoice", href: "/apps/invoice", icon: PhScroll, color: "text-light-info" },
+  { name: "Blog", href: "/apps/blog-page/blog", icon: PhNotebook, color: "text-light-dark" },
+  { name: "Calendar", href: "/apps/calendar", icon: PhCalendar, color: "text-light-danger" },
+  { name: "File Manager", href: "/apps/file-manager", icon: PhFolderOpen, color: "text-light-warning" },
+  { name: "Gallery", href: "/apps/gallery", icon: PhGooglePhotosLogo, color: "text-light-primary" },
+  { name: "Profile", href: "/apps/profile-page/profile", icon: PhUsersThree, color: "text-light-success" },
+  { name: "Task Board", href: "/apps/kanban-board", icon: PhSelectionForeground, color: "text-light-secondary" }
 ];
 
 // Reactive state
@@ -62,20 +62,26 @@ const toggleMoreSettings = () => {
       <PhBoundingBox :size="22" />
     </b-button>
 
-    <!-- Offcanvas -->
-    <b-offcanvas v-model="showOffcanvas" placement="end" class="header-apps-canvas">
+    <!-- ✅ Fixed Offcanvas -->
+    <b-offcanvas
+        v-model="showOffcanvas"
+        placement="end"
+        class="header-apps-canvas"
+        body-class="app-scroll"
+    >
+      <!-- Header -->
       <template #header>
         <h5 class="offcanvas-title">Shortcut</h5>
 
         <!-- Dropdown Settings -->
-        <b-dropdown variant="link" class="app-dropdown flex-shrink-0" no-caret>
+        <b-dropdown variant="link" class="app-dropdown flex-shrink-0 text-secondary" no-caret>
           <template #button-content>
-            <PhSlidersHorizontal :size="20" />
+            <PhSlidersHorizontal :size="20" class="text-secondary"/>
           </template>
 
-          <b-dropdown-item href="setting.html" target="_blank">Privacy Settings</b-dropdown-item>
-          <b-dropdown-item href="setting.html" target="_blank">Account Settings</b-dropdown-item>
-          <b-dropdown-item href="setting.html" target="_blank">Accessibility</b-dropdown-item>
+          <b-dropdown-item to="/apps/profile-page/setting" target="_blank">Privacy Settings</b-dropdown-item>
+          <b-dropdown-item to="/apps/profile-page/setting" target="_blank">Account Settings</b-dropdown-item>
+          <b-dropdown-item to="/apps/profile-page/setting" target="_blank">Accessibility</b-dropdown-item>
 
           <b-dropdown-divider />
 
@@ -88,9 +94,9 @@ const toggleMoreSettings = () => {
 
           <!-- Submenu -->
           <div v-if="showMoreSettings" class="submenu p-2 border-top bg-light">
-            <b-dropdown-item href="setting.html" target="_blank">Backup and Restore</b-dropdown-item>
-            <b-dropdown-item href="setting.html" target="_blank">Data Usage</b-dropdown-item>
-            <b-dropdown-item href="setting.html" target="_blank">Theme</b-dropdown-item>
+            <b-dropdown-item href="/apps/profile-page/setting" target="_blank">Backup and Restore</b-dropdown-item>
+            <b-dropdown-item href="/apps/profile-page/setting" target="_blank">Data Usage</b-dropdown-item>
+            <b-dropdown-item href="/apps/profile-page/setting" target="_blank">Theme</b-dropdown-item>
             <b-dropdown-item>
               <div class="d-flex align-items-center justify-content-between">
                 <p class="mb-0">Notification</p>
@@ -106,34 +112,32 @@ const toggleMoreSettings = () => {
         </b-dropdown>
       </template>
 
-      <!-- App Shortcuts -->
-      <template #default>
-        <div class="row row-cols-3 g-2">
-          <div v-for="(app, index) in apps" :key="index" class="d-flex-center text-center">
-            <a
-                :class="app.color + ' w-100 rounded-3 py-3 px-2'"
-                :href="app.href"
-                target="_blank"
-            >
-              <span>
-                <component :is="app.icon" size="30" weight="light" />
-              </span>
-              <p class="mb-0 f-w-500 text-dark">{{ app.name }}</p>
-            </a>
-          </div>
-
-          <!-- Add More App -->
-          <div class="d-flex-center text-center">
-            <router-link
-                class="d-flex-center text-light-secondary w-100 h-100 rounded-3 p-2 dashed-1-secondary"
-                to="kanban_board.html"
-                target="_blank"
-            >
-              <span><PhPlus size="30" weight="light" /></span>
-            </router-link>
-          </div>
+      <!-- ✅ Content directly inside Offcanvas (no extra offcanvas-body div) -->
+      <div class="row row-cols-3 g-2">
+        <div v-for="(app, index) in apps" :key="index" class="d-flex-center text-center">
+          <a
+              :class="app.color + ' w-100 rounded-3 py-3 px-2'"
+              :href="app.href"
+              target="_blank"
+          >
+            <span>
+              <component :is="app.icon" size="30" weight="light" />
+            </span>
+            <p class="mb-0 f-w-500 text-dark">{{ app.name }}</p>
+          </a>
         </div>
-      </template>
+
+        <!-- Add More App -->
+        <div class="d-flex-center text-center">
+          <router-link
+              class="d-flex-center text-light-secondary w-100 h-100 rounded-3 p-2 dashed-1-secondary"
+              to="/apps/kanban-board"
+              target="_blank"
+          >
+            <span><PhPlus size="30" weight="light" /></span>
+          </router-link>
+        </div>
+      </div>
     </b-offcanvas>
   </div>
 </template>

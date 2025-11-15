@@ -1,3 +1,59 @@
+<script setup>
+import { ref } from "vue";
+import {
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BForm,
+  BFormGroup,
+  BFormInput,
+  BFormTextarea,
+  BFormSelect,
+  BFormFile,
+  BButton,
+  BRow,
+  BCol,
+  BImg,
+} from "bootstrap-vue-next";
+
+
+import { IconPhotoHeart } from "@tabler/icons-vue";
+
+
+const previewUrl = ref(null);
+const fileInputRef = ref(null);
+
+
+const formData = ref({
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  address: "",
+  address2: "",
+  city: "",
+  state: "",
+  zip: "",
+  language: "EN",
+});
+
+
+const handleFileChange = (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    previewUrl.value = reader.result;
+  };
+  reader.readAsDataURL(file);
+};
+
+const handleSubmit = () => {
+};
+</script>
+
+
 <template>
   <b-card class="setting-profile-tab" no-body>
     <b-card-header>
@@ -167,59 +223,6 @@
   </b-card>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BForm,
-  BFormGroup,
-  BFormInput,
-  BFormTextarea,
-  BFormSelect,
-  BFormFile,
-  BButton,
-  BRow,
-  BCol,
-  BImg,
-} from "bootstrap-vue-next";
 
-// Import icons
-import { IconPhotoHeart } from "@tabler/icons-vue";
-
-// Reactive state
-const previewUrl = ref(null);
-const fileInputRef = ref(null);
-
-// Form data
-const formData = ref({
-  username: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  address: "",
-  address2: "",
-  city: "",
-  state: "",
-  zip: "",
-  language: "EN",
-});
-
-// Methods
-const handleFileChange = (event) => {
-  const file = event.target.files?.[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    previewUrl.value = reader.result;
-  };
-  reader.readAsDataURL(file);
-};
-
-const handleSubmit = () => {
-};
-</script>
 
 

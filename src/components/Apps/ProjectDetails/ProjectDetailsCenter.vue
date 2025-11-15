@@ -144,7 +144,7 @@ onMounted(() => {
 
               <div
                   v-if="activity.images"
-                  class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3"
+                  class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3 mb-3"
               >
                 <b-row>
                   <b-col
@@ -152,7 +152,7 @@ onMounted(() => {
                       :key="index"
                       sm="4"
                   >
-                    <button
+                    <b-button
                         type="button"
                         class="img-hover-zoom btn p-0 border-0 bg-transparent"
                         @click="handleImageClick(activity.images, index)"
@@ -162,7 +162,7 @@ onMounted(() => {
                           class="w-100 rounded"
                           alt="Activity image"
                       />
-                    </button>
+                    </b-button>
                   </b-col>
                 </b-row>
               </div>
@@ -226,36 +226,36 @@ onMounted(() => {
           </div>
 
           <div class="ms-2 d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Microphone"
                 data-bs-toggle="tooltip"
             >
               <IconMicrophone :size="20" />
-            </button>
+            </b-button>
           </div>
 
           <div class="d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Camera"
                 data-bs-toggle="tooltip"
             >
               <IconCamera :size="20" />
-            </button>
+            </b-button>
           </div>
 
           <div class="d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Paperclip"
                 data-bs-toggle="tooltip"
             >
               <IconPaperclip :size="20" />
-            </button>
+            </b-button>
           </div>
 
           <b-dropdown

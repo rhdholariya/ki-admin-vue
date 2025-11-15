@@ -25,7 +25,7 @@ const handleStepClick = (stepId) => {
 </script>
 
 <template>
-  <b-card class="mb-3">
+  <b-card class="mb-3" no-body>
     <b-card-body class="p-0">
       <div class="checkout-tabs-step">
         <div
@@ -48,7 +48,7 @@ const handleStepClick = (stepId) => {
     </b-card-body>
   </b-card>
 
-  <b-card>
+  <b-card no-body>
     <b-card-body>
       <CheckoutTabsData :current-step="currentStep" />
     </b-card-body>
