@@ -64,16 +64,16 @@ const open = ref(false);
 
             <b-collapse v-model="open">
     <pre class="mt-3 language-html">
-      <code class="language-html">
-{{
-              `&lt;b-card no-body&gt;
+      <code v-prism>
+
+              &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Dropdown Color Variants&lt;/h5&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-${variants
+{{variants
   .map(
-    (variant) => `    &lt;b-dropdown text="${variant.charAt(0).toUpperCase() + variant.slice(1)}" variant="${variant}"&gt;
+    (variant) => `    &lt;b-dropdown text="{variant.charAt(0).toUpperCase() + variant.slice(1)}" variant="${variant}"&gt;
       &lt;b-dropdown-item href="ui-kits/dropdown"&gt;Action&lt;/b-dropdown-item&gt;
       &lt;b-dropdown-item href="ui-kits/dropdown"&gt;Another action&lt;/b-dropdown-item&gt;
       &lt;b-dropdown-item href="ui-kits/dropdown"&gt;Something else here&lt;/b-dropdown-item&gt;
@@ -81,10 +81,9 @@ ${variants
       &lt;b-dropdown-item href="ui-kits/dropdown"&gt;Separated link&lt;/b-dropdown-item&gt;
     &lt;/b-dropdown&gt;`
   )
-  .join("\n")}
+  .join("\n")}}
   &lt;/b-card-body&gt;
-&lt;/b-card&gt;`
-}}
+&lt;/b-card&gt;
       </code>
     </pre>
             </b-collapse>

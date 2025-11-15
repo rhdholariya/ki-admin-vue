@@ -35,7 +35,6 @@ const projects = ref([...projectsAppData]);
 const activeTab = ref("1");
 const modalOpen = ref(false);
 
-// File input reactive key
 const fileInputKey = ref(0);
 
 const formData = ref({
@@ -101,7 +100,6 @@ const resetForm = () => {
     imagePreview.value = null;
   }
 
-  // Reset file input reactively
   fileInputKey.value += 1;
 };
 
@@ -151,7 +149,6 @@ const handleSubmit = () => {
   toggleModal();
 };
 
-// Cleanup on unmount
 onUnmounted(() => {
   if (imagePreview.value) {
     URL.revokeObjectURL(imagePreview.value);
@@ -263,7 +260,6 @@ onUnmounted(() => {
           </b-col>
         </b-row>
 
-        <!-- Add Project Modal -->
         <b-modal v-model="modalOpen" title="Add Project" @hidden="resetForm">
           <b-form @submit.prevent="handleSubmit" class="app-form">
             <b-row class="g-3">

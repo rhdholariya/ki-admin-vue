@@ -34,12 +34,14 @@ const multipleItems = {
     991: { slidesPerView: 2 },
     567: { slidesPerView: 1 }
   }
+
 }
 
 const centerItems = {
   modules: [Navigation],
   slidesPerView: 2,
-  centeredSlides: true,
+  centeredSlides: false,
+    loop: true,
   navigation: true,
   breakpoints: {
     768: { slidesPerView: 2 },
@@ -61,7 +63,8 @@ const responsiveItems = {
 const variableItems = {
   modules: [Pagination],
   slidesPerView: "auto",
-  centeredSlides: true,
+  centeredSlides: false,
+    loop: true,
   spaceBetween: 16,
   pagination: { clickable: true }
 }

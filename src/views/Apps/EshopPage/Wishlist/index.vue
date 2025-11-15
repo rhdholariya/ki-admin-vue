@@ -17,7 +17,6 @@ import AppLayout from "@/views/AppLayout.vue";
 const heartStatus = ref(new Array(whishListData.length).fill(false));
 
 const handleIconClick = (index) => {
-  // Safer for reactivity tracking
   const updated = [...heartStatus.value];
   updated[index] = !updated[index];
   heartStatus.value = updated;

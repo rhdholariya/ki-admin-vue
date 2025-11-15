@@ -69,7 +69,6 @@ const breadcrumbItems = {
     <main>
       <b-container fluid>
         <breadcrumb :breadcrumb="breadcrumbItems" />
-
         <b-row>
           <b-col xs="12">
             <b-card no-body>

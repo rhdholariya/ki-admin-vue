@@ -5,7 +5,6 @@ import {
   BAccordionItem,
   BContainer
 } from "bootstrap-vue-next";
-
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
@@ -38,10 +37,7 @@ const renderContent = (content) => {
   <app-layout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
         <breadcrumb :breadcrumb="breadcrumbItems" />
-
-        <!-- Header -->
         <div class="faq-header text-center my-4">
           <img src="/images/logo/3.png" alt="Logo" />
           <h2 class="text-dark fw-bold">How Can We Help?</h2>

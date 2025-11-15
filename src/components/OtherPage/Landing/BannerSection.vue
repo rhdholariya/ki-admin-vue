@@ -1,7 +1,63 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+import {
+    BButton,
+    BCol,
+    BContainer,
+    BRow,
+    BNavbar,
+    BNavbarBrand,
+    BNavbarToggle,
+    BCollapse,
+    BNav,
+    BNavItem,
+} from "bootstrap-vue-next";
+
+const words = ["Management", "Analytics", "Performance", "Dashboard", "Insights"];
+const currentWord = ref(words[0]);
+const currentWordIndex = ref(0);
+const highlightRef = ref(null);
+const isScrolled = ref(false);
+const bgFiles = [
+    "star-bg.png",
+    "arrow-bg.png",
+    "circle.png",
+    "circle.png",
+    "arrow-bg.png",
+    "star-bg.png",
+    "arrow-bg.png",
+];
+
+onMounted(() => {
+    // Scroll handler
+    const handleScroll = () => {
+        isScrolled.value = window.scrollY > 50;
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    const interval = setInterval(() => {
+        if (highlightRef.value) {
+            highlightRef.value.classList.remove("animate");
+            setTimeout(() => {
+                currentWordIndex.value = (currentWordIndex.value + 1) % words.length;
+                currentWord.value = words[currentWordIndex.value];
+                if (highlightRef.value) {
+                    highlightRef.value.classList.add("animate");
+                }
+            }, 50);
+        }
+    }, 2000);
+
+    onUnmounted(() => {
+        clearInterval(interval);
+        window.removeEventListener("scroll", handleScroll);
+    });
+});
+</script>
 <template>
   <div>
     <div class="landing-wrapper">
-      <!-- Navbar -->
 
       <b-navbar
           toggleable="lg"
@@ -10,15 +66,16 @@
           :class="{ 'landing-navbar-active': isScrolled }"
       >
 
-        <div class="landing-navbar-container d-flex w-100 justify-content-between align-items-center">
+        <div class="landing-navbar-container d-block d-xxl-flex d-lg-flex d-md-block d-sm-block w-100 justify-content-between align-items-center">
+            <div class="d-flex justify-content-between">
           <b-navbar-brand href="#home" class="logo">
             <img src="/images/logo/1.png" alt="Logo" class="w-200" />
           </b-navbar-brand>
 
           <b-navbar-toggle target="landing_nav" />
-
-          <b-collapse id="landing_nav" is-nav>
-            <b-nav class="flex-grow-1 justify-content-center">
+            </div>
+          <b-collapse id="landing_nav" is-nav class="navbar-collapse collapse">
+            <b-nav class="navbar-nav flex-grow-1 justify-content-center">
               <b-nav-item href="#Demo" class="active">Demo</b-nav-item>
               <b-nav-item href="#Cards">Cards</b-nav-item>
               <b-nav-item href="#Features">Features</b-nav-item>
@@ -147,7 +204,7 @@
             >
               <img
                   src="/images/landing/logo/01.png"
-                  class="w-35"
+                  class="w-50"
                   alt="lang"
               />
             </a>
@@ -174,61 +231,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import {
-  BButton,
-  BCol,
-  BContainer,
-  BRow,
-  BNavbar,
-  BNavbarBrand,
-  BNavbarToggle,
-  BCollapse,
-  BNav,
-  BNavItem,
-} from "bootstrap-vue-next";
 
-const words = ["Management", "Analytics", "Performance", "Dashboard", "Insights"];
-const currentWord = ref(words[0]);
-const currentWordIndex = ref(0);
-const highlightRef = ref(null);
-const isScrolled = ref(false);
-const bgFiles = [
-  "star-bg.png",
-  "arrow-bg.png",
-  "circle.png",
-  "circle.png",
-  "arrow-bg.png",
-  "star-bg.png",
-  "arrow-bg.png",
-];
-
-onMounted(() => {
-  // Scroll handler
-  const handleScroll = () => {
-    isScrolled.value = window.scrollY > 50;
-  };
-  window.addEventListener("scroll", handleScroll);
-  handleScroll();
-
-  // Word rotation
-  const interval = setInterval(() => {
-    if (highlightRef.value) {
-      highlightRef.value.classList.remove("animate");
-      setTimeout(() => {
-        currentWordIndex.value = (currentWordIndex.value + 1) % words.length;
-        currentWord.value = words[currentWordIndex.value];
-        if (highlightRef.value) {
-          highlightRef.value.classList.add("animate");
-        }
-      }, 50);
-    }
-  }, 2000);
-
-  onUnmounted(() => {
-    clearInterval(interval);
-    window.removeEventListener("scroll", handleScroll);
-  });
-});
-</script>

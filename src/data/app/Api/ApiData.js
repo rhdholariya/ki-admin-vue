@@ -1,15 +1,15 @@
 // API avatars
 export const apiAvatars = {
-    avatar1: '/images/avatar/1.png',
-    avatar2: '/images/avatar/2.png',
-    avatar3: '/images/avatar/3.png',
-    avatar4: '/images/avatar/4.png',
-    avatar6: '/images/avatar/6.png',
-    avatar7: '/images/avatar/07.png',
-    avatar8: '/images/avatar/08.png',
-    avatar10: '/images/avatar/10.png',
-    avatar11: '/images/avatar/11.png',
-    avatar14: '/images/avatar/14.png'
+    avatar1: { img: '/images/avatar/1.png', bg: 'bg-primary' },
+    avatar2: { img: '/images/avatar/2.png', bg: 'bg-danger' },
+    avatar3: { img: '/images/avatar/3.png', bg: 'bg-success' },
+    avatar4: { img: '/images/avatar/4.png', bg: 'bg-warning' },
+    avatar6: { img: '/images/avatar/6.png', bg: 'bg-info' },
+    avatar7: { img: '/images/avatar/07.png', bg: 'bg-secondary' },
+    avatar8: { img: '/images/avatar/08.png', bg: 'bg-dark' },
+    avatar10: { img: '/images/avatar/10.png', bg: 'bg-light' },
+    avatar11: { img: '/images/avatar/11.png', bg: 'bg-primary-subtle' },
+    avatar14: { img: '/images/avatar/14.png', bg: 'bg-danger-subtle' }
 };
 
 
@@ -17,7 +17,7 @@ export const apiKeysData = [
     {
         id: 1,
         name: 'Gavin Cortez',
-        avatar: apiAvatars.avatar1,
+        avatar: '/images/avatar/14.png',
         avatarBgClass: 'text-bg-primary',
         parentName: 'Patty OFurniture',
         apiKey: '12e8d619-5ab4-41db-b574-eb727f82d836',
@@ -27,7 +27,7 @@ export const apiKeysData = [
     {
         id: 2,
         name: 'Martena Mccray',
-        avatar: apiAvatars.avatar14,
+        avatar: '/images/avatar/13.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Olive Yew',
         apiKey: 'b589bd39-afa6-4dc2-a0e6-ee286d429689',
@@ -37,7 +37,7 @@ export const apiKeysData = [
     {
         id: 3,
         name: 'Gavin Joyce',
-        avatar: apiAvatars.avatar10,
+        avatar: '/images/avatar/12.png',
         avatarBgClass: 'text-bg-info',
         parentName: 'Maureen Biologist',
         apiKey: 'cab763c0-ea2c-4077-bb6c-a0c736d36f44',
@@ -47,7 +47,7 @@ export const apiKeysData = [
     {
         id: 4,
         name: 'Gloria Little',
-        avatar: apiAvatars.avatar2,
+        avatar: '/images/avatar/11.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Maureen Biologist',
         apiKey: '0ae33477-28bb-4dfb-aaa5-1f0f19f19572',
@@ -57,7 +57,7 @@ export const apiKeysData = [
     {
         id: 5,
         name: 'Jena Gaines',
-        avatar: apiAvatars.avatar8,
+        avatar: '/images/avatar/10.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Maureen Biologist',
         apiKey: 'd4f825d4-e76b-4e66-bf2e-66ee69a70263',
@@ -67,7 +67,7 @@ export const apiKeysData = [
     {
         id: 6,
         name: 'Jenette Caldwell',
-        avatar: apiAvatars.avatar11,
+        avatar: '/images/avatar/09.png',
         avatarBgClass: 'text-bg-dark',
         parentName: '6Del Phineum',
         apiKey: '3fefa4e0-e0f1-4167-8d36-18b753623c11',
@@ -77,7 +77,7 @@ export const apiKeysData = [
     {
         id: 7,
         name: 'Jennifer Acosta',
-        avatar: apiAvatars.avatar4,
+        avatar: '/images/avatar/08.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Percy Kewshun',
         apiKey: '0c2b3bd4-5582-494e-b972-8bb1045bb235',
@@ -87,7 +87,7 @@ export const apiKeysData = [
     {
         id: 8,
         name: 'Jennifer Chang',
-        avatar: apiAvatars.avatar2,
+        avatar: '/images/avatar/07.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Roy L. Commishun',
         apiKey: 'ea651456-9063-4445-b852-9212ec8e93ed',
@@ -97,7 +97,7 @@ export const apiKeysData = [
     {
         id: 9,
         name: 'Michael Silva',
-        avatar: apiAvatars.avatar3,
+        avatar: '/images/avatar/6.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Roy L. Commishun',
         apiKey: 'c12aa92d-eaa6-4322-9b1b-bbbd1ba98e45',
@@ -107,7 +107,7 @@ export const apiKeysData = [
     {
         id: 10,
         name: 'Michelle House',
-        avatar: apiAvatars.avatar4,
+        avatar:'/images/avatar/5.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Roy L. Commishun',
         apiKey: '34c35f2c-e542-48b7-86ae-ee654f988241',
@@ -117,7 +117,7 @@ export const apiKeysData = [
     {
         id: 11,
         name: 'Olivia Liang',
-        avatar: apiAvatars.avatar10,
+        avatar: '/images/avatar/4.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Bridget Theriveaquai',
         apiKey: 'ecde376e-fe22-4ff9-b675-7ca0b6957dfb',
@@ -127,7 +127,7 @@ export const apiKeysData = [
     {
         id: 12,
         name: 'Quinn Flynn',
-        avatar: apiAvatars.avatar6,
+        avatar: '/images/avatar/3.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Bridget Theriveaquai',
         apiKey: 'd234febf-c046-459c-9623-3fbb128bdcf4',
@@ -137,7 +137,7 @@ export const apiKeysData = [
     {
         id: 13,
         name: 'Prescott Bartlett',
-        avatar: apiAvatars.avatar14,
+        avatar: '/images/avatar/2.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Frank N. Stein',
         apiKey: '589d8184-7efe-4509-aab4-6b91e89f734c',
@@ -147,7 +147,7 @@ export const apiKeysData = [
     {
         id: 14,
         name: 'Suki Burks',
-        avatar: apiAvatars.avatar2,
+        avatar: '/images/avatar/1.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Frank N. Stein',
         apiKey: '4cc1d9b9-6aea-4dad-81c3-11cce8dd43c1',
@@ -157,7 +157,7 @@ export const apiKeysData = [
     {
         id: 15,
         name: 'Tatyana Fitzpatrick',
-        avatar: apiAvatars.avatar8,
+        avatar: '/images/avatar/6.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Laura Norda',
         apiKey: '7a4fcd62-b085-450b-9ecc-eedfaa5d141f',
@@ -167,7 +167,7 @@ export const apiKeysData = [
     {
         id: 16,
         name: 'Yuri Berry',
-        avatar: apiAvatars.avatar7,
+        avatar: '/images/avatar/07.png',
         avatarBgClass: 'text-bg-dark',
         parentName: 'Mal Nurrisht',
         apiKey: '04095ed9-cf5f-4233-b554-9bcc25d81c0b',

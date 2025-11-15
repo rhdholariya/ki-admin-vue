@@ -2,13 +2,11 @@
 import { ref } from "vue";
 import { BCard, BCardHeader, BCardBody, BButton, BCol, BRow } from "bootstrap-vue-next";
 
-// Toast states
 const showDefault = ref(true);
 const showCustom = ref(true);
 const showColor = ref(true);
 const showPlacement = ref(false);
 
-// Close handlers
 const closeDefault = () => (showDefault.value = false);
 const closeCustom = () => (showCustom.value = false);
 const closeColor = () => (showColor.value = false);
@@ -18,7 +16,6 @@ const handleClosePlacement = () => (showPlacement.value = false);
 
 <template>
     <b-row>
-        <!-- Top Card with 3 Toasts -->
         <b-col cols="12">
             <b-card no-body>
                 <b-card-header>
@@ -28,7 +25,6 @@ const handleClosePlacement = () => (showPlacement.value = false);
                 </b-card-header>
                 <b-card-body>
                     <b-row>
-                        <!-- Default Toast -->
                         <b-col lg="4" v-if="showDefault" class="mb-4 mb-lg-0">
                             <div class="toast d-block b-1-primary bg-light-primary" role="alert">
                                 <div class="toast-header b-b-1-primary bg-light-primary d-flex align-items-center">
@@ -42,7 +38,6 @@ const handleClosePlacement = () => (showPlacement.value = false);
                             </div>
                         </b-col>
 
-                        <!-- Custom Content Toast -->
                         <b-col lg="4" v-if="showCustom" class="mb-4 mb-lg-0">
                             <div class="toast custom-content-toast d-block" role="alert">
                                 <div class="toast-body">
@@ -57,7 +52,6 @@ const handleClosePlacement = () => (showPlacement.value = false);
                             </div>
                         </b-col>
 
-                        <!-- Color Toast -->
                         <b-col lg="4" v-if="showColor" class="mb-4 mb-lg-0">
                             <div class="toast d-block bg-primary text-white" role="alert">
                                 <div class="toast-header bg-primary text-white">
@@ -74,7 +68,6 @@ const handleClosePlacement = () => (showPlacement.value = false);
             </b-card>
         </b-col>
 
-        <!-- Placement Toast Card -->
         <b-col cols="12" class="mt-4">
             <b-card no-body>
                 <b-card-header>

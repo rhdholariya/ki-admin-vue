@@ -15,7 +15,7 @@ const activeTabInner = ref(0);
         card
         nav-class="app-tabs-primary chat-status-tab border-0 justify-content-between mb-0 pb-0 px-3"
     >
-      <!-- Private Tab -->
+
       <b-tab>
         <template #title>
           <PhLockKeyOpen size="18" weight="duotone" class="me-2" />
@@ -28,7 +28,7 @@ const activeTabInner = ref(0);
               :key="contact.id"
               class="chat-contactbox d-flex align-items-center"
           >
-            <!-- Avatar -->
+
             <div class="position-relative me-3">
               <span
                   :class="[
@@ -47,7 +47,6 @@ const activeTabInner = ref(0);
               </span>
             </div>
 
-            <!-- Contact Info -->
             <div class="flex-grow-1">
               <p class="mb-0 f-w-500 text-dark text-truncate">
                 {{ contact.name }}
@@ -60,7 +59,6 @@ const activeTabInner = ref(0);
               </p>
             </div>
 
-            <!-- Time -->
             <div>
               <p class="f-s-12 chat-time mb-0">{{ contact.time }}</p>
             </div>
@@ -68,7 +66,6 @@ const activeTabInner = ref(0);
         </div>
       </b-tab>
 
-      <!-- Group Tab -->
       <b-tab>
         <template #title>
           <PhUsersThree size="18" weight="duotone" class="me-2" />

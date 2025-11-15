@@ -31,7 +31,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhStack } from "@phosphor-icons/vue";
 
-// 🌸 State
 const blogs = ref([]);
 const modalOpen = ref(false);
 const selectedBlog = ref(null);
@@ -50,7 +49,6 @@ const formData = ref({
   blogTag: "",
 });
 
-// 🌸 Helper functions
 const initializeLightboxSources = () => {
   lightboxSources.value = blogs.value.map((b) => b.image);
 };
@@ -83,13 +81,11 @@ const formatInputDate = (dateString) => {
   return `${y}-${m}-${d}`;
 };
 
-// 🌸 Lifecycle
 onMounted(() => {
   blogs.value = initialBlogData;
   initializeLightboxSources();
 });
 
-// 🌸 Modal Logic
 const toggleModal = () => (modalOpen.value = !modalOpen.value);
 const closeModal = () => (modalOpen.value = false);
 
@@ -148,7 +144,6 @@ const handleSaveChanges = () => {
   toggleModal();
 };
 
-// 🌸 Breadcrumb
 const breadcrumbItems = computed(() => ({
   title: "Blog",
   items: [
@@ -162,10 +157,7 @@ const breadcrumbItems = computed(() => ({
   <app-layout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
         <breadcrumb :breadcrumb="breadcrumbItems"/>
-
-        <!-- Blog Cards -->
         <b-row>
           <b-col
               v-for="(blog, index) in blogs"
@@ -208,19 +200,19 @@ const breadcrumbItems = computed(() => ({
 
                 <hr class="dashed"/>
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center gap-2 position-relative">
                   <div
-                      class="rounded-circle overflow-hidden me-3 w-45 h-45 bg-primary"
+                      class="h-40 w-40 d-flex-center b-r-10 overflow-hidden bg-primary position-absolute"
                   >
                     <b-img
                         :src="blog.author.avatar"
                         alt="avatar"
-                        class="img-fluid w-100 h-100"
+                        class="img-fluid "
                         rounded
                     />
                   </div>
 
-                  <div class="flex-grow-1">
+                  <div class="ps-5">
                     <h6 class="mb-0">{{ blog.author.name }}</h6>
                     <small class="text-muted">{{ blog.author.time }}</small>
                   </div>
@@ -250,16 +242,12 @@ const breadcrumbItems = computed(() => ({
             </b-card>
           </b-col>
         </b-row>
-
-        <!-- FsLightbox -->
         <fs-lightbox
             v-if="lightboxSources.length"
             :toggler="lightboxToggler"
             :sources="lightboxSources"
             :slide="currentSlideIndex"
         />
-
-        <!-- Edit Blog Modal -->
         <b-modal
             v-model="modalOpen"
             title="Edit Blog"
@@ -268,7 +256,6 @@ const breadcrumbItems = computed(() => ({
             size="lg"
         >
           <b-form>
-            <!-- Blog Image -->
             <b-form-group class="mb-4">
               <label class="form-label fw-semibold">Blog Image</label>
               <b-form-file
@@ -291,7 +278,6 @@ const breadcrumbItems = computed(() => ({
               </div>
             </b-form-group>
 
-            <!-- Blog Title -->
             <b-form-group class="form-floating mb-3">
               <b-form-input
                   id="blogTitle"
@@ -302,18 +288,16 @@ const breadcrumbItems = computed(() => ({
               <label for="blogTitle">Blog Title</label>
             </b-form-group>
 
-            <!-- Blog Description -->
             <b-form-group class="form-floating mb-3">
               <b-form-textarea
                   id="blogDescription"
                   placeholder="Type description"
-                  style="height: 100px"
+                  class="h-100"
                   v-model="formData.blogDescription"
               />
               <label for="blogDescription">Blog Description</label>
             </b-form-group>
 
-            <!-- Blog Date -->
             <b-form-group class="form-floating mb-3">
               <b-form-input
                   id="blogDate"
@@ -323,7 +307,6 @@ const breadcrumbItems = computed(() => ({
               <label for="blogDate">Blog Date</label>
             </b-form-group>
 
-            <!-- Blog Tag -->
             <b-form-group class="form-floating mb-3">
               <b-form-input
                   id="blogTag"

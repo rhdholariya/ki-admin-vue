@@ -9,7 +9,7 @@ import DefaultsValidation from "@/components/FormsElements/FormValidation/Defaul
 import SupportedValidation from "@/components/FormsElements/FormValidation/SupportedValidation.vue";
 
 
-// Breadcrumb data
+
 const breadcrumbItems = {
     title: "Form Validation",
     items: [

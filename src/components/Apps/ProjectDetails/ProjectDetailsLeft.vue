@@ -11,19 +11,16 @@ import {
 } from "bootstrap-vue-next";
 import { Tooltip } from "bootstrap";
 
-// Import project data
 import {
   projectDetails,
   teamMembers,
 } from "@/data/app/projectapp/ProjectDetailData.js";
 
-// Table configuration
 const tableFields = [
   { key: "name", label: "" },
   { key: "value", label: "" },
 ];
 
-// Computed project details
 const projectDetailsTable = computed(() => [
   { name: "Name", value: projectDetails.name },
   { name: "Manager", value: projectDetails.manager },
@@ -34,7 +31,6 @@ const projectDetailsTable = computed(() => [
   { name: "Status", value: projectDetails.status },
 ]);
 
-// Assigned by avatars
 const assignedByAvatars = computed(() => [
   { name: "Everlee Lambert", initial: "A", colorClass: "text-bg-danger" },
   { name: "Hunter Scott", initial: "CD", colorClass: "text-bg-dark" },
@@ -42,7 +38,6 @@ const assignedByAvatars = computed(() => [
   { name: "2 More", initial: "2+", colorClass: "text-bg-secondary" },
 ]);
 
-// ✅ Initialize Bootstrap tooltips safely in Vue lifecycle
 onMounted(() => {
   const tooltipEls = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   tooltipEls.forEach((el) => new Tooltip(el));
@@ -52,7 +47,6 @@ onMounted(() => {
 
 <template>
   <b-col md="6" xxl="3" class="order-md-2 order-xxl-1">
-    <!-- Project Details Card -->
     <b-card no-body>
       <b-card-header>
         <h5>Project Details</h5>
@@ -115,7 +109,6 @@ onMounted(() => {
       </b-card-body>
     </b-card>
 
-    <!-- Project Team Card -->
     <b-card no-body>
       <b-card-header>
         <h5 class="header-title-text">Project Team</h5>
@@ -127,10 +120,9 @@ onMounted(() => {
               :key="index"
               class="d-flex align-items-center mt-3"
           >
-            <!-- Member Avatar -->
             <div
                 v-if="member.imgSrc"
-                class="bg-primary h-35 w-35 d-flex-center rounded overflow-hidden"
+                :class="`h-35 w-35 d-flex-center rounded overflow-hidden bg-${member.bgColor}`"
             >
               <b-img :src="member.imgSrc" :alt="member.name" class="img-fluid" />
             </div>
@@ -142,7 +134,6 @@ onMounted(() => {
               {{ member.initial }}
             </span>
 
-            <!-- Member Info -->
             <div class="flex-grow-1 ps-2">
               <h6 class="fs-6 mb-0 fw-medium">{{ member.name }}</h6>
               <p class="text-muted f-s-13 mb-0 f-w-500">

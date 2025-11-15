@@ -10,11 +10,8 @@ import {
 } from "bootstrap-vue-next";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
 
-
-// State
 const openAvtar = ref(false);
 
-// Data
 const avatarGroups = [
   {
     tooltipAvatars: [
@@ -46,7 +43,6 @@ const avatarGroups = [
 <template>
   <b-col md="7">
     <b-card no-body>
-      <!-- Header -->
       <b-card-header>
         <div class="code-header d-flex justify-content-between align-items-center">
           <h5 class="mb-1">Group with Tooltip</h5>
@@ -57,7 +53,6 @@ const avatarGroups = [
         <p class="text-muted mb-0">User group with tooltip</p>
       </b-card-header>
 
-      <!-- Body -->
       <b-card-body>
         <div class="d-flex gap-3 flex-wrap">
           <ul
@@ -76,7 +71,7 @@ const avatarGroups = [
               <img :src="a.src" :alt="`Avatar for ${a.tooltip}`" class="img-fluid" />
             </li>
 
-            <!-- Avatar Icons -->
+
             <li
                 v-for="a in group.tooltipIcons || []"
                 :key="a.id"
@@ -87,7 +82,6 @@ const avatarGroups = [
               <component :is="a.icon" size="18" weight="fill" />
             </li>
 
-            <!-- Avatar Text -->
             <li
                 v-for="a in group.tooltipText || []"
                 :key="a.id"
@@ -106,7 +100,6 @@ const avatarGroups = [
         </div>
       </b-card-body>
 
-      <!-- Prism Code -->
       <b-collapse v-model="openAvtar">
         <pre class="language-html mb-0"><code v-prism>
 &lt;b-card no-body&gt;

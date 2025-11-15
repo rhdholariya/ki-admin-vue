@@ -1,116 +1,113 @@
 <script setup>
-import { ref, watch, nextTick } from "vue";
+import { ref } from "vue";
 import {
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody,
-  BAccordion,
-  BAccordionItem,
-  BCollapse,
+    BCol,
+    BCard,
+    BCardHeader,
+    BCardBody,
+    BAccordion,
+    BAccordionItem,
+    BCollapse,
+    BButton,
 } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
-import Prism from "prismjs"
-import "prismjs/themes/prism.css"
 
-// Accordion data
 const accordionItems = [
-  {
-    id: "1",
-    htmlId: "1",
-    title: "Accordion Item #1",
-    content:
-      "<b> This is the first item's accordion body</b>. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code> .accordion-body </code>, though the transition does limit overflow.",
-  },
-  {
-    id: "2",
-    htmlId: "2",
-    title: "Accordion Item #2",
-    content:
-      " <b> This is thesecond item's accordion body</b>. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code> .accordion-body </code>, though the transition does limit overflow."},
-  {
-    id: "3",
-    htmlId: "3",
-    title: "Accordion Item #3",
-    content:
-      "<b> This is the third item's accordion body</b>. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code> .accordion-body </code>, though the transition does limit overflow.",
-  },
+    {
+        id: "1",
+        title: "Accordion Item #1",
+        content: [
+            { type: "text", value: "This is the first item's accordion body", bold: true },
+            { type: "text", value: ". It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the " },
+            { type: "code", value: ".accordion-body" },
+            { type: "text", value: ", though the transition does limit overflow." }
+        ]
+    },
+    {
+        id: "2",
+        title: "Accordion Item #2",
+        content: [
+            { type: "text", value: "This is the second item's accordion body", bold: true },
+            { type: "text", value: ". It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the " },
+            { type: "code", value: ".accordion-body" },
+            { type: "text", value: ", though the transition does limit overflow." }
+        ]
+    },
+    {
+        id: "3",
+        title: "Accordion Item #3",
+        content: [
+            { type: "text", value: "This is the third item's accordion body", bold: true },
+            { type: "text", value: ". It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the " },
+            { type: "code", value: ".accordion-body" },
+            { type: "text", value: ", though the transition does limit overflow." }
+        ]
+    },
 ];
 
-// states
 const active = ref("1");
 const openCode = ref(false);
-
-// prism setup
-const setupPrism = (openRef) => {
-  watch(openRef, async (val) => {
-    if (val) {
-      await nextTick();
-      Prism.highlightAll();
-    }
-  });
-};
-[openCode].forEach(setupPrism);
 </script>
 
 <template>
-  <b-col md="6">
-    <b-card no-body>
-      <!-- Header -->
-      <b-card-header >
-          <div class="code-header d-flex justify-content-between align-items-center">
-        <h5>Simple Accordion</h5>
-        <a href="javascript:void(0)" @click="openCode = !openCode">
-          <PhCode size="30" weight="bold" class="source" />
-        </a>
-          </div>
-      </b-card-header>
+    <b-col lg="6">
+        <b-card no-body>
+            <b-card-header>
+                <div class="code-header d-flex justify-content-between align-items-center">
+                    <h5>Simple Accordion</h5>
+                    <b-button @click="openCode = !openCode" class="p-0 border-0">
+                        <PhCode size="30" weight="bold" class="source" />
+                    </b-button>
+                </div>
+            </b-card-header>
 
-      <!-- Accordion -->
-      <b-card-body>
-        <b-accordion v-model="active" class="app-accordion accordion-secondary">
-          <b-accordion-item
-            v-for="({ id, title, content }) in accordionItems"
-            :key="id"
-            :title="title"
-            :id="id"
-          >
-            <!-- render HTML -->
-            <div v-html="content"></div>
-          </b-accordion-item>
-        </b-accordion>
-      </b-card-body>
+            <b-card-body>
+                <b-accordion v-model="active" class="app-accordion accordion-secondary">
+                    <b-accordion-item
+                        v-for="item in accordionItems"
+                        :key="item.id"
+                        :title="item.title"
+                        :id="item.id"
+                    >
 
-      <!-- Prism Code Preview -->
-      <b-collapse v-model="openCode">
-        <pre class="language-html" tabindex="0">
-          <code
-            class="language-html"
-            v-text="`  &lt;b-card no-body&gt;
-  &lt;b-card-header&gt;
-    &lt;h5&gt;Simple Accordion&lt;/h5&gt;
-  &lt;/b-card-header&gt;
-    &lt;b-card-body&gt;
-    &lt;b-accordion v-model=&quot;active&quot; class=&quot;app-accordion accordion-secondary&quot;&gt;
+                        <div class="accordion-content">
+                            <template v-for="(contentPart, index) in item.content" :key="index">
+                                <strong v-if="contentPart.type === 'text' && contentPart.bold">
+                                    {{ contentPart.value }}
+                                </strong>
+                                <span v-else-if="contentPart.type === 'text'">
+                  {{ contentPart.value }}
+                </span>
+                                <code v-else-if="contentPart.type === 'code'">
+                                    {{ contentPart.value }}
+                                </code>
+                            </template>
+                        </div>
+                    </b-accordion-item>
+                </b-accordion>
+            </b-card-body>
 
-${accordionItems
-  .map(
-    (item) => `  &lt;b-accordion-item title=&quot;${item.title}&quot; id=&quot;${item.id}&quot;&gt;
-    &lt;div&gt;${item.content
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')}&lt;/div&gt;
-  &lt;/b-accordion-item&gt;`
-  )
-  .join('\n')}
+            <b-collapse v-model="openCode">
+        <pre class="language-html mt-3">
+          <code v-prism>
+&lt;b-accordion v-model="active" class="app-accordion accordion-secondary"&gt;
+{{ accordionItems.map(item => `  &lt;b-accordion-item title="${item.title}" id="${item.id}"&gt;
+    &lt;div class="accordion-content"&gt;
+${item.content.map(part => {
+              if (part.type === 'text' && part.bold) {
+                  return `      &lt;strong&gt;${part.value}&lt;/strong&gt;`;
+              } else if (part.type === 'text') {
+                  return `      &lt;span&gt;${part.value}&lt;/span&gt;`;
+              } else if (part.type === 'code') {
+                  return `      &lt;code&gt;${part.value}&lt;/code&gt;`;
+              }
+          }).join('\n')}
+    &lt;/div&gt;
+  &lt;/b-accordion-item&gt;`).join('\n\n') }}
 &lt;/b-accordion&gt;
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"
-
-          ></code>
-
+          </code>
         </pre>
-      </b-collapse>
-    </b-card>
-  </b-col>
+            </b-collapse>
+        </b-card>
+    </b-col>
 </template>

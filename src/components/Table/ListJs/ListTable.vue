@@ -7,7 +7,7 @@ import {
     BCol,
     BRow,
     BButton,
-    BImg, BFormCheckbox, BFormInput
+    BFormCheckbox, BFormInput
 } from "bootstrap-vue-next";
 
 
@@ -87,7 +87,7 @@ const toggleSort = () => {
                                 <div
                                     class="h-25 w-25 d-flex-center b-r-50 overflow-hidden text-bg-secondary"
                                 >
-                                    <b-Img
+                                    <Img
                                         :src="`/images/avatar/${user.img}`"
                                         alt="avatar"
                                         width="40"

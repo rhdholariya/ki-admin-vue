@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import {BButton, BCard, BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
+import {BButton, BCard,BCardHeader , BCardBody, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
 const open = ref(false);

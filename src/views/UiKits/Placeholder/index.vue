@@ -13,7 +13,6 @@ import {
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// Breadcrumb
 const breadcrumbItems = {
     title: "Placeholder",
     items: [
@@ -22,7 +21,6 @@ const breadcrumbItems = {
     ]
 };
 
-// === Card Data
 const cards1 = [
     {
         id: 1,
@@ -46,7 +44,6 @@ const cards1 = [
     },
 ];
 
-// === Placeholder Variants
 const placeholderVariants = [
     "",
     "bg-primary",
@@ -59,7 +56,6 @@ const placeholderVariants = [
     "bg-dark",
 ];
 
-// === Placeholder Sizes
 const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-xs"];
 </script>
 
@@ -68,9 +64,8 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
         <main>
             <b-container fluid>
                 <Breadcrumb :breadcrumb="breadcrumbItems"/>
-                
+
                 <b-row class="list-item">
-                    <!-- Card Placeholder -->
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -130,8 +125,6 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Width Example -->
                     <b-col xl="6">
                         <b-card no-body>
                             <b-card-header>
@@ -146,7 +139,6 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
                             </b-card-body>
                         </b-card>
 
-                        <!-- Animation -->
                         <b-card no-body>
                             <b-card-header>
                                 <h5>Animation</h5>
@@ -164,7 +156,6 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
                         </b-card>
                     </b-col>
 
-                    <!-- Color Variants -->
                     <b-col xl="6">
                         <b-card class="equal-card" no-body>
                             <b-card-header>
@@ -184,7 +175,6 @@ const placeholderSizes = ["placeholder-lg", "", "placeholder-sm", "placeholder-x
                         </b-card>
                     </b-col>
 
-                    <!-- Sizing -->
                     <b-col cols="12">
                         <b-card class="equal-card" no-body>
                             <b-card-header>

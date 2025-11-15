@@ -6,10 +6,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import BasicBackground from "@/components/UiKits/Background/BasicBackground.vue";
 
 
-
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Background",
     items: [

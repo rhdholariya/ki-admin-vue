@@ -8,7 +8,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 
-// Props
 const props = defineProps({
   externalEventsRef: {
     type: Object,
@@ -20,12 +19,10 @@ const props = defineProps({
   }
 });
 
-// Reactive state
 const calendarRef = ref(null);
 const dropRemoveChecked = ref(false);
 let draggableInstance = null;
 
-// Calendar Options
 const calendarOptions = computed(() => ({
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin],
   initialView: "dayGridMonth",
@@ -63,7 +60,6 @@ const calendarOptions = computed(() => ({
 
 // Event handlers
 const handleEventReceive = (info) => {
-  // If checkbox is enabled, remove dragged event after drop
   if (dropRemoveChecked.value) {
     info.draggedEl?.parentNode?.removeChild(info.draggedEl);
   }
@@ -86,7 +82,6 @@ const handleCustomEventAdd = () => {
   }
 };
 
-// Initialize external drag events
 const initializeDraggable = () => {
   const externalEl = props.externalEventsRef;
 
@@ -101,7 +96,6 @@ const initializeDraggable = () => {
   }
 };
 
-// Watchers
 watch(
     () => props.externalEventsRef,
     (newRef) => {
@@ -126,7 +120,6 @@ watch(
     {immediate: true}
 );
 
-// Lifecycle hooks
 onMounted(() => nextTick(() => initializeDraggable()));
 
 onBeforeUnmount(() => {

@@ -1,3 +1,44 @@
+<script setup>
+import { shallowRef, computed } from "vue";
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody,
+} from "bootstrap-vue-next";
+
+import VueApexCharts from "vue3-apexcharts";
+const apexchart = VueApexCharts;
+
+// Chart config imports
+import {
+  timelineChartData,
+  advanceTimelineChartData,
+  advanceGroupedRowsChartData,
+} from "@/data/charts/apexcharts/TimeineRangeBar.js";
+
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import AppLayout from "@/views/AppLayout.vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
+
+// Prevent ApexCharts → Vue reactive loop
+const timelineChart = shallowRef(timelineChartData);
+const advanceTimelineChart = shallowRef(advanceTimelineChartData);
+const advanceGroupedRowsChart = shallowRef(advanceGroupedRowsChartData);
+
+// Breadcrumb
+const breadcrumbItems = computed(() => ({
+  title: "Timeline & Range Charts",
+  items: [
+    { label: "Charts", icon: PhChartPieSlice },
+    { label: "Apexcharts" },
+    { label: " Timeline & Range Charts", active: true },
+  ],
+}));
+</script>
+
 <template>
   <AppLayout>
     <main>
@@ -57,43 +98,4 @@
   </AppLayout>
 </template>
 
-<script setup>
-import { shallowRef, computed } from "vue";
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody,
-} from "bootstrap-vue-next";
 
-import VueApexCharts from "vue3-apexcharts";
-const apexchart = VueApexCharts;
-
-// Chart config imports
-import {
-  timelineChartData,
-  advanceTimelineChartData,
-  advanceGroupedRowsChartData,
-} from "@/data/charts/apexcharts/TimeineRangeBar.js";
-
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import AppLayout from "@/views/AppLayout.vue";
-import { PhStack } from "@phosphor-icons/vue";
-
-// Prevent ApexCharts → Vue reactive loop
-const timelineChart = shallowRef(timelineChartData);
-const advanceTimelineChart = shallowRef(advanceTimelineChartData);
-const advanceGroupedRowsChart = shallowRef(advanceGroupedRowsChartData);
-
-// Breadcrumb
-const breadcrumbItems = computed(() => ({
-  title: "Timeline & Range Charts",
-  items: [
-    { label: "Charts", icon: PhStack },
-    { label: "Apexcharts" },
-    { label: " Timeline & Range Charts", active: true },
-  ],
-}));
-</script>

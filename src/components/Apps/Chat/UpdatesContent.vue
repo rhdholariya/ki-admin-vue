@@ -9,7 +9,7 @@ import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js"
         :key="update.id"
         class="updates-box d-flex align-items-center py-3 border-bottom"
     >
-      <!-- Avatar with border color -->
+
       <div :class="['b-r-50 p-1', `b-2-${update.borderColor}`]">
         <span
             :class="[
@@ -25,7 +25,6 @@ import { ChatUpdates } from "@/data/app/Chatapp/ChatData.js"
         </span>
       </div>
 
-      <!-- Info Section -->
       <div class="flex-grow-1 text-start ps-2">
         <span class="d-block f-w-500 text-dark">{{ update.name }}</span>
         <p class="f-s-12 text-secondary mb-0">{{ update.time }}</p>

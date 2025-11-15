@@ -2,9 +2,8 @@
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, Pagination } from 'swiper/modules'
-import { BRow, BCol, BCard, BCardBody, BButton } from 'bootstrap-vue-next'
+import {  BCol, BCard, BCardBody, BButton } from 'bootstrap-vue-next'
 
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
@@ -12,19 +11,21 @@ import 'swiper/css/autoplay'
 import YearlyEarningCard from '@/components/Widget/YearlyEarningCard.vue'
 import ProfitOverviewCard from '@/components/Widget/ProfitOverviewCard.vue'
 
-// Data
 const updates = [
   {
     img: '/images/dashboard/ecommerce-dashboard/01.png',
-    text: 'Update your project management system'
+    text: 'Improve workflow efficiency\n' +
+        'with expert tips & tools!'
   },
   {
     img: '/images/dashboard/ecommerce-dashboard/01.png',
-    text: 'New features available in dashboard'
+    text: 'Track your budget, earnings,\n' +
+        'and expenses in real time.'
   },
   {
     img: '/images/dashboard/ecommerce-dashboard/01.png',
-    text: 'Stay tuned for version 2 updates'
+    text: 'Boost productivity with smart\n' +
+        'project strategies! 🚀'
   }
 ]
 
@@ -40,13 +41,10 @@ const modules = [Autoplay, Pagination]
 </script>
 
 <template>
-  <b-row>
-    <!-- Yearly Earning Card -->
     <b-col sm="6" md="5" lg="4" xxl="3">
       <YearlyEarningCard :chart-height="180" />
     </b-col>
 
-    <!-- Updates Card -->
     <b-col sm="6" lg="4" xxl="3">
       <b-card class="updated-card equal-card text-center" no-body>
         <b-card-body>
@@ -66,10 +64,10 @@ const modules = [Autoplay, Pagination]
                 />
               </div>
               <div class="mt-3">
-                <p class="fs-5 fw-semibold txt-ellipsis-2">
+                <p class="f-s-18 f-w-500 txt-ellipsis-2">
                   {{ item.text }}
                 </p>
-                <b-button variant="primary" class="mt-2">
+                <b-button variant="primary" class="my-2">
                   Start Now
                 </b-button>
               </div>
@@ -79,11 +77,9 @@ const modules = [Autoplay, Pagination]
       </b-card>
     </b-col>
 
-    <!-- Meetings & Notes Card -->
     <b-col sm="6" lg="4" xxl="3">
-      <b-card class="equal-card">
+      <b-card class="equal-card" no-body>
         <b-card-body>
-          <!-- Tabs Header -->
           <ul class="nav nav-tabs tab-primary bg-primary p-1 rounded updates-tab" role="tablist">
             <li class="nav-item" role="presentation">
               <button
@@ -107,15 +103,13 @@ const modules = [Autoplay, Pagination]
             </li>
           </ul>
 
-          <!-- Tabs Content -->
           <div class="tab-content update-tab-content">
-            <!-- Meetings Tab -->
             <div
                 class="tab-pane fade"
                 :class="{ 'show active': activeTab === 'meetings' }"
                 role="tabpanel"
             >
-              <ul class="form-selectgroup">
+              <ul class="form-selectgroup app-scroll">
                 <li
                     v-for="meeting in meetings"
                     :key="meeting.id"
@@ -161,9 +155,8 @@ const modules = [Autoplay, Pagination]
       </b-card>
     </b-col>
 
-    <!-- Profit Overview Card -->
     <b-col sm="6" md="5" lg="4" xxl="3">
       <ProfitOverviewCard />
     </b-col>
-  </b-row>
+
 </template>

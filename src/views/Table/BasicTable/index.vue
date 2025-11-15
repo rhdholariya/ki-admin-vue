@@ -125,8 +125,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -154,8 +152,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -200,8 +196,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -239,8 +233,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <template #header>
@@ -280,8 +272,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -313,7 +303,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
                     <b-col cols="12">
                         <b-card>
                             <template #header>
@@ -341,8 +330,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -357,8 +344,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -373,8 +358,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col xl="4">
                         <b-card no-body>
                             <b-card-header>
@@ -394,8 +377,6 @@ const breadcrumbItems = {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-
                     <b-col xl="8">
                         <b-card no-body>
                             <b-card-header>

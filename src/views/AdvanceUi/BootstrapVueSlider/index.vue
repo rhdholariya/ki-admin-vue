@@ -14,7 +14,6 @@ import {
   BCarouselSlide,
 } from "bootstrap-vue-next";
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: "Bootstrap Vue Slider",
   items: [
@@ -23,12 +22,11 @@ const breadcrumbItems = {
   ],
 };
 
-// render flag for safe DOM
 const showCarousel = ref(false);
 
 onMounted(async () => {
   await nextTick();
-  showCarousel.value = true; // render carousel after DOM is stable
+  showCarousel.value = true;
 });
 </script>
 
@@ -38,9 +36,7 @@ onMounted(async () => {
       <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
 
-        <!-- Render carousels only after DOM is ready -->
         <b-row v-if="showCarousel">
-          <!-- Simple Slider -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -56,7 +52,6 @@ onMounted(async () => {
             </b-card>
           </b-col>
 
-          <!-- Indicator Slider -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -72,7 +67,6 @@ onMounted(async () => {
             </b-card>
           </b-col>
 
-          <!-- Slider With Captions -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -100,7 +94,6 @@ onMounted(async () => {
             </b-card>
           </b-col>
 
-          <!-- Fade Slider -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -116,7 +109,6 @@ onMounted(async () => {
             </b-card>
           </b-col>
 
-          <!-- Fade Slider without indicator -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -138,7 +130,6 @@ onMounted(async () => {
             </b-card>
           </b-col>
 
-          <!-- No transition animation -->
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -161,7 +152,6 @@ onMounted(async () => {
           </b-col>
         </b-row>
 
-        <!-- optional fallback if carousel not mounted -->
         <div v-else class="text-center py-5">
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>

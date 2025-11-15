@@ -1,5 +1,5 @@
 <script setup>
-import { BCard, BCardHeader, BCardBody, BButton } from "bootstrap-vue-next";
+import {BCard, BCardHeader, BCardBody, BButton, BImg} from "bootstrap-vue-next";
 import { IconUserCheck } from "@tabler/icons-vue";
 
 const friends = [
@@ -26,7 +26,7 @@ const friends = [
           <div
               :class="['h-40 w-40 d-flex-center b-r-50 overflow-hidden', friend.bgColor]"
           >
-            <img :src="friend.image" :alt="friend.name" class="img-fluid" />
+            <b-img :src="friend.image" :alt="friend.name" class="img-fluid" />
           </div>
           <div class="flex-grow-1 ps-2">
             <div class="fw-medium">{{ friend.name }}</div>

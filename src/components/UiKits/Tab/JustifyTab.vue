@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import {
     BCol,
     BCard,
@@ -10,9 +10,8 @@ import {
     BButton,
     BCollapse
 } from "bootstrap-vue-next";
-import { PhCode, PhLifebuoy, PhKeyboard, PhFile } from "@phosphor-icons/vue";
+import {PhCode, PhLifebuoy, PhKeyboard, PhFile} from "@phosphor-icons/vue";
 
-// Tabs Data
 const justifyTabs = [
     {
         id: "justify-home",
@@ -65,7 +64,6 @@ const openCode = ref(false);
 <template>
     <b-col lg="6">
         <b-card no-body>
-            <!-- Card Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5>Justify Light Tabs</h5>
@@ -75,7 +73,6 @@ const openCode = ref(false);
                 </div>
             </b-card-header>
 
-            <!-- Card Body -->
             <b-card-body class="bottom-tab">
                 <b-tabs
                     v-model="activeTab"
@@ -90,7 +87,7 @@ const openCode = ref(false);
                     >
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
-                                <component :is="tab.icon" size="20" class="me-2" />
+                                <component :is="tab.icon" size="20" class="me-2"/>
                                 <span>{{ tab.label }}</span>
                             </div>
                         </template>
@@ -106,34 +103,31 @@ const openCode = ref(false);
                 </b-tabs>
             </b-card-body>
 
-            <!-- PrismJS Preview -->
             <b-collapse v-model="openCode">
         <pre class="language-html mt-3" tabindex="0">
-          <code>{{ `
+          <code v-prism>
 &lt;b-tabs pills card nav-class="tab-light-secondary"&gt;
-${justifyTabs
-              .map(
-                  (t) => `  &lt;b-tab&gt;
+{{
+                  justifyTabs
+                      .map(
+                          (t) => `  &lt;b-tab&gt;
      &lt;template #title&gt;
       &lt;${t.iconName} size="20" class="me-2" /&gt; ${t.label}
      &lt;/template&gt;
 ${t.content
-                      .map((c) =>
-                          c.type === "text"
-                              ? `    &lt;p&gt;${c.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}&lt;/p&gt;`
-      : `    &lt;ol&gt;${c.items.map((li) => `&lt;li&gt;${li}&lt;/li&gt;`).join('')}&lt;/ol&gt;`
-  )
-  .join("\n")}
+                              .map((c) =>
+                                  c.type === "text"
+                                      ? `    &lt;p&gt;${c.value.replace(/&/g, '&amp;').replace(/&lt;/g, '&lt;').replace(/&gt;/g, '&gt;')}&lt;/p&gt;`
+                                      : `    &lt;ol&gt;${c.items.map((li) => `&lt;li&gt;${li}&lt;/li&gt;`).join('')}&lt;/ol&gt;`
+                              )
+                              .join("\n")}
   &lt;/b-tab&gt;`
-            )
-            .join("\n\n")}
-&lt;/b-tabs&gt;` }}</code>
+                      )
+                      .join("\n\n")
+              }}
+&lt;/b-tabs&gt;</code>
         </pre>
             </b-collapse>
-
-
-
-
         </b-card>
     </b-col>
 </template>

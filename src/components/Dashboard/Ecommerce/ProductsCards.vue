@@ -3,6 +3,8 @@ import {ref, onMounted, onUnmounted, reactive} from 'vue'
 import {
   BCard,
   BCardBody,
+  BRow,
+  BCol
 } from 'bootstrap-vue-next'
 import FsLightbox from 'fslightbox-vue'
 import AiCommerceCard from "@/components/Widget/AiCommerceCard.vue";
@@ -85,7 +87,7 @@ const updateCheckbox = (index, event) => {
 
 
 <template>
-  <div class="row">
+
 
     <div class="col-sm-6 col-md-4 col-xxl-2 order-3-md">
       <AiCommerceCard />
@@ -98,12 +100,12 @@ const updateCheckbox = (index, event) => {
 
 
     <div class="col-md-8 col-xxl-6">
-      <BCard class="ecommerce-product-box" no-body>
-        <BCardBody>
-          <div class="row">
+      <b-card class="ecommerce-product-box" no-body>
+        <b-card-body>
+          <b-row>
 
-            <div class="col-sm-5">
-              <div class="row g-2 h-100">
+            <b-col sm="5">
+              <b-row class="g-2 h-100">
                 <div
                     v-for="image in productImages"
                     :key="image.id"
@@ -127,10 +129,10 @@ const updateCheckbox = (index, event) => {
                     />
                   </a>
                 </div>
-              </div>
-            </div>
+              </b-row>
+            </b-col>
 
-            <div class="col-sm-7">
+            <b-col sm="7">
               <div class="my-3">
                 <h3 class="text-dark-800 f-w-700 txt-ellipsis-1">
                   $58,902.90
@@ -166,18 +168,16 @@ const updateCheckbox = (index, event) => {
                   </label>
                 </div>
               </div>
-            </div>
-          </div>
-        </BCardBody>
-      </BCard>
+            </b-col>
+          </b-row>
+        </b-card-body>
+      </b-card>
     </div>
 
-    <!-- FsLightbox -->
     <FsLightbox
         :toggler="lightboxToggler"
         :sources="productLightboxSources"
         :slide="currentSlide"
     />
-  </div>
 </template>
 

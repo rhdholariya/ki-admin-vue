@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
 import { timeSpentData } from "@/data/charts/apexcharts/ApexChart.js";
-
-
 const chartOptions = ref(timeSpentData);
 const chartSeries = ref(timeSpentData.series);
 </script>
@@ -17,6 +14,3 @@ const chartSeries = ref(timeSpentData.series);
     />
 </template>
 
-<script>
-
-</script>

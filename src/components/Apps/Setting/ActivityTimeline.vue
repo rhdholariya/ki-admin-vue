@@ -107,7 +107,6 @@ const handleImageClick = (images, index = 0) => {
             <div class="timeline-icon">
               <span :class="[activity.iconColor, 'h-35 w-35 d-flex-center b-r-50']">
                 {{ activity.iconText }}
-                <i v-if="activity.icon" :class="[activity.icon, 'f-s-18']"></i>
               </span>
             </div>
             <div class="timeline-content">

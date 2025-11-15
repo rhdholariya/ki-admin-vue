@@ -63,31 +63,27 @@ const selectValue = ref(10);
 const numberValue = ref(30);
 const rgbValues = ref([127, 127, 127]);
 const isLocked = ref(false);
+const dynamicSlider = ref(null);
 
-// Dynamic slider update handlers
-function handleUpdate(values, handle) {
-    const val = parseFloat(values[handle]);
-    if (!isNaN(val)) {
-        if (handle === 0) {
-            selectValue.value = Math.round(val);
-        } else {
-            numberValue.value = val;
-        }
+function updateSliderFromInputs() {
+  if (dynamicSlider.value && dynamicSlider.value.$el) {
+    const slider = dynamicSlider.value.$el.noUiSlider;
+    if (slider) {
+      slider.set([selectValue.value, numberValue.value]);
     }
+  }
 }
 
-function handleSelectChange(e) {
-    const val = parseFloat(e.target.value);
-    if (!isNaN(val)) {
-        numberValue.value = val;
-    }
-}
+function handleUpdate(data) {
+  const val1 = parseFloat(data.values[0]);
+  const val2 = parseFloat(data.values[1]);
 
-function handleNumberChange(e) {
-    const val = parseFloat(e.target.value);
-    if (!isNaN(val)) {
-        numberValue.value = val;
-    }
+  if (!isNaN(val1)) {
+    selectValue.value = Math.round(val1);
+  }
+  if (!isNaN(val2)) {
+    numberValue.value = Math.round(val2);
+  }
 }
 
 // Lock sliders functionality
@@ -118,6 +114,28 @@ function updateSlider2(values, handle) {
         }
     }
 }
+
+function updateRgbRed(data) {
+  const val = parseFloat(data.values[0]);
+  if (!isNaN(val)) {
+    rgbValues.value = [Math.round(val), rgbValues.value[1], rgbValues.value[2]];
+  }
+}
+
+function updateRgbGreen(data) {
+  const val = parseFloat(data.values[0]);
+  if (!isNaN(val)) {
+    rgbValues.value = [rgbValues.value[0], Math.round(val), rgbValues.value[2]];
+  }
+}
+
+function updateRgbBlue(data) {
+  const val = parseFloat(data.values[0]);
+  if (!isNaN(val)) {
+    rgbValues.value = [rgbValues.value[0], rgbValues.value[1], Math.round(val)];
+  }
+}
+
 </script>
 
 <template>
@@ -277,25 +295,26 @@ function updateSlider2(values, handle) {
                     <BCol cols="12">
                         <BCard>
                             <BCardHeader><h5>Dynamic Slider</h5></BCardHeader>
-                            <BCardBody>
-                                <div class="mb-3">
-                                    <label class="form-label">HTML5 input</label>
-                                    <NoUiSlider
-                                        :start="[selectValue, numberValue]"
-                                        :connect="true"
-                                        :range="{ min: -20, max: 40 }"
-                                        @update="handleUpdate"
-                                        class="slider-round"
-                                    />
-                                </div>
+                          <BCardBody>
+                            <div class="mb-3">
+                              <label class="form-label">HTML5 input</label>
+                              <NoUiSlider
+                                  ref="dynamicSlider"
+                                  :start="[selectValue, numberValue]"
+                                  :connect="true"
+                                  :range="{ min: -20, max: 40 }"
+                                  @slide="handleUpdate"
+                                  class="slider-round"
+                              />
+                            </div>
 
-                                <div class="d-flex gap-2 mb-4">
-                                    <select class="form-select" v-model="selectValue" @change="handleSelectChange">
-                                        <option v-for="num in 61" :key="num" :value="num - 20">{{ num - 20 }}</option>
-                                    </select>
-                                    <input type="number" class="form-control" v-model.number="numberValue" @input="handleNumberChange" />
-                                </div>
-                            </BCardBody>
+                            <div class="d-flex gap-2 mb-4">
+                              <select class="form-select" v-model.number="selectValue" @change="updateSliderFromInputs">
+                                <option v-for="num in 61" :key="num" :value="num - 20">{{ num - 20 }}</option>
+                              </select>
+                              <input type="number" class="form-control" v-model.number="numberValue" @input="updateSliderFromInputs" min="-20" max="40" />
+                            </div>
+                          </BCardBody>
                         </BCard>
                     </BCol>
 
@@ -308,30 +327,36 @@ function updateSlider2(values, handle) {
                                     <BCardHeader><h5>Color Picker Slider</h5></BCardHeader>
                                     <BCardBody>
                                         <div class="d-flex align-items-end colorpicker-slider">
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[0]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders red me-2"
-                                                @update="(values, handle) => rgbValues[0] = Number(values[handle])"
-                                            />
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[1]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders green me-2"
-                                                @update="(values, handle) => rgbValues[1] = Number(values[handle])"
-                                            />
-                                            <NoUiSlider
-                                                :range="{ min: 0, max: 255 }"
-                                                :start="[rgbValues[2]]"
-                                                :connect="[true, false]"
-                                                orientation="vertical"
-                                                class="vertical verticalsliders blue"
-                                                @update="(values, handle) => rgbValues[2] = Number(values[handle])"
-                                            />
+                                          <NoUiSlider
+                                              :range="{ min: 0, max: 255 }"
+                                              :start="[127]"
+                                              :connect="[true, false]"
+                                              orientation="vertical"
+                                              :step="1"
+                                              class="vertical verticalsliders red me-2"
+                                              @slide="updateRgbRed"
+                                              @set="updateRgbRed"
+                                          />
+                                          <NoUiSlider
+                                              :range="{ min: 0, max: 255 }"
+                                              :start="[127]"
+                                              :connect="[true, false]"
+                                              orientation="vertical"
+                                              :step="1"
+                                              class="vertical verticalsliders green me-2"
+                                              @slide="updateRgbGreen"
+                                              @set="updateRgbGreen"
+                                          />
+                                          <NoUiSlider
+                                              :range="{ min: 0, max: 255 }"
+                                              :start="[127]"
+                                              :connect="[true, false]"
+                                              orientation="vertical"
+                                              :step="1"
+                                              class="vertical verticalsliders blue"
+                                              @slide="updateRgbBlue"
+                                              @set="updateRgbBlue"
+                                          />
                                             <div
                                                 class="result ms-3"
                                                 :style="{ backgroundColor: `rgb(${rgbValues.join(',')})`, width: '40px', height: '40px', borderRadius: '4px' }"

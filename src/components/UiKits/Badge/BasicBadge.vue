@@ -2,7 +2,6 @@
 import {ref} from "vue";
 import {BCard, BRow, BCol, BCollapse, BBadge, BCardBody, BButton , BCardHeader} from "bootstrap-vue-next";
 import {PhCode, PhDownloadSimple} from "@phosphor-icons/vue";
-// Badge colors
 const badgeColors = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
 const outlineBadgeColors = ["primary", "secondary", "success", "danger", "warning", "info", "dark"];
 const lightBadgeColors = [

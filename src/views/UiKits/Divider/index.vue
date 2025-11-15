@@ -5,11 +5,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import BasicDivider from "@/components/UiKits/Divider/BasicDivider.vue";
 
-
-
-
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "divider",
     items: [

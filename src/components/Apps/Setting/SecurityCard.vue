@@ -1,6 +1,64 @@
+<script setup>
+import { ref } from "vue";
+import {
+  BCard,
+  BCardBody,
+  BRow,
+  BCol,
+  BBadge,
+  BButton,
+  BImg,
+  BForm,
+  BFormGroup,
+  BFormInput,
+  BInputGroup,
+  BInputGroupText,
+} from "bootstrap-vue-next";
+
+import { IconCircleXFilled } from "@tabler/icons-vue";
+import { PhEye, PhEyeSlash, PhLock } from "@phosphor-icons/vue";
+
+
+import {
+  leftSessionList,
+  rightSessionList,
+  securityItems,
+} from "@/data/app/settingapp/SettingAppData.js";
+
+
+const fields = [
+  {
+    id: "current",
+    label: "Current Password",
+    placeholder: "********",
+  },
+  {
+    id: "new",
+    label: "New Password",
+    placeholder: "********",
+  },
+  {
+    id: "confirm",
+    label: "Confirm Password",
+    placeholder: "********",
+  },
+];
+
+
+const visibility = ref({
+  current: false,
+  new: false,
+  confirm: false,
+});
+
+
+const toggleVisibility = (key) => {
+  visibility.value[key] = !visibility.value[key];
+};
+</script>
+
 <template>
   <div>
-    <!-- Account Security -->
     <b-card class="security-card-content mb-4" no-body>
       <b-card-body>
         <b-row class="align-items-center">
@@ -231,62 +289,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {
-  BCard,
-  BCardBody,
-  BRow,
-  BCol,
-  BBadge,
-  BButton,
-  BImg,
-  BForm,
-  BFormGroup,
-  BFormInput,
-  BInputGroup,
-  BInputGroupText,
-} from "bootstrap-vue-next";
 
-// Import icons
-import { IconCircleXFilled } from "@tabler/icons-vue";
-import { PhEye, PhEyeSlash, PhLock } from "@phosphor-icons/vue";
-
-// Import security data
-import {
-  leftSessionList,
-  rightSessionList,
-  securityItems,
-} from "@/data/app/settingapp/SettingAppData.js";
-
-// Password fields configuration
-const fields = [
-  {
-    id: "current",
-    label: "Current Password",
-    placeholder: "********",
-  },
-  {
-    id: "new",
-    label: "New Password",
-    placeholder: "********",
-  },
-  {
-    id: "confirm",
-    label: "Confirm Password",
-    placeholder: "********",
-  },
-];
-
-// Password visibility state
-const visibility = ref({
-  current: false,
-  new: false,
-  confirm: false,
-});
-
-// Methods
-const toggleVisibility = (key) => {
-  visibility.value[key] = !visibility.value[key];
-};
-</script>

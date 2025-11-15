@@ -16,7 +16,7 @@ defineEmits(['toggle-nav']);
               <div class="row">
                   <div class="col-6 col-sm-4 d-flex align-items-center header-left p-0">
           <span class="header-toggle" @click="$emit('toggle-nav')">
-          <PhSquaresFour :size="24" />
+                <PhSquaresFour :size="24" />
           </span>
 
                       <div class="header-searchbar w-100">

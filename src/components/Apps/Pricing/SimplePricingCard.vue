@@ -5,7 +5,6 @@ import { PhCheck } from '@phosphor-icons/vue'
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 
-// Pricing Plans
 const pricingPlans = ref([
   {
     title: "Basic",
@@ -41,7 +40,6 @@ const pricingPlans = ref([
   },
 ]);
 
-// Swiper settings
 const swiperOptions = {
   slidesPerView: 4,
   spaceBetween: 20,

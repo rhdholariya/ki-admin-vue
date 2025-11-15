@@ -34,7 +34,7 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6" xl="4">
-        <b-card class="shadow-none">
+        <b-card class="shadow-none" no-body>
           <b-card-body>
             <b-form-group class="mb-2">
               <b-form-radio
@@ -54,7 +54,7 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6" xl="4">
-        <b-card class="shadow-none">
+        <b-card class="shadow-none" no-body>
           <b-card-body>
             <b-form-group class="mb-2">
               <b-form-radio
@@ -74,7 +74,7 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6" xl="4">
-        <b-card class="shadow-none">
+        <b-card class="shadow-none" no-body>
           <b-card-body class="text-center">
             <b-button variant="link" class="p-0" @click="toggleModal">
               <IconPlus size="18" class="me-1" />
@@ -85,28 +85,28 @@ const toggleModal = () => {
       </b-col>
 
       <b-modal v-model="modalOpen" title="Add New Address">
-        <b-form>
+        <b-form class="app-form">
           <b-row>
             <b-col cols="12">
-              <b-form-group label="Address">
+              <b-form-group label="Address" class="mb-2">
                 <b-form-input placeholder="Enter address" />
               </b-form-group>
             </b-col>
 
             <b-col cols="12">
-              <b-form-group label="Address 2">
+              <b-form-group label="Address 2"  class="mb-2">
                 <b-form-input placeholder="Additional info" />
               </b-form-group>
             </b-col>
 
             <b-col md="6">
-              <b-form-group label="City">
+              <b-form-group label="City"  class="mb-2">
                 <b-form-input placeholder="Enter city" />
               </b-form-group>
             </b-col>
 
             <b-col md="4">
-              <b-form-group label="State">
+              <b-form-group label="State"  class="mb-2">
                 <b-form-select>
                   <option>Choose...</option>
                   <option>NY</option>
@@ -134,7 +134,7 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6">
-        <b-card class="shadow-none">
+        <b-card class="shadow-none" no-body>
           <b-card-body>
             <b-form-radio
                 name="delivery"
@@ -150,7 +150,7 @@ const toggleModal = () => {
       </b-col>
 
       <b-col md="6">
-        <b-card class="shadow-none">
+        <b-card class="shadow-none" no-body>
           <b-card-body>
             <b-form-radio
                 name="delivery"

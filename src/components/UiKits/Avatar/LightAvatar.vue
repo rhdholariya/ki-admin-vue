@@ -2,8 +2,6 @@
 import { ref } from "vue";
 import {BCard, BCardHeader, BCardBody, BCollapse, BCol, BButton} from "bootstrap-vue-next";
 import { PhCode, PhUser } from "@phosphor-icons/vue";
-
-// Light avatar colors
 const lightAvatarColors = [
     { colorClass: "light-primary" },
     { colorClass: "light-secondary" },
@@ -13,7 +11,6 @@ const lightAvatarColors = [
     { colorClass: "light-danger" },
 ];
 
-// Collapse toggle
 const openAvtar4 = ref(false);
 
 </script>

@@ -11,20 +11,19 @@ import {
   BFormRadio,
 } from "bootstrap-vue-next";
 
-// Import Phosphor icons
+
 import { PhDeviceMobileSpeaker, PhDesktop, PhWatch } from "@phosphor-icons/vue";
 
-// Email settings state
+
 const emailSettings = ref({
   comments: false,
   candidates: false,
   offers: false,
 });
 
-// Push notification preference
+
 const pushNotification = ref("everything");
 
-// Devices state
 const devices = ref([
   {
     id: "mobile",

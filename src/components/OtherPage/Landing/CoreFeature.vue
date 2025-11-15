@@ -1,3 +1,27 @@
+<script setup>
+import { computed } from 'vue';
+import {
+    BContainer,
+    BRow,
+    BCol,
+    BBadge
+} from 'bootstrap-vue-next';
+import { PhSquaresFour } from '@phosphor-icons/vue';
+
+
+const generateFeatureLogos = (start, count) => {
+    return Array.from({ length: count }, (_, i) => {
+        const number = String(start + i).padStart(2, "0");
+        return `/images/landing/logo/${number}.png`;
+    });
+};
+
+const featureLogosGroup1 = generateFeatureLogos(1, 10);
+const featureLogosGroup2 = generateFeatureLogos(11, 10);
+
+
+const featureLogoGroups = computed(() => [featureLogosGroup1, featureLogosGroup2]);
+</script>
 <template>
     <section class="features-section" id="Features">
       <b-container fluid>
@@ -53,28 +77,5 @@
 
 </template>
 
-<script setup>
-import { computed } from 'vue';
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BBadge
-} from 'bootstrap-vue-next';
-import { PhSquaresFour } from '@phosphor-icons/vue';
 
-
-const generateFeatureLogos = (start, count) => {
-  return Array.from({ length: count }, (_, i) => {
-    const number = String(start + i).padStart(2, "0");
-    return `/images/landing/logo/${number}.png`;
-  });
-};
-
-const featureLogosGroup1 = generateFeatureLogos(1, 10);
-const featureLogosGroup2 = generateFeatureLogos(11, 10);
-
-
-const featureLogoGroups = computed(() => [featureLogosGroup1, featureLogosGroup2]);
-</script>
 

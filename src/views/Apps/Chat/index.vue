@@ -27,7 +27,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhStack } from "@phosphor-icons/vue";
 
-// ✅ Reactive state instead of DOM manipulation
 const isChatToggled = ref(false);
 
 const handleToggleClick = () => {
@@ -38,7 +37,6 @@ const handleCloseClick = () => {
   isChatToggled.value = false;
 };
 
-// Breadcrumb
 const breadcrumbItems = computed(() => ({
   title: "Chat",
   items: [
@@ -55,15 +53,11 @@ const breadcrumbItems = computed(() => ({
         <breadcrumb :breadcrumb="breadcrumbItems" />
 
         <b-row class="position-relative chat-container-box">
-          <!-- Sidebar -->
           <b-col lg="4" xxl="3" class="box-col-5">
-            <!-- ✅ Bind class reactively -->
             <div class="chat-div" :class="{ 'chat-toggle': isChatToggled }">
               <b-card no-body>
-                <!-- Header -->
                 <b-card-header>
                   <div class="d-flex align-items-center">
-                    <!-- Avatar -->
                     <span class="chatdp h-45 w-45 d-flex-center b-r-50 position-relative bg-danger">
                       <img src="/images/avatar/09.png" alt="User Avatar" class="img-fluid b-r-50" />
                       <span
@@ -71,13 +65,11 @@ const breadcrumbItems = computed(() => ({
                       ></span>
                     </span>
 
-                    <!-- User Info -->
                     <div class="flex-grow-1 ps-2">
                       <h6 class="mb-0">Ninfa Monaldo</h6>
                       <p class="text-secondary mb-0 f-s-12">Web Developer</p>
                     </div>
 
-                    <!-- Settings Dropdown -->
                     <div>
                       <b-dropdown variant="link" class="dropdown-icon-none" no-caret>
                         <template #button-content>
@@ -101,7 +93,6 @@ const breadcrumbItems = computed(() => ({
                       </b-dropdown>
                     </div>
 
-                    <!-- Close Button -->
                     <div class="close-togglebtn">
                       <b-button
                           variant="danger"
@@ -114,7 +105,6 @@ const breadcrumbItems = computed(() => ({
                   </div>
                 </b-card-header>
 
-                <!-- Body -->
                 <b-card-body class="p-0">
                   <chat-left-data />
                   <new-chat-dropdown />
@@ -123,11 +113,9 @@ const breadcrumbItems = computed(() => ({
             </div>
           </b-col>
 
-          <!-- Chat Content -->
           <b-col lg="8" xxl="9" class="box-col-7">
             <chat-container />
 
-            <!-- Mobile toggle -->
             <div class="d-block d-lg-none">
               <b-button variant="link" class="toggle-btn icon-btn" @click="handleToggleClick">
                 <icon-align-justified size="18" />

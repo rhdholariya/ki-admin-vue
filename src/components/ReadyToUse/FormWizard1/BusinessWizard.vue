@@ -38,7 +38,6 @@ const activeTab = ref('details')
                     nav-class="tab-light-primary"
 
                 >
-                    <!-- Tab 1: Create Account -->
                     <b-tab key="details" active>
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
@@ -76,7 +75,6 @@ const activeTab = ref('details')
                         </b-form>
                     </b-tab>
 
-                    <!-- Tab 2: Personal Account -->
                     <b-tab key="personal">
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
@@ -133,7 +131,6 @@ const activeTab = ref('details')
                         </b-form>
                     </b-tab>
 
-                    <!-- Tab 3: Payment Method -->
                     <b-tab key="payment">
                         <template #title>
                             <div class="d-flex align-items-center justify-content-center">
@@ -145,7 +142,9 @@ const activeTab = ref('details')
                         <b-form class="app-form">
                             <b-row>
                                 <b-col cols="12">
-                                    <b-form-checkbox type="radio" label="Credit / Debit Card" class="mb-3"/>
+                                    <b-form-checkbox type="radio" label="" class="mb-3">
+                                        Credit / Debit Card
+                                    </b-form-checkbox>
                                     <b-form-group label="Cardholder Name" label-class="f-w-500">
                                         <b-form-input placeholder="Olaf" class="mb-3"/>
                                     </b-form-group>

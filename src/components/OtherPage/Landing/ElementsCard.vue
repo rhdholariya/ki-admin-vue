@@ -1,18 +1,85 @@
+<script setup>
+import {
+    BBadge,
+    BButton,
+    BCard,
+    BCardBody,
+    BCol,
+    BContainer,
+    BRow,
+} from 'bootstrap-vue-next';
+
+import {
+    PhBriefcase,
+    PhCaretDown,
+    PhCaretRight,
+    PhCookingPot,
+    PhCreditCard,
+    PhListBullets,
+    PhRadioButton,
+    PhWarningCircle,
+} from '@phosphor-icons/vue';
+
+const uiElements = [
+    {
+        title: "Buttons",
+        icon: PhRadioButton,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Apply Custom button styles to forms, dialogs, and various elements, featuring support for multiple sizes and states.",
+        href: "/ui-kits/buttons",
+    },
+    {
+        title: "Cards",
+        icon: PhCreditCard,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Create stylish cards with Admin Element for organized content presentation and a sleek user interface.",
+        href: "/ui-kits/cards",
+    },
+    {
+        title: "List",
+        icon: PhListBullets,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Easily design lists with Admin Element intuitive elements for structured content display, enhancing user",
+        href: "/ui-kits/lists",
+    },
+    {
+        title: "Alerts",
+        icon: PhWarningCircle,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Create alerts using Admin Elements intuitive elements to effectively communicate messages.",
+        href: "/ui-kits/alert",
+    },
+    {
+        title: "Accordions",
+        icon: PhCookingPot,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Create collapsible accordion in Admin for organized content presentation, optimizing user interaction.",
+        href: "/ui-kits/accordions",
+    },
+    {
+        title: "Dropdown",
+        icon: PhCaretDown,
+        iconProps: {size: 18, color: "#212529", weight: "bold"},
+        desc: "Create dropdown using Admin Elements for enhanced user interaction and intuitive navigation.",
+        href: "/ui-kits/dropdown",
+    },
+];
+</script>
 <template>
   <div>
     <section class="element-section section-lg-space-x" id="Elements">
-      <BContainer>
-        <BRow>
-          <BCol xl="8">
+      <b-container>
+        <b-row>
+          <b-col xl="8">
             <div class="landing-title">
-              <BBadge class="title-badge mb-3" variant="light-primary">
+              <b-badge class="title-badge mb-3" variant="light-primary">
                 <PhBriefcase
                     weight="fill"
                     :size="14"
                     class="align-text-bottom me-1"
                 />
                 UI Elements
-              </BBadge>
+              </b-badge>
               <h2>
                 Elements <span class="highlight-title">Of Ki-Admin</span>
               </h2>
@@ -22,13 +89,13 @@
                 robust set of pre-built components and templates.
               </p>
             </div>
-          </BCol>
-        </BRow>
+          </b-col>
+        </b-row>
 
-        <BRow class="gx-sm-5 gy-sm-4 g-2">
-          <BCol sm="6" lg="4" v-for="(element, index) in uiElements" :key="index">
-            <BCard class="card-primary" no-body>
-              <BCardBody>
+        <b-row class="gx-sm-5 gy-sm-4 g-2">
+          <b-col sm="6" lg="4" v-for="(element, index) in uiElements" :key="index">
+            <b-card class="card-primary" no-body>
+              <b-card-body>
                 <div class="element-card">
                   <div class="element-card-img">
                     <img src="/images/landing/card-image.png" alt="" />
@@ -46,7 +113,7 @@
                     <p class="f-s-16 txt-ellipsis-2 text-white-800 mb-3">
                       {{ element.desc }}
                     </p>
-                    <BButton
+                    <b-button
                         :href="element.href"
                         target="_blank"
                         variant="light-white"
@@ -54,82 +121,15 @@
                     >
                       View {{ element.title }}
                       <PhCaretRight class="ms-2 f-s-16" weight="bold" />
-                    </BButton>
+                    </b-button>
                   </div>
                 </div>
-              </BCardBody>
-            </BCard>
-          </BCol>
-        </BRow>
-      </BContainer>
+              </b-card-body>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
     </section>
   </div>
 </template>
 
-<script setup>
-import {
-  BBadge,
-  BButton,
-  BCard,
-  BCardBody,
-  BCol,
-  BContainer,
-  BRow
-} from 'bootstrap-vue-next';
-
-import {
-  PhBriefcase,
-  PhCaretDown,
-  PhCaretRight,
-  PhCookingPot,
-  PhCreditCard,
-  PhListBullets,
-  PhRadioButton,
-  PhWarningCircle,
-} from '@phosphor-icons/vue';
-
-const uiElements = [
-  {
-    title: "Buttons",
-    icon: PhRadioButton,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Apply Custom button styles to forms, dialogs, and various elements, featuring support for multiple sizes and states.",
-    href: "/ui-kits/buttons",
-  },
-  {
-    title: "Cards",
-    icon: PhCreditCard,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Create stylish cards with Admin Element for organized content presentation and a sleek user interface.",
-    href: "/ui-kits/cards",
-  },
-  {
-    title: "List",
-    icon: PhListBullets,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Easily design lists with Admin Element intuitive elements for structured content display, enhancing user",
-    href: "/ui-kits/lists",
-  },
-  {
-    title: "Alerts",
-    icon: PhWarningCircle,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Create alerts using Admin Elements intuitive elements to effectively communicate messages.",
-    href: "/ui-kits/alert",
-  },
-  {
-    title: "Accordions",
-    icon: PhCookingPot,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Create collapsible accordion in Admin for organized content presentation, optimizing user interaction.",
-    href: "/ui-kits/accordions",
-  },
-  {
-    title: "Dropdown",
-    icon: PhCaretDown,
-    iconProps: {size: 18, color: "#212529", weight: "bold"},
-    desc: "Create dropdown using Admin Elements for enhanced user interaction and intuitive navigation.",
-    href: "/ui-kits/dropdown",
-  },
-];
-</script>

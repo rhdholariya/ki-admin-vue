@@ -22,15 +22,12 @@ import {
 } from "@/data/app/EshopPage/OrderDetails/OrderDetailData.js";
 import AppLayout from "@/views/AppLayout.vue";
 
-// ✅ Reactive state
 const orders = ref([...ordersCardData]);
 
-// ✅ Delete handler (reactive)
 const handleDelete = (id) => {
   orders.value = orders.value.filter((order) => order.id !== id);
 };
 
-// ✅ Dynamic badge variant
 const getBadgeVariant = (status) => {
   switch (status) {
     case "CANCELLED":
@@ -46,7 +43,6 @@ const getBadgeVariant = (status) => {
   }
 };
 
-// ✅ Breadcrumb config
 const breadcrumbItems = {
   title: "Orders Details",
   items: [
@@ -64,7 +60,6 @@ const breadcrumbItems = {
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
 
         <b-row class="order-details">
-          <!-- Left Section -->
           <b-col xxl="9">
             <b-row>
               <b-col
@@ -104,7 +99,6 @@ const breadcrumbItems = {
               </b-col>
             </b-row>
 
-            <!-- Orders Table -->
             <b-card no-body>
               <b-card-header>
                 <h5>Order : #ACD1100897</h5>
@@ -124,7 +118,7 @@ const breadcrumbItems = {
                       { key: 'actions', label: 'Action' }
                     ]"
                   >
-                    <!-- Product Cell -->
+
                     <template #cell(product)="data">
                       <div class="d-flex align-items-center gap-2">
                         <b-img
@@ -148,24 +142,20 @@ const breadcrumbItems = {
                       </div>
                     </template>
 
-                    <!-- Status Cell -->
                     <template #cell(status)="data">
                       <b-badge :variant="getBadgeVariant(data.item.status)">
                         {{ data.item.status }}
                       </b-badge>
                     </template>
 
-                    <!-- Price Cell -->
                     <template #cell(price)="data">
                       <span class="f-w-500 text-success">{{ data.item.price }}</span>
                     </template>
 
-                    <!-- Order Date Cell -->
                     <template #cell(orderDate)="data">
                       <span class="f-w-500 f-s-14">{{ data.item.orderDate }}</span>
                     </template>
 
-                    <!-- Rating Cell -->
                     <template #cell(rating)="data">
                       <div>
                         <IconStarFilled
@@ -177,7 +167,6 @@ const breadcrumbItems = {
                       </div>
                     </template>
 
-                    <!-- Actions Cell -->
                     <template #cell(actions)="data">
                       <b-button
                           variant="outline-success"
@@ -199,7 +188,6 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Right Section (Timeline) -->
           <b-col xxl="3">
             <b-card class="equal-card" no-body>
               <b-card-header>

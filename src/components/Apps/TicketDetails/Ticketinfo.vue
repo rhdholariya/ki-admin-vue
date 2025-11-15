@@ -1,3 +1,18 @@
+<script setup>
+import { BCard, BCardBody } from 'bootstrap-vue-next';
+import { IconPhoneCall, IconExternalLink, IconUserFilled } from '@tabler/icons-vue'
+const ticketDetails = [
+  { label: 'Ticket ID', value: 'AR-2044' },
+  { label: 'Status', value: 'In Progress' },
+  { label: 'Priority', value: 'High' },
+  { label: 'Created', value: '2024-01-15' },
+  { label: 'Due Date', value: '2024-01-30' },
+  { label: 'Assignee', value: 'John Doe' },
+  { label: 'Department', value: 'Technical Support' },
+  { label: 'Category', value: 'Bug Report' }
+];
+</script>
+
 <template>
   <b-card no-body>
     <b-card-body>
@@ -36,18 +51,5 @@
   </b-card>
 </template>
 
-<script setup>
-import { BCard, BCardBody } from 'bootstrap-vue-next';
-import { IconPhoneCall, IconExternalLink, IconUserFilled } from '@tabler/icons-vue'
-const ticketDetails = [
-  { label: 'Ticket ID', value: 'AR-2044' },
-  { label: 'Status', value: 'In Progress' },
-  { label: 'Priority', value: 'High' },
-  { label: 'Created', value: '2024-01-15' },
-  { label: 'Due Date', value: '2024-01-30' },
-  { label: 'Assignee', value: 'John Doe' },
-  { label: 'Department', value: 'Technical Support' },
-  { label: 'Category', value: 'Bug Report' }
-];
-</script>
+
 

@@ -15,20 +15,16 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
 
-// Collapse state
 const showBasic = ref(false);
 const showHorizontal = ref(false);
 const showFirst = ref(false);
 const showSecond = ref(false);
 
-
-// Toggle both first and second
 const toggleBoth = () => {
     showFirst.value = !showFirst.value;
     showSecond.value = !showSecond.value;
 };
 
-// --- Breadcrumb ---
 const breadcrumbItems = {
     title: "Collapse",
     items: [
@@ -45,7 +41,6 @@ const breadcrumbItems = {
                 <Breadcrumb :breadcrumb="breadcrumbItems" />
 
                 <b-row>
-                    <!-- Basic Collapse -->
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -64,7 +59,6 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- Horizontal Collapse -->
                     <b-col cols="12" class="mt-3">
                         <b-card no-body>
                             <b-card-header>
@@ -77,7 +71,7 @@ const breadcrumbItems = {
                                 <b-collapse v-model="showHorizontal">
                                     <b-card-body
                                         class="mt-3 dashed-1-secondary rounded"
-                                        style="width: 280px;"
+
                                     >
                                         Horizontal collapse content.
                                     </b-card-body>
@@ -86,7 +80,6 @@ const breadcrumbItems = {
                         </b-card>
                     </b-col>
 
-                    <!-- Multiple Collapses -->
                     <b-col cols="12" class="mt-3">
                         <b-card no-body>
                             <b-card-header>

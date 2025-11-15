@@ -87,42 +87,48 @@ export const teamMembers = [
     role: "Project Manager",
     imgSrc: "/images/avatar/1.png",
     color: "bg-primary",
-    initial: "JD"
+    initial: "JD",
+    bgColor: "primary"
   },
   {
     name: "Jane Smith",
     role: "UI/UX Designer",
     imgSrc: "/images/avatar/2.png",
     color: "bg-success",
-    initial: "JS"
+    initial: "JS",
+    bgColor: "secondary"
   },
   {
     name: "Mike Johnson",
     role: "Frontend Developer",
     imgSrc: "/images/avatar/3.png",
     color: "bg-info",
-    initial: "MJ"
+    initial: "MJ",
+    bgColor: "dark"
   },
   {
     name: "Sarah Wilson",
     role: "Backend Developer",
     imgSrc: "/images/avatar/4.png",
     color: "bg-warning",
-    initial: "SW"
+    initial: "SW",
+    bgColor: "warning"
   },
   {
     name: "David Brown",
     role: "DevOps Engineer",
     imgSrc: "/images/avatar/5.png",
     color: "bg-danger",
-    initial: "DB"
+    initial: "DB",
+    bgColor: "danger"
   },
   {
     name: "Lisa Davis",
     role: "QA Tester",
     imgSrc: null,
     color: "bg-secondary",
-    initial: "LD"
+    initial: "LD",
+    bgColor: "secondary"
   }
 ];
 

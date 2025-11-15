@@ -8,7 +8,6 @@ import { BContainer, BRow, BCol } from "bootstrap-vue-next";
 import BlogDetailLeft from "@/components/Apps/BlogDetails/BlogDetailLeft.vue";
 import BlogDetailRight from "@/components/Apps/BlogDetails/BlogDetailRight.vue";
 
-// Breadcrumb configuration
 const breadcrumbItems = computed(() => ({
   title: "Blog Details",
   items: [
@@ -23,10 +22,7 @@ const breadcrumbItems = computed(() => ({
   <AppLayout>
     <main>
       <b-container fluid>
-        <!-- Breadcrumb -->
         <Breadcrumb :breadcrumb="breadcrumbItems" />
-
-        <!-- Page Layout -->
         <b-row>
           <b-col lg="8" xxl="9">
             <BlogDetailLeft />

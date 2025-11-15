@@ -36,7 +36,7 @@ const handleCardSubmit = (e) => {
     <b-row>
       <!-- Credit / Debit Card -->
       <b-col md="12">
-        <b-card class="shadow-none mb-3">
+        <b-card class="shadow-none mb-3" no-body>
           <b-card-body class="select-content">
             <b-form-radio
                 name="payment"
@@ -112,7 +112,7 @@ const handleCardSubmit = (e) => {
 
       <!-- Visa Card -->
       <b-col md="6">
-        <b-card class="shadow-none mb-3">
+        <b-card class="shadow-none mb-3" no-body>
           <b-card-body class="select-content">
             <b-form-radio
                 name="payment"
@@ -144,7 +144,7 @@ const handleCardSubmit = (e) => {
 
       <!-- PayPal -->
       <b-col md="6">
-        <b-card class="shadow-none mb-3">
+        <b-card class="shadow-none mb-3" no-body>
           <b-card-body class="select-content">
             <b-form-radio
                 name="payment"
@@ -176,7 +176,7 @@ const handleCardSubmit = (e) => {
 
       <!-- UPI -->
       <b-col md="12">
-        <b-card class="shadow-none mb-3">
+        <b-card class="shadow-none mb-3" no-body>
           <b-card-body class="select-content">
             <b-form-radio
                 name="payment"
@@ -199,7 +199,7 @@ const handleCardSubmit = (e) => {
 
       <!-- Cash on Delivery -->
       <b-col md="12">
-        <b-card class="shadow-none mb-3">
+        <b-card class="shadow-none mb-3" no-body>
           <b-card-body class="select-content">
             <b-form-radio
                 name="payment"

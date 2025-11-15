@@ -13,7 +13,7 @@ const props = defineProps({
   columns: { type: Array, required: true },
   data: { type: Array, required: true },
   showActions: { type: Boolean, default: true },
-  showIndividualButtons: {type: Boolean, default: false}, // Changed default to false for dropdown
+  showIndividualButtons: {type: Boolean, default: false},
   onEdit: {type: Function},
   onDelete: {type: Function},
   onView: {type: Function},
@@ -28,12 +28,13 @@ const props = defineProps({
 });
 
 const tableWrapperRef = ref(null);
+const tableRef = ref(null);
 let dataTableInstance = null;
 
 const tableFields = computed(() => {
   const fields = props.columns.map(column => ({
     key: column.key,
-    label: column.header,
+    label: column.header || column.label,
     class: column.className,
     sortable: false,
   }));
@@ -75,10 +76,10 @@ const renderContent = (renderFn, value, item) => {
 };
 
 const initDataTable = async () => {
-  if (typeof window === 'undefined' || !tableWrapperRef.value) return;
+  if (typeof window === "undefined" || !tableRef.value) return;
 
   try {
-    const DataTableModule = await import('datatables.net-dt');
+    const DataTableModule = await import("datatables.net-dt");
     const DataTable = DataTableModule.default || DataTableModule;
 
     if (dataTableInstance) {
@@ -88,9 +89,15 @@ const initDataTable = async () => {
 
     await nextTick();
 
-    const actualTable = tableWrapperRef.value.querySelector('table');
-    if (actualTable && !actualTable.classList.contains('dataTable')) {
-      dataTableInstance = new DataTable(actualTable, {
+    let tableWrapper = tableRef.value?.$el;
+
+    let tableElement =
+        tableWrapper?.tagName === "TABLE"
+            ? tableWrapper
+            : tableWrapper?.getElementsByTagName("table")[0];
+
+    if (tableElement && !tableElement.classList.contains("dataTable")) {
+      dataTableInstance = new DataTable(tableElement, {
         pagingType: "full_numbers",
         pageLength: props.pageLength,
         dom: props.showLengthMenu
@@ -110,11 +117,11 @@ const initDataTable = async () => {
         },
         order: [],
         autoWidth: false,
-        deferRender: false
+        deferRender: false,
       });
     }
   } catch (error) {
-    console.error('Error initializing DataTable:', error);
+    console.error("Error initializing DataTable:", error);
   }
 };
 
@@ -145,6 +152,7 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
       <BCardBody class="p-0">
         <div ref="tableWrapperRef" class="app-scroll table-responsive app-datatable-default cursor-pointer">
           <BTable
+              ref="tableRef"
               :items="tableItems"
               :fields="tableFields"
               :class="tableClassName"
@@ -183,7 +191,7 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
                       @click="onDelete(data.value)"
                       title="Delete"
                   >
-                   <IconTrash size="18"/>
+                    <IconTrash size="18"/>
                   </BButton>
                 </template>
 
@@ -232,7 +240,7 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
                     :key="`footer-${column.key}`"
                     :class="column.className"
                 >
-                  {{ column.header }}
+                  {{ column.header || column.label }}
                 </th>
                 <th v-if="showActions">Action</th>
               </tr>

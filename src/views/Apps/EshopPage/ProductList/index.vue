@@ -11,13 +11,11 @@ import { BContainer, BFormCheckbox } from "bootstrap-vue-next";
 const products = ref([...productlist]);
 const selectedItems = ref([]);
 
-// 🗑 Delete a product
 const handleDelete = (id) => {
   products.value = products.value.filter((p) => p.id !== id);
   selectedItems.value = selectedItems.value.filter((itemId) => itemId !== id);
 };
 
-// ✅ Toggle single selection
 const toggleItemSelection = (id) => {
   if (selectedItems.value.includes(id)) {
     selectedItems.value = selectedItems.value.filter((itemId) => itemId !== id);
@@ -26,7 +24,6 @@ const toggleItemSelection = (id) => {
   }
 };
 
-// ✅ Toggle "Select All"
 const toggleSelectAll = (checked) => {
   if (checked) {
     selectedItems.value = products.value.map((p) => p.id);
@@ -35,7 +32,6 @@ const toggleSelectAll = (checked) => {
   }
 };
 
-// Category badge color map
 const categoryColorMap = {
   Purse: "info",
   Watch: "success",
@@ -43,7 +39,6 @@ const categoryColorMap = {
   Clothing: "danger",
 };
 
-// ✅ Table Columns Definition
 const columns = [
   {
     key: "checkbox",
@@ -120,7 +115,6 @@ const columns = [
   },
 ];
 
-// Footer columns
 const footerColumns = [
   { key: "product", header: "Product" },
   { key: "price", header: "Price" },
@@ -131,7 +125,6 @@ const footerColumns = [
   { key: "action", header: "Action" },
 ];
 
-// Breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Product List",
   items: [

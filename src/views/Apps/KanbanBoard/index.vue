@@ -2,7 +2,6 @@
 import {ref, onMounted, onBeforeUnmount, h, computed} from "vue";
 import MuuriModule from "muuri";
 const Muuri = MuuriModule.default || MuuriModule;
-
 import {
   PhChartLineUp,
   PhChatText,
@@ -21,7 +20,6 @@ const boardRef = ref(null);
 const columnGridsRef = ref([]);
 const boardGridRef = ref(null);
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Kanban Board",
   items: [
@@ -84,7 +82,6 @@ const columns = [
   },
 ];
 
-// Initialize Muuri
 const initKanban = () => {
   const currentBoard = boardRef.value;
   if (!currentBoard) return;

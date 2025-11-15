@@ -1,11 +1,76 @@
+<script setup>
+import { ref, computed } from "vue";
+import {
+    BContainer,
+    BRow,
+    BCol,
+    BCard,
+    BCardBody,
+    BButton,
+    BModal,
+    BForm,
+    BFormGroup,
+    BFormInput,
+} from "bootstrap-vue-next";
+
+import AppLayout from "@/views/AppLayout.vue";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import ToDoTable from "@/components/Apps/ToDo/ToDoTable.vue";
+
+import { PhStack } from "@phosphor-icons/vue";
+import { IconPlus, IconTrash } from "@tabler/icons-vue";
+
+const defaultTasks = [
+    "ki-admin & Dashboard",
+    "Project Management",
+    "Chat Application",
+    "Todo App",
+    "React Weather App",
+    "Tic-Tac-Toe",
+    "Stopwatch",
+    "Calculator App",
+    "Ecommerce Site",
+    "Chat Application",
+];
+
+const modal = ref(false);
+const tasks = ref([...defaultTasks]);
+const newTask = ref("");
+
+const breadcrumbItems = computed(() => ({
+    title: "Todo",
+    items: [
+        { label: "Apps", icon: PhStack },
+        { label: "Todo", active: true },
+    ],
+}));
+
+const toggleModal = () => {
+    modal.value = !modal.value;
+};
+
+const resetForm = () => {
+    newTask.value = "";
+};
+
+const handleAddTask = () => {
+    if (newTask.value.trim()) {
+        tasks.value.unshift(newTask.value);
+        newTask.value = "";
+        toggleModal();
+    }
+};
+
+const handleDeleteTask = (index) => {
+    tasks.value.splice(index, 1);
+};
+</script>
 <template>
   <AppLayout>
     <main>
       <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
-        
-        <b-row>
-          <!-- Project List Sidebar -->
+          <b-row>
           <b-col xl="3">
             <b-card>
               <b-card-body>
@@ -17,8 +82,6 @@
                 >
                   <IconPlus class="me-1" :size="18" /> Add Project
                 </b-button>
-
-                <!-- Add Project Modal -->
                 <b-modal
                   v-model="modal"
                   title="Create Task"
@@ -42,8 +105,6 @@
                     </b-button>
                   </template>
                 </b-modal>
-
-                <!-- Project List -->
                 <div class="todo-container mt-4">
                   <div
                     v-for="(task, index) in tasks"
@@ -65,7 +126,6 @@
             </b-card>
           </b-col>
 
-          <!-- Todo Table -->
           <ToDoTable />
         </b-row>
       </b-container>
@@ -73,75 +133,3 @@
   </AppLayout>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardBody,
-  BButton,
-  BModal,
-  BForm,
-  BFormGroup,
-  BFormInput,
-} from "bootstrap-vue-next";
-
-import AppLayout from "@/views/AppLayout.vue";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import ToDoTable from "@/components/Apps/ToDo/ToDoTable.vue";
-
-// Import icons
-import { PhStack } from "@phosphor-icons/vue";
-import { IconPlus, IconTrash } from "@tabler/icons-vue";
-
-// Default tasks data
-const defaultTasks = [
-  "ki-admin & Dashboard",
-  "Project Management",
-  "Chat Application",
-  "Todo App",
-  "React Weather App",
-  "Tic-Tac-Toe",
-  "Stopwatch",
-  "Calculator App",
-  "Ecommerce Site",
-  "Chat Application",
-];
-
-// Reactive state
-const modal = ref(false);
-const tasks = ref([...defaultTasks]);
-const newTask = ref("");
-
-// Computed breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "Todo",
-  items: [
-    { label: "Apps", icon: PhStack },
-    { label: "Todo", active: true },
-  ],
-}));
-
-// Methods
-const toggleModal = () => {
-  modal.value = !modal.value;
-};
-
-const resetForm = () => {
-  newTask.value = "";
-};
-
-const handleAddTask = () => {
-  if (newTask.value.trim()) {
-    tasks.value.unshift(newTask.value);
-    newTask.value = "";
-    toggleModal();
-  }
-};
-
-const handleDeleteTask = (index) => {
-  tasks.value.splice(index, 1);
-};
-</script>

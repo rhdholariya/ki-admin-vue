@@ -9,7 +9,6 @@ import Ticketinfo from '@/components/Apps/TicketDetails/Ticketinfo.vue';
 import Ticketfileupload from '@/components/Apps/TicketDetails/Ticketfileupload.vue';
 import TicketdetailsData from "@/components/Apps/TicketDetails/TicketdetailsData.vue";
 
-// Computed breadcrumb data
 const breadcrumbItems = computed(() => ({
   title: "Ticket Details",
   items: [

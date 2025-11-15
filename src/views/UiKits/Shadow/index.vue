@@ -13,7 +13,6 @@ import {
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-// Breadcrumb
 const breadcrumbItems = {
     title: "Shadow",
     items: [
@@ -22,10 +21,8 @@ const breadcrumbItems = {
     ]
 };
 
-// Box shadow 1–24
 const boxShadows = Array.from({ length: 24 }, (_, i) => i + 1);
 
-// Themed shadows
 const themedShadows = [
     { name: "Primary", className: "box-shadow-primary" },
     { name: "Secondary", className: "box-shadow-secondary" },
@@ -37,7 +34,6 @@ const themedShadows = [
     { name: "Dark", className: "box-shadow-dark" }
 ];
 
-// Copy handler
 const handleCopy = (className) => {
     navigator.clipboard.writeText(className);
     Toastify({
@@ -60,7 +56,6 @@ const handleCopy = (className) => {
                 <Breadcrumb :breadcrumb="breadcrumbItems" />
                 
                 <b-row>
-                    <!-- Box Shadow -->
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>
@@ -90,8 +85,6 @@ const handleCopy = (className) => {
                             </b-card-body>
                         </b-card>
                     </b-col>
-
-                    <!-- Themed Shadows -->
                     <b-col cols="12">
                         <b-card no-body>
                             <b-card-header>

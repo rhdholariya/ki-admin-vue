@@ -2,14 +2,8 @@
 import {BAlert, BButton, BCard, BCardBody, BCardHeader, BCol, BCollapse} from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 import { ref} from "vue";
-
-
 const open = ref(false);
 
-
-
-
-// Alerts data
 const alerts = [
     { type: "primary", message: "Simple primary alert - check it out!" },
     { type: "secondary", message: "Simple secondary alert - check it out!" },
@@ -34,7 +28,6 @@ const alerts = [
                 </div>
             </b-card-header>
             <b-card-body>
-            <!-- Alerts -->
             <b-alert
                 v-for="(alert, index) in alerts"
                 :key="index"
@@ -43,8 +36,6 @@ const alerts = [
             >
                 {{ alert.message }}
             </b-alert>
-
-            <!-- Prism Preview -->
                 <b-collapse v-model="open" class="mt-3">
   <pre class="language-html" tabindex="0">
     <code v-prism>

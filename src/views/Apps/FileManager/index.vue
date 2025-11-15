@@ -16,24 +16,20 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 const activeTab = ref(1)
 const modalsRef = ref(null)
 
-// Shared data stores
 const starredItems = ref([])
 const recycledItems = ref([])
 
 const handleToggleFavorite = (item, isFavorite) => {
   if (isFavorite) {
-    // Add to starred if not already there
     if (!starredItems.value.find(starred => starred.id === item.id)) {
       starredItems.value.push({ ...item, isFavorite: true })
     }
   } else {
-    // Remove from starred
     starredItems.value = starredItems.value.filter(starred => starred.id !== item.id)
   }
 }
 
 const handleMoveToRecycle = (item) => {
-  // Add to recycle bin
   recycledItems.value.push({
     ...item,
     deletedAt: new Date().toISOString(),
@@ -42,17 +38,13 @@ const handleMoveToRecycle = (item) => {
 }
 
 const handleRestoreItem = (item) => {
-  // Remove from recycle bin
   recycledItems.value = recycledItems.value.filter(recycled => recycled.id !== item.id)
-  // Logic to restore to original location would go here
 }
 
 const handlePermanentlyDelete = (item) => {
-  // Remove from recycle bin permanently
   recycledItems.value = recycledItems.value.filter(recycled => recycled.id !== item.id)
 }
 
-// Other existing handlers...
 const handleTabChange = (tabId) => {
   activeTab.value = tabId
 }
@@ -108,13 +100,9 @@ const breadcrumbItems = computed(() => ({
         <Breadcrumb :breadcrumb="breadcrumbItems" />
   <div class="file-manager">
     <b-row>
-      <!-- Sidebar -->
       <Sidebar @tab-change="handleTabChange" />
-
-      <!-- Main Content -->
       <div class="col-lg-8 col-xxl-9">
         <div class="content-wrapper">
-          <!-- Tab 1: My Cloud -->
           <div v-if="activeTab === 1" class="tabs-content active">
             <QuickAccess
                 @edit-item="handleEditItem"
@@ -138,7 +126,6 @@ const breadcrumbItems = computed(() => ({
             />
           </div>
 
-          <!-- Tab 2: Starred -->
           <div v-if="activeTab === 2" class="tabs-content">
             <StarredContent
                 :starred-items="starredItems"
@@ -149,7 +136,6 @@ const breadcrumbItems = computed(() => ({
             />
           </div>
 
-          <!-- Tab 3: Recycle Bin -->
           <div v-if="activeTab === 3" class="tabs-content">
             <RecycleBinContent
                 :recycled-items="recycledItems"
@@ -158,7 +144,6 @@ const breadcrumbItems = computed(() => ({
             />
           </div>
 
-          <!-- Tab 4: Recent -->
           <div v-if="activeTab === 4" class="tabs-content">
             <RecentContent
                 @edit-file="handleEditFile"
@@ -171,7 +156,6 @@ const breadcrumbItems = computed(() => ({
       </div>
     </b-row>
 
-    <!-- Modals -->
     <Modals
         ref="modalsRef"
         @rename-confirmed="handleRenameConfirmed"

@@ -51,7 +51,6 @@ const activeAccordion = ref(['0'])
         </b-card-header>
         <b-card-body>
             <b-row>
-                <!-- Left Tabs -->
                 <b-col lg="4" class="mb-3">
                     <div class="vertical-tabs">
                         <div

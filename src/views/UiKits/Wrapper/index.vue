@@ -6,8 +6,6 @@ import AppLayout from "@/views/AppLayout.vue";
 import CustomWrapperPage from "@/components/UiKits/Wrapper/CustomWrapperPage.vue";
 import ContentOverlayWrapper from "@/components/UiKits/Wrapper/ContentOverlayWrapper.vue";
 
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Wrapper",
     items: [

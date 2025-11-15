@@ -17,10 +17,9 @@ import {
   BPagination,
 } from "bootstrap-vue-next";
 import { IconEdit, IconSearch, IconTrash } from "@tabler/icons-vue";
-import * as bootstrap from "bootstrap"; // ✅ Optional for tooltips/popovers
+
 import { initialTodos } from "@/data/app/todo/todoData.js";
 
-// --- State ---
 const todos = ref([...initialTodos]);
 const showModal = ref(false);
 const isEditing = ref(false);
@@ -28,7 +27,6 @@ const currentPage = ref(1);
 const searchTerm = ref("");
 const itemsPerPage = 8;
 
-// --- Form Data ---
 const formData = ref({
   id: null,
   task: "",
@@ -39,7 +37,6 @@ const formData = ref({
   completed: false,
 });
 
-// --- Table Fields ---
 const tableFields = [
   { key: "checkbox", label: "" },
   { key: "task", label: "Task" },
@@ -51,7 +48,6 @@ const tableFields = [
   { key: "delete", label: "Delete" },
 ];
 
-// --- Computed ---
 const filteredTodos = computed(() => {
   if (!searchTerm.value) return todos.value;
   const lower = searchTerm.value.toLowerCase();
@@ -139,7 +135,6 @@ const getPriorityVariant = (priority) =>
     ({ High: "success", Medium: "warning", Low: "danger" }[priority] ||
         "secondary");
 
-// --- Watch ---
 watch(filteredTodos, (newList) => {
   if (currentPage.value > Math.ceil(newList.length / itemsPerPage))
     currentPage.value = Math.ceil(newList.length / itemsPerPage) || 1;
@@ -161,7 +156,6 @@ onBeforeUnmount(() => {
     <b-card no-body>
       <b-card-body class="p-0">
 
-        <!-- 🔍 Search + Add Button -->
         <div class="d-flex justify-content-between p-3 border-bottom">
           <b-form class="me-3 app-form app-icon-form search-lg h-100 w-100">
             <div class="position-relative h-100">
@@ -184,7 +178,6 @@ onBeforeUnmount(() => {
           </b-button>
         </div>
 
-        <!-- ✅ Todo Table -->
         <b-table
             hover
             responsive
@@ -192,7 +185,7 @@ onBeforeUnmount(() => {
             :items="paginatedTodos"
             :fields="tableFields"
         >
-          <!-- Checkbox -->
+
           <template #cell(checkbox)="row">
             <b-form-checkbox
                 :id="`todo-${row.item.id}`"
@@ -200,7 +193,7 @@ onBeforeUnmount(() => {
             />
           </template>
 
-          <!-- Task -->
+
           <template #cell(task)="row">
             <span
                 :class="{ 'text-decoration-line-through': row.item.completed }"
@@ -210,7 +203,6 @@ onBeforeUnmount(() => {
             </span>
           </template>
 
-          <!-- Priority -->
           <template #cell(priority)="row">
             <b-badge
                 :variant="getPriorityVariant(row.item.priority)"
@@ -220,24 +212,20 @@ onBeforeUnmount(() => {
             </b-badge>
           </template>
 
-          <!-- Assign -->
           <template #cell(assign)="row">
             <p class="txt-ellipsis-1 mb-0 fw-medium text-dark">
               {{ row.item.assign }}
             </p>
           </template>
 
-          <!-- Date -->
           <template #cell(date)="row">
             <span class="text-success fw-semibold">{{ row.item.date }}</span>
           </template>
 
-          <!-- Notes -->
           <template #cell(notes)="row">
             {{ row.item.notes }}
           </template>
 
-          <!-- Edit -->
           <template #cell(edit)="row">
             <b-button
                 variant="outline-success"
@@ -250,7 +238,6 @@ onBeforeUnmount(() => {
             </b-button>
           </template>
 
-          <!-- Delete -->
           <template #cell(delete)="row">
             <b-button
                 variant="outline-danger"
@@ -264,7 +251,6 @@ onBeforeUnmount(() => {
           </template>
         </b-table>
 
-        <!-- Pagination -->
         <div
             v-if="totalPages > 1"
             class="d-flex justify-content-between p-3 border-top flex-wrap"
@@ -281,7 +267,6 @@ onBeforeUnmount(() => {
           />
         </div>
 
-        <!-- Add / Edit Modal -->
         <b-modal
             v-model="showModal"
             :title="isEditing ? 'Edit Task' : 'Add Task'"

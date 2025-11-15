@@ -10,10 +10,8 @@ import {
 } from "bootstrap-vue-next";
 import { PhCode } from "@phosphor-icons/vue";
 
-// State for open/close
 const openCard = ref(null);
 
-// Cards data
 const cardsData = [
   {
     id: "cardheader1",
@@ -111,9 +109,7 @@ const cardsData = [
         xl="3"
         class="mb-4"
     >
-      <!-- Card -->
       <b-card :class="card.className || 'card'" no-body>
-        <!-- Header -->
         <b-card-header>
           <div class="code-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">{{ card.title }}</h5>
@@ -132,13 +128,12 @@ const cardsData = [
           <p>{{ card.body }}</p>
         </b-card-body>
 
-        <!-- Footer -->
         <template v-if="card.footer" #footer>
           <h5>{{ card.footer }}</h5>
         </template>
       </b-card>
 
-      <!-- Prism Code Block -->
+
       <b-collapse :model-value="openCard === card.id" class="mt-3">
         <pre class="language-html" tabindex="0">
           <code v-prism>

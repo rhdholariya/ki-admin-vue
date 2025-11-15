@@ -131,7 +131,6 @@ const openLoadingButtons = ref(false);
     <b-row class="g-3">
         <b-col xl="4">
             <b-card no-body>
-                <!-- Header -->
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Icon Buttons</h5>
@@ -141,7 +140,6 @@ const openLoadingButtons = ref(false);
                     </div>
                 </b-card-header>
                   <b-card-body>
-                <!-- Buttons rendered with loop -->
                 <div class="app-btn-list d-flex flex-wrap gap-2 mt-2">
                     <b-button
                         v-for="(btn, index) in iconButtons"
@@ -152,10 +150,8 @@ const openLoadingButtons = ref(false);
                         <component :is="btn.icon" size="18" />
                     </b-button>
                 </div>
-
-                <!-- Collapsible code preview dynamically generated -->
                 <b-collapse v-model="openIconButton" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
               &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Icon Buttons&lt;/h5&gt;
@@ -177,7 +173,6 @@ const openLoadingButtons = ref(false);
         </b-col>
         <b-col xl="8">
             <b-card no-body>
-                <!-- Header -->
                 <template #header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Social Buttons</h5>
@@ -187,7 +182,6 @@ const openLoadingButtons = ref(false);
                     </div>
                 </template>
                  <b-card-body>
-                <!-- Buttons rendered dynamically -->
                 <div class="app-btn-list d-flex flex-wrap gap-2 mt-2">
                     <b-button
                         v-for="(btn, index) in socialButtons"
@@ -203,9 +197,8 @@ const openLoadingButtons = ref(false);
                     </b-button>
                 </div>
 
-                <!-- Collapsible code preview dynamically -->
                 <b-collapse v-model="openSocialButtons" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
                &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Social Buttons&lt;/h5&gt;
@@ -227,7 +220,7 @@ const openLoadingButtons = ref(false);
         </b-col>
         <b-col xl="12">
             <b-card no-body>
-                <!-- Card Header -->
+
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Disabled Buttons</h5>
@@ -237,7 +230,6 @@ const openLoadingButtons = ref(false);
                     </div>
                 </b-card-header>
                  <b-card-body>
-                <!-- Disabled Buttons -->
                 <div class="row">
                     <div
                         v-for="(group, gIndex) in disabledButtonGroups"
@@ -261,9 +253,8 @@ const openLoadingButtons = ref(false);
                     </div>
                 </div>
 
-                <!-- Prism Preview -->
                 <b-collapse v-model="openDisabledButtons" class="mt-3">
-      <pre class="language-html"><code>
+      <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Disabled Buttons&lt;/h5&gt;
@@ -292,7 +283,6 @@ const openLoadingButtons = ref(false);
         </b-col>
         <b-col xl="12">
                 <b-card no-body>
-                    <!-- Card Header -->
                     <b-card-header>
                         <div class="code-header d-flex justify-content-between align-items-center">
                             <h5>Active Buttons</h5>
@@ -302,7 +292,6 @@ const openLoadingButtons = ref(false);
                         </div>
                     </b-card-header>
                     <b-card-body>
-                    <!-- Buttons -->
                     <div class="row">
                         <div
                             v-for="(group, gIndex) in activeButtonGroups"
@@ -326,9 +315,8 @@ const openLoadingButtons = ref(false);
                         </div>
                     </div>
 
-                    <!-- Prism Preview -->
                     <b-collapse v-model="openActiveButtons" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
 &lt;b-card&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Active Buttons&lt;/h5&gt;
@@ -353,7 +341,6 @@ const openLoadingButtons = ref(false);
             </b-col>
         <b-col xl="12">
             <b-card no-body>
-                <!-- Card Header -->
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Loading Buttons</h5>
@@ -404,10 +391,8 @@ const openLoadingButtons = ref(false);
                         </b-button>
                     </div>
                 </div>
-
-                <!-- Prism Preview -->
                 <b-collapse v-model="openLoadingButtons" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
               &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Loading Buttons&lt;/h5&gt;

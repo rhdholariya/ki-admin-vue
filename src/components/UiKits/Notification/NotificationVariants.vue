@@ -3,7 +3,6 @@ import { BCard, BCardHeader, BCardBody, BCol, BRow, BButton } from "bootstrap-vu
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-// --- Position Notification Data ---
 const NotificationPositions = [
     { label: "Top", value: "top", variant: "light-primary", bgColor: "rgba(var(--primary),1)" },
     { label: "Left", value: "left", variant: "light-success", bgColor: "rgba(var(--success),1)" },
@@ -12,7 +11,6 @@ const NotificationPositions = [
     { label: "Center", value: "center", variant: "light-secondary", bgColor: "rgba(var(--secondary),1)" },
 ];
 
-// --- Color Notification Data ---
 const notificationsVariantsData = [
     { id: 1, type: "primary", message: "This is a Primary toast message.", ButtonColor: "light-primary" },
     { id: 2, type: "secondary", message: "This is a Secondary toast message.", ButtonColor: "light-secondary" },
@@ -24,7 +22,6 @@ const notificationsVariantsData = [
     { id: 8, type: "dark", message: "This is a Dark toast message.", ButtonColor: "light-dark" },
 ];
 
-// --- Show Toastify Toast ---
 const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") => {
     Toastify({
         text: message,
@@ -38,7 +35,6 @@ const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") =>
 
 <template>
     <b-row>
-        <!-- Position Notifications -->
         <b-col cols="12" class="mb-3">
             <b-card no-body>
                 <b-card-header class="code-header">
@@ -60,7 +56,6 @@ const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") =>
             </b-card>
         </b-col>
 
-        <!-- Color Notifications -->
         <b-col cols="12">
             <b-card no-body>
                 <b-card-header class="code-header">

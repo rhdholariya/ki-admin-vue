@@ -46,11 +46,9 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhStack} from "@phosphor-icons/vue";
 
-// Reactive data
 const showComposeModal = ref(false)
 const activeTab = ref(1)
 
-// Tab data
 const tabs = ref([
   {id: 1, icon: IconMail, label: 'Inbox', count: '10+'},
   {id: 2, icon: IconSend, label: 'Sent'},
@@ -233,7 +231,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
 
-        <BCol xl="9">
+        <b-col xl="9">
           <b-card no-body>
             <b-card-body>
               <div class="d-flex align-items-center flex-wrap mb-3">
@@ -408,7 +406,6 @@ const breadcrumbItems = computed(() => ({
                 </div>
 
                 <div class="mb-3">
-                  <!-- Replace with your text editor component -->
                   <div id="editor">
                     <p>Type Message...</p>
                   </div>
@@ -429,7 +426,7 @@ const breadcrumbItems = computed(() => ({
               </div>
             </b-card-body>
           </b-card>
-        </BCol>
+        </b-col>
       </b-row>
       </b-container>
     </main>

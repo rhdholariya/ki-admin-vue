@@ -26,22 +26,22 @@ const breadcrumbItems = {
 <template>
  <AppLayout>
    <main>
-    <BContainer fluid>
+    <b-container fluid>
       <Breadcrumb :breadcrumb="breadcrumbItems"/>
-      <BRow>
-        <BCol lg="8">
+      <b-row>
+        <b-col lg="8">
           <CheckoutTabs />
-        </BCol>
+        </b-col>
 
-        <BCol lg="4">
-          <BCard>
-            <BCardBody>
+        <b-col lg="4">
+          <b-card>
+            <b-card-body>
               <CheckoutProducts />
-            </BCardBody>
-          </BCard>
-        </BCol>
-      </BRow>
-    </BContainer>
+            </b-card-body>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
    </main>
  </AppLayout>
 

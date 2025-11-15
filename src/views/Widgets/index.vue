@@ -27,30 +27,30 @@ const breadcrumbItems = {
     <main>
       <Breadcrumb :breadcrumb="breadcrumbItems"/>
 <b-row>
-      <b-Col sm="6" lg="4" xxl="3">
+      <b-col sm="6" lg="4" xxl="3">
         <ProfitOverviewCard />
-      </b-Col>
-      <b-Col sm="6" lg="4" xxl="3">
+      </b-col>
+      <b-col sm="6" lg="4" xxl="3">
         <YearlyEarningCard />
-      </b-Col>
-      <b-Col sm="7" lg="6" xxl="4">
+      </b-col>
+      <b-col sm="7" lg="6" xxl="4">
         <ProjectDetailsCard isWidgetPage />
-      </b-Col>
-      <b-Col sm="5" lg="4" xxl="2">
+      </b-col>
+      <b-col sm="5" lg="4" xxl="2">
         <AiCommerceCard isWidgetPage />
-      </b-Col>
-      <b-Col sm="6" lg="4" xxl="3">
+      </b-col>
+      <b-col sm="6" lg="4" xxl="3">
         <ProjectMeetingCard />
-      </b-Col>
-      <b-Col md="6" xxl="3" >
+      </b-col>
+      <b-col md="6" xxl="3" >
         <TotalRevenueCard />
-      </b-Col>
-      <b-Col sm="6" lg="4" xxl="3">
+      </b-col>
+      <b-col sm="6" lg="4" xxl="3">
         <SaleOfferCard />
-      </b-Col>
-      <b-Col sm="6" lg="4" xxl="3">
+      </b-col>
+      <b-col sm="6" lg="4" xxl="3">
         <TotalEarningCard />
-      </b-Col>
+      </b-col>
 </b-row>
     </main>
   </AppLayout>

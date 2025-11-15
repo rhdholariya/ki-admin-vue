@@ -2,7 +2,6 @@
 import { BCard, BCardBody, BCol, BRow } from 'bootstrap-vue-next'
 import { IconTag } from '@tabler/icons-vue'
 
-// Thumbnail images
 const thumbnails = [
   '/images/ecommerce/25.jpg',
   '/images/ecommerce/26.jpg',
@@ -10,7 +9,6 @@ const thumbnails = [
   '/images/ecommerce/28.jpg'
 ]
 
-// Offers list
 const offers = [
   {
     title: 'Bank Offer',
@@ -28,7 +26,6 @@ const offers = [
     <b-card no-body>
       <b-card-body>
         <b-row class="g-2 my-2">
-          <!-- Main Image -->
           <b-col cols="12">
             <div class="product-image-box">
               <img
@@ -39,7 +36,6 @@ const offers = [
             </div>
           </b-col>
 
-          <!-- Thumbnails -->
           <b-col
               v-for="(img, index) in thumbnails"
               :key="index"
@@ -55,7 +51,6 @@ const offers = [
           </b-col>
         </b-row>
 
-        <!-- Stock Info -->
         <div class="mt-4">
           <h6 class="text-danger f-s-18">
             <strong>Only 2 left in stock.</strong>
@@ -74,7 +69,6 @@ const offers = [
 
           <div class="app-divider-v dotted p-2 m-0"></div>
 
-          <!-- Offer List -->
           <ul class="offer-details-list list-unstyled">
             <li
                 v-for="(offer, idx) in offers"

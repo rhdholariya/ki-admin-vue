@@ -8,6 +8,7 @@ import {
 } from 'bootstrap-vue-next';
 import TextEditor from '@/components/UiKits/Editor/TextEditor.vue';
 </script>
+
 <template>
   <div>
     <b-card class="mb-4" no-body>
@@ -38,7 +39,6 @@ import TextEditor from '@/components/UiKits/Editor/TextEditor.vue';
         <h5 class="mb-0">Comments</h5>
       </b-card-header>
       <b-card-body no-body>
-        <!-- Comment 1 -->
         <div class="ticket-comment-box mb-4">
           <div class="d-flex justify-content-between position-relative flex-wrap">
             <div class="h-45 w-45 d-flex-center b-r-50 bg-success overflow-hidden position-absolute">
@@ -81,7 +81,6 @@ import TextEditor from '@/components/UiKits/Editor/TextEditor.vue';
           </b-row>
         </div>
 
-        <!-- Comment 2 -->
         <div class="ticket-comment-box mb-3">
           <div class="d-flex justify-content-between position-relative flex-wrap">
             <div class="h-45 w-45 d-flex-center b-r-50 bg-primary overflow-hidden position-absolute">

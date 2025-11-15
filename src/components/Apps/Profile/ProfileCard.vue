@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { BCard, BCardBody, BRow, BButton } from "bootstrap-vue-next";
+import {BCard, BCardBody, BRow, BButton, BImg} from "bootstrap-vue-next";
 import { IconPhotoHeart, IconUser } from "@tabler/icons-vue";
 
 const imagePreview = ref(null);
@@ -41,7 +41,7 @@ const handleFileUpload = (event) => {
 
               <div class="avatar-preview mt-3">
                 <div id="imgPreview">
-                  <img
+                  <b-img
                       v-if="imagePreview"
                       :src="imagePreview"
                       alt="Preview"
@@ -57,7 +57,7 @@ const handleFileUpload = (event) => {
         <div class="person-details">
           <h5 class="fw-semibold">
             Ninfa Monaldo
-            <img
+            <b-img
                 width="20"
                 height="20"
                 src="/images/profile-app/01.png"

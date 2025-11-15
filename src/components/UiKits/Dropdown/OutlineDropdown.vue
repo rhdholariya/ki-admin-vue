@@ -36,7 +36,6 @@ const openLight = ref(false);
 <template>
     <b-col lg="12">
         <b-card no-body>
-            <!-- Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between">
                     <h5 class="txt-ellipsis">Dropdown Outline Variants</h5>
@@ -46,7 +45,6 @@ const openLight = ref(false);
                 </div>
             </b-card-header>
 
-            <!-- UI Example -->
             <b-card-body class="d-flex flex-wrap">
                 <b-dropdown
                     v-for="variant in variants"
@@ -66,17 +64,16 @@ const openLight = ref(false);
                 </b-dropdown>
             </b-card-body>
 
-            <!-- PrismJS Code Example -->
             <b-collapse v-model="open">
         <pre class="mt-3 language-html">
-<code >
+<code v-prism>
 
-{{`&lt;b-card no-body&gt;
+&lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Dropdown Outline Variants&lt;/h5&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-        ${variants
+        {{variants
     .map(
         (v) => `&lt;b-dropdown
     split
@@ -91,10 +88,10 @@ const openLight = ref(false);
   &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Separated link&lt;/b-dropdown-item&gt;
 &lt;/b-dropdown&gt;`
     )
-    .join('\n')}
+    .join('\n')}}
   &lt;/b-card-body&gt;
-&lt;/b-card&gt;`
-    }}
+&lt;/b-card&gt;
+
 </code>
         </pre>
             </b-collapse>
@@ -102,7 +99,6 @@ const openLight = ref(false);
     </b-col>
     <b-col lg="12">
         <b-card no-body>
-            <!-- Header -->
             <b-card-header>
                 <div class="code-header d-flex justify-content-between">
                     <h5 class="txt-ellipsis">Dropdown Light Variants</h5>
@@ -111,8 +107,6 @@ const openLight = ref(false);
                     </b-button>
                 </div>
             </b-card-header>
-
-            <!-- UI Example -->
             <b-card-body class="d-flex flex-wrap">
                 <b-dropdown
                     v-for="variant in variants"
@@ -132,17 +126,16 @@ const openLight = ref(false);
                 </b-dropdown>
             </b-card-body>
 
-            <!-- PrismJS Code Example -->
             <b-collapse v-model="openLight">
         <pre class="mt-3 language-html">
-<code class="language-html">
+<code v-prism>
 
-{{`&lt;b-card no-body&gt;
+&lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Dropdown Light Variants&lt;/h5&gt;
   &lt;/b-card-header&gt;
   &lt;b-card-body&gt;
-        ${variants
+        {{variants
     .map(
         (v) => `&lt;b-dropdown
     split
@@ -157,10 +150,10 @@ const openLight = ref(false);
   &lt;b-dropdown-item href="/ui-kits/dropdown"&gt;Separated link&lt;/b-dropdown-item&gt;
 &lt;/b-dropdown&gt;`
     )
-    .join('\n')}
+    .join('\n')}}
   &lt;/b-card-body&gt;
 &lt;/b-card&gt;`
-    }}
+
 </code>
         </pre>
             </b-collapse>

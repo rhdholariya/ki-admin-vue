@@ -1,16 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { BButton, BOffcanvas } from 'bootstrap-vue-next'
-import {
-  PhBell,
-  PhTrash,
-  PhBellRinging
-} from '@phosphor-icons/vue'
+import { PhBell, PhTrash, PhBellRinging } from '@phosphor-icons/vue'
 
-// Control offcanvas visibility
+
 const showNotification = ref(false)
 
-// List of notifications
 const notifications = ref([
   {
     id: 1,
@@ -19,13 +14,13 @@ const notifications = ref([
       { text: "Approve", variant: "success" },
       { text: "Deny", variant: "danger" }
     ],
-    time: "sep 23"
+    time: "Sep 23"
   },
   {
     id: 2,
     title: "Hey Emery McKenzie, get ready: Your order from @Shopper.com",
     actions: [],
-    time: "sep 23"
+    time: "Sep 23"
   },
   {
     id: 3,
@@ -35,7 +30,7 @@ const notifications = ref([
   },
   {
     id: 4,
-    title: "Becky G. Hayes has added a comment to Final_Report.pdf",
+    title: "Becky G. Hayes added a comment to Final_Report.pdf",
     actions: [],
     time: "45 min"
   },
@@ -50,12 +45,10 @@ const notifications = ref([
   }
 ])
 
-// Toggle offcanvas
 function toggleNotification() {
   showNotification.value = !showNotification.value
 }
 
-// Remove notification
 function removeNotification(id) {
   notifications.value = notifications.value.filter(n => n.id !== id)
 }
@@ -64,57 +57,96 @@ function removeNotification(id) {
 <template>
   <div>
     <!-- Notification Button -->
-    <b-button variant="light-secondary" class="position-relative rounded-circle p-2" @click="toggleNotification">
+    <b-button
+        variant="light-secondary"
+        class="position-relative rounded-circle p-2"
+        @click="toggleNotification"
+    >
       <PhBell size="22" />
       <span
-          class="position-absolute translate-middle p-1 bg-primary border border-light rounded-circle animate__animated animate__fadeIn animate__infinite animate__slower">
-      </span>
+          class="position-absolute translate-middle p-1 bg-primary border border-light rounded-circle animate__animated animate__fadeIn animate__infinite animate__slower"
+      ></span>
     </b-button>
 
-    <!-- Offcanvas -->
-    <b-offcanvas v-model="showNotification" placement="end" class="header-notification-canvas">
-      <template #header>
-          <h5 class="offcanvas-title">Notification</h5>
-          <b-button aria-label="Close" class="btn-close" type="button" @click="toggleNotification"></b-button>
-      </template>
+    <!-- Offcanvas (single body fix) -->
+    <b-offcanvas
+        v-model="showNotification"
+        placement="end"
+        class="header-notification-canvas"
+        body-class="app-scroll"
+    >
+    <!-- Header -->
+    <template #header>
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <h5 class="mb-0">Notifications</h5>
+        <b-button
+            aria-label="Close"
+            class="btn-close"
+            type="button"
+            variant="link"
+            @click="toggleNotification"
+        ></b-button>
+      </div>
+    </template>
 
+    <!-- Body Content -->
 
-        <div class=" app-scroll p-0">
-          <div v-if="notifications.length">
-            <div v-for="notification in notifications" :key="notification.id" class="notification-message head-box p-3 border-bottom d-flex align-items-start">
-              <div class="message-content-box flex-grow-1 pe-2">
-                <router-link class="f-s-15 text-dark mb-2" to="./read_email.html">
-                  {{ notification.title }}
-                </router-link>
-                <div v-if="notification.actions.length">
-                  <a
-                      v-for="(action, index) in notification.actions"
-                      :key="index"
-                      class="d-inline-block f-w-500 me-2"
-                      :class="{'text-success': action.variant === 'success', 'text-danger': action.variant === 'danger'}"
-                      href="#"
-                  >
-                    {{ action.text }}
-                  </a>
-                </div>
-              </div>
-              <div class="text-end">
-                <PhTrash size="18" class="text-danger cursor-pointer" @click="removeNotification(notification.id)" />
-                <div>
-                  <span class="badge text-light-primary">{{ notification.time }}</span>
-                </div>
-              </div>
+      <div v-if="notifications.length">
+        <div
+            v-for="notification in notifications"
+            :key="notification.id"
+            class="notification-message head-box p-3 border-bottom d-flex align-items-start"
+        >
+          <div class="message-content-box flex-grow-1 pe-2">
+            <router-link
+                class="f-s-15 text-dark mb-2 d-block"
+                to="read-email"
+            >
+              {{ notification.title }}
+            </router-link>
+
+            <div v-if="notification.actions.length">
+              <a
+                  v-for="(action, index) in notification.actions"
+                  :key="index"
+                  href="#"
+                  class="d-inline-block f-w-500 me-2"
+                  :class="{
+                    'text-success': action.variant === 'success',
+                    'text-danger': action.variant === 'danger'
+                  }"
+              >
+                {{ action.text }}
+              </a>
             </div>
           </div>
 
-          <!-- Empty State -->
-          <div v-else class="text-center py-4 px-3">
-            <PhBellRinging size="50" class="text-primary mb-3" />
-            <h6 class="mb-2">Notification Not Found</h6>
-            <p class="text-dark">When you have any notifications added here, they will appear here.</p>
+          <div class="text-end">
+            <PhTrash
+                size="18"
+                class="text-danger cursor-pointer mb-2"
+                @click="removeNotification(notification.id)"
+            />
+            <div>
+                <span class="badge bg-light-primary text-primary">
+                  {{ notification.time }}
+                </span>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- Empty State -->
+      <div v-else class="text-center py-4 px-3">
+        <PhBellRinging size="50" class="text-primary mb-3" />
+        <h6 class="mb-2">No Notifications</h6>
+        <p class="text-dark">
+          When new notifications arrive, they will appear here.
+        </p>
+      </div>
 
     </b-offcanvas>
   </div>
 </template>
+
+

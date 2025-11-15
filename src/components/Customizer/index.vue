@@ -158,9 +158,9 @@ const resetCustomizer = () => {
 </script>
 
 <template>
-  <b-button variant="primary" class="customizer-btn" @click="handleShow">
+  <button class="customizer-btn" @click="handleShow">
     <PhGear size="24" />
-  </b-button>
+  </button>
 
   <b-offcanvas
       v-model:show="show"
@@ -173,56 +173,95 @@ const resetCustomizer = () => {
     <template #header>
       <h5 class="text-white">Admin Customizer</h5>
       <p class="text-white opacity-75 w-100">It's time to style according to your choice!</p>
-      <b-button aria-label="Close" class="btn-close" type="button" @click="handleClose" />
+      <b-button aria-label="Close" class="btn-close" variant="light" type="button" @click="handleClose" />
     </template>
 
     <!-- Body -->
-    <div class="offcanvas-body flex-grow-1 overflow-auto">
+    <div class="offcanvas-body flex-grow-1 overflow-auto p-1">
       <div class="app-divider-v secondary py-3">
         <h6 class="mt-2">Sidebar option</h6>
       </div>
-      <ul class="sidebar-option d-flex gap-1">
-        <li
-            v-for="option in ['vertical-sidebar', 'horizontal-sidebar', 'dark-sidebar']"
-            :key="option"
-            :class="{ selected: sidebarOption === option }"
-            @click="handleSidebarOptionChange(option)"
-        >
-          <ul>
-            <li class="header"></li>
-            <li class="sidebar" :class="{ 'bg-dark-600': option === 'dark-sidebar' }"></li>
-            <li class="body">
-              <BBadge bg="secondary" class="b-r-6">
-                {{ option.split('-')[0].toUpperCase() }}
-              </BBadge>
-            </li>
-          </ul>
-        </li>
-      </ul>
+        <ul class="sidebar-option d-flex gap-1">
+            <li
+                v-for="option in ['vertical-sidebar', 'horizontal-sidebar', 'dark-sidebar']"
+                :key="option"
+                :class="{ selected: sidebarOption === option }"
+                @click="handleSidebarOptionChange(option)"
+            >
+                <ul>
+                    <!-- Vertical Sidebar -->
+                    <template v-if="option === 'vertical-sidebar'">
+                        <li class="header"></li>
+                        <li class="sidebar"></li>
+                        <li class="body">
+                            <BBadge bg="secondary" class="b-r-6">Vertical</BBadge>
+                        </li>
+                    </template>
 
-      <div class="app-divider-v secondary py-3">
+                    <!-- Horizontal Sidebar -->
+                    <template v-else-if="option === 'horizontal-sidebar'">
+                        <li class="header h-20">
+                            <BBadge bg="secondary" class="b-r-6">Horizontal</BBadge>
+                        </li>
+                        <li class="body w-100"></li>
+                    </template>
+
+                    <!-- Dark Sidebar -->
+                    <template v-else-if="option === 'dark-sidebar'">
+                        <li class="header"></li>
+                        <li class="sidebar bg-dark-600"></li>
+                        <li class="body">
+                            <BBadge bg="secondary" class="b-r-6">Dark</BBadge>
+                        </li>
+                    </template>
+                </ul>
+            </li>
+        </ul>
+
+
+        <div class="app-divider-v secondary py-3">
         <h6 class="mt-2">Layout option</h6>
       </div>
-      <ul class="layout-option d-flex gap-1">
-        <li
-            v-for="option in ['ltr', 'rtl', 'box-layout']"
-            :key="option"
-            :class="{ selected: layoutOption === option }"
-            @click="handleLayoutOptionChange(option)"
-        >
-          <ul>
-            <li class="header"></li>
-            <li class="sidebar"></li>
-            <li class="body">
-              <BBadge bg="secondary" class="b-r-6">
-                {{ option.toUpperCase() }}
-              </BBadge>
-            </li>
-          </ul>
-        </li>
-      </ul>
+        <ul class="layout-option d-flex gap-1">
+            <li
+                v-for="option in ['ltr', 'rtl', 'box-layout']"
+                :key="option"
+                :class="{ selected: layoutOption === option }"
+                @click="handleLayoutOptionChange(option)"
+            >
+                <ul>
+                    <!-- LTR Layout -->
+                    <template v-if="option === 'ltr'">
+                        <li class="header"></li>
+                        <li class="sidebar"></li>
+                        <li class="body">
+                            <BBadge bg="secondary" class="b-r-6">LTR</BBadge>
+                        </li>
+                    </template>
 
-      <div class="app-divider-v secondary py-3">
+                    <!-- RTL Layout -->
+                    <template v-else-if="option === 'rtl'">
+                        <li class="header"></li>
+                        <li class="body">
+                            <BBadge bg="secondary" class="b-r-6">RTL</BBadge>
+                        </li>
+                        <li class="sidebar"></li>
+                    </template>
+
+                    <!-- Box Layout -->
+                    <template v-else-if="option === 'box-layout'">
+                        <li class="header"></li>
+                        <li class="sidebar"></li>
+                        <li class="body">
+                            <BBadge bg="secondary" class="b-r-6">Box</BBadge>
+                        </li>
+                    </template>
+                </ul>
+            </li>
+        </ul>
+
+
+        <div class="app-divider-v secondary py-3">
         <h6 class="mt-2">Color Hint</h6>
       </div>
       <ul class="color-hint p-0 d-flex gap-1">
@@ -265,7 +304,7 @@ const resetCustomizer = () => {
         <a class="btn btn-primary w-100" href="mailto:teqlathemes@gmail.com">Support</a>
         <a
             class="btn btn-dark w-100"
-            href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/next-ts/axelit/index.html"
+            href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/next-ts/ki-admin/index.html"
         >Document</a>
       </div>
     </div>

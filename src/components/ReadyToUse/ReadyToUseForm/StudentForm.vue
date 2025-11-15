@@ -31,11 +31,10 @@ const form = ref({
     message: '',
     hasApplied: ''
 });
-// Refs
+
 const imagePreview = ref(null)
 const imgPreviewRef = ref(null)
 
-// Handle image upload
 const handleImageUpload = (event) => {
     const file = event.target.files?.[0]
     if (file) {
@@ -45,7 +44,6 @@ const handleImageUpload = (event) => {
     }
 }
 
-// Form fields
 const fields = [
     {label: 'Surname', type: 'text', placeholder: 'Enter Surname', col: {md: 4}},
     {label: 'Student Name', type: 'text', placeholder: 'Enter Name', col: {md: 4}},
@@ -103,7 +101,6 @@ const fields = [
                     >
                         <label class="form-label">{{ field.label }}</label>
 
-                        <!-- Select -->
                         <b-form-select v-if="field.type === 'select'">
                             <option
                                 v-for="(option, i) in field.options"
@@ -129,7 +126,6 @@ const fields = [
                             ></b-form-input>
                         </b-input-group>
 
-                        <!-- Default Input -->
                         <b-form-input
                             v-else
                             :type="field.type"
@@ -137,8 +133,6 @@ const fields = [
                             :maxlength="field.maxLength"
                         ></b-form-input>
                     </b-col>
-
-
                 </b-row>
                 <b-row>
                     <b-col md="12" class="mb-3">

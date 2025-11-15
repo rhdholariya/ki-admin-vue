@@ -7,15 +7,12 @@ import ChatContent from "./ChatContent.vue";
 import UpdatesContent from "./UpdatesContent.vue";
 import ContactContent from "./ContactContent.vue";
 
-// Outer tab state - using string keys for clarity
 const activeTabOuter = ref("chat");
 </script>
 
 <template>
-  <!-- Tab buttons -->
   <div class="chat-tab-wrapper mb-3">
     <div class="tabs chat-tabs mb-0 pb-0 d-flex">
-      <!-- Chat Tab -->
       <b-button
           type="button"
           variant="link"
@@ -27,7 +24,6 @@ const activeTabOuter = ref("chat");
         Chat
       </b-button>
 
-      <!-- Updates Tab -->
       <b-button
           type="button"
           variant="link"
@@ -39,7 +35,6 @@ const activeTabOuter = ref("chat");
         Updates
       </b-button>
 
-      <!-- Contact Tab -->
       <b-button
           type="button"
           variant="link"
@@ -53,7 +48,6 @@ const activeTabOuter = ref("chat");
     </div>
   </div>
 
-  <!-- Render the content BELOW the tabs -->
   <div class="chat-tab-content">
     <ChatContent v-if="activeTabOuter === 'chat'" />
     <UpdatesContent v-if="activeTabOuter === 'updates'" />

@@ -10,7 +10,6 @@ import HandleDraggableList from "@/components/AdvanceUi/Draggable/HandleDraggabl
 import DraggableGrid from "@/components/AdvanceUi/Draggable/DraggableGrid.vue";
 import DraggableCardList from "@/components/AdvanceUi/Draggable/DraggableCardList.vue";
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: "Draggable",
   items: [

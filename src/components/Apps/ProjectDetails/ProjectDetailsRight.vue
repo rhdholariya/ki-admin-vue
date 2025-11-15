@@ -7,8 +7,6 @@ import {
   BCardBody,
   BImg,
 } from "bootstrap-vue-next";
-
-
 import { projectDetails1, projectFiles } from "@/data/app/projectapp/ProjectDetailData.js";
 </script>
 
@@ -36,7 +34,6 @@ import { projectDetails1, projectFiles } from "@/data/app/projectapp/ProjectDeta
       </b-card-body>
     </b-card>
 
-    <!-- Data Folder & Files Card -->
     <b-card no-body>
       <b-card-body>
         <h5 class="header-title-text">Data Folder & Files</h5>
@@ -63,8 +60,6 @@ import { projectDetails1, projectFiles } from "@/data/app/projectapp/ProjectDeta
               </p>
             </div>
           </div>
-          
-          <!-- View More Button -->
           <div>
             <router-link
               to="/apps/file-manager"

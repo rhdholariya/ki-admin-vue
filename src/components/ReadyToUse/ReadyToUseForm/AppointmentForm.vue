@@ -60,8 +60,6 @@ const handleReset = () => {
         </b-card-header>
         <b-card-body>
             <b-form @submit.prevent="handleSubmit" @reset.prevent="handleReset" class="app-form">
-
-                <!-- First & Last Name -->
                 <b-row>
                     <b-col md="6" class="mb-3">
                         <b-form-group label="First Name" label-for="firstName">
@@ -84,8 +82,6 @@ const handleReset = () => {
                         </b-form-group>
                     </b-col>
                 </b-row>
-
-                <!-- DOB, Email, Contact -->
                 <b-row>
                     <b-col md="4" class="mb-3">
                         <b-form-group label="Date of Birth" label-for="dob">

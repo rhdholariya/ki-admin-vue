@@ -32,10 +32,8 @@ function toggleSize(size) {
     <b-card no-body>
       <b-card-body>
         <div class="product-details-contentbox">
-          <!-- Product Title -->
           <h4>Trendy & Stylish Loafers For Men</h4>
 
-          <!-- Ratings -->
           <div class="mt-2 d-flex align-items-center gap-1">
             <IconStarFilled
                 v-for="n in 3"
@@ -54,7 +52,6 @@ function toggleSize(size) {
             </h6>
           </div>
 
-          <!-- Price -->
           <div class="mt-4">
             <h3>
               $26.00 <span class="text-muted fs-6">(54% OFF)</span>
@@ -63,9 +60,7 @@ function toggleSize(size) {
 
           <hr class="my-4" />
 
-          <!-- Sizes & Colors -->
           <div class="product-detailbox">
-            <!-- Sizes -->
             <div class="mb-4">
               <h5>Size:</h5>
               <div class="form-selectgroup d-flex flex-wrap gap-2">
@@ -87,7 +82,6 @@ function toggleSize(size) {
               </div>
             </div>
 
-            <!-- Colors -->
             <div>
               <h5>Color:</h5>
               <div class="d-flex flex-wrap">

@@ -25,24 +25,20 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {orders} from "@/data/app/EshopPage/Order/OrderPage.js";
 import AppLayout from "@/views/AppLayout.vue";
 
-// Reactive state
 const showModal = ref(false);
 const editOrder = ref(null);
 const ordersList = ref([...orders]);
 
-// Open modal for editing
 const handleShow = (order) => {
   editOrder.value = {...order}; // shallow copy
   showModal.value = true;
 };
 
-// Close modal
 const handleClose = () => {
   showModal.value = false;
   editOrder.value = null;
 };
 
-// Save edited order
 const handleSave = () => {
   if (!editOrder.value) return;
 
@@ -53,12 +49,10 @@ const handleSave = () => {
   handleClose();
 };
 
-// Delete order
 const handleDelete = (orderId) => {
   ordersList.value = ordersList.value.filter((order) => order.idNum !== orderId);
 };
 
-// Badge color based on status
 const getBadgeVariant = (status) => {
   switch (status) {
     case "CANCELLED":
@@ -76,7 +70,6 @@ const getBadgeVariant = (status) => {
   }
 };
 
-// Breadcrumb data
 const breadcrumbItems = {
   title: "Orders List",
   items: [
@@ -123,7 +116,6 @@ const breadcrumbItems = {
                       <b-form-checkbox/>
                     </template>
 
-                    <!-- Customer -->
                     <template #cell(customer)="data">
                       <div class="d-flex align-items-center gap-2">
                         <div class="rounded-circle overflow-hidden" style="width: 30px; height: 30px;">
@@ -139,14 +131,12 @@ const breadcrumbItems = {
                       </div>
                     </template>
 
-                    <!-- Status badge -->
                     <template #cell(status)="data">
                       <b-badge :variant="getBadgeVariant(data.item.status)">
                         {{ data.item.status }}
                       </b-badge>
                     </template>
 
-                    <!-- Actions -->
                     <template #cell(actions)="data">
                       <div class="d-flex gap-2">
                         <b-button
@@ -182,7 +172,6 @@ const breadcrumbItems = {
           </b-col>
         </b-row>
 
-        <!-- Edit Order Modal -->
         <b-modal v-model="showModal" hide-footer backdrop="static" title="Edit Order">
           <b-form v-if="editOrder">
             <b-form-group label="Customer" class="mb-3">

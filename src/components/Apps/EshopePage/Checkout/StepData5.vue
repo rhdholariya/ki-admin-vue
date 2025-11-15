@@ -53,6 +53,7 @@ const options = [
             <b-card
                 class="shadow-none equal-card"
                 :class="selectedOption === option.id ? 'border-primary' : ''"
+                no-body
             >
               <b-card-body class="address-content">
                 <b-form-radio

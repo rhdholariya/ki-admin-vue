@@ -10,8 +10,6 @@ const modalOpen = ref(false);
 function toggle() {
   modalOpen.value = !modalOpen.value;
 }
-
-
 const smallModalOpen = ref(false);
 const largeModalOpen = ref(false);
 const extraLargeModalOpen = ref(false);
@@ -132,7 +130,7 @@ function closePrimaryModal() {
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-// Breadcrumb data
+
 const breadcrumbItems = {
   title: "Modals",
   items: [
@@ -314,7 +312,7 @@ const breadcrumbItems = {
               </b-card-body>
             </b-card>
           </b-col>
-          <b-col xs="12">
+          <b-col cols="12">
             <b-card no-body>
               <template #header>
                 <h4>Themes Modal</h4>
@@ -335,7 +333,6 @@ const breadcrumbItems = {
           </b-col>
         </b-row>
 
-        <!--default modal -->
         <b-modal :show="modalOpen" @hide="toggle" title="Small Modal" header-bg-variant="primary-800" header-class="fs-5">
           <div class="text-center">
             <div class="d-flex gap-2">
@@ -360,7 +357,6 @@ const breadcrumbItems = {
           </template>
         </b-modal>
 
-        <!-- Small Modal -->
         <b-modal :show="smallModalOpen" @hide="toggleSmall" title="Small Modal">
           <div class="text-center">
             <div class="d-flex gap-2">
@@ -385,7 +381,6 @@ const breadcrumbItems = {
           </template>
         </b-modal>
 
-        <!-- Large Modal -->
         <b-modal :show="largeModalOpen" @hide="closeLargeModal" size="lg" title="Large Modal">
           <b-row>
             <b-col lg="4" class="text-center">
@@ -406,7 +401,6 @@ const breadcrumbItems = {
           </template>
         </b-modal>
 
-        <!-- Extra Large Modal -->
         <b-modal :show="extraLargeModalOpen" @hide="closeExtraLargeModal" size="xl" title="Extra Large Modal">
           <p>In a professional context it often happens that private or corporate clients
             corder a
@@ -416,7 +410,6 @@ const breadcrumbItems = {
             live.</p>
         </b-modal>
 
-        <!-- Centered Modal -->
         <b-modal
             :show="centerModalOpen"
             @hide="closeCenterModal"
@@ -435,7 +428,7 @@ const breadcrumbItems = {
             </b-col>
           </b-row>
         </b-modal>
-        <!-- Scrollable Modal -->
+
         <b-modal
             :show="scrollModalOpen"
             @hide="closeScrollModal"
@@ -449,7 +442,6 @@ const breadcrumbItems = {
             </p>
           </div>
         </b-modal>
-        <!-- Fullscreen Modal -->
         <b-modal
             :show="fullscreenModalOpen"
             @hide="closeFullscreenModal"
@@ -459,7 +451,6 @@ const breadcrumbItems = {
           <p>This is a fullscreen modal content area.</p>
         </b-modal>
 
-        <!-- Fullscreen Sm Down Modal -->
         <b-modal
             :show="fullscreenSmModalOpen"
             @hide="closeFullscreenSmModal"
@@ -478,7 +469,6 @@ const breadcrumbItems = {
             human happiness. </p>
         </b-modal>
 
-        <!-- Fullscreen Md Down Modal -->
         <b-modal
                   :show="fullscreenMdModalOpen"
                   @hide="closeFullscreenMdModal"
@@ -497,7 +487,6 @@ const breadcrumbItems = {
                   human happiness. </p>
               </b-modal>
 
-        <!-- Fullscreen Lg Down Modal -->
         <b-modal
             :show="fullscreenLgModalOpen"
             @hide="closeFullscreenLgModal"
@@ -522,7 +511,6 @@ const breadcrumbItems = {
             human happiness. </p>
         </b-modal>
 
-        <!-- Fullscreen XL Down Modal -->
         <b-modal
             :show="fullscreenXlModalOpen"
             @hide="closeFullscreenXlModal"
@@ -536,7 +524,6 @@ const breadcrumbItems = {
             of human happiness. </p>
         </b-modal>
 
-        <!-- Fullscreen XXL Down Modal -->
         <b-modal
             :show="fullscreenXxlModalOpen"
             @hide="closeFullscreenXxlModal"
@@ -549,7 +536,6 @@ const breadcrumbItems = {
             and expound the actual teachings of the great explorer of the truth, the
             master-builder of human happiness. </p>
         </b-modal>
-        <!-- Themes Modal -->
         <b-modal
             :show="primaryModalOpen"
             @hide="closePrimaryModal"

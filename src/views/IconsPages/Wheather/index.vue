@@ -12,7 +12,6 @@ import {
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-// Import weather-icons CSS
 import "weather-icons/css/weather-icons.css";
 
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
@@ -39,7 +38,6 @@ const iconCategories = {
   utility: "Utility Icons"
 };
 
-// Function to categorize icons
 const categorizeIcons = () => {
   const categorized = {
     all: weatherIcons,
@@ -77,9 +75,8 @@ const categorizeIcons = () => {
   return categorized;
 };
 
-// Complete Weather Icons list - All 222+ icons from weather-icons package
 const weatherIcons = [
-  // Day Weather Icons
+
   'wi-day-sunny', 'wi-day-cloudy', 'wi-day-cloudy-gusts', 'wi-day-cloudy-windy',
   'wi-day-fog', 'wi-day-hail', 'wi-day-haze', 'wi-day-lightning',
   'wi-day-rain', 'wi-day-rain-mix', 'wi-day-rain-wind', 'wi-day-showers',
@@ -87,7 +84,6 @@ const weatherIcons = [
   'wi-day-snow-wind', 'wi-day-sprinkle', 'wi-day-storm-showers', 'wi-day-sunny-overcast',
   'wi-day-thunderstorm', 'wi-day-windy', 'wi-solar-eclipse', 'wi-hot',
 
-  // Night Weather Icons
   'wi-night-clear', 'wi-night-alt-cloudy', 'wi-night-alt-cloudy-gusts', 'wi-night-alt-cloudy-windy',
   'wi-night-alt-hail', 'wi-night-alt-lightning', 'wi-night-alt-rain', 'wi-night-alt-rain-mix',
   'wi-night-alt-rain-wind', 'wi-night-alt-showers', 'wi-night-alt-sleet', 'wi-night-alt-sleet-storm',
@@ -100,26 +96,20 @@ const weatherIcons = [
   'wi-night-storm-showers', 'wi-night-thunderstorm', 'wi-lunar-eclipse',
   'wi-stars',
 
-  // Neutral Weather Icons
   'wi-cloud', 'wi-cloudy', 'wi-cloudy-gusts', 'wi-cloudy-windy', 'wi-fog',
   'wi-hail', 'wi-rain', 'wi-rain-mix', 'wi-rain-wind', 'wi-showers', 'wi-sleet',
   'wi-snow', 'wi-sprinkle', 'wi-storm-showers', 'wi-thunderstorm', 'wi-snow-wind',
   'wi-smog', 'wi-smoke', 'wi-lightning', 'wi-snowflake-cold', 'wi-windy', 'wi-strong-wind', 'wi-alien',
 
-  // Temperature & Units
+
   'wi-celsius', 'wi-fahrenheit', 'wi-degrees', 'wi-thermometer', 'wi-thermometer-exterior',
   'wi-thermometer-internal',
 
-  // Cloud Movement
   'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh',
 
-  // Horizon & Sun/Moon
   'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset',
 
-  // Utility Icons
   'wi-refresh', 'wi-refresh-alt', 'wi-umbrella',
-
-  // Moon Phases (28 phases)
   'wi-moon-new', 'wi-moon-first-quarter', 'wi-moon-waxing-gibbous-1', 'wi-moon-waxing-gibbous-2', 'wi-moon-waxing-gibbous-3',
   'wi-moon-waxing-gibbous-4', 'wi-moon-waxing-gibbous-5', 'wi-moon-waxing-gibbous-6',
   'wi-moon-full', 'wi-moon-waning-gibbous-1', 'wi-moon-waning-gibbous-2', 'wi-moon-waning-gibbous-3',
@@ -127,19 +117,15 @@ const weatherIcons = [
   'wi-moon-waning-crescent-1', 'wi-moon-waning-crescent-2', 'wi-moon-waning-crescent-3',
   'wi-moon-waning-crescent-4', 'wi-moon-waning-crescent-5', 'wi-moon-waning-crescent-6',
 
-  // Clock Icons (12 hours)
   'wi-time-1', 'wi-time-2', 'wi-time-3', 'wi-time-4', 'wi-time-5', 'wi-time-6',
   'wi-time-7', 'wi-time-8', 'wi-time-9', 'wi-time-10', 'wi-time-11', 'wi-time-12',
 
-  // Additional Weather Conditions
   'wi-dust', 'wi-sleet', 'wi-snow', 'wi-snow-wind', 'wi-snowflake-cold',
   'wi-rain-mix', 'wi-rain-wind', 'wi-rain', 'wi-showers', 'wi-sprinkle', 'wi-storm-showers',
   'wi-thunderstorm', 'wi-lightning', 'wi-snowflake-cold',
 
-  // Special Weather Phenomena
   'wi-hurricane', 'wi-tornado',
 
-  // Additional Utility Icons
   'wi-refresh', 'wi-refresh-alt', 'wi-umbrella',
   'wi-cloud-down', 'wi-cloud-up', 'wi-cloud-refresh',
   'wi-horizon', 'wi-horizon-alt', 'wi-sunrise', 'wi-sunset'
@@ -151,14 +137,12 @@ onMounted(() => {
   iconList.value = categorized[selectedCategory.value];
 });
 
-// Watch for category changes
 watch(selectedCategory, (newCategory) => {
   const categorized = categorizeIcons();
   allIcons.value = categorized[newCategory];
   iconList.value = categorized[newCategory];
 });
 
-// Watch for search changes
 watch(searchValue, (val) => {
   if (!val.trim()) {
     iconList.value = allIcons.value;
@@ -185,7 +169,7 @@ const copyIcon = (iconName) => {
     },
   }).showToast();
 };
-// Component data
+
 const breadcrumbItems = computed(() => ({
   title: "Weather Icons",
   items: [
@@ -199,7 +183,6 @@ const breadcrumbItems = computed(() => ({
   <AppLayout>
     <main>
       <BContainer fluid>
-        <!-- Breadcrumb -->
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-row>
           <b-col cols="12">
@@ -226,9 +209,9 @@ const breadcrumbItems = computed(() => ({
                       </select>
                     </div>
                   </b-col>
-                  <BCol md="4" class="text-end pt-2">
+                  <b-col md="4" class="text-end pt-2">
                     <span class="badge bg-primary">{{ iconList.length }} icons</span>
-                  </BCol>
+                  </b-col>
                 </b-row>
               </b-card-header>
               <b-card-body>
@@ -238,7 +221,7 @@ const breadcrumbItems = computed(() => ({
                       :key="index"
                       class="icon-box text-center"
                       @click="copyIcon(iconName)"
-                      style="cursor: pointer;"
+
                   >
                     <i :class="['wi', iconName]" style="font-size: 50px; color: #000;"></i>
                     <div class="icon-box-codes">

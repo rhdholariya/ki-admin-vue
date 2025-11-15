@@ -16,7 +16,6 @@ import TablesLists from "@/components/Table/ListJs/TablesLists.vue";
 
 
 
-// Breadcrumb data
 const breadcrumbItems = {
     title: "List Js",
     items: [

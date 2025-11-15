@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import {
     BContainer,
     BRow,
@@ -9,19 +9,17 @@ import {
     BCardBody,
     BCollapse,
 } from "bootstrap-vue-next";
-import { PhCode } from "@phosphor-icons/vue";
+import {PhCode} from "@phosphor-icons/vue";
 
-
-// === Background Colors Data ===
 const backgroundColors = [
-    { name: "primary", text: "text-white", bgColor: 900 },
-    { name: "secondary", text: "text-white", bgColor: 500 },
-    { name: "success", text: "text-white", bgColor: 500 },
-    { name: "danger", text: "text-white", bgColor: 500 },
-    { name: "warning", text: "text-white", bgColor: 500 },
-    { name: "info", text: "text-white", bgColor: 500 },
-    { name: "light", text: "text-dark", bgColor: 500 },
-    { name: "dark", text: "text-white", bgColor: 500 },
+    {name: "primary", text: "text-white", bgColor: 900},
+    {name: "secondary", text: "text-white", bgColor: 500},
+    {name: "success", text: "text-white", bgColor: 500},
+    {name: "danger", text: "text-white", bgColor: 500},
+    {name: "warning", text: "text-white", bgColor: 500},
+    {name: "info", text: "text-white", bgColor: 500},
+    {name: "light", text: "text-dark", bgColor: 500},
+    {name: "dark", text: "text-white", bgColor: 500},
 ];
 
 const backgroundColorsShades = [
@@ -34,28 +32,24 @@ const backgroundColorsShades = [
     "bg-primary-300",
 ];
 
-// === Collapse States ===
 const openBack = ref(false);
 const openBack2 = ref(false);
 const openBack3 = ref(false);
 const openBack4 = ref(false);
-
-// === Re-highlight Prism on collapse open ===
 
 </script>
 
 <template>
     <b-container fluid>
         <b-row>
-            <!-- Background Colors -->
             <b-col cols="12">
                 <b-card no-body>
-                    <b-card-header >
+                    <b-card-header>
                         <div class="code-header d-flex justify-content-between">
-                        <h5>Background Colors</h5>
-                        <a role="button" @click="openBack = !openBack">
-                            <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                            <h5>Background Colors</h5>
+                            <a role="button" @click="openBack = !openBack">
+                                <PhCode size="30" weight="bold" class="source"/>
+                            </a>
                         </div>
                     </b-card-header>
                     <b-card-body>
@@ -72,29 +66,28 @@ const openBack4 = ref(false);
                     </b-card-body>
                     <b-collapse v-model="openBack">
             <pre class="diamondbullet language-html mt-3">
-<code class="language-html">
-{{
-        `<div class="d-flex gap-2 flex-wrap">
-  ${backgroundColors.map(c =>
-    `<span class="py-2 px-3 bg-${c.name} ${c.text} rounded f-w-500">bg-${c.name}</span>`
-  ).join("\n  ")}
-</div>`
-}}
+<code v-prism>
+&lt;div class="d-flex gap-2 flex-wrap"&gt;
+  {{
+        backgroundColors.map(c =>
+            `&lt;span class="py-2 px-3 bg-${c.name} ${c.text} rounded f-w-500"&gt;bg-${c.name}&lt;/span&gt;`
+        ).join("\n  ")
+    }}
+&lt;/div&gt;
+
 </code>
             </pre>
                     </b-collapse>
                 </b-card>
             </b-col>
-
-            <!-- Background Color Shades -->
             <b-col cols="12">
                 <b-card no-body>
                     <b-card-header>
                         <div class="code-header d-flex justify-content-between">
-                        <h5>Background Color Shades</h5>
-                        <a role="button" @click="openBack2 = !openBack2">
-                            <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                            <h5>Background Color Shades</h5>
+                            <a role="button" @click="openBack2 = !openBack2">
+                                <PhCode size="30" weight="bold" class="source"/>
+                            </a>
                         </div>
                     </b-card-header>
                     <b-card-body>
@@ -111,29 +104,29 @@ const openBack4 = ref(false);
                     </b-card-body>
                     <b-collapse v-model="openBack2">
             <pre class="diamondbullet language-html mt-3">
-<code class="language-html">
-{{
-        `<div class="d-flex gap-2 flex-wrap">
-  ${backgroundColorsShades.map(bg =>
-    `<span class="py-2 px-3 ${bg} rounded f-w-500">${bg}</span>`
-  ).join("\n  ")}
-</div>`
-}}
+<code v-prism>
+&lt;div class="d-flex gap-2 flex-wrap"&gt;
+  {{
+        backgroundColorsShades.map(bg =>
+            `&lt;span class="py-2 px-3 ${bg} rounded f-w-500"&gt;${bg}&lt;/span&gt;`
+        ).join("\n  ")
+    }}
+&lt;/div&gt;
+
 </code>
             </pre>
                     </b-collapse>
                 </b-card>
             </b-col>
 
-            <!-- Outline Background -->
             <b-col cols="12">
                 <b-card no-body>
-                    <b-card-header >
+                    <b-card-header>
                         <div class="code-header d-flex justify-content-between">
-                        <h5>Outline Background</h5>
-                        <a role="button" @click="openBack3 = !openBack3">
-                            <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                            <h5>Outline Background</h5>
+                            <a role="button" @click="openBack3 = !openBack3">
+                                <PhCode size="30" weight="bold" class="source"/>
+                            </a>
                         </div>
                     </b-card-header>
                     <b-card-body>
@@ -150,29 +143,27 @@ const openBack4 = ref(false);
                     </b-card-body>
                     <b-collapse v-model="openBack3">
             <pre class="diamondbullet language-html mt-3">
-<code class="language-html">
-{{
-        `<div class="d-flex gap-2 flex-wrap">
-  ${backgroundColors.map(c =>
-    `<span class="py-2 px-3 bg-outline-${c.name} rounded f-w-500">bg-outline-${c.name}</span>`
-  ).join("\n  ")}
-</div>`
-}}
+<code v-prism>
+&lt;div class="d-flex gap-2 flex-wrap"&gt;
+  {{
+        backgroundColors.map(c =>
+            `&lt;span class="py-2 px-3 bg-outline-${c.name} rounded f-w-500"&gt;bg-outline-${c.name}&lt;/span&gt;`
+        ).join("\n  ")
+    }}
+&lt;/div>
 </code>
             </pre>
                     </b-collapse>
                 </b-card>
             </b-col>
-
-            <!-- Soft Background -->
             <b-col cols="12">
                 <b-card no-body>
-                    <b-card-header >
+                    <b-card-header>
                         <div class="code-header d-flex justify-content-between">
-                        <h5>Soft Background</h5>
-                        <a role="button" @click="openBack4 = !openBack4">
-                            <PhCode size="30" weight="bold" class="source" />
-                        </a>
+                            <h5>Soft Background</h5>
+                            <a role="button" @click="openBack4 = !openBack4">
+                                <PhCode size="30" weight="bold" class="source"/>
+                            </a>
                         </div>
                     </b-card-header>
                     <b-card-body>
@@ -190,13 +181,13 @@ const openBack4 = ref(false);
                     <b-collapse v-model="openBack4">
             <pre class="diamondbullet language-html mt-3">
 <code class="language-html">
-{{
-        `<div class="d-flex gap-2 flex-wrap">
-  ${backgroundColors.map(c =>
-    `<span class="py-2 px-3 bg-light-${c.name} rounded f-w-500">bg-light-${c.name}</span>`
-  ).join("\n  ")}
-</div>`
-}}
+&lt;div class="d-flex gap-2 flex-wrap"&gt;
+  {{
+        backgroundColors.map(c =>
+            `&lt;span class="py-2 px-3 bg-light-${c.name} rounded f-w-500"&gt;bg-light-${c.name}&lt;/span&gt;`
+        ).join("\n  ")
+    }}
+&lt;/div&gt;
 </code>
             </pre>
                     </b-collapse>

@@ -11,7 +11,6 @@ import { BButton } from "bootstrap-vue-next"
         :key="contact.id"
         class="d-flex align-items-center py-3 border-bottom"
     >
-      <!-- Avatar -->
       <div>
         <span
             :class="[
@@ -33,7 +32,6 @@ import { BButton } from "bootstrap-vue-next"
         </span>
       </div>
 
-      <!-- Contact Info -->
       <div class="flex-grow-1 ps-2">
         <p class="contact-name text-dark mb-0 f-w-500">
           {{ contact.name }}
@@ -43,7 +41,6 @@ import { BButton } from "bootstrap-vue-next"
         </p>
       </div>
 
-      <!-- Call & Video Buttons -->
       <div class="d-flex align-items-center">
         <b-button
             variant="success"

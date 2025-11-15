@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, nextTick} from "vue";
+import {ref} from "vue";
 import {
     BCol,
     BCard,
@@ -8,232 +8,259 @@ import {
     BAccordion,
     BAccordionItem,
     BCollapse,
+    BButton,
 } from "bootstrap-vue-next";
 import {PhCode} from "@phosphor-icons/vue";
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
 
-// ----- Outline Accordion Data -----
 const outlineAccordionItems = [
     {
         id: "1",
         title: "Accordion Item #1",
-        content: `<b>This is the first item's accordion body.</b> It is shown by default, until the
-    collapse plugin adds the appropriate classes that we use to style each element. These
-    classes control the overall appearance, as well as the showing and hiding via CSS
-    transitions. You can modify any of this with custom CSS or overriding our default variables.
-    It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>,
-    though the transition does limit overflow.`,
+        content: [
+            {type: "bold", text: "This is the first item's accordion body."},
+            {
+                type: "text",
+                text: " It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the "
+            },
+            {type: "code", text: ".accordion-body"},
+            {type: "text", text: ", though the transition does limit overflow."}
+        ]
     },
     {
         id: "2",
         title: "Accordion Item #2",
-        content: `<b>This is the second item's accordion body. </b> It is hidden by default, until the
-    collapse plugin adds the appropriate classes that we use to style each element. These
-    classes control the overall appearance, as well as the showing and hiding via CSS
-    transitions.`,
+        content: [
+            {type: "bold", text: "This is the second item's accordion body."},
+            {
+                type: "text",
+                text: " It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions."
+            }
+        ]
     },
     {
         id: "3",
         title: "Accordion Item #3",
-        content: `<b>This is the third item's accordion body.</b> It is hidden by default, until the
-    collapse plugin adds the appropriate classes. Any HTML can go within the <code>.accordion-body</code>.`,
+        content: [
+            {type: "bold", text: "This is the third item's accordion body."},
+            {
+                type: "text",
+                text: " It is hidden by default, until the collapse plugin adds the appropriate classes. Any HTML can go within the "
+            },
+            {type: "code", text: ".accordion-body"},
+            {type: "text", text: "."}
+        ]
     },
 ];
 
-// ----- Light Accordion Data -----
 const lightAccordionItems = [
     {
         id: "1",
         title: "Accordion Item #1",
-        content: `Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-light</code> class.
-    This is the first item's accordion body.`,
+        content: [
+            {type: "text", text: "Placeholder content for this accordion, which is intended to demonstrate the "},
+            {type: "code", text: ".accordion-light"},
+            {type: "text", text: " class. This is the first item's accordion body."}
+        ]
     },
     {
         id: "2",
         title: "Accordion Item #2",
-        content: `Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-light</code> class.
-    This is the second item's accordion body.`,
+        content: [
+            {type: "text", text: "Placeholder content for this accordion, which is intended to demonstrate the "},
+            {type: "code", text: ".accordion-light"},
+            {type: "text", text: " class. This is the second item's accordion body."}
+        ]
     },
     {
         id: "3",
         title: "Accordion Item #3",
-        content: `Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-light</code> class.
-    This is the third item's accordion body.`,
+        content: [
+            {type: "text", text: "Placeholder content for this accordion, which is intended to demonstrate the "},
+            {type: "code", text: ".accordion-light"},
+            {type: "text", text: " class. This is the third item's accordion body."}
+        ]
     },
 ];
 
-// ----- States -----
+const flushAccordionItems = [
+    {
+        id: "flush-1",
+        title: "Accordion Item #1",
+        content: "first"
+    },
+    {
+        id: "flush-2",
+        title: "Accordion Item #2",
+        content: "second"
+    },
+    {
+        id: "flush-3",
+        title: "Accordion Item #3",
+        content: "third"
+    }
+];
+
+
 const activeOutline = ref("1");
 const activeLight = ref("1");
 const activeFlush = ref("flush-1");
 
-// Prism toggle states
 const openOutline = ref(false);
 const openLight = ref(false);
 const openFlush = ref(false);
 
-// Prism watcher
-[openOutline, openLight, openFlush].forEach((state) => {
-    watch(state, async (val) => {
-        if (val) {
-            await nextTick();
-            Prism.highlightAll();
-        }
-    });
-});
+
 </script>
 
 <template>
-    <!-- Outline Accordion -->
     <b-col lg="6">
         <b-card no-body>
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Outline Accordion</h5>
-                    <a href="javascript:void(0)" @click="openOutline = !openOutline">
+                    <b-button @click="openOutline = !openOutline" class="p-0 border-0">
                         <PhCode size="30" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
             </b-card-header>
             <b-card-body>
                 <b-accordion v-model="activeOutline" class="app-accordion accordion-outline-secondary">
                     <b-accordion-item
-                        v-for="({ id, title, content }) in outlineAccordionItems"
-                        :key="id"
-                        :id="id"
-                        :title="title"
+                        v-for="item in outlineAccordionItems"
+                        :key="item.id"
+                        :id="item.id"
+                        :title="item.title"
                     >
-                        <div v-html="content"></div>
+                        <div class="accordion-content">
+                            <template v-for="(part, index) in item.content" :key="index">
+                                <strong v-if="part.type === 'bold'">{{ part.text }}</strong>
+                                <code v-else-if="part.type === 'code'">{{ part.text }}</code>
+                                <span v-else>{{ part.text }}</span>
+                            </template>
+                        </div>
                     </b-accordion-item>
                 </b-accordion>
             </b-card-body>
             <b-collapse v-model="openOutline">
-        <pre class="language-html"><code class="language-html"
-                                         v-text="`
-     &lt;b-card no-body&gt;
-  &lt;b-card-header&gt;
-    &lt;h5&gt;Outline Accordion&lt;/h5&gt;
-  &lt;/b-card-header&gt;
-    &lt;b-card-body&gt;
-     &lt;b-accordion v-model=&quot;activeOutline&quot; class=&quot;app-accordion accordion-outline-secondary&quot;&gt;
-${outlineAccordionItems
-  .map(
-    (item) => `  &lt;b-accordion-item id=&quot;${item.id}&quot; title=&quot;${item.title}&quot;&gt;
-    &lt;div&gt;${item.content
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')}&lt;/div&gt;
-  &lt;/b-accordion-item&gt;`
-  )
-  .join('\n')}
+                <pre class="language-html mt-3">
+                    <code v-prism>
+&lt;b-accordion v-model="activeOutline" class="app-accordion accordion-outline-secondary"&gt;
+{{
+                            outlineAccordionItems.map(item => `  &lt;b-accordion-item id="${item.id}" title="${item.title}"&gt;
+    &lt;div class="accordion-content"&gt;
+${item.content.map(part => {
+                                if (part.type === 'bold') {
+                                    return `      &lt;strong&gt;${part.text}&lt;/strong&gt;`;
+                                } else if (part.type === 'code') {
+                                    return `      &lt;code&gt;${part.text}&lt;/code&gt;`;
+                                } else {
+                                    return `      &lt;span&gt;${part.text}&lt;/span&gt;`;
+                                }
+                            }).join('\n')}
+    &lt;/div&gt;
+  &lt;/b-accordion-item&gt;`).join('\n\n')
+                        }}
 &lt;/b-accordion&gt;
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"
-        ></code></pre>
+                    </code>
+                </pre>
             </b-collapse>
         </b-card>
     </b-col>
 
-    <!-- Light Accordion -->
     <b-col lg="6">
         <b-card no-body>
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Light Accordion</h5>
-                    <a href="javascript:void(0)" @click="openLight = !openLight">
+                    <b-button @click="openLight = !openLight" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
             </b-card-header>
             <b-card-body>
                 <b-accordion v-model="activeLight" class="app-accordion accordion-light-secondary">
                     <b-accordion-item
-                        v-for="({ id, title, content }) in lightAccordionItems"
-                        :key="id"
-                        :id="id"
-                        :title="title"
+                        v-for="item in lightAccordionItems"
+                        :key="item.id"
+                        :id="item.id"
+                        :title="item.title"
                     >
-                        <div v-html="content"></div>
+                        <div class="accordion-content">
+                            <template v-for="(part, index) in item.content" :key="index">
+                                <span v-if="part.type === 'text'">{{ part.text }}</span>
+                                <code v-else-if="part.type === 'code'">{{ part.text }}</code>
+                            </template>
+                        </div>
                     </b-accordion-item>
                 </b-accordion>
             </b-card-body>
             <b-collapse v-model="openLight">
-        <pre class="language-html"><code class="language-html"
-                                         v-text="`
-                       &lt;b-card no-body&gt;
-                    &lt;b-card-header&gt;
-                    &lt;h5&gt;Light Accordion&lt;/h5&gt;
-                    &lt;/b-card-header&gt;
-                      &lt;b-card-body&gt;
-                            &lt;b-accordion v-model=&quot;activeLight&quot; class=&quot;app-accordion accordion-light-secondary&quot;&gt;
-${lightAccordionItems
-  .map(
-    (item) => `  &lt;b-accordion-item id=&quot;${item.id}&quot; title=&quot;${item.title}&quot;&gt;
-    &lt;div&gt;${item.content
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')}&lt;/div&gt;
-  &lt;/b-accordion-item&gt;`
-  )
-  .join('\n')}
+                <pre class="language-html mt-3">
+                    <code v-prism>
+&lt;b-accordion v-model="activeLight" class="app-accordion accordion-light-secondary"&gt;
+{{
+                            lightAccordionItems.map(item => `  &lt;b-accordion-item id="${item.id}" title="${item.title}"&gt;
+    &lt;div class="accordion-content"&gt;
+${item.content.map(part => {
+                                if (part.type === 'code') {
+                                    return `      &lt;code&gt;${part.text}&lt;/code&gt;`;
+                                } else {
+                                    return `      &lt;span&gt;${part.text}&lt;/span&gt;`;
+                                }
+                            }).join('\n')}
+    &lt;/div&gt;
+  &lt;/b-accordion-item&gt;`).join('\n\n')
+                        }}
 &lt;/b-accordion&gt;
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"
-        ></code></pre>
+                    </code>
+                </pre>
             </b-collapse>
+
         </b-card>
     </b-col>
 
-    <!-- Flush Accordion -->
     <b-col lg="6">
         <b-card no-body>
             <b-card-header>
                 <div class="code-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Flush Accordion (No Border)</h5>
-                    <a href="javascript:void(0)" @click="openFlush = !openFlush">
+                    <b-button @click="openFlush = !openFlush" class="p-0 border-0">
                         <PhCode size="30" weight="bold" class="source"/>
-                    </a>
+                    </b-button>
                 </div>
             </b-card-header>
             <b-card-body>
                 <b-accordion v-model="activeFlush" class="accordion-flush app-accordion accordion-secondary">
                     <b-accordion-item
-                        v-for="num in [1,2,3]"
-                        :key="num"
-                        :id="`flush-${num}`"
-                        :title="`Accordion Item #${num}`"
+                        v-for="item in flushAccordionItems"
+                        :key="item.id"
+                        :id="item.id"
+                        :title="item.title"
                     >
-                        <div>
+                        <div class="accordion-content">
                             Placeholder content for this accordion, which is intended to demonstrate the
-                            <code>.accordion-flush</code> class. This is the {{ num }}'s accordion body.
+                            <code>.accordion-flush</code> class. This is the {{ item.content }}'s accordion body.
                         </div>
                     </b-accordion-item>
                 </b-accordion>
             </b-card-body>
-
             <b-collapse v-model="openFlush">
-        <pre class="language-html"><code class="language-html"
-                                         v-text="`
-                      &lt;b-card no-body&gt;
-                    &lt;b-card-header&gt;
-                    &lt;h5&gt;Flush Accordion (No Border)&lt;/h5&gt;
-                    &lt;/b-card-header&gt;
-                      &lt;b-card-body&gt;
-                                         &lt;b-accordion v-model=&quot;activeFlush&quot; class=&quot;accordion-flush app-accordion accordion-secondary&quot;&gt;
-${[1,2,3].map(num =>
-`  &lt;b-accordion-item id=&quot;flush-${num}&quot; title=&quot;Accordion Item #${num}&quot;&gt;
-    &lt;div&gt;
+                <pre class="language-html mt-3">
+                    <code v-prism>
+&lt;b-accordion v-model="activeFlush" class="accordion-flush app-accordion accordion-secondary"&gt;
+{{
+                            flushAccordionItems.map(item => `  &lt;b-accordion-item id="${item.id}" title="${item.title}"&gt;
+    &lt;div class="accordion-content"&gt;
       Placeholder content for this accordion, which is intended to demonstrate the &lt;code&gt;.accordion-flush&lt;/code&gt; class.
-      This is the ${num}'s accordion body.
+      This is the ${item.content}'s accordion body.
     &lt;/div&gt;
-  &lt;/b-accordion-item&gt;`
-).join('\n')}
+  &lt;/b-accordion-item&gt;`).join('\n\n')
+                        }}
 &lt;/b-accordion&gt;
-&lt;/b-card-body&gt;
-&lt;/b-card&gt;`"
-        ></code></pre>
+                    </code>
+                </pre>
             </b-collapse>
+
         </b-card>
     </b-col>
 </template>

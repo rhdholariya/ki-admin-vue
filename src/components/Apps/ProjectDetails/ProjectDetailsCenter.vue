@@ -29,19 +29,14 @@ import {
 
 import { projectActivities } from "@/data/app/projectapp/ProjectDetailData.js";
 
-// -------------------
-// State & lightbox
-// -------------------
 const message = ref("");
 const lightboxToggler = ref(false);
 const currentSlide = ref(1);
 const lightboxSources = ref([]);
 
-// Collect all image sources
 const getAllImageSources = () =>
     projectActivities.flatMap((activity) => activity.images || []);
 
-// Handle image click (open lightbox)
 const handleImageClick = (images, index = 0) => {
   const clickedImage = images[index];
   const allImages = getAllImageSources();
@@ -59,7 +54,6 @@ const handleImageClick = (images, index = 0) => {
   }
 };
 
-// Helper: timeline icon & text classes
 const getTimelineIconClass = (id) =>
     ({
       1: "text-light-primary",
@@ -78,14 +72,12 @@ const getTimelineTextClass = (id) =>
       5: "text-primary",
     }[id] || "text-primary");
 
-// Send message
 const sendMessage = () => {
   if (String(message.value).trim()) {
     message.value = "";
   }
 };
 
-// Initialize tooltips safely in Vue lifecycle
 onMounted(() => {
   document
       .querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -150,10 +142,9 @@ onMounted(() => {
 
               <p>{{ activity.time }}</p>
 
-              <!-- Images -->
               <div
                   v-if="activity.images"
-                  class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3"
+                  class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3 mb-3"
               >
                 <b-row>
                   <b-col
@@ -161,8 +152,7 @@ onMounted(() => {
                       :key="index"
                       sm="4"
                   >
-                    <!-- ✅ Vue-safe clickable element -->
-                    <button
+                    <b-button
                         type="button"
                         class="img-hover-zoom btn p-0 border-0 bg-transparent"
                         @click="handleImageClick(activity.images, index)"
@@ -172,12 +162,10 @@ onMounted(() => {
                           class="w-100 rounded"
                           alt="Activity image"
                       />
-                    </button>
+                    </b-button>
                   </b-col>
                 </b-row>
               </div>
-
-              <!-- Feature -->
               <div
                   v-if="activity.feature"
                   class="timeline-border-box me-2 ms-0 mt-3"
@@ -195,8 +183,6 @@ onMounted(() => {
                   {{ activity.feature.replies }}
                 </span>
               </div>
-
-              <!-- Buttons -->
               <div v-if="activity.buttons">
                 <b-button variant="danger" class="me-2">Accept</b-button>
                 <b-button variant="outline-danger">Reject</b-button>
@@ -239,41 +225,39 @@ onMounted(() => {
             </b-input-group>
           </div>
 
-          <!-- Desktop buttons -->
           <div class="ms-2 d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Microphone"
                 data-bs-toggle="tooltip"
             >
               <IconMicrophone :size="20" />
-            </button>
+            </b-button>
           </div>
 
           <div class="d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Camera"
                 data-bs-toggle="tooltip"
             >
               <IconCamera :size="20" />
-            </button>
+            </b-button>
           </div>
 
           <div class="d-none d-sm-block">
-            <button
+            <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
                 title="Paperclip"
                 data-bs-toggle="tooltip"
             >
               <IconPaperclip :size="20" />
-            </button>
+            </b-button>
           </div>
 
-          <!-- Mobile dropdown -->
           <b-dropdown
               variant="link"
               toggle-class="h-35 w-35 d-flex-center ms-1"

@@ -7,10 +7,7 @@ import AppLayout from "@/views/AppLayout.vue";
 import OutlineDropdown from "@/components/UiKits/Dropdown/OutlineDropdown.vue";
 import ColorDropdown from "@/components/UiKits/Dropdown/ColorDropdown.vue";
 import BasicDropdown from "@/components/UiKits/Dropdown/BasicDropdown.vue";
-// import DropupVariation from "@/components/UiKits/Dropdown/DropupVariation.vue";
 
-
-// Breadcrumb data
 const breadcrumbItems = {
     title: "Dropdown",
     items: [
@@ -29,7 +26,6 @@ const breadcrumbItems = {
                     <BasicDropdown />
                     <SolidDropdown />
                     <OutlineDropdown/>
-<!--                    <DropupVariation />-->
                     <ColorDropdown/>
                 </b-row>
             </b-container>

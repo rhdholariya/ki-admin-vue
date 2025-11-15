@@ -12,7 +12,6 @@ import ProjectDetailsCard from "@/components/Widget/ProjectDetailsCard.vue"
 </script>
 
 <template>
-  <!-- Task Overview Cards -->
   <b-col md="7" xxl="5">
     <b-card
         v-for="card in taskOverviewCards"
@@ -76,12 +75,10 @@ import ProjectDetailsCard from "@/components/Widget/ProjectDetailsCard.vue"
     </b-card>
   </b-col>
 
-  <!-- Meeting Card -->
   <b-col md="5" xxl="3">
     <ProjectMeetingCard />
   </b-col>
 
-  <!-- Project Card -->
   <b-col md="7" lg="4">
     <ProjectDetailsCard/>
   </b-col>

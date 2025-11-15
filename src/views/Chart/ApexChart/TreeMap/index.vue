@@ -1,3 +1,50 @@
+<script setup>
+import {ref, onMounted, computed} from 'vue';
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody
+} from 'bootstrap-vue-next';
+import VueApexCharts from "vue3-apexcharts";
+
+
+import {
+  basicTreemapData,
+  multiDimensionalTreemapData,
+  distributedTreemapChartData,
+  colorRangeTreemapChartData
+} from '@/data/charts/apexcharts/TreeMapChart.js';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import AppLayout from "@/views/AppLayout.vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
+
+
+const basicTreemap = ref({});
+const multiDimensionalTreemap = ref({});
+const distributedTreemap = ref({});
+const colorRangeTreemap = ref({});
+
+onMounted(() => {
+  basicTreemap.value = basicTreemapData;
+  multiDimensionalTreemap.value = multiDimensionalTreemapData;
+  distributedTreemap.value = distributedTreemapChartData;
+  colorRangeTreemap.value = colorRangeTreemapChartData;
+});
+
+// Breadcrumb data
+const breadcrumbItems = computed(() => ({
+  title: "Treemap",
+  items: [
+    {label: "Chart", icon: PhChartPieSlice},
+    {label: "Apexcharts"},
+    {label: " Treemap", active: true}
+  ],
+}));
+</script>
+
 <template>
   <AppLayout>
     <main>
@@ -70,49 +117,3 @@
   </AppLayout>
 </template>
 
-<script setup>
-import {ref, onMounted, computed} from 'vue';
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody
-} from 'bootstrap-vue-next';
-import VueApexCharts from "vue3-apexcharts";
-
-
-import {
-  basicTreemapData,
-  multiDimensionalTreemapData,
-  distributedTreemapChartData,
-  colorRangeTreemapChartData
-} from '@/data/charts/apexcharts/TreeMapChart.js';
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import AppLayout from "@/views/AppLayout.vue";
-import {PhStack} from "@phosphor-icons/vue";
-
-
-const basicTreemap = ref({});
-const multiDimensionalTreemap = ref({});
-const distributedTreemap = ref({});
-const colorRangeTreemap = ref({});
-
-onMounted(() => {
-  basicTreemap.value = basicTreemapData;
-  multiDimensionalTreemap.value = multiDimensionalTreemapData;
-  distributedTreemap.value = distributedTreemapChartData;
-  colorRangeTreemap.value = colorRangeTreemapChartData;
-});
-
-// Breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "Treemap",
-  items: [
-    {label: "Chart", icon: PhStack},
-    {label: "Apexcharts"},
-    {label: " Treemap", active: true}
-  ],
-}));
-</script>

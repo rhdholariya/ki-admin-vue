@@ -4,7 +4,6 @@ import { BCard, BCardHeader, BCardBody, BCol, BRow, BListGroup, BListGroupItem }
 import { PhStar, PhEnvelope} from "@phosphor-icons/vue";
 import { contactsData, contactsList, peopleList } from '@/data/uikit/lists/listPageData';
 
-// --- Starred contacts state ---
 const starredContacts = ref([]);
 
 const toggleStar = (id) => {
@@ -16,7 +15,6 @@ const toggleStar = (id) => {
 
 <template>
     <b-row>
-        <!-- Contacts -->
         <b-col md="6" xl="4">
             <b-card no-body>
                 <b-card-header><h5>Contacts</h5></b-card-header>
@@ -42,7 +40,6 @@ const toggleStar = (id) => {
             </b-card>
         </b-col>
 
-        <!-- People -->
         <b-col md="6" xl="4">
             <b-card class="equal-card" no-body>
                 <b-card-header><h5>People</h5></b-card-header>
@@ -73,7 +70,6 @@ const toggleStar = (id) => {
             </b-card>
         </b-col>
 
-        <!-- Contacts List -->
         <b-col md="6" xl="4">
             <b-card class="overflow-hidden" no-body>
                 <b-card-header><h5>Contacts List</h5></b-card-header>

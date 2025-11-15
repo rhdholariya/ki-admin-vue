@@ -13,12 +13,12 @@ import {
     PhWarning,
 } from "@phosphor-icons/vue";
 
-// === Collapse states ===
+
 const openBlock = ref(false);
 const openSize = ref(false);
 const openRadius = ref(false);
 
-// === Data ===
+
 const blockButtonGroups = [
     { primary: "primary", secondary: "secondary" },
     { primary: "outline-primary", secondary: "outline-secondary" },
@@ -41,7 +41,7 @@ const borderButtons = [
     { text: "Danger", variant: "danger", radiusClass: "b-r-22" },
 ];
 
-// === Prism highlight on collapse open ===
+
 watch([openBlock, openSize, openRadius], async () => {
     await nextTick();
     Prism.highlightAll();
@@ -50,7 +50,6 @@ watch([openBlock, openSize, openRadius], async () => {
 
 <template>
     <b-row class="g-3">
-        <!-- Block Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -78,7 +77,7 @@ watch([openBlock, openSize, openRadius], async () => {
                 </b-row>
 
                 <b-collapse v-model="openBlock" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
                  &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Block Buttons&lt;/h5&gt;
@@ -108,7 +107,6 @@ ${blockButtonGroups
             </b-card>
         </b-col>
 
-        <!-- Size Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <template #header>
@@ -136,7 +134,7 @@ ${blockButtonGroups
                 </div>
 
                 <b-collapse v-model="openSize" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
                &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Size Buttons&lt;/h5&gt;
@@ -161,7 +159,6 @@ ${blockButtonGroups
             </b-card>
         </b-col>
 
-        <!-- Radius Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -186,7 +183,7 @@ ${blockButtonGroups
                 </div>
 
                 <b-collapse v-model="openRadius" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
                &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Radius Buttons&lt;/h5&gt;

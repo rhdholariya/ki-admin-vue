@@ -12,15 +12,12 @@ import {
     PhRedditLogo
 } from '@phosphor-icons/vue';
 
-
-// Collapse states
 const openBasic = ref(false);
 const openOutline = ref(false);
 const openLight = ref(false);
 const openIconButton = ref(false);
 const openIconSocial = ref(false);
 
-// Data
 const buttonVariants = ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark', 'link'];
 const outlineVariants = ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'];
 
@@ -87,7 +84,6 @@ const iconSocialButtons = [
 
 <template>
     <b-row >
-        <!-- Basic Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -106,7 +102,7 @@ const iconSocialButtons = [
                     </div>
 
                     <b-collapse v-model="openBasic" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Basic Buttons&lt;/h5&gt;
@@ -126,7 +122,6 @@ const iconSocialButtons = [
             </b-card>
         </b-col>
 
-        <!-- Outline Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -145,7 +140,7 @@ const iconSocialButtons = [
                     </div>
 
                     <b-collapse v-model="openOutline" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Outline Buttons&lt;/h5&gt;
@@ -164,7 +159,6 @@ const iconSocialButtons = [
             </b-card>
         </b-col>
 
-        <!-- Light Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -187,7 +181,7 @@ const iconSocialButtons = [
                     </div>
 
                     <b-collapse v-model="openLight" class="mt-3">
-          <pre class="language-html"><code>
+          <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Light Buttons&lt;/h5&gt;
@@ -206,7 +200,6 @@ const iconSocialButtons = [
             </b-card>
         </b-col>
 
-        <!-- Icon Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <template #header>
@@ -219,7 +212,7 @@ const iconSocialButtons = [
                 </template>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
-                        <div v-for="(group, idx) in iconButtonVariants" :key="idx" class="d-flex gap-2">
+                        <div v-for="(group, idx) in iconButtonVariants" :key="idx" class="d-flex gap-2 flex-wrap">
                             <b-button
                                 v-for="(btn, i) in group.buttons"
                                 :key="i"
@@ -234,7 +227,7 @@ const iconSocialButtons = [
                     </div>
 
                     <b-collapse v-model="openIconButton" class="mt-3">
-  <pre class="language-html"><code>
+  <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Icon Buttons&lt;/h5&gt;
@@ -259,7 +252,6 @@ const iconSocialButtons = [
             </b-card>
         </b-col>
 
-        <!-- Social Buttons -->
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -272,7 +264,7 @@ const iconSocialButtons = [
                 </b-card-header>
                 <b-card-body>
                     <div class="d-flex flex-wrap gap-2">
-                        <div v-for="(group, idx) in iconSocialButtons" :key="idx" class="d-flex gap-2">
+                        <div v-for="(group, idx) in iconSocialButtons" :key="idx" class="d-flex gap-2 flex-wrap">
                             <b-button
                                 v-for="btn in group.buttons"
                                 :key="btn.text"
@@ -286,7 +278,7 @@ const iconSocialButtons = [
                     </div>
 
                     <b-collapse v-model="openIconSocial" class="mt-3">
-  <pre class="language-html"><code>
+  <pre class="language-html"><code v-prism>
 &lt;b-card no-body&gt;
   &lt;b-card-header&gt;
     &lt;h5&gt;Social Buttons&lt;/h5&gt;
