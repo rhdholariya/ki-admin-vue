@@ -65,32 +65,40 @@ const filteredIconList = computed(() => {
 });
 
 const copyIcon = async (iconName, iconPack) => {
-    try {
-        const iconCode = `<FontAwesomeIcon :icon="['${iconPack}', '${iconName}']" size="${ICON_CONFIG.downloadSize}" color="${ICON_CONFIG.color}" />`;
+  try {
+    let cleanName = iconName.replace(/^fa[rb]?[-]?/i, "");
 
-        await navigator.clipboard.writeText(iconCode);
+    cleanName = cleanName
+        .replace(/([A-Z])/g, "-$1")
+        .toLowerCase();
 
-        Toastify({
-            text: "Copied to the clipboard successfully",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: {
-                background: "rgba(var(--success),1)",
-            },
-        }).showToast();
-    } catch (error) {
-        console.error("Failed to copy icon to clipboard:", error);
-        Toastify({
-            text: "Failed to copy to clipboard",
-            duration: 3000,
-            style: {
-                background: "rgba(var(--danger),1)",
-            },
-        }).showToast();
-    }
+    cleanName = cleanName.replace(/^-/, "");
+
+    const iconCode = `<FontAwesomeIcon :icon="['${iconPack}', '${cleanName}']" size="${ICON_CONFIG.downloadSize}" color="${ICON_CONFIG.color}" />`;
+
+    await navigator.clipboard.writeText(iconCode);
+
+    Toastify({
+      text: "Copied to the clipboard successfully",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      style: {
+        background: "rgba(var(--success),1)",
+      },
+    }).showToast();
+  } catch (error) {
+    console.error("Failed to copy icon to clipboard:", error);
+    Toastify({
+      text: "Failed to copy to clipboard",
+      duration: 3000,
+      style: {
+        background: "rgba(var(--danger),1)",
+      },
+    }).showToast();
+  }
 };
 
 const breadcrumbItems = computed(() => ({
