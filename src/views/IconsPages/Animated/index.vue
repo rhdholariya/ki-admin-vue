@@ -10,10 +10,8 @@ import {PhShapes} from "@phosphor-icons/vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {IconSearch} from "@tabler/icons-vue";
 
-
 const iconList = ref([]);
 const searchValue = ref("");
-
 
 const fetchLineMDIcons = async () => {
   try {
@@ -29,7 +27,6 @@ const fetchLineMDIcons = async () => {
   }
 };
 
-
 const filteredIcons = computed(() => {
   if (!searchValue.value) return iconList.value;
   return iconList.value.filter((icon) =>
@@ -37,9 +34,12 @@ const filteredIcons = computed(() => {
   );
 });
 
-
 const copyIconToClipboard = (iconName) => {
-  navigator.clipboard.writeText(`<iconify-icon icon="${iconName}"></iconify-icon>`);
+  let finalIconName = "";
+  finalIconName = `line-md:${iconName}`;
+
+  navigator.clipboard.writeText(`<Icon icon="${finalIconName}"/>`);
+
   Toastify({
     text: "Copied to clipboard successfully",
     duration: 3000,
@@ -47,14 +47,12 @@ const copyIconToClipboard = (iconName) => {
     gravity: "top",
     position: "right",
     stopOnFocus: true,
-    style: { background: "rgba(40,167,69,1)" }, // Bootstrap success green
+    style: { background: "rgba(40,167,69,1)" }
   }).showToast();
 };
 
-
 onMounted(fetchLineMDIcons);
 
-// Component data
 const breadcrumbItems = computed(() => ({
   title: "Animated",
   items: [
@@ -71,7 +69,6 @@ const breadcrumbItems = computed(() => ({
   <b-container fluid>
     <!-- Breadcrumb -->
     <Breadcrumb :breadcrumb="breadcrumbItems"/>
-
     <b-row>
       <b-col cols="12">
         <b-card>

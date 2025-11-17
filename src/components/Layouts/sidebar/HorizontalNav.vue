@@ -1,11 +1,9 @@
 <script setup>
-import { ref, onMounted, computed, onBeforeUnmount } from "vue";
-import { PhCaretDoubleLeft, PhCaretDoubleRight } from "@phosphor-icons/vue";
+import {ref, computed, onMounted, onBeforeUnmount, inject, watch} from "vue";
+import {PhCaretDoubleLeft, PhCaretDoubleRight} from "@phosphor-icons/vue";
 
-const navRef = ref(null);
-const scrollPositionRef = ref(0);
+const scrollPosition = ref(0);
 const size = 150;
-
 
 const getLayout = () => {
   if (typeof window === "undefined") return "ltr";
@@ -17,10 +15,8 @@ const getSidebarOption = () => {
   return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option") || "vertical-sidebar";
 };
 
-
 const layout = ref(getLayout());
 const sidebarOption = ref(getSidebarOption());
-
 
 const handleStorageChange = (event) => {
   if (event.key === "Ki-Admin-React-Theme-layout-option") {
@@ -31,11 +27,9 @@ const handleStorageChange = (event) => {
   }
 };
 
+const updateNavTransform = inject('updateNavTransform', null);
 
 onMounted(() => {
-
-  navRef.value = document.querySelector(".main-nav");
-
   window.addEventListener("storage", handleStorageChange);
 
   const syncInterval = setInterval(() => {
@@ -52,67 +46,73 @@ onMounted(() => {
   });
 });
 
-
 const isRTL = computed(() => layout.value === "rtl");
 
+const navTransform = computed(() => {
+  if (isRTL.value) {
+    return {
+      marginRight: `${scrollPosition.value}px`,
+      marginLeft: '0'
+    };
+  } else {
+    return {
+      marginLeft: `-${scrollPosition.value}px`,
+      marginRight: '0'
+    };
+  }
+});
+
+watch(navTransform, (newTransform) => {
+  if (updateNavTransform) {
+    updateNavTransform(newTransform);
+  }
+});
 
 const scrollNav = (direction) => {
-  const nav = navRef.value;
-  if (!nav) return;
-
-  const container = nav.parentElement;
-  if (!container) return;
-
-  const containerWidth = container.clientWidth;
-  const navWidth = nav.scrollWidth;
-  const maxOffset = navWidth - containerWidth;
+  const maxOffset = 1000;
 
   let newOffset;
 
   if (isRTL.value) {
     if (direction === "right") {
-      newOffset = Math.max(scrollPositionRef.value - size, -maxOffset);
+      newOffset = Math.max(scrollPosition.value - size, -maxOffset);
     } else {
-      newOffset = Math.min(scrollPositionRef.value + size, 0);
+      newOffset = Math.min(scrollPosition.value + size, 0);
     }
-    nav.style.marginRight = `${newOffset}px`;
   } else {
     if (direction === "left") {
-      newOffset = Math.max(scrollPositionRef.value - size, 0);
+      newOffset = Math.max(scrollPosition.value - size, 0);
     } else {
-      newOffset = Math.min(scrollPositionRef.value + size, maxOffset);
+      newOffset = Math.min(scrollPosition.value + size, maxOffset);
     }
-    nav.style.marginLeft = `-${newOffset}px`;
   }
 
-  scrollPositionRef.value = newOffset;
+  scrollPosition.value = newOffset;
 };
 </script>
 
 <template>
   <div v-if="sidebarOption === 'horizontal-sidebar'" class="menu-navs">
-    <!-- Previous Button -->
     <span
         class="menu-previous"
-        @click="scrollNav(isRTL.value ? 'right' : 'left')"
+        @click="scrollNav(isRTL ? 'right' : 'left')"
         :style="{
-        transform: isRTL.value ? 'rotate(180deg)' : 'none',
-        float: isRTL.value ? 'right' : 'left'
+        transform: isRTL ? 'rotate(180deg)' : 'none',
+        float: isRTL ? 'right' : 'left'
       }"
     >
-      <PhCaretDoubleLeft :size="32" />
+      <PhCaretDoubleLeft :size="32"/>
     </span>
 
-    <!-- Next Button -->
     <span
         class="menu-next"
-        @click="scrollNav(isRTL.value ? 'left' : 'right')"
+        @click="scrollNav(isRTL ? 'left' : 'right')"
         :style="{
-        transform: isRTL.value ? 'rotate(180deg)' : 'none',
-        float: isRTL.value ? 'left' : 'right'
+        transform: isRTL ? 'rotate(180deg)' : 'none',
+        float: isRTL ? 'left' : 'right'
       }"
     >
-      <PhCaretDoubleRight size="24" />
+      <PhCaretDoubleRight :size="24"/>
     </span>
   </div>
 </template>
