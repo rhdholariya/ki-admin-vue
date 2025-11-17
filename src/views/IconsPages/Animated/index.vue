@@ -11,11 +11,10 @@ import AppLayout from "@/views/AppLayout.vue";
 import {IconSearch} from "@tabler/icons-vue";
 
 
-// State
 const iconList = ref([]);
 const searchValue = ref("");
 
-// Fetch LineMD icons
+
 const fetchLineMDIcons = async () => {
   try {
     const response = await fetch(
@@ -30,7 +29,7 @@ const fetchLineMDIcons = async () => {
   }
 };
 
-// Computed filtered icons
+
 const filteredIcons = computed(() => {
   if (!searchValue.value) return iconList.value;
   return iconList.value.filter((icon) =>
@@ -38,7 +37,7 @@ const filteredIcons = computed(() => {
   );
 });
 
-// Copy icon to clipboard
+
 const copyIconToClipboard = (iconName) => {
   navigator.clipboard.writeText(`<iconify-icon icon="${iconName}"></iconify-icon>`);
   Toastify({
@@ -52,7 +51,7 @@ const copyIconToClipboard = (iconName) => {
   }).showToast();
 };
 
-// Fetch icons on mount
+
 onMounted(fetchLineMDIcons);
 
 // Component data
@@ -72,6 +71,7 @@ const breadcrumbItems = computed(() => ({
   <b-container fluid>
     <!-- Breadcrumb -->
     <Breadcrumb :breadcrumb="breadcrumbItems"/>
+
     <b-row>
       <b-col cols="12">
         <b-card>

@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 
-// Import the Vue FilePond wrapper
+
 import vueFilePond from 'vue-filepond'
 
-// FilePond core + plugins
+
 import 'filepond/dist/filepond.min.css'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
@@ -16,7 +16,7 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 
 
 
-// ✅ Register plugins by passing them to vueFilePond
+
 const FilePond = vueFilePond(
     FilePondPluginFileValidateType,
     FilePondPluginImagePreview,
@@ -25,10 +25,10 @@ const FilePond = vueFilePond(
     FilePondPluginImageExifOrientation
 )
 
-// ✅ Files state
+
 const files = ref([])
 
-// ✅ Custom label HTML
+
 const labelHTML = `
   <span>
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-upload" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -46,9 +46,7 @@ const breadcrumbItems = {
     <main>
       <b-container fluid class="ui-section">
         <Breadcrumb :breadcrumb="breadcrumbItems" />
-
         <b-row>
-          <!-- Default Tooltips -->
           <b-col cols="12">
             <b-card no-body>
               <b-card-header>
@@ -70,8 +68,6 @@ const breadcrumbItems = {
               </b-card-body>
             </b-card>
           </b-col>
-
-          <!-- Placement -->
           <b-col cols="12">
             <b-card no-body>
               <b-card-header>
@@ -92,7 +88,7 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- HTML Tooltip -->
+
           <b-col cols="12">
             <b-card no-body>
               <b-card-header>
@@ -107,7 +103,7 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Colors Tooltips -->
+
           <b-col cols="12">
             <b-card no-body>
               <b-card-header>
@@ -136,7 +132,7 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Custom Popovers -->
+
           <b-col cols="12">
             <b-card no-body>
               <b-card-header>

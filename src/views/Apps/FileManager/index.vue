@@ -33,7 +33,7 @@ const handleMoveToRecycle = (item) => {
   recycledItems.value.push({
     ...item,
     deletedAt: new Date().toISOString(),
-    originalLocation: 'quick-access' // or 'folders', 'recent', etc.
+    originalLocation: 'quick-access'
   })
 }
 

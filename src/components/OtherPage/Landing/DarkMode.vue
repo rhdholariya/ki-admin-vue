@@ -1,3 +1,21 @@
+<script setup>
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BBadge,
+  BButton
+} from 'bootstrap-vue-next';
+import { PhSquaresFour } from '@phosphor-icons/vue';
+import { IconChevronsRight } from '@tabler/icons-vue';
+
+const handleDarkModeClick = () => {
+  localStorage.setItem("theme-mode", "dark");
+
+  window.location.href = "/dashboard/ecommerce";
+};
+</script>
+
 <template>
   <div>
     <section class="dark-section">
@@ -41,23 +59,5 @@
   </div>
 </template>
 
-<script setup>
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BBadge,
-  BButton
-} from 'bootstrap-vue-next';
-import { PhSquaresFour } from '@phosphor-icons/vue';
-import { IconChevronsRight } from '@tabler/icons-vue';
 
-const handleDarkModeClick = () => {
-  // Set dark mode in localStorage
-  localStorage.setItem("theme-mode", "dark");
-
-  // Redirect to dashboard
-  window.location.href = "/dashboard/ecommerce";
-};
-</script>
 

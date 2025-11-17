@@ -2,14 +2,14 @@
 import {reactive, h} from "vue";
 import {useRouter} from "vue-router";
 import {
-    BContainer,
-    BRow,
-    BCol,
-    BForm,
-    BFormGroup,
-    BFormInput,
-    BButton,
-    BFormCheckbox  // Added missing import
+  BContainer,
+  BRow,
+  BCol,
+  BForm,
+  BFormGroup,
+  BFormInput,
+  BButton,
+  BFormCheckbox, BImg  // Added missing import
 } from "bootstrap-vue-next";
 import {RouterLink} from "vue-router";
 
@@ -56,7 +56,7 @@ const handleSubmit = (e) => {
 
                             <div class="mb-4 text-center">
                                 <RouterLink class="logo" to="/dashboard/ecommerce">
-                                    <img src="/images/logo/3.png" alt="logo"/>
+                                    <b-img src="/images/logo/3.png" alt="logo"/>
                                 </RouterLink>
                             </div>
 

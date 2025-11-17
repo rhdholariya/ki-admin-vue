@@ -1,13 +1,13 @@
 <script setup>
 import {ref} from "vue";
 import {
-    BContainer,
-    BRow,
-    BCol,
-    BForm,
-    BFormInput,
-    BButton,
-    BFormCheckbox
+  BContainer,
+  BRow,
+  BCol,
+  BForm,
+  BFormInput,
+  BButton,
+  BFormCheckbox, BImg
 } from "bootstrap-vue-next";
 import {RouterLink} from "vue-router";
 import {PhFacebookLogo, PhGoogleLogo, PhTwitterLogo} from "@phosphor-icons/vue";
@@ -48,11 +48,11 @@ const handleSubmit = (e) => {
                         <div class="form-container">
                             <div class="signup-content mt-4">
                                 <span>
-                                    <img src="/images/logo/1.png" alt="Logo" class="img-fluid"/>
+                                    <b-img src="/images/logo/1.png" alt="Logo" class="img-fluid"/>
                                 </span>
                             </div>
                             <div class="signup-bg-img">
-                                <img src="/images/login/02.png" alt="Background" class="img-fluid"/>
+                                <b-img src="/images/login/02.png" alt="Background" class="img-fluid"/>
                             </div>
                         </div>
                     </b-col>

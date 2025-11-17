@@ -21,13 +21,13 @@ import {RouterLink} from 'vue-router';
                     24/7 hours
                 </p>
 
-                <RouterLink
+                <router-link
                     to="/dashboard/ecommerce"
                     class="btn btn-lg btn-danger mt-3 rounded-pill d-inline-flex align-items-center justify-content-center gap-1"
                 >
                     <PhHouse size="18"/>
                     Back To Home
-                </RouterLink>
+                </router-link>
             </div>
         </b-container>
     </div>

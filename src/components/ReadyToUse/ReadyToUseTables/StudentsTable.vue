@@ -4,24 +4,21 @@ import {BButton, BModal} from 'bootstrap-vue-next'
 import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue'
 import {studentsData} from '@/data/tablePage/DataTable/studentsData.js'
 
-// Reactive state
+
 const selectedItems = ref([])
 const showDeleteModal = ref(false)
 const itemToDelete = ref(null)
 
-
-
-// Edit handler
 const handleEdit = () => {
 }
 
-// Delete confirmation
+
 const handleDelete = (student) => {
   itemToDelete.value = student
   showDeleteModal.value = true
 }
 
-// Confirm delete action
+
 const confirmDelete = () => {
   if (itemToDelete.value) {
     const index = studentsData.findIndex(s => s.id === itemToDelete.value.id)
@@ -31,7 +28,7 @@ const confirmDelete = () => {
   }
 }
 
-// Table columns
+
 const columns = [
   {
     key: 'checkbox',
@@ -73,7 +70,6 @@ const columns = [
   }
 ]
 
-// Footer columns
 const footerColumns = [
   {key: 'checkbox', header: ''},
   {key: 'name', header: 'Name'},
@@ -104,7 +100,7 @@ const footerColumns = [
       :footer-columns="footerColumns"
   />
 
-  <!-- Delete Confirmation Modal -->
+
   <b-modal
       v-model="showDeleteModal"
       centered

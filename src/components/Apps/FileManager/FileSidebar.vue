@@ -16,7 +16,7 @@ const changeTab = (tabId) => {
 const polarChart = ref(null)
 
 onMounted(() => {
-  // Initialize chart here (using polarChart.value)
+
 })
 
 const tabs = [

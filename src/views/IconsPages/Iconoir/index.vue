@@ -15,7 +15,7 @@ import {
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhShapes} from "@phosphor-icons/vue";
-import {IconSearch} from "@tabler/icons-vue";
+import {IconSearch  } from "@tabler/icons-vue";
 
 
 // Convert icon object to array of {name, component} objects

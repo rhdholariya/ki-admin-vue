@@ -19,7 +19,7 @@ const unpublish = () => {
       <h5>Privacy</h5>
     </b-card-header>
     <b-card-body>
-      <h6>ACCESS</h6>
+      <h6>Access</h6>
       <b-row>
         <b-col
           v-for="option in privacyOptions"
@@ -56,26 +56,13 @@ const unpublish = () => {
                     </span>
                   </span>
                 </span>
-<!--                <div class="form-check">-->
-<!--                  <input-->
-<!--                      :id="option.id"-->
-<!--                      v-model="userOption"-->
-<!--                      name="useroption"-->
-<!--                      type="radio"-->
-<!--                      :value="option.value"-->
-<!--                      class="form-check-input"-->
-<!--                  />-->
-<!--                  <label :for="option.id" class="form-check-label visually-hidden">-->
-<!--                    {{ option.label }}-->
-<!--                  </label>-->
-<!--                </div>-->
               </div>
             </div>
           </div>
         </b-col>
       </b-row>
 
-      <h6>USERS</h6>
+      <h6>Users</h6>
       <b-row>
         <b-col
           v-for="option in userOptions"

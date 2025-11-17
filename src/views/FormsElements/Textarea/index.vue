@@ -5,13 +5,13 @@ import AppLayout from "@/views/AppLayout.vue";
 import { PhCardholder } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// Formatter reactive state
+
 const writeText = ref("");
 const writeOutput = ref("");
 const myText = ref("");
 const myOutput = ref("");
 
-// Formatter logic
+
 const handleWriteChange = () => {
   writeOutput.value = writeText.value.toUpperCase(); // Example formatting logic
 };

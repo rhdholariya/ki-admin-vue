@@ -1,10 +1,3 @@
-<template>
-  <div id="app">
-    <Loader v-if="loading" />
-    <RouterView v-else />
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterView } from "vue-router";
@@ -40,4 +33,14 @@ onMounted(() => {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 </script>
+
+
+<template>
+  <div id="app">
+    <Loader v-if="loading" />
+    <RouterView v-else />
+  </div>
+</template>
+
+
 

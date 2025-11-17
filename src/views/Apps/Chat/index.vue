@@ -9,7 +9,7 @@ import {
   BCardBody,
   BDropdown,
   BDropdownItem,
-  BButton,
+  BButton, BImg,
 } from "bootstrap-vue-next";
 
 import {
@@ -59,7 +59,7 @@ const breadcrumbItems = computed(() => ({
                 <b-card-header>
                   <div class="d-flex align-items-center">
                     <span class="chatdp h-45 w-45 d-flex-center b-r-50 position-relative bg-danger">
-                      <img src="/images/avatar/09.png" alt="User Avatar" class="img-fluid b-r-50" />
+                      <b-img src="/images/avatar/09.png" alt="User Avatar" class="img-fluid b-r-50" />
                       <span
                           class="position-absolute top-0 end-0 p-1 bg-success border border-light rounded-circle"
                       ></span>

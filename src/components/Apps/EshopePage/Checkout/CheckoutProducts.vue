@@ -45,7 +45,7 @@ const cartItems = ref([
   },
 ]);
 
-// 💰 Computed totals
+
 const subtotal = computed(() =>
     cartItems.value.reduce((sum, item) => sum + item.price * item.items, 0)
 );
@@ -53,7 +53,7 @@ const estimatedTax = 5.0;
 const shippingHandling = 10.0;
 const total = computed(() => subtotal.value + estimatedTax + shippingHandling);
 
-// 🗑 Remove item
+
 const handleRemove = (id) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== id);
 };

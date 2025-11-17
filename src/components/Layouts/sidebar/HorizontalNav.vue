@@ -6,7 +6,7 @@ const navRef = ref(null);
 const scrollPositionRef = ref(0);
 const size = 150;
 
-// --- Helpers to read from localStorage ---
+
 const getLayout = () => {
   if (typeof window === "undefined") return "ltr";
   return localStorage.getItem("Ki-Admin-React-Theme-layout-option") || "ltr";
@@ -17,11 +17,11 @@ const getSidebarOption = () => {
   return localStorage.getItem("Ki-Admin-React-Theme-sidebar-option") || "vertical-sidebar";
 };
 
-// --- Reactive refs ---
+
 const layout = ref(getLayout());
 const sidebarOption = ref(getSidebarOption());
 
-// --- Listen for localStorage changes ---
+
 const handleStorageChange = (event) => {
   if (event.key === "Ki-Admin-React-Theme-layout-option") {
     layout.value = event.newValue || "ltr";
@@ -31,15 +31,13 @@ const handleStorageChange = (event) => {
   }
 };
 
-// --- Lifecycle ---
+
 onMounted(() => {
-  // Get nav reference
+
   navRef.value = document.querySelector(".main-nav");
 
-  // Listen for layout changes in other tabs or scripts
   window.addEventListener("storage", handleStorageChange);
 
-  // Optional: Also check every 200ms (if the app changes localStorage in same tab)
   const syncInterval = setInterval(() => {
     const currentLayout = getLayout();
     if (currentLayout !== layout.value) layout.value = currentLayout;
@@ -48,17 +46,16 @@ onMounted(() => {
     if (currentSidebar !== sidebarOption.value) sidebarOption.value = currentSidebar;
   }, 200);
 
-  // Cleanup
   onBeforeUnmount(() => {
     clearInterval(syncInterval);
     window.removeEventListener("storage", handleStorageChange);
   });
 });
 
-// --- Computed ---
+
 const isRTL = computed(() => layout.value === "rtl");
 
-// --- Scroll Function ---
+
 const scrollNav = (direction) => {
   const nav = navRef.value;
   if (!nav) return;
@@ -73,7 +70,6 @@ const scrollNav = (direction) => {
   let newOffset;
 
   if (isRTL.value) {
-    // RTL Mode
     if (direction === "right") {
       newOffset = Math.max(scrollPositionRef.value - size, -maxOffset);
     } else {
@@ -81,7 +77,6 @@ const scrollNav = (direction) => {
     }
     nav.style.marginRight = `${newOffset}px`;
   } else {
-    // LTR Mode
     if (direction === "left") {
       newOffset = Math.max(scrollPositionRef.value - size, 0);
     } else {

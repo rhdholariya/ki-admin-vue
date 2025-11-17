@@ -20,7 +20,7 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhChartPieSlice} from "@phosphor-icons/vue";
 import VueApexCharts from "vue3-apexcharts";
-// ✅ Create reactive references for chart configs
+
 const basicChart = ref({});
 const splineChart = ref({});
 const irregularChart = ref({});
@@ -33,7 +33,7 @@ onMounted(() => {
   stackedChart.value = stackedAreaChart;
 });
 
-// ✅ Breadcrumb data
+
 const breadcrumbItems = computed(() => ({
   title: "Area",
   items: [

@@ -39,31 +39,4 @@ const handleMouseLeave = () => {
   </div>
 </template>
 
-<style scoped>
-
-.box-example-horizontal{
-  .hr-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hr-bar-stack{
-    display: flex;
-    flex-direction: column;
-    .hr-bar{
-      background-color: rgb(var(--warning), 1);
-      &.filled{
-        display: block;
-        width: 120px;
-        height: 6px;
-        background-color: rgb(var(--warning), 0.2);
-        margin: 1px;
-      }
-    }
-  }
-}
-
-
-</style>
-
 

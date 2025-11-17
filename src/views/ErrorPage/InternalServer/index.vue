@@ -9,7 +9,6 @@ import { RouterLink } from 'vue-router';
         <b-container>
             <b-row class="justify-content-center">
                 <b-col lg="8">
-                    <!-- Card Body -->
                     <b-card-body class="text-center">
                         <img
                             alt="503 Service Unavailable"
@@ -22,7 +21,6 @@ import { RouterLink } from 'vue-router';
                             it from fulfilling the request.
                         </p>
 
-                        <!-- Back Button styled link -->
                         <RouterLink
                             to="/dashboard/ecommerce"
                             class="btn btn-primary btn-lg d-inline-flex align-items-center gap-2"

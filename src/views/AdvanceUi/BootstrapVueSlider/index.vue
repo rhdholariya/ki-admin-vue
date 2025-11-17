@@ -1,8 +1,8 @@
 <script setup>
-import { ref, nextTick, onMounted } from "vue";
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhBriefcase } from "@phosphor-icons/vue";
+
 import {
   BContainer,
   BRow,
@@ -11,23 +11,16 @@ import {
   BCardHeader,
   BCardBody,
   BCarousel,
-  BCarouselSlide,
+  BCarouselSlide
 } from "bootstrap-vue-next";
 
 const breadcrumbItems = {
   title: "Bootstrap Vue Slider",
   items: [
     { label: "Advance UI", icon: PhBriefcase },
-    { label: "Bootstrap Vue Slider", active: true },
-  ],
+    { label: "Bootstrap Vue Slider", active: true }
+  ]
 };
-
-const showCarousel = ref(false);
-
-onMounted(async () => {
-  await nextTick();
-  showCarousel.value = true;
-});
 </script>
 
 <template>
@@ -36,7 +29,7 @@ onMounted(async () => {
       <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems" />
 
-        <b-row v-if="showCarousel">
+        <b-row>
           <b-col md="6" xl="4">
             <b-card no-body>
               <b-card-header>
@@ -116,14 +109,8 @@ onMounted(async () => {
               </b-card-header>
               <b-card-body>
                 <b-carousel fade :controls="false" :indicators="false">
-                  <b-carousel-slide
-                      img-src="/images/bootstrapslider/04.jpg"
-                      :interval="1000"
-                  />
-                  <b-carousel-slide
-                      img-src="/images/bootstrapslider/07.jpg"
-                      :interval="500"
-                  />
+                  <b-carousel-slide img-src="/images/bootstrapslider/04.jpg" :interval="1000" />
+                  <b-carousel-slide img-src="/images/bootstrapslider/07.jpg" :interval="500" />
                   <b-carousel-slide img-src="/images/bootstrapslider/08.jpg" />
                 </b-carousel>
               </b-card-body>
@@ -137,28 +124,17 @@ onMounted(async () => {
               </b-card-header>
               <b-card-body>
                 <b-carousel :slide="false" controls indicators>
-                  <b-carousel-slide
-                      img-src="/images/bootstrapslider/04.jpg"
-                      :interval="1000"
-                  />
-                  <b-carousel-slide
-                      img-src="/images/bootstrapslider/07.jpg"
-                      :interval="500"
-                  />
+                  <b-carousel-slide img-src="/images/bootstrapslider/04.jpg" :interval="1000" />
+                  <b-carousel-slide img-src="/images/bootstrapslider/07.jpg" :interval="500" />
                   <b-carousel-slide img-src="/images/bootstrapslider/08.jpg" />
                 </b-carousel>
               </b-card-body>
             </b-card>
           </b-col>
         </b-row>
-
-        <div v-else class="text-center py-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
       </b-container>
     </main>
   </AppLayout>
 </template>
+
 

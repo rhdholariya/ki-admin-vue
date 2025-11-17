@@ -21,7 +21,7 @@ const activeId = ref("");
 const scrollContainer = ref(null);
 const sections = ref([]);
 
-// Section data (reactive instead of hard-coded DOM IDs)
+
 const sectionList = [
   { id: "scrollspyHeading1", title: "First paragraph" },
   { id: "scrollspyHeading2", title: "Second paragraph" },
@@ -31,7 +31,6 @@ const sectionList = [
 ];
 
 onMounted(() => {
-  // Store refs to section elements
   sections.value = sectionList.map(s =>
       document.getElementById(s.id)
   );

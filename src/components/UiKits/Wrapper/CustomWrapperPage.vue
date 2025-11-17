@@ -1,11 +1,11 @@
 <script setup>
 import {
-    BRow,
-    BCol,
-    BCard,
-    BCardHeader,
-    BCardBody,
-    BButton
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody,
+  BButton, BImg
 } from "bootstrap-vue-next";
 import {PhMagnifyingGlass, PhLink} from "@phosphor-icons/vue";
 
@@ -61,7 +61,7 @@ const overlayStyle = [
                         lg="3"
                     >
                         <div class="custome-wrapper position-relative">
-                            <img
+                            <b-img
                                 :alt="item.title"
                                 :src="item.image"
                                 class="img-fluid rounded"
@@ -102,7 +102,7 @@ const overlayStyle = [
                         <div
                             class="custome-wrapper-2 position-relative overflow-hidden rounded"
                         >
-                            <img
+                            <b-img
                                 :alt="card.title"
                                 :src="card.image"
                                 class="img-fluid"
@@ -131,7 +131,7 @@ const overlayStyle = [
                         <div
                             class="custome-wrapper-3 position-relative overflow-hidden rounded"
                         >
-                            <img
+                            <b-img
                                 :alt="item.title"
                                 :src="item.image"
                                 class="img-fluid"
@@ -153,7 +153,7 @@ const overlayStyle = [
                         <div
                             class="custome-wrapper-4 position-relative overflow-hidden rounded"
                         >
-                            <img
+                            <b-img
                                 :alt="item.title"
                                 :src="item.image"
                                 class="img-fluid"

@@ -73,7 +73,7 @@ const alerts = ref([
                     <!-- Basic Alert -->
                     <b-alert v-if="alert.type === 'basic' && alert.show" :variant="alert.color" show dismissible>
                         <div class="d-flex justify-content-between align-items-center">
-                            <img :src="alert.image" class="w-35 h-35 me-2"/>
+                            <b-img :src="alert.image" class="w-35 h-35 me-2"/>
                             <p class="mb-0">{{ alert.message }}</p>
                         </div>
                     </b-alert>

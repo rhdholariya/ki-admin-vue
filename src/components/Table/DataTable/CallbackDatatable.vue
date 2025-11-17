@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import CustomDataTable from '@/components/Table/DataTable/CustomDataTable.vue';
 import { callbackTableData } from '@/data/tablePage/DataTable/callbackDatatable.js';
 
-// Table columns
+
 const columns = ref([
     { key: 'name', header: 'Name' },
     { key: 'position', header: 'Position' },
@@ -13,7 +13,7 @@ const columns = ref([
     { key: 'totalSalary', header: 'Salary' },
 ]);
 
-// Table data
+
 const data = ref([...callbackTableData]);
 </script>
 

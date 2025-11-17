@@ -4,26 +4,26 @@ import CustomDataTable from "@/components/Table/DataTable/CustomDataTable.vue";
 import {users} from "@/data/tablePage/DataTable/defaultDatatable.js";
 import {BButton, BModal} from "bootstrap-vue-next";
 
-// Emit setup
+
 const emit = defineEmits(["edit-item", "delete-item", "view-item"]);
 
 const tableData = ref([...users]);
 const showDeleteModal = ref(false);
 const itemToDelete = ref(null);
 
-// Edit handler
+
 const handleEdit = (item) => {
   emit("edit-item", item);
 };
 
-// Delete handler
+
 const handleDelete = (item) => {
   emit("delete-item", item);
   itemToDelete.value = item;
   showDeleteModal.value = true;
 };
 
-// Confirm delete
+
 const confirmDelete = () => {
   if (itemToDelete.value) {
     const index = tableData.value.findIndex((u) => u.name === itemToDelete.value.name);
@@ -37,7 +37,7 @@ const confirmDelete = () => {
   }
 };
 
-// View handler
+
 const handleView = (item) => {
   emit("view-item", item);
 };

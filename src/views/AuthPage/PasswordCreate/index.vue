@@ -1,7 +1,7 @@
 <script setup>
 import {reactive, ref} from 'vue';
 import {useRouter} from 'vue-router';
-import {BContainer, BRow, BCol, BForm, BFormInput, BButton} from 'bootstrap-vue-next';
+import {BContainer, BRow, BCol, BForm, BFormInput, BButton, BImg} from 'bootstrap-vue-next';
 
 const router = useRouter();
 const isSubmitting = ref(false);
@@ -27,10 +27,9 @@ const handleSubmit = (e) => {
     e.preventDefault();
     isSubmitting.value = true;
 
-    // Simulate API call
     setTimeout(() => {
         isSubmitting.value = false;
-        router.push('/dashboard/ecommerce'); // Navigate after submit
+        router.push('/dashboard/ecommerce');
     }, 1000);
 };
 </script>
@@ -45,11 +44,11 @@ const handleSubmit = (e) => {
                         <div class="form-container">
                             <div class="signup-content mt-4">
                 <span>
-                  <img src="/images/logo/1.png" alt="" class="img-fluid"/>
+                  <b-img src="/images/logo/1.png" alt="" class="img-fluid"/>
                 </span>
                             </div>
                             <div class="signup-bg-img">
-                                <img src="/images/login/05.png" alt="" class="img-fluid"/>
+                                <b-img src="/images/login/05.png" alt="" class="img-fluid"/>
                             </div>
                         </div>
                     </b-col>

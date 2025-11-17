@@ -14,8 +14,6 @@ import { PhBriefcase } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
 
-
-
 const showAlert1 = () => Swal.fire("Any fool can use a computer");
 
 const showAlert2 = () =>

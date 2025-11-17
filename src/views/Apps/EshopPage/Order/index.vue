@@ -77,7 +77,7 @@ const breadcrumbItems = {
                     v-model="activeTab"
                     class="order-tabs-container app-tabs-primary order-tabs"
                 >
-                  <!-- All Orders -->
+
                   <b-tab title="All Orders" title-item-class="order-tab-item" active>
                     <template #title>
                       <div class="d-flex align-items-center gap-1">

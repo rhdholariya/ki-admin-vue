@@ -55,6 +55,15 @@ const chartOptions = {
   ]
 
 }
+
+import { IconCircle } from '@tabler/icons-vue';
+
+const ageData = [
+  { range: '19-20 years', color: 'text-primary', value: '68%' },
+  { range: '20-21 years', color: 'text-primary-800', value: '58%' },
+  { range: '21-22 years', color: 'text-primary-600', value: '78%' },
+  { range: '22-23 years', color: 'text-primary-400', value: '88%' },
+];
 </script>
 
 
@@ -87,45 +96,18 @@ const chartOptions = {
       />
 
       <ul class="list-unstyled">
-        <li class="py-1 d-flex align-items-center justify-content-between">
-          <p class="mb-0 txt-ellipsis-1">
-            <i class="ti ti-circle-filled text-primary f-s-10 me-1"></i>
-            19-20 years
+        <li
+            v-for="(item, index) in ageData"
+            :key="index"
+            class="py-1 d-flex align-items-center justify-content-between"
+        >
+          <p class="mb-0 txt-ellipsis-1 d-flex align-items-center">
+            <IconCircle :class="`${item.color} me-1`" size="10" />
+            {{ item.range }}
           </p>
           <p class="text-secondary txt-ellipsis-1 mb-0 flex-grow-1 mx-2">
-            ------------------------
           </p>
-          <span>68%</span>
-        </li>
-        <li class="py-1 d-flex align-items-center justify-content-between">
-          <p class="mb-0 txt-ellipsis-1">
-            <i class="ti ti-circle-filled text-primary-800 f-s-10 me-1"></i>
-            20-21 years
-          </p>
-          <p class="text-secondary txt-ellipsis-1 mb-0 flex-grow-1 mx-2">
-            ------------------------
-          </p>
-          <span>58%</span>
-        </li>
-        <li class="py-1 d-flex align-items-center justify-content-between">
-          <p class="mb-0 txt-ellipsis-1">
-            <i class="ti ti-circle-filled text-primary-600 f-s-10 me-1"></i>
-            21-22 years
-          </p>
-          <p class="text-secondary txt-ellipsis-1 mb-0 flex-grow-1 mx-2">
-            ------------------------
-          </p>
-          <span>78%</span>
-        </li>
-        <li class="py-1 d-flex align-items-center justify-content-between">
-          <p class="mb-0 txt-ellipsis-1">
-            <i class="ti ti-circle-filled text-primary-400 f-s-10 me-1"></i>
-            22-23 years
-          </p>
-          <p class="text-secondary txt-ellipsis-1 mb-0 flex-grow-1 mx-2">
-            -----------------------
-          </p>
-          <span>88%</span>
+          <span>{{ item.value }}</span>
         </li>
       </ul>
     </b-card-body>

@@ -18,7 +18,7 @@ const leftColumnVideos = [
   },
 ]
 
-// Right column videos
+
 const rightColumnVideos = [
   {
     title: "Ratio Video 16x9",
@@ -54,7 +54,7 @@ const breadcrumbItems = {
       <b-container fluid>
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-row>
-          <!-- Left Column -->
+
           <b-col md="6">
             <b-card v-for="(video, index) in leftColumnVideos" :key="'left-' + index" class="mb-4" no-body>
               <b-card-header>
@@ -76,7 +76,7 @@ const breadcrumbItems = {
             </b-card>
           </b-col>
 
-          <!-- Right Column -->
+
           <b-col md="6">
             <b-card v-for="(video, index) in rightColumnVideos" :key="'right-' + index" class="mb-4" no-body>
               <b-card-header>

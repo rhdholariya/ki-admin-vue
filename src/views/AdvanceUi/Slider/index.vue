@@ -3,7 +3,7 @@ import { ref } from "vue"
 import AppLayout from "@/views/AppLayout.vue"
 import { BContainer, BRow, BCol, BCard, BCardHeader, BCardBody, BButton } from "bootstrap-vue-next"
 
-// Import Swiper
+
 import { Swiper, SwiperSlide } from "swiper/vue"
 import { Navigation, Pagination } from "swiper/modules"
 import "swiper/css"
@@ -24,7 +24,7 @@ const handleRemoveSlide = () => {
   }
 }
 
-// Slider configs
+
 const multipleItems = {
   modules: [Navigation],
   slidesPerView: 2,

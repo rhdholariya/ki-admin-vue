@@ -10,7 +10,7 @@ import { BContainer, BRow } from "bootstrap-vue-next"
 import Shepherd from 'shepherd.js'
 import 'shepherd.js/dist/css/shepherd.css'
 
-// Breadcrumb data
+
 const breadcrumbItems = {
   title: "Tour",
   items: [
@@ -22,7 +22,7 @@ const breadcrumbItems = {
 let tour = null
 
 onMounted(() => {
-  // Initialize the tour
+
   tour = new Shepherd.Tour({
     useModalOverlay: true,
     defaultStepOptions: {
@@ -37,7 +37,7 @@ onMounted(() => {
     },
   })
 
-  // Step 1: Profile Tabs
+
   tour.addStep({
     id: 'profile-tabs',
     title: 'All Tabs!',
@@ -52,7 +52,6 @@ onMounted(() => {
     ],
   })
 
-  // Step 2: Featured Stories
   tour.addStep({
     id: 'featured-Stories',
     title: 'Stories!',
@@ -67,7 +66,7 @@ onMounted(() => {
     ],
   })
 
-  // Step 3: Post
+
   tour.addStep({
     id: 'post',
     title: 'Post',
@@ -82,7 +81,7 @@ onMounted(() => {
     ],
   })
 
-  // Step 4: About Me
+
   tour.addStep({
     id: 'about-me',
     title: 'About Me',
@@ -97,7 +96,7 @@ onMounted(() => {
     ],
   })
 
-  // Step 5: Friend
+
   tour.addStep({
     id: 'friend',
     title: 'Friend',
@@ -112,12 +111,12 @@ onMounted(() => {
     ],
   })
 
-  // Start the tour
+
   tour.start()
 })
 
 onBeforeUnmount(() => {
-  // Clean up the tour when component is destroyed
+
   if (tour) {
     tour.complete()
   }

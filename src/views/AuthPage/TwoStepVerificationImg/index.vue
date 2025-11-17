@@ -1,24 +1,23 @@
 <script setup>
 import { ref, reactive } from "vue"
-import { BContainer, BRow, BCol, BFormInput, BButton } from "bootstrap-vue-next"
+import {BContainer, BRow, BCol, BFormInput, BButton, BImg} from "bootstrap-vue-next"
 import { RouterLink } from "vue-router"
 
 const OTP_LENGTH = 5
 const otp = reactive(Array(OTP_LENGTH).fill(""))
 const activeIndex = ref(0)
 
-// input change
 const handleChange = (value, index) => {
     const sanitized = value.replace(/[^0-9]/g, "").slice(0, 1)
     otp[index] = sanitized
 
-    // move next
+
     if (sanitized && index < OTP_LENGTH - 1) {
         activeIndex.value = index + 1
     }
 }
 
-// key events
+
 const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
         activeIndex.value = index - 1
@@ -35,7 +34,7 @@ const handleKeyDown = (e, index) => {
     }
 }
 
-// paste OTP
+
 const handlePaste = (e) => {
     e.preventDefault()
     const data = e.clipboardData.getData("text").replace(/[^0-9]/g, "").slice(0, OTP_LENGTH)
@@ -65,7 +64,7 @@ const handleSubmit = () => {
                         <div class="login-form-container">
                             <div class="mb-4 text-center">
                                 <RouterLink to="/dashboard/ecommerce" class="logo">
-                                    <img alt="#" src="/images/logo/3.png"/>
+                                    <b-img alt="#" src="/images/logo/3.png"/>
                                 </RouterLink>
                             </div>
 

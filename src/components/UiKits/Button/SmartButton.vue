@@ -220,7 +220,6 @@ const openLoadingButtons = ref(false);
         </b-col>
         <b-col xl="12">
             <b-card no-body>
-
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Disabled Buttons</h5>

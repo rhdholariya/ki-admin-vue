@@ -11,16 +11,13 @@ import {
   BFormRadio,
 } from "bootstrap-vue-next";
 
-
 import { PhDeviceMobileSpeaker, PhDesktop, PhWatch } from "@phosphor-icons/vue";
-
 
 const emailSettings = ref({
   comments: false,
   candidates: false,
   offers: false,
 });
-
 
 const pushNotification = ref("everything");
 
@@ -51,126 +48,107 @@ const devices = ref([
   },
 ]);
 </script>
+
 <template>
-  <b-card>
+  <b-card no-body>
     <b-card-header>
       <h5>Notification</h5>
     </b-card-header>
     <b-card-body>
-      <div class="notification-content">
-        <b-row>
-          <!-- Email Notification -->
-          <b-col lg="6">
-            <div class="notification-email">
-              <h6 class="mb-0">By Email</h6>
-              <p class="mb-3 text-dark">
-                These are delivered via mail to your Email.
-              </p>
-              <b-form>
-                <b-form-checkbox
-                  id="comments"
+      <b-row>
+        <b-col lg="6">
+          <div class="notification-email">
+            <h6 class="mb-0">By Email</h6>
+            <p class="mb-3 text-dark">
+              These are delivered via mail to your Email.
+            </p>
+            <b-form>
+              <b-form-checkbox
                   v-model="emailSettings.comments"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  Comments - notified posts on comment
-                </b-form-checkbox>
-                <b-form-checkbox
-                  id="candidates"
+              >
+                Comments - notified posts on comment
+              </b-form-checkbox>
+              <b-form-checkbox
                   v-model="emailSettings.candidates"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  Candidates - notified candidate applies
-                </b-form-checkbox>
-                <b-form-checkbox
-                  id="offers"
+              >
+                Candidates - notified candidate applies
+              </b-form-checkbox>
+              <b-form-checkbox
                   v-model="emailSettings.offers"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  Offers - notified accepts or rejects
-                </b-form-checkbox>
-              </b-form>
-            </div>
-          </b-col>
+              >
+                Offers - notified accepts or rejects
+              </b-form-checkbox>
+            </b-form>
+          </div>
+        </b-col>
 
-          <!-- Push Notification -->
-          <b-col lg="6">
-            <div class="notification-push">
-              <h6 class="mb-0">Push Notification</h6>
-              <p class="mb-3 text-dark">
-                These are delivered via SMS to your mobile phone.
-              </p>
-
-              <!-- Radio buttons for push notification preferences -->
-              <b-form>
-                <b-form-radio
-                  id="everything"
+        <b-col lg="6">
+          <div class="notification-push">
+            <h6 class="mb-0">Push Notification</h6>
+            <p class="mb-3 text-dark">
+              These are delivered via SMS to your mobile phone.
+            </p>
+            <b-form>
+              <b-form-radio
                   v-model="pushNotification"
                   name="pushNotification"
                   value="everything"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  Everything
-                </b-form-radio>
-                <b-form-radio
-                  id="sameAsEmail"
+              >
+                Everything
+              </b-form-radio>
+              <b-form-radio
                   v-model="pushNotification"
                   name="pushNotification"
                   value="sameAsEmail"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  Same as email
-                </b-form-radio>
-                <b-form-radio
-                  id="noPush"
+              >
+                Same as email
+              </b-form-radio>
+              <b-form-radio
                   v-model="pushNotification"
                   name="pushNotification"
                   value="noPush"
                   class="mb-3 text-secondary f-w-500"
-                >
-                  No push notification
-                </b-form-radio>
-              </b-form>
-            </div>
-          </b-col>
-        </b-row>
+              >
+                No push notification
+              </b-form-radio>
+            </b-form>
+          </div>
+        </b-col>
+      </b-row>
 
-        <b-col md="12" class="mt-4">
-          <div class="d-flex flex-column gap-4">
-            <div
+      <b-col md="12" class="mt-4">
+        <div class="d-flex flex-column gap-4">
+          <div
               v-for="device in devices"
               :key="device.id"
               class="share-menu-item"
-            >
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center gap-3">
-                  <span
-                    :class="[
-                      'share-menu-img',
-                      device.colorClass,
-                      'h-45 w-45 d-flex-center b-r-10'
-                    ]"
-                  >
-                    <component :is="device.icon" :size="30" weight="bold" />
-                  </span>
-                  <div>
-                    <h6 class="mb-0">{{ device.name }}</h6>
-                    <p class="mb-0 text-secondary">
-                      {{ device.description }}
-                    </p>
-                  </div>
+          >
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center gap-3">
+                <span
+                    :class="['share-menu-img', device.colorClass, 'h-45 w-45 d-flex-center b-r-10']"
+                >
+                  <component :is="device.icon" :size="30" weight="bold" />
+                </span>
+                <div>
+                  <h6 class="mb-0">{{ device.name }}</h6>
+                  <p class="mb-0 text-secondary">{{ device.description }}</p>
                 </div>
-                <b-form-checkbox
-                  :id="`${device.id}Push`"
+              </div>
+              <b-form-checkbox
                   v-model="device.checked"
                   switch
-                />
-              </div>
+                  :id="`${device.id}Push`"
+              />
             </div>
           </div>
-        </b-col>
-      </div>
+        </div>
+      </b-col>
     </b-card-body>
   </b-card>
 </template>
-
-

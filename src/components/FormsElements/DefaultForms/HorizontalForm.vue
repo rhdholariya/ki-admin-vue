@@ -22,7 +22,6 @@ import {
     PhArticle
 } from '@phosphor-icons/vue'
 
-// reactive states
 const fullName = ref('')
 const email = ref('')
 const password = ref('')
@@ -57,7 +56,6 @@ const handleIconSubmit = async () => {
 <template>
     <div>
         <b-row>
-            <!-- Horizontal Form -->
             <b-col lg="6">
                 <b-card no-body class="equal-card">
                     <b-card-header>
@@ -170,7 +168,6 @@ const handleIconSubmit = async () => {
                 </b-card>
             </b-col>
 
-            <!-- Horizontal Form With Icon -->
             <b-col lg="6">
                 <b-card no-body class="equal-card">
                     <b-card-header>

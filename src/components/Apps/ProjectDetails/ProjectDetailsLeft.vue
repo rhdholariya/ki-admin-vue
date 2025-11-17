@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import {
   BCol,
   BCard,
@@ -16,6 +16,7 @@ import {
   teamMembers,
 } from "@/data/app/projectapp/ProjectDetailData.js";
 
+// Table configuration
 const tableFields = [
   { key: "name", label: "" },
   { key: "value", label: "" },
@@ -38,15 +39,21 @@ const assignedByAvatars = computed(() => [
   { name: "2 More", initial: "2+", colorClass: "text-bg-secondary" },
 ]);
 
-onMounted(() => {
-  const tooltipEls = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  tooltipEls.forEach((el) => new Tooltip(el));
-});
-</script>
 
+const vTooltip = {
+  mounted(el, binding) {
+    new Tooltip(el, { title: binding.value, placement: "top" });
+  },
+  unmounted(el) {
+    const tooltip = Tooltip.getInstance(el);
+    if (tooltip) tooltip.dispose();
+  },
+};
+</script>
 
 <template>
   <b-col md="6" xxl="3" class="order-md-2 order-xxl-1">
+
     <b-card no-body>
       <b-card-header>
         <h5>Project Details</h5>
@@ -64,11 +71,17 @@ onMounted(() => {
 
           <template #cell(value)="data">
             <div class="text-end">
-              <span v-if="data.item.name === 'Start Date'" class="text-primary">
+              <span
+                  v-if="data.item.name === 'Start Date'"
+                  class="text-primary"
+              >
                 {{ data.value }}
               </span>
 
-              <span v-else-if="data.item.name === 'End Date'" class="text-danger">
+              <span
+                  v-else-if="data.item.name === 'End Date'"
+                  class="text-danger"
+              >
                 {{ data.value }}
               </span>
 
@@ -83,12 +96,8 @@ onMounted(() => {
                 <span
                     v-for="(avatar, index) in assignedByAvatars"
                     :key="index"
-                    :class="[
-                    'h-30 w-30 d-flex-center rounded-circle',
-                    avatar.colorClass,
-                  ]"
-                    data-bs-toggle="tooltip"
-                    :title="avatar.name"
+                    :class="['h-30 w-30 d-flex-center rounded-circle', avatar.colorClass]"
+                    v-tooltip="avatar.name"
                 >
                   {{ avatar.initial }}
                 </span>
@@ -109,7 +118,8 @@ onMounted(() => {
       </b-card-body>
     </b-card>
 
-    <b-card no-body>
+
+    <b-card no-body class="mt-3">
       <b-card-header>
         <h5 class="header-title-text">Project Team</h5>
       </b-card-header>
@@ -146,5 +156,3 @@ onMounted(() => {
     </b-card>
   </b-col>
 </template>
-
-

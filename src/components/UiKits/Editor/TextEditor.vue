@@ -38,7 +38,7 @@ import {
 
 const content = ref('<p>Hello!</p>');
 
-// Modal states
+
 const showImageModal = ref(false);
 const showLinkModal = ref(false);
 const imageUrl = ref('');

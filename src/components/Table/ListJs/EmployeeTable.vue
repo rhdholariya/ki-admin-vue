@@ -78,7 +78,7 @@ const form = ref({
   status: 'ACTIVE'
 })
 
-// Computed: filtered employee list
+
 const filteredEmployees = computed(() => {
   const query = String(search.value).trim().toLowerCase()
   if (!query) return employees.value
@@ -92,7 +92,7 @@ const filteredEmployees = computed(() => {
   )
 })
 
-// Functions
+
 const resetForm = () => {
   form.value = { id: 0, name: '', email: '', contact: '', date: '', status: 'ACTIVE' }
   editIndex.value = null

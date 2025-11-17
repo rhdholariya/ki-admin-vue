@@ -68,7 +68,7 @@ const breadcrumbItems = computed(() => ({
 
         <b-row>
           <b-col cols="12">
-            <b-card>
+            <b-card no-body>
               <b-card-header>
                 <b-row>
                   <b-col md="4">

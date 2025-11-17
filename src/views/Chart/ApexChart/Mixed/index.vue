@@ -9,8 +9,6 @@ import {
   BCardBody
 } from 'bootstrap-vue-next';
 
-
-
 import {
   lineColumnComboChartData,
   multipleYAxisChartData,

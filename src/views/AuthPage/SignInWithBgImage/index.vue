@@ -1,15 +1,15 @@
 <script setup>
 import {reactive, ref, h} from "vue";
 import {
-    BContainer,
-    BRow,
-    BCol,
-    BForm,
-    BFormInput,
-    BButton,
-    BFormCheckbox,
-    BFormGroup,
-    BFormText
+  BContainer,
+  BRow,
+  BCol,
+  BForm,
+  BFormInput,
+  BButton,
+  BFormCheckbox,
+  BFormGroup,
+  BFormText, BImg
 } from "bootstrap-vue-next";
 import {RouterLink, useRouter} from "vue-router";
 import {PhFacebookLogo, PhGoogleLogo, PhGithubLogo} from "@phosphor-icons/vue";
@@ -57,7 +57,7 @@ const handleSubmit = () => {
 
                     <div class="mb-4 text-center">
                         <RouterLink class="logo" to="/dashboard/ecommerce">
-                            <img src="/images/logo/3.png" alt="logo"/>
+                            <b-img src="/images/logo/3.png" alt="logo"/>
                         </RouterLink>
                     </div>
 

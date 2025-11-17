@@ -1,22 +1,22 @@
 <script setup>
-import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
+import {BCard, BCardBody, BButton, BImg} from 'bootstrap-vue-next'
 </script>
 
 <template>
   <b-card class="overflow-hidden" no-body>
     <b-card-body class="p-0">
       <div class="meeting-call-box bg-gradient-mode">
-        <img
+        <b-img
             alt="img"
             class="img-fluid position-relative z-1"
             src="/images/dashboard/project/meeting-avtar.png"
         />
-        <img
+        <b-img
             alt="img"
             class="img-fluid bg-vector-img"
             src="/images/dashboard/project/bg-round.png"
         />
-        <img
+        <b-img
             alt="img"
             class="img-fluid bg-vector-img1"
             src="/images/dashboard/project/bg-round2.png"
@@ -24,7 +24,7 @@ import { BCard, BCardBody, BButton } from 'bootstrap-vue-next'
 
         <div class="meeting-details-box d-flex align-items-center">
           <div class="h-40 w-40 d-flex-center b-r-50 overflow-hidden bg-dark flex-shrink-0">
-            <img
+            <b-img
                 alt="image"
                 class="img-fluid"
                 src="/images/avatar/2.png"
