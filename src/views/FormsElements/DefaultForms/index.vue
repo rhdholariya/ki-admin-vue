@@ -58,7 +58,7 @@ const breadcrumbItems = {
 
 
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header>
                                 <h5>Inline Forms</h5>
                             </b-card-header>

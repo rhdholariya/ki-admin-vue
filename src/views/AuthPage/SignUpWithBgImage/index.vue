@@ -68,7 +68,7 @@ const handleSubmit = (e) => {
                                     </div>
 
                                     <b-form-group v-for="field in fields" :key="field.controlId" class="mb-3">
-                                        <label :for="field.controlId">{{ field.label }}</label>
+                                        <label :for="field.controlId " class="form-label">{{ field.label }}</label>
                                         <b-form-input
                                             :id="field.controlId"
                                             :type="field.type"

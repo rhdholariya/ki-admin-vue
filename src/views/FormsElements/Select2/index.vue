@@ -29,7 +29,7 @@ const colourOptions = [
 
 const colorSelects = [
     { label: 'Select Primary', id: 'primary', class: 'select_primary' },
-    { label: 'Select Success', id: 'success', class: 'select_success mt-4' },
+    { label: 'Select Success', id: 'success', class: 'select_success' },
     { label: 'Select Secondary', id: 'secondary', class: 'select_secondary mt-4' },
     { label: 'Select Danger', id: 'danger', class: 'select_danger mt-4' },
     { label: 'Select Warning', id: 'warning', class: 'select_warning mt-4' },
