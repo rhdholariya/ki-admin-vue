@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
+import { ref } from "vue";
 import FsLightbox from "fslightbox-vue";
 import {
   BCol,
@@ -16,6 +16,7 @@ import {
   BDropdown,
   BDropdownItem,
 } from "bootstrap-vue-next";
+
 import { Tooltip } from "bootstrap";
 
 import { PhImageSquare } from "@phosphor-icons/vue";
@@ -35,10 +36,27 @@ const lightboxToggler = ref(false);
 const currentSlide = ref(1);
 const lightboxSources = ref([]);
 
+const vTooltip = {
+  mounted(el, binding) {
+    el._tooltip = new Tooltip(el, {
+      title: binding.value,
+      placement: el.dataset.bsPlacement || "top",
+    });
+  },
+  updated(el, binding) {
+    el._tooltip?.dispose();
+    el._tooltip = new Tooltip(el, {
+      title: binding.value,
+      placement: el.dataset.bsPlacement || "top",
+    });
+  },
+  unmounted(el) {
+    el._tooltip?.dispose();
+  }
+};
 
 const getAllImageSources = () =>
     projectActivities.flatMap((activity) => activity.images || []);
-
 
 const handleImageClick = (images, index = 0) => {
   const clickedImage = images[index];
@@ -56,7 +74,6 @@ const handleImageClick = (images, index = 0) => {
     lightboxToggler.value = !lightboxToggler.value;
   }
 };
-
 
 const getTimelineIconClass = (id) =>
     ({
@@ -76,25 +93,11 @@ const getTimelineTextClass = (id) =>
       5: "text-primary",
     }[id] || "text-primary");
 
-
 const sendMessage = () => {
   if (message.value.trim()) {
     message.value = "";
   }
 };
-
-
-const initializeTooltips = () => {
-  nextTick(() => {
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-      new Tooltip(el);
-    });
-  });
-};
-
-onMounted(() => {
-  initializeTooltips();
-});
 </script>
 
 <template>
@@ -116,7 +119,11 @@ onMounted(() => {
 
       <b-card-body>
         <ul class="app-timeline-box">
-          <li v-for="activity in projectActivities" :key="activity.id" class="timeline-section">
+          <li
+              v-for="activity in projectActivities"
+              :key="activity.id"
+              class="timeline-section"
+          >
             <div class="timeline-icon">
               <span :class="['h-35 w-35 d-flex-center rounded-circle', getTimelineIconClass(activity.id)]">
                 <PhImageSquare v-if="activity.id === 2" :size="18" weight="duotone" />
@@ -126,7 +133,10 @@ onMounted(() => {
 
             <div class="timeline-content pt-0">
               <div class="d-flex f-s-16">
-                <p :class="['f-s-16 mb-0', getTimelineTextClass(activity.id)]">{{ activity.user }}</p>
+                <p :class="['f-s-16 mb-0', getTimelineTextClass(activity.id)]">
+                  {{ activity.user }}
+                </p>
+
                 <span v-if="activity.badge" class="text-secondary ms-2">
                   {{ activity.action }}
                   <span class="badge bg-light-primary text-primary me-2">{{ activity.badge }}</span>
@@ -135,9 +145,16 @@ onMounted(() => {
 
               <p>{{ activity.time }}</p>
 
-              <div v-if="activity.images" class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3 mb-3">
+              <div
+                  v-if="activity.images"
+                  class="app-timeline-info-text timeline-border-box me-2 ms-0 mt-3 p-3 mb-3"
+              >
                 <b-row>
-                  <b-col v-for="(image, index) in activity.images" :key="index" sm="4">
+                  <b-col
+                      v-for="(image, index) in activity.images"
+                      :key="index"
+                      sm="4"
+                  >
                     <b-button
                         type="button"
                         class="img-hover-zoom btn p-0 border-0 bg-transparent"
@@ -152,8 +169,12 @@ onMounted(() => {
               <div v-if="activity.feature" class="timeline-border-box me-2 ms-0 mt-3">
                 <h6 class="mb-0">{{ activity.feature.title }}</h6>
                 <p class="mb-4 text-secondary">{{ activity.feature.description }}</p>
-                <span class="badge bg-light-primary text-success me-2 timeline-badge">{{ activity.feature.reactions }}</span>
-                <span class="badge bg-light-primary text-success me-2">{{ activity.feature.replies }}</span>
+                <span class="badge bg-light-primary text-success me-2">
+                  {{ activity.feature.reactions }}
+                </span>
+                <span class="badge bg-light-primary text-success me-2">
+                  {{ activity.feature.replies }}
+                </span>
               </div>
 
               <div v-if="activity.buttons">
@@ -165,18 +186,22 @@ onMounted(() => {
         </ul>
       </b-card-body>
 
-
       <b-card-footer>
         <div class="d-flex">
           <div class="flex-grow-1">
             <b-input-group>
               <b-input-group-text class="ms-2 me-2 rounded">
-                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Emoji" role="button">
+                <a v-tooltip="'Emoji'" role="button">
                   <IconMoodSmileBeam :size="20" />
                 </a>
               </b-input-group-text>
 
-              <b-form-input v-model="message" type="text" class="rounded" placeholder="Type a message" />
+              <b-form-input
+                  v-model="message"
+                  type="text"
+                  class="rounded"
+                  placeholder="Type a message"
+              />
 
               <b-button class="btn btn-sm btn-primary ms-2 me-2 rounded" type="button" @click="sendMessage">
                 <IconSend :size="20" />
@@ -189,24 +214,23 @@ onMounted(() => {
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                title="Microphone"
-                data-bs-toggle="tooltip"
+                v-tooltip="'Microphone'"
             >
               <IconMicrophone :size="20" />
             </b-button>
+
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                title="Camera"
-                data-bs-toggle="tooltip"
+                v-tooltip="'Camera'"
             >
               <IconCamera :size="20" />
             </b-button>
+
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                title="Paperclip"
-                data-bs-toggle="tooltip"
+                v-tooltip="'Paperclip'"
             >
               <IconPaperclip :size="20" />
             </b-button>
@@ -216,14 +240,17 @@ onMounted(() => {
             <template #button-content>
               <IconDotsVertical :size="20" />
             </template>
+
             <b-dropdown-item class="d-flex align-items-center">
               <IconMicrophone :size="18" class="me-2" />
               <span class="f-s-13">Microphone</span>
             </b-dropdown-item>
+
             <b-dropdown-item class="d-flex align-items-center">
               <IconCamera :size="18" class="me-2" />
               <span class="f-s-13">Camera</span>
             </b-dropdown-item>
+
             <b-dropdown-item class="d-flex align-items-center">
               <IconPaperclip :size="18" class="me-2" />
               <span class="f-s-13">Paperclip</span>
