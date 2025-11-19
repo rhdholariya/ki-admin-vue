@@ -52,7 +52,7 @@ const emit = defineEmits(["edit-item", "delete-item", "view-item"]);
 </script>
 
 <template>
-    <b-row>
+
         <b-col md="6" xl="4">
             <b-card no-body>
                 <b-card-header>
@@ -187,5 +187,5 @@ const emit = defineEmits(["edit-item", "delete-item", "view-item"]);
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

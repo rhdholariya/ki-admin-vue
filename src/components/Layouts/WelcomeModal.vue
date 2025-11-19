@@ -1,5 +1,5 @@
 <template>
-  <BModal
+  <b-modal
       v-model="show"
       hide-footer
       hide-header
@@ -52,13 +52,13 @@
         </ul>
 
         <div class="mt-3 mb-4">
-          <BButton variant="primary" size="lg" @click="handleClose">
+          <b-button variant="primary" size="lg" @click="handleClose">
             Get Started <IconChevronsRight class="ms-1" />
-          </BButton>
+          </b-button>
         </div>
       </div>
     </div>
-  </BModal>
+  </b-modal>
 </template>
 
 <script setup>

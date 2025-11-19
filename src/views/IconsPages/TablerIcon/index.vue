@@ -11,6 +11,7 @@ import {
 
 import * as TablerIcons from "@tabler/icons-vue";
 
+
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
@@ -22,7 +23,7 @@ import {IconSearch} from "@tabler/icons-vue";
 const size = 50;
 const color = "#000";
 
-// All icon entries from @tabler/icons-vue
+
 const iconEntries = Object.entries(TablerIcons);
 
 const searchValue = ref("");
@@ -68,7 +69,7 @@ const breadcrumbItems = computed(() => ({
 
         <b-row>
           <b-col cols="12">
-            <b-card>
+            <b-card no-body>
               <b-card-header>
                 <b-row>
                   <b-col md="4">

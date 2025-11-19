@@ -25,13 +25,13 @@ const cardsData = [
     headerText: "Card Body",
     body: "With supporting text below as a natural lead-in to additional content below as a natural.",
     footer: "Card Footer",
-    className: "border-0",
   },
   {
     id: "cardheader3",
     title: "Card Header",
+
     body: "With supporting text below as a natural lead-in to additional content below as a natural.",
-    footer: "Card Footer",
+    footer: "Card Footer ",
     className: "border-0",
   },
   {
@@ -109,8 +109,14 @@ const cardsData = [
         xl="3"
         class="mb-4"
     >
-      <b-card :class="card.className || 'card'" no-body>
-        <b-card-header>
+      <b-card
+          :class="card.className || 'card'"
+          no-body
+          :footer-class="card.id === 'cardheader2' ? 'code-footer' : ''"
+      >
+
+        <!-- Header -->
+        <b-card-header v-if="card.title">
           <div class="code-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">{{ card.title }}</h5>
             <b-button
@@ -128,27 +134,39 @@ const cardsData = [
           <p>{{ card.body }}</p>
         </b-card-body>
 
-        <template v-if="card.footer" #footer>
+        <!-- ⭐ CUSTOM FOOTER for second card -->
+        <template v-if="card.id === 'cardheader2'" #footer>
+          <div class="code-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{{ card.footer }}</h5>
+            <b-button
+                class="p-0 border-0"
+                @click="openCard = openCard === card.id ? null : card.id"
+            >
+              <PhCode size="30" weight="bold" class="source" />
+            </b-button>
+          </div>
+        </template>
+
+        <!-- Normal footer for others -->
+        <template v-else-if="card.footer" #footer>
           <h5>{{ card.footer }}</h5>
         </template>
+
       </b-card>
 
-
       <b-collapse :model-value="openCard === card.id" class="mt-3">
-        <pre class="language-html" tabindex="0">
-          <code v-prism>
+      <pre class="language-html" tabindex="0">
+        <code v-prism>
 &lt;b-card{{ card.className ? ` class=&quot;${card.className}&quot;` : '' }} no-body&gt;
-  &lt;b-card-header&gt;
-    &lt;h5&gt;{{ card.title }}&lt;/h5&gt;
-  &lt;/b-card-header&gt;
+  {{ card.title ? `&lt;b-card-header&gt;&lt;h5&gt;${card.title}&lt;/h5&gt;&lt;/b-card-header&gt;` : '' }}
   &lt;b-card-body&gt;
     {{ card.headerText ? `&lt;h6&gt;${card.headerText}&lt;/h6&gt;` : '' }}
-    &lt;p&gt;{{ card.body }}&lt;/p&gt;
+    &lt;p&gt;${card.body}&lt;/p&gt;
   &lt;/b-card-body&gt;
   {{ card.footer ? `&lt;template #footer&gt;&lt;h5&gt;${card.footer}&lt;/h5&gt;&lt;/template&gt;` : '' }}
 &lt;/b-card&gt;
-          </code>
-        </pre>
+        </code>
+      </pre>
       </b-collapse>
     </b-col>
   </div>

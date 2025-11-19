@@ -15,7 +15,7 @@ import {
   BDropdown,
   BDropdownItem,
   BBadge,
-  BContainer
+  BContainer, BImg
 } from 'bootstrap-vue-next'
 
 import {
@@ -282,11 +282,11 @@ const breadcrumbItems = computed(() => ({
                 <div class="d-flex align-items-center flex-nowrap mb-5">
                   <div class="position-relative">
                     <div class="bg-secondary h-45 w-45 d-flex-center b-r-50">
-                      <img
+                      <b-img
                           alt=""
                           class="img-fluid b-r-50"
                           src="/images/avatar/6.png"
-                      >
+                      />
                     </div>
                     <span
                         class="position-absolute top-0 end-0 d-flex-center bg-success border border-light rounded-circle text-center p-1 f-s-10"></span>
@@ -387,11 +387,11 @@ const breadcrumbItems = computed(() => ({
                     >
                       <div class="d-flex gap-3 align-items-center position-relative">
                         <div class="position-absolute start-0">
-                          <img
+                          <b-img
                               :alt="file.name"
                               class="w-35 h-35"
                               :src="file.icon"
-                          >
+                          />
                         </div>
                         <div class="flex-grow-1 mg-s-40">
                           <h6 class="mb-0">{{ file.name }}</h6>

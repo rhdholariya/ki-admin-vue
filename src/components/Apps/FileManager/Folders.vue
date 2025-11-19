@@ -62,16 +62,16 @@ const folders = ref([
   }
 ])
 
-// emits
+
 const emit = defineEmits(['edit-folder', 'delete-folder', 'view-folder'])
 
-// toggle favorite
+
 const toggleFolderFavorite = (id) => {
   const folder = folders.value.find(f => f.id === id)
   if (folder) folder.isFavorite = !folder.isFavorite
 }
 
-// create folder
+
 const createFolder = () => {
   const name = (newFolderName.value || '').trim()
   if (name) {
@@ -89,7 +89,7 @@ const createFolder = () => {
   }
 }
 
-// reset modal input when closed
+
 const resetForm = () => {
   newFolderName.value = ''
 }
@@ -102,7 +102,6 @@ const viewFolder = (folder) => emit('view-folder', folder)
 
 <template>
   <b-card no-body>
-    <!-- Header -->
     <b-card-header>
       <div class="d-flex align-items-center justify-content-between">
         <h5 class="mb-0">Folders</h5>
@@ -111,8 +110,6 @@ const viewFolder = (folder) => emit('view-folder', folder)
         </b-button>
       </div>
     </b-card-header>
-
-    <!-- Body -->
     <b-card-body>
       <b-row>
         <div
@@ -122,9 +119,7 @@ const viewFolder = (folder) => emit('view-folder', folder)
         >
        <b-card no-body class="quick-access h-100">
     <b-card-body>
-            <!-- Top Actions -->
             <div class="d-flex justify-content-between mb-3">
-              <!-- Star -->
               <div class="starreddiv" @click.stop="toggleFolderFavorite(folder.id)">
                 <PhStar
                     :weight="folder.isFavorite ? 'fill' : 'regular'"
@@ -132,9 +127,7 @@ const viewFolder = (folder) => emit('view-folder', folder)
                     class="text-warning fav-icon"
                 />
               </div>
-
-              <!-- Dropdown -->
-              <b-dropdown variant="link" no-caret right>
+              <b-dropdown variant="link" no-caret right  toggle-class="p-0">
                 <template #button-content>
                   <PhDotsThreeVertical :size="16" class="text-muted"/>
                 </template>
@@ -153,8 +146,6 @@ const viewFolder = (folder) => emit('view-folder', folder)
               </b-dropdown>
 
             </div>
-
-            <!-- Folder Content -->
             <div class="fileimage text-center">
               <img
                   :src="folder.icon"
@@ -164,22 +155,18 @@ const viewFolder = (folder) => emit('view-folder', folder)
               />
               <p class="mb-0 f-s-16 text-center">{{ folder.name }}</p>
             </div>
-
-            <!-- Storage Info -->
             <div class="d-flex justify-content-between mt-2">
               <p class="text-secondary mb-0 f-w-500">{{ folder.used }}</p>
               <p class="text-secondary mb-0 f-w-500 text-end">{{ folder.total }}</p>
             </div>
     </b-card-body>
        </b-card>
-
           </div>
-
       </b-row>
     </b-card-body>
   </b-card>
 
-  <!-- Create Folder Modal -->
+
   <b-modal
       v-model="showCreateFolderModal"
       title="New Folder"

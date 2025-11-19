@@ -1,7 +1,7 @@
 <script setup>
 import { chatContactList } from "@/data/app/Chatapp/ChatData.js"
 import { IconPhoneCall, IconVideo } from "@tabler/icons-vue"
-import { BButton } from "bootstrap-vue-next"
+import { BButton ,  } from "bootstrap-vue-next"
 </script>
 
 <template>

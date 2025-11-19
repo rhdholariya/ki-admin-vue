@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { BCard, BDropdown, BDropdownItem } from "bootstrap-vue-next";
+import {PhStar} from "@phosphor-icons/vue";
 const deletedFolders = ref([
   {
     id: 1,
@@ -84,7 +85,11 @@ const emit = defineEmits(['restore-item', 'permanently-delete'])
           <template #body>
             <div class="folder-card">
               <div class="starreddiv" @click="toggleFavorite(folder.id)">
-                <i :class="['f-s-18 fav-icon', folder.isFavorite ? 'ph-fill ph-star text-warning' : 'ph-bold ph-star text-warning']"></i>
+                <PhStar
+                    :weight="folder.isFavorite ? 'fill' : 'regular'"
+                    size="18"
+                    class="text-warning"
+                />
               </div>
               <b-dropdown variant="link" no-caret>
                 <template #button-content>

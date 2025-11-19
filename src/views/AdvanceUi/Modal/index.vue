@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import {PhArrowArcRight, PhArrowFatLineRight, PhBriefcase} from "@phosphor-icons/vue";
-import { BContainer, BRow, BCol, BCard, BCardBody, BButton, BModal } from 'bootstrap-vue-next';
+import { BContainer, BRow, BCol, BCard, BCardBody, BButton, BModal, BCardHeader } from 'bootstrap-vue-next';
 
 const modalOpen = ref(false);
 
@@ -15,6 +15,8 @@ const largeModalOpen = ref(false);
 const extraLargeModalOpen = ref(false);
 
 function toggleSmall() {
+
+
   smallModalOpen.value = !smallModalOpen.value;
 }
 
@@ -148,13 +150,13 @@ const breadcrumbItems = {
         <b-row>
           <b-col sm="12" md="6">
             <b-card class="equal-card" no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Default Modal</h5>
                 <p class="mb-0 text-secondary">
                   If you want to keep the default modal, you can keep it using
                   <span class="text-danger">modal-dialog</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body>
                 <b-button variant="primary"  @click="toggle">
                   Default Modal
@@ -164,13 +166,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Small Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-dialog or app_modal_sm</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="modal-btn">
                 <b-button variant="primary"  @click="toggleSmall">
                   Small Modal
@@ -186,13 +188,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card class="equal-card" no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Center Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-dialog-centered</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body>
                 <b-button variant="danger"  @click="openCenterModal">
                   Center Modal
@@ -202,13 +204,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Scrollable Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-dialog-centered or modal-dialog-scrollable</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button variant="info"  @click="openScrollModal">
                   Open Scrollable Modal
@@ -218,13 +220,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card class="equal-card" no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Full Screen Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-fullscreen</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button variant="dark"  @click="openFullscreenModal">
                   Fullscreen Modal
@@ -234,13 +236,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Full Screen Sm Down Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-fullscreen-sm-down</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button variant="light-secondary"  @click="openFullscreenSmModal">
                   Fullscreen Below SM Modal
@@ -250,13 +252,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
                   <b-card no-body>
-                    <template #header>
+                    <b-card-header>
                       <h5>Full-Screen Md Down Modal</h5>
                       <p class="mb-0 text-secondary">
                         if you want to keep the default modal then you can keep it using
                         <span class="text-danger">modal-fullscreen-md-down</span>
                       </p>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                       <b-button variant="success"  @click="openFullscreenMdModal">
                         Fullscreen Below MD Modal
@@ -266,13 +268,13 @@ const breadcrumbItems = {
                 </b-col>
           <b-col sm="12" md="6">
             <b-card class="equal-card" no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Full Screen Lg Down Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-fullscreen-lg-down</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body>
                 <b-button variant="danger"  @click="openFullscreenLgModal">
                   Fullscreen Below LG Modal
@@ -282,13 +284,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card class="equal-card" no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Full Screen Xl Down Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-fullscreen-xl-down</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button variant="info"  @click="openFullscreenXlModal">
                   Fullscreen Below XL Modal
@@ -298,13 +300,13 @@ const breadcrumbItems = {
           </b-col>
           <b-col sm="12" md="6">
             <b-card no-body>
-              <template #header>
+              <b-card-header>
                 <h5>Full Screen Xxl Down Modal</h5>
                 <p class="mb-0 text-secondary">
                   if you want to keep the default modal then you can keep it using
                   <span class="text-danger">modal-fullscreen-xxl-down</span>
                 </p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button variant="warning"  @click="openFullscreenXxlModal">
                   Open Fullscreen Below XXL Modal
@@ -314,10 +316,10 @@ const breadcrumbItems = {
           </b-col>
           <b-col cols="12">
             <b-card no-body>
-              <template #header>
+              <b-card-header>
                 <h4>Themes Modal</h4>
                 <p>You can use custom modals with theme colors.</p>
-              </template>
+              </b-card-header>
               <b-card-body class="card-body">
                 <b-button
                     v-for="variant in variants"

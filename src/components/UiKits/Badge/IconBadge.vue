@@ -12,7 +12,7 @@ import {
 
 
 
-// Badge positions
+
 const badgePositionData = [
     { label: "Offline", bgColor: "danger", positionClass: "top-0 start-0" },
     { label: "Busy", bgColor: "warning", positionClass: "top-0 start-100" },
@@ -20,7 +20,7 @@ const badgePositionData = [
     { label: "Disable", bgColor: "secondary", positionClass: "top-100 start-100" },
 ];
 
-// Badge icons
+
 const badgeIconData = [
     { icon: PhShoppingCart, color: "primary", type: "<PhShoppingCart size='22' />" },
     { icon: PhDotsThreeOutline, color: "secondary", type: "<PhDotsThreeOutline size='22' />" },
@@ -29,14 +29,14 @@ const badgeIconData = [
     { icon: PhMoon, color: "dark", type: "<PhMoon size='22' weight='fill' />" },
 ];
 
-// collapse states
+
 const openPosition = ref(false);
 const openIcon = ref(false);
 
 </script>
 
 <template>
-    <b-row>
+
         <!-- Badge Position -->
         <b-col sm="12" xl="6">
             <b-card no-body>
@@ -144,5 +144,5 @@ const openIcon = ref(false);
                    </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

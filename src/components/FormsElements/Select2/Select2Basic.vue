@@ -4,13 +4,14 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css'
 import { BCard, BCardBody, BCardHeader, BCol, BRow } from 'bootstrap-vue-next'
 
-// ✅ State variables
+
 const isMounted = ref(false)
 const isDisable = ref(false)
 const selectedDark = ref([])
+const selectedMultiple  = ref([])
 const selectedOptions = ref([])
+const selectedIcon = ref({ value: 'ti-brand-html5', label: 'HTML5' });
 
-// ✅ Option sets
 const colourOptions = [
   { value: 'orange', label: 'Orange' },
   { value: 'purple', label: 'Purple' },
@@ -33,19 +34,24 @@ const options = [
   { value: 'TU', label: 'John Doe' },
 ]
 
-// ✅ Limit handler (max 3 selections)
+
 const handleChange = (selected) => {
   if (selected && selected.length <= 3) {
     selectedOptions.value = selected
   }
 }
 
-// ✅ onMounted initialization
+const enabledSelectValue = ref(selectOptions[0]);
+
 onMounted(() => {
   isMounted.value = true
   selectedDark.value = selectOptions.filter(opt =>
       ['AL', 'WY'].includes(opt.value)
   )
+  selectedMultiple.value = [
+    colourOptions[0],
+    colourOptions[1],
+  ];
 })
 </script>
 
@@ -68,19 +74,18 @@ onMounted(() => {
             />
           </b-col>
 
-          <!-- Multiple -->
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Multiple</label>
             <v-select
                 multiple
                 :options="colourOptions"
-                :model-value="[colourOptions[0], colourOptions[1]]"
+                v-model="selectedMultiple"
                 placeholder="Select options"
                 class="select-1"
             />
           </b-col>
 
-          <!-- Disabled -->
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Disabled</label>
             <v-select
@@ -92,21 +97,20 @@ onMounted(() => {
             />
           </b-col>
 
-          <!-- Icon Options -->
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Icon Options</label>
             <v-select
                 :options="[
-                { value: 'ti-brand-html5', label: 'HTML5' },
-                { value: 'ti-brand-codepen', label: 'Codepen' }
-              ]"
-                :model-value="{ value: 'ti-brand-html5', label: 'HTML5' }"
+                  { value: 'ti-brand-html5', label: 'HTML5' },
+                  { value: 'ti-brand-codepen', label: 'Codepen' }
+                ]"
+                v-model="selectedIcon"
                 placeholder="Select icon"
                 class="select2-icon"
             />
           </b-col>
 
-          <!-- Limit selections (max 3) -->
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Limit The Number Of Selections (max 3)</label>
             <v-select
@@ -119,7 +123,7 @@ onMounted(() => {
             />
           </b-col>
 
-          <!-- RTL Support -->
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">RTL Support</label>
             <v-select
@@ -130,22 +134,25 @@ onMounted(() => {
             />
           </b-col>
 
-          <!-- Disable Results -->
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Disable Results</label>
+
             <v-select
                 multiple
                 :options="[
-                { value: 'AL', label: 'Alabama' },
-                { value: 'WY', label: 'Wyoming (disabled)', disabled: true },
-                { value: 'WD', label: 'Coming' }
-              ]"
+                  { value: 'AL', label: 'Alabama' },
+                  { value: 'WY', label: 'Wyoming (disabled)', disabled: true },
+                  { value: 'WD', label: 'Coming' }
+                ]"
+                :selectable="option => !option.disabled"
                 placeholder="Select..."
                 class="w-100"
             />
           </b-col>
 
-          <!-- Flags -->
+
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Flags</label>
             <v-select
@@ -164,13 +171,13 @@ onMounted(() => {
             </v-select>
           </b-col>
 
-          <!-- Enable / Disable -->
+
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Enable / Disable</label>
             <v-select
                 :disabled="isDisable"
                 :options="selectOptions"
-                :model-value="selectOptions[0]"
+                v-model="enabledSelectValue"
                 class="w-100"
             />
             <div class="text-end mt-2">

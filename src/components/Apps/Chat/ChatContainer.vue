@@ -187,7 +187,7 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
       </div>
     </b-card-header>
 
-    <b-card-body class="p-0">
+    <b-card-body class="chat-body">
       <div class="chat-container">
         <div class="text-center">
           <span class="badge text-light-secondary">Today</span>
@@ -210,21 +210,25 @@ const toggleVideoModal = () => (videoModal.value = !videoModal.value);
               />
             </div>
             <div class="chat-box">
-              <p class="chat-text">{{ chat.message }}</p>
-              <p class="text-muted">
-                <icon-checks size="18" class="text-primary"/>
-                {{ chat.time }}
-              </p>
+             <div>
+               <p class="chat-text">{{ chat.message }}</p>
+               <p class="text-muted">
+                 <icon-checks size="18" class="text-primary"/>
+                 {{ chat.time }}
+               </p>
+             </div>
             </div>
           </template>
 
           <template v-else>
             <div class="chat-box-right">
+              <div>
               <p class="chat-text">{{ chat.message }}</p>
               <p class="text-muted">
                 <icon-checks size="18" class="text-primary"/>
                 {{ chat.time }}
               </p>
+              </div>
             </div>
             <div
                 class="chatdp h-45 w-45 b-r-50 position-absolute end-0 top-0 bg-danger"

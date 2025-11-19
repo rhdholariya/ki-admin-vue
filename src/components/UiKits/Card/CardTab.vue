@@ -23,7 +23,6 @@ const activeTab2 = ref("features");
 
 <template>
     <b-row>
-
         <b-col xl="6">
             <b-card no-body class="hover-effect mb-3">
                 <b-row no-gutters>

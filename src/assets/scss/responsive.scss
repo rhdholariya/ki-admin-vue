@@ -2005,21 +2005,21 @@
     }
   }
 
-  .overlay-maintenance-card {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    background: rgba(var(--dark), 0.25);
-    backdrop-filter: blur(2px);
-    padding: 10px;
-    text-align: center;
-    z-index: 1;
-    color: rgba(var(--white), 1);
-
-    p {
-      width: 100% !important;
-    }
-  }
+  //.overlay-maintenance-card {
+  //  display: flex;
+  //  align-items: center;
+  //  height: 100%;
+  //  background: rgba(var(--dark), 0.25);
+  //  backdrop-filter: blur(2px);
+  //  padding: 10px;
+  //  text-align: center;
+  //  z-index: 1;
+  //  color: rgba(var(--white), 1);
+  //
+  //  p {
+  //    width: 100% !important;
+  //  }
+  //}
 
   .checkout-cart-box {
     padding: 0.5rem;

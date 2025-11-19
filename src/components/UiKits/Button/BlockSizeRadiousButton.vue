@@ -49,7 +49,7 @@ watch([openBlock, openSize, openRadius], async () => {
 </script>
 
 <template>
-    <b-row class="g-3">
+
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -109,14 +109,14 @@ ${blockButtonGroups
 
         <b-col xl="12">
             <b-card no-body>
-                <template #header>
+                <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Size Buttons</h5>
                         <b-button @click="openSize = !openSize" class="p-0 border-0">
                             <PhCode size="30" weight="bold" class="source" />
                         </b-button>
                     </div>
-                </template>
+                </b-card-header>
                 <b-card-body>
 
                 <div class="app-btn-list d-flex flex-wrap gap-2">
@@ -205,5 +205,5 @@ ${blockButtonGroups
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

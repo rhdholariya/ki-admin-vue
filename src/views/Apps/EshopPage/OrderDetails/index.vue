@@ -111,8 +111,8 @@ const breadcrumbItems = {
                       :fields="[
                       { key: 'product', label: 'Product Details', class: 'text-start' },
                       { key: 'status', label: 'Status' },
+                       { key: 'orderDate', label: 'Order Date' },
                       { key: 'price', label: 'Price' },
-                      { key: 'orderDate', label: 'Order Date' },
                       { key: 'quantity', label: 'Quantity' },
                       { key: 'rating', label: 'Rating' },
                       { key: 'actions', label: 'Action' }
@@ -147,14 +147,14 @@ const breadcrumbItems = {
                         {{ data.item.status }}
                       </b-badge>
                     </template>
-
+                    <template #cell(orderDate)="data">
+                      <span class="f-w-500 f-s-14">{{ data.item.orderDate }}</span>
+                    </template>
                     <template #cell(price)="data">
                       <span class="f-w-500 text-success">{{ data.item.price }}</span>
                     </template>
 
-                    <template #cell(orderDate)="data">
-                      <span class="f-w-500 f-s-14">{{ data.item.orderDate }}</span>
-                    </template>
+
 
                     <template #cell(rating)="data">
                       <div>

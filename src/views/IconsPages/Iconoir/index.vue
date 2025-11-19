@@ -1,6 +1,7 @@
 <script setup>
 import {ref, computed} from 'vue';
 import * as Iconoir from '@iconoir/vue';
+
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 import {
@@ -15,10 +16,10 @@ import {
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhShapes} from "@phosphor-icons/vue";
-import {IconSearch} from "@tabler/icons-vue";
+import {IconSearch  } from "@tabler/icons-vue";
 
 
-// Convert icon object to array of {name, component} objects
+
 const iconList = Object.entries(Iconoir)
     .filter(([name]) => !['context', 'provider'].includes(name.toLowerCase()))
     .map(([name, component]) => ({name, component}));
@@ -47,7 +48,7 @@ function copyToClipboard(iconName) {
   }).showToast();
 }
 
-// Component data
+
 const breadcrumbItems = computed(() => ({
   title: "Iconoir",
   items: [
@@ -64,9 +65,10 @@ const breadcrumbItems = computed(() => ({
     <main>
   <b-container fluid>
     <Breadcrumb :breadcrumb="breadcrumbItems"/>
+
     <b-row>
       <b-col cols="12">
-        <b-card>
+        <b-card no-body>
           <b-card-header>
             <b-row>
               <b-col md="4">

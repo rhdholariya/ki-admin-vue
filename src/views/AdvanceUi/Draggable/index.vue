@@ -22,7 +22,7 @@ const breadcrumbItems = {
 <template>
   <AppLayout>
     <main>
-      <!-- Breadcrumb -->
+
       <Breadcrumb :breadcrumb="breadcrumbItems"/>
       <b-row class="share-list-responsive">
        <DraggableList />

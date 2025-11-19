@@ -112,7 +112,7 @@ const initMaps = (google) => {
     });
   }
 
-  // Overlay Map
+
   if (overlayMapRef.value) {
     const overlayMap = new google.maps.Map(overlayMapRef.value, {
       center: { lat: -12.043333, lng: -77.028333 },

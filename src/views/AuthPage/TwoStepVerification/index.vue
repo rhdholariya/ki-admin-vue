@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from "vue"
-import { BContainer, BRow, BCol, BForm, BFormInput, BButton } from "bootstrap-vue-next"
+import {BContainer, BRow, BCol, BForm, BFormInput, BButton, BImg} from "bootstrap-vue-next"
 import { RouterLink } from "vue-router"
 
 const OTP_LENGTH = 5
@@ -71,10 +71,10 @@ const handleSubmit = (e) => {
                             <b-col lg="7" class="image-contentbox d-none d-lg-block">
                                 <div class="form-container">
                                     <div class="signup-content mt-4">
-                                        <span><img alt="logo" class="img-fluid" src="/images/logo/1.png"/></span>
+                                        <span><b-img alt="logo" class="img-fluid" src="/images/logo/1.png"/></span>
                                     </div>
                                     <div class="signup-bg-img">
-                                        <img alt="background" class="img-fluid" src="/images/login/04.png"/>
+                                        <b-img alt="background" class="img-fluid" src="/images/login/04.png"/>
                                     </div>
                                 </div>
                             </b-col>

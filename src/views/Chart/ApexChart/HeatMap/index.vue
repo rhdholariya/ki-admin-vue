@@ -1,3 +1,53 @@
+<script setup>
+import {ref, onMounted, computed} from 'vue';
+import {
+  BContainer,
+  BRow,
+  BCol,
+  BCard,
+  BCardHeader,
+  BCardBody
+} from 'bootstrap-vue-next';
+import VueApexCharts from "vue3-apexcharts";
+
+
+import {
+  heatMapSingleSeriesData,
+  heatMapMultipleSeriesData,
+  heatMapColorRangeData,
+  heatMapRangeShadesData
+} from '@/data/charts/apexcharts/HeatMapChart.js';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
+import AppLayout from "@/views/AppLayout.vue";
+import {PhChartPieSlice} from "@phosphor-icons/vue";
+
+
+
+const singleSeriesChart = ref({});
+const multipleSeriesChart = ref({});
+const colorRangeChart = ref({});
+const rangeShadesChart = ref({});
+
+onMounted(() => {
+
+  singleSeriesChart.value = heatMapSingleSeriesData;
+  multipleSeriesChart.value = heatMapMultipleSeriesData;
+  colorRangeChart.value = heatMapColorRangeData;
+  rangeShadesChart.value = heatMapRangeShadesData;
+});
+
+// Breadcrumb data
+const breadcrumbItems = computed(() => ({
+  title: "HeatMap",
+  items: [
+    {label: "Chart", icon: PhChartPieSlice},
+    {label: "Apexcharts"},
+    {label: " HeatMap", active: true}
+  ],
+}));
+</script>
+
+
 <template>
   <AppLayout>
     <main>
@@ -70,53 +120,3 @@
   </AppLayout>
 </template>
 
-<script setup>
-import {ref, onMounted, computed} from 'vue';
-import {
-  BContainer,
-  BRow,
-  BCol,
-  BCard,
-  BCardHeader,
-  BCardBody
-} from 'bootstrap-vue-next';
-import VueApexCharts from "vue3-apexcharts";
-
-
-// Import chart configurations
-import {
-  heatMapSingleSeriesData,
-  heatMapMultipleSeriesData,
-  heatMapColorRangeData,
-  heatMapRangeShadesData
-} from '@/data/charts/apexcharts/HeatMapChart.js';
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
-import AppLayout from "@/views/AppLayout.vue";
-import {PhChartPieSlice, PhStack} from "@phosphor-icons/vue";
-
-
-
-// Create reactive references for chart configs
-const singleSeriesChart = ref({});
-const multipleSeriesChart = ref({});
-const colorRangeChart = ref({});
-const rangeShadesChart = ref({});
-
-onMounted(() => {
-  // Assign imported configurations to reactive references
-  singleSeriesChart.value = heatMapSingleSeriesData;
-  multipleSeriesChart.value = heatMapMultipleSeriesData;
-  colorRangeChart.value = heatMapColorRangeData;
-  rangeShadesChart.value = heatMapRangeShadesData;
-});
-
-// Breadcrumb data
-const breadcrumbItems = computed(() => ({
-  title: "HeatMap",
-  items: [
-    {label: "Chart", icon: PhChartPieSlice},
-    {label: "Apexcharts"},
-    {label: " HeatMap", active: true}
-  ],
-}));
-</script>

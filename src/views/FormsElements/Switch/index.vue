@@ -13,11 +13,11 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue"
 import AppLayout from "@/views/AppLayout.vue"
 import { PhCardholder } from "@phosphor-icons/vue"
 
-// Basic Switches
+
 const basicSwitch1 = ref(false)
 const basicSwitch2 = ref(false)
 
-// Switch Sizing
+
 const switch001 = ref(true)
 const switch002 = ref(false)
 const switch003 = ref(true)
@@ -25,7 +25,7 @@ const switch004 = ref(false)
 const switch005 = ref(true)
 const switch006 = ref(false)
 
-// Switch Variants
+
 const switchStates = reactive({
   primary: true,
   secondary: true,

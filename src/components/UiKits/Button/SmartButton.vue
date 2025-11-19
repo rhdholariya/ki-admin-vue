@@ -128,7 +128,7 @@ const openLoadingButtons = ref(false);
 </script>
 
 <template>
-    <b-row class="g-3">
+
         <b-col xl="4">
             <b-card no-body>
                 <b-card-header>
@@ -220,7 +220,6 @@ const openLoadingButtons = ref(false);
         </b-col>
         <b-col xl="12">
             <b-card no-body>
-
                 <b-card-header>
                     <div class="code-header d-flex justify-content-between align-items-center">
                         <h5>Disabled Buttons</h5>
@@ -433,5 +432,5 @@ const openLoadingButtons = ref(false);
 
 
         </b-col>
-        </b-row>
+
 </template>

@@ -70,7 +70,7 @@ const openCode = ref(false);
                     nav-class="flex-column app-tabs-secondary "
                 >
                     <b-tab v-for="tab in tabs" :key="tab.id" :active="tab.id === activeTab" class="p-0">
-                        <template #title class="">
+                        <template #title>
                             <div class="d-flex align-items-center">
                                 <component :is="tab.icon" size="20" class="me-2"/>
                                 <span>{{ tab.label }}</span>

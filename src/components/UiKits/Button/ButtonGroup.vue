@@ -141,7 +141,7 @@ const selectedRadio = ref("radio1");
 </script>
 
 <template>
-    <b-row>
+
         <!-- Button Group Variants -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
@@ -381,14 +381,14 @@ ${nestedVariants
         <b-row>
             <b-col cols="12">
                 <b-card no-body>
-                    <template #header>
+                  <b-card-header>
                         <div class="code-header d-flex justify-content-between align-items-center">
                             <h5>Button Vertical</h5>
                             <b-button @click="openVertical = !openVertical" class="p-0 border-0">
                                 <PhCode size="30" weight="bold" class="source"/>
                             </b-button>
                         </div>
-                    </template>
+                    </b-card-header>
                     <b-card-body>
                         <b-row class="btn-responsive">
                             <b-col auto class="m-2" v-for="(group, gIndex) in verticalButtonGroups" :key="gIndex">
@@ -453,5 +453,5 @@ ${btn.dropdownItems.map(i => `    &lt;b-dropdown-item&gt;${i}&lt;/b-dropdown-ite
                 </b-card>
             </b-col>
         </b-row>
-    </b-row>
+
 </template>

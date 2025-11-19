@@ -12,7 +12,7 @@ import {
 import VueApexCharts from "vue3-apexcharts";
 const apexchart = VueApexCharts;
 
-// Chart config imports
+
 import {
   timelineChartData,
   advanceTimelineChartData,
@@ -23,7 +23,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";
 import {PhChartPieSlice} from "@phosphor-icons/vue";
 
-// Prevent ApexCharts → Vue reactive loop
 const timelineChart = shallowRef(timelineChartData);
 const advanceTimelineChart = shallowRef(advanceTimelineChartData);
 const advanceGroupedRowsChart = shallowRef(advanceGroupedRowsChartData);

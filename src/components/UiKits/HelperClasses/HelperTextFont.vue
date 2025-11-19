@@ -96,7 +96,7 @@ export default {
 </script>
 
 <template>
-    <b-row>
+
         <b-col cols="12">
             <b-row>
                 <b-col xl="4" v-for="(category, index) in typographyStyles" :key="index">
@@ -124,7 +124,7 @@ export default {
                 </b-col>
             </b-row>
         </b-col>
-    </b-row>
+
 </template>
 
 

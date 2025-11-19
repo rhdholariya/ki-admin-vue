@@ -9,10 +9,6 @@ import DepartmentForm from "@/components/ReadyToUse/ReadyToUseForm/DepartmentFor
 import StudentForm from "@/components/ReadyToUse/ReadyToUseForm/StudentForm.vue";
 
 
-
-
-
-
 const breadcrumbItems = {
     title: "Ready To Use Form",
     items: [

@@ -52,7 +52,7 @@ const handleSubmit = (e) => {
                                 :key="field.id"
                             >
                                 <b-form-group class="mb-3">
-                                    <label :for="field.id">{{ field.label }}</label>
+                                    <label :for="field.id" class="form-label">{{ field.label }}</label>
                                     <b-form-input
                                         :id="field.id"
                                         :type="field.type"

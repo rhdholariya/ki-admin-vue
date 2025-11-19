@@ -1,5 +1,5 @@
 <script setup>
-import {BCard, BCardHeader, BCardBody, BRow, BCol} from "bootstrap-vue-next";
+import {BCard, BCardHeader, BCardBody, BRow, BCol, BImg} from "bootstrap-vue-next";
 
 const overlayItems = [
     {
@@ -56,7 +56,7 @@ const imageWrapper = [
                         lg="3"
                     >
                         <div :class="`content-overlay content-overlay-${item.position} position-relative`">
-                            <img :src="item.image" :alt="item.title" class="img-fluid"/>
+                            <b-img :src="item.image" :alt="item.title" class="img-fluid"/>
                             <div class="content-overlay-text">
                                 <h5 class="mb-2">{{ item.title }}</h5>
                                 <p>{{ item.description }}</p>
@@ -85,7 +85,7 @@ const imageWrapper = [
                         <div
                             :class="`wraper ${item.position ? `wrapper-${item.position}` : ''} position-relative`"
                         >
-                            <img
+                            <b-img
                                 :src="item.image"
                                 :alt="`Overlay ${index + 1}`"
                                 class="img-fluid"

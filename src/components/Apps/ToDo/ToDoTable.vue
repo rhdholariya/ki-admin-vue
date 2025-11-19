@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, watch } from "vue";
 import {
   BCol,
   BCard,
@@ -140,15 +140,6 @@ watch(filteredTodos, (newList) => {
     currentPage.value = Math.ceil(newList.length / itemsPerPage) || 1;
 });
 
-// --- Optional Bootstrap JS Initialization (for tooltips, etc.) ---
-onMounted(() => {
-  const tooltipList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  tooltipList.forEach((el) => new bootstrap.Tooltip(el));
-});
-
-onBeforeUnmount(() => {
-  document.querySelectorAll(".tooltip").forEach((el) => el.remove());
-});
 </script>
 
 <template>

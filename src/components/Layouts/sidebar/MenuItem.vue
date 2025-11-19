@@ -16,16 +16,15 @@ const props = defineProps({
 
 const route = useRoute();
 
-// main dropdown state
+
 const isOpen = ref(false);
 
-// nested dropdown states
 const subOpen = ref([]);
 if (props.links && props.links.length) {
   subOpen.value = props.links.map(() => false);
 }
 
-// functions
+
 const toggleCollapse = () => {
   isOpen.value = !isOpen.value;
 };
@@ -42,7 +41,6 @@ const badgeClasses = computed(() => {
   return "text-primary-dark bg-primary";
 });
 
-// ✅ expand parent menu if current route matches
 const expandIfActive = () => {
   if (props.links && props.links.length) {
     props.links.forEach((link, index) => {
@@ -60,18 +58,16 @@ const expandIfActive = () => {
     });
   }
 
-  // also check if it's a direct no-sub link
   if (props.path && route.path === props.path) {
     isOpen.value = true;
   }
 };
 
-// run once when mounted
+
 onMounted(() => {
   expandIfActive();
 });
 
-// also run whenever route changes
 watch(
     () => route.path,
     () => {

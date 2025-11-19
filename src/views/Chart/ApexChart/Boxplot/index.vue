@@ -27,7 +27,7 @@ onMounted(() => {
 });
 
 
-// Breadcrumb data
+
 const breadcrumbItems = computed(() => ({
   title: "Boxplot",
   items: [

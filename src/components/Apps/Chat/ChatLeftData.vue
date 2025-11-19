@@ -11,8 +11,8 @@ const activeTabOuter = ref("chat");
 </script>
 
 <template>
-  <div class="chat-tab-wrapper mb-3">
-    <div class="tabs chat-tabs mb-0 pb-0 d-flex">
+  <div class="chat-tab-wrapper">
+    <div class="tabs chat-tabs">
       <b-button
           type="button"
           variant="link"
@@ -48,7 +48,7 @@ const activeTabOuter = ref("chat");
     </div>
   </div>
 
-  <div class="chat-tab-content">
+  <div class="content-wrapper">
     <ChatContent v-if="activeTabOuter === 'chat'" />
     <UpdatesContent v-if="activeTabOuter === 'updates'" />
     <ContactContent v-if="activeTabOuter === 'contact'" />

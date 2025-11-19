@@ -14,7 +14,7 @@ const toggleStar = (id) => {
 </script>
 
 <template>
-    <b-row>
+
         <b-col md="6" xl="4">
             <b-card no-body>
                 <b-card-header><h5>Contacts</h5></b-card-header>
@@ -92,5 +92,5 @@ const toggleStar = (id) => {
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

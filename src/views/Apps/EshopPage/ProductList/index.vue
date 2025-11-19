@@ -151,6 +151,7 @@ const breadcrumbItems = computed(() => ({
             :showFooter="true"
             :footerColumns="footerColumns"
             card-class-name=""
+            :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer product-list-table'"
             table-class-name="w-100 align-middle mb-0"
             :select-all="selectedItems.length === products.length && products.length > 0"
             :indeterminate="selectedItems.length > 0 && selectedItems.length < products.length"

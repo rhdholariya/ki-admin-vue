@@ -11,21 +11,18 @@ import {
   PhSignOut
 } from "@phosphor-icons/vue";
 
-// Props
+
 defineProps({
   sidebarOpen: Boolean,
 });
 
-// Emits
 const emit = defineEmits(["toggle-sidebar"]);
 
-// Dropdown state
 const dropdownOpen = ref(false);
 const setDropdownOpen = (isOpen) => {
   dropdownOpen.value = isOpen;
 };
 
-// Sidebar toggle handler
 const toggleSidebar = () => {
   emit("toggle-sidebar");
 };

@@ -8,10 +8,10 @@ import { BDropdown, BDropdownItem } from "bootstrap-vue-next"
     <div class="btn-group dropdown-icon-none">
       <b-dropdown
           variant="primary"
-          class="icon-btn b-r-22"
-          toggle-class="active"
+          toggle-class="active b-r-22 btn btn-primary icon-btn  dropdown-toggle active"
           end
           auto-close="true"
+
       >
         <!-- Dropdown toggle button -->
         <template #button-content>

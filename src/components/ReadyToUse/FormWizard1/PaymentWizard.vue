@@ -38,7 +38,7 @@ const paymentType = ref("card");
                     <b-col xl="3">
                         <b-tabs
                             v-model="activeTab"
-                            class="flex-column navstpes"
+                            class="flex-column navstpes payment-wizard"
                             nav-class="tab-light-primary"
                             active-nav-item-class="active"
                             fill

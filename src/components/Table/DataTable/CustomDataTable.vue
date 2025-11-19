@@ -25,6 +25,11 @@ const props = defineProps({
   showFooter: {type: Boolean, default: false},
   footerData: {type: Array, default: () => []},
   footerColumns: {type: Array, default: () => []},
+  wrapperClass: {
+    type: String,
+    default: 'app-scroll table-responsive app-datatable-default cursor-pointer'
+  },
+
 });
 
 const tableWrapperRef = ref(null);
@@ -150,7 +155,7 @@ watch([() => props.data, () => props.pageLength, () => props.showLengthMenu], ()
       </BCardHeader>
 
       <BCardBody class="p-0">
-        <div ref="tableWrapperRef" class="app-scroll table-responsive app-datatable-default cursor-pointer">
+        <div ref="tableWrapperRef" :class="wrapperClass">
           <BTable
               ref="tableRef"
               :items="tableItems"

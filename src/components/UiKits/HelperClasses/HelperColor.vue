@@ -53,7 +53,7 @@ export default {
 </script>
 
 <template>
-    <b-row>
+
         <!-- Text Color Card -->
         <b-col cols="12">
             <b-card no-body>
@@ -127,7 +127,7 @@ export default {
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>
 
 

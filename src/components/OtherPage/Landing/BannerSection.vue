@@ -1,58 +1,62 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import {
-    BButton,
-    BCol,
-    BContainer,
-    BRow,
-    BNavbar,
-    BNavbarBrand,
-    BNavbarToggle,
-    BCollapse,
-    BNav,
-    BNavItem,
+  BButton,
+  BCol,
+  BContainer,
+  BRow,
+  BNavbar,
+  BNavbarBrand,
+  BNavbarToggle,
+  BCollapse,
+  BNav,
+  BNavItem,
 } from "bootstrap-vue-next";
 
 const words = ["Management", "Analytics", "Performance", "Dashboard", "Insights"];
 const currentWord = ref(words[0]);
 const currentWordIndex = ref(0);
-const highlightRef = ref(null);
+
 const isScrolled = ref(false);
+
+
+const animate = ref(true);
+
 const bgFiles = [
-    "star-bg.png",
-    "arrow-bg.png",
-    "circle.png",
-    "circle.png",
-    "arrow-bg.png",
-    "star-bg.png",
-    "arrow-bg.png",
+  "star-bg.png",
+  "arrow-bg.png",
+  "circle.png",
+  "circle.png",
+  "arrow-bg.png",
+  "star-bg.png",
+  "arrow-bg.png",
 ];
 
+let interval = null;
+
 onMounted(() => {
-    // Scroll handler
-    const handleScroll = () => {
-        isScrolled.value = window.scrollY > 50;
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
 
-    const interval = setInterval(() => {
-        if (highlightRef.value) {
-            highlightRef.value.classList.remove("animate");
-            setTimeout(() => {
-                currentWordIndex.value = (currentWordIndex.value + 1) % words.length;
-                currentWord.value = words[currentWordIndex.value];
-                if (highlightRef.value) {
-                    highlightRef.value.classList.add("animate");
-                }
-            }, 50);
-        }
-    }, 2000);
+  const handleScroll = () => {
+    isScrolled.value = window.scrollY > 50;
+  };
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
 
-    onUnmounted(() => {
-        clearInterval(interval);
-        window.removeEventListener("scroll", handleScroll);
-    });
+  interval = setInterval(() => {
+    animate.value = false;
+
+    setTimeout(() => {
+      currentWordIndex.value =
+          (currentWordIndex.value + 1) % words.length;
+      currentWord.value = words[currentWordIndex.value];
+      animate.value = true;
+    }, 50);
+  }, 2000);
+
+  onUnmounted(() => {
+    clearInterval(interval);
+    window.removeEventListener("scroll", handleScroll);
+  });
 });
 </script>
 <template>
@@ -110,9 +114,6 @@ onMounted(() => {
         </div>
       </b-navbar>
 
-
-
-<!--       Hero Section-->
       <section class="landing-section" id="home">
         <b-container fluid>
           <ul class="home-bg-icon">

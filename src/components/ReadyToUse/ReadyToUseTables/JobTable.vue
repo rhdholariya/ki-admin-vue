@@ -21,23 +21,23 @@ const columns = [
     },
     {
         key: 'name',
-        header: 'NAME'
+        header: 'Name'
     },
     {
         key: 'course',
-        header: 'COURSE'
+        header: 'Course'
     },
     {
         key: 'experience',
-        header: 'EXPERIENCE'
+        header: 'Experiance'
     },
     {
         key: 'rate',
-        header: 'RATE'
+        header: 'Rate'
     },
     {
         key: 'address',
-        header: 'ADDRESS'
+        header: 'Address'
     },
     {
         key: 'review',
@@ -70,6 +70,7 @@ const columns = [
         table-class-name="w-100 align-middle mb-0"
         card-class-name=""
         :show-actions="false"
+        :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer job-resumes-table'"
     >
 
       <template #cell-actions>

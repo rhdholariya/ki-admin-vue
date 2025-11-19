@@ -66,7 +66,7 @@ const handleIconSubmit = async () => {
                                             id="firstName"
                                             v-model="firstName"
                                             placeholder="Your Name"
-                                            class="pa-s-34"
+
                                         />
                                     </b-form-group>
                                 </b-col>
@@ -78,7 +78,6 @@ const handleIconSubmit = async () => {
                                             v-model="email"
                                             type="email"
                                             placeholder="Your Email"
-                                            class="pa-s-34"
                                         />
                                     </b-form-group>
                                 </b-col>
@@ -89,7 +88,7 @@ const handleIconSubmit = async () => {
                                             id="phone"
                                             v-model="phone"
                                             placeholder="Your Phone Number"
-                                            class="contact-input pa-s-34"
+                                            class="contact-input "
                                         />
                                     </b-form-group>
                                 </b-col>
@@ -101,7 +100,7 @@ const handleIconSubmit = async () => {
                                             v-model="password"
                                             type="password"
                                             placeholder="Your Password"
-                                            class="pa-s-34"
+
                                         />
                                     </b-form-group>
                                 </b-col>

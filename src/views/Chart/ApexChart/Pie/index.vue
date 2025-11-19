@@ -116,7 +116,7 @@ const breadcrumbItems = computed(() => ({
           </b-card>
         </b-col>
         <b-col lg="6" xl="4">
-          <b-card class="equal-card">
+          <b-card class="equal-card" no-body>
             <b-card-header>
               <h5>Pie Chart with Image fill</h5>
             </b-card-header>

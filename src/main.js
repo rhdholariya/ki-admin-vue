@@ -12,6 +12,11 @@ import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'simplebar/dist/simplebar.min.css';
 // Vue ApexCharts
 import VueApexCharts from "vue3-apexcharts";
+
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import * as Wi from "oh-vue-icons/icons/wi";
+addIcons(...Object.values(Wi));
+
 const app = createApp(App)
 import '@/assets/scss/style.scss';
 import '@/assets/scss/responsive.scss'
@@ -24,6 +29,7 @@ app.directive("prism", {
     },
 });
 app.component("Breadcrumbs", Breadcrumbs);
+app.component("VIcon", OhVueIcon);
 app.use(router)
 app.use(FlagIcon)
 

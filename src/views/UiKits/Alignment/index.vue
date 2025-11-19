@@ -18,7 +18,7 @@ import {
 } from "@phosphor-icons/vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 
-// === Items for text alignment
+
 const items = [
     { className: "top-center", icon: PhTextAlignCenter, label: "top-center" },
     { className: "center", icon: PhTextAlignCenter, label: "center" },
@@ -33,7 +33,7 @@ const items = [
     { className: "center-vertical", icon: PhAlignCenterVertical, label: "center-vertical" }
 ];
 
-// === Image alignment positions
+
 const imagePositions = [
     { className: "image-top-left", label: "image-top-left" },
     { className: "image-center", label: "image-center" },

@@ -1,8 +1,5 @@
 <script setup>
-import {
-    BContainer, BRow,
-
-} from "bootstrap-vue-next";
+import {BContainer, BRow,} from "bootstrap-vue-next";
 
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import AppLayout from "@/views/AppLayout.vue";

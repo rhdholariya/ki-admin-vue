@@ -182,7 +182,7 @@ const breadcrumbItems = {
         <b-card class="equal-card" no-body>
           <b-card-header><h5>1/10 Rating</h5></b-card-header>
           <b-card-body>
-            <div class="boxs box-orange box-example-1to10 h-75">
+            <div class="boxs box-orange box-example-1to10 h-75 d-flex justify-content-center align-items-center">
               <RatingBar :initial="7" />
             </div>
           </b-card-body>
@@ -194,7 +194,7 @@ const breadcrumbItems = {
         <b-card no-body>
           <b-card-header><h5>Reversed Rating</h5></b-card-header>
           <b-card-body>
-            <div class="boxs box-green box-large box-example-reversed p-4">
+            <div class="boxs box-green box-large box-example-reversed p-4 d-flex align-items-center justify-content-center">
               <ReversedRating />
             </div>
           </b-card-body>

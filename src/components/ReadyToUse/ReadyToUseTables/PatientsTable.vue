@@ -65,6 +65,7 @@ const footerColumns = [
         card-class-name=""
         table-class-name="w-100 align-middle mb-0"
         :show-actions="false"
+        :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer patients-list-table'"
         :showFooter=true
         :footerColumns="footerColumns"
 

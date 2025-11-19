@@ -15,7 +15,7 @@ import AppLayout from "@/views/AppLayout.vue";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.vue";
 import { PhChartPieSlice } from "@phosphor-icons/vue";
 
-// Reactive chart data
+
 const basicChart = ref({});
 const gradientChart = ref({});
 const dashedChart = ref({});
