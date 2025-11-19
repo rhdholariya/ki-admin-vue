@@ -19,8 +19,7 @@ import {
 
 const activeId = ref("");
 const scrollContainer = ref(null);
-const sections = ref([]);
-
+const sectionRefs = ref({});
 
 const sectionList = [
   { id: "scrollspyHeading1", title: "First paragraph" },
@@ -30,19 +29,23 @@ const sectionList = [
   { id: "scrollspyHeading5", title: "Fifth paragraph" },
 ];
 
-onMounted(() => {
-  sections.value = sectionList.map(s =>
-      document.getElementById(s.id)
-  );
+const setSectionRef = (el, id) => {
+  if (el) {
+    sectionRefs.value[id] = el;
+  }
+};
 
+onMounted(() => {
   const container = scrollContainer.value;
   if (!container) return;
 
   const handleScroll = () => {
     const scrollPos = container.scrollTop;
 
-    for (const section of sections.value) {
+    for (const item of sectionList) {
+      const section = sectionRefs.value[item.id];
       if (!section) continue;
+
       const top = section.offsetTop - 100;
       const bottom = top + section.offsetHeight;
 
@@ -74,9 +77,9 @@ onMounted(() => {
             <div class="navbar navbar-expand-lg scrollpy-navbar bg-body-tertiary">
               <b-container fluid>
                 <b-navbar-brand href="#">
-                  <img src="/images/logo/1.png" class="w-150" alt="logo" />
+                  <img src="/images/logo/1.png" class="w-150" alt="logo"/>
                 </b-navbar-brand>
-                <b-navbar-toggle target="navbarSupportedContent" />
+                <b-navbar-toggle target="navbarSupportedContent"/>
                 <b-collapse id="navbarSupportedContent" is-nav>
                   <b-navbar-nav class="ms-auto nav-pills">
                     <b-nav-item
@@ -99,7 +102,7 @@ onMounted(() => {
                     >
                       <b-dropdown-item href="#scrollspyHeading3">Third</b-dropdown-item>
                       <b-dropdown-item href="#scrollspyHeading4">Fourth</b-dropdown-item>
-                      <b-dropdown-divider />
+                      <b-dropdown-divider/>
                       <b-dropdown-item href="#scrollspyHeading5">Fifth</b-dropdown-item>
                     </b-nav-item-dropdown>
                   </b-navbar-nav>
@@ -110,7 +113,13 @@ onMounted(() => {
             <!-- Scrollable Content -->
             <div ref="scrollContainer" class="p-3 rounded-2 h-250 overflow-y-auto app-scroll">
               <div v-for="item in sectionList" :key="item.id">
-                <h5 :id="item.id" class="f-w-500 mb-2 text-dark">{{ item.title }}</h5>
+                <h5
+                    :id="item.id"
+                    :ref="(el) => setSectionRef(el, item.id)"
+                    class="f-w-500 mb-2 text-dark"
+                >
+                  {{ item.title }}
+                </h5>
                 <p class="f-s-15 text-secondary mb-3">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem...

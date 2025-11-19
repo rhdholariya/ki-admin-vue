@@ -8,8 +8,9 @@ import { BCard, BCardBody, BCardHeader, BCol, BRow } from 'bootstrap-vue-next'
 const isMounted = ref(false)
 const isDisable = ref(false)
 const selectedDark = ref([])
+const selectedMultiple  = ref([])
 const selectedOptions = ref([])
-
+const selectedIcon = ref({ value: 'ti-brand-html5', label: 'HTML5' });
 
 const colourOptions = [
   { value: 'orange', label: 'Orange' },
@@ -40,12 +41,17 @@ const handleChange = (selected) => {
   }
 }
 
+const enabledSelectValue = ref(selectOptions[0]);
 
 onMounted(() => {
   isMounted.value = true
   selectedDark.value = selectOptions.filter(opt =>
       ['AL', 'WY'].includes(opt.value)
   )
+  selectedMultiple.value = [
+    colourOptions[0],
+    colourOptions[1],
+  ];
 })
 </script>
 
@@ -73,7 +79,7 @@ onMounted(() => {
             <v-select
                 multiple
                 :options="colourOptions"
-                :model-value="[colourOptions[0], colourOptions[1]]"
+                v-model="selectedMultiple"
                 placeholder="Select options"
                 class="select-1"
             />
@@ -95,10 +101,10 @@ onMounted(() => {
             <label class="form-label">Icon Options</label>
             <v-select
                 :options="[
-                { value: 'ti-brand-html5', label: 'HTML5' },
-                { value: 'ti-brand-codepen', label: 'Codepen' }
-              ]"
-                :model-value="{ value: 'ti-brand-html5', label: 'HTML5' }"
+                  { value: 'ti-brand-html5', label: 'HTML5' },
+                  { value: 'ti-brand-codepen', label: 'Codepen' }
+                ]"
+                v-model="selectedIcon"
                 placeholder="Select icon"
                 class="select2-icon"
             />
@@ -131,17 +137,20 @@ onMounted(() => {
 
           <b-col md="6" xl="4" class="mt-4">
             <label class="form-label">Disable Results</label>
+
             <v-select
                 multiple
                 :options="[
-                { value: 'AL', label: 'Alabama' },
-                { value: 'WY', label: 'Wyoming (disabled)', disabled: true },
-                { value: 'WD', label: 'Coming' }
-              ]"
+                  { value: 'AL', label: 'Alabama' },
+                  { value: 'WY', label: 'Wyoming (disabled)', disabled: true },
+                  { value: 'WD', label: 'Coming' }
+                ]"
+                :selectable="option => !option.disabled"
                 placeholder="Select..."
                 class="w-100"
             />
           </b-col>
+
 
 
           <b-col md="6" xl="4" class="mt-4">
@@ -168,7 +177,7 @@ onMounted(() => {
             <v-select
                 :disabled="isDisable"
                 :options="selectOptions"
-                :model-value="selectOptions[0]"
+                v-model="enabledSelectValue"
                 class="w-100"
             />
             <div class="text-end mt-2">
