@@ -49,6 +49,15 @@
   }
 
 }
+
+.form-wizard{
+  .custom-navstpes{
+    .nav-pills{
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
 .custom-navstpes,
 .navstpespills {
   .nav-link {

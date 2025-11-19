@@ -70,7 +70,7 @@ const ribbonDataPosition = [
 
                 <b-row>
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header><h5>Basic Ribbon</h5></b-card-header>
                             <b-card-body>
                                 <b-row>
@@ -97,7 +97,7 @@ const ribbonDataPosition = [
                     </b-col>
 
                     <b-col cols="12">
-                        <b-card>
+                        <b-card no-body>
                             <b-card-header><h5>Ribbon With Position</h5></b-card-header>
                             <b-card-body>
                                 <b-row>

@@ -58,5 +58,6 @@ const footerColumns = [
         :footer-columns="footerColumns"
         table-class-name="w-100 align-middle mb-0"
         card-class-name=""
+        :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer payment-details-table'"
     />
 </template>

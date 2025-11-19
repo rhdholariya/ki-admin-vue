@@ -11,6 +11,7 @@ import {
 
 import * as TablerIcons from "@tabler/icons-vue";
 
+
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
@@ -22,7 +23,7 @@ import {IconSearch} from "@tabler/icons-vue";
 const size = 50;
 const color = "#000";
 
-// All icon entries from @tabler/icons-vue
+
 const iconEntries = Object.entries(TablerIcons);
 
 const searchValue = ref("");

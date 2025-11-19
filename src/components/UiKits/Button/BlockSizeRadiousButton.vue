@@ -49,7 +49,7 @@ watch([openBlock, openSize, openRadius], async () => {
 </script>
 
 <template>
-    <b-row class="g-3">
+
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -205,5 +205,5 @@ ${blockButtonGroups
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

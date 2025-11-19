@@ -10,7 +10,7 @@ import {
   BCardHeader,
   BButton,
   BForm,
-  BFormInput
+  BFormInput, BImg
 } from 'bootstrap-vue-next'
 
 import {
@@ -101,11 +101,11 @@ const breadcrumbItems = {
                   </div>
 
                   <div>
-                    <b-button variant="secondary" class="me-2" @click="handleViewChange('col-xxl-3')">IV</b-button>
-                    <b-button variant="secondary" class="me-2" @click="handleViewChange('col-md-4')">III</b-button>
-                    <b-button variant="secondary" class="d-none" @click="handleViewChange('col-sm-6')">II</b-button>
-                    <b-button variant="secondary" class="me-2" @click="handleViewChange('col-12')">I</b-button>
-                    <b-button variant="primary" @click="handleGridLayout">
+                    <b-button variant="secondary" class="btn btn-secondary product-view4 d-inline-block me-2" @click="handleViewChange('col-xxl-3')">IV</b-button>
+                    <b-button variant="secondary" class="btn btn-secondary product-view3 me-2" @click="handleViewChange('col-md-4')">III</b-button>
+                    <b-button variant="secondary" class="btn btn-secondary product-view2  d-none me-2" @click="handleViewChange('col-sm-6')">II</b-button>
+                    <b-button variant="secondary" class="btn btn-secondary product-view me-2" @click="handleViewChange('col-12')">I</b-button>
+                    <b-button variant="primary" @click="handleGridLayout" class="btn btn-primary grid-layout-view">
                       <IconListTree :size="22"/>
                     </b-button>
                   </div>
@@ -129,7 +129,6 @@ const breadcrumbItems = {
                 <b-col
                     v-for="product in products"
                     :key="product.id"
-                    xs="12"
                     :class="layout"
                 >
                   <b-card class="overflow-hidden" no-body>
@@ -138,8 +137,8 @@ const breadcrumbItems = {
                         <div class="product-grid">
                           <div class="product-image">
                             <a href="#" class="image">
-                              <img :src="product.image1" alt="" class="pic-1"/>
-                              <img :src="product.image2" alt="" class="images_box"/>
+                              <b-img :src="product.image1" alt="" class="pic-1"/>
+                              <b-img :src="product.image2" alt="" class="images_box"/>
                             </a>
                             <ul class="product-links">
                               <li>

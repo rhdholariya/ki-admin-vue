@@ -83,6 +83,7 @@ const columns = [
         :on-view="handleView"
         table-class-name="w-100 align-middle mb-0"
         :page-length="10"
+        :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer default-data-table'"
         :show-length-menu="true"
         :key="tableData.length"
     />

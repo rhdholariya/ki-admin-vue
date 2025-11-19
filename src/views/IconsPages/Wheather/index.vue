@@ -70,7 +70,7 @@ const breadcrumbItems = computed(() => ({
 
         <b-row>
           <b-col cols="12">
-            <b-card>
+            <b-card no-body>
               <b-card-header>
                 <b-row>
                   <b-col md="4">
@@ -89,7 +89,7 @@ const breadcrumbItems = computed(() => ({
               </b-card-header>
 
               <b-card-body>
-                <ul class="icon-list space-top-icon d-flex flex-wrap gap-3">
+                <ul class="icon-list">
                   <li
                       v-for="name in iconList"
                       :key="name"

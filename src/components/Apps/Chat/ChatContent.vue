@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { BTabs, BTab } from "bootstrap-vue-next";
-import { IconChecks } from "@tabler/icons-vue";
+import {BTabs, BTab, BDropdownItem, BDropdown} from "bootstrap-vue-next";
+import {IconBrandHipchat, IconChecks, IconPhoneCall, IconPlus} from "@tabler/icons-vue";
 import { PhLockKeyOpen, PhUsersThree } from "@phosphor-icons/vue";
 import { chatGroups, privateContacts } from "@/data/app/Chatapp/ChatData.js";
 
@@ -9,11 +9,11 @@ const activeTabInner = ref(0);
 </script>
 
 <template>
-  <div class="tab-wrapper mt-3">
+  <div class="tabs-content active">
     <b-tabs
         v-model="activeTabInner"
         card
-        nav-class="app-tabs-primary chat-status-tab border-0 justify-content-between mb-0 pb-0 px-3"
+        nav-class="app-tabs-primary tab-light-primary chat-status-tab border-0 justify-content-between mb-0 pb-0"
     >
 
       <b-tab>
@@ -129,5 +129,8 @@ const activeTabInner = ref(0);
         </div>
       </b-tab>
     </b-tabs>
+
+
+
   </div>
 </template>

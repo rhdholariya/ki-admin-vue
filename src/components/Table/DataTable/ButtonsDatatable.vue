@@ -47,6 +47,7 @@ const columns = [
             :show-actions="false"
             :show-length-menu="false"
             table-class-name="w-100 align-middle mb-0"
+            :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer default-data-table'"
             :page-length="10"
         />
     </div>

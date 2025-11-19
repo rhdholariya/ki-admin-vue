@@ -83,7 +83,7 @@ const iconSocialButtons = [
 </script>
 
 <template>
-    <b-row >
+
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -302,5 +302,5 @@ const iconSocialButtons = [
             </b-card>
 
         </b-col>
-    </b-row>
+
 </template>

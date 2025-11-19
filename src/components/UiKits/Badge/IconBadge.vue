@@ -36,7 +36,7 @@ const openIcon = ref(false);
 </script>
 
 <template>
-    <b-row>
+
         <!-- Badge Position -->
         <b-col sm="12" xl="6">
             <b-card no-body>
@@ -144,5 +144,5 @@ const openIcon = ref(false);
                    </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

@@ -34,7 +34,7 @@ const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") =>
 </script>
 
 <template>
-    <b-row>
+
         <b-col cols="12" class="mb-3">
             <b-card no-body>
                 <b-card-header class="code-header">
@@ -76,5 +76,5 @@ const showToast = (message, background = "rgba(0,0,0,0.8)", position = "top") =>
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

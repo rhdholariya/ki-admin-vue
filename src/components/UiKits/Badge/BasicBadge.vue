@@ -29,7 +29,7 @@ const openRadius = ref(false);
 </script>
 
 <template>
-    <b-row>
+
         <!-- Basic Badges -->
         <b-col sm="12" xl="6">
             <b-card no-body>
@@ -224,5 +224,5 @@ const openRadius = ref(false);
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

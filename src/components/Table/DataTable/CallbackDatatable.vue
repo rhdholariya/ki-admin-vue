@@ -26,6 +26,7 @@ const data = ref([...callbackTableData]);
         description="The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the base framework upon which plug-ins can be built."
         :show-actions="false"
         :show-length-menu="true"
+        :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer row-callback-datatable'"
         table-class-name="w-100 align-middle mb-0"
     />
 </template>

@@ -97,6 +97,7 @@ const footerColumns = [
       :on-edit="handleEdit"
       :on-delete="handleDelete"
       :show-footer="true"
+      :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer student-list-table'"
       :footer-columns="footerColumns"
   />
 

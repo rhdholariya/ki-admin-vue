@@ -25,18 +25,10 @@ import Counter from "@/components/AdvanceUi/CountUp/Counter.vue";
 
 const activeTab = ref("1");
 
-
 const activeTabItems = computed(() => {
   const tab = tabData.find((t) => t.id.toString() === activeTab.value);
   return tab ? tab.items : [];
 });
-
-
-const handleUpdateCounters = () => {
-  updateCounterItems.forEach((item) => {
-    item.value = Math.floor(Math.random() * 1000);
-  });
-};
 
 const breadcrumbItems = {
   title: "count-up",
@@ -45,6 +37,17 @@ const breadcrumbItems = {
     { label: "count-up", active: true },
   ],
 };
+
+
+function generateNewValue(oldValue) {
+  return Math.floor(oldValue * (0.6 + Math.random() * 1.2));
+}
+
+function handleUpdateCounters() {
+  updateCounterItems.forEach((item, index) => {
+    updateCounterItems[index].value = generateNewValue(item.value);
+  });
+}
 </script>
 
 <template>
@@ -155,13 +158,16 @@ const breadcrumbItems = {
                     >
                       <div class="d-flex align-items-center">
                         <span v-if="item.prefix">{{ item.prefix }}</span>
+
                         <Counter
                             class="counter update-counter mb-0"
                             :value="item.value"
                             tag="p"
                         />
+
                         <span v-if="item.suffix">{{ item.suffix }}</span>
                       </div>
+
                       <p>
                         <i :class="`${item.iconClass} ${item.iconColorClass}`" />
                         {{ item.label }}

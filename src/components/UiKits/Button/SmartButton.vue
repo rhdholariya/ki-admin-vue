@@ -128,7 +128,7 @@ const openLoadingButtons = ref(false);
 </script>
 
 <template>
-    <b-row class="g-3">
+
         <b-col xl="4">
             <b-card no-body>
                 <b-card-header>
@@ -432,5 +432,5 @@ const openLoadingButtons = ref(false);
 
 
         </b-col>
-        </b-row>
+
 </template>

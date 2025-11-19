@@ -141,7 +141,7 @@ const selectedRadio = ref("radio1");
 </script>
 
 <template>
-    <b-row>
+
         <!-- Button Group Variants -->
         <b-col lg="6" class="mb-4">
             <b-card no-body>
@@ -453,5 +453,5 @@ ${btn.dropdownItems.map(i => `    &lt;b-dropdown-item&gt;${i}&lt;/b-dropdown-ite
                 </b-card>
             </b-col>
         </b-row>
-    </b-row>
+
 </template>

@@ -103,6 +103,7 @@ const confirmDelete = () => {
             :on-delete="handleDelete"
             table-class-name="w-100 align-middle mb-0 table-border-bottom"
             :page-length="10"
+            :wrapper-class="'app-scroll table-responsive app-datatable-default cursor-pointer default-data-table'"
             :show-length-menu="true"
         />
     </div>

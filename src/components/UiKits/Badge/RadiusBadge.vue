@@ -44,8 +44,8 @@ const openHead = ref(false);
 </script>
 
 <template>
-    <b-row>
-        <!-- -------- Badge with Button -------- -->
+
+
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -113,7 +113,7 @@ const openHead = ref(false);
             </b-card>
         </b-col>
 
-        <!-- -------- Heading Badges -------- -->
+
         <b-col xl="12">
             <b-card no-body>
                 <b-card-header>
@@ -162,5 +162,5 @@ const openHead = ref(false);
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

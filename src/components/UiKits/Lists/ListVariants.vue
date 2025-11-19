@@ -4,7 +4,7 @@ import { PhEnvelopeSimple } from "@phosphor-icons/vue";
 import { usersList, variantList } from '@/data/uikit/lists/listPageData';
 </script>
 <template>
-    <b-row>
+
         <b-col lg="6">
             <b-card no-body>
                 <b-card-header><h5>Variants</h5></b-card-header>
@@ -64,5 +64,5 @@ import { usersList, variantList } from '@/data/uikit/lists/listPageData';
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>

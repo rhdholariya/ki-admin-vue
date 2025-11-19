@@ -15,7 +15,7 @@ const handleClosePlacement = () => (showPlacement.value = false);
 </script>
 
 <template>
-    <b-row>
+
         <b-col cols="12">
             <b-card no-body>
                 <b-card-header>
@@ -92,5 +92,5 @@ const handleClosePlacement = () => (showPlacement.value = false);
                 </b-card-body>
             </b-card>
         </b-col>
-    </b-row>
+
 </template>
