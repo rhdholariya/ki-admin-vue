@@ -10,11 +10,11 @@ const searchSettings = ref({
 });
 
 const recentSearches = ref([
-  { title: 'user management', link: 'api.html', icon: 'ph-gear', id: '#RA789' },
-  { title: 'data visualization', link: 'privacy_policy.html', icon: 'ph-projector-screen-chart', id: '#RY810' },
-  { title: 'security protocols', link: 'terms_condition.html', icon: 'ph-shield-check', id: '#ATR56' },
-  { title: 'authentication methods', link: 'sign_in.html', icon: 'ph-app-window', id: '#YE615' },
-  { title: 'Data Table', link: 'data_table.html', icon: 'ph-table', id: '#YE615' }
+  { title: 'user management', link: '/apps/api', icon: 'ph-gear', id: '#RA789' },
+  { title: 'data visualization', link: '/other-pages/privacy-policy', icon: 'ph-projector-screen-chart', id: '#RY810' },
+  { title: 'security protocols', link: '/other-pages/terms-condition', icon: 'ph-shield-check', id: '#ATR56' },
+  { title: 'authentication methods', link: '/auth-pages/sign-in', icon: 'ph-app-window', id: '#YE615' },
+  { title: 'Data Table', link: '/table/data-table', icon: 'ph-table', id: '#YE615' }
 ]);
 </script>
 

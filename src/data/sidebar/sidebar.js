@@ -402,7 +402,7 @@ export const MenuList = [
     },
     {
         name: "Document",
-        path: "https://phpstack-1384472-5121645.cloudwaysapps.com/document/react-ts/ki-admin/index.html",
+        path: "https://phpstack-1384472-5121645.cloudwaysapps.com/document/vue/ki-admin/index.html",
         iconClass: "document-text",
     },
     {

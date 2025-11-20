@@ -82,7 +82,7 @@ const faqItems = [
                       <h2 class="m-0">Digitize Your Documents</h2>
                       <a
                           class="btn btn-white icon-btn flex-shrink-0 w-45 h-45 rounded-circle"
-                          href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/react-ts/ki-admin/index.html"
+                          href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/vue/ki-admin/index.html"
                           target="_blank"
                           rel="noopener"
                       >

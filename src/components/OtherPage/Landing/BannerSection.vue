@@ -84,7 +84,7 @@ onMounted(() => {
               <b-nav-item href="#Cards">Cards</b-nav-item>
               <b-nav-item href="#Features">Features</b-nav-item>
               <b-nav-item
-                  href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/react-ts/ki-admin/index.html"
+                  href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/vue/ki-admin/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
               >
@@ -159,7 +159,7 @@ onMounted(() => {
                 </a>
                 <a
                     class="btn btn-light-white px-4 py-2 f-s-16"
-                    href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/react-ts/ki-admin/index.html"
+                    href="https://phpstack-1384472-5121645.cloudwaysapps.com/document/vue/ki-admin/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -205,7 +205,7 @@ onMounted(() => {
             >
               <img
                   src="/images/landing/logo/01.png"
-                  class="w-50"
+                  class="w-35"
                   alt="lang"
               />
             </a>

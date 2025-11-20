@@ -173,7 +173,7 @@ const resetCustomizer = () => {
     <template #header>
       <h5 class="text-white">Admin Customizer</h5>
       <p class="text-white opacity-75 w-100">It's time to style according to your choice!</p>
-      <b-button aria-label="Close" class="btn-close" variant="light" type="button" @click="handleClose" />
+      <b-button aria-label="Close" class="btn-close" variant="link" type="button" @click="handleClose" />
     </template>
 
     <!-- Body -->

@@ -31,10 +31,12 @@
             right: 18px;
           }
         }
+
         .menu-navs > span.menu-next {
           float: left;
         }
       }
+
       border-radius: 0px;
     }
   }
@@ -736,7 +738,7 @@
     thead {
       th {
         &:first-child {
-          text-align: right !important;
+          text-align: left !important;
         }
       }
     }
@@ -746,6 +748,12 @@
     .me-2 {
       margin-left: 0.5rem !important;
       margin-right: 0 !important;
+    }
+
+    thead {
+      th {
+        text-align: left !important;
+      }
     }
   }
 
@@ -881,22 +889,26 @@
       padding-right: 0.5rem !important;
     }
   }
+
   .friend-list {
     li {
       .position-absolute {
         left: auto;
         right: 0;
       }
+
       .mg-s-50 {
         margin-left: 0 !important;
         margin-right: 50px !important;
       }
+
       .me-2 {
         margin-left: 0.5rem !important;
         margin-right: 0 !important;
       }
     }
   }
+
   .story-container {
     direction: ltr;
   }
@@ -927,6 +939,7 @@
       margin-right: 55px !important;
     }
   }
+
   .table {
     thead {
       tr {
@@ -935,6 +948,7 @@
             padding-left: 0.5rem;
             padding-right: 1.25rem;
           }
+
           &:last-child {
             padding-left: 1.25rem;
             padding-right: 0.5rem;
@@ -942,6 +956,7 @@
         }
       }
     }
+
     tbody {
       tr {
         td {
@@ -949,6 +964,7 @@
             padding-left: 0.8rem;
             padding-right: 1.25rem;
           }
+
           &:last-child {
             padding-left: 1.25rem;
             padding-right: 0.8rem;
@@ -957,6 +973,7 @@
       }
     }
   }
+
   .table-bordered {
     tbody {
       tr {
@@ -965,6 +982,7 @@
             padding-left: 0.8rem;
             padding-right: 1.25rem;
           }
+
           &:last-child {
             padding-left: 1.25rem;
             padding-right: 0.8rem;
@@ -973,6 +991,7 @@
       }
     }
   }
+
   .setting-tab,
   .email-list {
     .pe-2 {
@@ -1067,12 +1086,14 @@
     padding-left: 0 !important;
     padding-right: 0.5rem !important;
   }
+
   .security-box-title {
     &.ms-5 {
       margin-left: 0;
       margin-right: 3rem;
     }
   }
+
   .active-device-list {
     li {
       .device-menu-item {
@@ -1083,34 +1104,40 @@
       }
     }
   }
+
   .device-menu-img {
     i {
       direction: ltr;
     }
   }
+
   .setting-privacy-card {
     .select-item {
       direction: ltr;
     }
   }
+
   .privacy-content {
     &.ms-3 {
       margin-left: 0 !important;
       margin-right: 1rem !important;
     }
   }
+
   .conection-item {
     .ms-5 {
       margin-left: 0 !important;
       margin-right: 3rem;
     }
   }
+
   .simple-price-content {
     .ms-2 {
       margin-left: 0 !important;
       margin-right: 0.5rem !important;
     }
   }
+
   .pricing-details {
     .pricing-listitem {
       .me-2 {
@@ -1119,17 +1146,20 @@
       }
     }
   }
+
   .project-card {
     .ps-2 {
       padding-left: 0 !important;
       padding-right: 0.5rem !important;
     }
   }
+
   .draggable-card-icon {
     li {
       direction: ltr;
     }
   }
+
   .card {
     .card-footer {
       &.code-footer {
@@ -1140,12 +1170,14 @@
       }
     }
   }
+
   .nav-tabs {
     .pe-1 {
       padding-right: 0 !important;
       padding-left: 0.25rem !important;
     }
   }
+
   .ticket-detail-table {
     .me-2 {
       margin-left: 0.5rem !important;
@@ -1209,11 +1241,17 @@
     }
   }
 
-  .security-box-card {
-    .security-box-title {
-      direction: ltr;
-      margin-left: 0 !important;
-      margin-right: 3rem !important;
+  //.security-box-card {
+  //  .security-box-title {
+  //    direction: ltr;
+  //    margin-left: 0 !important;
+  //    margin-right: 3rem !important;
+  //  }
+  //}
+  .vertical-tab {
+    .me-2 {
+      margin-left: 0.5rem !important;
+      margin-right: 0 !important;
     }
   }
 
@@ -1304,12 +1342,14 @@
             right: auto;
           }
         }
+
         .header-cart {
           .offcanvas {
             left: 430px !important;
             right: auto;
           }
         }
+
         .header-notification {
           .offcanvas {
             left: 350px !important;
@@ -1326,6 +1366,96 @@
       }
     }
   }
+
+  .ticket-app {
+    .ticket-card {
+      .circle-bg-img {
+        left: -16px !important;
+        right: auto !important;
+      }
+    }
+  }
+
+  .ticket-details-profile {
+    .me-3 {
+      margin-left: 1rem !important;
+      margin-right: 0 !important;
+
+    }
+  }
+
+  .orders-details-datatable {
+    .me-2 {
+      margin-left: 0.5rem !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  .checkout-tabs-step {
+    .tabs-steps {
+      &.me-2 {
+        margin-left: 0.5rem !important;
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+  .add-blog {
+    .ms-2 {
+      margin-left: 0 !important;
+      margin-right: 0.5rem !important;
+    }
+  }
+  .offcanvas-header , .modal-header {
+    .btn-close{
+      margin-left: unset !important;
+      margin-right: auto !important;
+    }
+  }
+  .table-responsive{
+    .me-2{
+      margin-right: 0 !important;
+      margin-left: 0.5rem !important;
+    }
+  }
+  .copy-clipboard{
+    .me-1{
+      margin-right: 0 !important;
+      margin-left: 0.25rem !important;
+    }
+  }
+  .app-form {
+    .icon-form {
+      svg{
+        right: 8px;
+        left: auto;
+      }
+    }
+  }
+  .form-wizard{
+    .ms-2{
+      margin-left: 0 !important;
+      margin-right: 0.5rem !important;
+    }
+    .me-2{
+        margin-left: 0.5rem !important;
+        margin-right: 0 !important;
+    }
+  }
+
+  .form-content-box {
+    .form-container {
+      .form-control {
+        background-color: rgba(var(--primary), .2);
+        color: rgba(var(--primary), 1);
+        border: 1px solid rgba(var(--primary), .6);
+      }
+      h2{
+        color: rgba(var(--primary), 1) !important;
+      }
+    }
+  }
+
 }
 
 // >>-- 120 Rtl css end --<<
