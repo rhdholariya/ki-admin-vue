@@ -4,6 +4,7 @@ import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue-next";
 import { RouterLink } from "vue-router";
 import {
   PhCaretRight,
+  PhCaretLeft,
   PhGear,
   PhUserCircle,
   PhMagnifyingGlass,
@@ -11,9 +12,9 @@ import {
   PhSignOut
 } from "@phosphor-icons/vue";
 
-
 defineProps({
   sidebarOpen: Boolean,
+  isMediumScreen: Boolean
 });
 
 const emit = defineEmits(["toggle-sidebar"]);
@@ -35,15 +36,14 @@ const toggleSidebar = () => {
       <img alt="Logo" src="/images/logo/1.png"/>
     </RouterLink>
 
-    <!-- Sidebar Toggle Button -->
     <span
         class="bg-light-primary toggle-semi-nav d-flex-center cursor-pointer"
         @click="toggleSidebar"
     >
-      <PhCaretRight size="16"/>
+      <PhCaretRight v-if="!sidebarOpen" size="16"/>
+      <PhCaretLeft v-else size="16"/>
     </span>
 
-    <!-- Profile Section -->
     <div class="d-flex align-items-center nav-profile p-3">
       <span class="h-45 w-45 d-flex-center b-r-10 position-relative bg-danger m-auto">
         <img alt="avatar" class="img-fluid b-r-10" src="/images/avatar/woman.jpg"/>

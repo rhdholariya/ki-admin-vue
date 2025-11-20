@@ -164,7 +164,7 @@ const resetCustomizer = () => {
 
   <b-offcanvas
       v-model:show="show"
-      placement="end"
+      :placement="layoutOption === 'rtl' ? 'start' : 'end'"
       class="app-customizer"
       no-body
       @hidden="handleClose"
