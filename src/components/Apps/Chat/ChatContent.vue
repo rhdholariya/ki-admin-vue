@@ -26,13 +26,13 @@ const activeTabInner = ref(0);
           <div
               v-for="contact in privateContacts"
               :key="contact.id"
-              class="chat-contactbox d-flex align-items-center"
+              class="chat-contactbox"
           >
 
-            <div class="position-relative me-3">
+            <div class="position-absolute">
               <span
                   :class="[
-                  'h-45 w-45 d-flex-center b-r-50 position-relative',
+                  'h-45 w-45 d-flex-center b-r-50 position-relative bg-primary',
                   contact.status
                 ]"
               >
@@ -47,7 +47,7 @@ const activeTabInner = ref(0);
               </span>
             </div>
 
-            <div class="flex-grow-1">
+            <div class="flex-grow-1 text-start mg-s-50">
               <p class="mb-0 f-w-500 text-dark text-truncate">
                 {{ contact.name }}
               </p>
