@@ -130,6 +130,7 @@ const breadcrumbItems = {
                     v-for="product in products"
                     :key="product.id"
                     :class="layout"
+                    cols="12"
                 >
                   <b-card class="overflow-hidden" no-body>
                     <b-card-body class="p-0">
