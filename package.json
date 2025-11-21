@@ -37,6 +37,7 @@
     "@tiptap/vue-3": "^3.5.3",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "animate.css": "^4.1.1",
+    "bootstrap": "^5.3.8",
     "bootstrap-vue-next": "^0.40.6",
     "chart.js": "^4.5.1",
     "countup.js": "^2.9.0",

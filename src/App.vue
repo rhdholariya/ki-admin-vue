@@ -29,6 +29,7 @@ onMounted(() => {
   }, 1500);
 });
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 </script>
 
 
