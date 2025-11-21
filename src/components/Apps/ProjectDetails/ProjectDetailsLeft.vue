@@ -9,7 +9,7 @@ import {
   BBadge,
   BImg,
 } from "bootstrap-vue-next";
-import { Tooltip } from "bootstrap";
+
 
 import {
   projectDetails,
@@ -40,15 +40,6 @@ const assignedByAvatars = computed(() => [
 ]);
 
 
-const vTooltip = {
-  mounted(el, binding) {
-    new Tooltip(el, { title: binding.value, placement: "top" });
-  },
-  unmounted(el) {
-    const tooltip = Tooltip.getInstance(el);
-    if (tooltip) tooltip.dispose();
-  },
-};
 </script>
 
 <template>
@@ -97,7 +88,7 @@ const vTooltip = {
                     v-for="(avatar, index) in assignedByAvatars"
                     :key="index"
                     :class="['h-30 w-30 d-flex-center rounded-circle', avatar.colorClass]"
-                    v-tooltip="avatar.name"
+
                 >
                   {{ avatar.initial }}
                 </span>

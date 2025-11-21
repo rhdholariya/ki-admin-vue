@@ -17,13 +17,11 @@ import {
   BDropdownItem,
 } from "bootstrap-vue-next";
 
-import { Tooltip } from "bootstrap";
 
 import { PhImageSquare } from "@phosphor-icons/vue";
 import {
   IconCamera,
   IconMicrophone,
-  IconMoodSmileBeam,
   IconPaperclip,
   IconSend,
   IconDotsVertical
@@ -36,24 +34,7 @@ const lightboxToggler = ref(false);
 const currentSlide = ref(1);
 const lightboxSources = ref([]);
 
-const vTooltip = {
-  mounted(el, binding) {
-    el._tooltip = new Tooltip(el, {
-      title: binding.value,
-      placement: el.dataset.bsPlacement || "top",
-    });
-  },
-  updated(el, binding) {
-    el._tooltip?.dispose();
-    el._tooltip = new Tooltip(el, {
-      title: binding.value,
-      placement: el.dataset.bsPlacement || "top",
-    });
-  },
-  unmounted(el) {
-    el._tooltip?.dispose();
-  }
-};
+
 
 const getAllImageSources = () =>
     projectActivities.flatMap((activity) => activity.images || []);
@@ -191,9 +172,6 @@ const sendMessage = () => {
           <div class="flex-grow-1">
             <b-input-group>
               <b-input-group-text class="ms-2 me-2 rounded">
-                <a v-tooltip="'Emoji'" role="button">
-                  <IconMoodSmileBeam :size="20" />
-                </a>
               </b-input-group-text>
 
               <b-form-input
@@ -214,7 +192,7 @@ const sendMessage = () => {
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                v-tooltip="'Microphone'"
+
             >
               <IconMicrophone :size="20" />
             </b-button>
@@ -222,7 +200,7 @@ const sendMessage = () => {
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                v-tooltip="'Camera'"
+
             >
               <IconCamera :size="20" />
             </b-button>
@@ -230,7 +208,7 @@ const sendMessage = () => {
             <b-button
                 type="button"
                 class="text-light-secondary h-35 w-35 d-flex-center rounded ms-1 btn border-0 bg-transparent"
-                v-tooltip="'Paperclip'"
+
             >
               <IconPaperclip :size="20" />
             </b-button>
