@@ -37,7 +37,7 @@ const topBrands = [
           <h6 class="mb-0 text-dark-800 f-w-500 txt-ellipsis-1">{{ item.name }}</h6>
           <p class="text-secondary-800 mb-0">{{ item.brand }}</p>
         </div>
-        <BBadge class="bg-light-primary">{{ item.price }}</BBadge>
+        <b-badge class="bg-light-primary">{{ item.price }}</b-badge>
       </li>
     </ul>
   </b-col>

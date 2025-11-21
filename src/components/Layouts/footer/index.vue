@@ -1,5 +1,5 @@
 <script setup>
-
+import { IconHelp } from '@tabler/icons-vue';
 </script>
 
 <template>
@@ -12,8 +12,7 @@
         </div>
         <div class="col-md-3">
           <div class="footer-text text-end">
-            <a class="f-w-500 text-primary" href="mailto:teqlathemes@gmail.com"> Need Help <i
-                class="ti ti-help"></i></a>
+            <a class="f-w-500 text-primary" href="mailto:teqlathemes@gmail.com"> Need Help <IconHelp size="20" stroke="1.5" /></a>
           </div>
         </div>
       </div>

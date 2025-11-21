@@ -1,7 +1,6 @@
 <script setup>
 import { ref, defineProps, defineEmits } from "vue";
-import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue-next";
-import { RouterLink } from "vue-router";
+import {BDropdown, BDropdownItem, BDropdownDivider, BImg} from "bootstrap-vue-next";
 import {
   PhCaretRight,
   PhCaretLeft,
@@ -32,9 +31,9 @@ const toggleSidebar = () => {
 <template>
   <div class="app-logo">
     <!-- Logo -->
-    <RouterLink class="logo d-inline-block" to="/">
-      <img alt="Logo" src="/images/logo/1.png"/>
-    </RouterLink>
+    <router-link class="logo d-inline-block" to="/">
+      <b-img alt="Logo" src="/images/logo/1.png"/>
+    </router-link>
 
     <span
         class="bg-light-primary toggle-semi-nav d-flex-center cursor-pointer"
