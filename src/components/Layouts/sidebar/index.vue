@@ -94,6 +94,9 @@ const sidebarClass = computed(() => {
   else if (isMediumScreen.value && props.sidebarOpen) {
     additionalClass = 'semi-nav';
   }
+  else if (props.sidebarOpen) {
+    additionalClass = 'semi-nav';
+  }
 
   return additionalClass ? `${baseClass} ${additionalClass}` : baseClass;
 });
@@ -118,9 +121,6 @@ watch(windowWidth, (newWidth) => {
   isMobileScreen.value = newIsMobileScreen;
 });
 
-watch(() => props.sidebarOpen, (newVal) => {
-  console.log('Sidebar open state changed:', newVal);
-});
 </script>
 
 <template>
