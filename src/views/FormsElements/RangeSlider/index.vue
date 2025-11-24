@@ -119,14 +119,14 @@ function updateRgbBlue(data) {
 
 <template>
   <app-layout>
-    <main class="ki-bab">
+    <main>
       <b-container fluid>
         <breadcrumb :breadcrumb="breadcrumbItems" />
 
         <b-row>
           <!-- Bootstrap Range Sliders -->
           <b-col md="12" xl="6">
-            <b-card>
+            <b-card no-body>
               <b-card-header><h5>Bootstrap Range Sliders</h5></b-card-header>
               <b-card-body>
                 <b-row>
@@ -153,7 +153,7 @@ function updateRgbBlue(data) {
 
           <!-- Colour Variant Sliders -->
           <b-col md="12" xl="6">
-            <b-card>
+            <b-card no-body>
               <b-card-header><h5>Colour Variant</h5></b-card-header>
               <b-card-body>
                 <b-row>
@@ -181,7 +181,7 @@ function updateRgbBlue(data) {
 
           <!-- Value Slider -->
           <b-col cols="12">
-            <b-card>
+            <b-card no-body>
               <b-card-header><h5>Value Slider</h5></b-card-header>
               <b-card-body>
                 <div class="mb-4">
@@ -292,7 +292,7 @@ function updateRgbBlue(data) {
                 <!-- RGB Vertical Sliders -->
                 <b-row>
                   <b-col md="4">
-                    <b-card>
+                    <b-card no-body>
                       <b-card-header><h5>Color Picker Slider</h5></b-card-header>
                       <b-card-body>
                         <div class="d-flex align-items-end colorpicker-slider">
@@ -340,7 +340,7 @@ function updateRgbBlue(data) {
 
                   <!-- Vertical Slider -->
                   <b-col md="4">
-                    <b-card>
+                    <b-card no-body>
                       <b-card-header><h5>Vertical Slider</h5></b-card-header>
                       <b-card-body>
                         <no-ui-slider
@@ -356,7 +356,7 @@ function updateRgbBlue(data) {
 
                   <!-- Toggle Slider -->
                   <b-col md="4">
-                    <b-card>
+                    <b-card no-body>
                       <b-card-header><h5>Toggle Slider</h5></b-card-header>
                       <b-card-body>
                         <no-ui-slider

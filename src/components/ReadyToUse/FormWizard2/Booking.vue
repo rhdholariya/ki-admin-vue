@@ -45,7 +45,7 @@ const activeAccordion = ref(['0'])
 </script>
 
 <template>
-    <b-card>
+    <b-card no-body>
         <b-card-header>
             <h5>Booking Wizard</h5>
         </b-card-header>

@@ -9,7 +9,8 @@ import {
     BFormInvalidFeedback,
     BRow,
     BCol,
-    BButton
+    BButton,
+    BCardHeader
 } from "bootstrap-vue-next";
 import {PhUsersThree, PhPhoneCall, PhInfo} from "@phosphor-icons/vue";
 
@@ -85,8 +86,11 @@ const handleSubmit = () => {
 </script>
 
 <template>
-    <b-card class="equal-card p-4">
+    <b-card class="equal-card p-4" no-body>
+      <b-card-header>
         <h5 class="mb-4 text-muted">Vertical Wizard With Icon</h5>
+      </b-card-header>
+
         <div class="form-wizard">
             <b-row>
 
