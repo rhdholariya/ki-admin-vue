@@ -94,7 +94,6 @@ const handleSubmit = () => {
 <b-card-body>
         <div class="form-wizard">
             <b-row>
-
                 <b-col md="3">
                     <div class="form-wizard-header">
                         <ul class="vertica-wizard-steps list-unstyled mb-0">
