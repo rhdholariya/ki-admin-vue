@@ -87,9 +87,9 @@ const handleSubmit = () => {
 </script>
 
 <template>
-    <b-card class="equal-card p-4" no-body>
+    <b-card class="equal-card" no-body>
       <b-card-header>
-        <h5 class="mb-4 text-muted">Vertical Wizard With Icon</h5>
+        <h5 class="text-muted">Vertical Wizard With Icon</h5>
       </b-card-header>
 <b-card-body>
         <div class="form-wizard">
