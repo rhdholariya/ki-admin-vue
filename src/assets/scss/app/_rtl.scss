@@ -1455,7 +1455,18 @@
       }
     }
   }
-
+  .cart-offcanvas , .header-apps-canvas , .header-notification-canvas{
+    right: auto !important;
+    left: 10px !important;
+  }
+.head-container{
+  .head-box{
+    .ms-2{
+        margin-left: 0 !important;
+        margin-right: 0.5rem !important;
+    }
+  }
+}
 }
 
 // >>-- 120 Rtl css end --<<
