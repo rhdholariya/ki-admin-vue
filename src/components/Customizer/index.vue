@@ -177,7 +177,7 @@ const resetCustomizer = () => {
     </template>
 
     <!-- Body -->
-    <div class="offcanvas-body flex-grow-1 overflow-auto p-1">
+    <div class="flex-grow-1 overflow-auto p-1">
       <div class="app-divider-v secondary py-3">
         <h6 class="mt-2">Sidebar option</h6>
       </div>
@@ -194,14 +194,14 @@ const resetCustomizer = () => {
                         <li class="header"></li>
                         <li class="sidebar"></li>
                         <li class="body">
-                            <BBadge bg="secondary" class="b-r-6">Vertical</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">Vertical</b-badge>
                         </li>
                     </template>
 
                     <!-- Horizontal Sidebar -->
                     <template v-else-if="option === 'horizontal-sidebar'">
                         <li class="header h-20">
-                            <BBadge bg="secondary" class="b-r-6">Horizontal</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">Horizontal</b-badge>
                         </li>
                         <li class="body w-100"></li>
                     </template>
@@ -211,7 +211,7 @@ const resetCustomizer = () => {
                         <li class="header"></li>
                         <li class="sidebar bg-dark-600"></li>
                         <li class="body">
-                            <BBadge bg="secondary" class="b-r-6">Dark</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">Dark</b-badge>
                         </li>
                     </template>
                 </ul>
@@ -235,7 +235,7 @@ const resetCustomizer = () => {
                         <li class="header"></li>
                         <li class="sidebar"></li>
                         <li class="body">
-                            <BBadge bg="secondary" class="b-r-6">LTR</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">LTR</b-badge>
                         </li>
                     </template>
 
@@ -243,7 +243,7 @@ const resetCustomizer = () => {
                     <template v-else-if="option === 'rtl'">
                         <li class="header"></li>
                         <li class="body">
-                            <BBadge bg="secondary" class="b-r-6">RTL</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">RTL</b-badge>
                         </li>
                         <li class="sidebar"></li>
                     </template>
@@ -253,7 +253,7 @@ const resetCustomizer = () => {
                         <li class="header"></li>
                         <li class="sidebar"></li>
                         <li class="body">
-                            <BBadge bg="secondary" class="b-r-6">Box</BBadge>
+                            <b-badge bg="secondary" class="b-r-6">Box</b-badge>
                         </li>
                     </template>
                 </ul>
@@ -293,7 +293,7 @@ const resetCustomizer = () => {
     <!-- Footer -->
     <div class="offcanvas-footer p-2 border-top">
       <div class="d-flex gap-2">
-        <BButton variant="danger" class="w-100" @click="resetCustomizer">Reset</BButton>
+        <b-button variant="danger" class="w-100" @click="resetCustomizer">Reset</b-button>
         <a
             class="btn btn-success w-100"
             href="https://themeforest.net/user/la-themes/portfolio"

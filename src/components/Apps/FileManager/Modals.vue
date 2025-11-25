@@ -64,16 +64,18 @@ defineExpose({
 
 
   <!-- Delete Confirmation Modal -->
-  <b-modal v-model="showDeleteModal" centered hide-footer hide-header>
-    <div class="text-center">
+  <b-modal v-model="showDeleteModal" centered hide-footer hide-header class="file-manager-delet">
+
       <img src="/images/icons/delete-icon.png" alt="" class="img-fluid mb-3">
-      <h4 class="text-danger f-w-600">Are You Sure?</h4>
-      <p class="text-secondary f-s-16">You won't be able to revert this!</p>
+      <h4 class="text-danger f-w-600 text-center">Are You Sure?</h4>
+      <p class="text-secondary f-s-16 text-center">You won't be able to revert this!</p>
+      <template #footer>
       <div class="text-center mt-3">
         <b-button variant="secondary" @click="showDeleteModal = false" class="me-2">Close</b-button>
         <b-button variant="primary" @click="confirmDelete">Yes, Delete it</b-button>
       </div>
-    </div>
+      </template>
+
   </b-modal>
 </template>
 

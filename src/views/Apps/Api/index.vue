@@ -325,7 +325,7 @@ const breadcrumbItems = computed(() => ({
           v-model="showDeleteModal"
           centered
           hide-header
-          content-class="border-0"
+          content-class="border-0 api-delet-modal"
           body-class="text-center p-4"
       >
         <img alt="" class="img-fluid mb-3" src="/images/icons/delete-icon.png" />

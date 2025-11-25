@@ -72,7 +72,7 @@ const handleDeleteTask = (index) => {
         <Breadcrumb :breadcrumb="breadcrumbItems" />
           <b-row>
           <b-col xl="3">
-            <b-card>
+            <b-card no-body>
               <b-card-body>
                 <b-button
                   variant="primary"

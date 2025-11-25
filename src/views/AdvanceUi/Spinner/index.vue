@@ -24,7 +24,7 @@ const breadcrumbItems = {
         <Breadcrumb :breadcrumb="breadcrumbItems"/>
         <b-row>
           <b-col xs="12">
-            <b-card>
+            <b-card no-body>
               <b-card-body>
                 <div class="loader-container">
                   <div

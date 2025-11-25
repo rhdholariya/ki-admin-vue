@@ -34,4 +34,10 @@
     color: rgba(var(--dark), 0.75);
   }
 }
+
+.api-delet-modal{
+  .modal-header{
+    display: none;
+  }
+}
 // >>-- 112 Api css end --<<

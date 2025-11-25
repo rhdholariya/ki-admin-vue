@@ -504,7 +504,7 @@ const breadcrumbItems = computed(() => ({
                     @hidden="resetEditForm"
                 >
                     <b-form class="app-form">
-                        <b-row class="gap-1">
+                        <b-row>
                             <b-col cols="12">
                                 <b-form-group label="Title">
                                     <b-form-input v-model="editTitle" placeholder="Title"/>
@@ -512,13 +512,13 @@ const breadcrumbItems = computed(() => ({
                             </b-col>
 
                             <b-col cols="12">
-                                <b-form-group label="Client">
+                                <b-form-group label="Client" class="mt-2">
                                     <b-form-input v-model="editClient" placeholder="Client"/>
                                 </b-form-group>
                             </b-col>
 
                             <b-col md="6">
-                                <b-form-group label="Priority">
+                                <b-form-group label="Priority"  class="mt-2">
                                     <b-form-select
                                         v-model="editPriority"
                                         :options="[
@@ -532,7 +532,7 @@ const breadcrumbItems = computed(() => ({
                             </b-col>
 
                             <b-col md="6">
-                                <b-form-group label="Status">
+                                <b-form-group label="Status"  class="mt-2">
                                     <b-form-select
                                         v-model="editStatus"
                                         :options="[
@@ -546,13 +546,13 @@ const breadcrumbItems = computed(() => ({
                             </b-col>
 
                             <b-col md="6">
-                                <b-form-group label="Date">
+                                <b-form-group label="Date" class="mt-2">
                                     <b-form-input v-model="editDate" type="date"/>
                                 </b-form-group>
                             </b-col>
 
                             <b-col md="6">
-                                <b-form-group label="Due Date">
+                                <b-form-group label="Due Date" class="mt-2">
                                     <b-form-input v-model="editDueDate" type="date"/>
                                 </b-form-group>
                             </b-col>

@@ -45,7 +45,7 @@ const breadcrumbItems = computed(() => ({
         <template #title>
           <PhPenNib weight="duotone" :size="18" class="me-2" /> Designer
         </template>
-        <b-card>
+        <b-card no-body>
           <b-card-body>
             <b-row>
               <b-col v-for="(member, index) in teamMembers" :key="index" md="6" xl="4">
@@ -59,7 +59,7 @@ const breadcrumbItems = computed(() => ({
         <template #title>
           <PhGear weight="duotone" :size="18" class="me-2" /> Development
         </template>
-        <b-card>
+        <b-card no-body>
           <b-card-body>
             <b-row>
               <b-col v-for="(member, index) in developerTeamData" :key="index" md="6" xl="4">
@@ -74,7 +74,7 @@ const breadcrumbItems = computed(() => ({
         <template #title>
           <PhMegaphone weight="duotone" :size="18" class="me-2" /> Marketing
         </template>
-        <b-card>
+        <b-card no-body>
           <b-card-body>
             <b-row>
               <b-col v-for="(member, index) in marketingTeamData" :key="index" md="6" xl="4">

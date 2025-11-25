@@ -37,6 +37,9 @@
   flex-wrap: wrap;
 }
   .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     > ul {
       li {
         position: relative;
