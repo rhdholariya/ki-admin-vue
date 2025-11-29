@@ -37,7 +37,9 @@ const topBrands = [
           <h6 class="mb-0 text-dark-800 f-w-500 txt-ellipsis-1">{{ item.name }}</h6>
           <p class="text-secondary-800 mb-0">{{ item.brand }}</p>
         </div>
-        <b-badge class="bg-light-primary">{{ item.price }}</b-badge>
+        <b-badge variant="" class="bg-light-primary">
+          {{ item.price }}
+        </b-badge>
       </li>
     </ul>
   </b-col>
@@ -58,7 +60,7 @@ const topBrands = [
           <p class="text-secondary-800 mb-0">{{ brand.category }}</p>
         </div>
         <div class="text-end">
-          <b-badge :class="`badge bg-${brand.badgeBg}`">{{ brand.rating }}</b-badge>
+          <b-badge variant="" :class="[`bg-${brand.badgeBg}`]">{{ brand.rating }}</b-badge>
         </div>
       </li>
     </ul>

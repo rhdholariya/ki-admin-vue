@@ -65,7 +65,7 @@ const tableItems = ref([
                 <p class="mg-b-35 f-w-600 text-dark-800 txt-ellipsis-1">
                   {{ card.title }}
                 </p>
-                <b-badge :class="`badge bg-${card.badgeBg}`">
+                <b-badge variant="" :class="[`bg-${card.badgeBg}`]">
                   {{ card.badgeText }}
                 </b-badge>
               </div>
